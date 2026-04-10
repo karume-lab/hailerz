@@ -105,14 +105,61 @@ Raw data is stored as JSON in `database/data/`.
 
 ---
 
-## Production Deployment (GoDaddy/Shared Hosting)
+## Production Deployment
 
-1. Upload the project files.
-2. Point your domain to the `public/` directory.
-3. Update `.env` with production MySQL credentials and Admin settings.
-4. Run `npm run build` locally and upload the `public/build` directory.
-5. Run migrations and seeder on the server:
-   ```bash
-   php artisan migrate --force
-   php artisan db:seed
-   ```
+This is the definitive workflow to turn your manual deployment into a streamlined, scriptable process for your Arch Linux setup.
+
+### Initial Production Setup (One-Time)
+
+Before using the automated scripts, the following must be configured in the GoDaddy cPanel:
+
+1.  **Database Creation:** Use the *MySQL Database Wizard* to create a database and a user. Grant **ALL PRIVILEGES**.
+2.  **Domain Mapping (Symlink):** SSH into the server and run:
+    ```bash
+    mv public_html public_html_backup
+    ln -s /home/apa780681/hailerz/public /home/apa780681/public_html
+    ```
+3.  **Environment Setup:** Create `/home/apa780681/hailerz/.env` manually and add:
+    * `APP_ENV=production`, `APP_DEBUG=false`.
+    * MySQL credentials created in step 1.
+    * `ADMIN_EMAIL` and `ADMIN_PASSWORD` for the initial seeder.
+4.  **PHP Version Check:** Ensure the CLI version matches your local machine (e.g., PHP 8.3+). If it fails, use the "Platform Spoof" in `composer.json`.
+
+---
+
+## Production Deployment Workflow
+
+### Standard Update (Automated)
+To push new features or bug fixes from your local machine, run:
+```bash
+chmod +x bin/deploy.sh
+./bin/deploy.sh
+```
+
+### Manual First-Time Deployment
+If the script is not used, follow these manual steps:
+1.  **Compile & Clean:** `npm run build` and `composer install --no-dev`.
+2.  **Zip Payload:** `zip -r hailerz.zip . -x "node_modules/*" -x ".git/*" -x ".env"`.
+3.  **Upload & Extract:** `scp` the zip to the server and `unzip` it inside the `hailerz` directory.
+4.  **Initialize App:**
+    ```bash
+    php artisan key:generate
+    php artisan migrate --force --seed
+    php artisan storage:link
+    php artisan optimize
+    ```
+
+---
+
+## Environment Management
+The `.env` file is **never** uploaded via script to prevent overwriting production secrets with local settings.
+
+* **To update Production ENV:** SSH into the server and use `nano .env`.
+* **After any .env change:** Always run `php artisan config:clear` followed by `php artisan optimize`.
+
+---
+
+## Final Housekeeping
+Don't forget the **Cron Job** in cPanel. Without it, your internal Filament notifications and scheduled tasks won't fire:
+* **Command:** `/usr/local/bin/php /home/apa780681/hailerz/artisan schedule:run >> /dev/null 2>&1`
+* **Interval:** Every Minute (`* * * * *`)
