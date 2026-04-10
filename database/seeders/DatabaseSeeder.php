@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
                 [
                     'name' => env('ADMIN_NAME', 'Admin'),
                     'password' => Hash::make($adminPassword),
+                    'email_verified_at' => now(), // Sets verification to true
                 ]
             );
         }
@@ -44,7 +45,11 @@ class DatabaseSeeder extends Seeder
             $records = json_decode(File::get($jsonPath), true);
 
             foreach ($records as $data) {
-                // Using updateOrCreate ensures we don't create duplicates 
+                // If seeding users via JSON, verify them too
+                if ($model === User::class) {
+                    $data['email_verified_at'] = now();
+                }
+
                 $model::updateOrCreate(
                     [$uniqueKey => $data[$uniqueKey]],
                     $data
