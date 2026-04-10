@@ -31,8 +31,16 @@ ssh -T godaddy-hailerz << 'EOF'
     cd hailerz
     unzip -o ../deploy.zip
     
+    # Fix permissions to prevent 403 Forbidden errors on GoDaddy
+    echo "Fixing permissions..."
+    find . -type f -exec chmod 644 {} \;
+    find . -type d -exec chmod 755 {} \;
+    chmod -R 775 storage bootstrap/cache
+    
     # Set production environment flags
+    echo "Running migrations and optimization..."
     php artisan migrate --force
+    php artisan storage:link --force
     php artisan optimize
     php artisan filament:optimize
     

@@ -29,14 +29,14 @@ jobs:
               uses: easingthemes/ssh-deploy@main
               with:
                   SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-                  ARGS: "-rlgoDzvc -i --delete"
+                  ARGS: "-rlDzvc -i --delete"
                   REMOTE_HOST: ${{ secrets.HOST }}
                   REMOTE_USER: ${{ secrets.USERNAME }}
                   TARGET: "/home/apa780681/hailerz"
                   # Exclude files that should only exist locally or are handled by GoDaddy
-                  EXCLUDE: "/node_modules/, /.git/, /.github/, .env"
+                  EXCLUDE: "/node_modules/, /.git/, /.github/, .env, /storage/logs/"
 
-            - name: Remote Commands (Migrate & Cache)
+            - name: Remote Commands (Permissions, Migrate & Cache)
               uses: appleboy/ssh-action@master
               with:
                   host: ${{ secrets.HOST }}
@@ -45,6 +45,19 @@ jobs:
                   envs: TERM=xterm-256color
                   script: |
                       cd hailerz
+                      
+                      # Fix permissions: GoDaddy/SuPHP requires 644 for files and 755 for directories
+                      # Group-writable bits (like 664 or 775) often trigger 403 Forbidden errors
+                      echo "Fixing file and directory permissions..."
+                      find . -type f -exec chmod 644 {} \;
+                      find . -type d -exec chmod 755 {} \;
+                      
+                      # Laravel specific: storage and cache need to be writable
+                      # 775 is usually safe, but if 403 persists, 755 might be needed depending on the user group
+                      chmod -R 775 storage bootstrap/cache
+                      
+                      echo "Running migrations and optimization..."
                       php artisan migrate --force
+                      php artisan storage:link --force
                       php artisan optimize
                       php artisan filament:optimize
