@@ -32,6 +32,7 @@ ssh -T godaddy-hailerz << 'EOF'
     unzip -o ../deploy.zip
     
     # Set production environment flags
+    php artisan migrate --force
     php artisan optimize
     php artisan filament:optimize
     

@@ -1,0 +1,49 @@
+name: Deploy to GoDaddy
+
+on:
+    push:
+        branches:
+            - main
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout Code
+              uses: actions/checkout@v4
+
+            - name: Setup PHP
+              uses: shivammathur/setup-php@v2
+              with:
+                  php-version: "8.3"
+                  extensions: mbstring, bcmath, zip
+
+            - name: Install Dependencies
+              run: |
+                  composer install --no-dev --optimize-autoloader
+                  npm install
+                  npm run build
+
+            - name: Sync Files to GoDaddy
+              uses: easingthemes/ssh-deploy@main
+              with:
+                  SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+                  ARGS: "-rlgoDzvc -i --delete"
+                  REMOTE_HOST: ${{ secrets.HOST }}
+                  REMOTE_USER: ${{ secrets.USERNAME }}
+                  TARGET: "/home/apa780681/hailerz"
+                  # Exclude files that should only exist locally or are handled by GoDaddy
+                  EXCLUDE: "/node_modules/, /.git/, /.github/, .env"
+
+            - name: Remote Commands (Migrate & Cache)
+              uses: appleboy/ssh-action@master
+              with:
+                  host: ${{ secrets.HOST }}
+                  username: ${{ secrets.USERNAME }}
+                  key: ${{ secrets.SSH_PRIVATE_KEY }}
+                  script: |
+                      cd hailerz
+                      php artisan migrate --force
+                      php artisan optimize
+                      php artisan filament:optimize

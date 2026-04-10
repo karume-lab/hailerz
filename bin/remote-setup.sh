@@ -14,6 +14,9 @@ fi
 echo "Linking storage..."
 php artisan storage:link --force
 
+echo "Creating tiwa_link symlink for domain mapping..."
+ln -sf /home/apa780681/hailerz/public /home/apa780681/public_html/tiwa_link
+
 # 2. Standardize Permissions
 # Files 644, Directories 755 is the GoDaddy 'Sweet Spot'
 echo "Resetting file and folder permissions..."

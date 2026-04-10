@@ -114,10 +114,11 @@ This is the definitive workflow to turn your manual deployment into a streamline
 Before using the automated scripts, the following must be configured in the GoDaddy cPanel:
 
 1.  **Database Creation:** Use the *MySQL Database Wizard* to create a database and a user. Grant **ALL PRIVILEGES**.
-2.  **Domain Mapping (Symlink):** SSH into the server and run:
+2.  **Domain Mapping (Symlink):** SSH into the server and run the following (also handled by `bin/remote-setup.sh`):
     ```bash
     mv public_html public_html_backup
     ln -s /home/apa780681/hailerz/public /home/apa780681/public_html
+    ln -sf /home/apa780681/hailerz/public /home/apa780681/public_html/tiwa_link
     ```
 3.  **Environment Setup:** Create `/home/apa780681/hailerz/.env` manually and add:
     * `APP_ENV=production`, `APP_DEBUG=false`.
