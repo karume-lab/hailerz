@@ -42,6 +42,7 @@ jobs:
                   host: ${{ secrets.HOST }}
                   username: ${{ secrets.USERNAME }}
                   key: ${{ secrets.SSH_PRIVATE_KEY }}
+                  envs: TERM=xterm-256color
                   script: |
                       cd hailerz
                       php artisan migrate --force
