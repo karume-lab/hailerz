@@ -123,4 +123,20 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Admin Credentials
+    |--------------------------------------------------------------------------
+    |
+    | These credentials are used to identify the administrator in the
+    | application and for seeding the initial admin user.
+    |
+    */
+
+    'admin_name' => env('ADMIN_NAME', 'Admin'),
+
+    'admin_email' => env('ADMIN_EMAIL', 'admin@mail.com'),
+
+    'admin_password' => env('ADMIN_PASSWORD', 'password'),
+
 ];

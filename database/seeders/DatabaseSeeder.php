@@ -15,15 +15,15 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        // 1. Seed the Admin from .env variables
-        $adminEmail = env('ADMIN_EMAIL');
-        $adminPassword = env('ADMIN_PASSWORD');
+        // 1. Seed the Admin from config variables
+        $adminEmail = config('app.admin_email');
+        $adminPassword = config('app.admin_password');
 
         if ($adminEmail && $adminPassword) {
             User::updateOrCreate(
                 ['email' => $adminEmail],
                 [
-                    'name' => env('ADMIN_NAME', 'Admin'),
+                    'name' => config('app.admin_name', 'Admin'),
                     'password' => Hash::make($adminPassword),
                     'email_verified_at' => now(), // Sets verification to true
                 ]
