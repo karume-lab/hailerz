@@ -1,0 +1,550 @@
+[
+    {
+        "name": "Isabella Jones 1",
+        "category": "dj",
+        "min_fee": 13500,
+        "target_markets": [
+            "College Circuit",
+            "Corporate Approved",
+            "Nightclub Division"
+        ],
+        "is_virtual_ready": true,
+        "bio": "<p>Isabella Jones is an amazing entertainer with over 8 years of experience in the speaker industry.<\/p>"
+    },
+    {
+        "name": "Liam Martinez 2",
+        "category": "speaker",
+        "min_fee": 11600,
+        "target_markets": [
+            "Corporate Approved"
+        ],
+        "is_virtual_ready": true,
+        "bio": "<p>Liam Martinez is an amazing entertainer with over 11 years of experience in the musician industry.<\/p>"
+    },
+    {
+        "name": "Alexander Johnson 3",
+        "category": "speaker",
+        "min_fee": 11500,
+        "target_markets": [
+            "College Circuit",
+            "Corporate Approved",
+            "Nightclub Division"
+        ],
+        "is_virtual_ready": true,
+        "bio": "<p>Alexander Johnson is an amazing entertainer with over 19 years of experience in the comedian industry.<\/p>"
+    },
+    {
+        "name": "Noah Brown 4",
+        "category": "musician",
+        "min_fee": 13800,
+        "target_markets": [
+            "Industry Showcase"
+        ],
+        "is_virtual_ready": false,
+        "bio": "<p>Noah Brown is an amazing entertainer with over 15 years of experience in the mc industry.<\/p>"
+    },
+    {
+        "name": "William Rodriguez 5",
+        "category": "dj",
+        "min_fee": 5700,
+        "target_markets": [
+            "Nightclub Division"
+        ],
+        "is_virtual_ready": false,
+        "bio": "<p>William Rodriguez is an amazing entertainer with over 16 years of experience in the musician industry.<\/p>"
+    },
+    {
+        "name": "Isabella Miller 6",
+        "category": "dj",
+        "min_fee": 6300,
+        "target_markets": [
+            "College Circuit",
+            "Corporate Approved"
+        ],
+        "is_virtual_ready": false,
+        "bio": "<p>Isabella Miller is an amazing entertainer with over 10 years of experience in the comedian industry.<\/p>"
+    },
+    {
+        "name": "Benjamin Davis 7",
+        "category": "comedian",
+        "min_fee": 13600,
+        "target_markets": [
+            "Military Base Ready",
+            "Nightclub Division"
+        ],
+        "is_virtual_ready": false,
+        "bio": "<p>Benjamin Davis is an amazing entertainer with over 11 years of experience in the dj industry.<\/p>"
+    },
+    {
+        "name": "Elijah Smith 8",
+        "category": "mc",
+        "min_fee": 12900,
+        "target_markets": [
+            "Corporate Approved"
+        ],
+        "is_virtual_ready": true,
+        "bio": "<p>Elijah Smith is an amazing entertainer with over 11 years of experience in the dj industry.<\/p>"
+    },
+    {
+        "name": "Benjamin Williams 9",
+        "category": "musician",
+        "min_fee": 5300,
+        "target_markets": [
+            "Corporate Approved"
+        ],
+        "is_virtual_ready": true,
+        "bio": "<p>Benjamin Williams is an amazing entertainer with over 14 years of experience in the mc industry.<\/p>"
+    },
+    {
+        "name": "Harper Johnson 10",
+        "category": "comedian",
+        "min_fee": 13200,
+        "target_markets": [
+            "Industry Showcase"
+        ],
+        "is_virtual_ready": false,
+        "bio": "<p>Harper Johnson is an amazing entertainer with over 17 years of experience in the mc industry.<\/p>"
+    },
+    {
+        "name": "James Johnson 11",
+        "category": "comedian",
+        "min_fee": 11400,
+        "target_markets": [
+            "Military Base Ready"
+        ],
+        "is_virtual_ready": true,
+        "bio": "<p>James Johnson is an amazing entertainer with over 6 years of experience in the mc industry.<\/p>"
+    },
+    {
+        "name": "Harper Rodriguez 12",
+        "category": "speaker",
+        "min_fee": 9400,
+        "target_markets": [
+            "Corporate Approved"
+        ],
+        "is_virtual_ready": true,
+        "bio": "<p>Harper Rodriguez is an amazing entertainer with over 7 years of experience in the dj industry.<\/p>"
+    },
+    {
+        "name": "Amelia Johnson 13",
+        "category": "musician",
+        "min_fee": 11600,
+        "target_markets": [
+            "Corporate Approved",
+            "Industry Showcase"
+        ],
+        "is_virtual_ready": false,
+        "bio": "<p>Amelia Johnson is an amazing entertainer with over 5 years of experience in the mc industry.<\/p>"
+    },
+    {
+        "name": "Lucas Rodriguez 14",
+        "category": "speaker",
+        "min_fee": 6400,
+        "target_markets": [
+            "Military Base Ready"
+        ],
+        "is_virtual_ready": true,
+        "bio": "<p>Lucas Rodriguez is an amazing entertainer with over 19 years of experience in the comedian industry.<\/p>"
+    },
+    {
+        "name": "Evelyn Williams 15",
+        "category": "comedian",
+        "min_fee": 12400,
+        "target_markets": [
+            "College Circuit",
+            "Military Base Ready",
+            "Nightclub Division"
+        ],
+        "is_virtual_ready": true,
+        "bio": "<p>Evelyn Williams is an amazing entertainer with over 20 years of experience in the mc industry.<\/p>"
+    },
+    {
+        "name": "Evelyn Johnson 16",
+        "category": "speaker",
+        "min_fee": 8300,
+        "target_markets": [
+            "Industry Showcase"
+        ],
+        "is_virtual_ready": true,
+        "bio": "<p>Evelyn Johnson is an amazing entertainer with over 8 years of experience in the comedian industry.<\/p>"
+    },
+    {
+        "name": "Lucas Davis 17",
+        "category": "dj",
+        "min_fee": 8200,
+        "target_markets": [
+            "Corporate Approved",
+            "Industry Showcase"
+        ],
+        "is_virtual_ready": true,
+        "bio": "<p>Lucas Davis is an amazing entertainer with over 7 years of experience in the comedian industry.<\/p>"
+    },
+    {
+        "name": "Benjamin Rodriguez 18",
+        "category": "dj",
+        "min_fee": 5900,
+        "target_markets": [
+            "College Circuit",
+            "Corporate Approved"
+        ],
+        "is_virtual_ready": true,
+        "bio": "<p>Benjamin Rodriguez is an amazing entertainer with over 9 years of experience in the comedian industry.<\/p>"
+    },
+    {
+        "name": "Liam Williams 19",
+        "category": "dj",
+        "min_fee": 9900,
+        "target_markets": [
+            "Military Base Ready"
+        ],
+        "is_virtual_ready": true,
+        "bio": "<p>Liam Williams is an amazing entertainer with over 12 years of experience in the comedian industry.<\/p>"
+    },
+    {
+        "name": "Alexander Jones 20",
+        "category": "mc",
+        "min_fee": 9000,
+        "target_markets": [
+            "Nightclub Division"
+        ],
+        "is_virtual_ready": true,
+        "bio": "<p>Alexander Jones is an amazing entertainer with over 12 years of experience in the musician industry.<\/p>"
+    },
+    {
+        "name": "Charlotte Smith 21",
+        "category": "comedian",
+        "min_fee": 14900,
+        "target_markets": [
+            "Nightclub Division"
+        ],
+        "is_virtual_ready": true,
+        "bio": "<p>Charlotte Smith is an amazing entertainer with over 9 years of experience in the dj industry.<\/p>"
+    },
+    {
+        "name": "Olivia Rodriguez 22",
+        "category": "mc",
+        "min_fee": 4400,
+        "target_markets": [
+            "Corporate Approved"
+        ],
+        "is_virtual_ready": false,
+        "bio": "<p>Olivia Rodriguez is an amazing entertainer with over 5 years of experience in the comedian industry.<\/p>"
+    },
+    {
+        "name": "Ava Martinez 23",
+        "category": "dj",
+        "min_fee": 13300,
+        "target_markets": [
+            "College Circuit",
+            "Military Base Ready",
+            "Industry Showcase"
+        ],
+        "is_virtual_ready": false,
+        "bio": "<p>Ava Martinez is an amazing entertainer with over 8 years of experience in the musician industry.<\/p>"
+    },
+    {
+        "name": "Sophia Garcia 24",
+        "category": "dj",
+        "min_fee": 10900,
+        "target_markets": [
+            "College Circuit",
+            "Nightclub Division"
+        ],
+        "is_virtual_ready": true,
+        "bio": "<p>Sophia Garcia is an amazing entertainer with over 7 years of experience in the dj industry.<\/p>"
+    },
+    {
+        "name": "Emma Miller 25",
+        "category": "speaker",
+        "min_fee": 2200,
+        "target_markets": [
+            "College Circuit",
+            "Military Base Ready",
+            "Nightclub Division"
+        ],
+        "is_virtual_ready": false,
+        "bio": "<p>Emma Miller is an amazing entertainer with over 9 years of experience in the speaker industry.<\/p>"
+    },
+    {
+        "name": "Emma Jones 26",
+        "category": "speaker",
+        "min_fee": 11200,
+        "target_markets": [
+            "College Circuit",
+            "Corporate Approved",
+            "Military Base Ready"
+        ],
+        "is_virtual_ready": true,
+        "bio": "<p>Emma Jones is an amazing entertainer with over 17 years of experience in the musician industry.<\/p>"
+    },
+    {
+        "name": "Mia Jones 27",
+        "category": "mc",
+        "min_fee": 7700,
+        "target_markets": [
+            "Corporate Approved",
+            "Military Base Ready"
+        ],
+        "is_virtual_ready": true,
+        "bio": "<p>Mia Jones is an amazing entertainer with over 13 years of experience in the mc industry.<\/p>"
+    },
+    {
+        "name": "Alexander Johnson 28",
+        "category": "dj",
+        "min_fee": 7800,
+        "target_markets": [
+            "Corporate Approved",
+            "Military Base Ready",
+            "Industry Showcase"
+        ],
+        "is_virtual_ready": false,
+        "bio": "<p>Alexander Johnson is an amazing entertainer with over 5 years of experience in the mc industry.<\/p>"
+    },
+    {
+        "name": "Mia Smith 29",
+        "category": "mc",
+        "min_fee": 7200,
+        "target_markets": [
+            "College Circuit",
+            "Military Base Ready",
+            "Industry Showcase"
+        ],
+        "is_virtual_ready": false,
+        "bio": "<p>Mia Smith is an amazing entertainer with over 5 years of experience in the musician industry.<\/p>"
+    },
+    {
+        "name": "Benjamin Brown 30",
+        "category": "dj",
+        "min_fee": 12500,
+        "target_markets": [
+            "Industry Showcase"
+        ],
+        "is_virtual_ready": false,
+        "bio": "<p>Benjamin Brown is an amazing entertainer with over 11 years of experience in the speaker industry.<\/p>"
+    },
+    {
+        "name": "Ava Smith 31",
+        "category": "musician",
+        "min_fee": 14200,
+        "target_markets": [
+            "Military Base Ready"
+        ],
+        "is_virtual_ready": false,
+        "bio": "<p>Ava Smith is an amazing entertainer with over 17 years of experience in the mc industry.<\/p>"
+    },
+    {
+        "name": "Harper Martinez 32",
+        "category": "speaker",
+        "min_fee": 12700,
+        "target_markets": [
+            "College Circuit",
+            "Military Base Ready",
+            "Nightclub Division"
+        ],
+        "is_virtual_ready": true,
+        "bio": "<p>Harper Martinez is an amazing entertainer with over 16 years of experience in the mc industry.<\/p>"
+    },
+    {
+        "name": "Benjamin Brown 33",
+        "category": "mc",
+        "min_fee": 2300,
+        "target_markets": [
+            "College Circuit",
+            "Military Base Ready",
+            "Nightclub Division"
+        ],
+        "is_virtual_ready": false,
+        "bio": "<p>Benjamin Brown is an amazing entertainer with over 10 years of experience in the mc industry.<\/p>"
+    },
+    {
+        "name": "Lucas Martinez 34",
+        "category": "comedian",
+        "min_fee": 14400,
+        "target_markets": [
+            "Corporate Approved",
+            "Military Base Ready"
+        ],
+        "is_virtual_ready": true,
+        "bio": "<p>Lucas Martinez is an amazing entertainer with over 9 years of experience in the dj industry.<\/p>"
+    },
+    {
+        "name": "Olivia Rodriguez 35",
+        "category": "mc",
+        "min_fee": 13900,
+        "target_markets": [
+            "College Circuit",
+            "Corporate Approved",
+            "Military Base Ready"
+        ],
+        "is_virtual_ready": true,
+        "bio": "<p>Olivia Rodriguez is an amazing entertainer with over 17 years of experience in the speaker industry.<\/p>"
+    },
+    {
+        "name": "Olivia Smith 36",
+        "category": "comedian",
+        "min_fee": 8900,
+        "target_markets": [
+            "College Circuit",
+            "Nightclub Division",
+            "Industry Showcase"
+        ],
+        "is_virtual_ready": false,
+        "bio": "<p>Olivia Smith is an amazing entertainer with over 12 years of experience in the speaker industry.<\/p>"
+    },
+    {
+        "name": "Evelyn Jones 37",
+        "category": "mc",
+        "min_fee": 3100,
+        "target_markets": [
+            "College Circuit",
+            "Military Base Ready",
+            "Industry Showcase"
+        ],
+        "is_virtual_ready": false,
+        "bio": "<p>Evelyn Jones is an amazing entertainer with over 14 years of experience in the dj industry.<\/p>"
+    },
+    {
+        "name": "Henry Johnson 38",
+        "category": "dj",
+        "min_fee": 1400,
+        "target_markets": [
+            "Corporate Approved",
+            "Military Base Ready",
+            "Nightclub Division"
+        ],
+        "is_virtual_ready": true,
+        "bio": "<p>Henry Johnson is an amazing entertainer with over 12 years of experience in the mc industry.<\/p>"
+    },
+    {
+        "name": "Henry Davis 39",
+        "category": "dj",
+        "min_fee": 12800,
+        "target_markets": [
+            "College Circuit",
+            "Nightclub Division"
+        ],
+        "is_virtual_ready": false,
+        "bio": "<p>Henry Davis is an amazing entertainer with over 16 years of experience in the mc industry.<\/p>"
+    },
+    {
+        "name": "Mia Miller 40",
+        "category": "speaker",
+        "min_fee": 3400,
+        "target_markets": [
+            "Corporate Approved"
+        ],
+        "is_virtual_ready": false,
+        "bio": "<p>Mia Miller is an amazing entertainer with over 20 years of experience in the mc industry.<\/p>"
+    },
+    {
+        "name": "Oliver Johnson 41",
+        "category": "musician",
+        "min_fee": 6500,
+        "target_markets": [
+            "Industry Showcase"
+        ],
+        "is_virtual_ready": false,
+        "bio": "<p>Oliver Johnson is an amazing entertainer with over 10 years of experience in the musician industry.<\/p>"
+    },
+    {
+        "name": "Benjamin Rodriguez 42",
+        "category": "speaker",
+        "min_fee": 10800,
+        "target_markets": [
+            "College Circuit",
+            "Nightclub Division",
+            "Industry Showcase"
+        ],
+        "is_virtual_ready": false,
+        "bio": "<p>Benjamin Rodriguez is an amazing entertainer with over 13 years of experience in the comedian industry.<\/p>"
+    },
+    {
+        "name": "Oliver Johnson 43",
+        "category": "dj",
+        "min_fee": 5900,
+        "target_markets": [
+            "Corporate Approved"
+        ],
+        "is_virtual_ready": false,
+        "bio": "<p>Oliver Johnson is an amazing entertainer with over 13 years of experience in the dj industry.<\/p>"
+    },
+    {
+        "name": "Amelia Brown 44",
+        "category": "speaker",
+        "min_fee": 4100,
+        "target_markets": [
+            "Corporate Approved",
+            "Military Base Ready",
+            "Industry Showcase"
+        ],
+        "is_virtual_ready": false,
+        "bio": "<p>Amelia Brown is an amazing entertainer with over 16 years of experience in the mc industry.<\/p>"
+    },
+    {
+        "name": "Noah Johnson 45",
+        "category": "dj",
+        "min_fee": 4200,
+        "target_markets": [
+            "Corporate Approved"
+        ],
+        "is_virtual_ready": false,
+        "bio": "<p>Noah Johnson is an amazing entertainer with over 13 years of experience in the comedian industry.<\/p>"
+    },
+    {
+        "name": "William Smith 46",
+        "category": "dj",
+        "min_fee": 3200,
+        "target_markets": [
+            "Corporate Approved",
+            "Military Base Ready",
+            "Nightclub Division"
+        ],
+        "is_virtual_ready": true,
+        "bio": "<p>William Smith is an amazing entertainer with over 13 years of experience in the speaker industry.<\/p>"
+    },
+    {
+        "name": "Henry Garcia 47",
+        "category": "comedian",
+        "min_fee": 3100,
+        "target_markets": [
+            "Corporate Approved",
+            "Military Base Ready",
+            "Nightclub Division"
+        ],
+        "is_virtual_ready": true,
+        "bio": "<p>Henry Garcia is an amazing entertainer with over 13 years of experience in the speaker industry.<\/p>"
+    },
+    {
+        "name": "Emma Jones 48",
+        "category": "speaker",
+        "min_fee": 800,
+        "target_markets": [
+            "Military Base Ready",
+            "Nightclub Division",
+            "Industry Showcase"
+        ],
+        "is_virtual_ready": false,
+        "bio": "<p>Emma Jones is an amazing entertainer with over 11 years of experience in the speaker industry.<\/p>"
+    },
+    {
+        "name": "Elijah Smith 49",
+        "category": "comedian",
+        "min_fee": 12100,
+        "target_markets": [
+            "College Circuit",
+            "Nightclub Division"
+        ],
+        "is_virtual_ready": true,
+        "bio": "<p>Elijah Smith is an amazing entertainer with over 17 years of experience in the speaker industry.<\/p>"
+    },
+    {
+        "name": "Olivia Miller 50",
+        "category": "musician",
+        "min_fee": 7500,
+        "target_markets": [
+            "Corporate Approved"
+        ],
+        "is_virtual_ready": false,
+        "bio": "<p>Olivia Miller is an amazing entertainer with over 5 years of experience in the musician industry.<\/p>"
+    }
+]
