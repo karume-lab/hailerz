@@ -119,6 +119,7 @@ return [
     */
 
     'maintenance' => [
+        'enabled' => (bool) env('APP_MAINTENANCE', false),
         'driver' => env('APP_MAINTENANCE_DRIVER', 'file'),
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
