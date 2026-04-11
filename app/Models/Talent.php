@@ -32,4 +32,12 @@ class Talent extends Model implements HasMedia
     {
         return $this->hasMany(Inquiry::class);
     }
+
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('primary_image')
+            ->singleFile();
+
+        $this->addMediaCollection('gallery');
+    }
 }

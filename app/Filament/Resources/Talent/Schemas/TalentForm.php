@@ -18,7 +18,7 @@ class TalentForm
                     Forms\Components\TextInput::make('name')
                         ->required()
                         ->live(onBlur: true)
-                        ->afterStateUpdated(fn (string $operation, $state, Forms\Set $set)
+                        ->afterStateUpdated(fn (string $operation, $state, \Filament\Forms\Set $set)
                             => $operation === 'create' ? $set('slug', Str::slug($state)) : null),
                     Forms\Components\TextInput::make('slug')
                         ->disabled()
@@ -45,6 +45,12 @@ class TalentForm
                 ->schema([
                     \Filament\Forms\Components\SpatieMediaLibraryFileUpload::make('primary_image')
                         ->collection('primary_image')
+                        ->image()
+                        ->imageEditor()
+                        ->columnSpanFull(),
+                    \Filament\Forms\Components\SpatieMediaLibraryFileUpload::make('gallery')
+                        ->collection('gallery')
+                        ->multiple()
                         ->image()
                         ->imageEditor()
                         ->columnSpanFull(),

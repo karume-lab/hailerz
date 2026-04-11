@@ -1,13 +1,13 @@
 <x-filament-panels::page>
     {{-- View Switcher --}}
     <div class="mb-6 flex justify-start">
-        <div class="inline-flex p-1 bg-gray-100 dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800 shadow-sm">
+        <div class="inline-flex p-1 bg-canvas dark:bg-dark rounded-lg border border-dark/10 shadow-sm">
             <button
                 wire:click="toggleView('kanban')"
                 @class([
                     'flex items-center gap-2 px-4 py-1.5 text-xs font-bold rounded-md transition-all duration-200',
-                    'bg-white dark:bg-gray-800 shadow text-primary-600 dark:text-primary-400' => $activeView === 'kanban',
-                    'text-gray-500 hover:text-gray-700 dark:hover:text-gray-300' => $activeView !== 'kanban',
+                    'bg-surface dark:bg-dark-muted shadow text-primary dark:text-primary-400' => $activeView === 'kanban',
+                    'text-gray-500 hover:text-dark-muted dark:hover:text-gray-300' => $activeView !== 'kanban',
                 ])
             >
                 <x-filament::icon icon="heroicon-m-view-columns" class="w-4 h-4" />
@@ -17,8 +17,8 @@
                 wire:click="toggleView('table')"
                 @class([
                     'flex items-center gap-2 px-4 py-1.5 text-xs font-bold rounded-md transition-all duration-200',
-                    'bg-white dark:bg-gray-800 shadow text-primary-600 dark:text-primary-400' => $activeView === 'table',
-                    'text-gray-500 hover:text-gray-700 dark:hover:text-gray-300' => $activeView !== 'table',
+                    'bg-surface dark:bg-dark-muted shadow text-primary dark:text-primary-400' => $activeView === 'table',
+                    'text-gray-500 hover:text-dark-muted dark:hover:text-gray-300' => $activeView !== 'table',
                 ])
             >
                 <x-filament::icon icon="heroicon-m-table-cells" class="w-4 h-4" />
@@ -56,18 +56,18 @@
                             {{ $status->kanbanTitle() }}
                         </span>
                         <span
-                            class="inline-flex items-center justify-center min-w-5 h-5 px-1.5 text-[10px] font-bold rounded-full bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 border border-gray-200 dark:border-gray-700"
+                            class="inline-flex items-center justify-center min-w-5 h-5 px-1.5 text-[10px] font-bold rounded-full bg-canvas dark:bg-dark-muted text-gray-500 dark:text-gray-400 border border-dark/10"
                             x-text="(inquiries['{{ $status->value }}'] || []).length"
                         ></span>
                     </div>
 
                     {{-- Cards area --}}
-                    <div class="flex-1 flex flex-col gap-2.5 p-2 rounded-2xl border border-gray-200/60 dark:border-gray-800/60 bg-gray-50/50 dark:bg-gray-950/30 min-h-[350px]">
+                    <div class="flex-1 flex flex-col gap-2.5 p-2 rounded-2xl border border-dark/5 dark:border-dark-muted bg-canvas/50 dark:bg-dark/30 min-h-[350px]">
                         <template x-for="inquiry in (inquiries['{{ $status->value }}'] || [])" :key="inquiry.id">
                             <div
                                 draggable="true"
                                 @dragstart="startDragging(inquiry.id)"
-                                class="group relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 p-4 rounded-xl shadow-sm cursor-grab active:cursor-grabbing active:scale-[0.97] hover:border-primary-400 dark:hover:border-primary-500 hover:shadow-md transition-all duration-150"
+                                class="group relative bg-surface dark:bg-dark-muted border border-dark/10 dark:border-dark p-4 rounded-xl shadow-sm cursor-grab active:cursor-grabbing active:scale-[0.97] hover:border-primary dark:hover:border-primary hover:shadow-md transition-all duration-150"
                             >
                                 {{-- Edit button, revealed on hover --}}
                                 <div class="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-150">

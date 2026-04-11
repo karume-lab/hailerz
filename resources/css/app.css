@@ -20,6 +20,13 @@
     --color-primary-800: #3730a3;
     --color-primary-900: #312e81;
     --color-primary-950: #1e1b4b;
+
+    --color-primary: var(--color-primary-600);
+    --color-primary-dark: var(--color-primary-700);
+    --color-dark: #030712; /* gray-950 */
+    --color-dark-muted: #111827; /* gray-900 */
+    --color-canvas: #f9fafb; /* gray-50 */
+    --color-surface: #ffffff;
 }
 
 @layer base {

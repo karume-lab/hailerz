@@ -1,107 +1,95 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="h-full">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $title ?? 'Hailerz Entertainment | Premier Talent Booking' }}</title>
-    
-    <!-- SEO -->
-    <meta name="description" content="Discover and book premier talent for your events. From top musicians to keynote speakers and comedians.">
-    
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..700&family=Outfit:wght@500..800&display=swap" rel="stylesheet">
-
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-    @livewireStyles
-</head>
-<body class="h-full flex flex-col antialiased bg-slate-50 text-slate-900">
-    
-    <!-- Navigation -->
-    <nav class="glass-nav">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-20">
-                <div class="flex items-center gap-10">
-                    <a href="/" class="group flex items-center">
-                        <span class="text-2xl font-serif font-black tracking-tighter text-slate-950 group-hover:text-primary-600 transition-colors">
-                            HAILERZ ENTERTAINMENT
-                        </span>
-                    </a>
-                    
-                    <div class="hidden md:flex items-center gap-8">
-                        <a href="/" class="text-sm font-semibold text-slate-600 hover:text-slate-950 transition-colors">Home</a>
-                        <a href="/talent" class="text-sm font-semibold text-slate-600 hover:text-slate-950 transition-colors">Browse Talent</a>
-                        <a href="/news" class="text-sm font-semibold text-slate-600 hover:text-slate-950 transition-colors">Industry News</a>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Hailerz - Premium Talent Booking Agency. Secure the perfect act, leave nothing to chance.">
+        
+        <title>{{ $title ?? 'Hailerz | Premium Talent Booking Agency' }}</title>
+        
+        <link rel="preconnect" href="https://fonts.bunny.net">
+        <link href="https://fonts.bunny.net/css?family=inter:400,500,600,700&display=swap" rel="stylesheet" />
+        
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @livewireStyles
+    </head>
+    <body class="bg-canvas text-dark-muted font-sans antialiased flex flex-col min-h-screen">
+        
+        <header class="sticky top-0 z-50 w-full backdrop-blur-lg bg-white/70 border-b border-gray-200/50 support-backdrop-blur:bg-white/60">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center h-20">
+                    <div class="shrink-0 flex items-center">
+                        <a href="/" class="text-2xl font-bold tracking-tighter text-dark uppercase">
+                            HAILERZ<span class="text-primary">.</span>
+                        </a>
+                    </div>
+                    <nav class="hidden md:flex space-x-10">
+                        <a href="/talent" class="text-base font-medium {{ request()->is('talent*') ? 'text-primary' : 'text-gray-700 hover:text-primary' }} transition-colors">Directory</a>
+                        <a href="/services" class="text-base font-medium {{ request()->is('services*') ? 'text-primary' : 'text-gray-700 hover:text-primary' }} transition-colors">Services</a>
+                        <a href="/about" class="text-base font-medium {{ request()->is('about*') ? 'text-primary' : 'text-gray-700 hover:text-primary' }} transition-colors">About</a>
+                        <a href="/join" class="text-base font-medium {{ request()->is('join*') ? 'text-primary' : 'text-gray-700 hover:text-primary' }} transition-colors">For Talent</a>
+                    </nav>
+                    <div class="flex items-center space-x-6">
+                        <a href="/book" class="inline-flex items-center justify-center px-6 py-2.5 border border-transparent text-sm font-semibold rounded-full text-white bg-dark hover:bg-dark-muted shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-dark">
+                            Book Talent
+                        </a>
                     </div>
                 </div>
-
-                <div class="flex items-center gap-4">
-                    <a href="/book" class="hidden sm:inline-flex items-center justify-center px-6 py-2.5 text-sm font-bold text-white bg-slate-950 rounded-full hover:bg-slate-800 transition-all shadow-lg shadow-slate-200/50">
-                        Check Availability
-                    </a>
-                    <button type="button" class="md:hidden p-2 text-slate-600">
-                        <x-heroicon-o-bars-3 class="w-6 h-6" />
-                    </button>
-                </div>
             </div>
-        </div>
-    </nav>
+        </header>
 
-    <!-- Main Content -->
-    <main class="grow">
-        {{ $slot }}
-    </main>
+        <main class="grow">
+            {{ $slot }}
+        </main>
 
-    <!-- Footer -->
-    <footer class="bg-white border-t border-slate-200 pt-16 pb-8">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
-                <div class="col-span-1 md:col-span-2">
-                    <span class="text-xl font-serif font-black tracking-tighter text-slate-950 mb-6 block">
-                        HAILERZ ENTERTAINMENT
-                    </span>
-                    <p class="text-slate-500 max-w-sm mb-6 leading-relaxed">
-                        Connecting the world's most iconic brands with elite entertainment talent since 2012. 
-                        Your premier partner for corporate events, weddings, and high-profile bookings.
-                    </p>
-                    <div class="flex gap-4">
-                        <!-- Social Icons -->
+        <footer class="bg-dark border-t border-dark-muted text-gray-300">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+                    <div class="col-span-1 md:col-span-1">
+                        <span class="text-2xl font-bold tracking-tighter text-white uppercase">
+                            HAILERZ<span class="text-primary">.</span>
+                        </span>
+                        <p class="mt-4 text-sm text-gray-400 leading-relaxed">
+                            The premier global talent booking agency. Vetted professionals. Secure contracts. Flawless execution.
+                        </p>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-sm font-semibold text-white tracking-wider uppercase mb-4">Directory</h3>
+                        <ul class="space-y-3">
+                            <li><a href="/talent?category=musicians" class="text-sm text-gray-400 hover:text-white transition-colors">Musicians</a></li>
+                            <li><a href="/talent?category=speakers" class="text-sm text-gray-400 hover:text-white transition-colors">Keynote Speakers</a></li>
+                            <li><a href="/talent?category=performers" class="text-sm text-gray-400 hover:text-white transition-colors">Performers</a></li>
+                            <li><a href="/talent" class="text-sm text-gray-400 hover:text-white transition-colors">Browse All</a></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 class="text-sm font-semibold text-white tracking-wider uppercase mb-4">Legal</h3>
+                        <ul class="space-y-3">
+                            <li><a href="#" class="text-sm text-gray-400 hover:text-white transition-colors">Terms of Service</a></li>
+                            <li><a href="#" class="text-sm text-gray-400 hover:text-white transition-colors">Privacy Policy</a></li>
+                            <li><a href="#" class="text-sm text-gray-400 hover:text-white transition-colors">Booking Agreement</a></li>
+                            <li><a href="#" class="text-sm text-gray-400 hover:text-white transition-colors">Cancellation Policy</a></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 class="text-sm font-semibold text-white tracking-wider uppercase mb-4">Contact</h3>
+                        <ul class="space-y-3">
+                            <li class="text-sm text-gray-400">booking@hailerz.com</li>
+                            <li class="text-sm text-gray-400">+1 (800) 555-0199</li>
+                            <li class="text-sm text-gray-400 mt-4">1200 Global Ave, Suite 400<br>New York, NY 10001</li>
+                        </ul>
                     </div>
                 </div>
                 
-                <div>
-                    <h4 class="font-bold text-slate-900 mb-6 uppercase text-xs tracking-widest">Platform</h4>
-                    <ul class="space-y-4">
-                        <li><a href="/talent" class="text-slate-500 hover:text-primary-600 text-sm transition-colors">Browse Roster</a></li>
-                        <li><a href="/news" class="text-slate-500 hover:text-primary-600 text-sm transition-colors">Industry Insights</a></li>
-                        <li><a href="/careers" class="text-slate-500 hover:text-primary-600 text-sm transition-colors">Join the Team</a></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h4 class="font-bold text-slate-900 mb-6 uppercase text-xs tracking-widest">Company</h4>
-                    <ul class="space-y-4">
-                        <li><a href="/about" class="text-slate-500 hover:text-primary-600 text-sm transition-colors">Our Story</a></li>
-                        <li><a href="/contact" class="text-slate-500 hover:text-primary-600 text-sm transition-colors">Contact</a></li>
-                        <li><a href="/legal" class="text-slate-500 hover:text-primary-600 text-sm transition-colors">Privacy Policy</a></li>
-                    </ul>
+                <div class="mt-12 pt-8 border-t border-gray-800 text-sm text-center text-gray-500">
+                    &copy; {{ date('Y') }} Hailerz Agency. All rights reserved.
                 </div>
             </div>
-            
-            <div class="pt-8 border-t border-slate-100 flex flex-col md:flex-row justify-between items-center gap-4">
-                <p class="text-slate-400 text-xs text-center md:text-left">
-                    &copy; {{ date('Y') }} Hailerz Entertainment. All rights reserved.
-                </p>
-                <div class="flex items-center gap-6 text-xs text-slate-400">
-                    <span>Licensed Booking Agency</span>
-                    <span class="w-1 h-1 bg-slate-200 rounded-full"></span>
-                    <span>Global Coverage</span>
-                </div>
-            </div>
-        </div>
-    </footer>
+        </footer>
 
-    @livewireScripts
-</body>
+        @livewireScripts
+    </body>
 </html>
