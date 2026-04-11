@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Filament\Resources\Bookings\Pages;
+namespace App\Filament\Resources\Posts\Pages;
 
-use App\Filament\Resources\Bookings\BookingResource;
+use App\Filament\Resources\Posts\PostResource;
 use Filament\Actions\CreateAction;
 use Filament\Resources\Pages\ListRecords;
 
-class ListBookings extends ListRecords
+class ListPosts extends ListRecords
 {
-    protected static string $resource = BookingResource::class;
+    protected static string $resource = PostResource::class;
 
     protected function getHeaderActions(): array
     {

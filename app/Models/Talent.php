@@ -3,24 +3,33 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Talent extends Model
+class Talent extends Model implements HasMedia
 {
+    use InteractsWithMedia;
+
     protected $table = 'talents';
+    protected $guarded = [];
 
-    protected $fillable = [
-        'name',
-        'category',
-        'min_fee',
-        'target_markets',
-        'is_virtual_ready',
-        'headshot_path',
-        'rider_path',
-        'bio',
-    ];
+    protected function casts(): array
+    {
+        return [
+            'starting_price' => 'decimal:2',
+            'is_featured' => 'boolean',
+        ];
+    }
 
-    protected $casts = [
-        'target_markets' => 'array',
-        'is_virtual_ready' => 'boolean',
-    ];
+    public function category(): BelongsTo
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    public function inquiries(): HasMany
+    {
+        return $this->hasMany(Inquiry::class);
+    }
 }

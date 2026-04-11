@@ -1,12 +1,21 @@
 <?php
 
+use App\Livewire\BookingConfirmation;
+use App\Livewire\BookingWizard;
+use App\Livewire\Home;
+use App\Livewire\PostList;
+use App\Livewire\ShowPost;
+use App\Livewire\ShowTalent;
+use App\Livewire\TalentDirectory;
 use Illuminate\Support\Facades\Route;
 
-// This project uses an "anonymous-first" Livewire approach (Volt-style).
-// Routes map directly to matching blade files in resources/views/livewire
-// or components/⚡...
+// Public Frontends
+Route::get('/', Home::class)->name('home');
+Route::get('/talent', TalentDirectory::class)->name('talent.directory');
+Route::get('/talent/{slug}', ShowTalent::class)->name('talent.show');
+Route::get('/book', BookingWizard::class)->name('booking.wizard');
+Route::get('/book/confirm', BookingConfirmation::class)->name('booking.confirmation');
 
-Route::livewire('/', 'talent-grid');
-Route::livewire('/talent/{id}', 'talent-profile');
-Route::livewire('/book', 'booking-form');
-Route::livewire('/apply', 'artist-submission');
+// News / Blog
+Route::get('/news', PostList::class)->name('news.index');
+Route::get('/news/{slug}', ShowPost::class)->name('news.show');

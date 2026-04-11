@@ -2,10 +2,9 @@
 
 namespace App\Filament\Resources\Talent\Tables;
 
-use Filament\Actions\BulkActionGroup;
-use Filament\Actions\DeleteBulkAction;
-use Filament\Actions\EditAction;
+use Filament\Tables;
 use Filament\Tables\Table;
+use Filament\Actions;
 
 class TalentTable
 {
@@ -13,17 +12,49 @@ class TalentTable
     {
         return $table
             ->columns([
-                //
+                \Filament\Tables\Columns\SpatieMediaLibraryImageColumn::make('primary_image')
+                    ->label('Photo')
+                    ->collection('primary_image')
+                    ->circular(),
+                Tables\Columns\TextColumn::make('name')
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('category.name')
+                    ->label('Category')
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('location')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('starting_price')
+                    ->money('usd')
+                    ->sortable(),
+                Tables\Columns\SelectColumn::make('status')
+                    ->options([
+                        'draft'  => 'Draft',
+                        'active' => 'Active',
+                        'hidden' => 'Hidden',
+                    ])
+                    ->sortable(),
+                Tables\Columns\ToggleColumn::make('is_featured')
+                    ->label('Featured'),
             ])
             ->filters([
-                //
+                Tables\Filters\SelectFilter::make('category_id')
+                    ->label('Category')
+                    ->relationship('category', 'name'),
+                Tables\Filters\SelectFilter::make('status')
+                    ->options([
+                        'draft'  => 'Draft',
+                        'active' => 'Active',
+                        'hidden' => 'Hidden',
+                    ]),
             ])
-            ->recordActions([
-                EditAction::make(),
+            ->actions([
+                Actions\EditAction::make(),
+                Actions\DeleteAction::make(),
             ])
-            ->toolbarActions([
-                BulkActionGroup::make([
-                    DeleteBulkAction::make(),
+            ->bulkActions([
+                Actions\BulkActionGroup::make([
+                    Actions\DeleteBulkAction::make(),
                 ]),
             ]);
     }

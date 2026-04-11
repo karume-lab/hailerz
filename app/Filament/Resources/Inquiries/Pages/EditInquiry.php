@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Filament\Resources\Bookings\Pages;
+namespace App\Filament\Resources\Inquiries\Pages;
 
-use App\Filament\Resources\Bookings\BookingResource;
+use App\Filament\Resources\Inquiries\InquiryResource;
 use Filament\Actions\DeleteAction;
 use Filament\Resources\Pages\EditRecord;
 
-class EditBooking extends EditRecord
+class EditInquiry extends EditRecord
 {
-    protected static string $resource = BookingResource::class;
+    protected static string $resource = InquiryResource::class;
 
     protected function getHeaderActions(): array
     {
