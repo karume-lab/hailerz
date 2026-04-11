@@ -67,10 +67,10 @@
                     <div>
                         <h3 class="text-sm font-semibold text-white tracking-wider uppercase mb-4">Legal</h3>
                         <ul class="space-y-3">
-                            <li><a href="#" class="text-sm text-gray-400 hover:text-white transition-colors">Terms of Service</a></li>
-                            <li><a href="#" class="text-sm text-gray-400 hover:text-white transition-colors">Privacy Policy</a></li>
-                            <li><a href="#" class="text-sm text-gray-400 hover:text-white transition-colors">Booking Agreement</a></li>
-                            <li><a href="#" class="text-sm text-gray-400 hover:text-white transition-colors">Cancellation Policy</a></li>
+                            <li><a href="/legal/terms" wire:navigate class="text-sm text-gray-400 hover:text-white transition-colors">Terms of Service</a></li>
+                            <li><a href="/legal/privacy" wire:navigate class="text-sm text-gray-400 hover:text-white transition-colors">Privacy Policy</a></li>
+                            <li><a href="/legal/booking" wire:navigate class="text-sm text-gray-400 hover:text-white transition-colors">Booking Agreement</a></li>
+                            <li><a href="/legal/cancellation" wire:navigate class="text-sm text-gray-400 hover:text-white transition-colors">Cancellation Policy</a></li>
                         </ul>
                     </div>
 
