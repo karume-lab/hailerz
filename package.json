@@ -3,11 +3,12 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "build": "vite build && tailwindcss --input ./resources/css/filament/admin/theme.css --output ./public/css/filament/admin/theme.css --config ./resources/css/filament/admin/tailwind.config.js --minify",
+        "build": "vite build && ./node_modules/.bin/tailwindcss --input ./resources/css/filament/admin/theme.css --output ./public/css/filament/admin/theme.css --config ./resources/css/filament/admin/tailwind.config.js --minify",
         "dev": "vite",
-        "theme:watch": "tailwindcss --input ./resources/css/filament/admin/theme.css --output ./public/css/filament/admin/theme.css --config ./resources/css/filament/admin/tailwind.config.js --watch"
+        "theme:watch": "./node_modules/.bin/tailwindcss --input ./resources/css/filament/admin/theme.css --output ./public/css/filament/admin/theme.css --config ./resources/css/filament/admin/tailwind.config.js --watch"
     },
     "devDependencies": {
+        "@tailwindcss/cli": "^4.2.2",
         "@tailwindcss/vite": "^4.2.2",
         "axios": ">=1.11.0 <=1.14.0",
         "concurrently": "^9.0.1",
