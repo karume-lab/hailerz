@@ -10,6 +10,8 @@
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=inter:400,500,600,700&display=swap" rel="stylesheet" />
         
+        <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
+        
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         @livewireStyles
     </head>
@@ -19,8 +21,11 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex justify-between items-center h-20">
                     <div class="shrink-0 flex items-center">
-                        <a href="/" class="text-2xl font-bold tracking-tighter text-dark uppercase">
-                            HAILERZ<span class="text-primary">.</span>
+                        <a href="/" class="flex items-center gap-2">
+                            <img src="{{ asset('images/logo.png') }}" alt="Hailerz Logo" class="h-10 w-auto">
+                            <span class="text-2xl font-bold tracking-tighter text-dark uppercase hidden sm:block">
+                                HAILERZ<span class="text-primary">.</span>
+                            </span>
                         </a>
                     </div>
                     <nav class="hidden md:flex space-x-10">
@@ -46,9 +51,12 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
                 <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
                     <div class="col-span-1 md:col-span-1">
-                        <span class="text-2xl font-bold tracking-tighter text-white uppercase">
-                            HAILERZ<span class="text-primary">.</span>
-                        </span>
+                        <a href="/" class="flex items-center gap-2 mb-4">
+                            <img src="{{ asset('images/logo.png') }}" alt="Hailerz Logo" class="h-8 w-auto brightness-0 invert">
+                            <span class="text-2xl font-bold tracking-tighter text-white uppercase">
+                                HAILERZ<span class="text-primary">.</span>
+                            </span>
+                        </a>
                         <p class="mt-4 text-sm text-gray-400 leading-relaxed">
                             The premier global talent booking agency. Vetted professionals. Secure contracts. Flawless execution.
                         </p>
