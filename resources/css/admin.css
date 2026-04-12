@@ -3,3 +3,33 @@
 
 @source '../views/filament/**/*.blade.php';
 @source '../../app/Filament/**/*.php';
+
+@layer base {
+    :root {
+        --brand-navy: #21395c;
+        --brand-teal: #1a8aa7;
+        --brand-mint: #65c4af;
+    }
+
+    /* Target Filament Sidebar specifically */
+    .fi-sidebar {
+        background-color: var(--brand-navy) !important;
+    }
+
+    .fi-sidebar [data-active="true"] {
+        background-color: var(--brand-teal) !important;
+    }
+
+    .fi-sidebar-item-button:hover {
+        background-color: rgba(26, 138, 167, 0.1) !important;
+    }
+
+    .fi-sidebar-group-label, .fi-sidebar-item-label {
+        color: #f3f4f6 !important;
+    }
+
+    /* Logo scaling in panel */
+    .fi-logo {
+        max-height: 2.25rem !important;
+    }
+}
