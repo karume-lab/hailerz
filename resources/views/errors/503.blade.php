@@ -4,29 +4,48 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Maintenance | {{ config('app.name', 'Laravel') }}</title>
+    <title>Maintenance | Hailerz</title>
 
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
+    <link href="https://fonts.bunny.net/css?family=outfit:400,600,700" rel="stylesheet" />
 
-    <!-- Styles / Scripts -->
-    @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-    @endif
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body
-    class="bg-[#FDFDFC] dark:bg-[#0a0a0a] text-[#1b1b18] flex p-6 lg:p-8 items-center justify-center min-h-screen flex-col antialiased">
-    <div
-        class="card max-w-[440px] w-full p-8 lg:p-12 bg-white dark:bg-[#161615] dark:text-[#EDEDEC] shadow-[inset_0px_0px_0px_1px_rgba(26,26,0,0.16)] dark:shadow-[inset_0px_0px_0px_1px_#fffaed2d] rounded-lg text-center">
-
-        <h1 class="text-[13px] leading-[20px] font-medium mb-1">Maintenance Mode</h1>
-        <p class="text-[13px] leading-[20px] text-[#706f6c] dark:text-[#A1A09A]">
-            Our website is currently undergoing scheduled maintenance.<br>
-            We should be back shortly. Thank you for your patience.
-        </p>
+<body class="bg-dark text-white flex items-center justify-center min-h-screen px-6 antialiased font-sans overflow-hidden">
+    <!-- Bouncing Logo Container -->
+    <div class="fixed inset-0 pointer-events-none z-50">
+        <div id="bouncing-logo" class="absolute h-24 w-auto flex items-center justify-center">
+            <img src="{{ asset('images/logo.webp') }}" alt="Hailerz Logo" class="h-full w-auto">
+        </div>
     </div>
+
+    <div class="max-w-md w-full text-center relative z-10">
+        <h1 class="text-4xl font-bold mb-4 tracking-tight">Under Maintenance</h1>
+        <p class="text-gray-400 text-lg leading-relaxed mb-8">
+            We're currently performing some scheduled maintenance to improve your experience. We'll be back shortly!
+        </p>
+        <div class="text-gray-500 text-sm">
+            &copy; {{ date('Y') }} Hailerz Agency.
+        </div>
+    </div>
+
+    <style>
+        #bouncing-logo {
+            animation: bounce-x 13s linear infinite alternate, 
+                       bounce-y 7s linear infinite alternate;
+        }
+
+        @keyframes bounce-x {
+            from { left: 0; }
+            to { left: calc(100% - 180px); } /* Approximate width of logo */
+        }
+
+        @keyframes bounce-y {
+            from { top: 0; }
+            to { top: calc(100% - 96px); } /* Height h-24 (96px) */
+        }
+    </style>
 </body>
 
 </html>
