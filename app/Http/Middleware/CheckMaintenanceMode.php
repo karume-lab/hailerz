@@ -15,8 +15,8 @@ class CheckMaintenanceMode
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (config('app.maintenance.enabled') && !$request->is('up')) {
-            abort(503);
+        if (config('app.maintenance.enabled') && !$request->is('up') && !$request->is('maintenance')) {
+            return redirect('/maintenance');
         }
 
         return $next($request);

@@ -36,3 +36,6 @@ Route::get('/legal/cancellation', CancellationPolicy::class)->name('legal.cancel
 // News / Blog
 Route::get('/news', PostList::class)->name('news.index');
 Route::get('/news/{slug}', ShowPost::class)->name('news.show');
+
+// Maintenance
+Route::view('/maintenance', 'maintenance')->name('maintenance');
