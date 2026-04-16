@@ -66,10 +66,8 @@
                                 class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
                             >
                             @if($talent->is_featured)
-                                <div class="absolute top-4 left-4">
-                                    <span class="px-2 py-1 bg-primary-600 text-[8px] font-black uppercase tracking-widest text-white rounded-md shadow-lg">
-                                        Featured
-                                    </span>
+                                <div class="absolute top-4 right-4 bg-slate-900 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-sm">
+                                    Featured
                                 </div>
                             @endif
                         </div>

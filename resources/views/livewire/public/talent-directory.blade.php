@@ -80,7 +80,7 @@
                                         @endif
                                         
                                         @if($talent->is_featured)
-                                            <div class="absolute top-4 right-4 bg-yellow-400 text-yellow-950 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-sm">
+                                            <div class="absolute top-4 right-4 bg-slate-900 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-sm">
                                                 Featured
                                             </div>
                                         @endif

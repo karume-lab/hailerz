@@ -24,10 +24,10 @@
                 document.documentElement.classList.remove('dark');
             }
         }
-        
+
         // Initial application
         applyTheme();
-        
+
         // Re-apply on Livewire navigation
         document.addEventListener('livewire:navigated', applyTheme);
     </script>
@@ -50,7 +50,8 @@
                 </div>
                 <nav class="hidden md:flex space-x-10">
                     <a href="/talent" wire:navigate
-                        class="text-base font-medium {{ request()->is('talent*') ? 'text-primary' : 'text-gray-300 hover:text-primary' }} transition-colors">Browse Talent</a>
+                        class="text-base font-medium {{ request()->is('talent*') ? 'text-primary' : 'text-gray-300 hover:text-primary' }} transition-colors">Browse
+                        Talent</a>
                     <a href="/services" wire:navigate
                         class="text-base font-medium {{ request()->is('services*') ? 'text-primary' : 'text-gray-300 hover:text-primary' }} transition-colors">Services</a>
                     <a href="/about" wire:navigate
@@ -62,29 +63,32 @@
                 </nav>
                 <div class="flex items-center space-x-6">
                     <a href="/join" wire:navigate
-                       class="hidden lg:block text-sm font-semibold text-gray-300 hover:text-primary transition-colors">
+                        class="hidden lg:block text-sm font-semibold text-gray-300 hover:text-primary transition-colors">
                         Submissions
                     </a>
-                    
+
                     <!-- Theme Toggle -->
-                    <button 
-                        x-data="{ 
+                    <button x-data="{ 
                             darkMode: localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches),
                             toggleTheme() {
                                 this.darkMode = !this.darkMode;
                                 localStorage.setItem('theme', this.darkMode ? 'dark' : 'light');
                                 document.documentElement.classList.toggle('dark', this.darkMode);
                             }
-                        }" 
-                        @click="toggleTheme()"
+                        }" @click="toggleTheme()"
                         class="p-2 rounded-lg bg-white/5 text-gray-400 hover:text-primary transition-all duration-300 focus:outline-none border border-white/5"
-                        title="Toggle dark mode"
-                    >
-                        <svg x-show="!darkMode" x-cloak class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                        title="Toggle dark mode">
+                        <svg x-show="!darkMode" x-cloak class="h-5 w-5" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z">
+                            </path>
                         </svg>
-                        <svg x-show="darkMode" x-cloak class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 9H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                        <svg x-show="darkMode" x-cloak class="h-5 w-5" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 3v1m0 16v1m9-9h-1M4 9H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z">
+                            </path>
                         </svg>
                     </button>
 
@@ -112,44 +116,61 @@
                         </span>
                     </a>
                     <p class="mt-4 text-sm text-gray-300 leading-relaxed">
-                        Premium talent booking for unforgettable events. We connect visionary planners with world-class performers.
+                        Premium talent booking for unforgettable events. We connect visionary planners with world-class
+                        performers.
                     </p>
                     <div class="mt-6">
-                        <a href="mailto:info@hailerz.com" class="text-sm text-primary font-semibold hover:text-white transition-colors">info@hailerz.com</a>
+                        <a href="mailto:info@hailerz.com"
+                            class="text-sm text-primary font-semibold hover:text-white transition-colors">info@hailerz.com</a>
                     </div>
                 </div>
 
                 <div>
                     <h3 class="text-sm font-semibold text-white tracking-wider uppercase mb-4">Talent</h3>
                     <ul class="space-y-3">
-                        <li><a href="/talent" wire:navigate class="text-sm text-gray-300 hover:text-white transition-colors">Browse All Talent</a></li>
-                        <li><a href="/talent?category=musicians" class="text-sm text-gray-300 hover:text-white transition-colors">Musicians</a></li>
-                        <li><a href="/talent?category=performers" class="text-sm text-gray-300 hover:text-white transition-colors">Variety Artists</a></li>
-                        <li><a href="/talent?category=djs" class="text-sm text-gray-300 hover:text-white transition-colors">DJs</a></li>
+                        <li><a href="/talent" wire:navigate
+                                class="text-sm text-gray-300 hover:text-white transition-colors">Browse All Talent</a>
+                        </li>
+                        <li><a href="/talent?category=musicians"
+                                class="text-sm text-gray-300 hover:text-white transition-colors">Musicians</a></li>
+                        <li><a href="/talent?category=performers"
+                                class="text-sm text-gray-300 hover:text-white transition-colors">Variety Artists</a>
+                        </li>
+                        <li><a href="/talent?category=djs"
+                                class="text-sm text-gray-300 hover:text-white transition-colors">DJs</a></li>
                     </ul>
                 </div>
 
                 <div>
                     <h3 class="text-sm font-semibold text-white tracking-wider uppercase mb-4">Company</h3>
                     <ul class="space-y-3">
-                        <li><a href="/about" wire:navigate class="text-sm text-gray-300 hover:text-white transition-colors">About Us</a></li>
-                        <li><a href="/services" wire:navigate class="text-sm text-gray-300 hover:text-white transition-colors">Services</a></li>
-                        <li><a href="/join" wire:navigate class="text-sm text-gray-300 hover:text-white transition-colors">Join Our Roster</a></li>
-                        <li><a href="/faqs" wire:navigate class="text-sm text-gray-300 hover:text-white transition-colors">FAQs</a></li>
-                        <li><a href="/contact" wire:navigate class="text-sm text-gray-300 hover:text-white transition-colors">Contact</a></li>
+                        <li><a href="/about" wire:navigate
+                                class="text-sm text-gray-300 hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="/services" wire:navigate
+                                class="text-sm text-gray-300 hover:text-white transition-colors">Services</a></li>
+                        <li><a href="/join" wire:navigate
+                                class="text-sm text-gray-300 hover:text-white transition-colors">Join Our Roster</a>
+                        </li>
+                        <li><a href="/faqs" wire:navigate
+                                class="text-sm text-gray-300 hover:text-white transition-colors">FAQs</a></li>
+                        <li><a href="/contact" wire:navigate
+                                class="text-sm text-gray-300 hover:text-white transition-colors">Contact</a></li>
                     </ul>
                 </div>
 
                 <div>
                     <h3 class="text-sm font-semibold text-white tracking-wider uppercase mb-4">Get Started</h3>
-                    <p class="text-sm text-gray-300 mb-4 leading-relaxed">Ready to book top talent for your next event?</p>
-                    <a href="/book" wire:navigate class="inline-flex items-center justify-center w-full px-6 py-3 border border-transparent text-sm font-semibold rounded-md text-white bg-primary hover:bg-primary-dark transition shadow-lg">
+                    <p class="text-sm text-gray-300 mb-4 leading-relaxed">Ready to book top talent for your next event?
+                    </p>
+                    <a href="/book" wire:navigate
+                        class="inline-flex items-center justify-center w-full px-6 py-3 border border-transparent text-sm font-semibold rounded-md text-white bg-primary hover:bg-primary-dark transition shadow-lg">
                         Request Booking
                     </a>
                 </div>
             </div>
 
-            <div class="mt-12 pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div
+                class="mt-12 pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-6">
                 <div class="text-sm text-gray-500">
                     &copy; 2026 Hailerz. All rights reserved.
                 </div>
