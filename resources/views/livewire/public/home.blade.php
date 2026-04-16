@@ -1,21 +1,21 @@
 <div class="bg-canvas">
     <!-- Hero Section -->
-    <section class="relative bg-white pt-24 pb-32 overflow-hidden">
+    <section class="relative bg-surface pt-24 pb-32 overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="lg:grid lg:grid-cols-2 lg:gap-12 items-center">
                 <!-- Left Content -->
                 <div class="mb-16 lg:mb-0">
-                    <h1 class="text-5xl md:text-6xl font-bold tracking-tight text-dark mb-8 leading-tight">
+                    <h1 class="text-5xl md:text-6xl font-bold tracking-tight text-text-main mb-8 leading-tight">
                         Connect with your<br />
                         Favourite Celebrities
                     </h1>
-                    <p class="mt-4 max-w-xl text-lg text-gray-500 mb-10 leading-relaxed">
+                    <p class="mt-4 max-w-xl text-lg text-text-muted mb-10 leading-relaxed">
                         The easiest way to get personalized video greetings, shoutouts, and pleasantries from top
                         entertainers and public figures.
                     </p>
                     <div class="flex flex-wrap gap-4">
                         <a href="#how-it-works"
-                            class="px-8 py-3.5 border border-gray-300 text-base font-semibold rounded-md text-dark bg-white hover:bg-gray-50 transition-all focus:outline-none flex items-center gap-2">
+                            class="px-8 py-3.5 border border-border text-base font-semibold rounded-md text-text-main bg-surface hover:bg-canvas transition-all focus:outline-none flex items-center gap-2">
                             How it works
                         </a>
                         <a href="/talent" wire:navigate
@@ -33,7 +33,7 @@
                     <!-- Video Card 1 -->
                     <div
                         class="w-56 h-[460px] rounded-[32px] border-2 border-primary/20 relative overflow-hidden group">
-                        <img src="{{ asset('images/assets/hero-card-1.webp') }}" alt="Talent Preview"
+                        <img src="{{ asset('images/home/hero-card-1.webp') }}" alt="Talent Preview"
                             class="absolute inset-0 w-full h-full object-cover grayscale">
                         <div
                             class="absolute inset-0 bg-linear-to-br from-secondary/40 to-primary/40 opacity-80 mix-blend-color">
@@ -42,7 +42,7 @@
                     <!-- Video Card 2 (Offset) -->
                     <div
                         class="w-56 h-[460px] rounded-[32px] border-2 border-primary/20 relative overflow-hidden group mt-12">
-                        <img src="{{ asset('images/assets/hero-card-2.webp') }}" alt="Talent Preview"
+                        <img src="{{ asset('images/home/hero-card-2.webp') }}" alt="Talent Preview"
                             class="absolute inset-0 w-full h-full object-cover grayscale">
                         <div
                             class="absolute inset-0 bg-linear-to-br from-secondary/40 to-primary/40 opacity-80 mix-blend-color">
@@ -54,29 +54,29 @@
     </section>
 
     <!-- Headline Section -->
-    <section class="py-16 bg-white">
+    <section class="py-16 bg-surface">
         <div class="max-w-7xl mx-auto px-4 text-center">
             <h2 class="text-4xl md:text-5xl font-bold text-primary">Access top talents</h2>
         </div>
     </section>
 
     <!-- Trusted By / Social Proof -->
-    <section class="py-12 bg-white border-b border-gray-100">
+    <section class="py-12 bg-surface border-b border-border">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <p class="text-center text-sm font-semibold uppercase text-gray-500 tracking-wide mb-8">Trusted by Top Event
+            <p class="text-center text-sm font-semibold uppercase text-text-muted tracking-wide mb-8">Trusted by Top Event
                 Producers & Brands</p>
             <div
                 class="flex flex-wrap justify-center gap-8 md:gap-16 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
-                <svg class="h-8 text-gray-900" viewBox="0 0 100 30" fill="currentColor">
+                <svg class="h-8 text-text-main" viewBox="0 0 100 30" fill="currentColor">
                     <path
                         d="M10,25 h15 v-20 h-15 z M35,25 h15 v-20 h-15 z M60,25 h15 v-20 h-15 z M85,25 h15 v-20 h-20" />
                 </svg>
-                <svg class="h-8 text-gray-900" viewBox="0 0 100 30" fill="currentColor">
+                <svg class="h-8 text-text-main" viewBox="0 0 100 30" fill="currentColor">
                     <circle cx="15" cy="15" r="10" />
                     <rect x="35" y="5" width="20" height="20" />
                     <polygon points="75,5 95,5 85,25" />
                 </svg>
-                <svg class="h-8 text-gray-900" viewBox="0 0 100 30" fill="currentColor">
+                <svg class="h-8 text-text-main" viewBox="0 0 100 30" fill="currentColor">
                     <path d="M5,15 Q25,5 45,15 T85,15" />
                 </svg>
                 <svg class="h-8 text-gray-900 hidden sm:block" viewBox="0 0 100 30" fill="currentColor">
@@ -90,8 +90,8 @@
     <section class="py-20 bg-canvas">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-extrabold text-dark-muted">Explore by Category</h2>
-                <p class="mt-4 text-lg text-gray-600">Find exactly the right personality for your special video
+                <h2 class="text-3xl md:text-4xl font-extrabold text-text-main">Explore by Category</h2>
+                <p class="mt-4 text-lg text-text-muted">Find exactly the right personality for your special video
                     shoutout.</p>
             </div>
 
@@ -99,7 +99,7 @@
                 <!-- Category Card -->
                 <a href="/talent?category=musicians"
                     class="group relative h-64 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all">
-                    <img src="{{ asset('images/assets/musicians.webp') }}" alt="Live Musicians"
+                    <img src="{{ asset('images/home/musicians.webp') }}" alt="Live Musicians"
                         class="absolute inset-0 w-full h-full object-cover grayscale group-hover:scale-110 transition-transform duration-700">
                     <div class="absolute inset-0 bg-linear-to-br from-secondary to-primary opacity-80 mix-blend-color">
                     </div>
@@ -114,7 +114,7 @@
                 <!-- Category Card -->
                 <a href="/talent?category=speakers"
                     class="group relative h-64 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all">
-                    <img src="{{ asset('images/assets/speakers.webp') }}" alt="Keynote Speakers"
+                    <img src="{{ asset('images/home/speakers.webp') }}" alt="Keynote Speakers"
                         class="absolute inset-0 w-full h-full object-cover grayscale group-hover:scale-110 transition-transform duration-700">
                     <div class="absolute inset-0 bg-linear-to-br from-secondary to-primary opacity-80 mix-blend-color">
                     </div>
@@ -129,7 +129,7 @@
                 <!-- Category Card -->
                 <a href="/talent?category=djs"
                     class="group relative h-64 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all">
-                    <img src="{{ asset('images/assets/djs.webp') }}" alt="DJs & Electronics"
+                    <img src="{{ asset('images/home/djs.webp') }}" alt="DJs & Electronics"
                         class="absolute inset-0 w-full h-full object-cover grayscale group-hover:scale-110 transition-transform duration-700">
                     <div class="absolute inset-0 bg-linear-to-br from-secondary to-primary opacity-80 mix-blend-color">
                     </div>
@@ -144,7 +144,7 @@
                 <!-- Category Card -->
                 <a href="/talent?category=specialty"
                     class="group relative h-64 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all">
-                    <img src="{{ asset('images/assets/specialty.webp') }}" alt="Specialty Acts"
+                    <img src="{{ asset('images/home/specialty.webp') }}" alt="Specialty Acts"
                         class="absolute inset-0 w-full h-full object-cover grayscale group-hover:scale-110 transition-transform duration-700">
                     <div class="absolute inset-0 bg-linear-to-br from-secondary to-primary opacity-80 mix-blend-color">
                     </div>
@@ -172,10 +172,10 @@
     </section>
 
     <!-- How it Works Section -->
-    <section id="how-it-works" class="py-20 bg-white border-b border-gray-200">
+    <section id="how-it-works" class="py-20 bg-surface border-b border-border">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900">Seamless Video Pleasantries</h2>
+                <h2 class="text-3xl md:text-4xl font-extrabold text-text-main">Seamless Video Pleasantries</h2>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
                 <div class="flex flex-col items-center p-4">
@@ -186,8 +186,8 @@
                                 d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                         </svg>
                     </div>
-                    <h3 class="text-lg font-bold text-gray-900">Favourite Celebrities</h3>
-                    <p class="mt-2 text-sm text-gray-500">Access our exclusive roster of digital natives, influencers,
+                    <h3 class="text-lg font-bold text-text-main">Favourite Celebrities</h3>
+                    <p class="mt-2 text-sm text-text-muted">Access our exclusive roster of digital natives, influencers,
                         and world-class entertainers.</p>
                 </div>
                 <div class="flex flex-col items-center p-4">
@@ -199,8 +199,8 @@
                             </path>
                         </svg>
                     </div>
-                    <h3 class="text-lg font-bold text-gray-900">Easy Booking</h3>
-                    <p class="mt-2 text-sm text-gray-500">Pick a celebrity, record your gesture details, and get a
+                    <h3 class="text-lg font-bold text-text-main">Easy Booking</h3>
+                    <p class="mt-2 text-sm text-text-muted">Pick a celebrity, record your gesture details, and get a
                         magical video to share.</p>
                 </div>
                 <div class="flex flex-col items-center p-4">
@@ -212,8 +212,8 @@
                             </path>
                         </svg>
                     </div>
-                    <h3 class="text-lg font-bold text-gray-900">Smart Sharing</h3>
-                    <p class="mt-2 text-sm text-gray-500">Share your custom videos seamlessly across social platforms
+                    <h3 class="text-lg font-bold text-text-main">Smart Sharing</h3>
+                    <p class="mt-2 text-sm text-text-muted">Share your custom videos seamlessly across social platforms
                         and spread the love.</p>
                 </div>
             </div>

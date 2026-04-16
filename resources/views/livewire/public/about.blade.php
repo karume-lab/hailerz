@@ -1,9 +1,9 @@
-<div class="bg-surface min-h-screen">
+<div class="bg-canvas min-h-screen">
     <!-- Hero Section: Full-width background image with centered content -->
     <div class="relative bg-gray-950 min-h-[70vh] flex items-center justify-center overflow-hidden">
         <div class="absolute inset-0 overflow-hidden">
             <!-- Background Image with Overlay -->
-            <img src="https://images.unsplash.com/photo-1459749411177-042180ce673c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
+            <img src="{{ asset('images/about/about-hero.webp') }}"
                 alt="Concert Crowd" class="w-full h-full object-cover opacity-30">
             <div class="absolute inset-0 bg-linear-to-t from-gray-950 via-gray-950/60 to-transparent"></div>
         </div>
@@ -23,8 +23,8 @@
     <!-- Our Story Section: Single centered column -->
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
         <span class="text-primary text-sm font-bold uppercase tracking-widest mb-6 block">Our Story</span>
-        <h2 class="text-4xl md:text-5xl font-extrabold text-dark tracking-tight mb-12">Building a Legacy</h2>
-        <div class="space-y-8 text-xl text-gray-600 leading-relaxed font-light">
+        <h2 class="text-4xl md:text-5xl font-extrabold text-text-main tracking-tight mb-12">Building a Legacy</h2>
+        <div class="space-y-8 text-xl text-text-muted leading-relaxed font-light">
             <p>
                 Hailerz exists for one reason - to make discovering and booking incredible talent effortless. Born
                 from the real struggles event planners face when trying to find reliable, high‑quality performers,
@@ -45,44 +45,44 @@
     </div>
 
     <!-- Our Values Section: Centered 4-card grid -->
-    <div class="bg-gray-50 py-24 lg:py-32 border-y border-dark/5">
+    <div class="bg-surface py-24 lg:py-32 border-y border-border">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-20">
                 <span class="text-primary text-sm font-bold uppercase tracking-widest mb-4 block">Our Values</span>
-                <h2 class="text-4xl font-extrabold text-dark tracking-tight mb-6 leading-tight">These core principles
+                <h2 class="text-4xl font-extrabold text-text-main tracking-tight mb-6 leading-tight">These core principles
                     guide everything we do</h2>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <!-- Excellence -->
                 <div
-                    class="bg-white p-10 rounded-3xl shadow-sm border border-dark/5 text-center group hover:shadow-lg transition-all duration-300">
-                    <h3 class="text-2xl font-bold text-dark-muted mb-4 uppercase tracking-wider">Excellence</h3>
-                    <p class="text-gray-500 leading-relaxed font-light">We curate only the finest talent and deliver
+                    class="bg-canvas/50 p-10 rounded-3xl shadow-sm border border-border text-center group hover:shadow-lg transition-all duration-300">
+                    <h3 class="text-2xl font-bold text-text-main mb-4 uppercase tracking-wider">Excellence</h3>
+                    <p class="text-text-muted leading-relaxed font-light">We curate only the finest talent and deliver
                         exceptional service on every booking.</p>
                 </div>
 
                 <!-- Passion -->
                 <div
-                    class="bg-white p-10 rounded-3xl shadow-sm border border-dark/5 text-center group hover:shadow-lg transition-all duration-300">
-                    <h3 class="text-2xl font-bold text-dark-muted mb-4 uppercase tracking-wider">Passion</h3>
-                    <p class="text-gray-500 leading-relaxed font-light">We love what we do and it shows in our
+                    class="bg-canvas/50 p-10 rounded-3xl shadow-sm border border-border text-center group hover:shadow-lg transition-all duration-300">
+                    <h3 class="text-2xl font-bold text-text-main mb-4 uppercase tracking-wider">Passion</h3>
+                    <p class="text-text-muted leading-relaxed font-light">We love what we do and it shows in our
                         dedication to creating unforgettable events.</p>
                 </div>
 
                 <!-- Partnership -->
                 <div
-                    class="bg-white p-10 rounded-3xl shadow-sm border border-dark/5 text-center group hover:shadow-lg transition-all duration-300">
-                    <h3 class="text-2xl font-bold text-dark-muted mb-4 uppercase tracking-wider">Partnership</h3>
-                    <p class="text-gray-500 leading-relaxed font-light">We build lasting relationships with both clients
+                    class="bg-canvas/50 p-10 rounded-3xl shadow-sm border border-border text-center group hover:shadow-lg transition-all duration-300">
+                    <h3 class="text-2xl font-bold text-text-main mb-4 uppercase tracking-wider">Partnership</h3>
+                    <p class="text-text-muted leading-relaxed font-light">We build lasting relationships with both clients
                         and talent based on trust and respect.</p>
                 </div>
 
                 <!-- Integrity -->
                 <div
-                    class="bg-white p-10 rounded-3xl shadow-sm border border-dark/5 text-center group hover:shadow-lg transition-all duration-300">
-                    <h3 class="text-2xl font-bold text-dark-muted mb-4 uppercase tracking-wider">Integrity</h3>
-                    <p class="text-gray-500 leading-relaxed font-light">We operate with transparency, honesty, and
+                    class="bg-canvas/50 p-10 rounded-3xl shadow-sm border border-border text-center group hover:shadow-lg transition-all duration-300">
+                    <h3 class="text-2xl font-bold text-text-main mb-4 uppercase tracking-wider">Integrity</h3>
+                    <p class="text-text-muted leading-relaxed font-light">We operate with transparency, honesty, and
                         professionalism in every interaction.</p>
                 </div>
             </div>
@@ -94,8 +94,8 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="mb-20">
                 <span class="text-primary text-sm font-bold uppercase tracking-widest mb-4 block">The Advantage</span>
-                <h2 class="text-4xl font-extrabold text-dark tracking-tight mb-4">What Sets Us Apart</h2>
-                <p class="text-xl text-gray-400 font-light">Why event planners choose Hailerz</p>
+                <h2 class="text-4xl font-extrabold text-text-main tracking-tight mb-4">What Sets Us Apart</h2>
+                <p class="text-xl text-text-muted font-light">Why event planners choose Hailerz</p>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-12">
@@ -109,8 +109,8 @@
                         </svg>
                     </div>
                     <div>
-                        <h4 class="text-xl font-extrabold text-dark mb-2">Rigorous Vetting Process</h4>
-                        <p class="text-gray-500 leading-relaxed font-light">Every artist undergoes a comprehensive
+                        <h4 class="text-xl font-extrabold text-text-main mb-2">Rigorous Vetting Process</h4>
+                        <p class="text-text-muted leading-relaxed font-light">Every artist undergoes a comprehensive
                             evaluation including performance reviews, technical assessments, and professionalism checks
                             before joining our roster.</p>
                     </div>
@@ -126,8 +126,8 @@
                         </svg>
                     </div>
                     <div>
-                        <h4 class="text-xl font-extrabold text-dark mb-2">Full-Service Support</h4>
-                        <p class="text-gray-500 leading-relaxed font-light">From initial inquiry to post-event
+                        <h4 class="text-xl font-extrabold text-text-main mb-2">Full-Service Support</h4>
+                        <p class="text-text-muted leading-relaxed font-light">From initial inquiry to post-event
                             follow-up, our dedicated team handles contracts, logistics, technical requirements, and
                             coordination.</p>
                     </div>
@@ -143,8 +143,8 @@
                         </svg>
                     </div>
                     <div>
-                        <h4 class="text-xl font-extrabold text-dark mb-2">Transparent Pricing</h4>
-                        <p class="text-gray-500 leading-relaxed font-light">No hidden fees or surprises. You pay the
+                        <h4 class="text-xl font-extrabold text-text-main mb-2">Transparent Pricing</h4>
+                        <p class="text-text-muted leading-relaxed font-light">No hidden fees or surprises. You pay the
                             artist directly - our service is completely free for clients.</p>
                     </div>
                 </div>
@@ -159,8 +159,8 @@
                         </svg>
                     </div>
                     <div>
-                        <h4 class="text-xl font-extrabold text-dark mb-2">Nationwide Network</h4>
-                        <p class="text-gray-500 leading-relaxed font-light">Access top talent across the country with
+                        <h4 class="text-xl font-extrabold text-text-main mb-2">Nationwide Network</h4>
+                        <p class="text-text-muted leading-relaxed font-light">Access top talent across the country with
                             our extensive network of performers in major cities and regional markets.</p>
                     </div>
                 </div>
@@ -175,8 +175,8 @@
                         </svg>
                     </div>
                     <div>
-                        <h4 class="text-xl font-extrabold text-dark mb-2">Quick Response Time</h4>
-                        <p class="text-gray-500 leading-relaxed font-light">Our team responds to inquiries within 24
+                        <h4 class="text-xl font-extrabold text-text-main mb-2">Quick Response Time</h4>
+                        <p class="text-text-muted leading-relaxed font-light">Our team responds to inquiries within 24
                             hours with personalized recommendations tailored to your event.</p>
                     </div>
                 </div>
@@ -191,8 +191,8 @@
                         </svg>
                     </div>
                     <div>
-                        <h4 class="text-xl font-extrabold text-dark mb-2">Proven Track Record</h4>
-                        <p class="text-gray-500 leading-relaxed font-light">Thousands of successful events and a 98%
+                        <h4 class="text-xl font-extrabold text-text-main mb-2">Proven Track Record</h4>
+                        <p class="text-text-muted leading-relaxed font-light">Thousands of successful events and a 98%
                             client satisfaction rate speak to our commitment to excellence.</p>
                     </div>
                 </div>
@@ -201,13 +201,13 @@
     </div>
 
     <!-- Meet Our Team Section: 3-column rounded rectangular cards with text overlay -->
-    <div class="bg-gray-100 py-24 lg:py-32">
+    <div class="bg-surface py-24 lg:py-32 border-t border-border">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-20">
                 <span class="text-primary text-sm font-bold uppercase tracking-widest mb-4 block">Our Team</span>
-                <h2 class="text-4xl font-extrabold text-dark tracking-tight mb-4 leading-tight">Meet the Professionals
+                <h2 class="text-4xl font-extrabold text-text-main tracking-tight mb-4 leading-tight">Meet the Professionals
                     Behind Your Success</h2>
-                <p class="text-lg text-gray-400 font-light">Dedicated to excellence in talent management and event
+                <p class="text-lg text-text-muted font-light">Dedicated to excellence in talent management and event
                     planning</p>
             </div>
 
@@ -215,7 +215,7 @@
                 <!-- Team Member 1 -->
                 <div
                     class="relative group h-[500px] rounded-md overflow-hidden shadow-2xl transition-transform duration-500 hover:-translate-y-2">
-                    <img src="{{ asset('images/team/founder.jpeg') }}" alt="David Somoye"
+                    <img src="{{ asset('images/about/founder.webp') }}" alt="David Somoye"
                         class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                     <div
                         class="absolute inset-x-0 bottom-0 bg-linear-to-t from-dark/95 via-dark/70 to-transparent p-10 pt-20">
@@ -245,7 +245,7 @@
                 <!-- Team Member 2 -->
                 <div
                     class="relative group h-[500px] rounded-md overflow-hidden shadow-2xl transition-transform duration-500 hover:-translate-y-2">
-                    <img src="{{ asset('images/team/head-of-talent-relation.jpg') }}" alt="Lolitasville"
+                    <img src="{{ asset('images/about/head-of-talent-relation.webp') }}" alt="Lolitasville"
                         class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                     <div
                         class="absolute inset-x-0 bottom-0 bg-linear-to-t from-dark/95 via-dark/70 to-transparent p-10 pt-20">
@@ -275,7 +275,7 @@
                 <!-- Team Member 3 -->
                 <div
                     class="relative group h-[500px] rounded-md overflow-hidden shadow-2xl transition-transform duration-500 hover:-translate-y-2">
-                    <img src="{{ asset('images/team/client-success-director.jpeg') }}" alt="Anne James"
+                    <img src="{{ asset('images/about/client-success-director.webp') }}" alt="Anne James"
                         class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                     <div
                         class="absolute inset-x-0 bottom-0 bg-linear-to-t from-dark/95 via-dark/70 to-transparent p-10 pt-20">

@@ -13,21 +13,45 @@
     --color-primary: #1a8aa7;
     --color-primary-dark: #146a82;
     --color-secondary: #65c4af;
-    --color-dark: #21395c;
-    --color-dark-muted: #3c5b85;
     
-    --color-canvas: #f3f6f8;
-    --color-surface: #ffffff;
+    /* Dynamic Colors - mapped to variables */
+    --color-dark: var(--dark);
+    --color-dark-muted: var(--dark-muted);
+    --color-canvas: var(--canvas);
+    --color-surface: var(--surface);
+    --color-border: var(--border);
+    --color-text-main: var(--text-main);
+    --color-text-muted: var(--text-muted);
 }
 
 @layer base {
+    :root {
+        --dark: #21395c;
+        --dark-muted: #3c5b85;
+        --canvas: #f3f6f8;
+        --surface: #ffffff;
+        --border: #e2e8f0;
+        --text-main: #111827;
+        --text-muted: #4b5563;
+    }
+
+    .dark {
+        --dark: #f8fafc;
+        --dark-muted: #cbd5e1;
+        --canvas: #0b1120;
+        --surface: #1e293b;
+        --border: #334155;
+        --text-main: #f3f4f6;
+        --text-muted: #9ca3af;
+    }
+
     html {
         -webkit-tap-highlight-color: transparent;
         scroll-behavior: smooth;
     }
     
     body {
-        @apply font-sans antialiased bg-slate-50 text-slate-900;
+        @apply font-sans antialiased bg-canvas text-text-main transition-colors duration-300;
     }
 }
 
