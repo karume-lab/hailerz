@@ -36,8 +36,8 @@
     }
 
     .dark {
-        --dark: #f8fafc;
-        --dark-muted: #cbd5e1;
+        --dark: #0f172a;
+        --dark-muted: #1e293b;
         --canvas: #0b1120;
         --surface: #1e293b;
         --border: #334155;

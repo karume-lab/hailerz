@@ -306,7 +306,7 @@
     </div>
 
     <!-- Bottom CTA: Banner with music note icon and specific button styles -->
-    <div class="relative py-32 overflow-hidden bg-gray-950">
+    <div class="relative py-32 overflow-hidden bg-dark">
         <div
             class="absolute inset-0 opacity-20 bg-[url('https://images.unsplash.com/photo-1470225620780-dba8ba36b745?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')] bg-cover bg-fixed">
         </div>
@@ -314,7 +314,7 @@
 
         <div class="relative max-w-4xl mx-auto px-4 text-center">
             <h2 class="text-4xl md:text-6xl font-extrabold text-white mb-8 tracking-tight">Ready to Work Together?</h2>
-            <p class="text-xl md:text-2xl text-gray-400 mb-12 font-light leading-relaxed">
+            <p class="text-xl md:text-2xl text-gray-200 mb-12 font-light leading-relaxed">
                 Let's create an unforgettable event. Browse our talent directory or submit a booking inquiry today.
             </p>
             <div class="flex flex-col sm:flex-row justify-center gap-6">
