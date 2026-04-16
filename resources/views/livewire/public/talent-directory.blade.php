@@ -10,23 +10,50 @@
             
             <!-- Sidebar Filters -->
             <aside class="w-full lg:w-1/4">
-                <div class="sticky top-28 bg-surface p-6 rounded-2xl shadow-sm border border-border">
-                    <h2 class="text-xs font-semibold text-text-muted uppercase tracking-wider mb-6">Filter</h2>
+                <div class="sticky top-28 bg-surface p-6 rounded-3xl shadow-sm border border-border">
+                    <div class="flex items-center justify-between mb-8">
+                        <h2 class="text-xs font-bold text-text-muted uppercase tracking-widest">Filter & Sort</h2>
+                        <button wire:click="resetFilters" class="text-[10px] font-bold text-primary uppercase tracking-widest hover:text-primary-dark transition-colors">
+                            Clear All
+                        </button>
+                    </div>
                     
-                    <div class="space-y-6">
+                    <div class="space-y-8">
+                        <!-- Search -->
                         <div>
-                            <label for="search" class="block text-sm font-medium text-text-main mb-2">Search Name</label>
-                            <input wire:model.live.debounce.300ms="search" type="text" id="search" class="w-full px-4 py-2 border border-border rounded-lg focus:ring-primary focus:border-primary transition-colors shadow-sm bg-canvas" placeholder="e.g. John Doe">
+                            <label for="search" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Search Name</label>
+                            <input wire:model.live.debounce.300ms="search" type="text" id="search" class="w-full px-4 py-3 border border-border rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all shadow-sm bg-canvas text-sm font-medium" placeholder="Search talent...">
                         </div>
 
+                        <!-- Sort Order -->
                         <div>
-                            <label for="category" class="block text-sm font-medium text-text-main mb-2">Category</label>
-                            <select wire:model.live="category_id" id="category" class="w-full px-4 py-2 border border-border rounded-lg focus:ring-primary focus:border-primary transition-colors shadow-sm bg-canvas">
+                            <label for="sort" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Sort By</label>
+                            <select wire:model.live="sort" id="sort" class="w-full px-4 py-3 border border-border rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all shadow-sm bg-canvas text-sm font-medium">
+                                <option value="name">Alphabetical (A-Z)</option>
+                                <option value="latest">Recently Added</option>
+                                <option value="price_asc">Price: Low to High</option>
+                                <option value="price_desc">Price: High to Low</option>
+                            </select>
+                        </div>
+
+                        <!-- Category -->
+                        <div>
+                            <label for="category" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Category</label>
+                            <select wire:model.live="category_id" id="category" class="w-full px-4 py-3 border border-border rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all shadow-sm bg-canvas text-sm font-medium">
                                 <option value="">All Categories</option>
                                 @foreach($categories as $category)
                                     <option value="{{ $category->id }}">{{ $category->name }}</option>
                                 @endforeach
                             </select>
+                        </div>
+
+                        <!-- Price Range -->
+                        <div>
+                            <label class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Price Range ($)</label>
+                            <div class="grid grid-cols-2 gap-3">
+                                <input wire:model.live.debounce.500ms="min_price" type="number" placeholder="Min" class="w-full px-4 py-3 border border-border rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all shadow-sm bg-canvas text-xs font-medium">
+                                <input wire:model.live.debounce.500ms="max_price" type="number" placeholder="Max" class="w-full px-4 py-3 border border-border rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all shadow-sm bg-canvas text-xs font-medium">
+                            </div>
                         </div>
                     </div>
                 </div>
