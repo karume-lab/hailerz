@@ -62,6 +62,14 @@ class DatabaseSeeder extends Seeder
                 'is_featured' => false,
             ]
         );
+        // Create 100 additional Talents randomly distributed among existing categories
+        $categories = Category::all();
+        
+        if (Talent::count() < 100) {
+            Talent::factory()->count(100)->create([
+                'category_id' => fn() => $categories->random()->id,
+            ]);
+        }
 
         // Create Inquiries (only if they don't exist yet to avoid duplicates)
         if (Inquiry::count() === 0) {
@@ -102,7 +110,7 @@ class DatabaseSeeder extends Seeder
             ['slug' => 'booking-top-talent-on-a-budget'],
             [
                 'title' => 'How to Book Top Tier Talent on a Middle Tier Budget',
-                'content' => "Booking elite artists doesn't always require a multi-million dollar budget. Strategy is key.\n\nConsider booking on off-peak days, looking for rising stars just before they hit the global charts, and focusing on technical efficiency. Often, the largest cost after the talent fee is the technical rider—working with agencies to optimize sound and light can save thousands without compromising quality.",
+                'content' => "Booking elite artists doesn't always require a multi-million dollar budget. Strategy is key.\n\nConsider booking on off-peak days, looking for rising stars just before they hit the global charts, and focusing on technical efficiency. Often, the largest cost after the talent fee is the technical rider-working with agencies to optimize sound and light can save thousands without compromising quality.",
                 'is_published' => true,
             ]
         );

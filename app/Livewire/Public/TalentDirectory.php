@@ -32,15 +32,24 @@ class TalentDirectory extends Component
         $this->resetPage();
     }
 
+    public function loadMore()
+    {
+        $this->setPage($this->getPage() + 1);
+    }
+
     public function render()
     {
+        $perPage = 12;
+        
         $talents = Talent::query()
             ->where('status', 'active')
             ->when($this->search, fn ($query) => $query->where('name', 'like', '%' . $this->search . '%'))
             ->when($this->category_id, fn ($query) => $query->where('category_id', $this->category_id))
             ->with(['category', 'media'])
             ->orderBy('name')
-            ->paginate(12);
+            // To show all items from page 1 to current page, we paginate 
+            // with a perPage that is (12 * current_page) and stay on page 1.
+            ->paginate($perPage * $this->getPage(), page: 1);
 
         $categories = Category::orderBy('name')->get();
 
