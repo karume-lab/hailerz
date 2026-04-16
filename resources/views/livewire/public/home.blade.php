@@ -101,11 +101,7 @@
                     class="group relative h-64 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all">
                     <img src="{{ asset('images/home/musicians.webp') }}" alt="Live Musicians"
                         class="absolute inset-0 w-full h-full object-cover grayscale group-hover:scale-110 transition-transform duration-700">
-                    <div class="absolute inset-0 bg-linear-to-br from-secondary to-primary opacity-80 mix-blend-color">
-                    </div>
-                    <div
-                        class="absolute inset-0 bg-linear-to-br from-secondary to-primary opacity-40 mix-blend-multiply">
-                    </div>
+                    <div class="absolute inset-0 bg-linear-to-br from-secondary/40 to-primary/40 opacity-80 mix-blend-color"></div>
                     <div class="absolute inset-0 bg-linear-to-t from-dark/90 via-dark/10 to-transparent"></div>
                     <div class="absolute bottom-6 left-6 text-left">
                         <h3 class="text-2xl font-bold text-white relative z-10">Live Bands</h3>
@@ -116,11 +112,7 @@
                     class="group relative h-64 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all">
                     <img src="{{ asset('images/home/speakers.webp') }}" alt="Keynote Speakers"
                         class="absolute inset-0 w-full h-full object-cover grayscale group-hover:scale-110 transition-transform duration-700">
-                    <div class="absolute inset-0 bg-linear-to-br from-secondary to-primary opacity-80 mix-blend-color">
-                    </div>
-                    <div
-                        class="absolute inset-0 bg-linear-to-br from-secondary to-primary opacity-40 mix-blend-multiply">
-                    </div>
+                    <div class="absolute inset-0 bg-linear-to-br from-secondary/40 to-primary/40 opacity-80 mix-blend-color"></div>
                     <div class="absolute inset-0 bg-linear-to-t from-dark/90 via-dark/10 to-transparent"></div>
                     <div class="absolute bottom-6 left-6 text-left">
                         <h3 class="text-2xl font-bold text-white relative z-10">Keynote Speakers</h3>
@@ -131,11 +123,7 @@
                     class="group relative h-64 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all">
                     <img src="{{ asset('images/home/djs.webp') }}" alt="DJs & Electronics"
                         class="absolute inset-0 w-full h-full object-cover grayscale group-hover:scale-110 transition-transform duration-700">
-                    <div class="absolute inset-0 bg-linear-to-br from-secondary to-primary opacity-80 mix-blend-color">
-                    </div>
-                    <div
-                        class="absolute inset-0 bg-linear-to-br from-secondary to-primary opacity-40 mix-blend-multiply">
-                    </div>
+                    <div class="absolute inset-0 bg-linear-to-br from-secondary/40 to-primary/40 opacity-80 mix-blend-color"></div>
                     <div class="absolute inset-0 bg-linear-to-t from-dark/90 via-dark/10 to-transparent"></div>
                     <div class="absolute bottom-6 left-6 text-left">
                         <h3 class="text-2xl font-bold text-white relative z-10">DJs & Electronics</h3>
@@ -146,17 +134,14 @@
                     class="group relative h-64 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all">
                     <img src="{{ asset('images/home/specialty.webp') }}" alt="Specialty Acts"
                         class="absolute inset-0 w-full h-full object-cover grayscale group-hover:scale-110 transition-transform duration-700">
-                    <div class="absolute inset-0 bg-linear-to-br from-secondary to-primary opacity-80 mix-blend-color">
-                    </div>
-                    <div
-                        class="absolute inset-0 bg-linear-to-br from-secondary to-primary opacity-40 mix-blend-multiply">
-                    </div>
+                    <div class="absolute inset-0 bg-linear-to-br from-secondary/40 to-primary/40 opacity-80 mix-blend-color"></div>
                     <div class="absolute inset-0 bg-linear-to-t from-dark/90 via-dark/10 to-transparent"></div>
                     <div class="absolute bottom-6 left-6 text-left">
                         <h3 class="text-2xl font-bold text-white relative z-10">Specialty</h3>
                     </div>
                 </a>
             </div>
+
 
             <div class="mt-12 text-center">
                 <a href="/talent" wire:navigate

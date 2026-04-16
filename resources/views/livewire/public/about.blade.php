@@ -2,10 +2,11 @@
     <!-- Hero Section: Full-width background image with centered content -->
     <div class="relative bg-gray-950 min-h-[70vh] flex items-center justify-center overflow-hidden">
         <div class="absolute inset-0 overflow-hidden">
-            <!-- Background Image with Overlay -->
+            <!-- Background Image with Overlay Matching Home Hero -->
             <img src="{{ asset('images/about/about-hero.webp') }}"
-                alt="Concert Crowd" class="w-full h-full object-cover opacity-30">
-            <div class="absolute inset-0 bg-linear-to-t from-gray-950 via-gray-950/60 to-transparent"></div>
+                alt="Concert Crowd" class="w-full h-full object-cover grayscale opacity-40">
+            <div class="absolute inset-0 bg-linear-to-br from-secondary/40 to-primary/40 opacity-80 mix-blend-color"></div>
+            <div class="absolute inset-0 bg-linear-to-t from-gray-950 via-transparent to-transparent"></div>
         </div>
 
         <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -216,7 +217,8 @@
                 <div
                     class="relative group h-[500px] rounded-md overflow-hidden shadow-2xl transition-transform duration-500 hover:-translate-y-2">
                     <img src="{{ asset('images/about/founder.webp') }}" alt="David Somoye"
-                        class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        class="absolute inset-0 w-full h-full object-cover grayscale transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-linear-to-br from-secondary/40 to-primary/40 opacity-60 mix-blend-color group-hover:opacity-40 transition-opacity"></div>
                     <div
                         class="absolute inset-x-0 bottom-0 bg-linear-to-t from-dark/95 via-dark/70 to-transparent p-10 pt-20">
                         <h3 class="text-3xl font-bold text-white mb-1">David Somoye</h3>
@@ -246,7 +248,8 @@
                 <div
                     class="relative group h-[500px] rounded-md overflow-hidden shadow-2xl transition-transform duration-500 hover:-translate-y-2">
                     <img src="{{ asset('images/about/head-of-talent-relation.webp') }}" alt="Lolitasville"
-                        class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        class="absolute inset-0 w-full h-full object-cover grayscale transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-linear-to-br from-secondary/40 to-primary/40 opacity-60 mix-blend-color group-hover:opacity-40 transition-opacity"></div>
                     <div
                         class="absolute inset-x-0 bottom-0 bg-linear-to-t from-dark/95 via-dark/70 to-transparent p-10 pt-20">
                         <h3 class="text-3xl font-bold text-white mb-1">Lolitasville</h3>
@@ -276,7 +279,8 @@
                 <div
                     class="relative group h-[500px] rounded-md overflow-hidden shadow-2xl transition-transform duration-500 hover:-translate-y-2">
                     <img src="{{ asset('images/about/client-success-director.webp') }}" alt="Anne James"
-                        class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        class="absolute inset-0 w-full h-full object-cover grayscale transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-linear-to-br from-secondary/40 to-primary/40 opacity-60 mix-blend-color group-hover:opacity-40 transition-opacity"></div>
                     <div
                         class="absolute inset-x-0 bottom-0 bg-linear-to-t from-dark/95 via-dark/70 to-transparent p-10 pt-20">
                         <h3 class="text-3xl font-bold text-white mb-1">Anne James</h3>
@@ -308,8 +312,9 @@
     <!-- Bottom CTA: Banner with music note icon and specific button styles -->
     <div class="relative py-32 overflow-hidden bg-dark">
         <div
-            class="absolute inset-0 opacity-20 bg-[url('https://images.unsplash.com/photo-1470225620780-dba8ba36b745?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')] bg-cover bg-fixed">
+            class="absolute inset-0 opacity-20 bg-[url('https://images.unsplash.com/photo-1470225620780-dba8ba36b745?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')] bg-cover bg-fixed grayscale">
         </div>
+        <div class="absolute inset-0 bg-linear-to-br from-secondary/40 to-primary/40 opacity-40 mix-blend-color"></div>
         <div class="absolute inset-0 bg-linear-to-b from-dark/80 via-dark to-dark/80"></div>
 
         <div class="relative max-w-4xl mx-auto px-4 text-center">

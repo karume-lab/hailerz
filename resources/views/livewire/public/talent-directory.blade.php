@@ -42,7 +42,8 @@
                                 <div class="bg-surface rounded-2xl shadow-sm border border-border overflow-hidden group hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
                                     <a href="/talent/{{ $talent->slug }}" wire:navigate class="block relative h-64 overflow-hidden">
                                         @if($talent->hasMedia('primary_image'))
-                                            <img src="{{ $talent->getFirstMediaUrl('primary_image') }}" alt="{{ $talent->name }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                                            <img src="{{ $talent->getFirstMediaUrl('primary_image') }}" alt="{{ $talent->name }}" class="w-full h-full object-cover grayscale group-hover:scale-105 transition-transform duration-500">
+                                            <div class="absolute inset-0 bg-linear-to-br from-secondary/40 to-primary/40 opacity-60 mix-blend-color group-hover:opacity-40 transition-opacity"></div>
                                         @else
                                             <div class="w-full h-full bg-linear-to-br from-primary/80 to-indigo-900/80 flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
                                                 <span class="text-4xl font-bold text-white opacity-50 tracking-tighter">

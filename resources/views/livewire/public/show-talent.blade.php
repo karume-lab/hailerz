@@ -3,7 +3,8 @@
     <!-- Hero / Primary Image -->
     <div class="relative h-96 md:h-128 bg-dark/90 overflow-hidden">
         @if($talent->hasMedia('primary_image'))
-            <img src="{{ $talent->getFirstMediaUrl('primary_image') }}" alt="{{ $talent->name }}" class="w-full h-full object-cover opacity-70">
+            <img src="{{ $talent->getFirstMediaUrl('primary_image') }}" alt="{{ $talent->name }}" class="w-full h-full object-cover grayscale opacity-70">
+            <div class="absolute inset-0 bg-linear-to-br from-secondary/40 to-primary/40 opacity-80 mix-blend-color"></div>
         @else
             <div class="w-full h-full bg-linear-to-br from-primary-900 to-dark flex items-center justify-center">
                 <span class="text-8xl font-bold text-white opacity-20 tracking-tighter">
@@ -50,8 +51,9 @@
                     <h2 class="text-2xl font-bold text-text-main mb-6">Gallery</h2>
                     <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
                         @foreach($talent->getMedia('gallery') as $media)
-                            <div class="aspect-square rounded-xl overflow-hidden bg-canvas border border-border">
-                                <img src="{{ $media->getUrl() }}" alt="Gallery Image" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                            <div class="aspect-square rounded-xl overflow-hidden bg-canvas border border-border relative group">
+                                <img src="{{ $media->getUrl() }}" alt="Gallery Image" class="w-full h-full object-cover grayscale opacity-80 group-hover:scale-110 transition-transform duration-700">
+                                <div class="absolute inset-0 bg-linear-to-br from-secondary/40 to-primary/40 opacity-60 mix-blend-color group-hover:opacity-40 transition-opacity"></div>
                             </div>
                         @endforeach
                     </div>

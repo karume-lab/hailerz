@@ -57,11 +57,13 @@
                         class="text-base font-medium {{ request()->is('about*') ? 'text-primary' : 'text-gray-300 hover:text-primary' }} transition-colors">About</a>
                     <a href="/news" wire:navigate
                         class="text-base font-medium {{ request()->is('news*') ? 'text-primary' : 'text-gray-300 hover:text-primary' }} transition-colors">Resources</a>
+                    <a href="/contact" wire:navigate
+                        class="text-base font-medium {{ request()->is('contact*') ? 'text-primary' : 'text-gray-300 hover:text-primary' }} transition-colors">Contact</a>
                 </nav>
                 <div class="flex items-center space-x-6">
                     <a href="/join" wire:navigate
                        class="hidden lg:block text-sm font-semibold text-gray-300 hover:text-primary transition-colors">
-                        Join Roster
+                        Submissions
                     </a>
                     
                     <!-- Theme Toggle -->
@@ -133,7 +135,7 @@
                         <li><a href="/about" wire:navigate class="text-sm text-gray-300 hover:text-white transition-colors">About Us</a></li>
                         <li><a href="/services" wire:navigate class="text-sm text-gray-300 hover:text-white transition-colors">Services</a></li>
                         <li><a href="/join" wire:navigate class="text-sm text-gray-300 hover:text-white transition-colors">Join Our Roster</a></li>
-                        <li><a href="/news" wire:navigate class="text-sm text-gray-300 hover:text-white transition-colors">Resources</a></li>
+                        <li><a href="/faqs" wire:navigate class="text-sm text-gray-300 hover:text-white transition-colors">FAQs</a></li>
                         <li><a href="/contact" wire:navigate class="text-sm text-gray-300 hover:text-white transition-colors">Contact</a></li>
                     </ul>
                 </div>
@@ -147,8 +149,14 @@
                 </div>
             </div>
 
-            <div class="mt-12 pt-8 border-t border-gray-800 text-sm text-center text-gray-500">
-                &copy; {{ date('Y') }} Hailerz Agency. All rights reserved.
+            <div class="mt-12 pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="text-sm text-gray-500">
+                    &copy; 2026 Hailerz. All rights reserved.
+                </div>
+                <div class="flex gap-8 text-sm text-gray-500">
+                    <a href="/legal/privacy" wire:navigate class="hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="/legal/terms" wire:navigate class="hover:text-white transition-colors">Terms of Service</a>
+                </div>
             </div>
         </div>
     </footer>
