@@ -11,7 +11,7 @@
             <!-- Sidebar Filters -->
             <aside class="w-full lg:w-1/4">
                 <div class="sticky top-28 bg-surface p-6 rounded-2xl shadow-sm border border-dark/5">
-                    <h2 class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-6">Filter Directory</h2>
+                    <h2 class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-6">Filter</h2>
                     
                     <div class="space-y-6">
                         <div>
@@ -35,7 +35,7 @@
             <!-- Talent Grid -->
             <main class="w-full lg:w-3/4">
                 
-                <div wire:loading.class="opacity-50" class="transition-opacity duration-300">
+                <div class="transition-opacity duration-300">
                     @if($talents->count() > 0)
                         <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
                             @foreach($talents as $talent)
@@ -87,9 +87,51 @@
                             @endforeach
                         </div>
                         
-                        <div class="mt-12">
-                            {{ $talents->links() }}
-                        </div>
+                        @if($talents->hasMorePages())
+                            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mt-6">
+                                <!-- Loading Skeletons -->
+                                <div wire:loading wire:target="loadMore" class="contents">
+                                    @foreach(range(1, 3) as $i)
+                                        <div class="bg-surface rounded-2xl shadow-sm border border-dark/5 overflow-hidden animate-pulse">
+                                            <div class="h-64 bg-gray-200"></div>
+                                            <div class="p-6">
+                                                <div class="h-3 w-20 bg-gray-200 rounded mb-4"></div>
+                                                <div class="h-6 w-48 bg-gray-200 rounded mb-2"></div>
+                                                <div class="h-4 w-32 bg-gray-200 rounded mb-6"></div>
+                                                <div class="flex justify-between items-center mt-6 pt-4 border-t border-dark/5">
+                                                    <div class="space-y-2">
+                                                        <div class="h-2 w-16 bg-gray-100 rounded"></div>
+                                                        <div class="h-4 w-12 bg-gray-200 rounded"></div>
+                                                    </div>
+                                                    <div class="h-4 w-24 bg-gray-200 rounded"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+
+                            <div x-data="{
+                                isLoading: false,
+                                observe() {
+                                    let observer = new IntersectionObserver((entries) => {
+                                        entries.forEach(entry => {
+                                            if (entry.isIntersecting && !this.isLoading) {
+                                                this.isLoading = true;
+                                                @this.loadMore().then(() => {
+                                                    this.isLoading = false;
+                                                });
+                                            }
+                                        })
+                                    }, {
+                                        rootMargin: '400px'
+                                    })
+                                    observer.observe(this.$el)
+                                }
+                            }" x-init="observe()" class="mt-4 py-8 flex justify-center">
+                                <!-- Intersection Trigger -->
+                            </div>
+                        @endif
                     @else
                         <div class="text-center py-24 bg-surface rounded-2xl border border-dark/5 shadow-sm">
                             <svg class="mx-auto h-12 w-12 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"></path></svg>

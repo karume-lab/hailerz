@@ -76,7 +76,7 @@ class TalentForm
                         ->required(),
                     Forms\Components\Toggle::make('is_featured'),
                     Forms\Components\Textarea::make('internal_notes')
-                        ->helperText('Notes for agency staff only — never shown publicly.')
+                        ->helperText('Notes for agency staff only - never shown publicly.')
                         ->columnSpanFull(),
                 ])->columns(2),
         ]);

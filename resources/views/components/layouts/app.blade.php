@@ -33,16 +33,23 @@
                     </a>
                 </div>
                 <nav class="hidden md:flex space-x-10">
-                    <a href="/talent"
-                        class="text-base font-medium {{ request()->is('talent*') ? 'text-primary' : 'text-gray-700 hover:text-primary' }} transition-colors">Celebrities</a>
-                    <a href="/#how-it-works"
-                        class="text-base font-medium text-gray-700 hover:text-primary transition-colors">How it
-                        works</a>
+                    <a href="/talent" wire:navigate
+                        class="text-base font-medium {{ request()->is('talent*') ? 'text-primary' : 'text-gray-700 hover:text-primary' }} transition-colors">Browse Talent</a>
+                    <a href="/services" wire:navigate
+                        class="text-base font-medium {{ request()->is('services*') ? 'text-primary' : 'text-gray-700 hover:text-primary' }} transition-colors">Services</a>
+                    <a href="/about" wire:navigate
+                        class="text-base font-medium {{ request()->is('about*') ? 'text-primary' : 'text-gray-700 hover:text-primary' }} transition-colors">About</a>
+                    <a href="/news" wire:navigate
+                        class="text-base font-medium {{ request()->is('news*') ? 'text-primary' : 'text-gray-700 hover:text-primary' }} transition-colors">Resources</a>
                 </nav>
                 <div class="flex items-center space-x-6">
-                    <a href="/talent"
+                    <a href="/join" wire:navigate
+                       class="hidden lg:block text-sm font-semibold text-gray-600 hover:text-primary transition-colors">
+                        Join Roster
+                    </a>
+                    <a href="/book" wire:navigate
                         class="inline-flex items-center justify-center px-6 py-2.5 border border-transparent text-sm font-semibold rounded-md text-white bg-primary hover:bg-primary-dark shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
-                        Explore Talents
+                        Book Now
                     </a>
                 </div>
             </div>
@@ -64,50 +71,40 @@
                         </span>
                     </a>
                     <p class="mt-4 text-sm text-gray-400 leading-relaxed">
-                        Hailerz connects fans with their favourite celebrities, and vice-versa. Seamless exchange of
-                        pleasantries, video shoutouts, and wishes.
+                        Premium talent booking for unforgettable events. We connect visionary planners with world-class performers.
                     </p>
+                    <div class="mt-6">
+                        <a href="mailto:info@hailerz.com" class="text-sm text-primary font-semibold hover:text-white transition-colors">info@hailerz.com</a>
+                    </div>
                 </div>
 
                 <div>
-                    <h3 class="text-sm font-semibold text-white tracking-wider uppercase mb-4">Directory</h3>
+                    <h3 class="text-sm font-semibold text-white tracking-wider uppercase mb-4">Talent</h3>
                     <ul class="space-y-3">
-                        <li><a href="/talent?category=musicians"
-                                class="text-sm text-gray-400 hover:text-white transition-colors">Musicians</a></li>
-                        <li><a href="/talent?category=speakers"
-                                class="text-sm text-gray-400 hover:text-white transition-colors">Keynote Speakers</a>
-                        </li>
-                        <li><a href="/talent?category=performers"
-                                class="text-sm text-gray-400 hover:text-white transition-colors">Performers</a></li>
-                        <li><a href="/talent" class="text-sm text-gray-400 hover:text-white transition-colors">Browse
-                                All</a></li>
+                        <li><a href="/talent" wire:navigate class="text-sm text-gray-400 hover:text-white transition-colors">Browse All Talent</a></li>
+                        <li><a href="/talent?category=musicians" class="text-sm text-gray-400 hover:text-white transition-colors">Musicians</a></li>
+                        <li><a href="/talent?category=performers" class="text-sm text-gray-400 hover:text-white transition-colors">Variety Artists</a></li>
+                        <li><a href="/talent?category=djs" class="text-sm text-gray-400 hover:text-white transition-colors">DJs</a></li>
                     </ul>
                 </div>
 
                 <div>
-                    <h3 class="text-sm font-semibold text-white tracking-wider uppercase mb-4">Legal</h3>
+                    <h3 class="text-sm font-semibold text-white tracking-wider uppercase mb-4">Company</h3>
                     <ul class="space-y-3">
-                        <li><a href="/legal/terms" wire:navigate
-                                class="text-sm text-gray-400 hover:text-white transition-colors">Terms of Service</a>
-                        </li>
-                        <li><a href="/legal/privacy" wire:navigate
-                                class="text-sm text-gray-400 hover:text-white transition-colors">Privacy Policy</a></li>
-                        <li><a href="/legal/booking" wire:navigate
-                                class="text-sm text-gray-400 hover:text-white transition-colors">Booking Agreement</a>
-                        </li>
-                        <li><a href="/legal/cancellation" wire:navigate
-                                class="text-sm text-gray-400 hover:text-white transition-colors">Cancellation Policy</a>
-                        </li>
+                        <li><a href="/about" wire:navigate class="text-sm text-gray-400 hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="/services" wire:navigate class="text-sm text-gray-400 hover:text-white transition-colors">Services</a></li>
+                        <li><a href="/join" wire:navigate class="text-sm text-gray-400 hover:text-white transition-colors">Join Our Roster</a></li>
+                        <li><a href="/news" wire:navigate class="text-sm text-gray-400 hover:text-white transition-colors">Resources</a></li>
+                        <li><a href="/contact" wire:navigate class="text-sm text-gray-400 hover:text-white transition-colors">Contact</a></li>
                     </ul>
                 </div>
 
                 <div>
-                    <h3 class="text-sm font-semibold text-white tracking-wider uppercase mb-4">Contact</h3>
-                    <ul class="space-y-3">
-                        <li class="text-sm text-gray-400">booking@hailerz.com</li>
-                        <li class="text-sm text-gray-400">+1 (800) 555-0199</li>
-                        <li class="text-sm text-gray-400 mt-4">1200 Global Ave, Suite 400<br>New York, NY 10001</li>
-                    </ul>
+                    <h3 class="text-sm font-semibold text-white tracking-wider uppercase mb-4">Get Started</h3>
+                    <p class="text-sm text-gray-400 mb-4 leading-relaxed">Ready to book top talent for your next event?</p>
+                    <a href="/book" wire:navigate class="inline-flex items-center justify-center w-full px-6 py-3 border border-transparent text-sm font-semibold rounded-md text-white bg-primary hover:bg-primary-dark transition shadow-lg">
+                        Request Booking
+                    </a>
                 </div>
             </div>
 

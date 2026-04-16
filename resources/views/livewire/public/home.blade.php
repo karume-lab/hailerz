@@ -56,7 +56,7 @@
     <!-- Headline Section -->
     <section class="py-16 bg-white">
         <div class="max-w-7xl mx-auto px-4 text-center">
-            <h2 class="text-4xl md:text-5xl font-bold text-primary">Access top African talents</h2>
+            <h2 class="text-4xl md:text-5xl font-bold text-primary">Access top talents</h2>
         </div>
     </section>
 
