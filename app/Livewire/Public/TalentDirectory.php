@@ -31,6 +31,9 @@ class TalentDirectory extends Component
     #[Url(history: true)]
     public string $sort = 'name';
 
+    #[Url(history: true)]
+    public string $event = '';
+
     public function updatedSearch()
     {
         $this->resetPage();
@@ -74,6 +77,7 @@ class TalentDirectory extends Component
         $talents = Talent::query()
             ->where('status', 'active')
             ->when($this->search, fn ($query) => $query->where('name', 'like', '%' . $this->search . '%'))
+            ->when($this->event, fn ($query) => $query->where('bio', 'like', '%' . str_replace('_', ' ', $this->event) . '%'))
             ->when($this->category_id, fn ($query) => $query->where('category_id', $this->category_id))
             ->when($this->min_price, fn ($query) => $query->where('starting_price', '>=', $this->min_price))
             ->when($this->max_price, fn ($query) => $query->where('starting_price', '<=', $this->max_price))

@@ -13,17 +13,19 @@
                         The easiest way to get personalized video greetings, shoutouts, and pleasantries from top
                         entertainers and public figures.
                     </p>
-                    <div class="flex flex-wrap gap-4">
-                        <a href="#how-it-works"
-                            class="px-8 py-3.5 border border-border text-base font-semibold rounded-md text-text-main bg-surface hover:bg-canvas transition-all focus:outline-none flex items-center gap-2">
-                            How it works
-                        </a>
+                    <div class="flex flex-wrap gap-4 mb-10">
                         <a href="/talent" wire:navigate
-                            class="px-8 py-3.5 border border-transparent text-base font-semibold rounded-md text-white bg-primary hover:bg-primary-dark shadow-sm transition-all focus:outline-none flex items-center gap-2">
-                            Discover Talent <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5"
-                                viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path>
+                            class="px-8 py-4 bg-primary text-white font-bold rounded-xl hover:bg-primary-dark shadow-lg shadow-primary/20 transition-all flex items-center gap-3 group">
+                            <svg class="w-5 h-5 text-secondary group-hover:scale-110 transition-transform" fill="none"
+                                stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                             </svg>
+                            Browse Talent
+                        </a>
+                        <a href="/join" wire:navigate
+                            class="px-8 py-4 bg-white dark:bg-dark-muted text-primary border-2 border-primary/20 font-bold rounded-xl hover:border-primary transition-all flex items-center gap-3">
+                            Join the Roster
                         </a>
                     </div>
                 </div>
@@ -60,32 +62,6 @@
         </div>
     </section>
 
-    <!-- Trusted By / Social Proof -->
-    <section class="py-12 bg-surface border-b border-border">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <p class="text-center text-sm font-semibold uppercase text-text-muted tracking-wide mb-8">Trusted by Top Event
-                Producers & Brands</p>
-            <div
-                class="flex flex-wrap justify-center gap-8 md:gap-16 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
-                <svg class="h-8 text-text-main" viewBox="0 0 100 30" fill="currentColor">
-                    <path
-                        d="M10,25 h15 v-20 h-15 z M35,25 h15 v-20 h-15 z M60,25 h15 v-20 h-15 z M85,25 h15 v-20 h-20" />
-                </svg>
-                <svg class="h-8 text-text-main" viewBox="0 0 100 30" fill="currentColor">
-                    <circle cx="15" cy="15" r="10" />
-                    <rect x="35" y="5" width="20" height="20" />
-                    <polygon points="75,5 95,5 85,25" />
-                </svg>
-                <svg class="h-8 text-text-main" viewBox="0 0 100 30" fill="currentColor">
-                    <path d="M5,15 Q25,5 45,15 T85,15" />
-                </svg>
-                <svg class="h-8 text-gray-900 hidden sm:block" viewBox="0 0 100 30" fill="currentColor">
-                    <rect x="10" y="5" width="80" height="20" rx="10" />
-                </svg>
-            </div>
-        </div>
-    </section>
-
     <!-- Categories Quick Browse -->
     <section class="py-20 bg-canvas">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -101,7 +77,9 @@
                     class="group relative h-64 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all">
                     <img src="{{ asset('images/home/musicians.webp') }}" alt="Live Musicians"
                         class="absolute inset-0 w-full h-full object-cover grayscale group-hover:scale-110 transition-transform duration-700">
-                    <div class="absolute inset-0 bg-linear-to-br from-secondary/40 to-primary/40 opacity-80 mix-blend-color"></div>
+                    <div
+                        class="absolute inset-0 bg-linear-to-br from-secondary/40 to-primary/40 opacity-80 mix-blend-color">
+                    </div>
                     <div class="absolute inset-0 bg-linear-to-t from-dark/90 via-dark/10 to-transparent"></div>
                     <div class="absolute bottom-6 left-6 text-left">
                         <h3 class="text-2xl font-bold text-white relative z-10">Live Bands</h3>
@@ -112,7 +90,9 @@
                     class="group relative h-64 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all">
                     <img src="{{ asset('images/home/speakers.webp') }}" alt="Keynote Speakers"
                         class="absolute inset-0 w-full h-full object-cover grayscale group-hover:scale-110 transition-transform duration-700">
-                    <div class="absolute inset-0 bg-linear-to-br from-secondary/40 to-primary/40 opacity-80 mix-blend-color"></div>
+                    <div
+                        class="absolute inset-0 bg-linear-to-br from-secondary/40 to-primary/40 opacity-80 mix-blend-color">
+                    </div>
                     <div class="absolute inset-0 bg-linear-to-t from-dark/90 via-dark/10 to-transparent"></div>
                     <div class="absolute bottom-6 left-6 text-left">
                         <h3 class="text-2xl font-bold text-white relative z-10">Keynote Speakers</h3>
@@ -123,7 +103,9 @@
                     class="group relative h-64 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all">
                     <img src="{{ asset('images/home/djs.webp') }}" alt="DJs & Electronics"
                         class="absolute inset-0 w-full h-full object-cover grayscale group-hover:scale-110 transition-transform duration-700">
-                    <div class="absolute inset-0 bg-linear-to-br from-secondary/40 to-primary/40 opacity-80 mix-blend-color"></div>
+                    <div
+                        class="absolute inset-0 bg-linear-to-br from-secondary/40 to-primary/40 opacity-80 mix-blend-color">
+                    </div>
                     <div class="absolute inset-0 bg-linear-to-t from-dark/90 via-dark/10 to-transparent"></div>
                     <div class="absolute bottom-6 left-6 text-left">
                         <h3 class="text-2xl font-bold text-white relative z-10">DJs & Electronics</h3>
@@ -134,12 +116,45 @@
                     class="group relative h-64 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all">
                     <img src="{{ asset('images/home/specialty.webp') }}" alt="Specialty Acts"
                         class="absolute inset-0 w-full h-full object-cover grayscale group-hover:scale-110 transition-transform duration-700">
-                    <div class="absolute inset-0 bg-linear-to-br from-secondary/40 to-primary/40 opacity-80 mix-blend-color"></div>
+                    <div
+                        class="absolute inset-0 bg-linear-to-br from-secondary/40 to-primary/40 opacity-80 mix-blend-color">
+                    </div>
                     <div class="absolute inset-0 bg-linear-to-t from-dark/90 via-dark/10 to-transparent"></div>
                     <div class="absolute bottom-6 left-6 text-left">
                         <h3 class="text-2xl font-bold text-white relative z-10">Specialty</h3>
                     </div>
                 </a>
+            </div>
+
+            <div class="mt-24 text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-text-main">Browse by Event</h2>
+                <p class="mt-4 text-lg text-text-muted">Tailored talent for every occasion.</p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+                @php
+                    $events = [
+                        ['name' => 'Weddings', 'icon' => 'M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'],
+                        ['name' => 'Corporate Galas', 'icon' => 'M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3z'],
+                        ['name' => 'Birthdays', 'icon' => 'M12 2l1.5 5 5 .5-3.5 3.5 1 5-4-2.5-4 2.5 1-5-3.5-3.5 5-.5L12 2z'],
+                        ['name' => 'Festivals', 'icon' => 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z'],
+                        ['name' => 'Private Parties', 'icon' => 'M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'],
+                        ['name' => 'Religious Events', 'icon' => 'M19 13h-6V7h-2v6H5v2h6v6h2v-6h6z']
+                    ];
+                @endphp
+
+                @foreach($events as $event)
+                    <a href="/talent?event={{ strtolower(str_replace(' ', '_', $event['name'])) }}"
+                        class="flex flex-col items-center justify-center p-6 bg-surface border border-border rounded-2xl hover:border-primary hover:shadow-md transition-all group">
+                        <div
+                            class="h-12 w-12 rounded-full bg-primary/10 text-primary flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="{{ $event['icon'] }}"></path>
+                            </svg>
+                        </div>
+                        <span class="text-sm font-bold text-text-main text-center">{{ $event['name'] }}</span>
+                    </a>
+                @endforeach
             </div>
 
 
