@@ -61,18 +61,28 @@
                         <!-- Location -->
                         <div x-data="{ 
                             isLocating: false,
+                            locationError: '',
                             locateMe() {
                                 this.isLocating = true;
+                                this.locationError = '';
                                 if (!navigator.geolocation) {
-                                    alert('Geolocation is not supported by your browser');
+                                    this.locationError = 'Geolocation is not supported by your browser.';
                                     this.isLocating = false;
                                     return;
                                 }
+                                const options = {
+                                    enableHighAccuracy: false,
+                                    timeout: 10000,
+                                    maximumAge: 60000
+                                };
                                 navigator.geolocation.getCurrentPosition(
                                     async (position) => {
                                         try {
                                             const { latitude, longitude } = position.coords;
-                                            const response = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`);
+                                            const response = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`, {
+                                                headers: { 'Accept-Language': 'en' }
+                                            });
+                                            if (!response.ok) throw new Error('Nominatim request failed');
                                             const data = await response.json();
                                             let city = data.address.city || data.address.town || data.address.village || data.address.county;
                                             
@@ -82,7 +92,6 @@
                                                 for (let i = 0; i < select.options.length; i++) {
                                                     if (select.options[i].value.toLowerCase() === city.toLowerCase()) {
                                                         exists = true;
-                                                        // Ensure Livewire sets exactly what's in the DOM to avoid case mismatches
                                                         city = select.options[i].value;
                                                         break;
                                                     }
@@ -96,20 +105,26 @@
                                                 select.value = city;
                                                 @this.set('location', city);
                                             } else {
-                                                alert('Could not determine your city.');
+                                                this.locationError = 'Could not determine your city from coordinates.';
                                             }
-                                        } catch (error) {
-                                            console.error('Error fetching location:', error);
-                                            alert('Error retrieving your location details.');
+                                        } catch (err) {
+                                            console.error('Reverse geocode error:', err);
+                                            this.locationError = 'Could not look up your city. Please select manually.';
                                         } finally {
                                             this.isLocating = false;
                                         }
                                     },
-                                    (error) => {
-                                        console.error('Geolocation error:', error);
-                                        alert('Unable to retrieve your location.');
+                                    (err) => {
+                                        console.error('Geolocation error:', err);
+                                        const messages = {
+                                            1: 'Location access was denied. Please allow it in your browser settings.',
+                                            2: 'Your position could not be determined. Try selecting manually.',
+                                            3: 'Location request timed out. Please try again.'
+                                        };
+                                        this.locationError = messages[err.code] || 'Unable to retrieve your location.';
                                         this.isLocating = false;
-                                    }
+                                    },
+                                    options
                                 );
                             }
                         }">
@@ -130,6 +145,7 @@
                                     <option value="{{ $loc }}">{{ $loc }}</option>
                                 @endforeach
                             </select>
+                            <p x-show="locationError" x-text="locationError" class="mt-2 text-[10px] text-red-500 leading-snug" x-cloak></p>
                         </div>
 
                         <!-- Price Range -->
