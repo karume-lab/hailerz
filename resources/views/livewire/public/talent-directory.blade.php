@@ -47,6 +47,91 @@
                             </select>
                         </div>
 
+                        <!-- Genre -->
+                        <div>
+                            <label for="genre" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Genre</label>
+                            <select wire:model.live="genre" id="genre" class="w-full px-4 py-3 border border-border rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all shadow-sm bg-canvas text-sm font-medium">
+                                <option value="">All Genres</option>
+                                @foreach($genres as $g)
+                                    <option value="{{ $g }}">{{ $g }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <!-- Location -->
+                        <div x-data="{ 
+                            isLocating: false,
+                            locateMe() {
+                                this.isLocating = true;
+                                if (!navigator.geolocation) {
+                                    alert('Geolocation is not supported by your browser');
+                                    this.isLocating = false;
+                                    return;
+                                }
+                                navigator.geolocation.getCurrentPosition(
+                                    async (position) => {
+                                        try {
+                                            const { latitude, longitude } = position.coords;
+                                            const response = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`);
+                                            const data = await response.json();
+                                            let city = data.address.city || data.address.town || data.address.village || data.address.county;
+                                            
+                                            if (city) {
+                                                const select = document.getElementById('location');
+                                                let exists = false;
+                                                for (let i = 0; i < select.options.length; i++) {
+                                                    if (select.options[i].value.toLowerCase() === city.toLowerCase()) {
+                                                        exists = true;
+                                                        // Ensure Livewire sets exactly what's in the DOM to avoid case mismatches
+                                                        city = select.options[i].value;
+                                                        break;
+                                                    }
+                                                }
+                                                if (!exists) {
+                                                    const option = document.createElement('option');
+                                                    option.value = city;
+                                                    option.text = city;
+                                                    select.add(option);
+                                                }
+                                                select.value = city;
+                                                @this.set('location', city);
+                                            } else {
+                                                alert('Could not determine your city.');
+                                            }
+                                        } catch (error) {
+                                            console.error('Error fetching location:', error);
+                                            alert('Error retrieving your location details.');
+                                        } finally {
+                                            this.isLocating = false;
+                                        }
+                                    },
+                                    (error) => {
+                                        console.error('Geolocation error:', error);
+                                        alert('Unable to retrieve your location.');
+                                        this.isLocating = false;
+                                    }
+                                );
+                            }
+                        }">
+                            <div class="flex items-center justify-between mb-3">
+                                <label for="location" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest">Location</label>
+                                <button @click="locateMe()" type="button" class="flex items-center gap-1 text-[10px] font-bold text-primary uppercase tracking-widest hover:text-primary-dark transition-all disabled:opacity-50" :disabled="isLocating">
+                                    <svg x-show="!isLocating" class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                    <svg x-show="isLocating" class="animate-spin w-3 h-3" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+                                    <span x-text="isLocating ? 'Locating...' : 'Locate Me'"></span>
+                                </button>
+                            </div>
+                            <select wire:model.live="location" id="location" class="w-full px-4 py-3 border border-border rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all shadow-sm bg-canvas text-sm font-medium">
+                                <option value="">All Locations</option>
+                                @if($this->location && !$locations->contains(fn($loc) => strtolower((string)$loc) === strtolower((string)$this->location)))
+                                    <option value="{{ $this->location }}">{{ $this->location }}</option>
+                                @endif
+                                @foreach($locations as $loc)
+                                    <option value="{{ $loc }}">{{ $loc }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
                         <!-- Price Range -->
                         <div>
                             <label class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Price Range ($)</label>

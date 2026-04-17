@@ -27,45 +27,112 @@
     </div>
 
     <!-- Main Content Split -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16" x-data="{ activeTab: 'bio' }">
         <div class="flex flex-col lg:flex-row gap-16">
 
-            <!-- Bio and Repertoire -->
+            <!-- Left Primary Content -->
             <div class="w-full lg:w-2/3">
-                <section class="mb-16">
-                    <h2 class="text-2xl font-bold text-text-main mb-6">Biography</h2>
-                    <div class="prose prose-lg prose-indigo max-w-none text-text-muted">
-                        {!! $talent->bio !!}
+                
+                <!-- Video Reel Section -->
+                @if($talent->video_url)
+                <section class="mb-12">
+                    <div class="aspect-video w-full rounded-3xl overflow-hidden bg-dark shadow-2xl border border-white/10 relative group">
+                        @php
+                            $embedUrl = '';
+                            if (str_contains($talent->video_url, 'youtube.com') || str_contains($talent->video_url, 'youtu.be')) {
+                                preg_match('/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/ ]{11})/i', $talent->video_url, $match);
+                                if (isset($match[1])) {
+                                    $embedUrl = "https://www.youtube.com/embed/{$match[1]}?autoplay=0&rel=0";
+                                }
+                            } elseif (str_contains($talent->video_url, 'vimeo.com')) {
+                                preg_match('/vimeo\.com\/(?:channels\/(?:\w+\/)?|groups\/(?:[^\/]*)\/videos\/|album\/(?:\d+)\/video\/|video\/|)(\d+)(?:$|\/|\?)/i', $talent->video_url, $match);
+                                if (isset($match[1])) {
+                                    $embedUrl = "https://player.vimeo.com/video/{$match[1]}";
+                                }
+                            }
+                        @endphp
+
+                        @if($embedUrl)
+                            <iframe src="{{ $embedUrl }}" class="absolute inset-0 w-full h-full" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        @else
+                            <div class="flex items-center justify-center h-full text-white/40">
+                                <a href="{{ $talent->video_url }}" target="_blank" class="hover:text-primary transition-colors flex flex-col items-center">
+                                    <svg class="w-16 h-16 mb-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"></path></svg>
+                                    <span class="font-bold uppercase tracking-widest text-xs">Watch Video Portfolio</span>
+                                </a>
+                            </div>
+                        @endif
                     </div>
                 </section>
+                @endif
 
-                @if($talent->technical_rider)
-                    <section class="mb-16">
-                        <h2 class="text-2xl font-bold text-text-main mb-6">Technical Rider & Repertoire</h2>
-                        <div
-                            class="p-8 bg-surface border border-border rounded-2xl prose prose-indigo max-w-none text-text-muted">
+                <!-- Tabbed Navigation -->
+                <div class="mb-8 border-b border-border">
+                    <nav class="flex space-x-8">
+                        <button 
+                            @click="activeTab = 'bio'"
+                            :class="activeTab === 'bio' ? 'border-primary text-primary' : 'border-transparent text-text-muted hover:text-text-main hover:border-border'"
+                            class="pb-4 px-1 border-b-2 font-bold text-sm uppercase tracking-widest transition-all focus:outline-none"
+                        >
+                            Biography
+                        </button>
+                        @if($talent->technical_rider)
+                        <button 
+                            @click="activeTab = 'rider'"
+                            :class="activeTab === 'rider' ? 'border-primary text-primary' : 'border-transparent text-text-muted hover:text-text-main hover:border-border'"
+                            class="pb-4 px-1 border-b-2 font-bold text-sm uppercase tracking-widest transition-all focus:outline-none"
+                        >
+                            Technical Rider
+                        </button>
+                        @endif
+                        <button 
+                            @click="activeTab = 'gallery'"
+                            :class="activeTab === 'gallery' ? 'border-primary text-primary' : 'border-transparent text-text-muted hover:text-text-main hover:border-border'"
+                            class="pb-4 px-1 border-b-2 font-bold text-sm uppercase tracking-widest transition-all focus:outline-none"
+                        >
+                            Gallery
+                        </button>
+                    </nav>
+                </div>
+
+                <!-- Tab Panels -->
+                <div class="mb-16 min-h-[400px]">
+                    <!-- Bio Tab -->
+                    <div x-show="activeTab === 'bio'" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0">
+                        <div class="prose prose-lg prose-indigo max-w-none text-text-muted">
+                            {!! $talent->bio !!}
+                        </div>
+                    </div>
+
+                    <!-- Rider Tab -->
+                    @if($talent->technical_rider)
+                    <div x-show="activeTab === 'rider'" x-cloak x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0">
+                        <div class="p-8 bg-surface border border-border rounded-2xl prose prose-indigo max-w-none text-text-muted shadow-sm">
                             {!! $talent->technical_rider !!}
                         </div>
-                    </section>
-                @endif
+                    </div>
+                    @endif
 
-                @if($talent->hasMedia('gallery'))
-                    <section>
-                        <h2 class="text-2xl font-bold text-text-main mb-6">Gallery</h2>
-                        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-                            @foreach($talent->getMedia('gallery') as $media)
-                                <div
-                                    class="aspect-square rounded-xl overflow-hidden bg-canvas border border-border relative group">
-                                    <img src="{{ $media->getUrl() }}" alt="Gallery Image"
-                                        class="w-full h-full object-cover grayscale opacity-80 group-hover:scale-110 transition-transform duration-700">
-                                    <div
-                                        class="absolute inset-0 bg-linear-to-br from-secondary/40 to-primary/40 opacity-60 mix-blend-color group-hover:opacity-40 transition-opacity">
+                    <!-- Gallery Tab -->
+                    <div x-show="activeTab === 'gallery'" x-cloak x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0">
+                        @if($talent->hasMedia('gallery'))
+                            <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
+                                @foreach($talent->getMedia('gallery') as $media)
+                                    <div class="aspect-square rounded-2xl overflow-hidden bg-canvas border border-border relative group shadow-sm">
+                                        <img src="{{ $media->getUrl() }}" alt="Gallery Image"
+                                            class="w-full h-full object-cover grayscale opacity-80 group-hover:scale-110 transition-transform duration-700">
+                                        <div class="absolute inset-0 bg-linear-to-br from-secondary/40 to-primary/40 opacity-60 mix-blend-color group-hover:opacity-40 transition-opacity"></div>
                                     </div>
-                                </div>
-                            @endforeach
-                        </div>
-                    </section>
-                @endif
+                                @endforeach
+                            </div>
+                        @else
+                            <div class="flex flex-col items-center justify-center py-24 text-text-muted opacity-40">
+                                <svg class="w-12 h-12 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                                <span class="font-bold uppercase tracking-widest text-[10px]">No images available yet</span>
+                            </div>
+                        @endif
+                    </div>
+                </div>
             </div>
 
             <!-- Sticky Sidebar: At a Glance -->

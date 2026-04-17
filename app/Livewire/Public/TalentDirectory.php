@@ -16,23 +16,29 @@ class TalentDirectory extends Component
 {
     use WithPagination;
 
-    #[Url(history: true)]
+    #[Url(history: true, except: '')]
     public string $search = '';
 
-    #[Url(history: true)]
+    #[Url(history: true, except: null)]
     public ?int $category_id = null;
 
-    #[Url(history: true)]
+    #[Url(history: true, except: null)]
     public ?int $min_price = null;
 
-    #[Url(history: true)]
+    #[Url(history: true, except: null)]
     public ?int $max_price = null;
 
-    #[Url(history: true)]
+    #[Url(history: true, except: 'name')]
     public string $sort = 'name';
 
-    #[Url(history: true)]
+    #[Url(history: true, except: '')]
     public string $event = '';
+
+    #[Url(history: true, except: '')]
+    public string $location = '';
+
+    #[Url(history: true, except: '')]
+    public string $genre = '';
 
     public function updatedSearch()
     {
@@ -61,7 +67,7 @@ class TalentDirectory extends Component
 
     public function resetFilters()
     {
-        $this->reset(['search', 'category_id', 'min_price', 'max_price', 'sort']);
+        $this->reset(['search', 'category_id', 'min_price', 'max_price', 'sort', 'location', 'genre', 'event']);
         $this->resetPage();
     }
 
@@ -78,6 +84,8 @@ class TalentDirectory extends Component
             ->where('status', 'active')
             ->when($this->search, fn ($query) => $query->where('name', 'like', '%' . $this->search . '%'))
             ->when($this->event, fn ($query) => $query->where('bio', 'like', '%' . str_replace('_', ' ', $this->event) . '%'))
+            ->when($this->location, fn ($query) => $query->where('location', 'like', '%' . $this->location . '%'))
+            ->when($this->genre, fn ($query) => $query->where('genre', $this->genre))
             ->when($this->category_id, fn ($query) => $query->where('category_id', $this->category_id))
             ->when($this->min_price, fn ($query) => $query->where('starting_price', '>=', $this->min_price))
             ->when($this->max_price, fn ($query) => $query->where('starting_price', '<=', $this->max_price))
@@ -89,10 +97,14 @@ class TalentDirectory extends Component
             ->paginate($perPage * $this->getPage(), page: 1);
 
         $categories = Category::orderBy('name')->get();
+        $locations = Talent::where('status', 'active')->whereNotNull('location')->distinct()->pluck('location')->sort();
+        $genres = Talent::where('status', 'active')->whereNotNull('genre')->distinct()->pluck('genre')->sort();
 
         return view('livewire.public.talent-directory', [
             'talents' => $talents,
             'categories' => $categories,
+            'locations' => $locations,
+            'genres' => $genres,
         ]);
     }
 }
