@@ -219,4 +219,110 @@
             </div>
         </div>
     </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 bg-canvas">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:grid lg:grid-cols-2 lg:gap-16 items-start">
+
+                <!-- Left: Info -->
+                <div class="mb-12 lg:mb-0">
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-text-main mb-6">Get in Touch</h2>
+                    <p class="text-lg text-text-muted leading-relaxed mb-8">
+                        Whether you're planning a corporate event, a private celebration, or need advice on the perfect talent — our team is here to help. Drop us a message and we'll get back to you within 24 hours.
+                    </p>
+
+                    <ul class="space-y-6">
+                        <li class="flex items-start gap-4">
+                            <div class="h-11 w-11 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-text-main">Email Us</p>
+                                <a href="mailto:info@hailerz.com" class="text-primary hover:underline text-sm">info@hailerz.com</a>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <div class="h-11 w-11 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-text-main">Response Time</p>
+                                <p class="text-text-muted text-sm">We aim to reply within 24 hours on business days.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <div class="h-11 w-11 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-text-main">Our Base</p>
+                                <p class="text-text-muted text-sm">Nairobi, Kenya — serving clients globally.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Right: Form -->
+                <div class="bg-surface border border-border rounded-3xl p-8 shadow-sm">
+                    @if($contactSent)
+                        <div class="flex flex-col items-center text-center py-10 gap-4">
+                            <div class="h-16 w-16 rounded-full bg-green-500/10 text-green-400 flex items-center justify-center">
+                                <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-bold text-text-main">Message Sent!</h3>
+                            <p class="text-text-muted">Thank you for reaching out. We'll be in touch shortly.</p>
+                            <button wire:click="$set('contactSent', false)" class="mt-4 text-sm font-semibold text-primary hover:underline">Send another message</button>
+                        </div>
+                    @else
+                        <form wire:submit="submitContact" class="space-y-5">
+                            <div>
+                                <label for="home-contact-name" class="block text-sm font-semibold text-text-main mb-1.5">Your Name</label>
+                                <input wire:model="contactName" id="home-contact-name" type="text" placeholder="Jane Muthoni"
+                                    class="w-full rounded-xl px-4 py-3 bg-canvas border border-border text-text-main placeholder-text-muted focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-sm">
+                                @error('contactName') <span class="text-red-400 text-xs mt-1 block">{{ $message }}</span> @enderror
+                            </div>
+
+                            <div>
+                                <label for="home-contact-email" class="block text-sm font-semibold text-text-main mb-1.5">Email Address</label>
+                                <input wire:model="contactEmail" id="home-contact-email" type="email" placeholder="jane@example.com"
+                                    class="w-full rounded-xl px-4 py-3 bg-canvas border border-border text-text-main placeholder-text-muted focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-sm">
+                                @error('contactEmail') <span class="text-red-400 text-xs mt-1 block">{{ $message }}</span> @enderror
+                            </div>
+
+                            <div>
+                                <label for="home-contact-message" class="block text-sm font-semibold text-text-main mb-1.5">Message</label>
+                                <textarea wire:model="contactMessage" id="home-contact-message" rows="5" placeholder="Tell us about your event or inquiry..."
+                                    class="w-full rounded-xl px-4 py-3 bg-canvas border border-border text-text-main placeholder-text-muted focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-sm resize-none"></textarea>
+                                @error('contactMessage') <span class="text-red-400 text-xs mt-1 block">{{ $message }}</span> @enderror
+                            </div>
+
+                            <button type="submit"
+                                class="w-full py-3.5 bg-primary text-white font-bold rounded-xl hover:bg-primary-dark transition-all shadow-lg shadow-primary/20 flex items-center justify-center gap-2 group">
+                                <span>Send Message</span>
+                                <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+                                </svg>
+                                <div wire:loading wire:target="submitContact" class="ml-1">
+                                    <svg class="animate-spin h-4 w-4 text-white" fill="none" viewBox="0 0 24 24">
+                                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
+                                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/>
+                                    </svg>
+                                </div>
+                            </button>
+                        </form>
+                    @endif
+                </div>
+            </div>
+        </div>
+    </section>
 </div>

@@ -37,11 +37,9 @@ class TalentForm
                     Forms\Components\RichEditor::make('bio')
                         ->required()
                         ->columnSpanFull(),
-                    Forms\Components\RichEditor::make('technical_rider')
-                        ->columnSpanFull(),
                 ]),
 
-            Section::make('Media')
+            Section::make('Media & Documents')
                 ->schema([
                     \Filament\Forms\Components\SpatieMediaLibraryFileUpload::make('primary_image')
                         ->collection('primary_image')
@@ -54,6 +52,18 @@ class TalentForm
                         ->image()
                         ->imageEditor()
                         ->columnSpanFull(),
+                    \Filament\Forms\Components\TextInput::make('video_url')
+                        ->url()
+                        ->label('Performance Video URL')
+                        ->columnSpanFull(),
+                    \Filament\Forms\Components\SpatieMediaLibraryFileUpload::make('rate_card')
+                        ->collection('rate_card')
+                        ->acceptedFileTypes(['application/pdf'])
+                        ->label('Rate Card (PDF)'),
+                    \Filament\Forms\Components\SpatieMediaLibraryFileUpload::make('technical_rider')
+                        ->collection('technical_rider')
+                        ->acceptedFileTypes(['application/pdf'])
+                        ->label('Technical Rider (PDF)'),
                 ]),
 
             Section::make('Logistics & Pricing')
