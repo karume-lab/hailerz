@@ -65,6 +65,12 @@
                                     @error('event_location') <span class="text-red-500 text-sm mt-1">{{ $message }}</span> @enderror
                                 </div>
                             </div>
+                            
+                            <div>
+                                <label for="estimated_attendance" class="block text-sm font-semibold text-text-main mb-2">Estimated Attendance</label>
+                                <input type="number" id="estimated_attendance" wire:model="estimated_attendance" placeholder="e.g. 500" class="block w-full px-4 py-3 border border-border rounded-xl focus:ring-primary focus:border-primary shadow-sm bg-canvas text-text-main">
+                                @error('estimated_attendance') <span class="text-red-500 text-sm mt-1">{{ $message }}</span> @enderror
+                            </div>
 
                             <div>
                                 <label for="event_description" class="block text-sm font-semibold text-text-main mb-2">Event Concept & Scale</label>
@@ -88,9 +94,19 @@
                                     <input type="number" id="proposed_budget" wire:model="proposed_budget" class="block w-full pl-8 pr-4 py-4 border border-border rounded-xl focus:ring-primary focus:border-primary shadow-sm text-lg bg-canvas text-text-main" placeholder="0.00">
                                 </div>
                                 <p class="mt-2 text-sm text-text-muted">
-                                    Providing an accurate budget helps our agents negotiate on your behalf and determine if the booking is viable. Minimum budget is $500.
+                                    Providing an accurate budget helps our agents negotiate on your behalf. Minimum budget is $500.
                                 </p>
                                 @error('proposed_budget') <span class="text-red-500 text-sm mt-1">{{ $message }}</span> @enderror
+                            </div>
+
+                            <div class="flex items-start gap-4 p-5 rounded-2xl border border-border bg-canvas">
+                                <div class="flex items-center h-5 mt-0.5">
+                                    <input id="budget_flexible" wire:model="budget_flexible" type="checkbox" class="w-4 h-4 text-primary border-border rounded focus:ring-primary">
+                                </div>
+                                <div>
+                                    <label for="budget_flexible" class="font-semibold text-text-main text-sm cursor-pointer">My budget is flexible</label>
+                                    <p class="text-xs text-text-muted mt-1">Check this if you are open to negotiating beyond the figure above for the right talent.</p>
+                                </div>
                             </div>
                         </div>
                     </div>

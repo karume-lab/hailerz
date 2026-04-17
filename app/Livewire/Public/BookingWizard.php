@@ -30,9 +30,15 @@ class BookingWizard extends Component
     #[Validate('required|string|max:1000')]
     public $event_description;
 
+    #[Validate('required|integer|min:10')]
+    public $estimated_attendance;
+
     // Step 2: Budget
     #[Validate('required|numeric|min:500')]
     public $proposed_budget;
+    
+    #[Validate('boolean')]
+    public $budget_flexible = false;
 
     // Step 3: Client Info
     #[Validate('required|string|max:255')]
@@ -62,11 +68,13 @@ class BookingWizard extends Component
                 'talent_id' => 'required|exists:talents,id',
                 'event_date' => 'required|date|after:today',
                 'event_location' => 'required|string|max:255',
+                'estimated_attendance' => 'required|integer|min:10',
                 'event_description' => 'required|string|max:1000',
             ]);
         } elseif ($this->currentStep === 2) {
             $this->validate([
                 'proposed_budget' => 'required|numeric|min:500',
+                'budget_flexible' => 'boolean',
             ]);
         }
         
@@ -89,8 +97,10 @@ class BookingWizard extends Component
             'client_phone' => $this->client_phone,
             'event_date' => $this->event_date,
             'event_location' => $this->event_location,
-            'event_description' => $this->event_description,
-            'proposed_budget' => $this->proposed_budget,
+            'estimated_attendance' => $this->estimated_attendance,
+            'message' => $this->event_description,
+            'budget' => $this->proposed_budget,
+            'budget_flexible' => $this->budget_flexible,
             'status' => 'new',
         ]);
 
