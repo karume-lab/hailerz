@@ -13,39 +13,43 @@ class TalentTable
         return $table
             ->columns([
                 \Filament\Tables\Columns\SpatieMediaLibraryImageColumn::make('primary_image')
-                    ->label('Photo')
+                    ->label('Artist Image')
                     ->collection('primary_image')
                     ->circular(),
                 Tables\Columns\TextColumn::make('name')
+                    ->label('Act / Performer')
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('category.name')
-                    ->label('Category')
+                    ->label('Discipline')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('location')
+                    ->label('Base Location')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('starting_price')
+                    ->label('Minimum Fee')
                     ->money('usd')
                     ->sortable(),
                 Tables\Columns\SelectColumn::make('status')
+                    ->label('Roster Status')
                     ->options([
-                        'draft'  => 'Draft',
+                        'draft'  => 'Under Review',
                         'active' => 'Active',
-                        'hidden' => 'Hidden',
+                        'hidden' => 'Archived',
                     ])
                     ->sortable(),
                 Tables\Columns\ToggleColumn::make('is_featured')
-                    ->label('Featured'),
+                    ->label('Premium Placement'),
             ])
             ->filters([
                 Tables\Filters\SelectFilter::make('category_id')
-                    ->label('Category')
+                    ->label('Discipline')
                     ->relationship('category', 'name'),
                 Tables\Filters\SelectFilter::make('status')
                     ->options([
-                        'draft'  => 'Draft',
+                        'draft'  => 'Under Review',
                         'active' => 'Active',
-                        'hidden' => 'Hidden',
+                        'hidden' => 'Archived',
                     ]),
             ])
             ->actions([

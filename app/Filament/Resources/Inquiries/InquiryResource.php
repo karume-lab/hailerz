@@ -9,6 +9,7 @@ use App\Filament\Resources\Inquiries\Schemas\InquiryForm;
 use App\Filament\Resources\Inquiries\Tables\InquiriesTable;
 use App\Models\Inquiry;
 use BackedEnum;
+use UnitEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
@@ -18,13 +19,28 @@ class InquiryResource extends Resource
 {
     protected static ?string $model = Inquiry::class;
 
-    protected static string|\BackedEnum|null $navigationIcon = Heroicon::OutlinedChatBubbleBottomCenterText;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedChatBubbleBottomCenterText;
     
-    protected static \UnitEnum|string|null $navigationGroup = 'Bookings';
+    protected static UnitEnum|string|null $navigationGroup = 'Procurement & Bookings';
+
+    public static function getNavigationLabel(): string
+    {
+        return 'Booking Inquiries';
+    }
+
+    public static function getModelLabel(): string
+    {
+        return 'Booking Inquiry';
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return 'Booking Inquiries';
+    }
 
     public static function form(Schema $schema): Schema
     {
-        return \App\Filament\Resources\Inquiries\Schemas\InquiryForm::configure($schema);
+        return InquiryForm::configure($schema);
     }
 
     public static function table(Table $table): Table
@@ -43,8 +59,8 @@ class InquiryResource extends Resource
     {
         return [
             'index' => \App\Filament\Resources\Inquiries\Pages\BookingPipeline::route('/'),
-            'create' => \App\Filament\Resources\Inquiries\Pages\CreateInquiry::route('/create'),
-            'edit' => \App\Filament\Resources\Inquiries\Pages\EditInquiry::route('/{record}/edit'),
+            'create' => CreateInquiry::route('/create'),
+            'edit' => EditInquiry::route('/{record}/edit'),
         ];
     }
 }

@@ -10,7 +10,7 @@ use Livewire\Attributes\Layout;
 use Livewire\Attributes\Validate;
 
 #[Layout('components.layouts.app')]
-#[Title('Hailerz | Book Talent')]
+#[Title('Hailerz | Professional Inquiry')]
 class BookingWizard extends Component
 {
     public int $currentStep = 1;
@@ -34,7 +34,7 @@ class BookingWizard extends Component
     public $estimated_attendance;
 
     // Step 2: Budget
-    #[Validate('required|numeric|min:500')]
+    #[Validate('required|numeric|min:1000')]
     public $proposed_budget;
     
     #[Validate('boolean')]
@@ -73,7 +73,7 @@ class BookingWizard extends Component
             ]);
         } elseif ($this->currentStep === 2) {
             $this->validate([
-                'proposed_budget' => 'required|numeric|min:500',
+                'proposed_budget' => 'required|numeric|min:1000',
                 'budget_flexible' => 'boolean',
             ]);
         }

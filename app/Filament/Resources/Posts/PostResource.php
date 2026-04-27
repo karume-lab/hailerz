@@ -20,7 +20,22 @@ class PostResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedDocumentText;
 
-    protected static \UnitEnum|string|null $navigationGroup = 'Content';
+    protected static \UnitEnum|string|null $navigationGroup = 'Agency Insights';
+
+    public static function getNavigationLabel(): string
+    {
+        return 'Industry Insights';
+    }
+
+    public static function getModelLabel(): string
+    {
+        return 'Agency Insight / Article';
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return 'Industry Insights';
+    }
 
     public static function form(Schema $schema): Schema
     {

@@ -20,9 +20,24 @@ class TalentResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedUsers;
 
-    protected static \UnitEnum|string|null $navigationGroup = 'Roster Management';
+    protected static \UnitEnum|string|null $navigationGroup = 'Agency Roster';
 
     protected static ?int $navigationSort = 1;
+
+    public static function getNavigationLabel(): string
+    {
+        return 'Agency Roster';
+    }
+
+    public static function getModelLabel(): string
+    {
+        return 'Talent';
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return 'Talent Roster';
+    }
 
     public static function form(Schema $schema): Schema
     {

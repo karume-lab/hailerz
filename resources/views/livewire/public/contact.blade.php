@@ -1,79 +1,75 @@
-<div class="bg-white dark:bg-zinc-900 py-16 sm:py-24">
+<div class="bg-surface-muted min-h-screen py-32">
     <div class="mx-auto max-w-7xl px-6 lg:px-8">
-        <div class="mx-auto max-w-2xl space-y-16 divide-y divide-gray-100 dark:divide-white/10 lg:mx-0 lg:max-w-none">
-            <div class="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-3">
+        <div class="mx-auto max-w-2xl space-y-16 lg:mx-0 lg:max-w-none">
+            <div class="grid grid-cols-1 gap-x-12 gap-y-10 lg:grid-cols-3">
                 <div>
-                    <h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">Get in touch</h2>
-                    <p class="mt-4 leading-6 text-gray-600 dark:text-gray-400">
-                        Whether you're looking to book talent, discuss a partnership, or have a general inquiry, our team is here to help. Reach out to us using the form.
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="h-px w-8 bg-brand-teal"></span>
+                        <span class="text-xs font-bold text-brand-teal uppercase tracking-widest">Connect</span>
+                    </div>
+                    <h2 class="text-4xl font-bold tracking-tight text-brand-navy font-serif">Get in Touch</h2>
+                    <p class="mt-6 text-lg leading-relaxed text-text-secondary font-light">
+                        Whether you're looking to secure talent for an upcoming event or discuss agency representation, our team of dedicated agents is here to assist.
                     </p>
                 </div>
-                <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:col-span-2 lg:gap-8">
-                    <div class="rounded-2xl bg-gray-50 dark:bg-white/5 p-10">
-                        <h3 class="text-base font-semibold leading-7 text-gray-900 dark:text-white">Headquarters</h3>
-                        <dl class="mt-3 space-y-1 text-sm leading-6 text-gray-600 dark:text-gray-400">
-                            <div>
-                                <dt class="sr-only">Address</dt>
-                                <dd>123 Agency Suite<br>Creative District, NY 10001</dd>
-                            </div>
-                            <div class="mt-4">
-                                <dt class="sr-only">Email</dt>
-                                <dd><a class="font-semibold text-indigo-600 dark:text-indigo-400" href="mailto:hello@example.com">hello@example.com</a></dd>
-                            </div>
-                        </dl>
+                <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:col-span-2">
+                    <div class="rounded-3xl bg-surface-light p-10 border border-brand-navy/5 shadow-sm">
+                        <h3 class="text-xs font-bold text-brand-teal uppercase tracking-[0.2em] mb-4">Headquarters</h3>
+                        <address class="not-italic text-sm text-text-secondary leading-relaxed">
+                            Westlands Business District<br>
+                            Nairobi, Kenya
+                        </address>
+                    </div>
+                    <div class="rounded-3xl bg-surface-light p-10 border border-brand-navy/5 shadow-sm">
+                        <h3 class="text-xs font-bold text-brand-teal uppercase tracking-[0.2em] mb-4">Direct Inquiry</h3>
+                        <p class="text-sm text-text-secondary mb-2">General: <a class="font-bold text-brand-navy hover:text-brand-teal transition-colors" href="mailto:info@hailerz.com">info@hailerz.com</a></p>
+                        <p class="text-sm text-text-secondary">Bookings: <a class="font-bold text-brand-navy hover:text-brand-teal transition-colors" href="mailto:bookings@hailerz.com">bookings@hailerz.com</a></p>
                     </div>
                 </div>
             </div>
 
-            <div class="pt-16 lg:grid lg:grid-cols-3 lg:gap-8">
-                <h2 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Send us a message</h2>
+            <div class="pt-16 lg:grid lg:grid-cols-3 lg:gap-12 border-t border-brand-navy/5">
+                <div>
+                    <h2 class="text-2xl font-bold tracking-tight text-brand-navy font-serif mb-4">Agency Correspondence</h2>
+                    <p class="text-sm text-text-secondary font-light leading-relaxed">
+                        Complete the form below for general inquiries. For specific talent requests, we recommend using our <a href="/book" class="text-brand-teal font-bold hover:underline">Booking Wizard</a> for expedited processing.
+                    </p>
+                </div>
                 <div class="lg:col-span-2">
                     @if (session('success'))
-                        <div class="rounded-md bg-green-50 dark:bg-green-500/10 p-4 mb-6">
-                            <div class="flex">
-                                <div class="shrink-0">
-                                    <svg class="h-5 w-5 text-green-400" viewBox="0 0 20 20" fill="currentColor">
-                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd" />
-                                    </svg>
-                                </div>
-                                <div class="ml-3">
-                                    <p class="text-sm font-medium text-green-800 dark:text-green-400">{{ session('success') }}</p>
-                                </div>
+                        <div class="rounded-2xl bg-green-50 p-6 mb-8 border border-green-100 flex items-center gap-4">
+                            <div class="shrink-0 h-10 w-10 bg-green-100 rounded-full flex items-center justify-center text-green-600">
+                                <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                             </div>
+                            <p class="text-sm font-bold text-green-800">{{ session('success') }}</p>
                         </div>
                     @endif
 
-                    <form wire:submit="submit" class="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
+                    <form wire:submit="submit" class="grid grid-cols-1 gap-y-8 sm:grid-cols-2 sm:gap-x-8">
                         <div>
-                            <label for="name" class="block text-sm font-medium leading-6 text-gray-900 dark:text-white">Your name</label>
-                            <div class="mt-2.5">
-                                <input wire:model="name" type="text" id="name" class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 dark:bg-white/5 dark:text-white dark:ring-white/10 dark:focus:ring-indigo-500">
-                            </div>
-                            @error('name') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+                            <label for="name" class="block text-[10px] font-bold text-brand-navy uppercase tracking-widest mb-3">Full Name</label>
+                            <input wire:model="name" type="text" id="name" placeholder="Name or Organization" class="block w-full px-6 py-4 bg-surface-light border border-brand-navy/5 rounded-xl focus:ring-2 focus:ring-brand-teal focus:border-transparent outline-none text-sm font-medium transition-all">
+                            @error('name') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
                         </div>
                         <div>
-                            <label for="email" class="block text-sm font-medium leading-6 text-gray-900 dark:text-white">Email</label>
-                            <div class="mt-2.5">
-                                <input wire:model="email" type="email" id="email" class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 dark:bg-white/5 dark:text-white dark:ring-white/10 dark:focus:ring-indigo-500">
-                            </div>
-                            @error('email') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+                            <label for="email" class="block text-[10px] font-bold text-brand-navy uppercase tracking-widest mb-3">Professional Email</label>
+                            <input wire:model="email" type="email" id="email" placeholder="email@company.com" class="block w-full px-6 py-4 bg-surface-light border border-brand-navy/5 rounded-xl focus:ring-2 focus:ring-brand-teal focus:border-transparent outline-none text-sm font-medium transition-all">
+                            @error('email') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
                         </div>
                         <div class="sm:col-span-2">
-                            <label for="subject" class="block text-sm font-medium leading-6 text-gray-900 dark:text-white">Subject</label>
-                            <div class="mt-2.5">
-                                <input wire:model="subject" type="text" id="subject" class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 dark:bg-white/5 dark:text-white dark:ring-white/10 dark:focus:ring-indigo-500">
-                            </div>
-                            @error('subject') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+                            <label for="subject" class="block text-[10px] font-bold text-brand-navy uppercase tracking-widest mb-3">Inquiry Subject</label>
+                            <input wire:model="subject" type="text" id="subject" class="block w-full px-6 py-4 bg-surface-light border border-brand-navy/5 rounded-xl focus:ring-2 focus:ring-brand-teal focus:border-transparent outline-none text-sm font-medium transition-all">
+                            @error('subject') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
                         </div>
                         <div class="sm:col-span-2">
-                            <label for="message" class="block text-sm font-medium leading-6 text-gray-900 dark:text-white">Message</label>
-                            <div class="mt-2.5">
-                                <textarea wire:model="message" id="message" rows="4" class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 dark:bg-white/5 dark:text-white dark:ring-white/10 dark:focus:ring-indigo-500"></textarea>
-                            </div>
-                            @error('message') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+                            <label for="message" class="block text-[10px] font-bold text-brand-navy uppercase tracking-widest mb-3">Message</label>
+                            <textarea wire:model="message" id="message" rows="5" placeholder="Detail your inquiry or project requirements..." class="block w-full px-6 py-4 bg-surface-light border border-brand-navy/5 rounded-xl focus:ring-2 focus:ring-brand-teal focus:border-transparent outline-none text-sm font-medium transition-all resize-none"></textarea>
+                            @error('message') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
                         </div>
                         <div class="sm:col-span-2 flex justify-end">
-                            <button type="submit" class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:bg-indigo-500 dark:hover:bg-indigo-400">Send message</button>
+                            <x-button type="submit" size="lg">
+                                Send Correspondence
+                            </x-button>
                         </div>
                     </form>
                 </div>

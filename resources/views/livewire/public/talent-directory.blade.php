@@ -1,59 +1,52 @@
-<div class="bg-canvas min-h-screen py-12">
+<div class="bg-surface-muted min-h-screen py-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div class="mb-12 border-b border-border pb-8">
-            <h1 class="text-4xl font-extrabold text-text-main tracking-tight">Our Roster</h1>
-            <p class="mt-2 text-lg text-text-muted">Discover exceptional talent for your next event.</p>
+        <div class="mb-16">
+            <div class="flex items-center gap-3 mb-4">
+                <span class="h-px w-12 bg-brand-teal"></span>
+                <span class="text-xs font-bold text-brand-teal uppercase tracking-widest">Global Talent Network</span>
+            </div>
+            <h1 class="text-4xl md:text-6xl font-bold text-text-primary tracking-tight font-serif">The Roster</h1>
+            <p class="mt-4 text-lg text-text-secondary max-w-2xl">Discover and secure world-class performers, keynote speakers, and specialty acts for your next high-profile event.</p>
         </div>
 
-        <div class="flex flex-col lg:flex-row gap-10">
+        <div class="flex flex-col lg:flex-row gap-12">
             
             <!-- Sidebar Filters -->
             <aside class="w-full lg:w-1/4">
-                <div class="sticky top-28 bg-surface p-6 rounded-3xl shadow-sm border border-border">
-                    <div class="flex items-center justify-between mb-8">
-                        <h2 class="text-xs font-bold text-text-muted uppercase tracking-widest">Filter & Sort</h2>
-                        <button wire:click="resetFilters" class="text-[10px] font-bold text-primary uppercase tracking-widest hover:text-primary-dark transition-colors">
-                            Clear All
+                <div class="sticky top-28 bg-surface-light p-8 rounded-3xl shadow-sm border border-brand-navy/5">
+                    <div class="flex items-center justify-between mb-10">
+                        <h2 class="text-xs font-bold text-brand-navy uppercase tracking-widest">Refine Search</h2>
+                        <button wire:click="resetFilters" class="text-[10px] font-bold text-brand-teal uppercase tracking-widest hover:underline transition-colors">
+                            Reset All
                         </button>
                     </div>
                     
-                    <div class="space-y-8">
+                    <div class="space-y-10">
                         <!-- Search -->
                         <div>
-                            <label for="search" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Search Name</label>
-                            <input wire:model.live.debounce.300ms="search" type="text" id="search" class="w-full px-4 py-3 border border-border rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all shadow-sm bg-canvas text-sm font-medium" placeholder="Search talent...">
+                            <label for="search" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-4">Keywords</label>
+                            <input wire:model.live.debounce.300ms="search" type="text" id="search" class="w-full px-5 py-4 bg-surface-muted border border-brand-navy/5 rounded-xl focus:ring-2 focus:ring-brand-teal focus:border-transparent transition-all outline-none text-sm font-medium" placeholder="Name or expertise...">
                         </div>
 
                         <!-- Sort Order -->
                         <div>
-                            <label for="sort" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Sort By</label>
-                            <select wire:model.live="sort" id="sort" class="w-full px-4 py-3 border border-border rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all shadow-sm bg-canvas text-sm font-medium">
-                                <option value="name">Alphabetical (A-Z)</option>
-                                <option value="latest">Recently Added</option>
-                                <option value="price_asc">Price: Low to High</option>
-                                <option value="price_desc">Price: High to Low</option>
+                            <label for="sort" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-4">Priority</label>
+                            <select wire:model.live="sort" id="sort" class="w-full px-5 py-4 bg-surface-muted border border-brand-navy/5 rounded-xl focus:ring-2 focus:ring-brand-teal focus:border-transparent transition-all outline-none text-sm font-medium appearance-none">
+                                <option value="name">Alphabetical</option>
+                                <option value="latest">Newly Commissioned</option>
+                                <option value="price_asc">Investment: Low to High</option>
+                                <option value="price_desc">Investment: High to Low</option>
                             </select>
                         </div>
 
                         <!-- Category -->
                         <div>
-                            <label for="category" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Category</label>
-                            <select wire:model.live="category_id" id="category" class="w-full px-4 py-3 border border-border rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all shadow-sm bg-canvas text-sm font-medium">
-                                <option value="">All Categories</option>
+                            <label for="category" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-4">Talent Category</label>
+                            <select wire:model.live="category_id" id="category" class="w-full px-5 py-4 bg-surface-muted border border-brand-navy/5 rounded-xl focus:ring-2 focus:ring-brand-teal focus:border-transparent transition-all outline-none text-sm font-medium appearance-none">
+                                <option value="">All Disciplines</option>
                                 @foreach($categories as $category)
                                     <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-
-                        <!-- Genre -->
-                        <div>
-                            <label for="genre" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Genre</label>
-                            <select wire:model.live="genre" id="genre" class="w-full px-4 py-3 border border-border rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all shadow-sm bg-canvas text-sm font-medium">
-                                <option value="">All Genres</option>
-                                @foreach($genres as $g)
-                                    <option value="{{ $g }}">{{ $g }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -66,95 +59,37 @@
                                 this.isLocating = true;
                                 this.locationError = '';
                                 if (!navigator.geolocation) {
-                                    this.locationError = 'Geolocation is not supported by your browser.';
+                                    this.locationError = 'Unsupported';
                                     this.isLocating = false;
                                     return;
                                 }
-                                const options = {
-                                    enableHighAccuracy: false,
-                                    timeout: 10000,
-                                    maximumAge: 60000
-                                };
                                 navigator.geolocation.getCurrentPosition(
                                     async (position) => {
                                         try {
                                             const { latitude, longitude } = position.coords;
-                                            const response = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`, {
-                                                headers: { 'Accept-Language': 'en' }
-                                            });
-                                            if (!response.ok) throw new Error('Nominatim request failed');
+                                            const response = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`);
                                             const data = await response.json();
-                                            let city = data.address.city || data.address.town || data.address.village || data.address.county;
-                                            
-                                            if (city) {
-                                                const select = document.getElementById('location');
-                                                let exists = false;
-                                                for (let i = 0; i < select.options.length; i++) {
-                                                    if (select.options[i].value.toLowerCase() === city.toLowerCase()) {
-                                                        exists = true;
-                                                        city = select.options[i].value;
-                                                        break;
-                                                    }
-                                                }
-                                                if (!exists) {
-                                                    const option = document.createElement('option');
-                                                    option.value = city;
-                                                    option.text = city;
-                                                    select.add(option);
-                                                }
-                                                select.value = city;
-                                                @this.set('location', city);
-                                            } else {
-                                                this.locationError = 'Could not determine your city from coordinates.';
-                                            }
-                                        } catch (err) {
-                                            console.error('Reverse geocode error:', err);
-                                            this.locationError = 'Could not look up your city. Please select manually.';
-                                        } finally {
-                                            this.isLocating = false;
-                                        }
+                                            let city = data.address.city || data.address.town || data.address.village;
+                                            if (city) { @this.set('location', city); }
+                                        } finally { this.isLocating = false; }
                                     },
-                                    (err) => {
-                                        console.error('Geolocation error:', err);
-                                        const messages = {
-                                            1: 'Location access was denied. Please allow it in your browser settings.',
-                                            2: 'Your position could not be determined. Try selecting manually.',
-                                            3: 'Location request timed out. Please try again.'
-                                        };
-                                        this.locationError = messages[err.code] || 'Unable to retrieve your location.';
-                                        this.isLocating = false;
-                                    },
-                                    options
+                                    () => { this.isLocating = false; }
                                 );
                             }
                         }">
-                            <div class="flex items-center justify-between mb-3">
-                                <label for="location" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest">Location</label>
-                                <button @click="locateMe()" type="button" class="flex items-center gap-1 text-[10px] font-bold text-primary uppercase tracking-widest hover:text-primary-dark transition-all disabled:opacity-50" :disabled="isLocating">
-                                    <svg x-show="!isLocating" class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                                    <svg x-show="isLocating" class="animate-spin w-3 h-3" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
-                                    <span x-text="isLocating ? 'Locating...' : 'Locate Me'"></span>
+                            <div class="flex items-center justify-between mb-4">
+                                <label for="location" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest">Base Location</label>
+                                <button @click="locateMe()" type="button" class="text-[10px] font-bold text-brand-teal uppercase tracking-widest hover:underline flex items-center gap-1">
+                                    <svg x-show="!isLocating" class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
+                                    <span x-text="isLocating ? '...' : 'Auto-Detect'"></span>
                                 </button>
                             </div>
-                            <select wire:model.live="location" id="location" class="w-full px-4 py-3 border border-border rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all shadow-sm bg-canvas text-sm font-medium">
-                                <option value="">All Locations</option>
-                                @if($this->location && !$locations->contains(fn($loc) => strtolower((string)$loc) === strtolower((string)$this->location)))
-                                    <option value="{{ $this->location }}">{{ $this->location }}</option>
-                                @endif
+                            <select wire:model.live="location" id="location" class="w-full px-5 py-4 bg-surface-muted border border-brand-navy/5 rounded-xl focus:ring-2 focus:ring-brand-teal focus:border-transparent transition-all outline-none text-sm font-medium appearance-none">
+                                <option value="">Global Roster</option>
                                 @foreach($locations as $loc)
                                     <option value="{{ $loc }}">{{ $loc }}</option>
                                 @endforeach
                             </select>
-                            <p x-show="locationError" x-text="locationError" class="mt-2 text-[10px] text-red-500 leading-snug" x-cloak></p>
-                        </div>
-
-                        <!-- Price Range -->
-                        <div>
-                            <label class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Price Range ($)</label>
-                            <div class="grid grid-cols-2 gap-3">
-                                <input wire:model.live.debounce.500ms="min_price" type="number" placeholder="Min" class="w-full px-4 py-3 border border-border rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all shadow-sm bg-canvas text-xs font-medium">
-                                <input wire:model.live.debounce.500ms="max_price" type="number" placeholder="Max" class="w-full px-4 py-3 border border-border rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all shadow-sm bg-canvas text-xs font-medium">
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -165,51 +100,48 @@
                 
                 <div class="transition-opacity duration-300">
                     @if($talents->count() > 0)
-                        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
                             @foreach($talents as $talent)
-                                <div class="bg-surface rounded-2xl shadow-sm border border-border overflow-hidden group hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-                                    <a href="/talent/{{ $talent->slug }}" wire:navigate class="block relative h-64 overflow-hidden">
-                                        @if($talent->hasMedia('primary_image'))
-                                            <img src="{{ $talent->getFirstMediaUrl('primary_image') }}" alt="{{ $talent->name }}" class="w-full h-full object-cover grayscale group-hover:scale-105 transition-transform duration-500">
-                                            <div class="absolute inset-0 bg-linear-to-br from-secondary/40 to-primary/40 opacity-60 mix-blend-color group-hover:opacity-40 transition-opacity"></div>
-                                        @else
-                                            <div class="w-full h-full bg-linear-to-br from-primary/80 to-indigo-900/80 flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
-                                                <span class="text-4xl font-bold text-white opacity-50 tracking-tighter">
-                                                    {{ collect(explode(' ', $talent->name))->map(fn($part) => substr($part, 0, 1))->take(2)->join('') }}
-                                                </span>
+                                <div class="bg-surface-light rounded-2xl shadow-sm border border-brand-navy/5 overflow-hidden group hover:shadow-2xl transition-all duration-500">
+                                    <a href="/talent/{{ $talent->slug }}" wire:navigate class="block">
+                                        <div class="group relative overflow-hidden aspect-3/4 bg-surface-dark">
+                                            @if($talent->hasMedia('primary_image'))
+                                                <img src="{{ $talent->getFirstMediaUrl('primary_image') }}" class="w-full h-full object-cover grayscale transition-transform duration-700 group-hover:scale-110" alt="{{ $talent->name }}" />
+                                            @else
+                                                <div class="w-full h-full flex items-center justify-center bg-brand-navy">
+                                                    <span class="text-4xl font-bold text-white/20 font-serif">{{ substr($talent->name, 0, 1) }}</span>
+                                                </div>
+                                            @endif
+                                            <div class="absolute inset-0 bg-linear-to-tr from-brand-teal/80 to-brand-mint/40 mix-blend-color opacity-80 transition-opacity group-hover:opacity-60"></div>
+                                            <div class="absolute inset-0 bg-linear-to-t from-brand-navy/90 via-transparent to-transparent"></div>
+                                            
+                                            @if($talent->is_featured)
+                                                <div class="absolute top-6 right-6 bg-brand-teal text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">
+                                                    Premier Act
+                                                </div>
+                                            @endif
+                                            
+                                            <div class="absolute bottom-6 left-6">
+                                                <p class="text-[10px] font-bold text-brand-mint uppercase tracking-widest mb-1">{{ $talent->category?->name ?? 'Professional' }}</p>
+                                                <h3 class="text-xl font-bold text-white">{{ $talent->name }}</h3>
                                             </div>
-                                        @endif
-                                        
-                                        @if($talent->is_featured)
-                                            <div class="absolute top-4 right-4 bg-slate-900 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-sm">
-                                                Featured
-                                            </div>
-                                        @endif
+                                        </div>
                                     </a>
                                     
-                                    <div class="p-6">
-                                        <div class="text-xs font-semibold text-primary uppercase tracking-wider mb-2">
-                                            {{ $talent->category?->name ?? 'Uncategorized' }}
-                                        </div>
-                                        <h3 class="text-xl font-bold text-text-main mb-1">
-                                            <a href="/talent/{{ $talent->slug }}" wire:navigate class="hover:text-primary transition-colors">
-                                                {{ $talent->name }}
-                                            </a>
-                                        </h3>
-                                        <div class="text-sm text-text-muted flex items-center mb-4">
-                                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                                            {{ $talent->location ?? 'Global' }}
+                                    <div class="p-8">
+                                        <div class="flex items-center gap-2 text-xs text-text-secondary mb-6">
+                                            <svg class="w-4 h-4 text-brand-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
+                                            {{ $talent->location ?? 'International' }}
                                         </div>
                                         
-                                        <div class="flex justify-between items-center mt-6 pt-4 border-t border-border">
-                                            <div class="text-sm">
-                                                <span class="text-text-muted block text-xs">Starting from</span>
-                                                <span class="font-bold text-text-main">${{ number_format($talent->starting_price ?? 0, 0) }}</span>
+                                        <div class="flex justify-between items-center pt-6 border-t border-brand-navy/5">
+                                            <div>
+                                                <p class="text-[10px] font-bold text-text-muted uppercase tracking-widest">Starting Investment</p>
+                                                <p class="text-lg font-bold text-brand-navy">${{ number_format($talent->starting_price ?? 0, 0) }}</p>
                                             </div>
-                                            <a href="/talent/{{ $talent->slug }}" wire:navigate class="text-sm font-semibold text-primary hover:text-primary-dark transition-colors flex items-center">
+                                            <x-button variant="ghost" size="sm" href="/talent/{{ $talent->slug }}" wire:navigate class="text-brand-teal hover:text-brand-teal/80">
                                                 View Profile
-                                                <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                                            </a>
+                                            </x-button>
                                         </div>
                                     </div>
                                 </div>
@@ -217,29 +149,6 @@
                         </div>
                         
                         @if($talents->hasMorePages())
-                            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mt-6">
-                                <!-- Loading Skeletons -->
-                                <div wire:loading wire:target="loadMore" class="contents">
-                                    @foreach(range(1, 3) as $i)
-                                        <div class="bg-surface rounded-2xl shadow-sm border border-border overflow-hidden animate-pulse">
-                                            <div class="h-64 bg-border/50"></div>
-                                            <div class="p-6">
-                                                <div class="h-3 w-20 bg-border/50 rounded mb-4"></div>
-                                                <div class="h-6 w-48 bg-border/50 rounded mb-2"></div>
-                                                <div class="h-4 w-32 bg-border/50 rounded mb-6"></div>
-                                                <div class="flex justify-between items-center mt-6 pt-4 border-t border-border">
-                                                    <div class="space-y-2">
-                                                        <div class="h-2 w-16 bg-border/30 rounded"></div>
-                                                        <div class="h-4 w-12 bg-border/50 rounded"></div>
-                                                    </div>
-                                                    <div class="h-4 w-24 bg-border/50 rounded"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    @endforeach
-                                </div>
-                            </div>
-
                             <div x-data="{
                                 isLoading: false,
                                 observe() {
@@ -252,25 +161,23 @@
                                                 });
                                             }
                                         })
-                                    }, {
-                                        rootMargin: '400px'
-                                    })
+                                    }, { rootMargin: '400px' })
                                     observer.observe(this.$el)
                                 }
-                            }" x-init="observe()" class="mt-4 py-8 flex justify-center">
-                                <!-- Intersection Trigger -->
+                            }" x-init="observe()" class="mt-12 py-12 flex justify-center">
+                                <div class="flex items-center gap-3 text-text-muted">
+                                    <svg class="animate-spin h-5 w-5" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path></svg>
+                                    <span class="text-sm font-semibold uppercase tracking-widest">Loading More Talent...</span>
+                                </div>
                             </div>
                         @endif
                     @else
-                        <div class="text-center py-24 bg-surface rounded-2xl border border-border shadow-sm">
-                            <svg class="mx-auto h-12 w-12 text-text-muted/30" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"></path></svg>
-                            <h3 class="mt-2 text-sm font-semibold text-text-main">No talent found</h3>
-                            <p class="mt-1 text-sm text-text-muted">Adjust your search or filters to find what you're looking for.</p>
-                            <div class="mt-6">
-                                <button wire:click="$set('search', '')" type="button" class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-primary bg-primary/10 hover:bg-primary/20 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
-                                    Clear Search
-                                </button>
-                            </div>
+                        <div class="text-center py-32 bg-surface-light rounded-3xl border border-dashed border-brand-navy/10">
+                            <h3 class="text-2xl font-bold text-text-primary mb-4 font-serif">No Results Found</h3>
+                            <p class="text-text-secondary mb-8">Refine your criteria to explore our alternative roster members.</p>
+                            <x-button variant="secondary" wire:click="resetFilters">
+                                Clear All Filters
+                            </x-button>
                         </div>
                     @endif
                 </div>

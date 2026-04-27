@@ -14,23 +14,29 @@ class InquiryTable
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('client_name')
+                    ->label('Planner / Organization')
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('client_email')
+                    ->label('Professional Email')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('talent.name')
-                    ->label('Talent')
-                    ->default('General Inquiry')
+                    ->label('Requested Act')
+                    ->default('General Agency Inquiry')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('event_type')
+                    ->label('Engagement Nature')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('event_date')
+                    ->label('Engagement Date')
                     ->date('M d, Y')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('budget')
+                    ->label('Allocated Budget')
                     ->money('usd')
                     ->sortable(),
                 Tables\Columns\SelectColumn::make('status')
+                    ->label('Workflow Stage')
                     ->options(collect(InquiryStatus::cases())->mapWithKeys(
                         fn (InquiryStatus $s) => [$s->value => $s->kanbanTitle()]
                     ))
@@ -39,6 +45,7 @@ class InquiryTable
             ->defaultSort('created_at', 'desc')
             ->filters([
                 Tables\Filters\SelectFilter::make('status')
+                    ->label('Workflow Stage')
                     ->options(collect(InquiryStatus::cases())->mapWithKeys(
                         fn (InquiryStatus $s) => [$s->value => $s->kanbanTitle()]
                     )),

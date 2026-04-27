@@ -25,6 +25,7 @@ Route::get('/book/confirm', BookingConfirmation::class)->name('booking.confirmat
 
 Route::get('/about', About::class)->name('about');
 Route::get('/services', Services::class)->name('services');
+Route::get('/staffing', \App\Livewire\Public\Staffing::class)->name('staffing');
 Route::get('/contact', \App\Livewire\Public\Contact::class)->name('contact');
 Route::get('/join', JoinRoster::class)->name('join');
 

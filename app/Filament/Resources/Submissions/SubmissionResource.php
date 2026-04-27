@@ -22,16 +22,43 @@ class SubmissionResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-inbox-arrow-down';
 
-    protected static string|UnitEnum|null $navigationGroup = 'Pipeline';
+    protected static string|UnitEnum|null $navigationGroup = 'A&R / Talent Procurement';
+
+    public static function getNavigationLabel(): string
+    {
+        return 'Roster Applications';
+    }
+
+    public static function getModelLabel(): string
+    {
+        return 'Roster Application';
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return 'Roster Applications';
+    }
 
     public static function form(Schema $schema): Schema
     {
         return $schema->components([
-            Forms\Components\TextInput::make('artist_name')->required(),
-            Forms\Components\TextInput::make('email')->email()->required(),
-            Forms\Components\TextInput::make('epk_link')->url()->label('EPK / Portfolio URL'),
+            Forms\Components\TextInput::make('artist_name')
+                ->label('Performer / Act Name')
+                ->required(),
+            Forms\Components\TextInput::make('email')
+                ->label('Professional Email')
+                ->email()
+                ->required(),
+            Forms\Components\TextInput::make('epk_link')
+                ->url()
+                ->label('Electronic Press Kit (EPK)'),
             Forms\Components\Select::make('status')
-                ->options(['pending' => 'Pending', 'approved' => 'Approved', 'rejected' => 'Rejected']),
+                ->label('Application Status')
+                ->options([
+                    'pending' => 'Pending Review',
+                    'approved' => 'Admitted to Roster',
+                    'rejected' => 'Declined'
+                ]),
         ]);
     }
 
@@ -39,19 +66,31 @@ class SubmissionResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('artist_name')->searchable(),
-                Tables\Columns\TextColumn::make('email'),
-                Tables\Columns\TextColumn::make('epk_link')->copyable()->label('EPK'),
+                Tables\Columns\TextColumn::make('artist_name')
+                    ->label('Act / Performer')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('email')
+                    ->label('Professional Email'),
+                Tables\Columns\TextColumn::make('epk_link')
+                    ->label('EPK')
+                    ->copyable(),
                 Tables\Columns\TextColumn::make('status')
+                    ->label('Status')
                     ->badge()
                     ->color(fn (string $state): string => match ($state) {
                         'approved' => 'success',
                         'rejected' => 'danger',
                         default => 'warning',
+                    })
+                    ->formatStateUsing(fn (string $state): string => match ($state) {
+                        'approved' => 'Admitted to Roster',
+                        'rejected' => 'Declined',
+                        default => 'Pending Review',
                     }),
             ])
             ->actions([
                 Action::make('approve')
+                    ->label('Admit to Roster')
                     ->icon('heroicon-o-check')
                     ->color('success')
                     ->requiresConfirmation()
@@ -61,9 +100,13 @@ class SubmissionResource extends Resource
                         // Automatically create the Talent profile
                         Talent::create([
                             'name' => $record->artist_name,
-                            'category' => 'musician', // Default, admin adjusts later
+                            'category_id' => 1, // Default, admin adjusts later
                         ]);
-                        Notification::make()->title('Artist Approved & Added to Roster')->success()->send();
+                        Notification::make()
+                            ->title('Act Admitted to Agency Roster')
+                            ->body('A new talent profile has been initialized based on this application.')
+                            ->success()
+                            ->send();
                     }),
                 EditAction::make(),
             ]);

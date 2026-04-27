@@ -20,6 +20,23 @@ class EmailTemplateResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
+    protected static \UnitEnum|string|null $navigationGroup = 'Agency Settings';
+
+    public static function getNavigationLabel(): string
+    {
+        return 'Email Templates';
+    }
+
+    public static function getModelLabel(): string
+    {
+        return 'Agency Email Template';
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return 'Agency Email Templates';
+    }
+
     public static function form(Schema $schema): Schema
     {
         return EmailTemplateForm::configure($schema);

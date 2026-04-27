@@ -1,336 +1,126 @@
-<div class="bg-canvas min-h-screen">
-    <!-- Hero Section: Full-width background image with centered content -->
-    <div class="relative bg-gray-950 min-h-[70vh] flex items-center justify-center overflow-hidden">
+<div class="bg-surface-muted min-h-screen">
+    <!-- Hero Section -->
+    <div class="relative bg-surface-dark min-h-[70vh] flex items-center justify-center overflow-hidden">
         <div class="absolute inset-0 overflow-hidden">
-            <!-- Background Image with Overlay Matching Home Hero -->
             <img src="{{ asset('images/about/about-hero.webp') }}"
-                alt="Concert Crowd" class="w-full h-full object-cover grayscale opacity-40">
-            <div class="absolute inset-0 bg-linear-to-br from-secondary/40 to-primary/40 opacity-80 mix-blend-color"></div>
-            <div class="absolute inset-0 bg-linear-to-t from-gray-950 via-transparent to-transparent"></div>
+                alt="Premium Event" class="w-full h-full object-cover grayscale opacity-40">
+            <div class="absolute inset-0 bg-linear-to-tr from-brand-teal/80 to-brand-mint/40 mix-blend-color opacity-70"></div>
+            <div class="absolute inset-0 bg-linear-to-t from-brand-navy via-brand-navy/40 to-transparent"></div>
         </div>
 
         <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 class="text-4xl md:text-7xl font-extrabold text-white tracking-tight mb-8 drop-shadow-lg">
-                Making Every Event <span class="text-primary italic">Unforgettable</span>
+            <div class="flex items-center justify-center gap-3 mb-8">
+                <span class="h-px w-12 bg-brand-teal"></span>
+                <span class="text-xs font-bold text-brand-teal uppercase tracking-widest">About the Agency</span>
+                <span class="h-px w-12 bg-brand-teal"></span>
+            </div>
+            <h1 class="text-5xl md:text-8xl font-bold text-text-inverse tracking-tight mb-8 font-serif leading-tight">
+                Elevating the <span class="text-brand-teal">Standard</span> of Event Entertainment.
             </h1>
-            <p
-                class="mt-4 max-w-3xl text-xl md:text-2xl text-gray-300 mx-auto leading-relaxed drop-shadow-md font-light">
-                We connect event planners with world-class talent to create extraordinary experiences that audiences
-                remember forever.
+            <p class="mt-4 max-w-3xl text-xl md:text-2xl text-text-secondary mx-auto leading-relaxed font-light">
+                Hailerz is a boutique talent agency dedicated to securing world-class performers for visionary event planners and global brands.
             </p>
         </div>
     </div>
 
-    <!-- Our Story Section: Single centered column -->
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
-        <span class="text-primary text-sm font-bold uppercase tracking-widest mb-6 block">Our Story</span>
-        <h2 class="text-4xl md:text-5xl font-extrabold text-text-main tracking-tight mb-12">Building a Legacy</h2>
-        <div class="space-y-8 text-xl text-text-muted leading-relaxed font-light">
+    <!-- Our Story Section -->
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
+        <div class="flex items-center gap-3 mb-6">
+            <span class="h-px w-8 bg-brand-teal"></span>
+            <span class="text-xs font-bold text-brand-teal uppercase tracking-widest">Our Legacy</span>
+        </div>
+        <h2 class="text-4xl md:text-6xl font-bold text-brand-navy tracking-tight mb-12 font-serif">The Pursuit of Excellence</h2>
+        <div class="space-y-10 text-xl text-text-secondary leading-relaxed font-light">
             <p>
-                Hailerz exists for one reason - to make discovering and booking incredible talent effortless. Born
-                from the real struggles event planners face when trying to find reliable, high‑quality performers,
-                Hailerz was created to bridge that gap with a platform built on trust, creativity, and community.
+                Hailerz was founded on a singular premise: that premium events deserve premium talent. We recognized the disconnect between visionary event planners and the world-class performers they sought to secure. Our agency was established to bridge that gap with professional procurement, rigorous vetting, and seamless execution.
             </p>
             <p>
-                Today, we proudly represent a growing network of over 100 talented creatives across multiple
-                categories and genres. From intimate gatherings to large corporate events and festivals, we've
-                helped bring unforgettable performances to life.
+                Today, we represent a curated roster of elite performers, keynote speakers, and specialty acts. We don't just book talent; we partner with clients to ensure every act aligns perfectly with the event's DNA, from corporate galas to private island retreats.
             </p>
             <p>
-                Hailerz has become the go-to space for planners who value excellence. Every talent on our platform
-                goes through a careful vetting process to ensure they deliver standout performances. And with our
-                team handling the logistics, you're free to focus on what matters most - creating meaningful,
-                memorable experiences.
+                Our reputation is built on trust, transparency, and a relentless focus on production quality. We manage the complexities of contracting and logistics so you can focus on the guest experience.
             </p>
         </div>
     </div>
 
-    <!-- Our Values Section: Centered 4-card grid -->
-    <div class="bg-surface py-24 lg:py-32 border-y border-border">
+    <!-- Our Values -->
+    <div class="bg-surface-light py-32 border-y border-brand-navy/5">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-20">
-                <span class="text-primary text-sm font-bold uppercase tracking-widest mb-4 block">Our Values</span>
-                <h2 class="text-4xl font-extrabold text-text-main tracking-tight mb-6 leading-tight">These core principles
-                    guide everything we do</h2>
+                <h2 class="text-3xl md:text-5xl font-bold text-brand-navy tracking-tight mb-6 font-serif">Agency Principles</h2>
+                <p class="text-lg text-text-secondary">Our core values define the Hailerz experience for both talent and clients.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- Excellence -->
-                <div
-                    class="bg-canvas/50 p-10 rounded-3xl shadow-sm border border-border text-center group hover:shadow-lg transition-all duration-300">
-                    <h3 class="text-2xl font-bold text-text-main mb-4 uppercase tracking-wider">Excellence</h3>
-                    <p class="text-text-muted leading-relaxed font-light">We curate only the finest talent and deliver
-                        exceptional service on every booking.</p>
-                </div>
+                @php
+                    $values = [
+                        ['title' => 'Excellence', 'desc' => 'We curate only the finest talent, ensuring every act meets our rigorous standards for professional performance.'],
+                        ['title' => 'Discretion', 'desc' => 'We operate with the highest level of confidentiality and professionalism for our high-profile clients.'],
+                        ['title' => 'Partnership', 'desc' => 'We build lasting relationships with planners, acting as an extension of your production team.'],
+                        ['title' => 'Integrity', 'desc' => 'Transparent negotiations and secure contracting are the bedrock of our agency operations.'],
+                    ];
+                @endphp
 
-                <!-- Passion -->
-                <div
-                    class="bg-canvas/50 p-10 rounded-3xl shadow-sm border border-border text-center group hover:shadow-lg transition-all duration-300">
-                    <h3 class="text-2xl font-bold text-text-main mb-4 uppercase tracking-wider">Passion</h3>
-                    <p class="text-text-muted leading-relaxed font-light">We love what we do and it shows in our
-                        dedication to creating unforgettable events.</p>
-                </div>
-
-                <!-- Partnership -->
-                <div
-                    class="bg-canvas/50 p-10 rounded-3xl shadow-sm border border-border text-center group hover:shadow-lg transition-all duration-300">
-                    <h3 class="text-2xl font-bold text-text-main mb-4 uppercase tracking-wider">Partnership</h3>
-                    <p class="text-text-muted leading-relaxed font-light">We build lasting relationships with both clients
-                        and talent based on trust and respect.</p>
-                </div>
-
-                <!-- Integrity -->
-                <div
-                    class="bg-canvas/50 p-10 rounded-3xl shadow-sm border border-border text-center group hover:shadow-lg transition-all duration-300">
-                    <h3 class="text-2xl font-bold text-text-main mb-4 uppercase tracking-wider">Integrity</h3>
-                    <p class="text-text-muted leading-relaxed font-light">We operate with transparency, honesty, and
-                        professionalism in every interaction.</p>
-                </div>
+                @foreach($values as $value)
+                    <div class="bg-surface-muted p-10 rounded-3xl border border-brand-navy/5 group hover:bg-brand-navy transition-all duration-500 hover:shadow-2xl">
+                        <h3 class="text-2xl font-bold text-brand-navy mb-4 font-serif group-hover:text-white transition-colors">{{ $value['title'] }}</h3>
+                        <p class="text-text-secondary leading-relaxed font-light group-hover:text-text-inverse/70 transition-colors">{{ $value['desc'] }}</p>
+                    </div>
+                @endforeach
             </div>
         </div>
     </div>
 
-    <!-- What Sets Us Apart Section: Left-aligned icons and 2-column grid -->
-    <div class="py-24 lg:py-32">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="mb-20">
-                <span class="text-primary text-sm font-bold uppercase tracking-widest mb-4 block">The Advantage</span>
-                <h2 class="text-4xl font-extrabold text-text-main tracking-tight mb-4">What Sets Us Apart</h2>
-                <p class="text-xl text-text-muted font-light">Why event planners choose Hailerz</p>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-12">
-                <!-- Feature 1 -->
-                <div class="flex gap-6">
-                    <div
-                        class="shrink-0 h-10 w-10 bg-primary/10 rounded-lg flex items-center justify-center text-primary mt-1">
-                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7">
-                            </path>
-                        </svg>
-                    </div>
-                    <div>
-                        <h4 class="text-xl font-extrabold text-text-main mb-2">Rigorous Vetting Process</h4>
-                        <p class="text-text-muted leading-relaxed font-light">Every artist undergoes a comprehensive
-                            evaluation including performance reviews, technical assessments, and professionalism checks
-                            before joining our roster.</p>
-                    </div>
-                </div>
-
-                <!-- Feature 2 -->
-                <div class="flex gap-6">
-                    <div
-                        class="shrink-0 h-10 w-10 bg-primary/10 rounded-lg flex items-center justify-center text-primary mt-1">
-                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7">
-                            </path>
-                        </svg>
-                    </div>
-                    <div>
-                        <h4 class="text-xl font-extrabold text-text-main mb-2">Full-Service Support</h4>
-                        <p class="text-text-muted leading-relaxed font-light">From initial inquiry to post-event
-                            follow-up, our dedicated team handles contracts, logistics, technical requirements, and
-                            coordination.</p>
-                    </div>
-                </div>
-
-                <!-- Feature 3 -->
-                <div class="flex gap-6">
-                    <div
-                        class="shrink-0 h-10 w-10 bg-primary/10 rounded-lg flex items-center justify-center text-primary mt-1">
-                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7">
-                            </path>
-                        </svg>
-                    </div>
-                    <div>
-                        <h4 class="text-xl font-extrabold text-text-main mb-2">Transparent Pricing</h4>
-                        <p class="text-text-muted leading-relaxed font-light">No hidden fees or surprises. You pay the
-                            artist directly - our service is completely free for clients.</p>
-                    </div>
-                </div>
-
-                <!-- Feature 4 -->
-                <div class="flex gap-6">
-                    <div
-                        class="shrink-0 h-10 w-10 bg-primary/10 rounded-lg flex items-center justify-center text-primary mt-1">
-                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7">
-                            </path>
-                        </svg>
-                    </div>
-                    <div>
-                        <h4 class="text-xl font-extrabold text-text-main mb-2">Nationwide Network</h4>
-                        <p class="text-text-muted leading-relaxed font-light">Access top talent across the country with
-                            our extensive network of performers in major cities and regional markets.</p>
-                    </div>
-                </div>
-
-                <!-- Feature 5 -->
-                <div class="flex gap-6">
-                    <div
-                        class="shrink-0 h-10 w-10 bg-primary/10 rounded-lg flex items-center justify-center text-primary mt-1">
-                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7">
-                            </path>
-                        </svg>
-                    </div>
-                    <div>
-                        <h4 class="text-xl font-extrabold text-text-main mb-2">Quick Response Time</h4>
-                        <p class="text-text-muted leading-relaxed font-light">Our team responds to inquiries within 24
-                            hours with personalized recommendations tailored to your event.</p>
-                    </div>
-                </div>
-
-                <!-- Feature 6 -->
-                <div class="flex gap-6">
-                    <div
-                        class="shrink-0 h-10 w-10 bg-primary/10 rounded-lg flex items-center justify-center text-primary mt-1">
-                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7">
-                            </path>
-                        </svg>
-                    </div>
-                    <div>
-                        <h4 class="text-xl font-extrabold text-text-main mb-2">Proven Track Record</h4>
-                        <p class="text-text-muted leading-relaxed font-light">Thousands of successful events and a 98%
-                            client satisfaction rate speak to our commitment to excellence.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Meet Our Team Section: 3-column rounded rectangular cards with text overlay -->
-    <div class="bg-surface py-24 lg:py-32 border-t border-border">
+    <!-- Team Section -->
+    <div class="bg-surface-muted py-32">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-20">
-                <span class="text-primary text-sm font-bold uppercase tracking-widest mb-4 block">Our Team</span>
-                <h2 class="text-4xl font-extrabold text-text-main tracking-tight mb-4 leading-tight">Meet the Professionals
-                    Behind Your Success</h2>
-                <p class="text-lg text-text-muted font-light">Dedicated to excellence in talent management and event
-                    planning</p>
+                <h2 class="text-3xl md:text-5xl font-bold text-brand-navy tracking-tight mb-6 font-serif">The Agents</h2>
+                <p class="text-lg text-text-secondary">Meet the specialists dedicated to your event's success.</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-                <!-- Team Member 1 -->
-                <div
-                    class="relative group h-[500px] rounded-md overflow-hidden shadow-2xl transition-transform duration-500 hover:-translate-y-2">
-                    <img src="{{ asset('images/about/founder.webp') }}" alt="David Somoye"
-                        class="absolute inset-0 w-full h-full object-cover grayscale transition-transform duration-700 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-linear-to-br from-secondary/40 to-primary/40 opacity-60 mix-blend-color group-hover:opacity-40 transition-opacity"></div>
-                    <div
-                        class="absolute inset-x-0 bottom-0 bg-linear-to-t from-dark/95 via-dark/70 to-transparent p-10 pt-20">
-                        <h3 class="text-3xl font-bold text-white mb-1">David Somoye</h3>
-                        <p class="text-primary font-bold text-sm uppercase tracking-widest mb-6">CFO / Founder</p>
-                        <ul class="space-y-2">
-                            <li class="flex items-start text-sm text-gray-300 gap-2">
-                                <svg class="h-5 w-5 text-primary shrink-0" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3"
-                                        d="M5 13l4 4L19 7"></path>
-                                </svg>
-                                10+ years in event planning
-                            </li>
-                            <li class="flex items-start text-sm text-gray-300 gap-2">
-                                <svg class="h-5 w-5 text-primary shrink-0" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3"
-                                        d="M5 13l4 4L19 7"></path>
-                                </svg>
-                                Entertainment booking specialist
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                @php
+                    $team = [
+                        ['name' => 'David Somoye', 'role' => 'Founder / Senior Agent', 'img' => 'founder.webp', 'bio' => '10+ years in premium talent procurement.'],
+                        ['name' => 'Lolitasville', 'role' => 'Director of Talent', 'img' => 'head-of-talent-relation.webp', 'bio' => 'Expert in industry relations and artist vetting.'],
+                        ['name' => 'Anne James', 'role' => 'Client Success', 'img' => 'client-success-director.webp', 'bio' => 'Specialist in on-site coordination and logistics.'],
+                    ];
+                @endphp
 
-                <!-- Team Member 2 -->
-                <div
-                    class="relative group h-[500px] rounded-md overflow-hidden shadow-2xl transition-transform duration-500 hover:-translate-y-2">
-                    <img src="{{ asset('images/about/head-of-talent-relation.webp') }}" alt="Lolitasville"
-                        class="absolute inset-0 w-full h-full object-cover grayscale transition-transform duration-700 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-linear-to-br from-secondary/40 to-primary/40 opacity-60 mix-blend-color group-hover:opacity-40 transition-opacity"></div>
-                    <div
-                        class="absolute inset-x-0 bottom-0 bg-linear-to-t from-dark/95 via-dark/70 to-transparent p-10 pt-20">
-                        <h3 class="text-3xl font-bold text-white mb-1">Lolitasville</h3>
-                        <p class="text-primary font-bold text-sm uppercase tracking-widest mb-6">Talent Management</p>
-                        <ul class="space-y-2">
-                            <li class="flex items-start text-sm text-gray-300 gap-2">
-                                <svg class="h-5 w-5 text-primary shrink-0" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3"
-                                        d="M5 13l4 4L19 7"></path>
-                                </svg>
-                                Former broadcaster
-                            </li>
-                            <li class="flex items-start text-sm text-gray-300 gap-2">
-                                <svg class="h-5 w-5 text-primary shrink-0" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3"
-                                        d="M5 13l4 4L19 7"></path>
-                                </svg>
-                                Deep industry connections
-                            </li>
-                        </ul>
+                @foreach($team as $member)
+                    <div class="group relative overflow-hidden rounded-[2.5rem] aspect-3/4 bg-surface-dark border border-white/5 shadow-xl">
+                        <img src="{{ asset('images/about/' . $member['img']) }}" class="w-full h-full object-cover grayscale transition-transform duration-700 group-hover:scale-110" alt="{{ $member['name'] }}" />
+                        <div class="absolute inset-0 bg-linear-to-tr from-brand-teal/80 to-brand-mint/40 mix-blend-color opacity-70"></div>
+                        <div class="absolute inset-0 bg-linear-to-t from-brand-navy/90 via-brand-navy/20 to-transparent"></div>
+                        <div class="absolute bottom-10 left-10 right-10">
+                            <h3 class="text-3xl font-bold text-white mb-2 font-serif">{{ $member['name'] }}</h3>
+                            <p class="text-brand-mint text-xs font-bold uppercase tracking-widest mb-4">{{ $member['role'] }}</p>
+                            <p class="text-white/60 text-sm leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500">{{ $member['bio'] }}</p>
+                        </div>
                     </div>
-                </div>
-
-                <!-- Team Member 3 -->
-                <div
-                    class="relative group h-[500px] rounded-md overflow-hidden shadow-2xl transition-transform duration-500 hover:-translate-y-2">
-                    <img src="{{ asset('images/about/client-success-director.webp') }}" alt="Anne James"
-                        class="absolute inset-0 w-full h-full object-cover grayscale transition-transform duration-700 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-linear-to-br from-secondary/40 to-primary/40 opacity-60 mix-blend-color group-hover:opacity-40 transition-opacity"></div>
-                    <div
-                        class="absolute inset-x-0 bottom-0 bg-linear-to-t from-dark/95 via-dark/70 to-transparent p-10 pt-20">
-                        <h3 class="text-3xl font-bold text-white mb-1">Anne James</h3>
-                        <p class="text-primary font-bold text-sm uppercase tracking-widest mb-6">Community Manager</p>
-                        <ul class="space-y-2">
-                            <li class="flex items-start text-sm text-gray-300 gap-2">
-                                <svg class="h-5 w-5 text-primary shrink-0" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3"
-                                        d="M5 13l4 4L19 7"></path>
-                                </svg>
-                                Event execution specialist
-                            </li>
-                            <li class="flex items-start text-sm text-gray-300 gap-2">
-                                <svg class="h-5 w-5 text-primary shrink-0" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3"
-                                        d="M5 13l4 4L19 7"></path>
-                                </svg>
-                                Dedicated client success
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>
 
-    <!-- Bottom CTA: Banner with music note icon and specific button styles -->
-    <div class="relative py-32 overflow-hidden bg-dark">
-        <div
-            class="absolute inset-0 opacity-20 bg-[url('https://images.unsplash.com/photo-1470225620780-dba8ba36b745?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')] bg-cover bg-fixed grayscale">
-        </div>
-        <div class="absolute inset-0 bg-linear-to-br from-secondary/40 to-primary/40 opacity-40 mix-blend-color"></div>
-        <div class="absolute inset-0 bg-linear-to-b from-dark/80 via-dark to-dark/80"></div>
-
+    <!-- Bottom CTA -->
+    <div class="relative py-40 overflow-hidden bg-brand-navy">
+        <div class="absolute inset-0 opacity-20 bg-[url('https://images.unsplash.com/photo-1470225620780-dba8ba36b745?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')] bg-cover bg-center grayscale"></div>
+        <div class="absolute inset-0 bg-linear-to-tr from-brand-teal/80 to-brand-mint/40 mix-blend-color opacity-40"></div>
+        
         <div class="relative max-w-4xl mx-auto px-4 text-center">
-            <h2 class="text-4xl md:text-6xl font-extrabold text-white mb-8 tracking-tight">Ready to Work Together?</h2>
-            <p class="text-xl md:text-2xl text-gray-200 mb-12 font-light leading-relaxed">
-                Let's create an unforgettable event. Browse our talent directory or submit a booking inquiry today.
+            <h2 class="text-4xl md:text-7xl font-bold text-text-inverse mb-8 tracking-tight font-serif">Secure the Act.</h2>
+            <p class="text-xl md:text-2xl text-text-secondary mb-12 font-light leading-relaxed">
+                Partner with Hailerz to elevate your next event with world-class talent and professional management.
             </p>
             <div class="flex flex-col sm:flex-row justify-center gap-6">
-                <a href="/talent" wire:navigate
-                    class="px-12 py-5 border-2 border-primary text-primary font-bold rounded-md hover:bg-primary hover:text-white transition-all duration-300 shadow-lg shadow-primary/10">
-                    Browse Talent
-                </a>
-                <a href="/book" wire:navigate
-                    class="px-12 py-5 bg-primary text-white font-bold rounded-md hover:bg-primary-dark transition-all duration-300 shadow-xl shadow-primary/20 scale-100 hover:scale-105">
-                    Book Now
-                </a>
+                <x-button variant="primary" size="lg" href="/talent" wire:navigate>
+                    Explore the Roster
+                </x-button>
+                <x-button variant="secondary" size="lg" href="/book" wire:navigate class="bg-white/5 border-white/10 text-white hover:bg-white/10">
+                    Start Booking Inquiry
+                </x-button>
             </div>
         </div>
     </div>

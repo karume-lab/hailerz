@@ -1,328 +1,227 @@
-<div class="bg-canvas">
+<div class="bg-surface-light">
     <!-- Hero Section -->
-    <section class="relative bg-surface pt-24 pb-32 overflow-hidden">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="lg:grid lg:grid-cols-2 lg:gap-12 items-center">
+    <section class="relative bg-surface-dark pt-32 pb-40 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="lg:grid lg:grid-cols-2 lg:gap-16 items-center">
                 <!-- Left Content -->
                 <div class="mb-16 lg:mb-0">
-                    <h1 class="text-5xl md:text-6xl font-bold tracking-tight text-text-main mb-8 leading-tight">
-                        Connect with your<br />
-                        Favourite Celebrities
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-teal/10 border border-brand-teal/20 mb-8">
+                        <span class="w-2 h-2 rounded-full bg-brand-teal animate-pulse"></span>
+                        <span class="text-xs font-bold text-brand-teal uppercase tracking-widest">Premium Talent Agency</span>
+                    </div>
+                    <h1 class="text-5xl md:text-7xl font-bold tracking-tight text-text-inverse mb-8 leading-[1.1] font-serif">
+                        Elevate Your Events with <span class="text-brand-teal">World-Class</span> Talent.
                     </h1>
-                    <p class="mt-4 max-w-xl text-lg text-text-muted mb-10 leading-relaxed">
-                        The easiest way to get personalized video greetings, shoutouts, and pleasantries from top
-                        entertainers and public figures.
+                    <p class="mt-4 max-w-xl text-lg md:text-xl text-text-secondary mb-12 leading-relaxed">
+                        Hailerz is the definitive roster for corporate events, galas, and private functions. Secure the act that transforms your occasion into an unforgettable experience.
                     </p>
-                    <div class="flex flex-wrap gap-4 mb-10">
-                        <a href="/talent" wire:navigate
-                            class="px-8 py-4 bg-primary text-white font-bold rounded-xl hover:bg-primary-dark shadow-lg shadow-primary/20 transition-all flex items-center gap-3 group">
-                            <svg class="w-5 h-5 text-secondary group-hover:scale-110 transition-transform" fill="none"
-                                stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                            </svg>
-                            Browse Talent
-                        </a>
-                        <a href="/join" wire:navigate
-                            class="px-8 py-4 bg-white dark:bg-dark-muted text-primary border-2 border-primary/20 font-bold rounded-xl hover:border-primary transition-all flex items-center gap-3">
-                            Join the Roster
-                        </a>
+                    <div class="flex flex-wrap gap-6">
+                        <x-button variant="primary" size="lg" href="/talent" wire:navigate>
+                            Explore the Roster
+                        </x-button>
+                        <x-button variant="secondary" size="lg" href="/contact" wire:navigate class="bg-white/5 border-white/10 text-white hover:bg-white/10">
+                            Agency Inquiry
+                        </x-button>
                     </div>
                 </div>
 
-                <!-- Right Video Cards -->
-                <div class="relative flex justify-center lg:justify-end gap-6 h-[500px]">
-                    <!-- Video Card 1 -->
-                    <div
-                        class="w-56 h-[460px] rounded-[32px] border-2 border-primary/20 relative overflow-hidden group">
-                        <img src="{{ asset('images/home/hero-card-1.webp') }}" alt="Talent Preview"
-                            class="absolute inset-0 w-full h-full object-cover grayscale">
-                        <div
-                            class="absolute inset-0 bg-linear-to-br from-secondary/40 to-primary/40 opacity-80 mix-blend-color">
+                <!-- Right Content: Talent Showcase -->
+                <div class="relative">
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="space-y-6 pt-12">
+                            <div class="group relative overflow-hidden rounded-2xl aspect-3/4 bg-surface-dark border border-white/5">
+                                <img src="{{ asset('images/home/hero-card-1.webp') }}" class="w-full h-full object-cover grayscale transition-transform duration-700 group-hover:scale-110" alt="Talent Preview" />
+                                <div class="absolute inset-0 bg-linear-to-tr from-brand-teal/80 to-brand-mint/40 mix-blend-color"></div>
+                                <div class="absolute inset-0 bg-linear-to-t from-brand-navy/90 via-transparent to-transparent"></div>
+                                <div class="absolute bottom-6 left-6">
+                                    <p class="text-white font-bold text-lg">Live Performance</p>
+                                    <p class="text-brand-mint text-sm">Gala Dinners</p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <!-- Video Card 2 (Offset) -->
-                    <div
-                        class="w-56 h-[460px] rounded-[32px] border-2 border-primary/20 relative overflow-hidden group mt-12">
-                        <img src="{{ asset('images/home/hero-card-2.webp') }}" alt="Talent Preview"
-                            class="absolute inset-0 w-full h-full object-cover grayscale">
-                        <div
-                            class="absolute inset-0 bg-linear-to-br from-secondary/40 to-primary/40 opacity-80 mix-blend-color">
+                        <div class="space-y-6">
+                            <div class="group relative overflow-hidden rounded-2xl aspect-3/4 bg-surface-dark border border-white/5">
+                                <img src="{{ asset('images/home/hero-card-2.webp') }}" class="w-full h-full object-cover grayscale transition-transform duration-700 group-hover:scale-110" alt="Talent Preview" />
+                                <div class="absolute inset-0 bg-linear-to-tr from-brand-teal/80 to-brand-mint/40 mix-blend-color"></div>
+                                <div class="absolute inset-0 bg-linear-to-t from-brand-navy/90 via-transparent to-transparent"></div>
+                                <div class="absolute bottom-6 left-6">
+                                    <p class="text-white font-bold text-lg">Keynote Speakers</p>
+                                    <p class="text-brand-mint text-sm">Corporate Summits</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <!-- Background Elements -->
+        <div class="absolute top-0 right-0 w-1/2 h-full bg-linear-to-l from-brand-teal/5 to-transparent"></div>
     </section>
 
-    <!-- Headline Section -->
-    <section class="py-16 bg-surface">
-        <div class="max-w-7xl mx-auto px-4 text-center">
-            <h2 class="text-4xl md:text-5xl font-bold text-primary">Access top talents</h2>
-        </div>
-    </section>
-
-    <!-- Categories Quick Browse -->
-    <section class="py-20 bg-canvas">
+    <!-- Services Overview -->
+    <section class="py-32 bg-surface-muted">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-extrabold text-text-main">Explore by Category</h2>
-                <p class="mt-4 text-lg text-text-muted">Find exactly the right personality for your special video
-                    shoutout.</p>
+            <div class="text-center max-w-3xl mx-auto mb-20">
+                <h2 class="text-3xl md:text-5xl font-bold text-text-primary mb-6 font-serif">A Full-Service Agency for Extraordinary Events</h2>
+                <p class="text-lg text-text-secondary">From procurement to performance, we handle every detail of the booking process.</p>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Category Card -->
-                <a href="/talent?category=musicians"
-                    class="group relative h-64 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all">
-                    <img src="{{ asset('images/home/musicians.webp') }}" alt="Live Musicians"
-                        class="absolute inset-0 w-full h-full object-cover grayscale group-hover:scale-110 transition-transform duration-700">
-                    <div
-                        class="absolute inset-0 bg-linear-to-br from-secondary/40 to-primary/40 opacity-80 mix-blend-color">
-                    </div>
-                    <div class="absolute inset-0 bg-linear-to-t from-dark/90 via-dark/10 to-transparent"></div>
-                    <div class="absolute bottom-6 left-6 text-left">
-                        <h3 class="text-2xl font-bold text-white relative z-10">Live Bands</h3>
-                    </div>
-                </a>
-                <!-- Category Card -->
-                <a href="/talent?category=speakers"
-                    class="group relative h-64 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all">
-                    <img src="{{ asset('images/home/speakers.webp') }}" alt="Keynote Speakers"
-                        class="absolute inset-0 w-full h-full object-cover grayscale group-hover:scale-110 transition-transform duration-700">
-                    <div
-                        class="absolute inset-0 bg-linear-to-br from-secondary/40 to-primary/40 opacity-80 mix-blend-color">
-                    </div>
-                    <div class="absolute inset-0 bg-linear-to-t from-dark/90 via-dark/10 to-transparent"></div>
-                    <div class="absolute bottom-6 left-6 text-left">
-                        <h3 class="text-2xl font-bold text-white relative z-10">Keynote Speakers</h3>
-                    </div>
-                </a>
-                <!-- Category Card -->
-                <a href="/talent?category=djs"
-                    class="group relative h-64 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all">
-                    <img src="{{ asset('images/home/djs.webp') }}" alt="DJs & Electronics"
-                        class="absolute inset-0 w-full h-full object-cover grayscale group-hover:scale-110 transition-transform duration-700">
-                    <div
-                        class="absolute inset-0 bg-linear-to-br from-secondary/40 to-primary/40 opacity-80 mix-blend-color">
-                    </div>
-                    <div class="absolute inset-0 bg-linear-to-t from-dark/90 via-dark/10 to-transparent"></div>
-                    <div class="absolute bottom-6 left-6 text-left">
-                        <h3 class="text-2xl font-bold text-white relative z-10">DJs & Electronics</h3>
-                    </div>
-                </a>
-                <!-- Category Card -->
-                <a href="/talent?category=specialty"
-                    class="group relative h-64 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all">
-                    <img src="{{ asset('images/home/specialty.webp') }}" alt="Specialty Acts"
-                        class="absolute inset-0 w-full h-full object-cover grayscale group-hover:scale-110 transition-transform duration-700">
-                    <div
-                        class="absolute inset-0 bg-linear-to-br from-secondary/40 to-primary/40 opacity-80 mix-blend-color">
-                    </div>
-                    <div class="absolute inset-0 bg-linear-to-t from-dark/90 via-dark/10 to-transparent"></div>
-                    <div class="absolute bottom-6 left-6 text-left">
-                        <h3 class="text-2xl font-bold text-white relative z-10">Specialty</h3>
-                    </div>
-                </a>
-            </div>
-
-            <div class="mt-24 text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-extrabold text-text-main">Browse by Event</h2>
-                <p class="mt-4 text-lg text-text-muted">Tailored talent for every occasion.</p>
-            </div>
-
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
                 @php
-                    $events = [
-                        ['name' => 'Weddings', 'icon' => 'M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'],
-                        ['name' => 'Corporate Galas', 'icon' => 'M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3z'],
-                        ['name' => 'Birthdays', 'icon' => 'M12 2l1.5 5 5 .5-3.5 3.5 1 5-4-2.5-4 2.5 1-5-3.5-3.5 5-.5L12 2z'],
-                        ['name' => 'Festivals', 'icon' => 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z'],
-                        ['name' => 'Private Parties', 'icon' => 'M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'],
-                        ['name' => 'Religious Events', 'icon' => 'M19 13h-6V7h-2v6H5v2h6v6h2v-6h6z']
+                    $services = [
+                        [
+                            'title' => 'Talent Procurement',
+                            'desc' => 'Access an exclusive roster of world-class performers and keynote speakers tailored to your event\'s DNA.',
+                            'icon' => 'M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10'
+                        ],
+                        [
+                            'title' => 'Contract Negotiation',
+                            'desc' => 'Our experienced agents manage all legal and financial negotiations, ensuring secure and professional agreements.',
+                            'icon' => 'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z'
+                        ],
+                        [
+                            'title' => 'On-Site Coordination',
+                            'desc' => 'We provide comprehensive support and logistics to guarantee a flawless execution of the talent\'s performance.',
+                            'icon' => 'M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z'
+                        ]
                     ];
                 @endphp
 
-                @foreach($events as $event)
-                    <a href="/talent?event={{ strtolower(str_replace(' ', '_', $event['name'])) }}"
-                        class="flex flex-col items-center justify-center p-6 bg-surface border border-border rounded-2xl hover:border-primary hover:shadow-md transition-all group">
-                        <div
-                            class="h-12 w-12 rounded-full bg-primary/10 text-primary flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="{{ $event['icon'] }}"></path>
+                @foreach($services as $service)
+                    <div class="bg-surface-light p-10 rounded-3xl border border-brand-navy/5 shadow-sm hover:shadow-xl transition-all duration-500 group">
+                        <div class="h-14 w-14 rounded-2xl bg-brand-teal/10 text-brand-teal flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
+                            <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="{{ $service['icon'] }}"></path>
                             </svg>
                         </div>
-                        <span class="text-sm font-bold text-text-main text-center">{{ $event['name'] }}</span>
+                        <h3 class="text-2xl font-bold text-text-primary mb-4">{{ $service['title'] }}</h3>
+                        <p class="text-text-secondary leading-relaxed">{{ $service['desc'] }}</p>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories / The Roster -->
+    <section class="py-32 bg-surface-light">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
+                <div class="max-w-2xl">
+                    <h2 class="text-3xl md:text-5xl font-bold text-text-primary mb-6 font-serif">Curated Roster of Performers</h2>
+                    <p class="text-lg text-text-secondary">Explore our categories of vetted professionals ready to secure the act for your next gala or summit.</p>
+                </div>
+                <x-button variant="outline" href="/talent" wire:navigate>
+                    View Full Roster
+                </x-button>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                @php
+                    $categories = [
+                        ['name' => 'Live Bands', 'slug' => 'musicians', 'img' => 'musicians.webp'],
+                        ['name' => 'Keynote Speakers', 'slug' => 'speakers', 'img' => 'speakers.webp'],
+                        ['name' => 'DJs & Electronics', 'slug' => 'djs', 'img' => 'djs.webp'],
+                        ['name' => 'Specialty Acts', 'slug' => 'specialty', 'img' => 'specialty.webp'],
+                    ];
+                @endphp
+
+                @foreach($categories as $cat)
+                    <a href="/talent?category={{ $cat['slug'] }}" class="group block relative h-[450px] rounded-3xl overflow-hidden shadow-lg">
+                        <img src="{{ asset('images/home/' . $cat['img']) }}" class="absolute inset-0 w-full h-full object-cover grayscale transition-transform duration-1000 group-hover:scale-110" alt="{{ $cat['name'] }}" />
+                        <div class="absolute inset-0 bg-linear-to-tr from-brand-teal/80 to-brand-mint/40 mix-blend-color opacity-90"></div>
+                        <div class="absolute inset-0 bg-linear-to-t from-brand-navy/90 via-brand-navy/20 to-transparent"></div>
+                        <div class="absolute bottom-10 left-10">
+                            <h3 class="text-3xl font-bold text-text-inverse mb-2">{{ $cat['name'] }}</h3>
+                            <div class="flex items-center gap-2 text-brand-mint font-semibold uppercase tracking-widest text-xs">
+                                <span>Browse Category</span>
+                                <svg class="w-4 h-4 transform group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                                </svg>
+                            </div>
+                        </div>
                     </a>
                 @endforeach
             </div>
-
-
-            <div class="mt-12 text-center">
-                <a href="/talent" wire:navigate
-                    class="inline-flex items-center text-primary font-bold hover:text-primary-dark transition">
-                    View Entire Roster <svg class="w-5 h-5 ml-2 mt-0.5" fill="none" stroke="currentColor"
-                        viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                    </svg>
-                </a>
-            </div>
         </div>
     </section>
 
-    <!-- How it Works Section -->
-    <section id="how-it-works" class="py-20 bg-surface border-b border-border">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-extrabold text-text-main">Seamless Video Pleasantries</h2>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
-                <div class="flex flex-col items-center p-4">
-                    <div
-                        class="h-12 w-12 rounded-full bg-primary/10 text-primary flex items-center justify-center mb-4">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-lg font-bold text-text-main">Favourite Celebrities</h3>
-                    <p class="mt-2 text-sm text-text-muted">Access our exclusive roster of digital natives, influencers,
-                        and world-class entertainers.</p>
-                </div>
-                <div class="flex flex-col items-center p-4">
-                    <div
-                        class="h-12 w-12 rounded-full bg-primary/10 text-primary flex items-center justify-center mb-4">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z">
-                            </path>
-                        </svg>
-                    </div>
-                    <h3 class="text-lg font-bold text-text-main">Easy Booking</h3>
-                    <p class="mt-2 text-sm text-text-muted">Pick a celebrity, record your gesture details, and get a
-                        magical video to share.</p>
-                </div>
-                <div class="flex flex-col items-center p-4">
-                    <div
-                        class="h-12 w-12 rounded-full bg-primary/10 text-primary flex items-center justify-center mb-4">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z">
-                            </path>
-                        </svg>
-                    </div>
-                    <h3 class="text-lg font-bold text-text-main">Smart Sharing</h3>
-                    <p class="mt-2 text-sm text-text-muted">Share your custom videos seamlessly across social platforms
-                        and spread the love.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-24 bg-canvas">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="lg:grid lg:grid-cols-2 lg:gap-16 items-start">
-
-                <!-- Left: Info -->
-                <div class="mb-12 lg:mb-0">
-                    <h2 class="text-3xl md:text-4xl font-extrabold text-text-main mb-6">Get in Touch</h2>
-                    <p class="text-lg text-text-muted leading-relaxed mb-8">
-                        Whether you're planning a corporate event, a private celebration, or need advice on the perfect talent — our team is here to help. Drop us a message and we'll get back to you within 24 hours.
+    <!-- Contact / Inquiry Section -->
+    <section class="py-32 bg-brand-navy overflow-hidden relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="lg:grid lg:grid-cols-2 lg:gap-24 items-center">
+                <div>
+                    <h2 class="text-3xl md:text-6xl font-bold text-text-inverse mb-8 font-serif leading-tight">Ready to Secure the Act?</h2>
+                    <p class="text-xl text-text-secondary mb-12 leading-relaxed">
+                        Our agents are standing by to help you find the perfect talent for your event. Whether you have a specific performer in mind or need expert recommendations, we are here to assist.
                     </p>
-
-                    <ul class="space-y-6">
-                        <li class="flex items-start gap-4">
-                            <div class="h-11 w-11 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                    
+                    <ul class="space-y-8 mb-12">
+                        <li class="flex items-center gap-6">
+                            <div class="h-12 w-12 rounded-xl bg-brand-teal/10 flex items-center justify-center text-brand-teal shrink-0">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
                                 </svg>
                             </div>
                             <div>
-                                <p class="font-semibold text-text-main">Email Us</p>
-                                <a href="mailto:info@hailerz.com" class="text-primary hover:underline text-sm">info@hailerz.com</a>
+                                <h4 class="text-text-inverse font-bold">Email Our Agents</h4>
+                                <p class="text-text-secondary text-sm">bookings@hailerz.com</p>
                             </div>
                         </li>
-                        <li class="flex items-start gap-4">
-                            <div class="h-11 w-11 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        <li class="flex items-center gap-6">
+                            <div class="h-12 w-12 rounded-xl bg-brand-teal/10 flex items-center justify-center text-brand-teal shrink-0">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                 </svg>
                             </div>
                             <div>
-                                <p class="font-semibold text-text-main">Response Time</p>
-                                <p class="text-text-muted text-sm">We aim to reply within 24 hours on business days.</p>
-                            </div>
-                        </li>
-                        <li class="flex items-start gap-4">
-                            <div class="h-11 w-11 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-                                </svg>
-                            </div>
-                            <div>
-                                <p class="font-semibold text-text-main">Our Base</p>
-                                <p class="text-text-muted text-sm">Nairobi, Kenya — serving clients globally.</p>
+                                <h4 class="text-text-inverse font-bold">Rapid Response</h4>
+                                <p class="text-text-secondary text-sm">Typically within 24 business hours</p>
                             </div>
                         </li>
                     </ul>
                 </div>
 
-                <!-- Right: Form -->
-                <div class="bg-surface border border-border rounded-3xl p-8 shadow-sm">
+                <div class="bg-white p-10 rounded-3xl shadow-2xl">
                     @if($contactSent)
-                        <div class="flex flex-col items-center text-center py-10 gap-4">
-                            <div class="h-16 w-16 rounded-full bg-green-500/10 text-green-400 flex items-center justify-center">
-                                <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                        <div class="flex flex-col items-center text-center py-12 gap-6">
+                            <div class="h-20 w-20 rounded-full bg-green-100 text-green-600 flex items-center justify-center">
+                                <svg class="w-10 h-10" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
                                 </svg>
                             </div>
-                            <h3 class="text-xl font-bold text-text-main">Message Sent!</h3>
-                            <p class="text-text-muted">Thank you for reaching out. We'll be in touch shortly.</p>
-                            <button wire:click="$set('contactSent', false)" class="mt-4 text-sm font-semibold text-primary hover:underline">Send another message</button>
+                            <h3 class="text-3xl font-bold text-text-primary">Inquiry Received</h3>
+                            <p class="text-text-secondary">An agent will review your request and contact you shortly.</p>
+                            <button wire:click="$set('contactSent', false)" class="text-brand-teal font-bold hover:underline">Submit another inquiry</button>
                         </div>
                     @else
-                        <form wire:submit="submitContact" class="space-y-5">
-                            <div>
-                                <label for="home-contact-name" class="block text-sm font-semibold text-text-main mb-1.5">Your Name</label>
-                                <input wire:model="contactName" id="home-contact-name" type="text" placeholder="Jane Muthoni"
-                                    class="w-full rounded-xl px-4 py-3 bg-canvas border border-border text-text-main placeholder-text-muted focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-sm">
-                                @error('contactName') <span class="text-red-400 text-xs mt-1 block">{{ $message }}</span> @enderror
-                            </div>
-
-                            <div>
-                                <label for="home-contact-email" class="block text-sm font-semibold text-text-main mb-1.5">Email Address</label>
-                                <input wire:model="contactEmail" id="home-contact-email" type="email" placeholder="jane@example.com"
-                                    class="w-full rounded-xl px-4 py-3 bg-canvas border border-border text-text-main placeholder-text-muted focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-sm">
-                                @error('contactEmail') <span class="text-red-400 text-xs mt-1 block">{{ $message }}</span> @enderror
-                            </div>
-
-                            <div>
-                                <label for="home-contact-message" class="block text-sm font-semibold text-text-main mb-1.5">Message</label>
-                                <textarea wire:model="contactMessage" id="home-contact-message" rows="5" placeholder="Tell us about your event or inquiry..."
-                                    class="w-full rounded-xl px-4 py-3 bg-canvas border border-border text-text-main placeholder-text-muted focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-sm resize-none"></textarea>
-                                @error('contactMessage') <span class="text-red-400 text-xs mt-1 block">{{ $message }}</span> @enderror
-                            </div>
-
-                            <button type="submit"
-                                class="w-full py-3.5 bg-primary text-white font-bold rounded-xl hover:bg-primary-dark transition-all shadow-lg shadow-primary/20 flex items-center justify-center gap-2 group">
-                                <span>Send Message</span>
-                                <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
-                                </svg>
-                                <div wire:loading wire:target="submitContact" class="ml-1">
-                                    <svg class="animate-spin h-4 w-4 text-white" fill="none" viewBox="0 0 24 24">
-                                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
-                                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/>
-                                    </svg>
+                        <form wire:submit="submitContact" class="space-y-6">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-xs font-bold text-brand-navy uppercase tracking-widest mb-2">Name</label>
+                                    <input wire:model="contactName" type="text" placeholder="Full Name" class="w-full px-5 py-4 bg-surface-muted border border-brand-navy/10 rounded-xl focus:ring-2 focus:ring-brand-teal focus:border-transparent outline-none transition-all" />
+                                    @error('contactName') <span class="text-red-500 text-xs mt-1">{{ $message }}</span> @enderror
                                 </div>
-                            </button>
+                                <div>
+                                    <label class="block text-xs font-bold text-brand-navy uppercase tracking-widest mb-2">Email</label>
+                                    <input wire:model="contactEmail" type="email" placeholder="Email Address" class="w-full px-5 py-4 bg-surface-muted border border-brand-navy/10 rounded-xl focus:ring-2 focus:ring-brand-teal focus:border-transparent outline-none transition-all" />
+                                    @error('contactEmail') <span class="text-red-500 text-xs mt-1">{{ $message }}</span> @enderror
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-brand-navy uppercase tracking-widest mb-2">Message</label>
+                                <textarea wire:model="contactMessage" rows="5" placeholder="Tell us about your event and the talent you're interested in..." class="w-full px-5 py-4 bg-surface-muted border border-brand-navy/10 rounded-xl focus:ring-2 focus:ring-brand-teal focus:border-transparent outline-none transition-all resize-none"></textarea>
+                                @error('contactMessage') <span class="text-red-500 text-xs mt-1">{{ $message }}</span> @enderror
+                            </div>
+                            <x-button type="submit" class="w-full" size="lg">
+                                Submit Booking Inquiry
+                            </x-button>
                         </form>
                     @endif
                 </div>
             </div>
         </div>
+
+        <div class="absolute bottom-0 left-0 w-full h-1/2 bg-linear-to-t from-black/20 to-transparent"></div>
     </section>
 </div>

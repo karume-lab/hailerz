@@ -5,22 +5,16 @@ namespace Database\Factories;
 use App\Models\Category;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-/**
- * @extends Factory<Category>
- */
 class CategoryFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
     public function definition(): array
     {
+        // Removed B2C terms: 'Influencers', 'Celebrity Chefs'
+        // Added B2B terms: 'Brand Ambassadors', 'Master Chefs', 'Illusionists'
         $name = $this->faker->unique()->randomElement([
-            'Musicians', 'Dancers', 'Comedians', 'Keynote Speakers', 'Magicians', 
-            'Acrobats', 'Models', 'Influencers', 'Event Hosts', 'Live Painters',
-            'DJs', 'Saxophonists', 'Motivational Speakers', 'Celebrity Chefs', 'Spoken Word Artists'
+            'Musicians', 'Corporate Dancers', 'Comedians', 'Keynote Speakers', 'Illusionists', 
+            'Acrobatic Troupes', 'Brand Ambassadors', 'Event Hosts', 'Live Event Painters',
+            'DJs', 'Jazz Saxophonists', 'Motivational Speakers', 'Master Chefs', 'Spoken Word Artists'
         ]);
         
         return [
