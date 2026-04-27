@@ -7,16 +7,24 @@
     <meta name="description"
         content="Hailerz is a premium talent booking agency connecting event planners with world-class performers, keynote speakers, and corporate entertainers.">
     <meta name="theme-color" content="#21395c">
+    <link rel="apple-touch-icon" href="/images/logo.webp">
 
     <title>{{ $title ?? 'Hailerz | Premium Talent Booking Agency' }}</title>
 
     <link rel="preconnect" href="https://fonts.bunny.net" crossorigin>
     <link href="https://fonts.bunny.net/css?family=inter:400,500,600,700|outfit:600,700&display=swap" rel="stylesheet" />
+    <link rel="manifest" href="/manifest.json">
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js');
+            });
+        }
+    </script>
 
     <link rel="canonical" href="{{ url()->current() }}">
-    <link rel="apple-touch-icon" href="{{ asset('images/logo.webp') }}">
-    <link rel="manifest" href="{{ asset('manifest.json') }}">
-    <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
+    <link rel="icon" href="/images/logo.webp" type="image/webp">
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
