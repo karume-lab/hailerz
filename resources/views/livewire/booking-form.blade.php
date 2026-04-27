@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Booking;
+use App\Models\Inquiry;
 use Livewire\Component;
 
 new class extends Component {
@@ -10,54 +10,84 @@ new class extends Component {
     public bool $is_success = false;
 
     public function nextStep() {
-        $this->validate(['client_name' => 'required', 'event_date' => 'required|date']);
+        $this->validate([
+            'client_name' => 'required|min:3', 
+            'event_date' => 'required|date|after:today'
+        ]);
         $this->step = 2;
     }
 
     public function submit() {
-        Booking::create([
+        Inquiry::create([
             'client_name' => $this->client_name,
             'event_date' => $this->event_date,
-            'status' => 'lead'
+            'status' => 'lead',
+            'type' => 'general'
         ]);
         $this->is_success = true;
     }
 };
 ?>
 
-<div class="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow mt-10 border">
+<div class="max-w-2xl mx-auto p-12 bg-white rounded-[2.5rem] shadow-2xl border border-brand-navy/5 mt-10">
     @if($is_success)
-        <div class="text-center py-10">
-            <h2 class="text-2xl font-bold text-green-600">Request Sent!</h2>
-            <p class="mt-2 text-gray-600">Our agents will review your request and contact you shortly.</p>
+        <div class="text-center py-12">
+            <div class="w-20 h-20 bg-brand-mint/10 text-brand-mint rounded-full flex items-center justify-center mx-auto mb-8">
+                <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+            </div>
+            <h2 class="text-3xl font-bold text-brand-navy font-serif mb-4 tracking-tight">Inquiry Submitted</h2>
+            <p class="text-text-secondary leading-relaxed font-light mb-8">Our procurement agents have received your specifications and will contact you shortly to discuss the engagement.</p>
+            <x-button variant="secondary" href="/talent">Back to Roster</x-button>
         </div>
     @else
-        <h2 class="text-2xl font-bold mb-6">Book Talent</h2>
+        <div class="flex items-center gap-3 mb-4">
+            <span class="h-px w-8 bg-brand-teal"></span>
+            <span class="text-xs font-bold text-brand-teal uppercase tracking-widest">Procurement Step {{ $step }} of 2</span>
+        </div>
+        <h2 class="text-3xl font-bold text-brand-navy font-serif mb-10 tracking-tight">Booking Inquiry</h2>
         
         @if($step === 1)
-            <div class="space-y-4">
+            <div class="space-y-8">
                 <div>
-                    <label class="block text-sm font-medium">Your Name / Company</label>
-                    <input type="text" wire:model="client_name" class="mt-1 w-full border-gray-300 rounded-md shadow-sm">
-                    @error('client_name') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
+                    <label class="block text-xs font-bold text-brand-navy uppercase tracking-widest mb-3">Client Identity / Organization</label>
+                    <input type="text" wire:model="client_name" placeholder="Legal entity or lead planner" class="w-full bg-surface-muted border border-brand-navy/10 rounded-xl px-5 py-4 text-brand-navy focus:ring-2 focus:ring-brand-teal focus:border-transparent outline-none transition-all placeholder:text-text-muted">
+                    @error('client_name') <span class="text-red-500 text-[10px] font-bold uppercase mt-2 block">{{ $message }}</span> @enderror
                 </div>
                 <div>
-                    <label class="block text-sm font-medium">Event Date</label>
-                    <input type="date" wire:model="event_date" class="mt-1 w-full border-gray-300 rounded-md shadow-sm">
-                    @error('event_date') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
+                    <label class="block text-xs font-bold text-brand-navy uppercase tracking-widest mb-3">Proposed Event Date</label>
+                    <input type="date" wire:model="event_date" class="w-full bg-surface-muted border border-brand-navy/10 rounded-xl px-5 py-4 text-brand-navy focus:ring-2 focus:ring-brand-teal focus:border-transparent outline-none transition-all">
+                    @error('event_date') <span class="text-red-500 text-[10px] font-bold uppercase mt-2 block">{{ $message }}</span> @enderror
                 </div>
-                <button wire:click="nextStep" class="w-full bg-blue-600 text-white py-2 rounded-md">Continue</button>
+                
+                <div class="pt-4">
+                    <x-button variant="primary" size="lg" class="w-full" wire:click="nextStep">
+                        Continue to Review
+                    </x-button>
+                </div>
             </div>
         @elseif($step === 2)
-            <div class="space-y-4">
-                <p class="text-gray-600">Review your details before submitting:</p>
-                <ul class="list-disc pl-5">
-                    <li><strong>Client:</strong> {{ $client_name }}</li>
-                    <li><strong>Date:</strong> {{ $event_date }}</li>
-                </ul>
-                <div class="flex gap-4">
-                    <button wire:click="$set('step', 1)" class="w-1/3 bg-gray-200 py-2 rounded-md">Back</button>
-                    <button wire:click="submit" class="w-2/3 bg-green-600 text-white py-2 rounded-md">Submit Request</button>
+            <div class="space-y-10">
+                <div class="bg-surface-muted p-8 rounded-2xl border border-brand-navy/5">
+                    <p class="text-[10px] font-bold text-text-muted uppercase tracking-widest mb-6">Review Specifications</p>
+                    <div class="space-y-6">
+                        <div class="flex justify-between items-center pb-4 border-b border-brand-navy/5">
+                            <span class="text-sm font-bold text-brand-navy/60 uppercase">Engagement Name</span>
+                            <span class="text-sm font-bold text-brand-navy">{{ $client_name }}</span>
+                        </div>
+                        <div class="flex justify-between items-center pb-4 border-b border-brand-navy/5">
+                            <span class="text-sm font-bold text-brand-navy/60 uppercase">Execution Date</span>
+                            <span class="text-sm font-bold text-brand-navy">{{ \Carbon\Carbon::parse($event_date)->format('F d, Y') }}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex flex-col sm:flex-row gap-6">
+                    <x-button variant="secondary" size="lg" class="flex-1" wire:click="$set('step', 1)">
+                        Modify Details
+                    </x-button>
+                    <x-button variant="primary" size="lg" class="flex-1" wire:click="submit">
+                        Secure Submission
+                    </x-button>
                 </div>
             </div>
         @endif

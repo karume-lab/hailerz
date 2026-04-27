@@ -5,10 +5,6 @@
             <div class="lg:grid lg:grid-cols-2 lg:gap-16 items-center">
                 <!-- Left Content -->
                 <div class="mb-16 lg:mb-0">
-                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-teal/10 border border-brand-teal/20 mb-8">
-                        <span class="w-2 h-2 rounded-full bg-brand-teal animate-pulse"></span>
-                        <span class="text-xs font-bold text-brand-teal uppercase tracking-widest">Premium Talent Agency</span>
-                    </div>
                     <h1 class="text-5xl md:text-7xl font-bold tracking-tight text-text-inverse mb-8 leading-[1.1] font-serif">
                         Elevate Your Events with <span class="text-brand-teal">World-Class</span> Talent.
                     </h1>

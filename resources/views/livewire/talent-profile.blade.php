@@ -6,32 +6,65 @@ use Livewire\Component;
 new class extends Component {
     public Talent $talent;
 
-    public function mount($id) {
-        $this->talent = Talent::findOrFail($id);
+    public function mount($slug) {
+        $this->talent = Talent::where('slug', $slug)->firstOrFail();
     }
 };
 ?>
 
-<div class="max-w-4xl mx-auto p-6 mt-10">
-    <div class="flex flex-col md:flex-row gap-8">
-        <div class="w-full md:w-1/3">
-            @if($talent->headshot_path)
-                <img src="{{ asset('storage/' . $talent->headshot_path) }}" class="rounded-lg shadow-lg w-full">
-            @else
-                <div class="bg-gray-200 h-64 rounded-lg w-full"></div>
-            @endif
-        </div>
-        <div class="w-full md:w-2/3">
-            <span class="text-sm font-bold text-blue-600 uppercase">{{ $talent->category }}</span>
-            <h1 class="text-4xl font-bold text-gray-900 mt-1">{{ $talent->name }}</h1>
-            <p class="text-xl text-gray-600 mt-2">Starting at ${{ number_format($talent->min_fee) }}</p>
+<div class="bg-surface-muted min-h-screen py-20">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="bg-white rounded-[3rem] shadow-2xl overflow-hidden border border-brand-navy/5 flex flex-col md:flex-row">
             
-            <div class="mt-6 prose">
-                {!! $talent->bio !!}
+            <!-- Talent Asset -->
+            <div class="w-full md:w-2/5">
+                <div class="group relative overflow-hidden h-full min-h-[500px] bg-surface-dark">
+                    @if($this->talent->hasMedia('primary_image'))
+                        <img src="{{ $this->talent->getFirstMediaUrl('primary_image') }}" class="w-full h-full object-cover grayscale transition-transform duration-1000 scale-105" alt="{{ $this->talent->name }}" />
+                    @else
+                         <div class="w-full h-full flex items-center justify-center bg-brand-navy">
+                            <span class="text-9xl font-bold text-white/10 font-serif">{{ substr($this->talent->name, 0, 1) }}</span>
+                        </div>
+                    @endif
+                    <div class="absolute inset-0 bg-linear-to-tr from-brand-teal/80 to-brand-mint/40 mix-blend-color opacity-70"></div>
+                    <div class="absolute inset-0 bg-linear-to-t from-brand-navy/90 via-brand-navy/20 to-transparent"></div>
+                </div>
             </div>
 
-            <div class="mt-8">
-                <a href="/book" class="bg-gray-900 text-white px-6 py-3 rounded-md font-bold hover:bg-gray-800">Request to Book</a>
+            <!-- Talent Details -->
+            <div class="w-full md:w-3/5 p-12 lg:p-20">
+                <div class="flex items-center gap-3 mb-6">
+                    <span class="h-px w-8 bg-brand-teal"></span>
+                    <span class="text-xs font-bold text-brand-teal uppercase tracking-widest">{{ $this->talent->category?->name ?? 'Professional Act' }}</span>
+                </div>
+                
+                <h1 class="text-4xl md:text-6xl font-bold text-brand-navy font-serif tracking-tight mb-8">{{ $this->talent->name }}</h1>
+                
+                <div class="flex flex-wrap gap-10 mb-12">
+                    <div>
+                        <p class="text-[10px] font-bold text-text-muted uppercase tracking-widest mb-1">Starting Investment</p>
+                        <p class="text-2xl font-bold text-brand-navy font-serif">
+                            {{ $this->talent->starting_price ? '$' . number_format($this->talent->starting_price) : 'Custom Quotation' }}
+                        </p>
+                    </div>
+                    <div>
+                        <p class="text-[10px] font-bold text-text-muted uppercase tracking-widest mb-1">Primary Base</p>
+                        <p class="text-lg font-semibold text-brand-navy">{{ $this->talent->location ?? 'International' }}</p>
+                    </div>
+                </div>
+                
+                <div class="prose prose-lg text-text-secondary font-light leading-relaxed mb-12">
+                    {!! $this->talent->bio !!}
+                </div>
+
+                <div class="flex flex-col sm:flex-row gap-6">
+                    <x-button variant="primary" size="lg" href="/book?talent={{ $this->talent->id }}">
+                        Secure the Act
+                    </x-button>
+                    <x-button variant="secondary" size="lg" href="/talent">
+                        Back to Roster
+                    </x-button>
+                </div>
             </div>
         </div>
     </div>
