@@ -83,7 +83,7 @@
                             ['Performance Quality', 'Continuous vetting and post-event audits to maintain elite standards.'],
                         ] as $pillar)
                         <div class="space-y-3">
-                            <h5 class="text-brand-teal font-bold text-sm uppercase tracking-widest">{{ $pillar[0] }}</h5>
+                            <h3 class="text-brand-teal font-bold text-sm uppercase tracking-widest">{{ $pillar[0] }}</h3>
                             <p class="text-text-inverse/60 text-sm leading-relaxed">{{ $pillar[1] }}</p>
                         </div>
                         @endforeach
@@ -91,7 +91,7 @@
                 </div>
                 <div class="relative mt-16 lg:mt-0">
                     <div class="group relative overflow-hidden rounded-[3rem] aspect-4/5 bg-surface-dark border border-white/5">
-                        <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=1000" class="w-full h-full object-cover grayscale opacity-60 transition-transform duration-700 group-hover:scale-105" alt="Event Logistics" />
+                        <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=1000" loading="lazy" width="800" height="1000" class="w-full h-full object-cover grayscale opacity-60 transition-transform duration-700 group-hover:scale-105" alt="Event Logistics" />
                         <div class="absolute inset-0 bg-linear-to-tr from-brand-teal/80 to-brand-mint/40 mix-blend-color opacity-70"></div>
                         <div class="absolute inset-0 bg-linear-to-t from-brand-navy via-transparent to-transparent"></div>
                     </div>
@@ -117,7 +117,7 @@
                 <div class="relative">
                     <span class="text-8xl font-black text-brand-navy/5 absolute -top-12 -left-4">{{ $step[0] }}</span>
                     <div class="relative z-10">
-                        <h4 class="text-2xl font-bold text-brand-navy mb-4 font-serif">{{ $step[1] }}</h4>
+                        <h3 class="text-2xl font-bold text-brand-navy mb-4 font-serif">{{ $step[1] }}</h3>
                         <p class="text-text-secondary leading-relaxed font-light">{{ $step[2] }}</p>
                     </div>
                 </div>

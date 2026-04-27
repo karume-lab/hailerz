@@ -20,7 +20,7 @@ new class extends Component {
             <div class="w-full md:w-2/5">
                 <div class="group relative overflow-hidden h-full min-h-[500px] bg-surface-dark">
                     @if($this->talent->hasMedia('primary_image'))
-                        <img src="{{ $this->talent->getFirstMediaUrl('primary_image') }}" class="w-full h-full object-cover grayscale transition-transform duration-1000 scale-105" alt="{{ $this->talent->name }}" />
+                        <img src="{{ $this->talent->getFirstMediaUrl('primary_image') }}" loading="lazy" class="w-full h-full object-cover grayscale transition-transform duration-1000 scale-105" alt="{{ $this->talent->name }}" />
                     @else
                          <div class="w-full h-full flex items-center justify-center bg-brand-navy">
                             <span class="text-9xl font-bold text-white/10 font-serif">{{ substr($this->talent->name, 0, 1) }}</span>

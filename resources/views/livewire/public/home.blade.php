@@ -26,7 +26,7 @@
                     <div class="grid grid-cols-2 gap-6">
                         <div class="space-y-6 pt-12">
                             <div class="group relative overflow-hidden rounded-2xl aspect-3/4 bg-surface-dark border border-white/5">
-                                <img src="{{ asset('images/home/hero-card-1.webp') }}" class="w-full h-full object-cover grayscale transition-transform duration-700 group-hover:scale-110" alt="Talent Preview" />
+                                <img src="{{ asset('images/home/hero-card-1.webp') }}" loading="eager" fetchpriority="high" width="600" height="800" class="w-full h-full object-cover grayscale transition-transform duration-700 group-hover:scale-110" alt="Live Performance Showcase" />
                                 <div class="absolute inset-0 bg-linear-to-tr from-brand-teal/80 to-brand-mint/40 mix-blend-color"></div>
                                 <div class="absolute inset-0 bg-linear-to-t from-brand-navy/90 via-transparent to-transparent"></div>
                                 <div class="absolute bottom-6 left-6">
@@ -37,7 +37,7 @@
                         </div>
                         <div class="space-y-6">
                             <div class="group relative overflow-hidden rounded-2xl aspect-3/4 bg-surface-dark border border-white/5">
-                                <img src="{{ asset('images/home/hero-card-2.webp') }}" class="w-full h-full object-cover grayscale transition-transform duration-700 group-hover:scale-110" alt="Talent Preview" />
+                                <img src="{{ asset('images/home/hero-card-2.webp') }}" loading="eager" fetchpriority="high" width="600" height="800" class="w-full h-full object-cover grayscale transition-transform duration-700 group-hover:scale-110" alt="Keynote Speaker Showcase" />
                                 <div class="absolute inset-0 bg-linear-to-tr from-brand-teal/80 to-brand-mint/40 mix-blend-color"></div>
                                 <div class="absolute inset-0 bg-linear-to-t from-brand-navy/90 via-transparent to-transparent"></div>
                                 <div class="absolute bottom-6 left-6">
@@ -124,7 +124,7 @@
 
                 @foreach($categories as $cat)
                     <a href="/talent?category={{ $cat['slug'] }}" class="group block relative h-[450px] rounded-3xl overflow-hidden shadow-lg">
-                        <img src="{{ asset('images/home/' . $cat['img']) }}" class="absolute inset-0 w-full h-full object-cover grayscale transition-transform duration-1000 group-hover:scale-110" alt="{{ $cat['name'] }}" />
+                        <img src="{{ asset('images/home/' . $cat['img']) }}" loading="lazy" width="400" height="450" class="absolute inset-0 w-full h-full object-cover grayscale transition-transform duration-1000 group-hover:scale-110" alt="{{ $cat['name'] }}" />
                         <div class="absolute inset-0 bg-linear-to-tr from-brand-teal/80 to-brand-mint/40 mix-blend-color opacity-90"></div>
                         <div class="absolute inset-0 bg-linear-to-t from-brand-navy/90 via-brand-navy/20 to-transparent"></div>
                         <div class="absolute bottom-10 left-10">
@@ -160,7 +160,7 @@
                                 </svg>
                             </div>
                             <div>
-                                <h4 class="text-text-inverse font-bold">Email Our Agents</h4>
+                                <h3 class="text-text-inverse font-bold">Email Our Agents</h3>
                                 <p class="text-text-secondary text-sm">bookings@hailerz.com</p>
                             </div>
                         </li>
@@ -171,7 +171,7 @@
                                 </svg>
                             </div>
                             <div>
-                                <h4 class="text-text-inverse font-bold">Rapid Response</h4>
+                                <h3 class="text-text-inverse font-bold">Rapid Response</h3>
                                 <p class="text-text-secondary text-sm">Typically within 24 business hours</p>
                             </div>
                         </li>
@@ -194,19 +194,19 @@
                         <form wire:submit="submitContact" class="space-y-6">
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div>
-                                    <label class="block text-xs font-bold text-brand-navy uppercase tracking-widest mb-2">Name</label>
-                                    <input wire:model="contactName" type="text" placeholder="Full Name" class="w-full px-5 py-4 bg-surface-muted border border-brand-navy/10 rounded-xl focus:ring-2 focus:ring-brand-teal focus:border-transparent outline-none transition-all" />
+                                    <label for="contactName" class="block text-xs font-bold text-brand-navy uppercase tracking-widest mb-2">Name</label>
+                                    <input id="contactName" wire:model="contactName" type="text" placeholder="Full Name" class="w-full px-5 py-4 bg-surface-muted border border-brand-navy/10 rounded-xl focus:ring-2 focus:ring-brand-teal focus:border-transparent outline-none transition-all" />
                                     @error('contactName') <span class="text-red-500 text-xs mt-1">{{ $message }}</span> @enderror
                                 </div>
                                 <div>
-                                    <label class="block text-xs font-bold text-brand-navy uppercase tracking-widest mb-2">Email</label>
-                                    <input wire:model="contactEmail" type="email" placeholder="Email Address" class="w-full px-5 py-4 bg-surface-muted border border-brand-navy/10 rounded-xl focus:ring-2 focus:ring-brand-teal focus:border-transparent outline-none transition-all" />
+                                    <label for="contactEmail" class="block text-xs font-bold text-brand-navy uppercase tracking-widest mb-2">Email</label>
+                                    <input id="contactEmail" wire:model="contactEmail" type="email" placeholder="Email Address" class="w-full px-5 py-4 bg-surface-muted border border-brand-navy/10 rounded-xl focus:ring-2 focus:ring-brand-teal focus:border-transparent outline-none transition-all" />
                                     @error('contactEmail') <span class="text-red-500 text-xs mt-1">{{ $message }}</span> @enderror
                                 </div>
                             </div>
                             <div>
-                                <label class="block text-xs font-bold text-brand-navy uppercase tracking-widest mb-2">Message</label>
-                                <textarea wire:model="contactMessage" rows="5" placeholder="Tell us about your event and the talent you're interested in..." class="w-full px-5 py-4 bg-surface-muted border border-brand-navy/10 rounded-xl focus:ring-2 focus:ring-brand-teal focus:border-transparent outline-none transition-all resize-none"></textarea>
+                                <label for="contactMessage" class="block text-xs font-bold text-brand-navy uppercase tracking-widest mb-2">Message</label>
+                                <textarea id="contactMessage" wire:model="contactMessage" rows="5" placeholder="Tell us about your event and the talent you're interested in..." class="w-full px-5 py-4 bg-surface-muted border border-brand-navy/10 rounded-xl focus:ring-2 focus:ring-brand-teal focus:border-transparent outline-none transition-all resize-none"></textarea>
                                 @error('contactMessage') <span class="text-red-500 text-xs mt-1">{{ $message }}</span> @enderror
                             </div>
                             <x-button type="submit" class="w-full" size="lg">

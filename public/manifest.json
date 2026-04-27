@@ -1,0 +1,16 @@
+{
+  "name": "Hailerz Talent Agency",
+  "short_name": "Hailerz",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#21395c",
+  "theme_color": "#1a8aa7",
+  "icons": [
+    {
+      "src": "/images/logo.webp",
+      "sizes": "512x512",
+      "type": "image/webp",
+      "purpose": "any maskable"
+    }
+  ]
+}

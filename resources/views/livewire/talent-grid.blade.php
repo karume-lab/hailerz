@@ -29,7 +29,7 @@ new class extends Component {
             <h1 class="text-4xl font-bold text-brand-navy font-serif">Explore the Talent</h1>
         </div>
 
-        <select wire:model.live="category_id" class="bg-surface-muted border border-brand-navy/10 rounded-xl px-5 py-3 text-sm font-bold text-brand-navy uppercase tracking-widest focus:ring-2 focus:ring-brand-teal focus:border-transparent outline-none transition-all">
+        <select wire:model.live="category_id" aria-label="Filter talent by category" class="bg-surface-muted border border-brand-navy/10 rounded-xl px-5 py-3 text-sm font-bold text-brand-navy uppercase tracking-widest focus:ring-2 focus:ring-brand-teal focus:border-transparent outline-none transition-all">
             <option value="">All Disciplines</option>
             @foreach($categories as $cat)
                 <option value="{{ $cat->id }}">{{ $cat->name }}</option>
@@ -43,7 +43,7 @@ new class extends Component {
 
                 <div class="group relative overflow-hidden aspect-3/4 bg-surface-dark">
                     @if($talent->hasMedia('primary_image'))
-                        <img src="{{ $talent->getFirstMediaUrl('primary_image') }}" class="w-full h-full object-cover grayscale transition-transform duration-500 group-hover:scale-110" alt="{{ $talent->name }}" />
+                        <img src="{{ $talent->getFirstMediaUrl('primary_image') }}" loading="lazy" class="w-full h-full object-cover grayscale transition-transform duration-500 group-hover:scale-110" alt="{{ $talent->name }}" />
                     @else
                         <div class="w-full h-full flex items-center justify-center bg-brand-navy">
                             <span class="text-4xl font-bold text-white/10 font-serif">{{ substr($talent->name, 0, 1) }}</span>

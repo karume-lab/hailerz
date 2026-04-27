@@ -96,23 +96,23 @@
                     </p>
                     <div class="grid grid-cols-2 gap-8 pt-6">
                         <div>
-                            <h4 class="text-4xl font-bold text-brand-navy mb-2 font-serif">500+</h4>
+                            <h3 class="text-4xl font-bold text-brand-navy mb-2 font-serif">500+</h3>
                             <p class="text-xs font-bold text-text-muted uppercase tracking-widest">Vetted Specialists</p>
                         </div>
                         <div>
-                            <h4 class="text-4xl font-bold text-brand-navy mb-2 font-serif">24/7</h4>
+                            <h3 class="text-4xl font-bold text-brand-navy mb-2 font-serif">24/7</h3>
                             <p class="text-xs font-bold text-text-muted uppercase tracking-widest">Logistics Support</p>
                         </div>
                     </div>
                 </div>
                 <div class="mt-16 lg:mt-0 grid grid-cols-2 gap-6">
                     <div class="group relative overflow-hidden rounded-xl aspect-3/4 bg-surface-dark shadow-2xl">
-                        <img src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&q=80&w=1000" class="w-full h-full object-cover grayscale transition-transform duration-500 group-hover:scale-105" />
+                        <img src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&q=80&w=1000" loading="lazy" width="500" height="667" alt="Corporate Event Production" class="w-full h-full object-cover grayscale transition-transform duration-500 group-hover:scale-105" />
                         <div class="absolute inset-0 bg-linear-to-tr from-brand-teal/80 to-brand-mint/40 mix-blend-color opacity-70"></div>
                         <div class="absolute inset-0 bg-linear-to-t from-brand-navy/90 via-transparent to-transparent"></div>
                     </div>
                     <div class="group relative overflow-hidden rounded-xl aspect-3/4 bg-surface-dark shadow-2xl mt-12">
-                        <img src="https://images.unsplash.com/photo-1540575861501-7ad05823c23d?auto=format&fit=crop&q=80&w=1000" class="w-full h-full object-cover grayscale transition-transform duration-500 group-hover:scale-105" />
+                        <img src="https://images.unsplash.com/photo-1540575861501-7ad05823c23d?auto=format&fit=crop&q=80&w=1000" loading="lazy" width="500" height="667" alt="Professional Staffing On-site" class="w-full h-full object-cover grayscale transition-transform duration-500 group-hover:scale-105" />
                         <div class="absolute inset-0 bg-linear-to-tr from-brand-teal/80 to-brand-mint/40 mix-blend-color opacity-70"></div>
                         <div class="absolute inset-0 bg-linear-to-t from-brand-navy/90 via-transparent to-transparent"></div>
                     </div>
@@ -135,7 +135,7 @@
                         <span class="font-bold">01</span>
                     </div>
                     <div>
-                        <h4 class="text-2xl font-bold text-text-inverse mb-4 font-serif">Rigorous Vetting</h4>
+                        <h3 class="text-2xl font-bold text-text-inverse mb-4 font-serif">Rigorous Vetting</h3>
                         <p class="text-text-secondary leading-relaxed font-light">Every staff member is interviewed, their credentials verified, and their track record for corporate event delivery audited.</p>
                     </div>
                 </div>
@@ -144,7 +144,7 @@
                         <span class="font-bold">02</span>
                     </div>
                     <div>
-                        <h4 class="text-2xl font-bold text-text-inverse mb-4 font-serif">Rapid Mobilization</h4>
+                        <h3 class="text-2xl font-bold text-text-inverse mb-4 font-serif">Rapid Mobilization</h3>
                         <p class="text-text-secondary leading-relaxed font-light">Our extensive network allows us to mobilize professional talent augmentation teams even on short notice across international territories.</p>
                     </div>
                 </div>
@@ -153,7 +153,7 @@
                         <span class="font-bold">03</span>
                     </div>
                     <div>
-                        <h4 class="text-2xl font-bold text-text-inverse mb-4 font-serif">Bespoke Matching</h4>
+                        <h3 class="text-2xl font-bold text-text-inverse mb-4 font-serif">Bespoke Matching</h3>
                         <p class="text-text-secondary leading-relaxed font-light">We don't just fill seats; we match professionals to your specific event culture, technical requirements, and client expectations.</p>
                     </div>
                 </div>
@@ -162,7 +162,7 @@
                         <span class="font-bold">04</span>
                     </div>
                     <div>
-                        <h4 class="text-2xl font-bold text-text-inverse mb-4 font-serif">End-to-End Logistics</h4>
+                        <h3 class="text-2xl font-bold text-text-inverse mb-4 font-serif">End-to-End Logistics</h3>
                         <p class="text-text-secondary leading-relaxed font-light">From travel and accommodation to payroll and compliance, Hailerz manages the full administrative lifecycle of your augmented team.</p>
                     </div>
                 </div>
