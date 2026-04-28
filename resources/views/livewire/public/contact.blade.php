@@ -7,30 +7,30 @@
                         <span class="h-px w-8 bg-brand-teal"></span>
                         <span class="text-xs font-bold text-brand-teal uppercase tracking-widest">Connect</span>
                     </div>
-                    <h2 class="text-4xl font-bold tracking-tight text-brand-navy font-serif">Get in Touch</h2>
+                    <h2 class="text-4xl font-bold tracking-tight text-text-primary font-serif">Get in Touch</h2>
                     <p class="mt-6 text-lg leading-relaxed text-text-secondary font-light">
                         Whether you're looking to secure talent for an upcoming event or discuss agency representation, our team of dedicated agents is here to assist.
                     </p>
                 </div>
                 <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:col-span-2">
-                    <div class="rounded-3xl bg-surface-light p-10 border border-brand-navy/5 shadow-sm">
+                    <div class="rounded-3xl bg-surface-light p-10 border border-gray-200 dark:border-gray-800 shadow-sm">
                         <h3 class="text-xs font-bold text-brand-teal uppercase tracking-[0.2em] mb-4">Headquarters</h3>
                         <address class="not-italic text-sm text-text-secondary leading-relaxed">
                             Westlands Business District<br>
                             Nairobi, Kenya
                         </address>
                     </div>
-                    <div class="rounded-3xl bg-surface-light p-10 border border-brand-navy/5 shadow-sm">
+                    <div class="rounded-3xl bg-surface-light p-10 border border-gray-200 dark:border-gray-800 shadow-sm">
                         <h3 class="text-xs font-bold text-brand-teal uppercase tracking-[0.2em] mb-4">Direct Inquiry</h3>
-                        <p class="text-sm text-text-secondary mb-2">General: <a class="font-bold text-brand-navy hover:text-brand-teal transition-colors" href="mailto:info@hailerz.com">info@hailerz.com</a></p>
-                        <p class="text-sm text-text-secondary">Bookings: <a class="font-bold text-brand-navy hover:text-brand-teal transition-colors" href="mailto:bookings@hailerz.com">bookings@hailerz.com</a></p>
+                        <p class="text-sm text-text-secondary mb-2">General: <a class="font-bold text-brand-teal hover:underline transition-colors" href="mailto:info@hailerz.com">info@hailerz.com</a></p>
+                        <p class="text-sm text-text-secondary">Bookings: <a class="font-bold text-brand-teal hover:underline transition-colors" href="mailto:bookings@hailerz.com">bookings@hailerz.com</a></p>
                     </div>
                 </div>
             </div>
 
-            <div class="pt-16 lg:grid lg:grid-cols-3 lg:gap-12 border-t border-brand-navy/5">
+            <div class="pt-16 lg:grid lg:grid-cols-3 lg:gap-12 border-t border-gray-200 dark:border-gray-800">
                 <div>
-                    <h2 class="text-2xl font-bold tracking-tight text-brand-navy font-serif mb-4">Agency Correspondence</h2>
+                    <h2 class="text-2xl font-bold tracking-tight text-text-primary font-serif mb-4">Agency Correspondence</h2>
                     <p class="text-sm text-text-secondary font-light leading-relaxed">
                         Complete the form below for general inquiries. For specific talent requests, we recommend using our <a href="/book" class="text-brand-teal font-bold hover:underline">Booking Wizard</a> for expedited processing.
                     </p>
@@ -47,23 +47,23 @@
 
                     <form wire:submit="submit" class="grid grid-cols-1 gap-y-8 sm:grid-cols-2 sm:gap-x-8">
                         <div>
-                            <label for="name" class="block text-[10px] font-bold text-brand-navy uppercase tracking-widest mb-3">Full Name</label>
-                            <input wire:model="name" type="text" id="name" placeholder="Name or Organization" class="block w-full px-6 py-4 bg-surface-light border border-brand-navy/5 rounded-xl focus:ring-2 focus:ring-brand-teal focus:border-transparent outline-none text-sm font-medium transition-all">
+                            <label for="name" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Full Name</label>
+                            <input wire:model="name" type="text" id="name" placeholder="Name or Organization" class="block w-full px-6 py-4 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 placeholder-gray-500 dark:placeholder-gray-400 rounded-xl focus:ring-2 focus:ring-brand-teal focus:border-transparent outline-none text-gray-900 dark:text-white text-sm font-medium transition-all">
                             @error('name') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
                         </div>
                         <div>
-                            <label for="email" class="block text-[10px] font-bold text-brand-navy uppercase tracking-widest mb-3">Professional Email</label>
-                            <input wire:model="email" type="email" id="email" placeholder="email@company.com" class="block w-full px-6 py-4 bg-surface-light border border-brand-navy/5 rounded-xl focus:ring-2 focus:ring-brand-teal focus:border-transparent outline-none text-sm font-medium transition-all">
+                            <label for="email" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Professional Email</label>
+                            <input wire:model="email" type="email" id="email" placeholder="email@company.com" class="block w-full px-6 py-4 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 placeholder-gray-500 dark:placeholder-gray-400 rounded-xl focus:ring-2 focus:ring-brand-teal focus:border-transparent outline-none text-gray-900 dark:text-white text-sm font-medium transition-all">
                             @error('email') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
                         </div>
                         <div class="sm:col-span-2">
-                            <label for="subject" class="block text-[10px] font-bold text-brand-navy uppercase tracking-widest mb-3">Inquiry Subject</label>
-                            <input wire:model="subject" type="text" id="subject" class="block w-full px-6 py-4 bg-surface-light border border-brand-navy/5 rounded-xl focus:ring-2 focus:ring-brand-teal focus:border-transparent outline-none text-sm font-medium transition-all">
+                            <label for="subject" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Inquiry Subject</label>
+                            <input wire:model="subject" type="text" id="subject" class="block w-full px-6 py-4 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 placeholder-gray-500 dark:placeholder-gray-400 rounded-xl focus:ring-2 focus:ring-brand-teal focus:border-transparent outline-none text-gray-900 dark:text-white text-sm font-medium transition-all">
                             @error('subject') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
                         </div>
                         <div class="sm:col-span-2">
-                            <label for="message" class="block text-[10px] font-bold text-brand-navy uppercase tracking-widest mb-3">Message</label>
-                            <textarea wire:model="message" id="message" rows="5" placeholder="Detail your inquiry or project requirements..." class="block w-full px-6 py-4 bg-surface-light border border-brand-navy/5 rounded-xl focus:ring-2 focus:ring-brand-teal focus:border-transparent outline-none text-sm font-medium transition-all resize-none"></textarea>
+                            <label for="message" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Message</label>
+                            <textarea wire:model="message" id="message" rows="5" placeholder="Detail your inquiry or project requirements..." class="block w-full px-6 py-4 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 placeholder-gray-500 dark:placeholder-gray-400 rounded-xl focus:ring-2 focus:ring-brand-teal focus:border-transparent outline-none text-gray-900 dark:text-white text-sm font-medium transition-all resize-none"></textarea>
                             @error('message') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
                         </div>
                         <div class="sm:col-span-2 flex justify-end">

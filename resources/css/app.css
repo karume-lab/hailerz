@@ -29,8 +29,8 @@
 @layer base {
     :root {
         --surface-light: #FFFFFF;
-        --surface-muted: #F8FAFC;
-        --surface-dark: #21395c;
+        --surface-muted: #F9FAFB;
+        --surface-dark: #111827;
         
         --text-primary: #111827;
         --text-secondary: #374151; /* Darker for better contrast */
@@ -39,11 +39,11 @@
     }
 
     .dark {
-        --surface-light: #1e314d;
-        --surface-muted: #21395c;
-        --surface-dark: #1a2c46;
+        --surface-light: #000000;
+        --surface-muted: #111827;
+        --surface-dark: #000000;
         
-        --text-primary: #F3F4F6;
+        --text-primary: #F9FAFB;
         --text-secondary: #D1D5DB; /* Lighter for better contrast on dark bg */
         --text-muted: #9CA3AF;     /* Lighter for better contrast on dark bg */
         --text-inverse: #FFFFFF;

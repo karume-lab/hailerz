@@ -10,7 +10,7 @@
             <h1 class="text-5xl md:text-8xl font-bold text-text-inverse tracking-tight mb-8 font-serif leading-tight">
                 Elite <span class="text-brand-teal">Event</span> Staffing Solutions
             </h1>
-            <p class="text-xl md:text-2xl text-text-secondary max-w-3xl mx-auto leading-relaxed font-light">
+            <p class="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-light">
                 Scale your production team with vetted specialists. We provide the technical expertise and professional support required for world-class event execution.
             </p>
         </div>
@@ -26,7 +26,7 @@
     <section class="py-32 bg-surface-muted">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-24">
-                <h2 class="text-3xl md:text-5xl font-bold text-brand-navy mb-6 font-serif tracking-tight">On-Demand Expertise</h2>
+                <h2 class="text-3xl md:text-5xl font-bold text-text-primary mb-6 font-serif tracking-tight">On-Demand Expertise</h2>
                 <p class="text-text-secondary text-lg">Whether you need specialized technical leads or a full production crew, our augmentation services scale to your event's DNA.</p>
             </div>
 
@@ -67,11 +67,11 @@
                 @endphp
 
                 @foreach($solutions as $solution)
-                <div class="bg-surface-light p-12 rounded-[2.5rem] border border-brand-navy/5 shadow-sm hover:shadow-2xl transition-all duration-500 group">
+                <div class="bg-surface-light p-12 rounded-[2.5rem] border border-gray-200 dark:border-gray-800 shadow-sm hover:shadow-2xl transition-all duration-500 group">
                     <div class="w-16 h-16 bg-brand-teal/10 rounded-2xl flex items-center justify-center text-brand-teal mb-8 group-hover:scale-110 transition-transform">
                         <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="{{ $solution['icon'] }}"></path></svg>
                     </div>
-                    <h3 class="text-2xl font-bold text-brand-navy mb-4 font-serif">{{ $solution['title'] }}</h3>
+                    <h3 class="text-2xl font-bold text-text-primary mb-4 font-serif">{{ $solution['title'] }}</h3>
                     <p class="text-text-secondary leading-relaxed font-light">{{ $solution['desc'] }}</p>
                 </div>
                 @endforeach
@@ -88,7 +88,7 @@
                         <span class="h-px w-8 bg-brand-teal"></span>
                         <span class="text-xs font-bold text-brand-teal uppercase tracking-widest">Global Standards</span>
                     </div>
-                    <h2 class="text-4xl md:text-6xl font-bold text-brand-navy font-serif tracking-tight leading-tight">
+                    <h2 class="text-4xl md:text-6xl font-bold text-text-primary font-serif tracking-tight leading-tight">
                         Qualified Professionals. <span class="text-brand-teal italic">Precision</span> Execution.
                     </h2>
                     <p class="text-xl text-text-secondary leading-relaxed font-light">
@@ -96,11 +96,11 @@
                     </p>
                     <div class="grid grid-cols-2 gap-8 pt-6">
                         <div>
-                            <h3 class="text-4xl font-bold text-brand-navy mb-2 font-serif">500+</h3>
+                            <h3 class="text-4xl font-bold text-text-primary mb-2 font-serif">500+</h3>
                             <p class="text-xs font-bold text-text-muted uppercase tracking-widest">Vetted Specialists</p>
                         </div>
                         <div>
-                            <h3 class="text-4xl font-bold text-brand-navy mb-2 font-serif">24/7</h3>
+                            <h3 class="text-4xl font-bold text-text-primary mb-2 font-serif">24/7</h3>
                             <p class="text-xs font-bold text-text-muted uppercase tracking-widest">Logistics Support</p>
                         </div>
                     </div>
@@ -126,7 +126,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center max-w-3xl mx-auto mb-24">
                 <h2 class="text-3xl md:text-5xl font-bold text-text-inverse mb-6 font-serif tracking-tight">The Hailerz Advantage</h2>
-                <p class="text-text-secondary text-lg">A commitment to professional staffing that transcends typical labor solutions.</p>
+                <p class="text-gray-300 text-lg">A commitment to professional staffing that transcends typical labor solutions.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
@@ -136,7 +136,7 @@
                     </div>
                     <div>
                         <h3 class="text-2xl font-bold text-text-inverse mb-4 font-serif">Rigorous Vetting</h3>
-                        <p class="text-text-secondary leading-relaxed font-light">Every staff member is interviewed, their credentials verified, and their track record for corporate event delivery audited.</p>
+                        <p class="text-gray-300 leading-relaxed font-light">Every staff member is interviewed, their credentials verified, and their track record for corporate event delivery audited.</p>
                     </div>
                 </div>
                 <div class="flex gap-8">
@@ -145,7 +145,7 @@
                     </div>
                     <div>
                         <h3 class="text-2xl font-bold text-text-inverse mb-4 font-serif">Rapid Mobilization</h3>
-                        <p class="text-text-secondary leading-relaxed font-light">Our extensive network allows us to mobilize professional talent augmentation teams even on short notice across international territories.</p>
+                        <p class="text-gray-300 leading-relaxed font-light">Our extensive network allows us to mobilize professional talent augmentation teams even on short notice across international territories.</p>
                     </div>
                 </div>
                 <div class="flex gap-8">
@@ -154,7 +154,7 @@
                     </div>
                     <div>
                         <h3 class="text-2xl font-bold text-text-inverse mb-4 font-serif">Bespoke Matching</h3>
-                        <p class="text-text-secondary leading-relaxed font-light">We don't just fill seats; we match professionals to your specific event culture, technical requirements, and client expectations.</p>
+                        <p class="text-gray-300 leading-relaxed font-light">We don't just fill seats; we match professionals to your specific event culture, technical requirements, and client expectations.</p>
                     </div>
                 </div>
                 <div class="flex gap-8">
@@ -163,7 +163,7 @@
                     </div>
                     <div>
                         <h3 class="text-2xl font-bold text-text-inverse mb-4 font-serif">End-to-End Logistics</h3>
-                        <p class="text-text-secondary leading-relaxed font-light">From travel and accommodation to payroll and compliance, Hailerz manages the full administrative lifecycle of your augmented team.</p>
+                        <p class="text-gray-300 leading-relaxed font-light">From travel and accommodation to payroll and compliance, Hailerz manages the full administrative lifecycle of your augmented team.</p>
                     </div>
                 </div>
             </div>
@@ -173,7 +173,7 @@
     <!-- Final CTA -->
     <section class="py-40 bg-surface-muted text-center relative overflow-hidden">
         <div class="max-w-4xl mx-auto px-4 relative z-10">
-            <h2 class="text-4xl md:text-7xl font-bold text-brand-navy mb-8 font-serif tracking-tight leading-tight">Scale Your <span class="text-brand-teal italic">Ambition</span>.</h2>
+            <h2 class="text-4xl md:text-7xl font-bold text-text-primary mb-8 font-serif tracking-tight leading-tight">Scale Your <span class="text-brand-teal italic">Ambition</span>.</h2>
             <p class="text-xl md:text-2xl text-text-secondary mb-12 font-light leading-relaxed">
                 Experience the difference that professional event staffing can make. Let us augment your team for your next world-class production.
             </p>

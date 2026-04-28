@@ -8,7 +8,7 @@
                 <span class="h-px w-12 bg-brand-teal"></span>
             </div>
             <h1 class="text-5xl md:text-8xl font-bold text-text-inverse tracking-tight mb-8 font-serif leading-tight">Professional <span class="text-brand-teal">Talent</span> Procurement</h1>
-            <p class="text-xl md:text-2xl text-text-secondary max-w-3xl mx-auto leading-relaxed font-light">
+            <p class="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-light">
                 Comprehensive entertainment solutions and secure booking services for global events, corporate galas, and private functions.
             </p>
         </div>
@@ -21,7 +21,7 @@
     <section class="py-32 bg-surface-muted">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-24">
-                <h2 class="text-3xl md:text-5xl font-bold text-brand-navy mb-6 font-serif">Curated Disciplines</h2>
+                <h2 class="text-3xl md:text-5xl font-bold text-text-primary mb-6 font-serif">Curated Disciplines</h2>
                 <p class="text-text-secondary text-lg">World-class performers vetted for professional standards and exceptional delivery.</p>
             </div>
 
@@ -50,15 +50,15 @@
                 @endphp
 
                 @foreach($categories as $cat)
-                <div class="bg-surface-light p-12 rounded-[2.5rem] border border-brand-navy/5 shadow-sm hover:shadow-2xl transition-all duration-500 group">
+                <div class="bg-surface-light p-12 rounded-[2.5rem] border border-gray-200 dark:border-gray-800 shadow-sm hover:shadow-2xl transition-all duration-500 group">
                     <div class="w-16 h-16 bg-brand-teal/10 rounded-2xl flex items-center justify-center text-brand-teal mb-8 group-hover:scale-110 transition-transform">
                         <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="{{ $cat['icon'] }}"></path></svg>
                     </div>
-                    <h3 class="text-2xl font-bold text-brand-navy mb-6 font-serif">{{ $cat['name'] }}</h3>
+                    <h3 class="text-2xl font-bold text-text-primary mb-6 font-serif">{{ $cat['name'] }}</h3>
                     <p class="text-text-secondary mb-8 leading-relaxed">{{ $cat['desc'] }}</p>
                     <div class="flex flex-wrap gap-2">
                         @foreach($cat['genres'] as $genre)
-                        <span class="px-4 py-1.5 bg-surface-muted text-[10px] font-bold uppercase tracking-widest text-text-muted rounded-full border border-brand-navy/5">{{ $genre }}</span>
+                        <span class="px-4 py-1.5 bg-surface-muted text-[10px] font-bold uppercase tracking-widest text-text-muted rounded-full border border-gray-200 dark:border-gray-700">{{ $genre }}</span>
                         @endforeach
                     </div>
                 </div>
@@ -73,7 +73,7 @@
             <div class="lg:grid lg:grid-cols-2 lg:gap-24 items-center">
                 <div>
                     <h2 class="text-3xl md:text-6xl font-bold text-text-inverse mb-8 font-serif leading-tight">Full-Cycle Agency Support</h2>
-                    <p class="text-xl text-text-secondary mb-12 leading-relaxed font-light">We handle the administrative and technical complexities, allowing you to focus on the production.</p>
+                    <p class="text-xl text-gray-300 mb-12 leading-relaxed font-light">We handle the administrative and technical complexities, allowing you to focus on the production.</p>
                     
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
                         @foreach([
@@ -84,7 +84,7 @@
                         ] as $pillar)
                         <div class="space-y-3">
                             <h3 class="text-brand-teal font-bold text-sm uppercase tracking-widest">{{ $pillar[0] }}</h3>
-                            <p class="text-text-inverse/60 text-sm leading-relaxed">{{ $pillar[1] }}</p>
+                            <p class="text-white/60 text-sm leading-relaxed">{{ $pillar[1] }}</p>
                         </div>
                         @endforeach
                     </div>
@@ -104,7 +104,7 @@
     <section class="py-32 bg-surface-light border-b border-brand-navy/5">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-24">
-                <h2 class="text-3xl md:text-5xl font-bold text-brand-navy mb-6 font-serif">The Procurement Process</h2>
+                <h2 class="text-3xl md:text-5xl font-bold text-text-primary mb-6 font-serif">The Procurement Process</h2>
                 <p class="text-text-secondary text-lg">A transparent and structured approach from inquiry to execution.</p>
             </div>
 
@@ -115,9 +115,9 @@
                     ['03', 'Secure the Act', 'Formalize the engagement with professional contracting and initial commitment.'],
                 ] as $step)
                 <div class="relative">
-                    <span class="text-8xl font-black text-brand-navy/5 absolute -top-12 -left-4">{{ $step[0] }}</span>
+                    <span class="text-8xl font-black text-gray-900/5 dark:text-white/5 absolute -top-12 -left-4">{{ $step[0] }}</span>
                     <div class="relative z-10">
-                        <h3 class="text-2xl font-bold text-brand-navy mb-4 font-serif">{{ $step[1] }}</h3>
+                        <h3 class="text-2xl font-bold text-text-primary mb-4 font-serif">{{ $step[1] }}</h3>
                         <p class="text-text-secondary leading-relaxed font-light">{{ $step[2] }}</p>
                     </div>
                 </div>
@@ -129,7 +129,7 @@
     <!-- Final CTA -->
     <section class="py-32 bg-surface-muted text-center">
         <div class="max-w-4xl mx-auto px-4">
-            <h2 class="text-3xl md:text-6xl font-bold text-brand-navy mb-8 font-serif leading-tight">Elevate Your Next Occasion.</h2>
+            <h2 class="text-3xl md:text-6xl font-bold text-text-primary mb-8 font-serif leading-tight">Elevate Your Next Occasion.</h2>
             <p class="text-xl text-text-secondary mb-12 max-w-2xl mx-auto font-light leading-relaxed">
                 Our agents are available to provide expert recommendations and manage your talent requirements with precision.
             </p>

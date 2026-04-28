@@ -2,11 +2,11 @@
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         
         @if($isComplete)
-            <div class="bg-surface-light rounded-[2.5rem] p-16 text-center shadow-2xl border border-brand-navy/5">
+            <div class="bg-surface-light rounded-[2.5rem] p-16 text-center shadow-2xl border border-gray-200 dark:border-gray-800">
                 <div class="mx-auto flex items-center justify-center h-24 w-24 rounded-full bg-brand-teal/10 mb-10">
                     <svg class="h-12 w-12 text-brand-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                 </div>
-                <h2 class="text-4xl font-bold text-brand-navy mb-6 font-serif">Inquiry Successfully Submitted</h2>
+                <h2 class="text-4xl font-bold text-text-primary mb-6 font-serif">Inquiry Successfully Submitted</h2>
                 <p class="text-lg text-text-secondary mb-12 max-w-xl mx-auto">
                     Your request has been prioritized. A Hailerz senior agent will review your event requirements and investment parameters, providing a comprehensive proposal within 24 business hours.
                 </p>
@@ -21,14 +21,14 @@
                     <span class="text-xs font-bold text-brand-teal uppercase tracking-widest">Formal Request</span>
                     <span class="h-px w-8 bg-brand-teal"></span>
                 </div>
-                <h1 class="text-4xl md:text-6xl font-bold text-brand-navy tracking-tight font-serif">Booking Inquiry</h1>
+                <h1 class="text-4xl md:text-6xl font-bold text-text-primary tracking-tight font-serif">Booking Inquiry</h1>
                 <p class="mt-4 text-lg text-text-secondary">Provide your event specifications to initiate the procurement process.</p>
             </div>
 
             <!-- Progress Indicator -->
             <div class="mb-16">
                 <div class="relative">
-                    <div class="overflow-hidden h-1.5 mb-6 text-xs flex rounded-full bg-brand-navy/5">
+                    <div class="overflow-hidden h-1.5 mb-6 text-xs flex rounded-full bg-gray-200 dark:bg-gray-700">
                         <div style="width: {{ ($currentStep / 3) * 100 }}%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-brand-teal transition-all duration-700"></div>
                     </div>
                     <div class="grid grid-cols-3 text-[10px] font-bold text-text-muted uppercase tracking-[0.2em]">
@@ -39,17 +39,17 @@
                 </div>
             </div>
 
-            <div class="bg-surface-light shadow-2xl rounded-[2.5rem] p-10 sm:p-16 border border-brand-navy/5">
+            <div class="bg-surface-light shadow-2xl rounded-[2.5rem] p-10 sm:p-16 border border-gray-200 dark:border-gray-800">
                 <form wire:submit.prevent="submit">
                     
                     <!-- Step 1: Event Details -->
                     <div class="{{ $currentStep != 1 ? 'hidden' : 'block' }} space-y-10">
-                        <h3 class="text-2xl font-bold text-brand-navy font-serif">Event Specifications</h3>
+                        <h3 class="text-2xl font-bold text-text-primary font-serif">Event Specifications</h3>
                         
                         <div class="grid grid-cols-1 gap-8">
                             <div>
-                                <label for="talent_id" class="block text-[10px] font-bold text-brand-navy uppercase tracking-widest mb-3">Requested Talent / Act</label>
-                                <select id="talent_id" wire:model="talent_id" class="block w-full px-6 py-4 bg-surface-muted border border-brand-navy/5 rounded-xl focus:ring-2 focus:ring-brand-teal focus:border-transparent outline-none text-text-primary font-medium appearance-none">
+                                <label for="talent_id" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Requested Talent / Act</label>
+                                <select id="talent_id" wire:model="talent_id" class="block w-full px-6 py-4 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 placeholder-gray-500 dark:placeholder-gray-400 rounded-xl focus:ring-2 focus:ring-brand-teal focus:border-transparent outline-none text-gray-900 dark:text-white font-medium appearance-none">
                                     <option value="">-- Select from Roster --</option>
                                     @foreach($talents as $t)
                                         <option value="{{ $t->id }}">{{ $t->name }}</option>
@@ -60,20 +60,20 @@
 
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                                 <div>
-                                    <label for="event_date" class="block text-[10px] font-bold text-brand-navy uppercase tracking-widest mb-3">Engagement Date</label>
-                                    <input type="date" id="event_date" wire:model="event_date" class="block w-full px-6 py-4 bg-surface-muted border border-brand-navy/5 rounded-xl focus:ring-2 focus:ring-brand-teal focus:border-transparent outline-none text-text-primary font-medium">
+                                    <label for="event_date" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Engagement Date</label>
+                                    <input type="date" id="event_date" wire:model="event_date" class="block w-full px-6 py-4 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 placeholder-gray-500 dark:placeholder-gray-400 rounded-xl focus:ring-2 focus:ring-brand-teal focus:border-transparent outline-none text-gray-900 dark:text-white font-medium">
                                     @error('event_date') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
                                 </div>
                                 <div>
-                                    <label for="event_location" class="block text-[10px] font-bold text-brand-navy uppercase tracking-widest mb-3">Venue / Location</label>
-                                    <input type="text" id="event_location" wire:model="event_location" placeholder="e.g. Nairobi National Museum" class="block w-full px-6 py-4 bg-surface-muted border border-brand-navy/5 rounded-xl focus:ring-2 focus:ring-brand-teal focus:border-transparent outline-none text-text-primary font-medium">
+                                    <label for="event_location" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Venue / Location</label>
+                                    <input type="text" id="event_location" wire:model="event_location" placeholder="e.g. Nairobi National Museum" class="block w-full px-6 py-4 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 placeholder-gray-500 dark:placeholder-gray-400 rounded-xl focus:ring-2 focus:ring-brand-teal focus:border-transparent outline-none text-gray-900 dark:text-white font-medium">
                                     @error('event_location') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
                                 </div>
                             </div>
                             
                             <div>
-                                <label for="event_description" class="block text-[10px] font-bold text-brand-navy uppercase tracking-widest mb-3">Event Concept & Scale</label>
-                                <textarea id="event_description" wire:model="event_description" rows="4" placeholder="Briefly describe the event nature, expected attendance, and performance expectations..." class="block w-full px-6 py-4 bg-surface-muted border border-brand-navy/5 rounded-xl focus:ring-2 focus:ring-brand-teal focus:border-transparent outline-none text-text-primary font-medium resize-none"></textarea>
+                                <label for="event_description" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Event Concept & Scale</label>
+                                <textarea id="event_description" wire:model="event_description" rows="4" placeholder="Briefly describe the event nature, expected attendance, and performance expectations..." class="block w-full px-6 py-4 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 placeholder-gray-500 dark:placeholder-gray-400 rounded-xl focus:ring-2 focus:ring-brand-teal focus:border-transparent outline-none text-gray-900 dark:text-white font-medium resize-none"></textarea>
                                 @error('event_description') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
                             </div>
                         </div>
@@ -81,16 +81,16 @@
 
                     <!-- Step 2: Budget -->
                     <div class="{{ $currentStep != 2 ? 'hidden' : 'block' }} space-y-10">
-                        <h3 class="text-2xl font-bold text-brand-navy font-serif">Financial Investment</h3>
+                        <h3 class="text-2xl font-bold text-text-primary font-serif">Financial Investment</h3>
                         
                         <div class="space-y-8">
                             <div>
-                                <label for="proposed_budget" class="block text-[10px] font-bold text-brand-navy uppercase tracking-widest mb-3">Allocated Talent Budget (USD)</label>
+                                <label for="proposed_budget" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Allocated Talent Budget (USD)</label>
                                 <div class="relative">
                                     <div class="absolute inset-y-0 left-0 pl-6 flex items-center pointer-events-none">
                                         <span class="text-brand-teal font-bold">$</span>
                                     </div>
-                                    <input type="number" id="proposed_budget" wire:model="proposed_budget" class="block w-full pl-12 pr-6 py-5 bg-surface-muted border border-brand-navy/5 rounded-xl focus:ring-2 focus:ring-brand-teal focus:border-transparent outline-none text-2xl font-bold text-brand-navy" placeholder="0.00">
+                                    <input type="number" id="proposed_budget" wire:model="proposed_budget" class="block w-full pl-12 pr-6 py-5 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 placeholder-gray-500 dark:placeholder-gray-400 rounded-xl focus:ring-2 focus:ring-brand-teal focus:border-transparent outline-none text-2xl font-bold text-gray-900 dark:text-white" placeholder="0.00">
                                 </div>
                                 <p class="mt-4 text-xs text-text-muted leading-relaxed">
                                     Accurate budget allocation allows our agents to secure the act more efficiently. Premium acts typically require a minimum investment of $1,000.
@@ -98,12 +98,12 @@
                                 @error('proposed_budget') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
                             </div>
 
-                            <div class="flex items-start gap-5 p-8 rounded-2xl bg-surface-muted border border-brand-navy/5">
+                            <div class="flex items-start gap-5 p-8 rounded-2xl bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700">
                                 <div class="flex items-center h-6">
-                                    <input id="budget_flexible" wire:model="budget_flexible" type="checkbox" class="w-5 h-5 text-brand-teal border-brand-navy/10 rounded focus:ring-brand-teal">
+                                    <input id="budget_flexible" wire:model="budget_flexible" type="checkbox" class="w-5 h-5 text-brand-teal border-gray-300 dark:border-gray-600 rounded focus:ring-brand-teal">
                                 </div>
                                 <label for="budget_flexible" class="cursor-pointer">
-                                    <span class="block text-sm font-bold text-brand-navy uppercase tracking-widest">Flexible Investment Range</span>
+                                    <span class="block text-sm font-bold text-text-primary uppercase tracking-widest">Flexible Investment Range</span>
                                     <span class="block text-xs text-text-secondary mt-1">We are open to considering premium options beyond the initial budget for world-class talent.</span>
                                 </label>
                             </div>
@@ -112,24 +112,24 @@
 
                     <!-- Step 3: Contact -->
                     <div class="{{ $currentStep != 3 ? 'hidden' : 'block' }} space-y-10">
-                        <h3 class="text-2xl font-bold text-brand-navy font-serif">Contact Information</h3>
+                        <h3 class="text-2xl font-bold text-text-primary font-serif">Contact Information</h3>
                         
                         <div class="grid grid-cols-1 gap-8">
                             <div>
-                                <label for="client_name" class="block text-[10px] font-bold text-brand-navy uppercase tracking-widest mb-3">Full Name / Organization</label>
-                                <input type="text" id="client_name" wire:model="client_name" placeholder="Contact Person or Company Name" class="block w-full px-6 py-4 bg-surface-muted border border-brand-navy/5 rounded-xl focus:ring-2 focus:ring-brand-teal focus:border-transparent outline-none text-text-primary font-medium">
+                                <label for="client_name" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Full Name / Organization</label>
+                                <input type="text" id="client_name" wire:model="client_name" placeholder="Contact Person or Company Name" class="block w-full px-6 py-4 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 placeholder-gray-500 dark:placeholder-gray-400 rounded-xl focus:ring-2 focus:ring-brand-teal focus:border-transparent outline-none text-gray-900 dark:text-white font-medium">
                                 @error('client_name') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
                             </div>
 
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                                 <div>
-                                    <label for="client_email" class="block text-[10px] font-bold text-brand-navy uppercase tracking-widest mb-3">Professional Email</label>
-                                    <input type="email" id="client_email" wire:model="client_email" placeholder="email@company.com" class="block w-full px-6 py-4 bg-surface-muted border border-brand-navy/5 rounded-xl focus:ring-2 focus:ring-brand-teal focus:border-transparent outline-none text-text-primary font-medium">
+                                    <label for="client_email" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Professional Email</label>
+                                    <input type="email" id="client_email" wire:model="client_email" placeholder="email@company.com" class="block w-full px-6 py-4 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 placeholder-gray-500 dark:placeholder-gray-400 rounded-xl focus:ring-2 focus:ring-brand-teal focus:border-transparent outline-none text-gray-900 dark:text-white font-medium">
                                     @error('client_email') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
                                 </div>
                                 <div>
-                                    <label for="client_phone" class="block text-[10px] font-bold text-brand-navy uppercase tracking-widest mb-3">Direct Phone Number</label>
-                                    <input type="tel" id="client_phone" wire:model="client_phone" placeholder="+254..." class="block w-full px-6 py-4 bg-surface-muted border border-brand-navy/5 rounded-xl focus:ring-2 focus:ring-brand-teal focus:border-transparent outline-none text-text-primary font-medium">
+                                    <label for="client_phone" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Direct Phone Number</label>
+                                    <input type="tel" id="client_phone" wire:model="client_phone" placeholder="+254..." class="block w-full px-6 py-4 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 placeholder-gray-500 dark:placeholder-gray-400 rounded-xl focus:ring-2 focus:ring-brand-teal focus:border-transparent outline-none text-gray-900 dark:text-white font-medium">
                                     @error('client_phone') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
                                 </div>
                             </div>
@@ -137,7 +137,7 @@
                     </div>
 
                     <!-- Navigation -->
-                    <div class="flex items-center justify-between mt-16 pt-10 border-t border-brand-navy/5">
+                    <div class="flex items-center justify-between mt-16 pt-10 border-t border-gray-200 dark:border-gray-700">
                         @if($currentStep > 1)
                             <x-button variant="ghost" wire:click="previousStep">
                                 Previous Step

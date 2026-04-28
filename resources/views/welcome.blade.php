@@ -10,9 +10,7 @@
 </head>
 <body class="bg-surface-muted text-text-primary font-sans antialiased min-h-screen flex items-center justify-center">
     <div class="max-w-xl w-full px-6 py-12 bg-white rounded-3xl shadow-2xl border border-brand-navy/5 text-center">
-        <div class="h-20 w-20 bg-brand-navy rounded-2xl flex items-center justify-center mx-auto mb-10 shadow-xl">
-            <span class="text-white font-bold text-4xl font-serif">H</span>
-        </div>
+        <img src="/images/logo.webp" alt="Hailerz Logo" class="h-20 w-auto object-contain mx-auto mb-10 rounded-2xl" />
         
         <h1 class="text-4xl font-bold text-brand-navy mb-6 font-serif tracking-tight">Securing the Act.</h1>
         <p class="text-text-secondary text-lg mb-12 leading-relaxed">

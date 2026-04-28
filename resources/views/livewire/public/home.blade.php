@@ -8,7 +8,7 @@
                     <h1 class="text-5xl md:text-7xl font-bold tracking-tight text-text-inverse mb-8 leading-[1.1] font-serif">
                         Elevate Your Events with <span class="text-brand-teal">World-Class</span> Talent.
                     </h1>
-                    <p class="mt-4 max-w-xl text-lg md:text-xl text-text-secondary mb-12 leading-relaxed">
+                    <p class="mt-4 max-w-xl text-lg md:text-xl text-gray-300 mb-12 leading-relaxed">
                         Hailerz is the definitive roster for corporate events, galas, and private functions. Secure the act that transforms your occasion into an unforgettable experience.
                     </p>
                     <div class="flex flex-wrap gap-6">
@@ -85,7 +85,7 @@
                 @endphp
 
                 @foreach($services as $service)
-                    <div class="bg-surface-light p-10 rounded-3xl border border-brand-navy/5 shadow-sm hover:shadow-xl transition-all duration-500 group">
+                    <div class="bg-surface-light p-10 rounded-3xl border border-gray-200 dark:border-gray-800 shadow-sm hover:shadow-xl transition-all duration-500 group">
                         <div class="h-14 w-14 rounded-2xl bg-brand-teal/10 text-brand-teal flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
                             <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="{{ $service['icon'] }}"></path>
@@ -148,7 +148,7 @@
             <div class="lg:grid lg:grid-cols-2 lg:gap-24 items-center">
                 <div>
                     <h2 class="text-3xl md:text-6xl font-bold text-text-inverse mb-8 font-serif leading-tight">Ready to Secure the Act?</h2>
-                    <p class="text-xl text-text-secondary mb-12 leading-relaxed">
+                    <p class="text-xl text-gray-300 mb-12 leading-relaxed">
                         Our agents are standing by to help you find the perfect talent for your event. Whether you have a specific performer in mind or need expert recommendations, we are here to assist.
                     </p>
                     
@@ -161,7 +161,7 @@
                             </div>
                             <div>
                                 <h3 class="text-text-inverse font-bold">Email Our Agents</h3>
-                                <p class="text-text-secondary text-sm">bookings@hailerz.com</p>
+                                <p class="text-gray-400 text-sm">bookings@hailerz.com</p>
                             </div>
                         </li>
                         <li class="flex items-center gap-6">
@@ -172,13 +172,13 @@
                             </div>
                             <div>
                                 <h3 class="text-text-inverse font-bold">Rapid Response</h3>
-                                <p class="text-text-secondary text-sm">Typically within 24 business hours</p>
+                                <p class="text-gray-400 text-sm">Typically within 24 business hours</p>
                             </div>
                         </li>
                     </ul>
                 </div>
 
-                <div class="bg-white p-10 rounded-3xl shadow-2xl">
+                <div class="bg-white dark:bg-gray-800 p-10 rounded-3xl shadow-2xl border border-gray-200 dark:border-gray-700">
                     @if($contactSent)
                         <div class="flex flex-col items-center text-center py-12 gap-6">
                             <div class="h-20 w-20 rounded-full bg-green-100 text-green-600 flex items-center justify-center">
@@ -186,27 +186,27 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
                                 </svg>
                             </div>
-                            <h3 class="text-3xl font-bold text-text-primary">Inquiry Received</h3>
-                            <p class="text-text-secondary">An agent will review your request and contact you shortly.</p>
+                            <h3 class="text-3xl font-bold text-gray-900 dark:text-white">Inquiry Received</h3>
+                            <p class="text-gray-600 dark:text-gray-300">An agent will review your request and contact you shortly.</p>
                             <button wire:click="$set('contactSent', false)" class="text-brand-teal font-bold hover:underline">Submit another inquiry</button>
                         </div>
                     @else
                         <form wire:submit="submitContact" class="space-y-6">
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div>
-                                    <label for="contactName" class="block text-xs font-bold text-brand-navy uppercase tracking-widest mb-2">Name</label>
-                                    <input id="contactName" wire:model="contactName" type="text" placeholder="Full Name" class="w-full px-5 py-4 bg-surface-muted border border-brand-navy/10 rounded-xl focus:ring-2 focus:ring-brand-teal focus:border-transparent outline-none transition-all" />
+                                    <label for="contactName" class="block text-xs font-bold text-brand-navy dark:text-gray-300 uppercase tracking-widest mb-2">Name</label>
+                                    <input id="contactName" wire:model="contactName" type="text" placeholder="Full Name" class="w-full px-5 py-4 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-brand-teal focus:border-transparent outline-none transition-all text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400" />
                                     @error('contactName') <span class="text-red-500 text-xs mt-1">{{ $message }}</span> @enderror
                                 </div>
                                 <div>
-                                    <label for="contactEmail" class="block text-xs font-bold text-brand-navy uppercase tracking-widest mb-2">Email</label>
-                                    <input id="contactEmail" wire:model="contactEmail" type="email" placeholder="Email Address" class="w-full px-5 py-4 bg-surface-muted border border-brand-navy/10 rounded-xl focus:ring-2 focus:ring-brand-teal focus:border-transparent outline-none transition-all" />
+                                    <label for="contactEmail" class="block text-xs font-bold text-brand-navy dark:text-gray-300 uppercase tracking-widest mb-2">Email</label>
+                                    <input id="contactEmail" wire:model="contactEmail" type="email" placeholder="Email Address" class="w-full px-5 py-4 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-brand-teal focus:border-transparent outline-none transition-all text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400" />
                                     @error('contactEmail') <span class="text-red-500 text-xs mt-1">{{ $message }}</span> @enderror
                                 </div>
                             </div>
                             <div>
-                                <label for="contactMessage" class="block text-xs font-bold text-brand-navy uppercase tracking-widest mb-2">Message</label>
-                                <textarea id="contactMessage" wire:model="contactMessage" rows="5" placeholder="Tell us about your event and the talent you're interested in..." class="w-full px-5 py-4 bg-surface-muted border border-brand-navy/10 rounded-xl focus:ring-2 focus:ring-brand-teal focus:border-transparent outline-none transition-all resize-none"></textarea>
+                                <label for="contactMessage" class="block text-xs font-bold text-brand-navy dark:text-gray-300 uppercase tracking-widest mb-2">Message</label>
+                                <textarea id="contactMessage" wire:model="contactMessage" rows="5" placeholder="Tell us about your event and the talent you're interested in..." class="w-full px-5 py-4 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-brand-teal focus:border-transparent outline-none transition-all resize-none text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"></textarea>
                                 @error('contactMessage') <span class="text-red-500 text-xs mt-1">{{ $message }}</span> @enderror
                             </div>
                             <x-button type="submit" class="w-full" size="lg">

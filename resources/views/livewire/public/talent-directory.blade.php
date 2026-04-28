@@ -14,9 +14,9 @@
             
             <!-- Sidebar Filters -->
             <aside class="w-full lg:w-1/4">
-                <div class="sticky top-28 bg-surface-light p-8 rounded-3xl shadow-sm border border-brand-navy/5">
+                <div class="sticky top-28 bg-surface-light p-8 rounded-3xl shadow-sm border border-gray-200 dark:border-gray-800">
                     <div class="flex items-center justify-between mb-10">
-                        <h2 class="text-xs font-bold text-brand-navy uppercase tracking-widest">Refine Search</h2>
+                        <h2 class="text-xs font-bold text-text-muted uppercase tracking-widest">Refine Search</h2>
                         <button wire:click="resetFilters" class="text-[10px] font-bold text-brand-teal uppercase tracking-widest hover:underline transition-colors">
                             Reset All
                         </button>
@@ -26,13 +26,13 @@
                         <!-- Search -->
                         <div>
                             <label for="search" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-4">Keywords</label>
-                            <input wire:model.live.debounce.300ms="search" type="text" id="search" class="w-full px-5 py-4 bg-surface-muted border border-brand-navy/5 rounded-xl focus:ring-2 focus:ring-brand-teal focus:border-transparent transition-all outline-none text-sm font-medium" placeholder="Name or expertise...">
+                            <input wire:model.live.debounce.300ms="search" type="text" id="search" class="w-full px-5 py-4 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 placeholder-gray-500 dark:placeholder-gray-400 rounded-xl focus:ring-2 focus:ring-brand-teal focus:border-transparent transition-all outline-none text-gray-900 dark:text-white text-sm font-medium" placeholder="Name or expertise...">
                         </div>
 
                         <!-- Sort Order -->
                         <div>
                             <label for="sort" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-4">Priority</label>
-                            <select wire:model.live="sort" id="sort" class="w-full px-5 py-4 bg-surface-muted border border-brand-navy/5 rounded-xl focus:ring-2 focus:ring-brand-teal focus:border-transparent transition-all outline-none text-sm font-medium appearance-none">
+                            <select wire:model.live="sort" id="sort" class="w-full px-5 py-4 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 placeholder-gray-500 dark:placeholder-gray-400 rounded-xl focus:ring-2 focus:ring-brand-teal focus:border-transparent transition-all outline-none text-gray-900 dark:text-white text-sm font-medium appearance-none">
                                 <option value="name">Alphabetical</option>
                                 <option value="latest">Newly Commissioned</option>
                                 <option value="price_asc">Investment: Low to High</option>
@@ -43,7 +43,7 @@
                         <!-- Category -->
                         <div>
                             <label for="category" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-4">Talent Category</label>
-                            <select wire:model.live="category_id" id="category" class="w-full px-5 py-4 bg-surface-muted border border-brand-navy/5 rounded-xl focus:ring-2 focus:ring-brand-teal focus:border-transparent transition-all outline-none text-sm font-medium appearance-none">
+                            <select wire:model.live="category_id" id="category" class="w-full px-5 py-4 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 placeholder-gray-500 dark:placeholder-gray-400 rounded-xl focus:ring-2 focus:ring-brand-teal focus:border-transparent transition-all outline-none text-gray-900 dark:text-white text-sm font-medium appearance-none">
                                 <option value="">All Disciplines</option>
                                 @foreach($categories as $category)
                                     <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -84,7 +84,7 @@
                                     <span x-text="isLocating ? '...' : 'Auto-Detect'"></span>
                                 </button>
                             </div>
-                            <select wire:model.live="location" id="location" class="w-full px-5 py-4 bg-surface-muted border border-brand-navy/5 rounded-xl focus:ring-2 focus:ring-brand-teal focus:border-transparent transition-all outline-none text-sm font-medium appearance-none">
+                            <select wire:model.live="location" id="location" class="w-full px-5 py-4 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 placeholder-gray-500 dark:placeholder-gray-400 rounded-xl focus:ring-2 focus:ring-brand-teal focus:border-transparent transition-all outline-none text-gray-900 dark:text-white text-sm font-medium appearance-none">
                                 <option value="">Global Roster</option>
                                 @foreach($locations as $loc)
                                     <option value="{{ $loc }}">{{ $loc }}</option>
@@ -102,18 +102,18 @@
                     @if($talents->count() > 0)
                         <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
                             @foreach($talents as $talent)
-                                <div class="bg-surface-light rounded-2xl shadow-sm border border-brand-navy/5 overflow-hidden group hover:shadow-2xl transition-all duration-500">
+                                <div class="bg-surface-light rounded-2xl shadow-sm border border-gray-200 dark:border-gray-800 overflow-hidden group hover:shadow-2xl transition-all duration-500">
                                     <a href="/talent/{{ $talent->slug }}" wire:navigate class="block">
                                         <div class="group relative overflow-hidden aspect-3/4 bg-surface-dark">
                                             @if($talent->hasMedia('primary_image'))
                                                 <img src="{{ $talent->getFirstMediaUrl('primary_image') }}" width="400" height="533" loading="lazy" class="w-full h-full object-cover grayscale transition-transform duration-700 group-hover:scale-110" alt="{{ $talent->name }}" />
                                             @else
-                                                <div class="w-full h-full flex items-center justify-center bg-brand-navy">
+                                                <div class="w-full h-full flex items-center justify-center bg-gray-800">
                                                     <span class="text-4xl font-bold text-white/20 font-serif">{{ substr($talent->name, 0, 1) }}</span>
                                                 </div>
                                             @endif
                                             <div class="absolute inset-0 bg-linear-to-tr from-brand-teal/80 to-brand-mint/40 mix-blend-color opacity-80 transition-opacity group-hover:opacity-60"></div>
-                                            <div class="absolute inset-0 bg-linear-to-t from-brand-navy/90 via-transparent to-transparent"></div>
+                                            <div class="absolute inset-0 bg-linear-to-t from-black/90 via-transparent to-transparent"></div>
                                             
                                             @if($talent->is_featured)
                                                 <div class="absolute top-6 right-6 bg-brand-teal text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">
@@ -134,10 +134,10 @@
                                             {{ $talent->location ?? 'International' }}
                                         </div>
                                         
-                                        <div class="flex justify-between items-center pt-6 border-t border-brand-navy/5">
+                                        <div class="flex justify-between items-center pt-6 border-t border-gray-200 dark:border-gray-700">
                                             <div>
                                                 <p class="text-[10px] font-bold text-text-muted uppercase tracking-widest">Starting Investment</p>
-                                                <p class="text-lg font-bold text-brand-navy">${{ number_format($talent->starting_price ?? 0, 0) }}</p>
+                                                <p class="text-lg font-bold text-gray-900 dark:text-white">${{ number_format($talent->starting_price ?? 0, 0) }}</p>
                                             </div>
                                             <x-button variant="ghost" size="sm" href="/talent/{{ $talent->slug }}" wire:navigate class="text-brand-teal hover:text-brand-teal/80">
                                                 View Profile
@@ -172,7 +172,7 @@
                             </div>
                         @endif
                     @else
-                        <div class="text-center py-32 bg-surface-light rounded-3xl border border-dashed border-brand-navy/10">
+                        <div class="text-center py-32 bg-surface-light rounded-3xl border border-dashed border-gray-300 dark:border-gray-700">
                             <h3 class="text-2xl font-bold text-text-primary mb-4 font-serif">No Results Found</h3>
                             <p class="text-text-secondary mb-8">Refine your criteria to explore our alternative roster members.</p>
                             <x-button variant="secondary" wire:click="resetFilters">

@@ -17,7 +17,7 @@
             <h1 class="text-5xl md:text-8xl font-bold text-text-inverse tracking-tight mb-8 font-serif leading-tight">
                 Elevating the <span class="text-brand-teal">Standard</span> of Event Entertainment.
             </h1>
-            <p class="mt-4 max-w-3xl text-xl md:text-2xl text-text-secondary mx-auto leading-relaxed font-light">
+            <p class="mt-4 max-w-3xl text-xl md:text-2xl text-gray-300 mx-auto leading-relaxed font-light">
                 Hailerz is a boutique talent agency dedicated to securing world-class performers for visionary event planners and global brands.
             </p>
         </div>
@@ -29,7 +29,7 @@
             <span class="h-px w-8 bg-brand-teal"></span>
             <span class="text-xs font-bold text-brand-teal uppercase tracking-widest">Our Legacy</span>
         </div>
-        <h2 class="text-4xl md:text-6xl font-bold text-brand-navy tracking-tight mb-12 font-serif">The Pursuit of Excellence</h2>
+        <h2 class="text-4xl md:text-6xl font-bold text-text-primary tracking-tight mb-12 font-serif">The Pursuit of Excellence</h2>
         <div class="space-y-10 text-xl text-text-secondary leading-relaxed font-light">
             <p>
                 Hailerz was founded on a singular premise: that premium events deserve premium talent. We recognized the disconnect between visionary event planners and the world-class performers they sought to secure. Our agency was established to bridge that gap with professional procurement, rigorous vetting, and seamless execution.
@@ -44,10 +44,10 @@
     </div>
 
     <!-- Our Values -->
-    <div class="bg-surface-light py-32 border-y border-brand-navy/5">
+    <div class="bg-surface-light py-32 border-y border-gray-200 dark:border-gray-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-20">
-                <h2 class="text-3xl md:text-5xl font-bold text-brand-navy tracking-tight mb-6 font-serif">Agency Principles</h2>
+                <h2 class="text-3xl md:text-5xl font-bold text-text-primary tracking-tight mb-6 font-serif">Agency Principles</h2>
                 <p class="text-lg text-text-secondary">Our core values define the Hailerz experience for both talent and clients.</p>
             </div>
 
@@ -62,9 +62,9 @@
                 @endphp
 
                 @foreach($values as $value)
-                    <div class="bg-surface-muted p-10 rounded-3xl border border-brand-navy/5 group hover:bg-brand-navy transition-all duration-500 hover:shadow-2xl">
-                        <h3 class="text-2xl font-bold text-brand-navy mb-4 font-serif group-hover:text-white transition-colors">{{ $value['title'] }}</h3>
-                        <p class="text-text-secondary leading-relaxed font-light group-hover:text-text-inverse/70 transition-colors">{{ $value['desc'] }}</p>
+                    <div class="bg-surface-muted p-10 rounded-3xl border border-gray-200 dark:border-gray-800 group hover:bg-brand-navy transition-all duration-500 hover:shadow-2xl">
+                        <h3 class="text-2xl font-bold text-text-primary mb-4 font-serif group-hover:text-white transition-colors">{{ $value['title'] }}</h3>
+                        <p class="text-text-secondary leading-relaxed font-light group-hover:text-white/70 transition-colors">{{ $value['desc'] }}</p>
                     </div>
                 @endforeach
             </div>
@@ -75,7 +75,7 @@
     <div class="bg-surface-muted py-32">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-20">
-                <h2 class="text-3xl md:text-5xl font-bold text-brand-navy tracking-tight mb-6 font-serif">The Agents</h2>
+                <h2 class="text-3xl md:text-5xl font-bold text-text-primary tracking-tight mb-6 font-serif">The Agents</h2>
                 <p class="text-lg text-text-secondary">Meet the specialists dedicated to your event's success.</p>
             </div>
 
@@ -111,7 +111,7 @@
         
         <div class="relative max-w-4xl mx-auto px-4 text-center">
             <h2 class="text-4xl md:text-7xl font-bold text-text-inverse mb-8 tracking-tight font-serif">Secure the Act.</h2>
-            <p class="text-xl md:text-2xl text-text-secondary mb-12 font-light leading-relaxed">
+            <p class="text-xl md:text-2xl text-gray-300 mb-12 font-light leading-relaxed">
                 Partner with Hailerz to elevate your next event with world-class talent and professional management.
             </p>
             <div class="flex flex-col sm:flex-row justify-center gap-6">
