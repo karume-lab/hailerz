@@ -25,8 +25,10 @@
     <meta name="twitter:description" content="{{ $ogDescription ?? 'A boutique talent agency specializing in securing world-class performers for corporate events, galas, and private functions.' }}">
     <meta name="twitter:image" content="{{ $ogImage ?? asset('images/logo.webp') }}">
 
-    <link rel="preconnect" href="https://fonts.bunny.net" crossorigin>
-    <link href="https://fonts.bunny.net/css?family=inter:400,500,600,700|outfit:600,700&display=swap" rel="stylesheet" />
+    <!-- Self-hosted fonts — eliminates render-blocking external stylesheet -->
+    <link rel="preload" href="/fonts/inter-latin-400.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/inter-latin-700.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/outfit-latin-700.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="manifest" href="/manifest.json">
 
     <script>
@@ -53,6 +55,7 @@
         applyTheme();
         document.addEventListener('livewire:navigated', applyTheme);
     </script>
+    @stack('head')
     @livewireStyles
 </head>
 
@@ -64,7 +67,7 @@
             <div class="flex justify-between items-center h-20">
                 <div class="shrink-0 flex items-center">
                     <a href="/" class="flex items-center gap-2.5" aria-label="Hailerz Home">
-                        <img src="/images/logo.webp" alt="Hailerz Logo" class="h-10 w-auto object-contain rounded-lg" />
+                        <img src="/images/logo.webp" alt="" aria-hidden="true" width="40" height="41" class="h-10 w-auto object-contain rounded-lg" />
                         <span class="text-2xl font-bold tracking-tight text-brand-navy dark:text-white hidden sm:block font-serif">
                             Hailerz
                         </span>
@@ -102,7 +105,7 @@
             <div class="grid grid-cols-1 md:grid-cols-4 gap-16">
                 <div class="col-span-1 md:col-span-1">
                     <a href="/" class="flex items-center gap-2.5 mb-6" aria-label="Hailerz Home">
-                        <img src="/images/logo.webp" alt="Hailerz Logo" class="h-8 w-auto object-contain rounded" />
+                        <img src="/images/logo.webp" alt="" aria-hidden="true" width="32" height="33" class="h-8 w-auto object-contain rounded" />
                         <span class="text-2xl font-bold tracking-tight text-text-primary font-serif">
                             Hailerz
                         </span>

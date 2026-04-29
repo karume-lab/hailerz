@@ -61,10 +61,47 @@
     AddOutputFilterByType DEFLATE font/woff2
 </IfModule>
 
-# 4. Security Headers
+# 4. Cache-Control for static assets (explicit headers)
 <IfModule mod_headers.c>
-    Header set X-Content-Type-Options "nosniff"
-    Header set X-Frame-Options "SAMEORIGIN"
-    Header set X-XSS-Protection "1; mode=block"
-    Header set Referrer-Policy "strict-origin-when-cross-origin"
+    # Immutable static assets (versioned by Vite hash)
+    <FilesMatch "\.(js|css)$">
+        Header set Cache-Control "public, max-age=31536000, immutable"
+    </FilesMatch>
+
+    # Images and fonts — long cache, but not immutable (no hash in filename)
+    <FilesMatch "\.(webp|jpeg|jpg|png|gif|svg|ico|woff|woff2)$">
+        Header set Cache-Control "public, max-age=31536000, stale-while-revalidate=86400"
+    </FilesMatch>
+</IfModule>
+
+# 5. Security Headers
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+
+    # HSTS — force HTTPS for 1 year, include subdomains
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+
+    # Cross-Origin-Opener-Policy — prevents cross-origin window attacks
+    Header always set Cross-Origin-Opener-Policy "same-origin"
+
+    # Cross-Origin-Resource-Policy
+    Header always set Cross-Origin-Resource-Policy "same-origin"
+
+    # Content-Security-Policy — start in report-only; switch to enforce after testing
+    # Allows: self, Livewire inline scripts, Vite assets, self-hosted fonts only
+    Header always set Content-Security-Policy "\
+        default-src 'self'; \
+        script-src 'self' 'unsafe-inline' 'unsafe-eval'; \
+        style-src 'self' 'unsafe-inline'; \
+        font-src 'self'; \
+        img-src 'self' data: https://images.unsplash.com https://media.licdn.com; \
+        connect-src 'self' https://nominatim.openstreetmap.org; \
+        frame-ancestors 'none'; \
+        base-uri 'self'; \
+        form-action 'self';"
+
+    # Trusted-Types directive (mitigates DOM-based XSS)
+    Header always set Content-Security-Policy-Report-Only "require-trusted-types-for 'script'"
 </IfModule>

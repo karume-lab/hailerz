@@ -1,3 +1,9 @@
+@push('head')
+    {{-- Preload LCP images to break critical request chain --}}
+    <link rel="preload" as="image" href="{{ asset('images/home/hero-card-1.webp') }}" type="image/webp" fetchpriority="high">
+    <link rel="preload" as="image" href="{{ asset('images/home/hero-card-2.webp') }}" type="image/webp" fetchpriority="high">
+@endpush
+
 <div class="bg-surface-light">
     <!-- Hero Section -->
     <section class="relative bg-surface-dark pt-32 pb-40 overflow-hidden">
@@ -124,7 +130,7 @@
 
                 @foreach($categories as $cat)
                     <a href="/talent?category={{ $cat['slug'] }}" class="group block relative h-[450px] rounded-3xl overflow-hidden shadow-lg">
-                        <img src="{{ asset('images/home/' . $cat['img']) }}" loading="lazy" width="400" height="450" class="absolute inset-0 w-full h-full object-cover grayscale transition-transform duration-1000 group-hover:scale-110" alt="{{ $cat['name'] }}" />
+                        <img src="{{ asset('images/home/' . $cat['img']) }}" loading="lazy" width="600" height="675" class="absolute inset-0 w-full h-full object-cover grayscale transition-transform duration-1000 group-hover:scale-110" alt="{{ $cat['name'] }}" />
                         <div class="absolute inset-0 bg-linear-to-tr from-brand-teal/80 to-brand-mint/40 mix-blend-color opacity-90"></div>
                         <div class="absolute inset-0 bg-linear-to-t from-brand-navy/90 via-brand-navy/20 to-transparent"></div>
                         <div class="absolute bottom-10 left-10">
@@ -161,7 +167,7 @@
                             </div>
                             <div>
                                 <h3 class="text-text-inverse font-bold">Email Our Agents</h3>
-                                <p class="text-gray-400 text-sm">bookings@hailerz.com</p>
+                                <p class="text-gray-300 text-sm">bookings@hailerz.com</p>
                             </div>
                         </li>
                         <li class="flex items-center gap-6">
@@ -172,7 +178,7 @@
                             </div>
                             <div>
                                 <h3 class="text-text-inverse font-bold">Rapid Response</h3>
-                                <p class="text-gray-400 text-sm">Typically within 24 business hours</p>
+                                <p class="text-gray-300 text-sm">Typically within 24 business hours</p>
                             </div>
                         </li>
                     </ul>

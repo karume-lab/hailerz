@@ -3,7 +3,7 @@
     <div class="relative bg-surface-dark min-h-[70vh] flex items-center justify-center overflow-hidden">
         <div class="absolute inset-0 overflow-hidden">
             <img src="{{ asset('images/about/about-hero.webp') }}"
-                alt="Premium Event" loading="eager" class="w-full h-full object-cover grayscale opacity-40">
+                alt="Premium Event" loading="eager" width="1280" height="720" class="w-full h-full object-cover grayscale opacity-40">
             <div class="absolute inset-0 bg-linear-to-tr from-brand-teal/80 to-brand-mint/40 mix-blend-color opacity-70"></div>
             <div class="absolute inset-0 bg-linear-to-t from-brand-navy via-brand-navy/40 to-transparent"></div>
         </div>
@@ -90,7 +90,7 @@
 
                 @foreach($team as $member)
                     <div class="group relative overflow-hidden rounded-[2.5rem] aspect-3/4 bg-surface-dark border border-white/5 shadow-xl">
-                        <img src="{{ asset('images/about/' . $member['img']) }}" loading="lazy" class="w-full h-full object-cover grayscale transition-transform duration-700 group-hover:scale-110" alt="{{ $member['name'] }}" />
+                        <img src="{{ asset('images/about/' . $member['img']) }}" loading="lazy" width="400" height="533" class="w-full h-full object-cover grayscale transition-transform duration-700 group-hover:scale-110" alt="{{ $member['name'] }}" />
                         <div class="absolute inset-0 bg-linear-to-tr from-brand-teal/80 to-brand-mint/40 mix-blend-color opacity-70"></div>
                         <div class="absolute inset-0 bg-linear-to-t from-brand-navy/90 via-brand-navy/20 to-transparent"></div>
                         <div class="absolute bottom-10 left-10 right-10">
