@@ -21,7 +21,7 @@
         'lg' => 'px-8 py-4 text-lg',
     ];
 
-    $classes = $baseClasses . ' ' . ($variants[$variant] ?? $variants['primary']) . ' ' . ($sizes[$size] ?? $sizes['md']);
+    $classes = $baseClasses . ' ' . ($variants[(string)$variant] ?? $variants['primary']) . ' ' . ($sizes[(string)$size] ?? $sizes['md']);
 @endphp
 
 @if($href)
