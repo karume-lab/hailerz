@@ -37,27 +37,27 @@ class DatabaseSeeder extends Seeder
         $djs = Category::firstOrCreate(['slug' => 'djs'], ['name' => 'DJs', 'is_active' => true]);
         $specialty = Category::firstOrCreate(['slug' => 'specialty-acts'], ['name' => 'Specialty Acts', 'is_active' => true]);
 
-        // African Talent Image Pool
+        // Enhanced Image Pool with reliable fallbacks
         $images = [
             'musician' => [
-                'https://images.unsplash.com/photo-1516280440502-d964177dcc0c?auto=format&fit=crop&w=1200&q=80',
-                'https://images.unsplash.com/photo-1549834125-82d3c48159a3?auto=format&fit=crop&w=1200&q=80',
-                'https://images.unsplash.com/photo-1520690214124-2405c5217036?auto=format&fit=crop&w=1200&q=80',
+                'https://loremflickr.com/1200/800/musician,band,singer/all',
+                'https://loremflickr.com/1200/800/jazz,concert,stage/all',
+                'https://picsum.photos/seed/musician1/1200/800',
             ],
             'speaker' => [
-                'https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=1200&q=80',
-                'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=1200&q=80',
-                'https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=1200&q=80',
+                'https://loremflickr.com/1200/800/speaker,keynote,seminar/all',
+                'https://loremflickr.com/1200/800/leadership,conference/all',
+                'https://picsum.photos/seed/speaker1/1200/800',
             ],
             'dj' => [
-                'https://images.unsplash.com/photo-1621841398031-645398d5c314?auto=format&fit=crop&w=1200&q=80',
-                'https://images.unsplash.com/photo-1516057747705-d2861c8a16db?auto=format&fit=crop&w=1200&q=80',
+                'https://loremflickr.com/1200/800/dj,nightclub,decks/all',
+                'https://loremflickr.com/1200/800/electronic,music,mixer/all',
+                'https://picsum.photos/seed/dj1/1200/800',
             ],
             'general' => [
-                'https://images.unsplash.com/photo-1531384441138-2736e62e0919?auto=format&fit=crop&w=1200&q=80',
-                'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=1200&q=80',
-                'https://images.unsplash.com/photo-1506803682981-6e718a9dd3ee?auto=format&fit=crop&w=1200&q=80',
-                'https://images.unsplash.com/photo-1523825036634-ab6bc7caeb14?auto=format&fit=crop&w=1200&q=80',
+                'https://loremflickr.com/1200/800/performance,luxury,event/all',
+                'https://loremflickr.com/1200/800/gala,theatre,art/all',
+                'https://picsum.photos/1200/800',
             ]
         ];
 
@@ -78,7 +78,13 @@ class DatabaseSeeder extends Seeder
         if (!$djTalent->hasMedia('primary_image')) {
             try {
                 $djTalent->addMediaFromUrl($images['dj'][0])->toMediaCollection('primary_image');
-            } catch (\Exception $e) {}
+            } catch (\Exception $e) {
+                try {
+                    $djTalent->addMediaFromUrl("https://picsum.photos/seed/horizon/1200/800")->toMediaCollection('primary_image');
+                } catch (\Exception $e2) {
+                    \Illuminate\Support\Facades\Log::error("Failed to seed image for Horizon Elite: " . $e2->getMessage());
+                }
+            }
         }
 
         // Talent 2: Dr. Jane Smith
@@ -98,7 +104,13 @@ class DatabaseSeeder extends Seeder
         if (!$speakerTalent->hasMedia('primary_image')) {
             try {
                 $speakerTalent->addMediaFromUrl($images['speaker'][0])->toMediaCollection('primary_image');
-            } catch (\Exception $e) {}
+            } catch (\Exception $e) {
+                try {
+                    $speakerTalent->addMediaFromUrl("https://picsum.photos/seed/janesmith/1200/800")->toMediaCollection('primary_image');
+                } catch (\Exception $e2) {
+                    \Illuminate\Support\Facades\Log::error("Failed to seed image for Dr. Jane Smith: " . $e2->getMessage());
+                }
+            }
         }
 
         // Additional high-quality talents
@@ -142,7 +154,13 @@ class DatabaseSeeder extends Seeder
             if (!$talent->hasMedia('primary_image')) {
                 try {
                     $talent->addMediaFromUrl($t['img'])->toMediaCollection('primary_image');
-                } catch (\Exception $e) {}
+                } catch (\Exception $e) {
+                    try {
+                        $talent->addMediaFromUrl("https://picsum.photos/seed/{$t['slug']}/1200/800")->toMediaCollection('primary_image');
+                    } catch (\Exception $e2) {
+                        \Illuminate\Support\Facades\Log::error("Failed to seed image for {$t['name']}: " . $e2->getMessage());
+                    }
+                }
             }
         }
 
@@ -152,10 +170,20 @@ class DatabaseSeeder extends Seeder
             Talent::factory()->count(15)->create([
                 'category_id' => fn() => $categories->random()->id,
             ])->each(function ($t) use ($images) {
-                if (rand(0, 1) === 1) {
+                // Determine appropriate image pool based on category
+                $pool = 'general';
+                if (str_contains($t->category->slug, 'speaker')) $pool = 'speaker';
+                if (str_contains($t->category->slug, 'dj')) $pool = 'dj';
+                if (str_contains($t->category->slug, 'band') || str_contains($t->category->slug, 'musician')) $pool = 'musician';
+
+                try {
+                    $t->addMediaFromUrl($images[$pool][array_rand($images[$pool])])->toMediaCollection('primary_image');
+                } catch (\Exception $e) {
                     try {
-                        $t->addMediaFromUrl($images['general'][array_rand($images['general'])])->toMediaCollection('primary_image');
-                    } catch (\Exception $e) {}
+                        $t->addMediaFromUrl("https://picsum.photos/seed/{$t->id}/1200/800")->toMediaCollection('primary_image');
+                    } catch (\Exception $e2) {
+                        \Illuminate\Support\Facades\Log::error("Failed to seed random image for talent: " . $e2->getMessage());
+                    }
                 }
             });
         }
@@ -175,7 +203,7 @@ class DatabaseSeeder extends Seeder
         }
 
         // News Posts
-        Post::firstOrCreate(
+        $post = Post::firstOrCreate(
             ['slug' => 'future-of-corporate-entertainment-2026'],
             [
                 'title' => 'The Evolution of Corporate Entertainment in 2026',
@@ -183,6 +211,11 @@ class DatabaseSeeder extends Seeder
                 'is_published' => true,
             ]
         );
+        if (!$post->hasMedia('featured_image')) {
+            try {
+                $post->addMediaFromUrl("https://loremflickr.com/1200/800/business,event/all")->toMediaCollection('featured_image');
+            } catch (\Exception $e) {}
+        }
 
         // Email Templates (B2B Tone)
         EmailTemplate::firstOrCreate(

@@ -7,7 +7,6 @@ use Illuminate\Support\Str;
 use Livewire\Component;
 use Livewire\Attributes\Layout;
 
-#[Layout('components.layouts.app')]
 class ShowTalent extends Component
 {
     public Talent $talent;
@@ -23,7 +22,7 @@ class ShowTalent extends Component
     {
         return view('livewire.public.show-talent')
             ->title('Book ' . $this->talent->name . ' | Hailerz')
-            ->with([
+            ->layout('components.layouts.app', [
                 'ogTitle' => $this->talent->name . ' | Premium Talent',
                 'ogDescription' => Str::limit(strip_tags($this->talent->bio), 150),
                 'ogImage' => $this->talent->getFirstMediaUrl('primary_image'),
