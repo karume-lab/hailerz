@@ -31,6 +31,7 @@ class AdminPanelProvider extends PanelProvider
             ->font('Outfit')
             ->brandLogo(asset('images/logo.webp'))
             ->brandLogoHeight('2.5rem')
+            ->maxContentWidth(\Filament\Support\Enums\Width::SevenExtraLarge)
             ->colors([
                 'primary' => [
                     50 => '#e6f3f6',

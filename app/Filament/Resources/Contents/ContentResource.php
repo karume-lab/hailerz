@@ -23,12 +23,43 @@ class ContentResource extends Resource
     public static function form(Schema $schema): Schema
     {
         return $schema->components([
-            Forms\Components\TextInput::make('title')->required(),
-            Forms\Components\Select::make('type')
-                ->options(['guide' => 'Industry Guide', 'news' => 'Agency News', 'asset' => 'Downloadable Asset']),
-            Forms\Components\RichEditor::make('content')->columnSpanFull(),
-            Forms\Components\FileUpload::make('file_path')->label('Attached File / PDF')->directory('resources'),
-            Forms\Components\Toggle::make('is_published')->label('Published to Public Site'),
+            \Filament\Schemas\Components\Section::make('Resource Details')
+                ->schema([
+                    Forms\Components\TextInput::make('title')
+                        ->required()
+                        ->columnSpan(2),
+                    Forms\Components\Select::make('type')
+                        ->options([
+                            'guide' => 'Industry Guide',
+                            'news'  => 'Agency News',
+                            'asset' => 'Downloadable Asset',
+                        ])
+                        ->columnSpan(1),
+                    Forms\Components\Toggle::make('is_published')
+                        ->label('Published to Public Site')
+                        ->inline(false)
+                        ->columnSpan(1),
+                ])
+                ->columns(4)
+                ->columnSpanFull(),
+
+            \Filament\Schemas\Components\Section::make('Content')
+                ->schema([
+                    Forms\Components\RichEditor::make('content')
+                        ->columnSpanFull()
+                        ->extraAttributes(['style' => 'min-height: 400px']),
+                ])
+                ->columnSpanFull(),
+
+            \Filament\Schemas\Components\Section::make('File / Link')
+                ->schema([
+                    Forms\Components\TextInput::make('file_path')
+                        ->label('File URL / Download Link')
+                        ->url()
+                        ->placeholder('https://...')
+                        ->columnSpanFull(),
+                ])
+                ->columnSpanFull(),
         ]);
     }
 

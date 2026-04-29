@@ -42,42 +42,62 @@ class SubmissionResource extends Resource
     public static function form(Schema $schema): Schema
     {
         return $schema->components([
-            Forms\Components\TextInput::make('artist_name')
-                ->label('Performer / Act Name')
-                ->required(),
-            Forms\Components\TextInput::make('email')
-                ->label('Professional Email')
-                ->email()
-                ->required(),
-            Forms\Components\TextInput::make('epk_link')
-                ->url()
-                ->label('Electronic Press Kit (EPK)'),
-            Forms\Components\Select::make('status')
-                ->label('Application Status')
-                ->options([
-                    'pending' => 'Pending Review',
-                    'approved' => 'Admitted to Roster',
-                    'rejected' => 'Declined'
-                ]),
-            Forms\Components\Section::make('Media Gallery')
+            \Filament\Schemas\Components\Section::make('Applicant Details')
+                ->schema([
+                    Forms\Components\TextInput::make('artist_name')
+                        ->label('Performer / Act Name')
+                        ->required()
+                        ->columnSpan(1),
+                    Forms\Components\TextInput::make('email')
+                        ->label('Professional Email')
+                        ->email()
+                        ->required()
+                        ->columnSpan(1),
+                    Forms\Components\TextInput::make('epk_link')
+                        ->url()
+                        ->label('Electronic Press Kit (EPK)')
+                        ->columnSpanFull(),
+                ])
+                ->columns(2)
+                ->columnSpanFull(),
+
+            \Filament\Schemas\Components\Section::make('Application Status')
+                ->schema([
+                    Forms\Components\Select::make('status')
+                        ->label('Application Status')
+                        ->options([
+                            'pending'  => 'Pending Review',
+                            'approved' => 'Admitted to Roster',
+                            'rejected' => 'Declined',
+                        ])
+                        ->columnSpanFull(),
+                ])
+                ->columnSpanFull(),
+
+            \Filament\Schemas\Components\Section::make('Media Gallery')
                 ->description('Links to media provided by the applicant')
                 ->schema([
                     Forms\Components\Repeater::make('gallery')
                         ->relationship('gallery')
                         ->schema([
                             Forms\Components\TextInput::make('url')
+                                ->label('Media URL')
                                 ->url()
                                 ->required()
                                 ->columnSpan(2),
                             Forms\Components\TextInput::make('title')
+                                ->label('Title')
                                 ->columnSpan(1),
                             Forms\Components\TextInput::make('description')
+                                ->label('Description')
                                 ->columnSpan(1),
                         ])
-                        ->columns(2)
+                        ->columns(4)
                         ->defaultItems(0)
-                        ->reorderable(true),
-                ]),
+                        ->reorderable(true)
+                        ->columnSpanFull(),
+                ])
+                ->columnSpanFull(),
         ]);
     }
 

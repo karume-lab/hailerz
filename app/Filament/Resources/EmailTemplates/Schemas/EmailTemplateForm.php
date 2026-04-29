@@ -18,17 +18,22 @@ class EmailTemplateForm
                     ->schema([
                         TextInput::make('name')
                             ->required()
-                            ->helperText('Internal identifier e.g. "Application Received", "Booking Confirmation"'),
+                            ->helperText('Internal identifier e.g. "Application Received", "Booking Confirmation"')
+                            ->columnSpan(1),
                         TextInput::make('subject')
                             ->required()
-                            ->helperText('The email subject line sent to recipients. Supports {{variable}} placeholders.'),
-                    ])->columns(2),
+                            ->helperText('The email subject line sent to recipients. Supports {{variable}} placeholders.')
+                            ->columnSpan(1),
+                    ])
+                    ->columns(2)
+                    ->columnSpanFull(),
 
                 Section::make('Email Body')
                     ->schema([
                         RichEditor::make('body')
                             ->required()
                             ->columnSpanFull()
+                            ->extraAttributes(['style' => 'min-height: 500px'])
                             ->helperText('Use full HTML to include your logo, letterhead, and footer sign-off. Supports {{variable}} placeholders for dynamic content.')
                             ->toolbarButtons([
                                 'attachFiles',
@@ -46,7 +51,8 @@ class EmailTemplateForm
                                 'underline',
                                 'undo',
                             ]),
-                    ]),
+                    ])
+                    ->columnSpanFull(),
             ]);
     }
 }

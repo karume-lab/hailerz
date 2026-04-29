@@ -13,24 +13,35 @@ class PostForm
     public static function configure(Schema $schema): Schema
     {
         return $schema->components([
-            Section::make()
+            Section::make('Article Details')
                 ->schema([
                     Forms\Components\TextInput::make('title')
                         ->required()
                         ->live(onBlur: true)
-                        ->afterStateUpdated(fn (string $operation, $state, Forms\Set $set) 
-                            => $operation === 'create' ? $set('slug', Str::slug($state)) : null),
+                        ->columnSpanFull()
+                        ->afterStateUpdated(fn ($state, $set)
+                            => $set('slug', Str::slug($state))),
                     Forms\Components\TextInput::make('slug')
-                        ->disabled()
+                        ->hidden()
                         ->dehydrated()
                         ->required()
+                        ->columnSpanFull()
                         ->unique(Post::class, 'slug', ignoreRecord: true),
+                    Forms\Components\Toggle::make('is_published')
+                        ->label('Published')
+                        ->columnSpanFull(),
+                ])
+                ->columns(1)
+                ->columnSpanFull(),
+
+            Section::make('Content')
+                ->schema([
                     Forms\Components\RichEditor::make('content')
                         ->required()
-                        ->columnSpanFull(),
-                    Forms\Components\Toggle::make('is_published')
-                        ->label('Published'),
-                ])->columns(2),
+                        ->columnSpanFull()
+                        ->extraAttributes(['style' => 'min-height: 500px']),
+                ])
+                ->columnSpanFull(),
         ]);
     }
 }

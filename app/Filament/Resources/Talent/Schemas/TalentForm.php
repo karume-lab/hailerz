@@ -13,81 +13,102 @@ class TalentForm
     public static function configure(Schema $schema): Schema
     {
         return $schema->components([
+
             Section::make('Professional Identity')
                 ->schema([
                     Forms\Components\TextInput::make('name')
                         ->label('Performer / Act Name')
                         ->required()
                         ->live(onBlur: true)
-                        ->afterStateUpdated(fn (string $operation, $state, callable $set)
-                            => $operation === 'create' ? $set('slug', Str::slug($state)) : null),
+                        ->afterStateUpdated(fn (string $operation, $state, $set)
+                            => $operation === 'create' ? $set('slug', Str::slug($state)) : null)
+                        ->columnSpan(1),
                     Forms\Components\TextInput::make('slug')
-                        ->disabled()
+                        ->hidden()
                         ->dehydrated()
                         ->required()
-                        ->unique(Talent::class, 'slug', ignoreRecord: true),
+                        ->unique(Talent::class, 'slug', ignoreRecord: true)
+                        ->columnSpan(1),
                     Forms\Components\Select::make('category_id')
                         ->label('Discipline / Category')
                         ->relationship('category', 'name')
                         ->searchable()
                         ->preload()
-                        ->required(),
-                ])->columns(3),
+                        ->required()
+                        ->columnSpanFull(),
+                ])
+                ->columns(2)
+                ->columnSpanFull(),
 
             Section::make('Executive Biography & Career Highlights')
                 ->schema([
                     Forms\Components\RichEditor::make('bio')
                         ->label('Artist Biography')
-                        ->placeholder('Detail the performer\'s experience with corporate clients, notable venues, and performance scale...')
+                        ->placeholder("Detail the performer's experience with corporate clients, notable venues, and performance scale...")
                         ->required()
-                        ->columnSpanFull(),
-                ]),
+                        ->columnSpanFull()
+                        ->extraAttributes(['style' => 'min-height: 350px']),
+                ])
+                ->columnSpanFull(),
 
-            Section::make('Performance Assets & Technical Requirements')
+            Section::make('Media & Performance Assets')
+                ->description('All media should be provided as links — no file uploads required.')
                 ->schema([
                     Forms\Components\TextInput::make('primary_image_url')
                         ->label('Primary Promotional Image URL')
                         ->url()
                         ->placeholder('https://...')
                         ->columnSpanFull(),
-                    Forms\Components\Repeater::make('gallery')
-                        ->relationship('gallery')
-                        ->schema([
-                            Forms\Components\TextInput::make('url')
-                                ->url()
-                                ->required()
-                                ->columnSpan(2),
-                            Forms\Components\TextInput::make('title')
-                                ->columnSpan(1),
-                            Forms\Components\TextInput::make('description')
-                                ->columnSpan(1),
-                        ])
-                        ->columns(2)
-                        ->defaultItems(0)
-                        ->reorderable(true)
-                        ->columnSpanFull(),
                     Forms\Components\TextInput::make('video_url')
                         ->url()
                         ->label('Showreel / Performance Link')
                         ->placeholder('https://youtube.com/watch?v=...')
-                        ->columnSpanFull(),
+                        ->columnSpan(1),
                     Forms\Components\TextInput::make('rate_card_url')
                         ->url()
-                        ->label('Rate Card / Investment Parameters URL'),
+                        ->label('Rate Card URL')
+                        ->columnSpan(1),
                     Forms\Components\TextInput::make('technical_rider')
-                        ->label('Technical Rider / Stage Requirements URL'),
-                ]),
+                        ->label('Technical Rider URL')
+                        ->columnSpanFull(),
+                    Forms\Components\Repeater::make('gallery')
+                        ->relationship('gallery')
+                        ->label('Portfolio Gallery Links')
+                        ->schema([
+                            Forms\Components\TextInput::make('url')
+                                ->label('Media URL (image, YouTube, Vimeo)')
+                                ->url()
+                                ->required()
+                                ->columnSpan(2),
+                            Forms\Components\TextInput::make('title')
+                                ->label('Title')
+                                ->columnSpan(1),
+                            Forms\Components\TextInput::make('description')
+                                ->label('Description')
+                                ->columnSpan(1),
+                        ])
+                        ->columns(4)
+                        ->defaultItems(0)
+                        ->reorderable(true)
+                        ->columnSpanFull(),
+                ])
+                ->columns(2)
+                ->columnSpanFull(),
 
             Section::make('Financial Parameters & Logistics')
                 ->schema([
                     Forms\Components\TextInput::make('location')
                         ->label('Primary Base (City, Country)')
-                        ->required(),
+                        ->required()
+                        ->columnSpan(1),
                     Forms\Components\TextInput::make('starting_price')
                         ->label('Minimum Performance Fee (USD)')
                         ->numeric()
-                        ->prefix('$'),
-                ])->columns(2),
+                        ->prefix('$')
+                        ->columnSpan(1),
+                ])
+                ->columns(2)
+                ->columnSpanFull(),
 
             Section::make('Agency Procurement Status')
                 ->schema([
@@ -98,14 +119,20 @@ class TalentForm
                             'active' => 'Active on Roster',
                             'hidden' => 'Archived / Private',
                         ])
-                        ->required(),
+                        ->required()
+                        ->columnSpan(1),
                     Forms\Components\Toggle::make('is_featured')
-                        ->label('Premium Placement'),
+                        ->label('Premium Placement')
+                        ->inline(false)
+                        ->columnSpan(1),
                     Forms\Components\Textarea::make('internal_notes')
                         ->label('Internal Agency Notes')
-                        ->helperText('Notes for internal booking agents only - never shown to clients.')
+                        ->helperText('Notes for internal booking agents only — never shown to clients.')
+                        ->rows(3)
                         ->columnSpanFull(),
-                ])->columns(2),
+                ])
+                ->columns(2)
+                ->columnSpanFull(),
         ]);
     }
 }
