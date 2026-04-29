@@ -17,7 +17,7 @@ class TalentFactory extends Factory
      */
     public function definition(): array
     {
-        $name = $this->faker->name();
+        $name = fake()->name();
         
         $corporateBios = [
             "Highly acclaimed professional with over 10 years of experience performing for Fortune 500 corporate summits and international galas.",
@@ -30,14 +30,14 @@ class TalentFactory extends Factory
         return [
             'category_id' => \App\Models\Category::factory(),
             'name' => $name,
-            'slug' => str($name)->slug() . '-' . $this->faker->unique()->numberBetween(100, 999),
-            'bio' => $this->faker->randomElement($corporateBios) . " " . $this->faker->paragraph(1),
-            'technical_rider' => "Professional stage requirements: " . $this->faker->sentence(10),
-            'starting_price' => $this->faker->randomFloat(2, 2000, 15000),
-            'location' => $this->faker->city() . ', ' . $this->faker->country(),
+            'slug' => str($name)->slug() . '-' . fake()->unique()->numberBetween(100, 999),
+            'bio' => fake()->randomElement($corporateBios) . " " . fake()->paragraph(1),
+            'technical_rider' => "Professional stage requirements: " . fake()->sentence(10),
+            'starting_price' => fake()->randomFloat(2, 2000, 15000),
+            'location' => fake()->city() . ', ' . fake()->country(),
             'status' => 'active',
             'internal_notes' => 'Generated via procurement seeder for agency testing.',
-            'is_featured' => $this->faker->boolean(15),
+            'is_featured' => fake()->boolean(15),
         ];
     }
 }

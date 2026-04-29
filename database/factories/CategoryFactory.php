@@ -11,7 +11,7 @@ class CategoryFactory extends Factory
     {
         // Removed B2C terms: 'Influencers', 'Celebrity Chefs'
         // Added B2B terms: 'Brand Ambassadors', 'Master Chefs', 'Illusionists'
-        $name = $this->faker->unique()->randomElement([
+        $name = fake()->unique()->randomElement([
             'Musicians', 'Corporate Dancers', 'Comedians', 'Keynote Speakers', 'Illusionists', 
             'Acrobatic Troupes', 'Brand Ambassadors', 'Event Hosts', 'Live Event Painters',
             'DJs', 'Jazz Saxophonists', 'Motivational Speakers', 'Master Chefs', 'Spoken Word Artists'
