@@ -49,9 +49,17 @@
                 document.documentElement.classList.remove('dark');
             }
         }
+
+        function toggleTheme() {
+            const isDark = document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            window.dispatchEvent(new CustomEvent('theme-changed', { detail: { isDark } }));
+        }
+
         applyTheme();
         document.addEventListener('livewire:navigated', applyTheme);
     </script>
+
     @stack('head')
     @livewireStyles
 </head>
