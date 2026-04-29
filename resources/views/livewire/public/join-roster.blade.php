@@ -108,6 +108,50 @@
                                     <input type="url" id="youtube_url" wire:model="youtube_url" class="block w-full px-6 py-4 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-brand-teal focus:border-transparent outline-none text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 font-medium">
                                 </div>
                             </div>
+
+                            <div class="pt-8 border-t border-gray-200 dark:border-gray-800">
+                                <div class="flex items-center justify-between mb-6">
+                                    <h4 class="text-sm font-bold text-text-primary uppercase tracking-widest">Media Gallery Links</h4>
+                                    <button type="button" wire:click="addGalleryItem" class="text-brand-teal text-[10px] font-bold uppercase tracking-widest flex items-center gap-2 hover:text-brand-teal/80 transition-colors">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                                        Add Media Link
+                                    </button>
+                                </div>
+
+                                <div class="space-y-6">
+                                    @foreach($gallery as $index => $item)
+                                        <div class="bg-gray-50 dark:bg-gray-900/50 p-6 rounded-2xl border border-gray-200 dark:border-gray-800 relative group">
+                                            <button type="button" wire:click="removeGalleryItem({{ $index }})" class="absolute top-4 right-4 text-gray-400 hover:text-red-500 transition-colors">
+                                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                                            </button>
+
+                                            <div class="grid grid-cols-1 gap-6">
+                                                <div>
+                                                    <label class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-2">Media URL (Image, YouTube, or Vimeo)</label>
+                                                    <input type="url" wire:model="gallery.{{ $index }}.url" class="block w-full px-4 py-3 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-brand-teal focus:border-transparent outline-none text-sm font-medium" placeholder="https://...">
+                                                    @error('gallery.'.$index.'.url') <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span> @enderror
+                                                </div>
+                                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                                    <div>
+                                                        <label class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-2">Title</label>
+                                                        <input type="text" wire:model="gallery.{{ $index }}.title" class="block w-full px-4 py-3 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-brand-teal focus:border-transparent outline-none text-sm font-medium" placeholder="Performance at...">
+                                                    </div>
+                                                    <div>
+                                                        <label class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-2">Short Description</label>
+                                                        <input type="text" wire:model="gallery.{{ $index }}.description" class="block w-full px-4 py-3 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-brand-teal focus:border-transparent outline-none text-sm font-medium" placeholder="e.g. Live at the Grand Hall">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
+
+                                    @if(empty($gallery))
+                                        <div class="text-center py-10 border-2 border-dashed border-gray-200 dark:border-gray-800 rounded-2xl">
+                                            <p class="text-xs text-text-muted font-bold uppercase tracking-widest">No gallery items added yet</p>
+                                        </div>
+                                    @endif
+                                </div>
+                            </div>
                         </div>
                     </div>
 

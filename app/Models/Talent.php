@@ -41,4 +41,9 @@ class Talent extends Model implements HasMedia
 
         $this->addMediaCollection('gallery');
     }
+
+    public function gallery()
+    {
+        return $this->morphMany(GalleryItem::class, 'galleryable');
+    }
 }

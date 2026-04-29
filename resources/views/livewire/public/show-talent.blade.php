@@ -2,7 +2,10 @@
 
     <!-- Hero / Primary Showcase -->
     <div class="relative h-[600px] bg-surface-dark overflow-hidden">
-        @if($talent->hasMedia('primary_image'))
+        @if($talent->primary_image_url)
+            <img src="{{ $talent->primary_image_url }}" alt="{{ $talent->name }}"
+                class="w-full h-full object-cover grayscale opacity-60 transition-transform duration-1000 scale-105">
+        @elseif($talent->hasMedia('primary_image'))
             <img src="{{ $talent->getFirstMediaUrl('primary_image') }}" alt="{{ $talent->name }}"
                 class="w-full h-full object-cover grayscale opacity-60 transition-transform duration-1000 scale-105">
         @else
@@ -87,17 +90,49 @@
                     @if($talent->technical_rider)
                     <div x-show="activeTab === 'rider'" x-cloak x-transition class="bg-surface-light p-12 rounded-3xl border border-gray-200 dark:border-gray-800 shadow-sm prose max-w-none text-text-secondary">
                         <h3 class="text-gray-900 dark:text-white font-bold font-serif mb-6 text-2xl">Production & Technical Rider</h3>
-                        {!! $talent->technical_rider !!}
+                        @if(filter_var($talent->technical_rider, FILTER_VALIDATE_URL))
+                            <p>Our technical requirements are available at the following link:</p>
+                            <a href="{{ $talent->technical_rider }}" target="_blank" class="text-brand-teal font-bold hover:underline">View Technical Rider</a>
+                        @else
+                            {!! $talent->technical_rider !!}
+                        @endif
                     </div>
                     @endif
 
                     <div x-show="activeTab === 'gallery'" x-cloak x-transition>
-                        @if($talent->hasMedia('gallery'))
-                            <div class="grid grid-cols-2 md:grid-cols-3 gap-8">
-                                @foreach($talent->getMedia('gallery') as $media)
-                                    <div class="group relative overflow-hidden rounded-2xl aspect-square bg-gray-800">
-                                        <img src="{{ $media->getUrl() }}" class="w-full h-full object-cover grayscale transition-transform duration-700 group-hover:scale-110" alt="Gallery Image" />
-                                        <div class="absolute inset-0 bg-linear-to-tr from-brand-teal/80 to-brand-mint/40 mix-blend-color opacity-60"></div>
+                        @if($talent->gallery->count() > 0)
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                                @foreach($talent->gallery as $item)
+                                    <div class="group bg-surface-light rounded-3xl overflow-hidden border border-gray-200 dark:border-gray-800 shadow-sm hover:shadow-xl transition-all duration-500">
+                                        <div class="aspect-video relative overflow-hidden bg-black">
+                                            @php
+                                                $galleryEmbedUrl = '';
+                                                if (str_contains($item->url, 'youtube.com') || str_contains($item->url, 'youtu.be')) {
+                                                    preg_match('/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/ ]{11})/i', $item->url, $match);
+                                                    if (isset($match[1])) { $galleryEmbedUrl = "https://www.youtube.com/embed/{$match[1]}?autoplay=0&rel=0"; }
+                                                } elseif (str_contains($item->url, 'vimeo.com')) {
+                                                    preg_match('/vimeo\.com\/(?:channels\/(?:\w+\/)?|groups\/(?:[^\/]*)\/videos\/|album\/(?:\d+)\/video\/|video\/|)(\d+)(?:$|\/|\?)/i', $item->url, $match);
+                                                    if (isset($match[1])) { $galleryEmbedUrl = "https://player.vimeo.com/video/{$match[1]}"; }
+                                                }
+                                            @endphp
+
+                                            @if($galleryEmbedUrl)
+                                                <iframe src="{{ $galleryEmbedUrl }}" class="absolute inset-0 w-full h-full" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                            @else
+                                                <img src="{{ $item->url }}" class="w-full h-full object-cover grayscale transition-transform duration-700 group-hover:scale-110" alt="{{ $item->title ?? 'Gallery Image' }}" />
+                                                <div class="absolute inset-0 bg-linear-to-tr from-brand-teal/80 to-brand-mint/40 mix-blend-color opacity-40"></div>
+                                            @endif
+                                        </div>
+                                        @if($item->title || $item->description)
+                                            <div class="p-6">
+                                                @if($item->title)
+                                                    <h4 class="text-sm font-bold text-gray-900 dark:text-white uppercase tracking-widest mb-1">{{ $item->title }}</h4>
+                                                @endif
+                                                @if($item->description)
+                                                    <p class="text-xs text-text-muted leading-relaxed">{{ $item->description }}</p>
+                                                @endif
+                                            </div>
+                                        @endif
                                     </div>
                                 @endforeach
                             </div>

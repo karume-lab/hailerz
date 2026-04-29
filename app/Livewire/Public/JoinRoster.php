@@ -63,6 +63,24 @@ class JoinRoster extends Component
     #[Validate('nullable|string|max:255')]
     public string $management_contact = '';
 
+    // Gallery Items
+    public array $gallery = [];
+
+    public function addGalleryItem(): void
+    {
+        $this->gallery[] = [
+            'url' => '',
+            'title' => '',
+            'description' => '',
+        ];
+    }
+
+    public function removeGalleryItem(int $index): void
+    {
+        unset($this->gallery[$index]);
+        $this->gallery = array_values($this->gallery);
+    }
+
     public function nextStep(): void
     {
         match ($this->currentStep) {
@@ -79,6 +97,9 @@ class JoinRoster extends Component
                 'instagram_url' => 'nullable|url|max:255',
                 'spotify_url'   => 'nullable|url|max:255',
                 'youtube_url'   => 'nullable|url|max:255',
+                'gallery.*.url' => 'required|url|max:255',
+                'gallery.*.title' => 'nullable|string|max:255',
+                'gallery.*.description' => 'nullable|string|max:1000',
             ]),
             default => null,
         };
@@ -101,7 +122,7 @@ class JoinRoster extends Component
             'management_contact' => 'nullable|string|max:255',
         ]);
 
-        Submission::create([
+        $submission = Submission::create([
             'artist_name'        => $this->artist_name,
             'email'              => $this->email,
             'phone'              => $this->phone,
@@ -119,6 +140,12 @@ class JoinRoster extends Component
             'management_contact' => $this->management_contact,
             'status'             => 'pending',
         ]);
+
+        foreach ($this->gallery as $item) {
+            if (!empty($item['url'])) {
+                $submission->gallery()->create($item);
+            }
+        }
 
         $this->isSubmitted = true;
     }

@@ -31,4 +31,9 @@ class Submission extends Model
             'has_management' => 'boolean',
         ];
     }
+
+    public function gallery()
+    {
+        return $this->morphMany(GalleryItem::class, 'galleryable');
+    }
 }

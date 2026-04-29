@@ -59,6 +59,25 @@ class SubmissionResource extends Resource
                     'approved' => 'Admitted to Roster',
                     'rejected' => 'Declined'
                 ]),
+            Forms\Components\Section::make('Media Gallery')
+                ->description('Links to media provided by the applicant')
+                ->schema([
+                    Forms\Components\Repeater::make('gallery')
+                        ->relationship('gallery')
+                        ->schema([
+                            Forms\Components\TextInput::make('url')
+                                ->url()
+                                ->required()
+                                ->columnSpan(2),
+                            Forms\Components\TextInput::make('title')
+                                ->columnSpan(1),
+                            Forms\Components\TextInput::make('description')
+                                ->columnSpan(1),
+                        ])
+                        ->columns(2)
+                        ->defaultItems(0)
+                        ->reorderable(true),
+                ]),
         ]);
     }
 
@@ -86,7 +105,7 @@ class SubmissionResource extends Resource
                         'approved' => 'Admitted to Roster',
                         'rejected' => 'Declined',
                         default => 'Pending Review',
-                    }),
+                     }),
             ])
             ->actions([
                 Action::make('approve')
@@ -98,10 +117,27 @@ class SubmissionResource extends Resource
                     ->action(function (Submission $record) {
                         $record->update(['status' => 'approved']);
                         // Automatically create the Talent profile
-                        Talent::create([
+                        $talent = Talent::create([
                             'name' => $record->artist_name,
                             'category_id' => 1, // Default, admin adjusts later
+                            'bio' => $record->bio,
+                            'location' => $record->location,
+                            'starting_price' => (float)$record->minimum_fee,
+                            'video_url' => $record->youtube_url ?? $record->epk_link,
+                            'status' => 'active',
+                            'slug' => \Illuminate\Support\Str::slug($record->artist_name),
                         ]);
+
+                        // Sync Gallery Items
+                        foreach ($record->gallery as $item) {
+                            $talent->gallery()->create([
+                                'url' => $item->url,
+                                'title' => $item->title,
+                                'description' => $item->description,
+                                'sort_order' => $item->sort_order,
+                            ]);
+                        }
+
                         Notification::make()
                             ->title('Act Admitted to Agency Roster')
                             ->body('A new talent profile has been initialized based on this application.')

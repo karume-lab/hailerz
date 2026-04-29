@@ -45,32 +45,37 @@ class TalentForm
 
             Section::make('Performance Assets & Technical Requirements')
                 ->schema([
-                    \Filament\Forms\Components\SpatieMediaLibraryFileUpload::make('primary_image')
-                        ->label('Primary Promotional Image')
-                        ->collection('primary_image')
-                        ->image()
-                        ->imageEditor()
+                    Forms\Components\TextInput::make('primary_image_url')
+                        ->label('Primary Promotional Image URL')
+                        ->url()
+                        ->placeholder('https://...')
                         ->columnSpanFull(),
-                    \Filament\Forms\Components\SpatieMediaLibraryFileUpload::make('gallery')
-                        ->label('Portfolio Gallery')
-                        ->collection('gallery')
-                        ->multiple()
-                        ->image()
-                        ->imageEditor()
+                    Forms\Components\Repeater::make('gallery')
+                        ->relationship('gallery')
+                        ->schema([
+                            Forms\Components\TextInput::make('url')
+                                ->url()
+                                ->required()
+                                ->columnSpan(2),
+                            Forms\Components\TextInput::make('title')
+                                ->columnSpan(1),
+                            Forms\Components\TextInput::make('description')
+                                ->columnSpan(1),
+                        ])
+                        ->columns(2)
+                        ->defaultItems(0)
+                        ->reorderable(true)
                         ->columnSpanFull(),
-                    \Filament\Forms\Components\TextInput::make('video_url')
+                    Forms\Components\TextInput::make('video_url')
                         ->url()
                         ->label('Showreel / Performance Link')
                         ->placeholder('https://youtube.com/watch?v=...')
                         ->columnSpanFull(),
-                    \Filament\Forms\Components\SpatieMediaLibraryFileUpload::make('rate_card')
-                        ->collection('rate_card')
-                        ->acceptedFileTypes(['application/pdf'])
-                        ->label('Rate Card / Investment Parameters (PDF)'),
-                    \Filament\Forms\Components\SpatieMediaLibraryFileUpload::make('technical_rider')
-                        ->collection('technical_rider')
-                        ->acceptedFileTypes(['application/pdf'])
-                        ->label('Technical Rider / Stage Requirements (PDF)'),
+                    Forms\Components\TextInput::make('rate_card_url')
+                        ->url()
+                        ->label('Rate Card / Investment Parameters URL'),
+                    Forms\Components\TextInput::make('technical_rider')
+                        ->label('Technical Rider / Stage Requirements URL'),
                 ]),
 
             Section::make('Financial Parameters & Logistics')
