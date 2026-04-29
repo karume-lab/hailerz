@@ -26,10 +26,10 @@ new class extends Component {
                 <span class="h-px w-8 bg-brand-teal"></span>
                 <span class="text-xs font-bold text-brand-teal uppercase tracking-widest">Agency Roster</span>
             </div>
-            <h1 class="text-4xl font-bold text-brand-navy font-serif">Explore the Talent</h1>
+            <h1 class="text-4xl font-bold text-text-primary font-serif">Explore the Talent</h1>
         </div>
 
-        <select wire:model.live="category_id" aria-label="Filter talent by category" class="bg-surface-muted border border-brand-navy/10 rounded-xl px-5 py-3 text-sm font-bold text-brand-navy uppercase tracking-widest focus:ring-2 focus:ring-brand-teal focus:border-transparent outline-none transition-all">
+        <select wire:model.live="category_id" aria-label="Filter talent by category" class="bg-surface-muted border border-brand-navy/10 rounded-xl px-5 py-3 text-sm font-bold text-text-primary uppercase tracking-widest focus:ring-2 focus:ring-brand-teal focus:border-transparent outline-none transition-all">
             <option value="">All Disciplines</option>
             @foreach($categories as $cat)
                 <option value="{{ $cat->id }}">{{ $cat->name }}</option>
@@ -39,7 +39,7 @@ new class extends Component {
 
     <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8">
         @foreach($talents as $talent)
-            <div class="bg-white rounded-3xl shadow-sm overflow-hidden border border-brand-navy/5 group hover:shadow-2xl transition-all duration-500">
+            <div class="bg-surface-light rounded-3xl shadow-sm overflow-hidden border border-brand-navy/5 group hover:shadow-2xl transition-all duration-500">
 
                 <div class="group relative overflow-hidden aspect-3/4 bg-surface-dark">
                     @if($talent->hasMedia('primary_image'))
@@ -62,11 +62,11 @@ new class extends Component {
                     <div class="flex justify-between items-center mb-6">
                         <div>
                             <p class="text-[10px] font-bold text-text-muted uppercase tracking-widest">Performance Fee</p>
-                            <p class="text-lg font-bold text-brand-navy font-serif">${{ number_format($talent->starting_price ?? 0) }}</p>
+                            <p class="text-lg font-bold text-text-primary font-serif">${{ number_format($talent->starting_price ?? 0) }}</p>
                         </div>
                         <div class="text-right">
                             <p class="text-[10px] font-bold text-text-muted uppercase tracking-widest">Location</p>
-                            <p class="text-sm font-semibold text-brand-navy">{{ $talent->location ?? 'Global' }}</p>
+                            <p class="text-sm font-semibold text-text-primary">{{ $talent->location ?? 'Global' }}</p>
                         </div>
                     </div>
 

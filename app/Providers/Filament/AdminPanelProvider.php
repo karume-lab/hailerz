@@ -67,7 +67,23 @@ class AdminPanelProvider extends PanelProvider
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')
             ->renderHook(
                 'panels::head.end',
-                fn (): string => \Illuminate\Support\Facades\Blade::render("@vite('resources/css/admin.css')")
+                fn (): string => \Illuminate\Support\Facades\Blade::render("
+                    @vite('resources/css/admin.css')
+                    <script>
+                        function applyTheme() {
+                            if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                                document.documentElement.classList.add('dark');
+                            } else {
+                                document.documentElement.classList.remove('dark');
+                            }
+                        }
+                        applyTheme();
+                    </script>
+                ")
+            )
+            ->renderHook(
+                'panels::user-menu.before',
+                fn (): string => \Illuminate\Support\Facades\Blade::render("<div class='hidden lg:flex items-center me-4'><x-theme-toggle /></div>")
             )
             ->pages([
                 Dashboard::class,

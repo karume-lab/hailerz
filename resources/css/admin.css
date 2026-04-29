@@ -9,23 +9,11 @@
         --brand-navy: #21395c;
         --brand-teal: #1a8aa7;
         --brand-mint: #65c4af;
+        --text-secondary: #374151;
     }
 
-    /* Target Filament Sidebar specifically */
-    .fi-sidebar {
-        background-color: var(--brand-navy) !important;
-    }
-
-    .fi-sidebar [data-active="true"] {
-        background-color: var(--brand-teal) !important;
-    }
-
-    .fi-sidebar-item-button:hover {
-        background-color: rgba(26, 138, 167, 0.1) !important;
-    }
-
-    .fi-sidebar-group-label, .fi-sidebar-item-label {
-        color: #f3f4f6 !important;
+    .dark {
+        --text-secondary: #D1D5DB;
     }
 
     /* Logo scaling in panel */

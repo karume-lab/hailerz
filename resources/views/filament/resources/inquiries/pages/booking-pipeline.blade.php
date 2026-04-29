@@ -1,13 +1,13 @@
 <x-filament-panels::page>
     {{-- View Switcher --}}
-    <div class="mb-6 flex justify-start">
-        <div class="inline-flex p-1 bg-surface-muted dark:bg-surface-dark rounded-xl border border-brand-navy/10 shadow-sm">
+    <div class="mb-8 flex justify-start">
+        <div class="inline-flex p-1.5 bg-slate-100 dark:bg-gray-900 rounded-2xl border border-slate-200 dark:border-gray-800 shadow-inner">
             <button
                 wire:click="toggleView('kanban')"
                 @class([
-                    'flex items-center gap-2 px-5 py-2 text-[10px] font-black uppercase tracking-widest rounded-lg transition-all duration-300',
-                    'bg-white dark:bg-brand-navy shadow-lg text-brand-teal' => $activeView === 'kanban',
-                    'text-text-muted hover:text-brand-teal' => $activeView !== 'kanban',
+                    'flex items-center gap-2.5 px-6 py-2.5 text-[11px] font-black uppercase tracking-[0.15em] rounded-xl transition-all duration-500',
+                    'bg-white dark:bg-gray-800 shadow-xl text-brand-teal ring-1 ring-slate-200/50 dark:ring-gray-700' => $activeView === 'kanban',
+                    'text-slate-500 dark:text-gray-400 hover:text-brand-teal' => $activeView !== 'kanban',
                 ])
             >
                 <x-filament::icon icon="heroicon-m-view-columns" class="w-4 h-4" />
@@ -16,9 +16,9 @@
             <button
                 wire:click="toggleView('table')"
                 @class([
-                    'flex items-center gap-2 px-5 py-2 text-[10px] font-black uppercase tracking-widest rounded-lg transition-all duration-300',
-                    'bg-white dark:bg-brand-navy shadow-lg text-brand-teal' => $activeView === 'table',
-                    'text-text-muted hover:text-brand-teal' => $activeView !== 'table',
+                    'flex items-center gap-2.5 px-6 py-2.5 text-[11px] font-black uppercase tracking-[0.15em] rounded-xl transition-all duration-500',
+                    'bg-white dark:bg-gray-800 shadow-xl text-brand-teal ring-1 ring-slate-200/50 dark:ring-gray-700' => $activeView === 'table',
+                    'text-slate-500 dark:text-gray-400 hover:text-brand-teal' => $activeView !== 'table',
                 ])
             >
                 <x-filament::icon icon="heroicon-m-table-cells" class="w-4 h-4" />
@@ -40,61 +40,66 @@
                     this.draggingRecord = null;
                 }
             }"
-            class="flex flex-row gap-6 overflow-x-auto pb-12"
-            style="align-items: flex-start; min-height: calc(100vh - 260px);"
+            class="flex flex-row gap-8 overflow-x-auto pb-16"
+            style="align-items: flex-start; min-height: calc(100vh - 280px);"
         >
             @foreach($this->getStatuses() as $status)
                 <div
-                    class="flex flex-col w-80 shrink-0"
+                    class="flex flex-col w-85 shrink-0"
                     @dragenter.prevent
                     @dragover.prevent
                     @drop.prevent="droppedOnStatus('{{ $status->value }}')"
                 >
                     {{-- Column Header --}}
-                    <div class="flex items-center justify-between px-2 mb-4">
-                        <span class="text-[10px] font-black uppercase tracking-widest text-brand-navy/40 dark:text-text-muted">
+                    <div class="flex items-center justify-between px-3 mb-5">
+                        <span class="text-[11px] font-black uppercase tracking-[0.2em] text-slate-400 dark:text-gray-500">
                             {{ $status->kanbanTitle() }}
                         </span>
                         <span
-                            class="inline-flex items-center justify-center min-w-6 h-6 px-2 text-[10px] font-black rounded-full bg-brand-teal/10 text-brand-teal border border-brand-teal/20"
+                            class="inline-flex items-center justify-center min-w-7 h-7 px-2.5 text-[11px] font-black rounded-lg bg-brand-teal/5 text-brand-teal border border-brand-teal/10"
                             x-text="(inquiries['{{ $status->value }}'] || []).length"
                         ></span>
                     </div>
 
                     {{-- Cards area --}}
-                    <div class="flex-1 flex flex-col gap-4 p-3 rounded-4xl border border-brand-navy/5 bg-surface-muted/50 dark:bg-surface-dark/50 min-h-[400px]">
+                    <div class="flex-1 flex flex-col gap-5 p-4 rounded-[2.5rem] border border-slate-200/60 dark:border-gray-800 bg-slate-50/50 dark:bg-gray-900/40 min-h-[450px] shadow-inner transition-colors duration-500">
                         <template x-for="inquiry in (inquiries['{{ $status->value }}'] || [])" :key="inquiry.id">
                             <div
                                 draggable="true"
                                 @dragstart="startDragging(inquiry.id)"
-                                class="group relative bg-white dark:bg-brand-navy border border-brand-navy/5 p-5 rounded-2xl shadow-sm cursor-grab active:cursor-grabbing active:scale-[0.98] hover:border-brand-teal hover:shadow-xl transition-all duration-300"
+                                class="group relative bg-white dark:bg-gray-800 border border-slate-200/80 dark:border-gray-700 p-6 rounded-3xl shadow-sm cursor-grab active:cursor-grabbing active:scale-[0.98] hover:border-brand-teal dark:hover:border-brand-teal hover:shadow-2xl hover:-translate-y-1 transition-all duration-500 overflow-hidden"
                             >
+                                {{-- Brand Accent --}}
+                                <div class="absolute top-0 left-0 w-full h-1 bg-brand-teal opacity-0 group-hover:opacity-100 transition-opacity"></div>
+
                                 {{-- Edit button, revealed on hover --}}
-                                <div class="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                    <a :href="inquiry.edit_url" class="text-text-muted hover:text-brand-teal transition-colors">
+                                <div class="absolute top-5 right-5 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0">
+                                    <a :href="inquiry.edit_url" class="flex items-center justify-center w-8 h-8 rounded-full bg-slate-50 dark:bg-gray-700 text-slate-400 dark:text-gray-400 hover:text-brand-teal dark:hover:text-brand-teal transition-colors shadow-sm">
                                         <x-filament::icon icon="heroicon-m-pencil-square" class="w-4 h-4" />
                                     </a>
                                 </div>
 
                                 {{-- Client name & ref --}}
-                                <div class="mb-4">
-                                    <div class="text-sm font-bold text-brand-navy dark:text-white" x-text="inquiry.client_name"></div>
-                                    <span class="text-[10px] text-text-muted font-bold uppercase tracking-tight" x-text="'#INQ-' + inquiry.id"></span>
+                                <div class="mb-5">
+                                    <div class="text-[15px] font-bold text-slate-900 dark:text-white tracking-tight leading-tight mb-1" x-text="inquiry.client_name"></div>
+                                    <span class="text-[10px] text-slate-400 dark:text-gray-500 font-black uppercase tracking-widest" x-text="'#INQ-' + inquiry.id"></span>
                                 </div>
 
                                 {{-- Details --}}
-                                <div class="pt-4 border-t border-brand-navy/5 flex flex-col gap-2">
-                                    <div class="flex items-center gap-2 text-[11px] font-medium text-text-secondary">
-                                        <svg class="w-3.5 h-3.5 text-brand-teal shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" /></svg>
+                                <div class="pt-5 border-t border-slate-100 dark:border-gray-700/50 flex flex-col gap-3">
+                                    <div class="flex items-center gap-2.5 text-xs font-semibold text-slate-600 dark:text-gray-300">
+                                        <div class="w-6 h-6 rounded-lg bg-brand-teal/5 flex items-center justify-center">
+                                            <svg class="w-3.5 h-3.5 text-brand-teal" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" /></svg>
+                                        </div>
                                         <span x-text="inquiry.talent_name"></span>
                                     </div>
 
                                     <div class="flex items-center justify-between mt-2">
-                                        <div class="flex items-center gap-1.5 text-[10px] font-bold text-text-muted uppercase tracking-widest">
-                                            <svg class="w-3.5 h-3.5 shrink-0 text-brand-mint" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" /></svg>
+                                        <div class="flex items-center gap-2 text-[10px] font-bold text-slate-400 dark:text-gray-500 uppercase tracking-widest">
+                                            <svg class="w-3.5 h-3.5 text-brand-mint" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" /></svg>
                                             <span x-text="inquiry.event_date || 'TBD'"></span>
                                         </div>
-                                        <span class="text-xs font-black text-brand-navy dark:text-white" x-text="inquiry.budget"></span>
+                                        <div class="px-2.5 py-1 rounded-lg bg-slate-900 dark:bg-white text-[11px] font-black text-white dark:text-gray-900" x-text="inquiry.budget"></div>
                                     </div>
                                 </div>
                             </div>
@@ -103,9 +108,9 @@
                         {{-- Empty drop zone --}}
                         <div
                             x-show="!(inquiries['{{ $status->value }}'] || []).length"
-                            class="flex-1 flex items-center justify-center min-h-32 border-2 border-dashed border-brand-navy/10 rounded-2xl"
+                            class="flex-1 flex items-center justify-center min-h-36 border-2 border-dashed border-slate-200 dark:border-gray-800 rounded-[2rem] bg-slate-100/50 dark:bg-transparent transition-colors"
                         >
-                            <span class="text-[10px] font-black text-brand-navy/20 uppercase tracking-widest">Drop specifications here</span>
+                            <span class="text-[10px] font-black text-slate-300 dark:text-gray-700 uppercase tracking-[0.2em]">Drop Lead Here</span>
                         </div>
                     </div>
                 </div>
@@ -114,7 +119,7 @@
 
     {{-- Table View --}}
     @else
-        <div class="bg-white dark:bg-brand-navy rounded-4xl border border-brand-navy/5 shadow-xl overflow-hidden">
+        <div class="bg-white dark:bg-gray-900 rounded-[2.5rem] border border-slate-200 dark:border-gray-800 shadow-2xl overflow-hidden transition-all duration-500">
             {{ $this->table }}
         </div>
     @endif

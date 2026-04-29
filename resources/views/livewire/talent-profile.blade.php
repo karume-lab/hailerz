@@ -14,7 +14,7 @@ new class extends Component {
 
 <div class="bg-surface-muted min-h-screen py-20">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="bg-white rounded-[3rem] shadow-2xl overflow-hidden border border-brand-navy/5 flex flex-col md:flex-row">
+        <div class="bg-surface-light rounded-[3rem] shadow-2xl overflow-hidden border border-brand-navy/5 flex flex-col md:flex-row">
             
             <!-- Talent Asset -->
             <div class="w-full md:w-2/5">
@@ -38,18 +38,18 @@ new class extends Component {
                     <span class="text-xs font-bold text-brand-teal uppercase tracking-widest">{{ $this->talent->category?->name ?? 'Professional Act' }}</span>
                 </div>
                 
-                <h1 class="text-4xl md:text-6xl font-bold text-brand-navy font-serif tracking-tight mb-8">{{ $this->talent->name }}</h1>
+                <h1 class="text-4xl md:text-6xl font-bold text-text-primary font-serif tracking-tight mb-8">{{ $this->talent->name }}</h1>
                 
                 <div class="flex flex-wrap gap-10 mb-12">
                     <div>
                         <p class="text-[10px] font-bold text-text-muted uppercase tracking-widest mb-1">Starting Investment</p>
-                        <p class="text-2xl font-bold text-brand-navy font-serif">
+                        <p class="text-2xl font-bold text-text-primary font-serif">
                             {{ $this->talent->starting_price ? '$' . number_format($this->talent->starting_price) : 'Custom Quotation' }}
                         </p>
                     </div>
                     <div>
                         <p class="text-[10px] font-bold text-text-muted uppercase tracking-widest mb-1">Primary Base</p>
-                        <p class="text-lg font-semibold text-brand-navy">{{ $this->talent->location ?? 'International' }}</p>
+                        <p class="text-lg font-semibold text-text-primary">{{ $this->talent->location ?? 'International' }}</p>
                     </div>
                 </div>
                 
