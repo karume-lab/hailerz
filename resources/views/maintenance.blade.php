@@ -12,20 +12,20 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="bg-dark text-white flex items-center justify-center min-h-screen px-6 antialiased font-sans overflow-hidden">
+<body class="bg-brand-navy text-white flex items-center justify-center min-h-screen px-6 antialiased font-sans overflow-hidden">
     <!-- Bouncing Logo Container -->
     <div class="fixed inset-0 pointer-events-none z-50">
         <div id="bouncing-logo" class="absolute h-24 w-auto flex items-center justify-center">
-            <img src="{{ asset('images/logo.webp') }}" alt="Hailerz Logo" class="h-full w-auto">
+            <img src="{{ asset('images/logo.webp') }}" alt="Hailerz Logo" class="h-full w-auto rounded-2xl shadow-2xl border border-white/10">
         </div>
     </div>
 
     <div class="max-w-md w-full text-center relative z-10">
-        <h1 class="text-4xl font-bold mb-4 tracking-tight">Under Maintenance</h1>
-        <p class="text-gray-400 text-lg leading-relaxed mb-8">
-            We're currently performing some scheduled maintenance to improve your experience. We'll be back shortly!
+        <h1 class="text-4xl font-bold mb-4 tracking-tight text-brand-mint">Under Maintenance</h1>
+        <p class="text-white/70 text-lg leading-relaxed mb-8">
+            We're currently performing some scheduled maintenance to improve our digital roster experience. We'll be back shortly!
         </p>
-        <div class="text-gray-500 text-sm">
+        <div class="text-brand-teal/50 text-sm font-semibold tracking-widest uppercase">
             &copy; {{ date('Y') }} Hailerz Agency.
         </div>
     </div>
