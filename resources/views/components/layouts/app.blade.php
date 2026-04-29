@@ -11,6 +11,20 @@
 
     <title>{{ $title ?? 'Hailerz | Premium Talent Booking Agency' }}</title>
 
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:title" content="{{ $ogTitle ?? ($title ?? 'Hailerz | Premium Talent Booking Agency') }}">
+    <meta property="og:description" content="{{ $ogDescription ?? 'A boutique talent agency specializing in securing world-class performers for corporate events, galas, and private functions.' }}">
+    <meta property="og:image" content="{{ $ogImage ?? asset('images/logo.webp') }}">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="{{ url()->current() }}">
+    <meta name="twitter:title" content="{{ $ogTitle ?? ($title ?? 'Hailerz | Premium Talent Booking Agency') }}">
+    <meta name="twitter:description" content="{{ $ogDescription ?? 'A boutique talent agency specializing in securing world-class performers for corporate events, galas, and private functions.' }}">
+    <meta name="twitter:image" content="{{ $ogImage ?? asset('images/logo.webp') }}">
+
     <link rel="preconnect" href="https://fonts.bunny.net" crossorigin>
     <link href="https://fonts.bunny.net/css?family=inter:400,500,600,700|outfit:600,700&display=swap" rel="stylesheet" />
     <link rel="manifest" href="/manifest.json">
