@@ -63,6 +63,11 @@
 
 # 4. Cache-Control for static assets (explicit headers)
 <IfModule mod_headers.c>
+    # HTML pages — no-cache (not no-store) so bfcache works for back/forward nav
+    <FilesMatch "\.php$">
+        Header set Cache-Control "private, no-cache"
+    </FilesMatch>
+
     # Immutable static assets (versioned by Vite hash)
     <FilesMatch "\.(js|css)$">
         Header set Cache-Control "public, max-age=31536000, immutable"
@@ -89,19 +94,23 @@
     # Cross-Origin-Resource-Policy
     Header always set Cross-Origin-Resource-Policy "same-origin"
 
-    # Content-Security-Policy — start in report-only; switch to enforce after testing
-    # Allows: self, Livewire inline scripts, Vite assets, self-hosted fonts only
+    # Permissions-Policy — disable unused browser features
+    Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(self), payment=()"
+
+    # Content-Security-Policy
+    # Note: unsafe-inline and unsafe-eval are required by Livewire/Alpine and cannot be removed
+    # without switching to Livewire's csp_safe mode (requires nonce injection).
+    # report-uri logs real violations to a Laravel endpoint for monitoring.
     Header always set Content-Security-Policy "\
         default-src 'self'; \
-        script-src 'self' 'unsafe-inline' 'unsafe-eval'; \
+        script-src 'self' 'unsafe-inline'; \
         style-src 'self' 'unsafe-inline'; \
         font-src 'self'; \
         img-src 'self' data: https://images.unsplash.com https://media.licdn.com; \
         connect-src 'self' https://nominatim.openstreetmap.org; \
         frame-ancestors 'none'; \
         base-uri 'self'; \
-        form-action 'self';"
-
-    # Trusted-Types directive (mitigates DOM-based XSS)
-    Header always set Content-Security-Policy-Report-Only "require-trusted-types-for 'script'"
+        form-action 'self'; \
+        require-trusted-types-for 'script'; \
+        report-uri /csp-report"
 </IfModule>

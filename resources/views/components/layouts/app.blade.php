@@ -25,10 +25,7 @@
     <meta name="twitter:description" content="{{ $ogDescription ?? 'A boutique talent agency specializing in securing world-class performers for corporate events, galas, and private functions.' }}">
     <meta name="twitter:image" content="{{ $ogImage ?? asset('images/logo.webp') }}">
 
-    <!-- Self-hosted fonts — eliminates render-blocking external stylesheet -->
-    <link rel="preload" href="/fonts/inter-latin-400.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="/fonts/inter-latin-700.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="/fonts/outfit-latin-700.woff2" as="font" type="font/woff2" crossorigin>
+    <!-- Self-hosted fonts loaded via @font-face + font-display:swap in app.css -->
     <link rel="manifest" href="/manifest.json">
 
     <script>

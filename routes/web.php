@@ -14,6 +14,8 @@ use App\Livewire\Public\Legal\TermsOfService;
 use App\Livewire\Public\Legal\PrivacyPolicy;
 use App\Livewire\Public\Legal\BookingAgreement;
 use App\Livewire\Public\Legal\CancellationPolicy;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 
 // Public Frontends
@@ -41,3 +43,14 @@ Route::get('/news/{slug}', ShowPost::class)->name('news.show');
 
 // Maintenance
 Route::view('/maintenance', 'maintenance')->name('maintenance');
+
+// CSP Violation Reports
+Route::post('/csp-report', function (Request $request) {
+    $report = $request->json()->all();
+    if (!empty($report)) {
+        Log::warning('CSP Violation', $report);
+    }
+    return response()->noContent();
+})->withoutMiddleware([\Illuminate\Foundation\Http\Middleware\VerifyCsrfToken::class])
+  ->middleware('throttle:30,1')
+  ->name('csp.report');

@@ -37,7 +37,7 @@
                     <div class="grid grid-cols-2 gap-6">
                         <div class="space-y-6 pt-12">
                             <div class="group relative overflow-hidden rounded-2xl aspect-3/4 bg-surface-dark border border-white/5">
-                                <img src="{{ asset('images/home/hero-card-1.webp') }}" loading="eager" fetchpriority="high" width="600" height="800" class="w-full h-full object-cover grayscale transition-transform duration-700 group-hover:scale-110" alt="Live Performance Showcase" />
+                                <img src="{{ asset('images/home/hero-card-1.webp') }}" loading="eager" fetchpriority="high" width="664" height="887" class="w-full h-full object-cover grayscale transition-transform duration-700 group-hover:scale-110" alt="Live Performance Showcase" />
                                 <div class="absolute inset-0 bg-linear-to-tr from-brand-teal/80 to-brand-mint/40 mix-blend-color"></div>
                                 <div class="absolute inset-0 bg-linear-to-t from-brand-navy/90 via-transparent to-transparent"></div>
                                 <div class="absolute bottom-6 left-6">
@@ -48,7 +48,7 @@
                         </div>
                         <div class="space-y-6">
                             <div class="group relative overflow-hidden rounded-2xl aspect-3/4 bg-surface-dark border border-white/5">
-                                <img src="{{ asset('images/home/hero-card-2.webp') }}" loading="eager" fetchpriority="high" width="600" height="800" class="w-full h-full object-cover grayscale transition-transform duration-700 group-hover:scale-110" alt="Keynote Speaker Showcase" />
+                                <img src="{{ asset('images/home/hero-card-2.webp') }}" loading="eager" fetchpriority="high" width="664" height="887" class="w-full h-full object-cover grayscale transition-transform duration-700 group-hover:scale-110" alt="Keynote Speaker Showcase" />
                                 <div class="absolute inset-0 bg-linear-to-tr from-brand-teal/80 to-brand-mint/40 mix-blend-color"></div>
                                 <div class="absolute inset-0 bg-linear-to-t from-brand-navy/90 via-transparent to-transparent"></div>
                                 <div class="absolute bottom-6 left-6">
@@ -135,7 +135,7 @@
 
                 @foreach($categories as $cat)
                     <a href="/talent?category={{ $cat['slug'] }}" class="group block relative h-[450px] rounded-3xl overflow-hidden shadow-lg">
-                        <img src="{{ asset('images/home/' . $cat['img']) }}" loading="eager" fetchpriority="low" width="600" height="675" class="absolute inset-0 w-full h-full object-cover grayscale transition-transform duration-1000 group-hover:scale-110" alt="{{ $cat['name'] }}" />
+                        <img src="{{ asset('images/home/' . $cat['img']) }}" loading="eager" fetchpriority="low" width="640" height="720" class="absolute inset-0 w-full h-full object-cover grayscale transition-transform duration-1000 group-hover:scale-110" alt="{{ $cat['name'] }}" />
                         <div class="absolute inset-0 bg-linear-to-tr from-brand-teal/80 to-brand-mint/40 mix-blend-color opacity-90"></div>
                         <div class="absolute inset-0 bg-linear-to-t from-brand-navy/90 via-brand-navy/20 to-transparent"></div>
                         <div class="absolute bottom-10 left-10">
