@@ -1,7 +1,12 @@
 @push('head')
-    {{-- Preload LCP images to break critical request chain --}}
+    {{-- Preload above-fold hero images (highest priority) --}}
     <link rel="preload" as="image" href="{{ asset('images/home/hero-card-1.webp') }}" type="image/webp" fetchpriority="high">
     <link rel="preload" as="image" href="{{ asset('images/home/hero-card-2.webp') }}" type="image/webp" fetchpriority="high">
+    {{-- Preload category images (lower priority) so they're ready when the user scrolls --}}
+    <link rel="preload" as="image" href="{{ asset('images/home/musicians.webp') }}" type="image/webp" fetchpriority="low">
+    <link rel="preload" as="image" href="{{ asset('images/home/speakers.webp') }}" type="image/webp" fetchpriority="low">
+    <link rel="preload" as="image" href="{{ asset('images/home/djs.webp') }}" type="image/webp" fetchpriority="low">
+    <link rel="preload" as="image" href="{{ asset('images/home/specialty.webp') }}" type="image/webp" fetchpriority="low">
 @endpush
 
 <div class="bg-surface-light">
@@ -130,7 +135,7 @@
 
                 @foreach($categories as $cat)
                     <a href="/talent?category={{ $cat['slug'] }}" class="group block relative h-[450px] rounded-3xl overflow-hidden shadow-lg">
-                        <img src="{{ asset('images/home/' . $cat['img']) }}" loading="lazy" width="600" height="675" class="absolute inset-0 w-full h-full object-cover grayscale transition-transform duration-1000 group-hover:scale-110" alt="{{ $cat['name'] }}" />
+                        <img src="{{ asset('images/home/' . $cat['img']) }}" loading="eager" fetchpriority="low" width="600" height="675" class="absolute inset-0 w-full h-full object-cover grayscale transition-transform duration-1000 group-hover:scale-110" alt="{{ $cat['name'] }}" />
                         <div class="absolute inset-0 bg-linear-to-tr from-brand-teal/80 to-brand-mint/40 mix-blend-color opacity-90"></div>
                         <div class="absolute inset-0 bg-linear-to-t from-brand-navy/90 via-brand-navy/20 to-transparent"></div>
                         <div class="absolute bottom-10 left-10">
