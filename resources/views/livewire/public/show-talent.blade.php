@@ -13,16 +13,19 @@
         <span class="text-9xl font-bold text-text-primary/5 font-serif">{{ substr($talent->name, 0, 1) }}</span>
       </div>
     @endif
-    
+
     <!-- Design Overlays -->
-    <div class="absolute inset-0 bg-linear-to-tr from-brand-primary/80 to-brand-secondary/40 mix-blend-color opacity-70"></div>
+    <div
+      class="absolute inset-0 bg-linear-to-tr from-brand-primary/80 to-brand-secondary/40 mix-blend-color opacity-70">
+    </div>
     <div class="absolute inset-0 bg-linear-to-t from-surface-dark via-surface-dark/40 to-transparent"></div>
 
     <div class="absolute bottom-0 left-0 w-full">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
         <div class="flex items-center gap-3 mb-6">
           <span class="h-px w-12 bg-brand-primary"></span>
-          <span class="text-xs font-bold text-brand-primary uppercase tracking-widest">{{ $talent->category?->name ?? 'Premier Roster' }}</span>
+          <span
+            class="text-xs font-bold text-brand-primary uppercase tracking-widest">{{ $talent->category?->name ?? 'Premier Roster' }}</span>
         </div>
         <h1 class="text-5xl md:text-8xl font-bold text-text-inverse tracking-tight font-serif">{{ $talent->name }}</h1>
       </div>
@@ -35,47 +38,60 @@
 
       <!-- Left Primary Content -->
       <div class="w-full lg:w-2/3">
-        
+
         <!-- Performance Reel -->
         @if($talent->video_url)
-        <section class="mb-20">
-          <div class="aspect-video w-full rounded-4xl overflow-hidden bg-surface-dark shadow-2xl border border-subtle relative group">
-            @php
-              $embedUrl = '';
-              if (str_contains($talent->video_url, 'youtube.com') || str_contains($talent->video_url, 'youtu.be')) {
-                preg_match('/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/ ]{11})/i', $talent->video_url, $match);
-                if (isset($match[1])) { $embedUrl = "https://www.youtube.com/embed/{$match[1]}?autoplay=0&rel=0"; }
-              } elseif (str_contains($talent->video_url, 'vimeo.com')) {
-                preg_match('/vimeo\.com\/(?:channels\/(?:\w+\/)?|groups\/(?:[^\/]*)\/videos\/|album\/(?:\d+)\/video\/|video\/|)(\d+)(?:$|\/|\?)/i', $talent->video_url, $match);
-                if (isset($match[1])) { $embedUrl = "https://player.vimeo.com/video/{$match[1]}"; }
-              }
-            @endphp
+          <section class="mb-20">
+            <div
+              class="aspect-video w-full rounded-4xl overflow-hidden bg-surface-dark shadow-2xl border border-subtle relative group">
+              @php
+                $embedUrl = '';
+                if (str_contains($talent->video_url, 'youtube.com') || str_contains($talent->video_url, 'youtu.be')) {
+                  preg_match('/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/ ]{11})/i', $talent->video_url, $match);
+                  if (isset($match[1])) {
+                    $embedUrl = "https://www.youtube.com/embed/{$match[1]}?autoplay=0&rel=0";
+                  }
+                } elseif (str_contains($talent->video_url, 'vimeo.com')) {
+                  preg_match('/vimeo\.com\/(?:channels\/(?:\w+\/)?|groups\/(?:[^\/]*)\/videos\/|album\/(?:\d+)\/video\/|video\/|)(\d+)(?:$|\/|\?)/i', $talent->video_url, $match);
+                  if (isset($match[1])) {
+                    $embedUrl = "https://player.vimeo.com/video/{$match[1]}";
+                  }
+                }
+              @endphp
 
-            @if($embedUrl)
-              <iframe src="{{ $embedUrl }}" class="absolute inset-0 w-full h-full" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            @else
-              <div class="flex items-center justify-center h-full">
-                <x-button variant="outline" href="{{ $talent->video_url }}" target="_blank">
-                  View Performance Reel
-                </x-button>
-              </div>
-            @endif
-          </div>
-        </section>
+              @if($embedUrl)
+                <iframe src="{{ $embedUrl }}" class="absolute inset-0 w-full h-full" frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen></iframe>
+              @else
+                <div class="flex items-center justify-center h-full">
+                  <x-button variant="outline" href="{{ $talent->video_url }}" target="_blank">
+                    View Performance Reel
+                  </x-button>
+                </div>
+              @endif
+            </div>
+          </section>
         @endif
 
         <!-- Navigation Tabs -->
         <div class="mb-12 border-b border-subtle ">
           <nav class="flex space-x-12">
-            <button @click="activeTab = 'bio'" :class="activeTab === 'bio' ? 'border-brand-primary text-text-primary' : 'border-transparent text-text-muted hover:text-text-primary'" class="pb-6 border-b-2 font-bold text-xs uppercase tracking-widest transition-all outline-none">
+            <button @click="activeTab = 'bio'"
+              :class="activeTab === 'bio' ? 'border-brand-primary text-text-primary' : 'border-transparent text-text-muted hover:text-text-primary'"
+              class="pb-6 border-b-2 font-bold text-xs uppercase tracking-widest transition-all outline-none">
               Artist Biography
             </button>
             @if($talent->technical_rider)
-            <button @click="activeTab = 'rider'" :class="activeTab === 'rider' ? 'border-brand-primary text-text-primary' : 'border-transparent text-text-muted hover:text-text-primary'" class="pb-6 border-b-2 font-bold text-xs uppercase tracking-widest transition-all outline-none">
-              Technical Requirements
-            </button>
+              <button @click="activeTab = 'rider'"
+                :class="activeTab === 'rider' ? 'border-brand-primary text-text-primary' : 'border-transparent text-text-muted hover:text-text-primary'"
+                class="pb-6 border-b-2 font-bold text-xs uppercase tracking-widest transition-all outline-none">
+                Technical Requirements
+              </button>
             @endif
-            <button @click="activeTab = 'gallery'" :class="activeTab === 'gallery' ? 'border-brand-primary text-text-primary' : 'border-transparent text-text-muted hover:text-text-primary'" class="pb-6 border-b-2 font-bold text-xs uppercase tracking-widest transition-all outline-none">
+            <button @click="activeTab = 'gallery'"
+              :class="activeTab === 'gallery' ? 'border-brand-primary text-text-primary' : 'border-transparent text-text-muted hover:text-text-primary'"
+              class="pb-6 border-b-2 font-bold text-xs uppercase tracking-widest transition-all outline-none">
               Portfolio Gallery
             </button>
           </nav>
@@ -83,40 +99,32 @@
 
         <div class="relative min-h-[500px]">
           {{-- Artist Biography --}}
-          <div x-show="activeTab === 'bio'" 
-               x-cloak
-               x-transition:enter="transition ease-out duration-300"
-               x-transition:enter-start="opacity-0 translate-y-4"
-               x-transition:enter-end="opacity-100 translate-y-0"
-               class="prose prose-lg max-w-none text-text-secondary leading-relaxed font-light">
+          <div x-show="activeTab === 'bio'" x-cloak x-transition:enter="transition ease-out duration-300"
+            x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0"
+            class="prose prose-lg max-w-none text-text-secondary leading-relaxed font-light">
             {!! $talent->bio !!}
           </div>
 
           {{-- Technical Requirements --}}
           @if($talent->technical_rider)
-          <div x-show="activeTab === 'rider'" 
-               x-cloak 
-               x-transition:enter="transition ease-out duration-300"
-               x-transition:enter-start="opacity-0 translate-y-4"
-               x-transition:enter-end="opacity-100 translate-y-0"
-               class="bg-surface-light p-8 md:p-12 rounded-3xl border border-subtle shadow-sm prose max-w-none text-text-secondary">
-            <h3 class="text-text-primary mb-6 font-serif">Production & Technical Rider</h3>
-            @if(filter_var($talent->technical_rider, FILTER_VALIDATE_URL))
-              <p>Our technical requirements are available at the following link:</p>
-              <a href="{{ $talent->technical_rider }}" target="_blank" class="text-brand-primary font-bold hover:underline">View Technical Rider</a>
-            @else
-              {!! $talent->technical_rider !!}
-            @endif
-          </div>
+            <div x-show="activeTab === 'rider'" x-cloak x-transition:enter="transition ease-out duration-300"
+              x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0"
+              class="bg-surface-light p-8 md:p-12 rounded-3xl border border-subtle shadow-sm prose max-w-none text-text-secondary">
+              <h3 class="text-text-primary mb-6 font-serif">Production & Technical Rider</h3>
+              @if(filter_var($talent->technical_rider, FILTER_VALIDATE_URL))
+                <p>Our technical requirements are available at the following link:</p>
+                <a href="{{ $talent->technical_rider }}" target="_blank"
+                  class="text-brand-primary font-bold hover:underline">View Technical Rider</a>
+              @else
+                {!! $talent->technical_rider !!}
+              @endif
+            </div>
           @endif
 
           {{-- Portfolio Gallery --}}
-          <div x-show="activeTab === 'gallery'" 
-               x-cloak 
-               x-transition:enter="transition ease-out duration-300"
-               x-transition:enter-start="opacity-0 translate-y-4"
-               x-transition:enter-end="opacity-100 translate-y-0"
-               x-data="{ 
+          <div x-show="activeTab === 'gallery'" x-cloak x-transition:enter="transition ease-out duration-300"
+            x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0"
+            x-data="{ 
                   lightboxOpen: false, 
                   lightboxImage: '', 
                   lightboxTitle: '',
@@ -129,32 +137,48 @@
             @if($talent->galleryItems->count() > 0)
               <div class="columns-1 sm:columns-2 lg:columns-3 gap-8 space-y-8">
                 @foreach($talent->galleryItems as $item)
-                  <div class="break-inside-avoid group bg-surface-light rounded-3xl overflow-hidden border border-subtle shadow-sm hover:shadow-xl transition-all duration-500">
+                  <div
+                    class="break-inside-avoid group bg-surface-light rounded-3xl overflow-hidden border border-subtle shadow-sm hover:shadow-xl transition-all duration-500">
                     <div class="relative overflow-hidden bg-surface-dark">
                       @php
                         $galleryEmbedUrl = '';
                         if (str_contains($item->url, 'youtube.com') || str_contains($item->url, 'youtu.be')) {
                           preg_match('/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/ ]{11})/i', $item->url, $match);
-                          if (isset($match[1])) { $galleryEmbedUrl = "https://www.youtube.com/embed/{$match[1]}?autoplay=0&rel=0"; }
+                          if (isset($match[1])) {
+                            $galleryEmbedUrl = "https://www.youtube.com/embed/{$match[1]}?autoplay=0&rel=0";
+                          }
                         } elseif (str_contains($item->url, 'vimeo.com')) {
                           preg_match('/vimeo\.com\/(?:channels\/(?:\w+\/)?|groups\/(?:[^\/]*)\/videos\/|album\/(?:\d+)\/video\/|video\/|)(\d+)(?:$|\/|\?)/i', $item->url, $match);
-                          if (isset($match[1])) { $galleryEmbedUrl = "https://player.vimeo.com/video/{$match[1]}"; }
+                          if (isset($match[1])) {
+                            $galleryEmbedUrl = "https://player.vimeo.com/video/{$match[1]}";
+                          }
                         }
                       @endphp
 
                       @if($galleryEmbedUrl)
                         <div class="aspect-video relative">
-                          <iframe src="{{ $galleryEmbedUrl }}" class="absolute inset-0 w-full h-full" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                          <iframe src="{{ $galleryEmbedUrl }}" class="absolute inset-0 w-full h-full" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
                         </div>
                       @else
                         <div class="relative cursor-zoom-in" @click="openLightbox('{{ $item->url }}', '{{ $item->title }}')">
-                          <img src="{{ $item->url }}" class="w-full h-auto object-cover grayscale transition-transform duration-700 group-hover:scale-110" alt="{{ $item->title ?? 'Gallery Image' }}" />
-                          <div class="absolute inset-0 bg-linear-to-tr from-brand-primary/80 to-brand-secondary/40 mix-blend-color opacity-20 group-hover:opacity-10 transition-opacity"></div>
-                          
+                          <img src="{{ $item->url }}"
+                            class="w-full h-auto object-cover grayscale transition-transform duration-700 group-hover:scale-110"
+                            alt="{{ $item->title ?? 'Gallery Image' }}" />
+                          <div
+                            class="absolute inset-0 bg-linear-to-tr from-brand-primary/80 to-brand-secondary/40 mix-blend-color opacity-20 group-hover:opacity-10 transition-opacity">
+                          </div>
+
                           <!-- Hover Overlay -->
-                          <div class="absolute inset-0 bg-surface-dark/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                            <div class="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white">
-                              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path></svg>
+                          <div
+                            class="absolute inset-0 bg-surface-dark/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <div
+                              class="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white">
+                              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
+                              </svg>
                             </div>
                           </div>
                         </div>
@@ -175,32 +199,33 @@
               </div>
 
               {{-- Lightbox --}}
-              <div x-show="lightboxOpen" 
-                   x-transition:enter="transition ease-out duration-300"
-                   x-transition:enter-start="opacity-0"
-                   x-transition:enter-end="opacity-100"
-                   x-transition:leave="transition ease-in duration-200"
-                   x-transition:leave-start="opacity-100"
-                   x-transition:leave-end="opacity-0"
-                   class="fixed inset-0 z-50 flex items-center justify-center bg-surface-dark/95 backdrop-blur-md p-4 md:p-10"
-                   @click="lightboxOpen = false"
-                   @keydown.escape.window="lightboxOpen = false"
-                   x-cloak>
-                  
-                  <button class="absolute top-8 right-8 text-white/50 hover:text-white transition-colors">
-                      <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"></path></svg>
-                  </button>
+              <div x-show="lightboxOpen" x-transition:enter="transition ease-out duration-300"
+                x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+                x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100"
+                x-transition:leave-end="opacity-0"
+                class="fixed inset-0 z-50 flex items-center justify-center bg-surface-dark/95 backdrop-blur-md p-4 md:p-10"
+                @click="lightboxOpen = false" @keydown.escape.window="lightboxOpen = false" x-cloak>
 
-                  <div class="max-w-5xl w-full flex flex-col items-center" @click.stop>
-                      <img :src="lightboxImage" class="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl border border-white/10" :alt="lightboxTitle">
-                      <div class="mt-6 text-center" x-show="lightboxTitle">
-                          <h4 x-text="lightboxTitle" class="text-text-inverse text-xl font-serif tracking-wide"></h4>
-                      </div>
+                <button class="absolute top-8 right-8 text-white/50 hover:text-white transition-colors">
+                  <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12">
+                    </path>
+                  </svg>
+                </button>
+
+                <div class="max-w-5xl w-full flex flex-col items-center" @click.stop>
+                  <img :src="lightboxImage"
+                    class="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl border border-white/10"
+                    :alt="lightboxTitle">
+                  <div class="mt-6 text-center" x-show="lightboxTitle">
+                    <h4 x-text="lightboxTitle" class="text-text-inverse text-xl font-serif tracking-wide"></h4>
                   </div>
+                </div>
               </div>
             @else
               <div class="py-20 text-center border-2 border-dashed border-subtle rounded-3xl">
-                <p class="text-text-muted text-xs font-bold uppercase tracking-widest">Extended portfolio available upon request</p>
+                <p class="text-text-muted text-xs font-bold uppercase tracking-widest">Extended portfolio available upon
+                  request</p>
               </div>
             @endif
           </div>
@@ -214,8 +239,11 @@
 
           <div class="space-y-8 mb-10">
             <div class="flex items-start gap-5">
-              <div class="h-10 w-10 rounded-xl bg-brand-primary/5 flex items-center justify-center text-brand-primary shrink-0">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
+              <div
+                class="h-10 w-10 rounded-xl bg-brand-primary/5 flex items-center justify-center text-brand-primary shrink-0">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                </svg>
               </div>
               <div>
                 <p class="text-[10px] font-bold text-text-muted uppercase tracking-widest mb-1">Base Location</p>
@@ -223,8 +251,11 @@
               </div>
             </div>
             <div class="flex items-start gap-5">
-              <div class="h-10 w-10 rounded-xl bg-brand-primary/5 flex items-center justify-center text-brand-primary shrink-0">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2"></path></svg>
+              <div
+                class="h-10 w-10 rounded-xl bg-brand-primary/5 flex items-center justify-center text-brand-primary shrink-0">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2"></path>
+                </svg>
               </div>
               <div>
                 <p class="text-[10px] font-bold text-text-muted uppercase tracking-widest mb-1">Starting Investment</p>
@@ -236,18 +267,15 @@
           </div>
 
           <x-button variant="primary" size="lg" class="w-full mb-6" href="/book?talent={{ $talent->id }}" wire:navigate>
-            Secure the Act
+            Make Booking Inquiry
           </x-button>
-
-          <div class="flex items-center justify-center gap-2 text-[10px] font-bold text-text-muted uppercase tracking-widest mb-10">
-            <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"></path></svg>
-            Professional Engagement
-          </div>
 
           <!-- Share -->
           <div class="pt-8 border-t border-subtle " x-data="{ copied: false }">
             <div class="flex items-center justify-between gap-4">
-              <button @click="navigator.clipboard.writeText(window.location.href); copied = true; setTimeout(() => copied = false, 2000)" class="flex-1 px-4 py-2 bg-surface-muted rounded-lg text-[10px] font-bold text-text-primary uppercase tracking-widest hover:bg-brand-primary/10 transition-colors">
+              <button
+                @click="navigator.clipboard.writeText(window.location.href); copied = true; setTimeout(() => copied = false, 2000)"
+                class="flex-1 px-4 py-2 bg-surface-muted rounded-lg text-[10px] font-bold text-text-primary uppercase tracking-widest hover:bg-brand-primary/10 transition-colors">
                 <span x-text="copied ? 'Copied to Clipboard' : 'Share Portfolio'"></span>
               </button>
             </div>
