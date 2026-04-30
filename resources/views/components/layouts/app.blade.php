@@ -87,7 +87,7 @@
         <div class="shrink-0 flex items-center">
           <a href="/" class="flex items-center gap-2.5" aria-label="Hailerz Home">
             <img src="/images/logo.webp" alt="" aria-hidden="true" width="40" height="41" class="h-10 w-auto object-contain rounded-lg" />
-            <span class="text-5xl font-bold {{ request()->is('/') ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary' }} transition-colors uppercase tracking-widest hidden lg:block">
+            <span class="text-xl font-bold {{ request()->is('/') ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary' }} transition-colors uppercase tracking-widest hidden lg:block">
               Hailerz
             </span>
           </a>
