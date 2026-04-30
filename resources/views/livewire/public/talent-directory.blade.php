@@ -52,15 +52,29 @@
       </div>
 
       <!-- Location -->
-      <div x-data="{ 
+      <div x-data="{
        isLocating: false,
        locationError: '',
+       async tryIpFallback() {
+        try {
+         const res = await fetch('https://ipapi.co/json/');
+         const data = await res.json();
+         if (!data.error && data.city) {
+          @this.set('location', data.city);
+         } else {
+          this.locationError = 'unavailable';
+         }
+        } catch(e) {
+         this.locationError = 'unavailable';
+        } finally {
+         this.isLocating = false;
+        }
+       },
        locateMe() {
         this.isLocating = true;
         this.locationError = '';
         if (!navigator.geolocation) {
-         this.locationError = 'Unsupported';
-         this.isLocating = false;
+         this.tryIpFallback();
          return;
         }
         navigator.geolocation.getCurrentPosition(
@@ -69,11 +83,26 @@
            const { latitude, longitude } = position.coords;
            const response = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`);
            const data = await response.json();
-           let city = data.address.city || data.address.town || data.address.village;
-           if (city) { @this.set('location', city); }
-          } finally { this.isLocating = false; }
+           let city = data.address.city || data.address.town || data.address.village || data.address.county;
+           if (city) {
+            @this.set('location', city);
+            this.isLocating = false;
+           } else {
+            await this.tryIpFallback();
+           }
+          } catch(e) {
+           await this.tryIpFallback();
+          }
          },
-         () => { this.isLocating = false; }
+         async (err) => {
+          if (err.code === 1) {
+           this.locationError = 'denied';
+           this.isLocating = false;
+          } else {
+           await this.tryIpFallback();
+          }
+         },
+         { timeout: 8000, maximumAge: 60000 }
         );
        }
       }">
@@ -84,12 +113,22 @@
          <span x-text="isLocating ? '...' : 'Auto-Detect'"></span>
         </button>
        </div>
-       <select wire:model.live="location" id="location" class="w-full px-5 py-4 bg-surface-muted border border-subtle placeholder-text-muted rounded-xl focus:ring-2 focus:ring-brand-primary focus:border-transparent transition-all outline-none text-text-primary text-sm font-medium appearance-none">
-        <option value="">Global Roster</option>
+       <p x-show="locationError === 'denied'" class="text-[10px] text-red-400 mb-2">Location access denied. Please type your city manually.</p>
+       <p x-show="locationError === 'unavailable'" class="text-[10px] text-amber-400 mb-2">Could not detect location. Please type your city manually.</p>
+       <input
+        wire:model.live.debounce.300ms="location"
+        type="text"
+        id="location"
+        list="location-suggestions"
+        autocomplete="off"
+        placeholder="City or region..."
+        class="w-full px-5 py-4 bg-surface-muted border border-subtle placeholder-text-muted rounded-xl focus:ring-2 focus:ring-brand-primary focus:border-transparent transition-all outline-none text-text-primary text-sm font-medium"
+       >
+       <datalist id="location-suggestions">
         @foreach($locations as $loc)
-         <option value="{{ $loc }}">{{ $loc }}</option>
+         <option value="{{ $loc }}">
         @endforeach
-       </select>
+       </datalist>
       </div>
      </div>
     </div>
