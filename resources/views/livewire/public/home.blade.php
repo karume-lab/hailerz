@@ -41,7 +41,7 @@
                     <div class="grid grid-cols-2 gap-6">
                         <div class="space-y-6 pt-12">
                             <div
-                                class="group relative overflow-hidden rounded-2xl aspect-3/4 bg-surface-dark border border-white/5">
+                                class="group relative overflow-hidden rounded-2xl aspect-3/4 bg-surface-dark border border-subtle">
                                 <img src="{{ asset('images/home/hero-card-1.webp') }}" loading="eager"
                                     fetchpriority="high" width="664" height="887"
                                     class="w-full h-full object-cover grayscale transition-transform duration-700 group-hover:scale-110"
@@ -53,14 +53,14 @@
                                     class="absolute inset-0 bg-linear-to-t from-brand-primary/90 via-transparent to-transparent">
                                 </div>
                                 <div class="absolute bottom-6 left-6">
-                                    <p class="text-white font-bold text-lg">Live Performance</p>
+                                    <p class="text-text-inverse font-bold text-lg">Live Performance</p>
                                     <p class="text-brand-secondary text-sm">Gala Dinners</p>
                                 </div>
                             </div>
                         </div>
                         <div class="space-y-6">
                             <div
-                                class="group relative overflow-hidden rounded-2xl aspect-3/4 bg-surface-dark border border-white/5">
+                                class="group relative overflow-hidden rounded-2xl aspect-3/4 bg-surface-dark border border-subtle">
                                 <img src="{{ asset('images/home/hero-card-2.webp') }}" loading="eager"
                                     fetchpriority="high" width="664" height="887"
                                     class="w-full h-full object-cover grayscale transition-transform duration-700 group-hover:scale-110"
@@ -72,7 +72,7 @@
                                     class="absolute inset-0 bg-linear-to-t from-brand-primary/90 via-transparent to-transparent">
                                 </div>
                                 <div class="absolute bottom-6 left-6">
-                                    <p class="text-white font-bold text-lg">Keynote Speakers</p>
+                                    <p class="text-text-inverse font-bold text-lg">Keynote Speakers</p>
                                     <p class="text-brand-secondary text-sm">Corporate Summits</p>
                                 </div>
                             </div>
@@ -193,9 +193,9 @@
     <!-- Contact / Inquiry Section -->
     <section class="py-32 bg-brand-primary relative overflow-hidden">
         {{-- Background Decorative Elements --}}
-        <div class="absolute top-0 right-0 w-1/3 h-full bg-linear-to-l from-white/5 to-transparent"></div>
+        <div class="absolute top-0 right-0 w-1/3 h-full bg-linear-to-l from-text-inverse/5 to-transparent"></div>
         <div class="absolute -top-24 -left-24 w-96 h-96 bg-brand-secondary/20 rounded-full blur-3xl"></div>
-        <div class="absolute -bottom-24 -right-24 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
+        <div class="absolute -bottom-24 -right-24 w-96 h-96 bg-text-inverse/5 rounded-full blur-3xl"></div>
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="lg:grid lg:grid-cols-2 lg:gap-24 items-center">
@@ -210,7 +210,7 @@
                     <ul class="space-y-8 mb-12">
                         <li class="flex items-center gap-6">
                             <div
-                                class="h-14 w-14 rounded-2xl bg-white/10 flex items-center justify-center text-white shrink-0 backdrop-blur-sm border border-subtle">
+                                class="h-14 w-14 rounded-2xl bg-text-inverse/10 flex items-center justify-center text-text-inverse shrink-0 backdrop-blur-sm border border-subtle">
                                 <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
                                     viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -225,7 +225,7 @@
                         </li>
                         <li class="flex items-center gap-6">
                             <div
-                                class="h-14 w-14 rounded-2xl bg-white/10 flex items-center justify-center text-white shrink-0 backdrop-blur-sm border border-subtle">
+                                class="h-14 w-14 rounded-2xl bg-text-inverse/10 flex items-center justify-center text-text-inverse shrink-0 backdrop-blur-sm border border-subtle">
                                 <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
                                     viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -259,8 +259,8 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
                                 </svg>
                             </div>
-                            <h3 class="text-3xl font-bold text-text-primary dark:text-white">Inquiry Received</h3>
-                            <p class="text-text-secondary dark:text-text-muted">An agent will review your request and
+                            <h3 class="text-3xl font-bold text-text-primary">Inquiry Received</h3>
+                            <p class="text-text-secondary">An agent will review your request and
                                 contact you shortly.</p>
                             <button wire:click="$set('contactSent', false)"
                                 class="text-brand-primary font-bold hover:underline">Submit another inquiry</button>
@@ -270,28 +270,28 @@
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div>
                                     <label for="contactName"
-                                        class="block text-xs font-bold text-brand-primary dark:text-text-muted uppercase tracking-widest mb-2">Name</label>
+                                        class="block text-xs font-bold text-brand-primary uppercase tracking-widest mb-2">Name</label>
                                     <input id="contactName" wire:model="contactName" type="text" placeholder="Full Name"
-                                        class="w-full px-5 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary focus:bg-white focus:border-transparent outline-none transition-all text-text-primary dark:text-white placeholder-gray-500 dark:placeholder-gray-400 shadow-sm" />
+                                        class="w-full px-5 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary focus:bg-surface-light focus:border-transparent outline-none transition-all text-text-primary placeholder-text-muted shadow-sm" />
                                     @error('contactName') <span class="text-red-500 text-xs mt-1">{{ $message }}</span>
                                     @enderror
                                 </div>
                                 <div>
                                     <label for="contactEmail"
-                                        class="block text-xs font-bold text-brand-primary dark:text-text-muted uppercase tracking-widest mb-2">Email</label>
+                                        class="block text-xs font-bold text-brand-primary uppercase tracking-widest mb-2">Email</label>
                                     <input id="contactEmail" wire:model="contactEmail" type="email"
                                         placeholder="Email Address"
-                                        class="w-full px-5 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary focus:bg-white focus:border-transparent outline-none transition-all text-text-primary dark:text-white placeholder-gray-500 dark:placeholder-gray-400 shadow-sm" />
+                                        class="w-full px-5 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary focus:bg-surface-light focus:border-transparent outline-none transition-all text-text-primary placeholder-text-muted shadow-sm" />
                                     @error('contactEmail') <span class="text-red-500 text-xs mt-1">{{ $message }}</span>
                                     @enderror
                                 </div>
                             </div>
                             <div>
                                 <label for="contactMessage"
-                                    class="block text-xs font-bold text-brand-primary dark:text-text-muted uppercase tracking-widest mb-2">Message</label>
+                                    class="block text-xs font-bold text-brand-primary uppercase tracking-widest mb-2">Message</label>
                                 <textarea id="contactMessage" wire:model="contactMessage" rows="5"
                                     placeholder="Tell us about your event and the talent you're interested in..."
-                                    class="w-full px-5 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary focus:bg-white focus:border-transparent outline-none transition-all resize-none text-text-primary dark:text-white placeholder-gray-500 dark:placeholder-gray-400 shadow-sm"></textarea>
+                                    class="w-full px-5 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary focus:bg-surface-light focus:border-transparent outline-none transition-all resize-none text-text-primary placeholder-text-muted shadow-sm"></textarea>
                                 @error('contactMessage') <span class="text-red-500 text-xs mt-1">{{ $message }}</span>
                                 @enderror
                             </div>

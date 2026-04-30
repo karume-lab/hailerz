@@ -33,36 +33,12 @@ class AdminPanelProvider extends PanelProvider
             ->brandLogoHeight('2.5rem')
             ->maxContentWidth(\Filament\Support\Enums\Width::SevenExtraLarge)
             ->colors([
-                'primary' => [
-                    50 => '#e6f3f6',
-                    100 => '#cde7ee',
-                    200 => '#9ccedd',
-                    300 => '#6bb6cc',
-                    400 => '#3a9ebb',
-                    500 => '#1a8aa7', // Brand Teal
-                    600 => '#156e86',
-                    700 => '#105364',
-                    800 => '#0a3843',
-                    900 => '#051d21',
-                    950 => '#020e10',
-                ],
-                'danger' => Color::Rose,
-                'gray' => Color::Slate,
-                'info' => Color::Sky,
-                'success' => [
-                    50 => '#f0faf6',
-                    100 => '#e0f5ee',
-                    200 => '#c1ebdc',
-                    300 => '#a2e1ca',
-                    400 => '#83d7b9',
-                    500 => '#72c7b4', // Brand Mint
-                    600 => '#519d8c',
-                    700 => '#3d7669',
-                    800 => '#284e46',
-                    900 => '#142723',
-                    950 => '#0a1311',
-                ],
-                'warning' => Color::Amber,
+                'primary' => '#223757', // brand-primary
+                'danger' => '#E11D48',
+                'gray' => '#64748B',
+                'info' => '#2186a1', // brand-secondary
+                'success' => '#10B981',
+                'warning' => '#F59E0B',
             ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')

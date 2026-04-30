@@ -28,8 +28,8 @@
    <!-- Progress Indicator -->
    <div class="mb-16">
     <div class="relative">
-     <div class="overflow-hidden h-1.5 mb-6 text-xs flex rounded-full bg-gray-200 dark:bg-gray-700">
-      <div style="width: {{ ($currentStep / 3) * 100 }}%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-brand-primary transition-all duration-700"></div>
+     <div class="overflow-hidden h-1.5 mb-6 text-xs flex rounded-full bg-subtle">
+      <div style="width: {{ ($currentStep / 3) * 100 }}%" class="shadow-none flex flex-col text-center whitespace-nowrap text-text-inverse justify-center bg-brand-primary transition-all duration-700"></div>
      </div>
      <div class="grid grid-cols-3 text-[10px] font-bold text-text-muted uppercase tracking-[0.2em]">
       <span class="{{ $currentStep >= 1 ? 'text-brand-primary' : '' }} text-left">Event Details</span>
@@ -49,7 +49,7 @@
       <div class="grid grid-cols-1 gap-8">
        <div>
         <label for="talent_id" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Requested Talent / Act</label>
-        <select id="talent_id" wire:model="talent_id" class="block w-full px-6 py-4 bg-white border border-subtle placeholder-gray-500 dark:placeholder-gray-400 rounded-xl focus:ring-2 focus:ring-brand-primary focus:border-transparent outline-none text-text-primary dark:text-white font-medium appearance-none">
+        <select id="talent_id" wire:model="talent_id" class="block w-full px-6 py-4 bg-surface-muted border border-subtle placeholder-text-muted rounded-xl focus:ring-2 focus:ring-brand-primary focus:border-transparent outline-none text-text-primary font-medium transition-all appearance-none">
          <option value="">-- Select from Roster --</option>
          @foreach($talents as $t)
           <option value="{{ $t->id }}">{{ $t->name }}</option>
@@ -61,19 +61,19 @@
        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div>
          <label for="event_date" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Engagement Date</label>
-         <input type="date" id="event_date" wire:model="event_date" class="block w-full px-6 py-4 bg-white border border-subtle placeholder-gray-500 dark:placeholder-gray-400 rounded-xl focus:ring-2 focus:ring-brand-primary focus:border-transparent outline-none text-text-primary dark:text-white font-medium">
+         <input type="date" id="event_date" wire:model="event_date" class="block w-full px-6 py-4 bg-surface-muted border border-subtle placeholder-text-muted rounded-xl focus:ring-2 focus:ring-brand-primary focus:border-transparent outline-none text-text-primary font-medium transition-all">
          @error('event_date') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
         </div>
         <div>
          <label for="event_location" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Venue / Location</label>
-         <input type="text" id="event_location" wire:model="event_location" placeholder="e.g. Nairobi National Museum" class="block w-full px-6 py-4 bg-white border border-subtle placeholder-gray-500 dark:placeholder-gray-400 rounded-xl focus:ring-2 focus:ring-brand-primary focus:border-transparent outline-none text-text-primary dark:text-white font-medium">
+         <input type="text" id="event_location" wire:model="event_location" placeholder="e.g. Nairobi National Museum" class="block w-full px-6 py-4 bg-surface-muted border border-subtle placeholder-text-muted rounded-xl focus:ring-2 focus:ring-brand-primary focus:border-transparent outline-none text-text-primary font-medium transition-all">
          @error('event_location') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
         </div>
        </div>
        
        <div>
         <label for="event_description" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Event Concept & Scale</label>
-        <textarea id="event_description" wire:model="event_description" rows="4" placeholder="Briefly describe the event nature, expected attendance, and performance expectations..." class="block w-full px-6 py-4 bg-white border border-subtle placeholder-gray-500 dark:placeholder-gray-400 rounded-xl focus:ring-2 focus:ring-brand-primary focus:border-transparent outline-none text-text-primary dark:text-white font-medium resize-none"></textarea>
+        <textarea id="event_description" wire:model="event_description" rows="4" placeholder="Briefly describe the event nature, expected attendance, and performance expectations..." class="block w-full px-6 py-4 bg-surface-muted border border-subtle placeholder-text-muted rounded-xl focus:ring-2 focus:ring-brand-primary focus:border-transparent outline-none text-text-primary font-medium transition-all resize-none"></textarea>
         @error('event_description') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
        </div>
       </div>
@@ -90,7 +90,7 @@
          <div class="absolute inset-y-0 left-0 pl-6 flex items-center pointer-events-none">
           <span class="text-brand-primary font-bold">$</span>
          </div>
-         <input type="number" id="proposed_budget" wire:model="proposed_budget" class="block w-full pl-12 pr-6 py-5 bg-white border border-subtle placeholder-gray-500 dark:placeholder-gray-400 rounded-xl focus:ring-2 focus:ring-brand-primary focus:border-transparent outline-none text-2xl font-bold text-text-primary dark:text-white" placeholder="0.00">
+         <input type="number" id="proposed_budget" wire:model="proposed_budget" class="block w-full pl-12 pr-6 py-5 bg-surface-muted border border-subtle placeholder-text-muted rounded-xl focus:ring-2 focus:ring-brand-primary focus:border-transparent outline-none text-2xl font-bold text-text-primary" placeholder="0.00">
         </div>
         <p class="mt-4 text-xs text-text-muted leading-relaxed">
          Accurate budget allocation allows our agents to secure the act more efficiently. Premium acts typically require a minimum investment of $1,000.
@@ -100,7 +100,7 @@
 
        <div class="flex items-start gap-5 p-8 rounded-2xl bg-surface-muted border border-subtle ">
         <div class="flex items-center h-6">
-         <input id="budget_flexible" wire:model="budget_flexible" type="checkbox" class="w-5 h-5 text-brand-primary border-subtle dark:border-gray-600 rounded focus:ring-brand-primary">
+         <input id="budget_flexible" wire:model="budget_flexible" type="checkbox" class="w-5 h-5 text-brand-primary border-subtle rounded focus:ring-brand-primary">
         </div>
         <label for="budget_flexible" class="cursor-pointer">
          <span class="block text-sm font-bold text-text-primary uppercase tracking-widest">Flexible Investment Range</span>
@@ -117,19 +117,19 @@
       <div class="grid grid-cols-1 gap-8">
        <div>
         <label for="client_name" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Full Name / Organization</label>
-        <input type="text" id="client_name" wire:model="client_name" placeholder="Contact Person or Company Name" class="block w-full px-6 py-4 bg-white border border-subtle placeholder-gray-500 dark:placeholder-gray-400 rounded-xl focus:ring-2 focus:ring-brand-primary focus:border-transparent outline-none text-text-primary dark:text-white font-medium">
+        <input type="text" id="client_name" wire:model="client_name" placeholder="Contact Person or Company Name" class="block w-full px-6 py-4 bg-surface-muted border border-subtle placeholder-text-muted rounded-xl focus:ring-2 focus:ring-brand-primary focus:border-transparent outline-none text-text-primary font-medium transition-all">
         @error('client_name') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
        </div>
 
        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div>
          <label for="client_email" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Professional Email</label>
-         <input type="email" id="client_email" wire:model="client_email" placeholder="email@company.com" class="block w-full px-6 py-4 bg-white border border-subtle placeholder-gray-500 dark:placeholder-gray-400 rounded-xl focus:ring-2 focus:ring-brand-primary focus:border-transparent outline-none text-text-primary dark:text-white font-medium">
+         <input type="email" id="client_email" wire:model="client_email" placeholder="email@company.com" class="block w-full px-6 py-4 bg-surface-muted border border-subtle placeholder-text-muted rounded-xl focus:ring-2 focus:ring-brand-primary focus:border-transparent outline-none text-text-primary font-medium transition-all">
          @error('client_email') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
         </div>
         <div>
          <label for="client_phone" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Direct Phone Number</label>
-         <input type="tel" id="client_phone" wire:model="client_phone" placeholder="+254..." class="block w-full px-6 py-4 bg-white border border-subtle placeholder-gray-500 dark:placeholder-gray-400 rounded-xl focus:ring-2 focus:ring-brand-primary focus:border-transparent outline-none text-text-primary dark:text-white font-medium">
+         <input type="tel" id="client_phone" wire:model="client_phone" placeholder="+254..." class="block w-full px-6 py-4 bg-surface-muted border border-subtle placeholder-text-muted rounded-xl focus:ring-2 focus:ring-brand-primary focus:border-transparent outline-none text-text-primary font-medium transition-all">
          @error('client_phone') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
         </div>
        </div>

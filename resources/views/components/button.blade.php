@@ -9,7 +9,7 @@
     
     $variants = [
         'primary' => 'bg-brand-primary text-text-inverse hover:brightness-110 shadow-lg shadow-brand-primary/20 focus:ring-brand-primary',
-        'secondary' => 'bg-transparent border-2 border-brand-secondary text-brand-secondary hover:bg-brand-secondary hover:text-white focus:ring-brand-secondary',
+        'secondary' => 'bg-transparent border-2 border-brand-secondary text-brand-secondary hover:bg-brand-secondary hover:text-text-inverse focus:ring-brand-secondary',
         'outline' => 'bg-transparent border-2 border-brand-primary text-brand-primary hover:bg-brand-primary hover:text-text-inverse focus:ring-brand-primary',
         'ghost' => 'bg-transparent text-text-secondary hover:bg-surface-muted hover:text-text-primary focus:ring-surface-muted',
         'navy' => 'bg-brand-primary text-text-inverse hover:brightness-110 focus:ring-brand-primary',

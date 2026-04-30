@@ -26,13 +26,13 @@
       <!-- Search -->
       <div>
        <label for="search" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-4">Keywords</label>
-       <input wire:model.live.debounce.300ms="search" type="text" id="search" class="w-full px-5 py-4 bg-white border border-subtle placeholder-gray-500 dark:placeholder-gray-400 rounded-xl focus:ring-2 focus:ring-brand-primary focus:border-transparent transition-all outline-none text-text-primary dark:text-white text-sm font-medium" placeholder="Name or expertise...">
+       <input wire:model.live.debounce.300ms="search" type="text" id="search" class="w-full px-5 py-4 bg-surface-muted border border-subtle placeholder-text-muted rounded-xl focus:ring-2 focus:ring-brand-primary focus:border-transparent transition-all outline-none text-text-primary text-sm font-medium" placeholder="Name or expertise...">
       </div>
 
       <!-- Sort Order -->
       <div>
        <label for="sort" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-4">Priority</label>
-       <select wire:model.live="sort" id="sort" class="w-full px-5 py-4 bg-white border border-subtle placeholder-gray-500 dark:placeholder-gray-400 rounded-xl focus:ring-2 focus:ring-brand-primary focus:border-transparent transition-all outline-none text-text-primary dark:text-white text-sm font-medium appearance-none">
+       <select wire:model.live="sort" id="sort" class="w-full px-5 py-4 bg-surface-muted border border-subtle placeholder-text-muted rounded-xl focus:ring-2 focus:ring-brand-primary focus:border-transparent transition-all outline-none text-text-primary text-sm font-medium appearance-none">
         <option value="name">Alphabetical</option>
         <option value="latest">Newly Commissioned</option>
         <option value="price_asc">Investment: Low to High</option>
@@ -43,7 +43,7 @@
       <!-- Category -->
       <div>
        <label for="category" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-4">Talent Category</label>
-       <select wire:model.live="category_id" id="category" class="w-full px-5 py-4 bg-white border border-subtle placeholder-gray-500 dark:placeholder-gray-400 rounded-xl focus:ring-2 focus:ring-brand-primary focus:border-transparent transition-all outline-none text-text-primary dark:text-white text-sm font-medium appearance-none">
+       <select wire:model.live="category_id" id="category" class="w-full px-5 py-4 bg-surface-muted border border-subtle placeholder-text-muted rounded-xl focus:ring-2 focus:ring-brand-primary focus:border-transparent transition-all outline-none text-text-primary text-sm font-medium appearance-none">
         <option value="">All Disciplines</option>
         @foreach($categories as $category)
          <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -84,7 +84,7 @@
          <span x-text="isLocating ? '...' : 'Auto-Detect'"></span>
         </button>
        </div>
-       <select wire:model.live="location" id="location" class="w-full px-5 py-4 bg-white border border-subtle placeholder-gray-500 dark:placeholder-gray-400 rounded-xl focus:ring-2 focus:ring-brand-primary focus:border-transparent transition-all outline-none text-text-primary dark:text-white text-sm font-medium appearance-none">
+       <select wire:model.live="location" id="location" class="w-full px-5 py-4 bg-surface-muted border border-subtle placeholder-text-muted rounded-xl focus:ring-2 focus:ring-brand-primary focus:border-transparent transition-all outline-none text-text-primary text-sm font-medium appearance-none">
         <option value="">Global Roster</option>
         @foreach($locations as $loc)
          <option value="{{ $loc }}">{{ $loc }}</option>
@@ -107,23 +107,23 @@
           <div class="group relative overflow-hidden aspect-3/4 bg-surface-dark">
            @if($talent->hasMedia('primary_image'))
             <img src="{{ $talent->getFirstMediaUrl('primary_image') }}" width="400" height="533" loading="lazy" class="w-full h-full object-cover grayscale transition-transform duration-700 group-hover:scale-110" alt="{{ $talent->name }}" />
-           @else
-            <div class="w-full h-full flex items-center justify-center bg-gray-800">
-             <span class="text-4xl font-bold text-white/20 font-serif">{{ substr($talent->name, 0, 1) }}</span>
+            @else
+            <div class="w-full h-full flex items-center justify-center bg-surface-dark">
+             <span class="text-4xl font-bold text-text-inverse/20 font-serif">{{ substr($talent->name, 0, 1) }}</span>
             </div>
            @endif
            <div class="absolute inset-0 bg-linear-to-tr from-brand-primary/80 to-brand-secondary/40 mix-blend-color opacity-80 transition-opacity group-hover:opacity-60"></div>
-           <div class="absolute inset-0 bg-linear-to-t from-black/90 via-transparent to-transparent"></div>
+           <div class="absolute inset-0 bg-linear-to-t from-surface-dark/90 via-transparent to-transparent"></div>
            
            @if($talent->is_featured)
-            <div class="absolute top-6 right-6 bg-brand-primary text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">
+            <div class="absolute top-6 right-6 bg-brand-primary text-text-inverse text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">
              Premier Act
             </div>
            @endif
            
            <div class="absolute bottom-6 left-6">
             <p class="text-[10px] font-bold text-brand-secondary uppercase tracking-widest mb-1">{{ $talent->category?->name ?? 'Professional' }}</p>
-            <h3 class="text-xl font-bold text-white">{{ $talent->name }}</h3>
+            <h3 class="text-xl font-bold text-text-inverse">{{ $talent->name }}</h3>
            </div>
           </div>
          </a>
@@ -137,7 +137,7 @@
           <div class="flex justify-between items-center pt-6 border-t border-subtle ">
            <div>
             <p class="text-[10px] font-bold text-text-muted uppercase tracking-widest">Starting Investment</p>
-            <p class="text-lg font-bold text-text-primary dark:text-white">${{ number_format($talent->starting_price ?? 0, 0) }}</p>
+            <p class="text-lg font-bold text-text-primary">${{ number_format($talent->starting_price ?? 0, 0) }}</p>
            </div>
            <x-button variant="ghost" size="sm" href="/talent/{{ $talent->slug }}" wire:navigate class="text-brand-primary hover:text-brand-primary/80">
             View Profile

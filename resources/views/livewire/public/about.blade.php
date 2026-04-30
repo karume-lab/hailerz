@@ -75,9 +75,9 @@
         @foreach($values as $value)
           <div
             class="bg-surface-muted p-10 rounded-3xl border border-subtle group hover:bg-brand-primary transition-all duration-500 hover:shadow-2xl">
-            <h3 class="text-2xl font-bold text-text-primary mb-4 font-serif group-hover:text-white transition-colors">
+            <h3 class="text-2xl font-bold text-text-primary mb-4 font-serif group-hover:text-text-inverse transition-colors">
               {{ $value['title'] }}</h3>
-            <p class="text-text-secondary leading-relaxed font-light group-hover:text-white/70 transition-colors">
+            <p class="text-text-secondary leading-relaxed font-light group-hover:text-text-inverse/70 transition-colors">
               {{ $value['desc'] }}</p>
           </div>
         @endforeach
@@ -104,7 +104,7 @@
 
         @foreach($team as $member)
           <div
-            class="group relative overflow-hidden rounded-[2.5rem] aspect-3/4 bg-surface-dark border border-white/5 shadow-xl">
+            class="group relative overflow-hidden rounded-[2.5rem] aspect-3/4 bg-surface-dark border border-subtle shadow-xl">
             <img src="{{ asset('images/about/' . $member['img']) }}" loading="lazy" width="400" height="533"
               class="w-full h-full object-cover grayscale transition-transform duration-700 group-hover:scale-110"
               alt="{{ $member['name'] }}" />
@@ -113,10 +113,10 @@
             </div>
             <div class="absolute inset-0 bg-linear-to-t from-brand-primary/90 via-brand-primary/20 to-transparent"></div>
             <div class="absolute bottom-10 left-10 right-10">
-              <h3 class="text-3xl font-bold text-white mb-2 font-serif">{{ $member['name'] }}</h3>
+              <h3 class="text-3xl font-bold text-text-inverse mb-2 font-serif">{{ $member['name'] }}</h3>
               <p class="text-brand-secondary text-xs font-bold uppercase tracking-widest mb-4">{{ $member['role'] }}</p>
               <p
-                class="text-white/60 text-sm leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                class="text-text-inverse/60 text-sm leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                 {{ $member['bio'] }}</p>
             </div>
           </div>

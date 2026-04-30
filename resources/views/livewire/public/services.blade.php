@@ -83,14 +83,14 @@
        ['Performance Quality', 'Continuous vetting and post-event audits to maintain elite standards.'],
       ] as $pillar)
       <div class="space-y-3">
-       <h3 class="text-brand-primary font-bold text-sm uppercase tracking-widest">{{ $pillar[0] }}</h3>
-       <p class="text-white/60 text-sm leading-relaxed">{{ $pillar[1] }}</p>
+       <h3 class="text-brand-secondary font-bold text-sm uppercase tracking-widest">{{ $pillar[0] }}</h3>
+       <p class="text-text-inverse/60 text-sm leading-relaxed">{{ $pillar[1] }}</p>
       </div>
       @endforeach
      </div>
     </div>
     <div class="relative mt-16 lg:mt-0">
-     <div class="group relative overflow-hidden rounded-[3rem] aspect-4/5 bg-surface-dark border border-white/5">
+     <div class="group relative overflow-hidden rounded-[3rem] aspect-4/5 bg-surface-dark border border-subtle">
       <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=1000" loading="lazy" width="800" height="1000" class="w-full h-full object-cover grayscale opacity-60 transition-transform duration-700 group-hover:scale-105" alt="Event Logistics" />
       <div class="absolute inset-0 bg-linear-to-tr from-brand-primary/80 to-brand-secondary/40 mix-blend-color opacity-70"></div>
       <div class="absolute inset-0 bg-linear-to-t from-brand-primary via-transparent to-transparent"></div>
@@ -115,7 +115,7 @@
      ['03', 'Secure the Act', 'Formalize the engagement with professional contracting and initial commitment.'],
     ] as $step)
     <div class="relative">
-     <span class="text-8xl font-black text-text-primary/5 dark:text-white/5 absolute -top-12 -left-4">{{ $step[0] }}</span>
+     <span class="text-8xl font-black text-text-primary/5 absolute -top-12 -left-4">{{ $step[0] }}</span>
      <div class="relative z-10">
       <h3 class="text-2xl font-bold text-text-primary mb-4 font-serif">{{ $step[1] }}</h3>
       <p class="text-text-secondary leading-relaxed font-light">{{ $step[2] }}</p>

@@ -10,13 +10,13 @@
         class="w-full h-full object-cover grayscale opacity-60 transition-transform duration-1000 scale-105">
     @else
       <div class="w-full h-full flex items-center justify-center">
-        <span class="text-9xl font-bold text-white/5 font-serif">{{ substr($talent->name, 0, 1) }}</span>
+        <span class="text-9xl font-bold text-text-primary/5 font-serif">{{ substr($talent->name, 0, 1) }}</span>
       </div>
     @endif
     
     <!-- Design Overlays -->
     <div class="absolute inset-0 bg-linear-to-tr from-brand-primary/80 to-brand-secondary/40 mix-blend-color opacity-70"></div>
-    <div class="absolute inset-0 bg-linear-to-t from-black via-black/40 to-transparent"></div>
+    <div class="absolute inset-0 bg-linear-to-t from-surface-dark via-surface-dark/40 to-transparent"></div>
 
     <div class="absolute bottom-0 left-0 w-full">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
@@ -39,7 +39,7 @@
         <!-- Performance Reel -->
         @if($talent->video_url)
         <section class="mb-20">
-          <div class="aspect-video w-full rounded-4xl overflow-hidden bg-black shadow-2xl border border-white/5 relative group">
+          <div class="aspect-video w-full rounded-4xl overflow-hidden bg-surface-dark shadow-2xl border border-subtle relative group">
             @php
               $embedUrl = '';
               if (str_contains($talent->video_url, 'youtube.com') || str_contains($talent->video_url, 'youtu.be')) {
@@ -67,15 +67,15 @@
         <!-- Navigation Tabs -->
         <div class="mb-12 border-b border-subtle ">
           <nav class="flex space-x-12">
-            <button @click="activeTab = 'bio'" :class="activeTab === 'bio' ? 'border-brand-primary text-text-primary dark:text-white' : 'border-transparent text-text-muted hover:text-text-primary'" class="pb-6 border-b-2 font-bold text-xs uppercase tracking-widest transition-all outline-none">
+            <button @click="activeTab = 'bio'" :class="activeTab === 'bio' ? 'border-brand-primary text-text-primary' : 'border-transparent text-text-muted hover:text-text-primary'" class="pb-6 border-b-2 font-bold text-xs uppercase tracking-widest transition-all outline-none">
               Artist Biography
             </button>
             @if($talent->technical_rider)
-            <button @click="activeTab = 'rider'" :class="activeTab === 'rider' ? 'border-brand-primary text-text-primary dark:text-white' : 'border-transparent text-text-muted hover:text-text-primary'" class="pb-6 border-b-2 font-bold text-xs uppercase tracking-widest transition-all outline-none">
+            <button @click="activeTab = 'rider'" :class="activeTab === 'rider' ? 'border-brand-primary text-text-primary' : 'border-transparent text-text-muted hover:text-text-primary'" class="pb-6 border-b-2 font-bold text-xs uppercase tracking-widest transition-all outline-none">
               Technical Requirements
             </button>
             @endif
-            <button @click="activeTab = 'gallery'" :class="activeTab === 'gallery' ? 'border-brand-primary text-text-primary dark:text-white' : 'border-transparent text-text-muted hover:text-text-primary'" class="pb-6 border-b-2 font-bold text-xs uppercase tracking-widest transition-all outline-none">
+            <button @click="activeTab = 'gallery'" :class="activeTab === 'gallery' ? 'border-brand-primary text-text-primary' : 'border-transparent text-text-muted hover:text-text-primary'" class="pb-6 border-b-2 font-bold text-xs uppercase tracking-widest transition-all outline-none">
               Portfolio Gallery
             </button>
           </nav>
@@ -89,7 +89,7 @@
 
           @if($talent->technical_rider)
           <div x-show="activeTab === 'rider'" x-cloak x-transition class="bg-surface-light p-12 rounded-3xl border border-subtle shadow-sm prose max-w-none text-text-secondary">
-            <h3 class="text-text-primary dark:text-white font-bold font-serif mb-6 text-2xl">Production & Technical Rider</h3>
+            <h3 class="text-text-primary mb-6 font-serif">Production & Technical Rider</h3>
             @if(filter_var($talent->technical_rider, FILTER_VALIDATE_URL))
               <p>Our technical requirements are available at the following link:</p>
               <a href="{{ $talent->technical_rider }}" target="_blank" class="text-brand-primary font-bold hover:underline">View Technical Rider</a>
@@ -104,7 +104,7 @@
               <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 @foreach($talent->gallery as $item)
                   <div class="group bg-surface-light rounded-3xl overflow-hidden border border-subtle shadow-sm hover:shadow-xl transition-all duration-500">
-                    <div class="aspect-video relative overflow-hidden bg-black">
+                    <div class="aspect-video relative overflow-hidden bg-surface-dark">
                       @php
                         $galleryEmbedUrl = '';
                         if (str_contains($item->url, 'youtube.com') || str_contains($item->url, 'youtu.be')) {
@@ -126,7 +126,7 @@
                     @if($item->title || $item->description)
                       <div class="p-6">
                         @if($item->title)
-                          <h4 class="text-sm font-bold text-text-primary dark:text-white uppercase tracking-widest mb-1">{{ $item->title }}</h4>
+                          <h4 class="text-sm font-bold text-text-primary uppercase tracking-widest mb-1">{{ $item->title }}</h4>
                         @endif
                         @if($item->description)
                           <p class="text-xs text-text-muted leading-relaxed">{{ $item->description }}</p>
@@ -148,7 +148,7 @@
       <!-- Sticky Sidebar -->
       <div class="w-full lg:w-1/3">
         <div class="sticky top-28 bg-surface-light p-10 rounded-[2.5rem] shadow-2xl border border-subtle ">
-          <h3 class="text-2xl font-bold text-text-primary dark:text-white mb-8 font-serif">Booking Information</h3>
+          <h3 class="text-2xl font-bold text-text-primary mb-8 font-serif">Booking Information</h3>
 
           <div class="space-y-8 mb-10">
             <div class="flex items-start gap-5">
@@ -185,7 +185,7 @@
           <!-- Share -->
           <div class="pt-8 border-t border-subtle " x-data="{ copied: false }">
             <div class="flex items-center justify-between gap-4">
-              <button @click="navigator.clipboard.writeText(window.location.href); copied = true; setTimeout(() => copied = false, 2000)" class="flex-1 px-4 py-2 bg-surface-muted rounded-lg text-[10px] font-bold text-text-primary dark:text-white uppercase tracking-widest hover:bg-brand-primary/10 transition-colors">
+              <button @click="navigator.clipboard.writeText(window.location.href); copied = true; setTimeout(() => copied = false, 2000)" class="flex-1 px-4 py-2 bg-surface-muted rounded-lg text-[10px] font-bold text-text-primary uppercase tracking-widest hover:bg-brand-primary/10 transition-colors">
                 <span x-text="copied ? 'Copied to Clipboard' : 'Share Portfolio'"></span>
               </button>
             </div>
