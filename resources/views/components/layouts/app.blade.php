@@ -87,7 +87,7 @@
         <div class="shrink-0 flex items-center">
           <a href="/" class="flex items-center gap-2.5" aria-label="Hailerz Home">
             <img src="/images/logo.webp" alt="" aria-hidden="true" width="40" height="41" class="h-10 w-auto object-contain rounded-lg" />
-            <span class="text-xl sm:text-2xl font-bold tracking-tight text-text-primary block font-serif">
+            <span class="text-xl sm:text-2xl font-bold tracking-tight text-text-primary hidden lg:block font-serif">
               Hailerz
             </span>
           </a>
@@ -103,13 +103,18 @@
             class="text-xs font-bold {{ request()->is('about*') ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary' }} transition-colors uppercase tracking-widest">The Agency</a>
         </nav>
 
-        <div class="flex items-center space-x-6">
-          <!-- Theme Toggle -->
-          <x-theme-toggle />
+        <div class="flex items-center space-x-4">
+          <!-- Desktop Theme Toggle -->
+          <div class="hidden md:block">
+            <x-theme-toggle />
+          </div>
 
-          <x-button variant="primary" size="sm" href="/book" wire:navigate>
+          <x-button variant="primary" size="sm" href="/book" wire:navigate class="flex bg-linear-to-tr from-brand-primary to-brand-secondary border-none shadow-lg px-6 py-2.5 rounded-full hover:scale-105 transition-transform text-xs sm:text-sm">
             Booking Inquiry
           </x-button>
+
+          <!-- Mobile Menu Container -->
+          <x-mobile-menu />
         </div>
       </div>
     </div>
