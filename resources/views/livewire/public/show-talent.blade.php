@@ -115,12 +115,22 @@
                x-cloak 
                x-transition:enter="transition ease-out duration-300"
                x-transition:enter-start="opacity-0 translate-y-4"
-               x-transition:enter-end="opacity-100 translate-y-0">
+               x-transition:enter-end="opacity-100 translate-y-0"
+               x-data="{ 
+                  lightboxOpen: false, 
+                  lightboxImage: '', 
+                  lightboxTitle: '',
+                  openLightbox(url, title) {
+                      this.lightboxImage = url;
+                      this.lightboxTitle = title;
+                      this.lightboxOpen = true;
+                  }
+               }">
             @if($talent->galleryItems->count() > 0)
-              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div class="columns-1 sm:columns-2 lg:columns-3 gap-8 space-y-8">
                 @foreach($talent->galleryItems as $item)
-                  <div class="group bg-surface-light rounded-3xl overflow-hidden border border-subtle shadow-sm hover:shadow-xl transition-all duration-500">
-                    <div class="aspect-video relative overflow-hidden bg-surface-dark">
+                  <div class="break-inside-avoid group bg-surface-light rounded-3xl overflow-hidden border border-subtle shadow-sm hover:shadow-xl transition-all duration-500">
+                    <div class="relative overflow-hidden bg-surface-dark">
                       @php
                         $galleryEmbedUrl = '';
                         if (str_contains($item->url, 'youtube.com') || str_contains($item->url, 'youtu.be')) {
@@ -133,10 +143,21 @@
                       @endphp
 
                       @if($galleryEmbedUrl)
-                        <iframe src="{{ $galleryEmbedUrl }}" class="absolute inset-0 w-full h-full" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <div class="aspect-video relative">
+                          <iframe src="{{ $galleryEmbedUrl }}" class="absolute inset-0 w-full h-full" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
                       @else
-                        <img src="{{ $item->url }}" class="w-full h-full object-cover grayscale transition-transform duration-700 group-hover:scale-110" alt="{{ $item->title ?? 'Gallery Image' }}" />
-                        <div class="absolute inset-0 bg-linear-to-tr from-brand-primary/80 to-brand-secondary/40 mix-blend-color opacity-40"></div>
+                        <div class="relative cursor-zoom-in" @click="openLightbox('{{ $item->url }}', '{{ $item->title }}')">
+                          <img src="{{ $item->url }}" class="w-full h-auto object-cover grayscale transition-transform duration-700 group-hover:scale-110" alt="{{ $item->title ?? 'Gallery Image' }}" />
+                          <div class="absolute inset-0 bg-linear-to-tr from-brand-primary/80 to-brand-secondary/40 mix-blend-color opacity-20 group-hover:opacity-10 transition-opacity"></div>
+                          
+                          <!-- Hover Overlay -->
+                          <div class="absolute inset-0 bg-surface-dark/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <div class="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white">
+                              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path></svg>
+                            </div>
+                          </div>
+                        </div>
                       @endif
                     </div>
                     @if($item->title || $item->description)
@@ -151,6 +172,31 @@
                     @endif
                   </div>
                 @endforeach
+              </div>
+
+              {{-- Lightbox --}}
+              <div x-show="lightboxOpen" 
+                   x-transition:enter="transition ease-out duration-300"
+                   x-transition:enter-start="opacity-0"
+                   x-transition:enter-end="opacity-100"
+                   x-transition:leave="transition ease-in duration-200"
+                   x-transition:leave-start="opacity-100"
+                   x-transition:leave-end="opacity-0"
+                   class="fixed inset-0 z-50 flex items-center justify-center bg-surface-dark/95 backdrop-blur-md p-4 md:p-10"
+                   @click="lightboxOpen = false"
+                   @keydown.escape.window="lightboxOpen = false"
+                   x-cloak>
+                  
+                  <button class="absolute top-8 right-8 text-white/50 hover:text-white transition-colors">
+                      <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"></path></svg>
+                  </button>
+
+                  <div class="max-w-5xl w-full flex flex-col items-center" @click.stop>
+                      <img :src="lightboxImage" class="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl border border-white/10" :alt="lightboxTitle">
+                      <div class="mt-6 text-center" x-show="lightboxTitle">
+                          <h4 x-text="lightboxTitle" class="text-text-inverse text-xl font-serif tracking-wide"></h4>
+                      </div>
+                  </div>
               </div>
             @else
               <div class="py-20 text-center border-2 border-dashed border-subtle rounded-3xl">

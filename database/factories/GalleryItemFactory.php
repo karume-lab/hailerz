@@ -45,13 +45,13 @@ class GalleryItemFactory extends Factory
             ]
         ];
 
-        $selected = fake()->randomElement($media);
+        $selected = $this->faker->randomElement($media);
 
         return [
             'url' => $selected['url'],
             'title' => $selected['title'],
             'description' => $selected['description'],
-            'sort_order' => fake()->numberBetween(1, 10),
+            'sort_order' => $this->faker->numberBetween(1, 10),
         ];
     }
 }

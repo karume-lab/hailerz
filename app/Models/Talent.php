@@ -6,12 +6,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class Talent extends Model implements HasMedia
 {
-    use InteractsWithMedia, HasFactory;
+    use InteractsWithMedia, HasFactory, SoftDeletes;
 
     protected $table = 'talents';
     protected $guarded = [];
@@ -45,5 +47,18 @@ class Talent extends Model implements HasMedia
     public function galleryItems(): \Illuminate\Database\Eloquent\Relations\MorphMany
     {
         return $this->morphMany(GalleryItem::class, 'galleryable');
+    }
+
+    public function registerMediaConversions(Media $media = null): void
+    {
+        $this->addMediaConversion('thumb')
+            ->width(400)
+            ->height(400)
+            ->sharpen(10);
+
+        $this->addMediaConversion('optimized')
+            ->width(1200)
+            ->height(800)
+            ->withResponsiveImages();
     }
 }
