@@ -75,25 +75,25 @@ class TalentFactory extends Factory
             ]
         ];
 
-        $categoryName =  $this->faker->randomElement(array_keys($categories));
+        $categoryName = fake()->randomElement(array_keys($categories));
         $data = $categories[$categoryName];
         
-        $name =  $this->faker->randomElement($data['names']);
-        $imageId =  $this->faker->randomElement($data['images']);
+        $name = fake()->randomElement($data['names']);
+        $imageId = fake()->randomElement($data['images']);
 
         return [
             'category_id' => \App\Models\Category::where('name', $categoryName)->first()?->id ?? \App\Models\Category::factory(),
             'name' => $name,
-            'slug' => str($name)->slug() . '-' .  $this->faker->unique()->numberBetween(100, 999),
-            'bio' =>  $this->faker->randomElement($data['bios']),
+            'slug' => str($name)->slug() . '-' . fake()->unique()->numberBetween(100, 999),
+            'bio' => fake()->randomElement($data['bios']),
             'technical_rider' => $data['riders'],
             'video_url' => $data['video'],
             'primary_image_url' => "https://images.unsplash.com/{$imageId}?auto=format&fit=crop&w=1200&q=80",
-            'starting_price' =>  $this->faker->randomFloat(2, 2500, 20000),
-            'location' =>  $this->faker->city() . ', ' .  $this->faker->country(),
+            'starting_price' => fake()->randomFloat(2, 2500, 20000),
+            'location' => fake()->city() . ', ' . fake()->country(),
             'status' => 'active',
             'internal_notes' => 'Premium B2B talent generated for production-grade testing.',
-            'is_featured' =>  $this->faker->boolean(20),
+            'is_featured' => fake()->boolean(20),
         ];
     }
 }
