@@ -81,14 +81,25 @@
           </nav>
         </div>
 
-        <!-- Panels -->
-        <div class="min-h-[400px]">
-          <div x-show="activeTab === 'bio'" x-transition class="prose prose-lg max-w-none text-text-secondary leading-relaxed font-light">
+        <div class="relative min-h-[500px]">
+          {{-- Artist Biography --}}
+          <div x-show="activeTab === 'bio'" 
+               x-cloak
+               x-transition:enter="transition ease-out duration-300"
+               x-transition:enter-start="opacity-0 translate-y-4"
+               x-transition:enter-end="opacity-100 translate-y-0"
+               class="prose prose-lg max-w-none text-text-secondary leading-relaxed font-light">
             {!! $talent->bio !!}
           </div>
 
+          {{-- Technical Requirements --}}
           @if($talent->technical_rider)
-          <div x-show="activeTab === 'rider'" x-cloak x-transition class="bg-surface-light p-12 rounded-3xl border border-subtle shadow-sm prose max-w-none text-text-secondary">
+          <div x-show="activeTab === 'rider'" 
+               x-cloak 
+               x-transition:enter="transition ease-out duration-300"
+               x-transition:enter-start="opacity-0 translate-y-4"
+               x-transition:enter-end="opacity-100 translate-y-0"
+               class="bg-surface-light p-8 md:p-12 rounded-3xl border border-subtle shadow-sm prose max-w-none text-text-secondary">
             <h3 class="text-text-primary mb-6 font-serif">Production & Technical Rider</h3>
             @if(filter_var($talent->technical_rider, FILTER_VALIDATE_URL))
               <p>Our technical requirements are available at the following link:</p>
@@ -99,7 +110,12 @@
           </div>
           @endif
 
-          <div x-show="activeTab === 'gallery'" x-cloak x-transition>
+          {{-- Portfolio Gallery --}}
+          <div x-show="activeTab === 'gallery'" 
+               x-cloak 
+               x-transition:enter="transition ease-out duration-300"
+               x-transition:enter-start="opacity-0 translate-y-4"
+               x-transition:enter-end="opacity-100 translate-y-0">
             @if($talent->gallery->count() > 0)
               <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 @foreach($talent->gallery as $item)
