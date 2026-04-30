@@ -1,5 +1,8 @@
 @import 'tailwindcss';
 
+/* Use .dark class for dark mode instead of the OS media query */
+@variant dark (&:where(.dark, .dark *));
+
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
 @source '../**/*.blade.php';

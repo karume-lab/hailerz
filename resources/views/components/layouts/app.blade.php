@@ -87,7 +87,7 @@
         <div class="shrink-0 flex items-center">
           <a href="/" class="flex items-center gap-2.5" aria-label="Hailerz Home">
             <img src="/images/logo.webp" alt="" aria-hidden="true" width="40" height="41" class="h-10 w-auto object-contain rounded-lg" />
-            <span class="text-2xl font-bold tracking-tight text-brand-primary dark:text-white hidden sm:block font-serif">
+            <span class="text-xl sm:text-2xl font-bold tracking-tight text-gray-900 dark:text-white block font-serif">
               Hailerz
             </span>
           </a>
