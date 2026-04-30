@@ -7,9 +7,9 @@
     <span class="text-xs font-bold text-brand-primary uppercase tracking-widest">Agency Solutions</span>
     <span class="h-px w-12 bg-brand-primary"></span>
    </div>
-   <h1 class="text-5xl md:text-8xl font-bold text-text-inverse tracking-tight mb-8 font-serif leading-tight">Professional <span class="text-white">Talent</span> Procurement</h1>
+   <h1 class="text-5xl md:text-8xl font-bold text-text-inverse tracking-tight mb-8 font-serif leading-tight">How we help you <span class="text-white">book</span> talent</h1>
    <p class="text-xl md:text-2xl text-text-muted max-w-3xl mx-auto leading-relaxed font-light">
-    Comprehensive entertainment solutions and secure booking services for global events, corporate galas, and private functions.
+    We provide reliable booking services for corporate galas and private functions. From finding the act to signing the contract, we manage the heavy lifting.
    </p>
   </div>
   
@@ -21,8 +21,8 @@
  <section class="py-32 bg-surface-muted">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
    <div class="text-center max-w-3xl mx-auto mb-24">
-    <h2 class="text-3xl md:text-5xl font-bold text-text-primary mb-6 font-serif">Curated Disciplines</h2>
-    <p class="text-text-secondary text-lg">World-class performers vetted for professional standards and exceptional delivery.</p>
+    <h2 class="text-3xl md:text-5xl font-bold text-text-primary mb-6 font-serif">The artists we represent</h2>
+    <p class="text-text-secondary text-lg">Every performer on our roster is personally vetted for their professionalism and performance quality.</p>
    </div>
 
    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
@@ -72,15 +72,15 @@
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
    <div class="lg:grid lg:grid-cols-2 lg:gap-24 items-center">
     <div>
-     <h2 class="text-3xl md:text-6xl font-bold text-text-inverse mb-8 font-serif leading-tight">Full-Cycle Agency Support</h2>
-     <p class="text-xl text-text-muted mb-12 leading-relaxed font-light">We handle the administrative and technical complexities, allowing you to focus on the production.</p>
+     <h2 class="text-3xl md:text-6xl font-bold text-text-inverse mb-8 font-serif leading-tight">We handle the logistics</h2>
+     <p class="text-xl text-text-muted mb-12 leading-relaxed font-light">We take care of the paperwork and technical details so you can focus on running your event.</p>
      
      <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
       @foreach([
-       ['Contract Negotiation', 'Professional, legally binding agreements ensuring protection for all parties.'],
-       ['Technical Riders', 'Coordination of sound, lighting, and stage specifications with the talent.'],
-       ['Logistics Management', 'Overseeing travel, accommodation, and on-site hospitality requirements.'],
-       ['Performance Quality', 'Continuous vetting and post-event audits to maintain elite standards.'],
+       ['Pricing & Contracts', 'Clear, straightforward contracts that protect both you and the artist.'],
+       ['Tech Requirements', 'We\'ll coordinate all the sound and lighting needs with the artist\'s team.'],
+       ['Travel & Stays', 'We manage the artist\'s travel and accommodation so you don\'t have to.'],
+       ['Quality Control', 'We personally check in after every show to ensure our standards were met.'],
       ] as $pillar)
       <div class="space-y-3">
        <h3 class="text-text-inverse font-bold text-sm uppercase tracking-widest">{{ $pillar[0] }}</h3>
@@ -104,15 +104,15 @@
  <section class="py-32 bg-surface-light border-b border-brand-primary/5">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
    <div class="text-center max-w-3xl mx-auto mb-24">
-    <h2 class="text-3xl md:text-5xl font-bold text-text-primary mb-6 font-serif">The Procurement Process</h2>
-    <p class="text-text-secondary text-lg">A transparent and structured approach from inquiry to execution.</p>
+    <h2 class="text-3xl md:text-5xl font-bold text-text-primary mb-6 font-serif">How it works</h2>
+    <p class="text-text-secondary text-lg">A simple, three-step process to get an artist on your stage.</p>
    </div>
 
    <div class="grid grid-cols-1 md:grid-cols-3 gap-16">
     @foreach([
-     ['01', 'Initial Inquiry', 'Submit event specifications and talent preferences via our secure booking portal.'],
-     ['02', 'Strategic Proposal', 'Receive a curated selection of available talent with transparent investment details.'],
-     ['03', 'Secure the Act', 'Formalize the engagement with professional contracting and initial commitment.'],
+     ['01', 'Tell us about your event', 'Let us know your dates, budget, and the kind of vibe you\'re looking for.'],
+     ['02', 'Review the shortlist', 'We\'ll send you a list of available artists who fit your needs, with clear pricing for each.'],
+     ['03', 'Lock in the date', 'Once you\'ve made a choice, we\'ll handle the contract and deposit to secure the date.'],
     ] as $step)
     <div class="relative">
      <span class="text-8xl font-black text-text-primary/5 absolute -top-12 -left-4">{{ $step[0] }}</span>
@@ -129,9 +129,9 @@
  <!-- Final CTA -->
  <section class="py-32 bg-surface-muted text-center">
   <div class="max-w-4xl mx-auto px-4">
-   <h2 class="text-3xl md:text-6xl font-bold text-text-primary mb-8 font-serif leading-tight">Elevate Your Next Occasion.</h2>
+   <h2 class="text-3xl md:text-6xl font-bold text-text-primary mb-8 font-serif leading-tight">Ready to find your headliner?</h2>
    <p class="text-xl text-text-secondary mb-12 max-w-2xl mx-auto font-light leading-relaxed">
-    Our agents are available to provide expert recommendations and manage your talent requirements with precision.
+    Talk to one of our agents. We'll give you honest advice and handle the entire booking process from start to finish.
    </p>
    <div class="flex flex-col sm:flex-row justify-center gap-6">
     <x-button variant="primary" size="lg" href="/talent" wire:navigate>

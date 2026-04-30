@@ -20,11 +20,10 @@
                 <div class="mb-16 lg:mb-0">
                     <h1
                         class="text-5xl md:text-7xl font-bold tracking-tight text-text-inverse mb-8 leading-[1.1] font-serif">
-                        Elevate Your Events with <span class="text-white">World-Class</span> Talent.
+                        Book the right talent for your next event.
                     </h1>
                     <p class="mt-4 max-w-xl text-lg md:text-xl text-text-muted mb-12 leading-relaxed">
-                        Hailerz is the definitive roster for corporate events, galas, and private functions. Secure the
-                        act that transforms your occasion into an unforgettable experience.
+                        We represent the most requested artists for corporate events, galas, and private parties. Find the perfect act to set the tone for your night.
                     </p>
                     <div class="flex flex-wrap gap-6">
                         <x-button variant="primary" size="lg" href="/talent" wire:navigate>
@@ -90,28 +89,26 @@
     <section class="py-32 bg-surface-muted">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-20">
-                <h2 class="text-3xl md:text-5xl font-bold text-text-primary mb-6 font-serif">A Full-Service Agency for
-                    Extraordinary Events</h2>
-                <p class="text-lg text-text-secondary">From procurement to performance, we handle every detail of the
-                    booking process.</p>
+                <h2 class="text-3xl md:text-5xl font-bold text-text-primary mb-6 font-serif">We handle the entire booking process</h2>
+                <p class="text-lg text-text-secondary">From first inquiry to the final performance, we manage every detail so you don't have to.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
                 @php
                     $services = [
                         [
-                            'title' => 'Talent Procurement',
-                            'desc' => 'Access an exclusive roster of world-class performers and keynote speakers tailored to your event\'s DNA.',
+                            'title' => 'Artist Selection',
+                            'desc' => 'Browse our roster of vetted performers and speakers. We\'ll help you find someone who actually fits your audience.',
                             'icon' => 'M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10'
                         ],
                         [
-                            'title' => 'Contract Negotiation',
-                            'desc' => 'Our experienced agents manage all legal and financial negotiations, ensuring secure and professional agreements.',
+                            'title' => 'Clear Contracts',
+                            'desc' => 'We handle all the paperwork and pricing talks, ensuring everything is professional and easy to understand from the start.',
                             'icon' => 'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z'
                         ],
                         [
-                            'title' => 'On-Site Coordination',
-                            'desc' => 'We provide comprehensive support and logistics to guarantee a flawless execution of the talent\'s performance.',
+                            'title' => 'Event Day Support',
+                            'desc' => 'We\'re here to manage the logistics and make sure the artist has everything they need to perform.',
                             'icon' => 'M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z'
                         ]
                     ];
@@ -139,10 +136,8 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
                 <div class="max-w-2xl">
-                    <h2 class="text-3xl md:text-5xl font-bold text-text-primary mb-6 font-serif">Curated Roster of
-                        Performers</h2>
-                    <p class="text-lg text-text-secondary">Explore our categories of vetted professionals ready to
-                        secure the act for your next gala or summit.</p>
+                    <h2 class="text-3xl md:text-5xl font-bold text-text-primary mb-6 font-serif">Browse our artists</h2>
+                    <p class="text-lg text-text-secondary">Find the right act for your gala or conference. Every artist on our list has been personally vetted.</p>
                 </div>
                 <x-button variant="secondary" href="/talent" wire:navigate>
                     View Full Roster
@@ -200,11 +195,9 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="lg:grid lg:grid-cols-2 lg:gap-24 items-center">
                 <div>
-                    <h2 class="text-3xl md:text-6xl font-bold text-text-inverse mb-8 font-serif leading-tight">Ready to
-                        Secure the Act?</h2>
+                    <h2 class="text-3xl md:text-6xl font-bold text-text-inverse mb-8 font-serif leading-tight">Let's talk about your event</h2>
                     <p class="text-xl text-text-inverse/80 mb-12 leading-relaxed">
-                        Our agents are standing by to help you find the perfect talent for your event. Whether you have
-                        a specific performer in mind or need expert recommendations, we are here to assist.
+                        Talk to a real agent about your plans. We'll give you honest recommendations and handle the details.
                     </p>
 
                     <ul class="space-y-8 mb-12">
@@ -219,7 +212,7 @@
                                 </svg>
                             </div>
                             <div>
-                                <h3 class="text-text-inverse font-bold">Email Our Agents</h3>
+                                <h3 class="text-text-inverse font-bold">Send us a message</h3>
                                 <p class="text-text-inverse/60 text-sm">bookings@hailerz.com</p>
                             </div>
                         </li>
@@ -233,8 +226,8 @@
                                 </svg>
                             </div>
                             <div>
-                                <h3 class="text-text-inverse font-bold">Rapid Response</h3>
-                                <p class="text-text-inverse/60 text-sm">Typically within 24 business hours</p>
+                                <h3 class="text-text-inverse font-bold">Quick Responses</h3>
+                                <p class="text-text-inverse/60 text-sm">Expect a reply within one business day.</p>
                             </div>
                         </li>
                     </ul>

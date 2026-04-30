@@ -17,11 +17,10 @@
         <span class="h-px w-12 bg-brand-primary"></span>
       </div>
       <h1 class="text-5xl md:text-8xl font-bold text-text-inverse tracking-tight mb-8 font-serif leading-tight">
-        Elevating the <span class="text-brand-secondary">Standard</span> of Event Entertainment.
+        We represent the <span class="text-brand-secondary">artists</span> you want to book.
       </h1>
       <p class="mt-4 max-w-3xl text-xl md:text-2xl text-text-muted mx-auto leading-relaxed font-light">
-        Hailerz is a boutique talent agency dedicated to securing world-class performers for visionary event planners
-        and global brands.
+        Hailerz is a specialized talent agency. We help event planners and brands secure the best performers in the world without the usual back-and-forth.
       </p>
     </div>
   </div>
@@ -32,22 +31,16 @@
       <span class="h-px w-8 bg-brand-primary"></span>
       <span class="text-xs font-bold text-brand-primary uppercase tracking-widest">Our Legacy</span>
     </div>
-    <h2 class="text-4xl md:text-6xl font-bold text-text-primary tracking-tight mb-12 font-serif">The Pursuit of
-      Excellence</h2>
+    <h2 class="text-4xl md:text-6xl font-bold text-text-primary tracking-tight mb-12 font-serif">Why we started</h2>
     <div class="space-y-10 text-xl text-text-secondary leading-relaxed font-light">
       <p>
-        Hailerz was founded on a singular premise: that premium events deserve premium talent. We recognized the
-        disconnect between visionary event planners and the world-class performers they sought to secure. Our agency was
-        established to bridge that gap with professional procurement, rigorous vetting, and seamless execution.
+        Hailerz was founded on a simple idea: booking high-end talent should be easier. We saw too many planners struggling to get clear answers from artists, so we built an agency that prioritizes speed, clear pricing, and reliable service.
       </p>
       <p>
-        Today, we represent a curated roster of elite performers, keynote speakers, and specialty acts. We don't just
-        book talent; we partner with clients to ensure every act aligns perfectly with the event's DNA, from corporate
-        galas to private island retreats.
+        Today, we represent a handpicked list of performers, speakers, and DJs. We don't just fill slots; we help you find an artist who actually fits the tone of your night, whether it's a corporate gala or a private party.
       </p>
       <p>
-        Our reputation is built on trust, transparency, and a relentless focus on production quality. We manage the
-        complexities of contracting and logistics so you can focus on the guest experience.
+        We've built our reputation on being straightforward. We handle the contracts and the travel details so you can focus on running your event.
       </p>
     </div>
   </div>
@@ -56,19 +49,17 @@
   <div class="bg-surface-light py-32 border-y border-subtle ">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center max-w-3xl mx-auto mb-20">
-        <h2 class="text-3xl md:text-5xl font-bold text-text-primary tracking-tight mb-6 font-serif">Agency Principles
-        </h2>
-        <p class="text-lg text-text-secondary">Our core values define the Hailerz experience for both talent and
-          clients.</p>
+        <h2 class="text-3xl md:text-5xl font-bold text-text-primary tracking-tight mb-6 font-serif">What we stand for</h2>
+        <p class="text-lg text-text-secondary">Our core values define how we work with both artists and clients.</p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         @php
           $values = [
-            ['title' => 'Excellence', 'desc' => 'We curate only the finest talent, ensuring every act meets our rigorous standards for professional performance.'],
-            ['title' => 'Discretion', 'desc' => 'We operate with the highest level of confidentiality and professionalism for our high-profile clients.'],
-            ['title' => 'Partnership', 'desc' => 'We build lasting relationships with planners, acting as an extension of your production team.'],
-            ['title' => 'Integrity', 'desc' => 'Transparent negotiations and secure contracting are the bedrock of our agency operations.'],
+            ['title' => 'Quality', 'desc' => 'We only work with artists who we know can deliver a professional show every single time.'],
+            ['title' => 'Discretion', 'desc' => 'We operate with the highest level of confidentiality for our high-profile clients.'],
+            ['title' => 'Collaboration', 'desc' => 'We work closely with you as a partner, not just another vendor.'],
+            ['title' => 'Honesty', 'desc' => 'Clear pricing and straightforward contracts are at the core of how we work.'],
           ];
         @endphp
 
@@ -135,9 +126,9 @@
     </div>
 
     <div class="relative max-w-4xl mx-auto px-4 text-center">
-      <h2 class="text-4xl md:text-7xl font-bold text-text-inverse mb-8 tracking-tight font-serif">Secure the Act.</h2>
+      <h2 class="text-4xl md:text-7xl font-bold text-text-inverse mb-8 tracking-tight font-serif">Ready to book?</h2>
       <p class="text-xl md:text-2xl text-text-muted mb-12 font-light leading-relaxed">
-        Partner with Hailerz to elevate your next event with world-class talent and professional management.
+        Work with us to find the right artist and handle the booking from start to finish.
       </p>
       <div class="flex flex-col sm:flex-row justify-center gap-6">
         <x-button variant="primary" size="lg" href="/talent" wire:navigate>
