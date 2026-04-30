@@ -28,6 +28,7 @@
   <!-- Self-hosted fonts loaded via @font-face + font-display:swap in app.css -->
   <link rel="manifest" href="/manifest.json">
 
+  @production
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
@@ -35,6 +36,19 @@
       });
     }
   </script>
+  @else
+  <script>
+    // Auto-unregister service workers in development to prevent stale cache issues
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then(function(registrations) {
+        for(let registration of registrations) {
+          registration.unregister();
+          console.log('Service Worker unregistered');
+        }
+      });
+    }
+  </script>
+  @endproduction
 
   <link rel="canonical" href="{{ url()->current() }}">
   <link rel="icon" href="/images/logo.webp" type="image/webp">
