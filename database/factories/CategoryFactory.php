@@ -9,7 +9,7 @@ class CategoryFactory extends Factory
 {
     public function definition(): array
     {
-        $name = fake()->unique()->randomElement([
+        $name = $this->faker->unique()->randomElement([
             'Keynote Speakers',
             'Live Event Bands',
             'Executive MCs',
