@@ -10,10 +10,7 @@ export default {
     ],
     theme: {
         extend: {
-            colors: {
-                'brand-primary': 'var(--brand-primary)',
-                'text-secondary': 'var(--text-secondary)',
-            }
+            // Use Filament's native theme engine
         }
     }
 }

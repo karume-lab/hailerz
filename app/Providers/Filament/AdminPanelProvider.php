@@ -33,12 +33,13 @@ class AdminPanelProvider extends PanelProvider
             ->brandLogoHeight('2.5rem')
             ->maxContentWidth(\Filament\Support\Enums\Width::SevenExtraLarge)
             ->colors([
-                'primary' => '#223757', // brand-primary
-                'danger' => '#E11D48',
-                'gray' => '#64748B',
-                'info' => '#2186a1', // brand-secondary
-                'success' => '#10B981',
-                'warning' => '#F59E0B',
+                'primary' => '#223757',
+                'secondary' => '#6abfab',
+                'info' => '#6abfab',
+                'danger' => Color::Rose,
+                'gray' => Color::Slate,
+                'success' => Color::Emerald,
+                'warning' => Color::Amber,
             ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')

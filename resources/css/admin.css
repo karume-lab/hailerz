@@ -5,19 +5,14 @@
 @source '../../app/Filament/**/*.php';
 
 @layer base {
-    :root {
-        --brand-primary: #223757;
-        --brand-primary: #1a8aa7;
-        --brand-secondary: #72c7b4;
-        --text-secondary: #374151;
-    }
-
-    .dark {
-        --text-secondary: #D1D5DB;
-    }
-
     /* Logo scaling in panel */
     .fi-logo {
         max-height: 2.25rem !important;
+    }
+
+    /* Custom scrollbar for Kanban board */
+    .overflow-x-auto {
+        scrollbar-width: thin;
+        scrollbar-color: rgba(34, 55, 87, 0.2) transparent;
     }
 }

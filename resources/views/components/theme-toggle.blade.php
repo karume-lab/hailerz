@@ -11,7 +11,7 @@
     }
   }" 
   @click="toggleTheme()"
-  {{ $attributes->merge(['class' => 'inline-flex items-center justify-center p-2 rounded-xl bg-surface-muted text-text-primary hover:text-brand-primary transition-all duration-300 focus:outline-none border border-subtle shadow-sm']) }}
+  {{ $attributes->merge(['class' => 'inline-flex items-center justify-center p-2 rounded-xl bg-gray-50 dark:bg-white/5 text-gray-950 dark:text-white hover:text-primary-600 dark:hover:text-primary-400 transition-all duration-300 focus:outline-none border border-gray-200 dark:border-white/10 shadow-sm']) }}
   title="Toggle dark mode"
   aria-label="Toggle Dark Mode">
   
