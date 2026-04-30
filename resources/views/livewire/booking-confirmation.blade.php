@@ -1,15 +1,15 @@
 <div class="max-w-xl mx-auto px-4 sm:px-6 lg:px-8 py-32 text-center">
-    <div class="mb-12 inline-flex items-center justify-center w-24 h-24 bg-brand-teal/10 text-brand-teal rounded-full shadow-2xl shadow-brand-teal/20">
+    <div class="mb-12 inline-flex items-center justify-center w-24 h-24 bg-brand-primary/10 text-brand-primary rounded-full shadow-2xl shadow-brand-primary/20">
         <x-heroicon-o-check class="w-12 h-12 stroke-3" />
     </div>
     
     <div class="flex items-center justify-center gap-3 mb-6">
-        <span class="h-px w-8 bg-brand-teal"></span>
-        <span class="text-xs font-bold text-brand-teal uppercase tracking-widest">Procurement Success</span>
-        <span class="h-px w-8 bg-brand-teal"></span>
+        <span class="h-px w-8 bg-brand-primary"></span>
+        <span class="text-xs font-bold text-brand-primary uppercase tracking-widest">Procurement Success</span>
+        <span class="h-px w-8 bg-brand-primary"></span>
     </div>
 
-    <h1 class="text-4xl md:text-6xl font-serif font-black text-brand-navy mb-8 tracking-tight">
+    <h1 class="text-4xl md:text-6xl font-serif font-black text-brand-primary mb-8 tracking-tight">
         Engagement Logged
     </h1>
     

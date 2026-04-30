@@ -59,10 +59,9 @@
     --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
     --font-serif: "Charter", "Bitstream Charter", "Sitka Text", "Cambria", serif;
     
-    /* Brand Colors — brand-teal darkened from #1a8aa7 → #0d6e87 for WCAG AA contrast on white */
-    --color-brand-navy: #21395c;
-    --color-brand-teal: #0d6e87;
-    --color-brand-mint: #65c4af;
+    /* Brand Colors */
+    --color-brand-primary: #223757;
+    --color-brand-secondary: #2186a1;
     
     /* Surface Colors */
     --color-surface-light: var(--surface-light);
@@ -115,7 +114,7 @@
 
 @layer components {
     .glass-nav {
-        @apply sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-brand-navy/5;
+        @apply sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-brand-primary/5;
     }
 
     @keyframes infinite-scroll {

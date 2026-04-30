@@ -11,7 +11,7 @@ export default {
     theme: {
         extend: {
             colors: {
-                'brand-teal': 'var(--brand-teal)',
+                'brand-primary': 'var(--brand-primary)',
                 'text-secondary': 'var(--text-secondary)',
             }
         }

@@ -9,10 +9,10 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="bg-surface-muted text-text-primary font-sans antialiased min-h-screen flex items-center justify-center">
-    <div class="max-w-xl w-full px-6 py-12 bg-white rounded-3xl shadow-2xl border border-brand-navy/5 text-center">
+    <div class="max-w-xl w-full px-6 py-12 bg-white rounded-3xl shadow-2xl border border-brand-primary/5 text-center">
         <img src="/images/logo.webp" alt="Hailerz Logo" class="h-20 w-auto object-contain mx-auto mb-10 rounded-2xl" />
         
-        <h1 class="text-4xl font-bold text-brand-navy mb-6 font-serif tracking-tight">Securing the Act.</h1>
+        <h1 class="text-4xl font-bold text-brand-primary mb-6 font-serif tracking-tight">Securing the Act.</h1>
         <p class="text-text-secondary text-lg mb-12 leading-relaxed">
             Welcome to Hailerz. We are a premium talent booking agency dedicated to world-class event production and executive entertainment.
         </p>
@@ -23,15 +23,15 @@
             </x-button>
             <div class="flex items-center justify-center gap-6 mt-4">
                 @auth
-                    <a href="{{ url('/dashboard') }}" class="text-sm font-bold text-brand-navy uppercase tracking-widest hover:text-brand-teal transition-colors">Dashboard</a>
+                    <a href="{{ url('/dashboard') }}" class="text-sm font-bold text-brand-primary uppercase tracking-widest hover:text-brand-primary transition-colors">Dashboard</a>
                 @else
-                    <a href="{{ route('login') }}" class="text-sm font-bold text-brand-navy uppercase tracking-widest hover:text-brand-teal transition-colors">Client Login</a>
-                    <a href="{{ route('register') }}" class="text-sm font-bold text-brand-navy uppercase tracking-widest hover:text-brand-teal transition-colors">Register</a>
+                    <a href="{{ route('login') }}" class="text-sm font-bold text-brand-primary uppercase tracking-widest hover:text-brand-primary transition-colors">Client Login</a>
+                    <a href="{{ route('register') }}" class="text-sm font-bold text-brand-primary uppercase tracking-widest hover:text-brand-primary transition-colors">Register</a>
                 @endauth
             </div>
         </div>
 
-        <div class="mt-16 pt-8 border-t border-brand-navy/5">
+        <div class="mt-16 pt-8 border-t border-brand-primary/5">
             <p class="text-xs font-bold text-text-muted uppercase tracking-widest">&copy; {{ date('Y') }} Hailerz Agency</p>
         </div>
     </div>

@@ -8,11 +8,11 @@
     $baseClasses = 'inline-flex items-center justify-center font-semibold transition-all duration-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none';
     
     $variants = [
-        'primary' => 'bg-brand-teal text-text-inverse hover:bg-brand-teal/90 shadow-lg shadow-brand-teal/20 focus:ring-brand-teal',
-        'secondary' => 'bg-surface-muted text-brand-navy border border-brand-navy/10 hover:border-brand-navy hover:bg-surface-light focus:ring-brand-navy',
-        'outline' => 'bg-transparent border-2 border-brand-teal text-brand-teal hover:bg-brand-teal hover:text-text-inverse focus:ring-brand-teal',
+        'primary' => 'bg-brand-primary text-text-inverse hover:brightness-110 shadow-lg shadow-brand-primary/20 focus:ring-brand-primary',
+        'secondary' => 'bg-transparent border-2 border-brand-secondary text-brand-secondary hover:bg-brand-secondary hover:text-white focus:ring-brand-secondary',
+        'outline' => 'bg-transparent border-2 border-brand-primary text-brand-primary hover:bg-brand-primary hover:text-text-inverse focus:ring-brand-primary',
         'ghost' => 'bg-transparent text-text-secondary hover:bg-surface-muted hover:text-text-primary focus:ring-surface-muted',
-        'navy' => 'bg-brand-navy text-text-inverse hover:bg-brand-navy/90 focus:ring-brand-navy',
+        'navy' => 'bg-brand-primary text-text-inverse hover:brightness-110 focus:ring-brand-primary',
     ];
 
     $sizes = [

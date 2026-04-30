@@ -55,7 +55,7 @@ class AdminPanelProvider extends PanelProvider
                     200 => '#c1ebdc',
                     300 => '#a2e1ca',
                     400 => '#83d7b9',
-                    500 => '#65c4af', // Brand Mint
+                    500 => '#72c7b4', // Brand Mint
                     600 => '#519d8c',
                     700 => '#3d7669',
                     800 => '#284e46',
