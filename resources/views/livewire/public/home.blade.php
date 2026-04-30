@@ -20,7 +20,7 @@
                 <div class="mb-16 lg:mb-0">
                     <h1
                         class="text-5xl md:text-7xl font-bold tracking-tight text-text-inverse mb-8 leading-[1.1] font-serif">
-                        Elevate Your Events with <span class="text-brand-secondary">World-Class</span> Talent.
+                        Elevate Your Events with <span class="text-white">World-Class</span> Talent.
                     </h1>
                     <p class="mt-4 max-w-xl text-lg md:text-xl text-text-muted mb-12 leading-relaxed">
                         Hailerz is the definitive roster for corporate events, galas, and private functions. Secure the
@@ -73,7 +73,7 @@
                                 </div>
                                 <div class="absolute bottom-6 left-6">
                                     <p class="text-text-inverse font-bold text-lg">Keynote Speakers</p>
-                                    <p class="text-brand-secondary text-sm">Corporate Summits</p>
+                                    <p class="text-text-inverse/80 text-sm">Corporate Summits</p>
                                 </div>
                             </div>
                         </div>
@@ -175,7 +175,7 @@
                         <div class="absolute bottom-10 left-10">
                             <h3 class="text-3xl font-bold text-text-inverse mb-2">{{ $cat['name'] }}</h3>
                             <div
-                                class="flex items-center gap-2 text-brand-secondary font-semibold uppercase tracking-widest text-xs">
+                                class="flex items-center gap-2 text-text-inverse font-semibold uppercase tracking-widest text-xs">
                                 <span>Browse Category</span>
                                 <svg class="w-4 h-4 transform group-hover:translate-x-2 transition-transform" fill="none"
                                     stroke="currentColor" viewBox="0 0 24 24">

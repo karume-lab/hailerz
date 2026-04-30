@@ -8,7 +8,7 @@
                 <span class="h-px w-12 bg-brand-primary"></span>
             </div>
             <h1 class="text-5xl md:text-8xl font-bold text-text-inverse tracking-tight mb-8 font-serif leading-tight">
-                Elite <span class="text-brand-secondary">Event</span> Staffing Solutions
+                Elite <span class="text-white">Event</span> Staffing Solutions
             </h1>
             <p class="text-xl md:text-2xl text-text-muted max-w-3xl mx-auto leading-relaxed font-light">
                 Scale your production team with vetted specialists. We provide the technical expertise and professional
