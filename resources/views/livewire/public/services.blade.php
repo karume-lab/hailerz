@@ -7,7 +7,7 @@
     <span class="text-xs font-bold text-brand-primary uppercase tracking-widest">Agency Solutions</span>
     <span class="h-px w-12 bg-brand-primary"></span>
    </div>
-   <h1 class="text-5xl md:text-8xl font-bold text-text-inverse tracking-tight mb-8 font-serif leading-tight">Professional <span class="text-brand-primary">Talent</span> Procurement</h1>
+   <h1 class="text-5xl md:text-8xl font-bold text-text-inverse tracking-tight mb-8 font-serif leading-tight">Professional <span class="text-brand-secondary">Talent</span> Procurement</h1>
    <p class="text-xl md:text-2xl text-text-muted max-w-3xl mx-auto leading-relaxed font-light">
     Comprehensive entertainment solutions and secure booking services for global events, corporate galas, and private functions.
    </p>

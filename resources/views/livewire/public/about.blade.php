@@ -2,9 +2,11 @@
   <!-- Hero Section -->
   <div class="relative bg-surface-dark min-h-[70vh] flex items-center justify-center overflow-hidden">
     <div class="absolute inset-0 overflow-hidden">
-      <img src="{{ asset('images/about/about-hero.webp') }}"
-        alt="Premium Event" loading="eager" width="1280" height="720" class="w-full h-full object-cover grayscale opacity-40">
-      <div class="absolute inset-0 bg-linear-to-tr from-brand-primary/80 to-brand-secondary/40 mix-blend-color opacity-70"></div>
+      <img src="{{ asset('images/about/about-hero.webp') }}" alt="Premium Event" loading="eager" width="1280"
+        height="720" class="w-full h-full object-cover grayscale opacity-40">
+      <div
+        class="absolute inset-0 bg-linear-to-tr from-brand-primary/80 to-brand-secondary/40 mix-blend-color opacity-70">
+      </div>
       <div class="absolute inset-0 bg-linear-to-t from-brand-primary via-brand-primary/40 to-transparent"></div>
     </div>
 
@@ -15,10 +17,11 @@
         <span class="h-px w-12 bg-brand-primary"></span>
       </div>
       <h1 class="text-5xl md:text-8xl font-bold text-text-inverse tracking-tight mb-8 font-serif leading-tight">
-        Elevating the <span class="text-brand-primary">Standard</span> of Event Entertainment.
+        Elevating the <span class="text-brand-secondary">Standard</span> of Event Entertainment.
       </h1>
       <p class="mt-4 max-w-3xl text-xl md:text-2xl text-text-muted mx-auto leading-relaxed font-light">
-        Hailerz is a boutique talent agency dedicated to securing world-class performers for visionary event planners and global brands.
+        Hailerz is a boutique talent agency dedicated to securing world-class performers for visionary event planners
+        and global brands.
       </p>
     </div>
   </div>
@@ -29,16 +32,22 @@
       <span class="h-px w-8 bg-brand-primary"></span>
       <span class="text-xs font-bold text-brand-primary uppercase tracking-widest">Our Legacy</span>
     </div>
-    <h2 class="text-4xl md:text-6xl font-bold text-text-primary tracking-tight mb-12 font-serif">The Pursuit of Excellence</h2>
+    <h2 class="text-4xl md:text-6xl font-bold text-text-primary tracking-tight mb-12 font-serif">The Pursuit of
+      Excellence</h2>
     <div class="space-y-10 text-xl text-text-secondary leading-relaxed font-light">
       <p>
-        Hailerz was founded on a singular premise: that premium events deserve premium talent. We recognized the disconnect between visionary event planners and the world-class performers they sought to secure. Our agency was established to bridge that gap with professional procurement, rigorous vetting, and seamless execution.
+        Hailerz was founded on a singular premise: that premium events deserve premium talent. We recognized the
+        disconnect between visionary event planners and the world-class performers they sought to secure. Our agency was
+        established to bridge that gap with professional procurement, rigorous vetting, and seamless execution.
       </p>
       <p>
-        Today, we represent a curated roster of elite performers, keynote speakers, and specialty acts. We don't just book talent; we partner with clients to ensure every act aligns perfectly with the event's DNA, from corporate galas to private island retreats.
+        Today, we represent a curated roster of elite performers, keynote speakers, and specialty acts. We don't just
+        book talent; we partner with clients to ensure every act aligns perfectly with the event's DNA, from corporate
+        galas to private island retreats.
       </p>
       <p>
-        Our reputation is built on trust, transparency, and a relentless focus on production quality. We manage the complexities of contracting and logistics so you can focus on the guest experience.
+        Our reputation is built on trust, transparency, and a relentless focus on production quality. We manage the
+        complexities of contracting and logistics so you can focus on the guest experience.
       </p>
     </div>
   </div>
@@ -47,8 +56,10 @@
   <div class="bg-surface-light py-32 border-y border-subtle ">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center max-w-3xl mx-auto mb-20">
-        <h2 class="text-3xl md:text-5xl font-bold text-text-primary tracking-tight mb-6 font-serif">Agency Principles</h2>
-        <p class="text-lg text-text-secondary">Our core values define the Hailerz experience for both talent and clients.</p>
+        <h2 class="text-3xl md:text-5xl font-bold text-text-primary tracking-tight mb-6 font-serif">Agency Principles
+        </h2>
+        <p class="text-lg text-text-secondary">Our core values define the Hailerz experience for both talent and
+          clients.</p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -62,9 +73,12 @@
         @endphp
 
         @foreach($values as $value)
-          <div class="bg-surface-muted p-10 rounded-3xl border border-subtle group hover:bg-brand-primary transition-all duration-500 hover:shadow-2xl">
-            <h3 class="text-2xl font-bold text-text-primary mb-4 font-serif group-hover:text-white transition-colors">{{ $value['title'] }}</h3>
-            <p class="text-text-secondary leading-relaxed font-light group-hover:text-white/70 transition-colors">{{ $value['desc'] }}</p>
+          <div
+            class="bg-surface-muted p-10 rounded-3xl border border-subtle group hover:bg-brand-primary transition-all duration-500 hover:shadow-2xl">
+            <h3 class="text-2xl font-bold text-text-primary mb-4 font-serif group-hover:text-white transition-colors">
+              {{ $value['title'] }}</h3>
+            <p class="text-text-secondary leading-relaxed font-light group-hover:text-white/70 transition-colors">
+              {{ $value['desc'] }}</p>
           </div>
         @endforeach
       </div>
@@ -89,14 +103,21 @@
         @endphp
 
         @foreach($team as $member)
-          <div class="group relative overflow-hidden rounded-[2.5rem] aspect-3/4 bg-surface-dark border border-white/5 shadow-xl">
-            <img src="{{ asset('images/about/' . $member['img']) }}" loading="lazy" width="400" height="533" class="w-full h-full object-cover grayscale transition-transform duration-700 group-hover:scale-110" alt="{{ $member['name'] }}" />
-            <div class="absolute inset-0 bg-linear-to-tr from-brand-primary/80 to-brand-secondary/40 mix-blend-color opacity-70"></div>
+          <div
+            class="group relative overflow-hidden rounded-[2.5rem] aspect-3/4 bg-surface-dark border border-white/5 shadow-xl">
+            <img src="{{ asset('images/about/' . $member['img']) }}" loading="lazy" width="400" height="533"
+              class="w-full h-full object-cover grayscale transition-transform duration-700 group-hover:scale-110"
+              alt="{{ $member['name'] }}" />
+            <div
+              class="absolute inset-0 bg-linear-to-tr from-brand-primary/80 to-brand-secondary/40 mix-blend-color opacity-70">
+            </div>
             <div class="absolute inset-0 bg-linear-to-t from-brand-primary/90 via-brand-primary/20 to-transparent"></div>
             <div class="absolute bottom-10 left-10 right-10">
               <h3 class="text-3xl font-bold text-white mb-2 font-serif">{{ $member['name'] }}</h3>
               <p class="text-brand-secondary text-xs font-bold uppercase tracking-widest mb-4">{{ $member['role'] }}</p>
-              <p class="text-white/60 text-sm leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500">{{ $member['bio'] }}</p>
+              <p
+                class="text-white/60 text-sm leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                {{ $member['bio'] }}</p>
             </div>
           </div>
         @endforeach
@@ -106,9 +127,13 @@
 
   <!-- Bottom CTA -->
   <div class="relative py-40 overflow-hidden bg-brand-primary">
-    <div class="absolute inset-0 opacity-20 bg-[url('https://images.unsplash.com/photo-1470225620780-dba8ba36b745?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')] bg-cover bg-center grayscale"></div>
-    <div class="absolute inset-0 bg-linear-to-tr from-brand-primary/80 to-brand-secondary/40 mix-blend-color opacity-40"></div>
-    
+    <div
+      class="absolute inset-0 opacity-20 bg-[url('https://images.unsplash.com/photo-1470225620780-dba8ba36b745?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')] bg-cover bg-center grayscale">
+    </div>
+    <div
+      class="absolute inset-0 bg-linear-to-tr from-brand-primary/80 to-brand-secondary/40 mix-blend-color opacity-40">
+    </div>
+
     <div class="relative max-w-4xl mx-auto px-4 text-center">
       <h2 class="text-4xl md:text-7xl font-bold text-text-inverse mb-8 tracking-tight font-serif">Secure the Act.</h2>
       <p class="text-xl md:text-2xl text-text-muted mb-12 font-light leading-relaxed">
