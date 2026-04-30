@@ -13,7 +13,7 @@ class ShowTalent extends Component
 
     public function mount(string $slug)
     {
-        $this->talent = Talent::with('gallery')->where('slug', $slug)
+        $this->talent = Talent::with('galleryItems')->where('slug', $slug)
             ->where('status', 'active')
             ->firstOrFail();
     }

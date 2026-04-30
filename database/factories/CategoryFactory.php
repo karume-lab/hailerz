@@ -9,12 +9,16 @@ class CategoryFactory extends Factory
 {
     public function definition(): array
     {
-        // Removed B2C terms: 'Influencers', 'Celebrity Chefs'
-        // Added B2B terms: 'Brand Ambassadors', 'Master Chefs', 'Illusionists'
         $name = fake()->unique()->randomElement([
-            'Musicians', 'Corporate Dancers', 'Comedians', 'Keynote Speakers', 'Illusionists', 
-            'Acrobatic Troupes', 'Brand Ambassadors', 'Event Hosts', 'Live Event Painters',
-            'DJs', 'Jazz Saxophonists', 'Motivational Speakers', 'Master Chefs', 'Spoken Word Artists'
+            'Keynote Speakers',
+            'Live Event Bands',
+            'Executive MCs',
+            'Technical DJs',
+            'Experiential Acts',
+            'Symphonic Ensembles',
+            'Tech & Futurist Speakers',
+            'Luxury Event Performers',
+            'Strategic Moderators'
         ]);
         
         return [

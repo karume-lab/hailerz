@@ -116,9 +116,9 @@
                x-transition:enter="transition ease-out duration-300"
                x-transition:enter-start="opacity-0 translate-y-4"
                x-transition:enter-end="opacity-100 translate-y-0">
-            @if($talent->gallery->count() > 0)
+            @if($talent->galleryItems->count() > 0)
               <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                @foreach($talent->gallery as $item)
+                @foreach($talent->galleryItems as $item)
                   <div class="group bg-surface-light rounded-3xl overflow-hidden border border-subtle shadow-sm hover:shadow-xl transition-all duration-500">
                     <div class="aspect-video relative overflow-hidden bg-surface-dark">
                       @php

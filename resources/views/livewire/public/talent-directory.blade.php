@@ -105,7 +105,9 @@
         <div class="bg-surface-light rounded-2xl shadow-sm border border-subtle overflow-hidden group hover:shadow-2xl transition-all duration-500">
          <a href="/talent/{{ $talent->slug }}" wire:navigate class="block">
           <div class="group relative overflow-hidden aspect-3/4 bg-surface-dark">
-           @if($talent->hasMedia('primary_image'))
+           @if($talent->primary_image_url)
+            <img src="{{ $talent->primary_image_url }}" width="400" height="533" loading="lazy" class="w-full h-full object-cover grayscale transition-transform duration-700 group-hover:scale-110" alt="{{ $talent->name }}" />
+           @elseif($talent->hasMedia('primary_image'))
             <img src="{{ $talent->getFirstMediaUrl('primary_image') }}" width="400" height="533" loading="lazy" class="w-full h-full object-cover grayscale transition-transform duration-700 group-hover:scale-110" alt="{{ $talent->name }}" />
             @else
             <div class="w-full h-full flex items-center justify-center bg-surface-dark">

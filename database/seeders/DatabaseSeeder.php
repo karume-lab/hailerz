@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // Admin user
+        // 1. Admin User
         User::updateOrCreate(
             ['email' => config('app.admin_email', 'admin@mail.com')],
             [
@@ -30,180 +30,183 @@ class DatabaseSeeder extends Seeder
             ]
         );
 
-        // Categories (Updated for B2B Pivot)
-        $speakers = Category::firstOrCreate(['slug' => 'keynote-speakers'], ['name' => 'Keynote Speakers', 'is_active' => true]);
-        $bands = Category::firstOrCreate(['slug' => 'live-bands-ensembles'], ['name' => 'Live Bands & Ensembles', 'is_active' => true]);
-        $performers = Category::firstOrCreate(['slug' => 'corporate-performers'], ['name' => 'Corporate Performers', 'is_active' => true]);
-        $djs = Category::firstOrCreate(['slug' => 'djs'], ['name' => 'DJs', 'is_active' => true]);
-        $specialty = Category::firstOrCreate(['slug' => 'specialty-acts'], ['name' => 'Specialty Acts', 'is_active' => true]);
-
-        // Enhanced Image Pool with reliable fallbacks
-        $images = [
-            'musician' => [
-                'https://loremflickr.com/1200/800/musician,band,singer/all',
-                'https://loremflickr.com/1200/800/jazz,concert,stage/all',
-                'https://picsum.photos/seed/musician1/1200/800',
-            ],
-            'speaker' => [
-                'https://loremflickr.com/1200/800/speaker,keynote,seminar/all',
-                'https://loremflickr.com/1200/800/leadership,conference/all',
-                'https://picsum.photos/seed/speaker1/1200/800',
-            ],
-            'dj' => [
-                'https://loremflickr.com/1200/800/dj,nightclub,decks/all',
-                'https://loremflickr.com/1200/800/electronic,music,mixer/all',
-                'https://picsum.photos/seed/dj1/1200/800',
-            ],
-            'general' => [
-                'https://loremflickr.com/1200/800/performance,luxury,event/all',
-                'https://loremflickr.com/1200/800/gala,theatre,art/all',
-                'https://picsum.photos/1200/800',
-            ]
+        // 2. High-End B2B Categories
+        $categories = [
+            'Keynote Speakers' => 'keynote-speakers',
+            'Live Event Bands' => 'live-event-bands',
+            'Executive MCs' => 'executive-mcs',
+            'Technical DJs' => 'technical-djs',
+            'Experiential Acts' => 'experiential-acts',
         ];
 
-        // Talent 1: Horizon Elite
-        $djTalent = Talent::firstOrCreate(
-            ['slug' => 'horizon-elite'],
-            [
-                'category_id' => $djs->id,
-                'name' => 'Horizon Elite',
-                'bio' => 'Award-winning technical DJ and sound producer specializing in high-profile corporate galas and luxury brand launches.',
-                'technical_rider' => 'Pioneer CDJ-3000 x 4, DJM-900NXS2 mixer, dedicated sound engineer on site.',
-                'starting_price' => 3500.00,
-                'location' => 'Nairobi, Kenya',
-                'status' => 'active',
-                'is_featured' => true,
-            ]
-        );
-        if (!$djTalent->hasMedia('primary_image')) {
-            try {
-                $djTalent->addMediaFromUrl($images['dj'][0])->toMediaCollection('primary_image');
-            } catch (\Exception $e) {
-                try {
-                    $djTalent->addMediaFromUrl("https://picsum.photos/seed/horizon/1200/800")->toMediaCollection('primary_image');
-                } catch (\Exception $e2) {
-                    \Illuminate\Support\Facades\Log::error("Failed to seed image for Horizon Elite: " . $e2->getMessage());
-                }
-            }
-        }
-
-        // Talent 2: Dr. Jane Smith
-        $speakerTalent = Talent::firstOrCreate(
-            ['slug' => 'dr-jane-smith'],
-            [
-                'category_id' => $speakers->id,
-                'name' => 'Dr. Jane Smith',
-                'bio' => 'Strategic advisor and keynote speaker specializing in emerging markets, corporate foresight, and African tech ecosystems.',
-                'technical_rider' => 'Lavalier mic, high-brightness projector, DCI-compliant screen, remote clicker.',
-                'starting_price' => 7500.00,
-                'location' => 'Lagos, Nigeria',
-                'status' => 'active',
-                'is_featured' => true,
-            ]
-        );
-        if (!$speakerTalent->hasMedia('primary_image')) {
-            try {
-                $speakerTalent->addMediaFromUrl($images['speaker'][0])->toMediaCollection('primary_image');
-            } catch (\Exception $e) {
-                try {
-                    $speakerTalent->addMediaFromUrl("https://picsum.photos/seed/janesmith/1200/800")->toMediaCollection('primary_image');
-                } catch (\Exception $e2) {
-                    \Illuminate\Support\Facades\Log::error("Failed to seed image for Dr. Jane Smith: " . $e2->getMessage());
-                }
-            }
-        }
-
-        // Additional high-quality talents
-        $talents = [
-            [
-                'name' => 'Sahara Symphonic Ensemble',
-                'category' => $bands,
-                'slug' => 'sahara-symphonic',
-                'bio' => 'A premier live ensemble delivering sophisticated fusion performances for diplomatic and corporate dinners.',
-                'img' => $images['musician'][0]
-            ],
-            [
-                'name' => 'The Accra AfroBeat Collective',
-                'category' => $bands,
-                'slug' => 'accra-afrobeat',
-                'bio' => 'Internationally acclaimed collective specializing in vibrant, large-scale event entertainment and cultural showcases.',
-                'img' => $images['musician'][1]
-            ],
-            [
-                'name' => 'Koffi Lion',
-                'category' => $performers,
-                'slug' => 'koffi-lion',
-                'bio' => 'Executive event host and professional MC with extensive experience in international summit moderation.',
-                'img' => $images['general'][1]
-            ]
-        ];
-
-        foreach ($talents as $t) {
-            $talent = Talent::firstOrCreate(
-                ['slug' => $t['slug']],
-                [
-                    'category_id' => $t['category']->id,
-                    'name' => $t['name'],
-                    'bio' => $t['bio'],
-                    'location' => 'Accra, Ghana',
-                    'starting_price' => rand(2500, 8000),
-                    'status' => 'active',
-                    'is_featured' => true,
-                ]
+        $categoryModels = [];
+        foreach ($categories as $name => $slug) {
+            $categoryModels[$name] = Category::updateOrCreate(
+                ['slug' => $slug],
+                ['name' => $name, 'is_active' => true]
             );
-            if (!$talent->hasMedia('primary_image')) {
-                try {
-                    $talent->addMediaFromUrl($t['img'])->toMediaCollection('primary_image');
-                } catch (\Exception $e) {
-                    try {
-                        $talent->addMediaFromUrl("https://picsum.photos/seed/{$t['slug']}/1200/800")->toMediaCollection('primary_image');
-                    } catch (\Exception $e2) {
-                        \Illuminate\Support\Facades\Log::error("Failed to seed image for {$t['name']}: " . $e2->getMessage());
-                    }
-                }
-            }
         }
 
-        // Random additional talents
-        $categories = Category::all();
-        if (Talent::count() < 25) {
-            Talent::factory()->count(15)->create([
-                'category_id' => fn() => $categories->random()->id,
-            ])->each(function ($t) use ($images) {
-                // Determine appropriate image pool based on category
-                $pool = 'general';
-                if (str_contains($t->category->slug, 'speaker')) $pool = 'speaker';
-                if (str_contains($t->category->slug, 'dj')) $pool = 'dj';
-                if (str_contains($t->category->slug, 'band') || str_contains($t->category->slug, 'musician')) $pool = 'musician';
+        // 3. Hero Records
+        
+        // Star DJ
+        $djHero = Talent::updateOrCreate(
+            ['slug' => 'dj-horizon-elite'],
+            [
+                'category_id' => $categoryModels['Technical DJs']->id,
+                'name' => 'DJ Horizon',
+                'primary_image_url' => 'https://images.unsplash.com/photo-1571266028243-e4733b0f0bb1?auto=format&fit=crop&w=1200&q=80',
+                'video_url' => 'https://www.youtube.com/watch?v=zHn1A6M6_Yk',
+                'bio' => 'A technical virtuoso behind the decks, DJ Horizon specializes in high-energy corporate galas and luxury product launches. Known for a seamless blend of deep house and industrial textures, they have headlined major tech summits across EMEA.',
+                'technical_rider' => "Pioneer CDJ-3000 x 4\nDJM-900NXS2 mixer\n2x d&b audiotechnik M4 monitors\nDedicated sound engineer on site",
+                'starting_price' => 4500.00,
+                'location' => 'London, UK',
+                'status' => 'active',
+                'is_featured' => true,
+            ]
+        );
 
-                try {
-                    $t->addMediaFromUrl($images[$pool][array_rand($images[$pool])])->toMediaCollection('primary_image');
-                } catch (\Exception $e) {
-                    try {
-                        $t->addMediaFromUrl("https://picsum.photos/seed/{$t->id}/1200/800")->toMediaCollection('primary_image');
-                    } catch (\Exception $e2) {
-                        \Illuminate\Support\Facades\Log::error("Failed to seed random image for talent: " . $e2->getMessage());
-                    }
-                }
-            });
-        }
+        // Tech/Futurist Speaker
+        $speakerHero = Talent::updateOrCreate(
+            ['slug' => 'marcus-chen-futurist'],
+            [
+                'category_id' => $categoryModels['Keynote Speakers']->id,
+                'name' => 'Marcus Chen',
+                'primary_image_url' => 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=1200&q=80',
+                'video_url' => 'https://www.youtube.com/watch?v=7Pq-S557XQU',
+                'bio' => 'Marcus Chen is a global strategic advisor and futurist known for high-impact keynotes on digital transformation, AI ethics, and the future of work. His sessions at the World Economic Forum have been cited as "essential guidance for the C-suite".',
+                'technical_rider' => "Lavalier microphone (Sennheiser G4 or similar)\nConfidence monitor (min 24 inch)\nRemote slide clicker (Logitech Spotlight)\nHigh-speed fiber internet for live demos",
+                'starting_price' => 12000.00,
+                'location' => 'San Francisco, USA',
+                'status' => 'active',
+                'is_featured' => true,
+            ]
+        );
 
-        // Inquiries
-        if (Inquiry::count() === 0) {
-            Inquiry::create([
-                'talent_id' => $djTalent->id,
-                'client_name' => 'Global Procurement Group',
-                'client_email' => 'procurement@globalgroup.com',
-                'event_date' => Carbon::now()->addMonths(2),
-                'event_type' => 'Corporate',
-                'budget' => 5000.00,
-                'message' => 'Seeking a premier DJ for an exclusive corporate gala at the Nairobi National Museum.',
-                'status' => InquiryStatus::New,
+        // Premium Band
+        $bandHero = Talent::updateOrCreate(
+            ['slug' => 'skyline-quintet'],
+            [
+                'category_id' => $categoryModels['Live Event Bands']->id,
+                'name' => 'The Skyline Quintet',
+                'primary_image_url' => 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=1200&q=80',
+                'video_url' => 'https://www.youtube.com/watch?v=j_S6M9Z6mE8',
+                'bio' => 'The Skyline Quintet delivers sophisticated jazz and contemporary fusion. From diplomatic dinners at the UN to black-tie galas in Monaco, their professional artistry and elegant presence are unmatched in the corporate circuit.',
+                'technical_rider' => "Full PA system suitable for 500+ guests\n5x vocal microphones (Shure SM58)\nDrum kit shell pack\nBass & guitar amplifiers\n20x15ft stage area minimum",
+                'starting_price' => 8500.00,
+                'location' => 'Paris, France',
+                'status' => 'active',
+                'is_featured' => true,
+            ]
+        );
+
+        // Executive MC
+        $mcHero = Talent::updateOrCreate(
+            ['slug' => 'jessica-sterling-mc'],
+            [
+                'category_id' => $categoryModels['Executive MCs']->id,
+                'name' => 'Jessica Sterling',
+                'primary_image_url' => 'https://images.unsplash.com/photo-1551818255-e6e10975bc17?auto=format&fit=crop&w=1200&q=80',
+                'video_url' => 'https://www.youtube.com/watch?v=uD4izufzh28',
+                'bio' => 'Jessica Sterling is the premier choice for corporate awards ceremonies. With a background in broadcast journalism, she brings impeccable timing, wit, and a sophisticated stage presence to every international summit she facilitates.',
+                'technical_rider' => "Wireless handheld microphone\nLectern with reading light\nFull run-of-show briefing session 24h prior",
+                'starting_price' => 5000.00,
+                'location' => 'New York, USA',
+                'status' => 'active',
+                'is_featured' => true,
+            ]
+        );
+
+        // Experiential Act
+        $experientialHero = Talent::updateOrCreate(
+            ['slug' => 'digital-illusionist-x'],
+            [
+                'category_id' => $categoryModels['Experiential Acts']->id,
+                'name' => 'Digital Illusionist X',
+                'primary_image_url' => 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1200&q=80',
+                'video_url' => 'https://www.youtube.com/watch?v=60fD1432f78',
+                'bio' => 'Pushing the boundaries of perception, Digital Illusionist X combines cutting-edge holographic technology with classic sleight of hand. Perfect for tech product launches and innovation-themed galas.',
+                'technical_rider' => "4K Projector (min 10,000 lumens)\nDMX-controlled lighting rig\nBlack stage backdrop (Velvet)\nStage size: 12ft x 12ft minimum",
+                'starting_price' => 7000.00,
+                'location' => 'Berlin, Germany',
+                'status' => 'active',
+                'is_featured' => true,
+            ]
+        );
+
+        // Add Gallery Items to Heroes
+        foreach ([$djHero, $speakerHero, $bandHero, $mcHero, $experientialHero] as $hero) {
+            \App\Models\GalleryItem::factory()->count(3)->create([
+                'galleryable_id' => $hero->id,
+                'galleryable_type' => Talent::class,
             ]);
         }
 
-        // News Posts
-        $post = Post::firstOrCreate(
+        // 4. Random Additional Talent (Factory)
+        if (Talent::count() < 30) {
+            Talent::factory()->count(25)->create()->each(function ($t) {
+                \App\Models\GalleryItem::factory()->count(rand(2, 4))->create([
+                    'galleryable_id' => $t->id,
+                    'galleryable_type' => Talent::class,
+                ]);
+            });
+        }
+
+        // 5. Realistic Corporate Inquiries
+        $inquiries = [
+            [
+                'talent_id' => $djHero->id,
+                'client_name' => 'TechGlobal Summit 2026',
+                'client_email' => 'events@techglobal.com',
+                'event_date' => Carbon::now()->addMonths(3),
+                'event_type' => 'Closing Gala',
+                'budget' => 6000.00,
+                'message' => 'Seeking a high-energy performance for our annual tech summit closing party in Barcelona. Expected attendance: 1,500 delegates.',
+            ],
+            [
+                'talent_id' => $speakerHero->id,
+                'client_name' => 'Future Finance Forum',
+                'client_email' => 'info@futurefinance.org',
+                'event_date' => Carbon::now()->addMonths(5),
+                'event_type' => 'Keynote Session',
+                'budget' => 15000.00,
+                'message' => 'We would like Marcus to open our Q3 forum with a 45-minute keynote on the impact of decentralized finance on traditional banking.',
+            ],
+            [
+                'talent_id' => $bandHero->id,
+                'client_name' => 'Luxury Automotive Group',
+                'client_email' => 'marketing@luxcars.de',
+                'event_date' => Carbon::now()->addMonths(2),
+                'event_type' => 'Product Launch',
+                'budget' => 10000.00,
+                'message' => 'Looking for sophisticated live music for the unveiling of our new electric sedan. The atmosphere should be modern, sleek, and premium.',
+            ],
+            [
+                'talent_id' => $mcHero->id,
+                'client_name' => 'International NGO Awards',
+                'client_email' => 'awards@ingo.org',
+                'event_date' => Carbon::now()->addMonths(4),
+                'event_type' => 'Awards Ceremony',
+                'budget' => 5000.00,
+                'message' => 'Seeking an experienced MC to host our annual humanitarian awards. The role requires handling sensitive topics with grace and maintaining a formal tone.',
+            ],
+            [
+                'talent_id' => $experientialHero->id,
+                'client_name' => 'Cybersecurity Expo',
+                'client_email' => 'exhibitions@cybersec.co.uk',
+                'event_date' => Carbon::now()->addMonths(6),
+                'event_type' => 'Exhibition Opener',
+                'budget' => 8000.00,
+                'message' => 'We want a "wow factor" opening act for our London expo. Your digital illusion set seems like a perfect fit for our theme.',
+            ],
+        ];
+
+        foreach ($inquiries as $inquiryData) {
+            Inquiry::create(array_merge($inquiryData, ['status' => InquiryStatus::New]));
+        }
+
+        // 6. News Posts
+        Post::updateOrCreate(
             ['slug' => 'future-of-corporate-entertainment-2026'],
             [
                 'title' => 'The Evolution of Corporate Entertainment in 2026',
@@ -211,14 +214,9 @@ class DatabaseSeeder extends Seeder
                 'is_published' => true,
             ]
         );
-        if (!$post->hasMedia('featured_image')) {
-            try {
-                $post->addMediaFromUrl("https://loremflickr.com/1200/800/business,event/all")->toMediaCollection('featured_image');
-            } catch (\Exception $e) {}
-        }
 
-        // Email Templates (B2B Tone)
-        EmailTemplate::firstOrCreate(
+        // 7. Email Templates (B2B Tone)
+        EmailTemplate::updateOrCreate(
             ['name' => 'Application Received'],
             [
                 'subject' => 'Application for Roster Representation: {{artist_name}}',
@@ -226,7 +224,7 @@ class DatabaseSeeder extends Seeder
             ]
         );
 
-        EmailTemplate::firstOrCreate(
+        EmailTemplate::updateOrCreate(
             ['name' => 'Inquiry Submitted'],
             [
                 'subject' => 'Booking Inquiry Received: {{event_type}}',
