@@ -118,7 +118,7 @@
      <h2 class="text-3xl md:text-5xl font-bold text-text-primary mb-6 font-serif">Curated Roster of Performers</h2>
      <p class="text-lg text-text-secondary">Explore our categories of vetted professionals ready to secure the act for your next gala or summit.</p>
     </div>
-    <x-button variant="outline" href="/talent" wire:navigate>
+    <x-button variant="secondary" href="/talent" wire:navigate>
      View Full Roster
     </x-button>
    </div>
@@ -154,44 +154,53 @@
  </section>
 
  <!-- Contact / Inquiry Section -->
- <section class="py-32 bg-brand-primary overflow-hidden relative">
+ <section class="py-32 bg-brand-primary relative overflow-hidden">
+  {{-- Background Decorative Elements --}}
+  <div class="absolute top-0 right-0 w-1/3 h-full bg-linear-to-l from-white/5 to-transparent"></div>
+  <div class="absolute -top-24 -left-24 w-96 h-96 bg-brand-secondary/20 rounded-full blur-3xl"></div>
+  <div class="absolute -bottom-24 -right-24 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
+
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
    <div class="lg:grid lg:grid-cols-2 lg:gap-24 items-center">
     <div>
      <h2 class="text-3xl md:text-6xl font-bold text-text-inverse mb-8 font-serif leading-tight">Ready to Secure the Act?</h2>
-     <p class="text-xl text-text-muted mb-12 leading-relaxed">
+     <p class="text-xl text-text-inverse/80 mb-12 leading-relaxed">
       Our agents are standing by to help you find the perfect talent for your event. Whether you have a specific performer in mind or need expert recommendations, we are here to assist.
      </p>
      
      <ul class="space-y-8 mb-12">
       <li class="flex items-center gap-6">
-       <div class="h-12 w-12 rounded-xl bg-brand-primary/10 flex items-center justify-center text-brand-primary shrink-0">
+       <div class="h-14 w-14 rounded-2xl bg-white/10 flex items-center justify-center text-white shrink-0 backdrop-blur-sm border border-white/10">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
          <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
         </svg>
        </div>
        <div>
         <h3 class="text-text-inverse font-bold">Email Our Agents</h3>
-        <p class="text-text-muted text-sm">bookings@hailerz.com</p>
+        <p class="text-text-inverse/60 text-sm">bookings@hailerz.com</p>
        </div>
       </li>
       <li class="flex items-center gap-6">
-       <div class="h-12 w-12 rounded-xl bg-brand-primary/10 flex items-center justify-center text-brand-primary shrink-0">
+       <div class="h-14 w-14 rounded-2xl bg-white/10 flex items-center justify-center text-white shrink-0 backdrop-blur-sm border border-white/10">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
          <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
         </svg>
        </div>
        <div>
         <h3 class="text-text-inverse font-bold">Rapid Response</h3>
-        <p class="text-text-muted text-sm">Typically within 24 business hours</p>
+        <p class="text-text-inverse/60 text-sm">Typically within 24 business hours</p>
        </div>
       </li>
      </ul>
     </div>
 
-    <div class="bg-white p-10 rounded-3xl shadow-2xl border border-subtle ">
+    <div class="bg-surface-light/95 backdrop-blur-xl p-10 rounded-3xl shadow-2xl border border-white/20 relative overflow-hidden">
+     {{-- Subtle background decoration to break the flat white --}}
+     <div class="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 bg-brand-primary/5 rounded-full blur-3xl pointer-events-none"></div>
+     <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-64 h-64 bg-brand-secondary/5 rounded-full blur-3xl pointer-events-none"></div>
+
      @if($contactSent)
-      <div class="flex flex-col items-center text-center py-12 gap-6">
+      <div class="relative z-10 flex flex-col items-center text-center py-12 gap-6">
        <div class="h-20 w-20 rounded-full bg-green-100 text-green-600 flex items-center justify-center">
         <svg class="w-10 h-10" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
          <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
@@ -202,25 +211,25 @@
        <button wire:click="$set('contactSent', false)" class="text-brand-primary font-bold hover:underline">Submit another inquiry</button>
       </div>
      @else
-      <form wire:submit="submitContact" class="space-y-6">
+      <form wire:submit="submitContact" class="relative z-10 space-y-6">
        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
          <label for="contactName" class="block text-xs font-bold text-brand-primary dark:text-text-muted uppercase tracking-widest mb-2">Name</label>
-         <input id="contactName" wire:model="contactName" type="text" placeholder="Full Name" class="w-full px-5 py-4 bg-white border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary focus:border-transparent outline-none transition-all text-text-primary dark:text-white placeholder-gray-500 dark:placeholder-gray-400" />
+         <input id="contactName" wire:model="contactName" type="text" placeholder="Full Name" class="w-full px-5 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary focus:bg-white focus:border-transparent outline-none transition-all text-text-primary dark:text-white placeholder-gray-500 dark:placeholder-gray-400 shadow-sm" />
          @error('contactName') <span class="text-red-500 text-xs mt-1">{{ $message }}</span> @enderror
         </div>
         <div>
          <label for="contactEmail" class="block text-xs font-bold text-brand-primary dark:text-text-muted uppercase tracking-widest mb-2">Email</label>
-         <input id="contactEmail" wire:model="contactEmail" type="email" placeholder="Email Address" class="w-full px-5 py-4 bg-white border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary focus:border-transparent outline-none transition-all text-text-primary dark:text-white placeholder-gray-500 dark:placeholder-gray-400" />
+         <input id="contactEmail" wire:model="contactEmail" type="email" placeholder="Email Address" class="w-full px-5 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary focus:bg-white focus:border-transparent outline-none transition-all text-text-primary dark:text-white placeholder-gray-500 dark:placeholder-gray-400 shadow-sm" />
          @error('contactEmail') <span class="text-red-500 text-xs mt-1">{{ $message }}</span> @enderror
         </div>
        </div>
        <div>
         <label for="contactMessage" class="block text-xs font-bold text-brand-primary dark:text-text-muted uppercase tracking-widest mb-2">Message</label>
-        <textarea id="contactMessage" wire:model="contactMessage" rows="5" placeholder="Tell us about your event and the talent you're interested in..." class="w-full px-5 py-4 bg-white border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary focus:border-transparent outline-none transition-all resize-none text-text-primary dark:text-white placeholder-gray-500 dark:placeholder-gray-400"></textarea>
+        <textarea id="contactMessage" wire:model="contactMessage" rows="5" placeholder="Tell us about your event and the talent you're interested in..." class="w-full px-5 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary focus:bg-white focus:border-transparent outline-none transition-all resize-none text-text-primary dark:text-white placeholder-gray-500 dark:placeholder-gray-400 shadow-sm"></textarea>
         @error('contactMessage') <span class="text-red-500 text-xs mt-1">{{ $message }}</span> @enderror
        </div>
-       <x-button type="submit" class="w-full" size="lg">
+       <x-button type="submit" class="w-full shadow-lg shadow-brand-primary/20" size="lg">
         Submit Booking Inquiry
        </x-button>
       </form>

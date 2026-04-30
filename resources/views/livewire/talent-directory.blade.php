@@ -78,9 +78,9 @@
        
        <div class="flex justify-between items-center pt-4 border-t border-subtle">
         <span class="text-sm font-bold text-text-primary">${{ number_format($talent->starting_price, 0) }}+</span>
-        <a href="/talent/{{ $talent->slug }}" class="text-xs font-bold text-brand-primary hover:text-brand-primary transition-colors">
-         View Full Profile
-        </a>
+        <x-button variant="outline" size="sm" href="/talent/{{ $talent->slug }}" wire:navigate>
+         View Profile
+        </x-button>
        </div>
       </div>
      </div>
