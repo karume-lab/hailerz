@@ -48,22 +48,22 @@
      <form wire:submit="submit" class="grid grid-cols-1 gap-y-8 sm:grid-cols-2 sm:gap-x-8">
       <div>
        <label for="name" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Full Name</label>
-       <input wire:model="name" type="text" id="name" placeholder="Name or Organization" class="block w-full px-6 py-4 bg-white border border-subtle placeholder-gray-500 dark:placeholder-gray-400 rounded-xl focus:ring-2 focus:ring-brand-primary focus:border-transparent outline-none text-text-primary dark:text-white text-sm font-medium transition-all">
+       <input wire:model="name" type="text" id="name" placeholder="Name or Organization" class="block w-full px-6 py-4 bg-surface-muted border border-subtle placeholder-gray-500 dark:placeholder-gray-400 rounded-xl focus:ring-2 focus:ring-brand-primary focus:border-transparent outline-none text-text-primary dark:text-white text-sm font-medium transition-all">
        @error('name') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
       </div>
       <div>
        <label for="email" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Professional Email</label>
-       <input wire:model="email" type="email" id="email" placeholder="email@company.com" class="block w-full px-6 py-4 bg-white border border-subtle placeholder-gray-500 dark:placeholder-gray-400 rounded-xl focus:ring-2 focus:ring-brand-primary focus:border-transparent outline-none text-text-primary dark:text-white text-sm font-medium transition-all">
+       <input wire:model="email" type="email" id="email" placeholder="email@company.com" class="block w-full px-6 py-4 bg-surface-muted border border-subtle placeholder-gray-500 dark:placeholder-gray-400 rounded-xl focus:ring-2 focus:ring-brand-primary focus:border-transparent outline-none text-text-primary dark:text-white text-sm font-medium transition-all">
        @error('email') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
       </div>
       <div class="sm:col-span-2">
        <label for="subject" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Inquiry Subject</label>
-       <input wire:model="subject" type="text" id="subject" class="block w-full px-6 py-4 bg-white border border-subtle placeholder-gray-500 dark:placeholder-gray-400 rounded-xl focus:ring-2 focus:ring-brand-primary focus:border-transparent outline-none text-text-primary dark:text-white text-sm font-medium transition-all">
+       <input wire:model="subject" type="text" id="subject" class="block w-full px-6 py-4 bg-surface-muted border border-subtle placeholder-gray-500 dark:placeholder-gray-400 rounded-xl focus:ring-2 focus:ring-brand-primary focus:border-transparent outline-none text-text-primary dark:text-white text-sm font-medium transition-all">
        @error('subject') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
       </div>
       <div class="sm:col-span-2">
        <label for="message" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Message</label>
-       <textarea wire:model="message" id="message" rows="5" placeholder="Detail your inquiry or project requirements..." class="block w-full px-6 py-4 bg-white border border-subtle placeholder-gray-500 dark:placeholder-gray-400 rounded-xl focus:ring-2 focus:ring-brand-primary focus:border-transparent outline-none text-text-primary dark:text-white text-sm font-medium transition-all resize-none"></textarea>
+       <textarea wire:model="message" id="message" rows="5" placeholder="Detail your inquiry or project requirements..." class="block w-full px-6 py-4 bg-surface-muted border border-subtle placeholder-gray-500 dark:placeholder-gray-400 rounded-xl focus:ring-2 focus:ring-brand-primary focus:border-transparent outline-none text-text-primary dark:text-white text-sm font-medium transition-all resize-none"></textarea>
        @error('message') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
       </div>
       <div class="sm:col-span-2 flex justify-end">

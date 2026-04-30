@@ -170,7 +170,7 @@
      
      <ul class="space-y-8 mb-12">
       <li class="flex items-center gap-6">
-       <div class="h-14 w-14 rounded-2xl bg-white/10 flex items-center justify-center text-white shrink-0 backdrop-blur-sm border border-white/10">
+       <div class="h-14 w-14 rounded-2xl bg-white/10 flex items-center justify-center text-white shrink-0 backdrop-blur-sm border border-subtle">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
          <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
         </svg>
@@ -181,7 +181,7 @@
        </div>
       </li>
       <li class="flex items-center gap-6">
-       <div class="h-14 w-14 rounded-2xl bg-white/10 flex items-center justify-center text-white shrink-0 backdrop-blur-sm border border-white/10">
+       <div class="h-14 w-14 rounded-2xl bg-white/10 flex items-center justify-center text-white shrink-0 backdrop-blur-sm border border-subtle">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
          <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
         </svg>
@@ -194,7 +194,7 @@
      </ul>
     </div>
 
-    <div class="bg-surface-light/95 backdrop-blur-xl p-10 rounded-3xl shadow-2xl border border-white/20 relative overflow-hidden">
+    <div class="bg-surface-light/95 backdrop-blur-xl p-10 rounded-3xl shadow-2xl border border-subtle relative overflow-hidden">
      {{-- Subtle background decoration to break the flat white --}}
      <div class="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 bg-brand-primary/5 rounded-full blur-3xl pointer-events-none"></div>
      <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-64 h-64 bg-brand-secondary/5 rounded-full blur-3xl pointer-events-none"></div>

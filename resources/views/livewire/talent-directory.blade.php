@@ -16,7 +16,7 @@
          wire:model.live.debounce.300ms="search" 
          type="text" 
          placeholder="e.g. DJ Horizon"
-         class="w-full pl-9 pr-4 py-2 bg-white border border-subtle rounded-xl text-sm focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary outline-none transition-all"
+         class="w-full pl-9 pr-4 py-2 bg-surface-muted border border-subtle rounded-xl text-sm focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary outline-none transition-all"
         >
        </div>
       </div>
@@ -26,7 +26,7 @@
        <label class="block text-xs font-bold text-text-muted uppercase tracking-tighter mb-2">Category</label>
        <select 
         wire:model.live="categoryId"
-        class="w-full px-4 py-2 bg-white border border-subtle rounded-xl text-sm focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary outline-none transition-all"
+        class="w-full px-4 py-2 bg-surface-muted border border-subtle rounded-xl text-sm focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary outline-none transition-all"
        >
         <option value="">All Categories</option>
         @foreach($categories as $category)
@@ -42,7 +42,7 @@
         wire:model.live.debounce.300ms="location" 
         type="text" 
         placeholder="e.g. New York"
-        class="w-full px-4 py-2 bg-white border border-subtle rounded-xl text-sm focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary outline-none transition-all"
+        class="w-full px-4 py-2 bg-surface-muted border border-subtle rounded-xl text-sm focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary outline-none transition-all"
        >
       </div>
      </div>
@@ -58,7 +58,7 @@
   <div class="grow">
    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
     @forelse($talents as $talent)
-     <div class="bg-white rounded-3xl overflow-hidden border border-subtle shadow-sm hover:shadow-md transition-all group">
+     <div class="bg-surface-light rounded-3xl overflow-hidden border border-subtle shadow-sm hover:shadow-md transition-all group">
       <div class="relative h-64 overflow-hidden">
        <img 
         src="{{ $talent->getFirstMediaUrl('primary_image') ?: 'https://images.unsplash.com/photo-1514525253361-bee8a187499b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' }}" 
@@ -85,7 +85,7 @@
       </div>
      </div>
     @empty
-     <div class="col-span-full py-32 text-center bg-white rounded-3xl border border-dashed border-subtle">
+     <div class="col-span-full py-32 text-center bg-surface-light rounded-3xl border border-dashed border-subtle">
       <x-heroicon-o-magnifying-glass class="w-12 h-12 text-text-muted mx-auto mb-4" />
       <h3 class="text-text-primary font-bold mb-1">No talent found</h3>
       <p class="text-text-muted text-sm">Try adjusting your filters to find who you're looking for.</p>
