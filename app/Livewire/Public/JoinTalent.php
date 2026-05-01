@@ -34,6 +34,9 @@ class JoinTalent extends Component
     #[Validate('required|string|max:100')]
     public string $category = '';
 
+    #[Validate('required_if:category,Other|nullable|string|max:100')]
+    public string $other_category = '';
+
     // Step 2: Media & Presence
     #[Validate('required|url|max:255')]
     public string $epk_link = '';
@@ -128,7 +131,7 @@ class JoinTalent extends Component
             'phone'              => $this->phone,
             'location'           => $this->location,
             'genre'              => $this->genre,
-            'category'           => $this->category,
+            'category'           => $this->category === 'Other' ? $this->other_category : $this->category,
             'epk_link'           => $this->epk_link,
             'instagram_url'      => $this->instagram_url,
             'spotify_url'        => $this->spotify_url,
