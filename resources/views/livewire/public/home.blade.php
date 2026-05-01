@@ -197,6 +197,67 @@
         </div>
     </section>
 
+    <!-- Booking FAQs Section -->
+    <section class="py-32 bg-surface-dark text-text-inverse">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl md:text-5xl font-bold text-center mb-16 font-serif">Booking <span class="text-brand-secondary">FAQs</span></h2>
+            
+            <div x-data="{ active: 0 }" class="space-y-4">
+                @php
+                    $faqs = [
+                        [
+                            'q' => 'How far in advance should I book?',
+                            'a' => 'We recommend booking 2-6 months in advance for best availability, especially for peak seasons (summer and holidays). However, we can often accommodate last-minute requests depending on talent availability.'
+                        ],
+                        [
+                            'q' => 'What happens after I submit this form?',
+                            'a' => 'Our team will review your request within 24 hours and send you personalized talent recommendations with availability and pricing. You\'ll have the opportunity to review profiles, watch videos, and ask questions before making a decision.'
+                        ],
+                        [
+                            'q' => 'Are there any booking fees?',
+                            'a' => 'There are no booking fees for clients. Our service is free - you only pay the agreed-upon performance fee to the talent. We handle all contracts, logistics, and coordination at no additional cost.'
+                        ],
+                        [
+                            'q' => 'Can I request multiple talent options?',
+                            'a' => 'Absolutely! We\'ll provide you with several options that match your criteria. You can review all recommendations and choose the performer that best fits your vision and budget.'
+                        ]
+                    ];
+                @endphp
+
+                @foreach($faqs as $index => $faq)
+                    <div class="border-b border-subtle/20">
+                        <button 
+                            @click="active = (active === {{ $index }} ? null : {{ $index }})"
+                            class="flex justify-between items-center w-full text-left py-8 focus:outline-none group transition-all"
+                        >
+                            <span class="text-xl md:text-2xl font-bold group-hover:text-brand-secondary transition-colors">{{ $faq['q'] }}</span>
+                            <div 
+                                class="h-8 w-8 rounded-full border border-subtle/30 flex items-center justify-center group-hover:border-brand-secondary transition-colors"
+                                :class="{ 'bg-brand-secondary border-brand-secondary': active === {{ $index }} }"
+                            >
+                                <svg 
+                                    class="w-4 h-4 transform transition-transform duration-300" 
+                                    :class="{ 'rotate-180': active === {{ $index }}, 'text-text-inverse': active === {{ $index }} }"
+                                    fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                >
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                </svg>
+                            </div>
+                        </button>
+                        <div 
+                            x-show="active === {{ $index }}" 
+                            x-collapse
+                            x-cloak
+                            class="overflow-hidden"
+                        >
+                            <p class="pb-8 text-lg text-text-muted leading-relaxed max-w-3xl">{{ $faq['a'] }}</p>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </section>
+
     <!-- Contact / Inquiry Section -->
     <section class="py-32 bg-brand-primary relative overflow-hidden">
         {{-- Background Decorative Elements --}}
