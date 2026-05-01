@@ -3,6 +3,7 @@
   <!-- Hero / Primary Showcase -->
   <div class="relative h-[600px] bg-surface-dark overflow-hidden">
     <img src="{{ $talent->profile_photo_url }}" alt="{{ $talent->name }}"
+      fetchpriority="high" decoding="async"
       class="w-full h-full object-cover grayscale opacity-60 transition-transform duration-1000 scale-105"
       >
 
@@ -155,9 +156,9 @@
                         </div>
                       @else
                         <div class="relative cursor-zoom-in" @click="openLightbox('{{ $item->url }}', '{{ $item->title }}')">
-                          <img src="{{ $item->url }}"
+                          <img src="{{ $item->url }}" loading="lazy" decoding="async"
                             class="w-full h-auto object-cover grayscale transition-transform duration-700 group-hover:scale-110"
-                            alt="{{ $item->title ?? 'Gallery Image' }}" />
+                            alt="{{ $item->title ?? 'Gallery Image for ' . $talent->name }}" />
                           <div
                             class="absolute inset-0 bg-linear-to-tr from-brand-primary/80 to-brand-secondary/40 mix-blend-color opacity-20 group-hover:opacity-10 transition-opacity">
                           </div>

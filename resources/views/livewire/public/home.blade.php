@@ -4,11 +4,6 @@
         fetchpriority="high">
     <link rel="preload" as="image" href="{{ asset('images/home/hero-card-2.webp') }}" type="image/webp"
         fetchpriority="high">
-    {{-- Preload category images (lower priority) so they're ready when the user scrolls --}}
-    <link rel="preload" as="image" href="{{ asset('images/home/musicians.webp') }}" type="image/webp" fetchpriority="low">
-    <link rel="preload" as="image" href="{{ asset('images/home/speakers.webp') }}" type="image/webp" fetchpriority="low">
-    <link rel="preload" as="image" href="{{ asset('images/home/djs.webp') }}" type="image/webp" fetchpriority="low">
-    <link rel="preload" as="image" href="{{ asset('images/home/comedians.webp') }}" type="image/webp" fetchpriority="low">
 @endpush
 
 <div class="bg-surface-light">
@@ -43,9 +38,9 @@
                             <div
                                 class="group relative overflow-hidden rounded-2xl aspect-3/4 bg-surface-dark border border-subtle">
                                 <img src="{{ asset('images/home/hero-card-1.webp') }}" loading="eager"
-                                    fetchpriority="high" width="664" height="887"
+                                    fetchpriority="high" decoding="async" width="664" height="887"
                                     class="w-full h-full object-cover grayscale transition-transform duration-700 group-hover:scale-110"
-                                    alt="Live Performance Showcase" />
+                                    alt="Live Performance Showcase - Artist performing on stage" />
                                 <div
                                     class="absolute inset-0 bg-linear-to-tr from-brand-primary/80 to-brand-secondary/40 mix-blend-color">
                                 </div>
@@ -62,9 +57,9 @@
                             <div
                                 class="group relative overflow-hidden rounded-2xl aspect-3/4 bg-surface-dark border border-subtle">
                                 <img src="{{ asset('images/home/hero-card-2.webp') }}" loading="eager"
-                                    fetchpriority="high" width="664" height="887"
+                                    fetchpriority="high" decoding="async" width="664" height="887"
                                     class="w-full h-full object-cover grayscale transition-transform duration-700 group-hover:scale-110"
-                                    alt="Keynote Speaker Showcase" />
+                                    alt="Keynote Speaker Showcase - Professional speaker at an event" />
                                 <div
                                     class="absolute inset-0 bg-linear-to-tr from-brand-primary/80 to-brand-secondary/40 mix-blend-color">
                                 </div>
@@ -169,10 +164,10 @@
                 @foreach($categories as $cat)
                     <a href="/talent?category={{ $cat['slug'] }}"
                         class="group block relative h-[450px] rounded-3xl overflow-hidden shadow-lg">
-                        <img src="{{ asset('images/home/' . $cat['img']) }}" loading="eager" fetchpriority="low" width="640"
+                        <img src="{{ asset('images/home/' . $cat['img']) }}" loading="lazy" decoding="async" width="640"
                             height="720"
                             class="absolute inset-0 w-full h-full object-cover grayscale transition-transform duration-1000 group-hover:scale-110"
-                            alt="{{ $cat['name'] }}" />
+                            alt="Browse {{ $cat['name'] }} category" />
                         <div
                             class="absolute inset-0 bg-linear-to-tr from-brand-primary/80 to-brand-secondary/40 mix-blend-color opacity-90">
                         </div>

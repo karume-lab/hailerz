@@ -82,7 +82,7 @@
 @layer base {
     :root {
         --brand-primary: #223757;
-        --brand-secondary: #1a6a80;
+        --brand-secondary: #145b6f; /* Darkened from #1a6a80 to meet 4.5:1 contrast ratio on white */
 
         --surface-light: #FFFFFF;
         --surface-muted: #F9FAFB;
@@ -117,6 +117,15 @@
     
     body {
         @apply font-sans antialiased bg-surface-light text-text-primary transition-colors duration-300;
+    }
+
+    /* Clear focus indicators for accessibility */
+    a:focus-visible, 
+    button:focus-visible, 
+    input:focus-visible, 
+    select:focus-visible, 
+    textarea:focus-visible {
+        @apply outline-none ring-2 ring-brand-primary ring-offset-2;
     }
 
     [x-cloak] {

@@ -108,6 +108,7 @@
         font-src 'self'; \
         img-src 'self' data: https://images.unsplash.com https://media.licdn.com; \
         connect-src 'self' https://nominatim.openstreetmap.org; \
+        frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com; \
         frame-ancestors 'none'; \
         base-uri 'self'; \
         form-action 'self'; \
