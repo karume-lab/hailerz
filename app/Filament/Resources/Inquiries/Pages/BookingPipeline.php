@@ -49,9 +49,9 @@ class BookingPipeline extends Page implements HasTable
             ->map(fn ($group) => $group->map(fn (Inquiry $i) => [
                 'id'          => $i->id,
                 'client_name' => $i->client_name,
-                'event_date'  => $i->event_date?->format('M d, Y'),
+                'event_date'  => $i->event_date ? \Illuminate\Support\Carbon::parse($i->event_date)->format('M d, Y') : null,
                 'talent_name' => $i->talent?->name ?? 'General Inquiry',
-                'budget'      => $i->budget ? '$' . number_format((float) $i->budget, 0) : 'TBC',
+                'budget'      => $i->budget ? '₦' . number_format((float) $i->budget, 0) : 'TBC',
                 'status'      => $i->status->value,
                 'edit_url'    => InquiryResource::getUrl('edit', ['record' => $i->id]),
             ])->values()->toArray())
@@ -88,7 +88,7 @@ class BookingPipeline extends Page implements HasTable
                     ->date()
                     ->sortable(),
                 TextColumn::make('budget')
-                    ->money('usd')
+                    ->money('NGN')
                     ->sortable(),
                 SelectColumn::make('status')
                     ->options(collect(InquiryStatus::cases())->mapWithKeys(

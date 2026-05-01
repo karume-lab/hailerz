@@ -8,6 +8,9 @@ use Livewire\Component;
 use Livewire\Attributes\Title;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Validate;
+use App\Mail\BookingConfirmationMail;
+use Illuminate\Support\Facades\Mail;
+
 
 #[Layout('components.layouts.app')]
 #[Title('Hailerz | Professional Inquiry')]
@@ -72,7 +75,7 @@ class BookingWizard extends Component
     #[Validate('nullable|string|max:255')]
     public $specific_talent;
     
-    #[Validate('required|string|max:2000')]
+    #[Validate('nullable|string|max:2000')]
     public $additional_details;
 
     // Step 4: Misc
@@ -119,7 +122,7 @@ class BookingWizard extends Component
         } elseif ($this->currentStep === 3) {
             $this->validate([
                 'talent_category' => 'required|string',
-                'additional_details' => 'required|string|max:2000',
+                'additional_details' => 'nullable|string|max:2000',
             ]);
         }
         
@@ -135,7 +138,7 @@ class BookingWizard extends Component
     {
         $this->validate();
 
-        Inquiry::create([
+        $inquiry = Inquiry::create([
             'talent_id' => $this->talent_id,
             'first_name' => $this->first_name,
             'last_name' => $this->last_name,
@@ -158,6 +161,14 @@ class BookingWizard extends Component
             'source' => $this->source,
             'status' => 'new',
         ]);
+
+        try {
+            \Illuminate\Support\Facades\Log::info('Attempting to send booking email to: ' . $inquiry->email);
+            Mail::to($inquiry->email)->send(new BookingConfirmationMail($inquiry));
+            \Illuminate\Support\Facades\Log::info('Booking email sent successfully.');
+        } catch (\Exception $e) {
+            \Illuminate\Support\Facades\Log::error('Mail sending failed: ' . $e->getMessage());
+        }
 
         $this->isComplete = true;
     }

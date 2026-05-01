@@ -7,6 +7,9 @@ use Livewire\Component;
 use Livewire\Attributes\Title;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Validate;
+use App\Mail\TalentSubmissionMail;
+use Illuminate\Support\Facades\Mail;
+
 
 #[Layout('components.layouts.app')]
 #[Title('Join Our Talent | Hailerz')]
@@ -178,6 +181,14 @@ class JoinTalent extends Component
             if (!empty($item['url'])) {
                 $submission->gallery()->create($item);
             }
+        }
+
+        try {
+            \Illuminate\Support\Facades\Log::info('Attempting to send talent application email to: ' . $submission->email);
+            Mail::to($submission->email)->send(new TalentSubmissionMail($submission));
+            \Illuminate\Support\Facades\Log::info('Talent application email sent successfully.');
+        } catch (\Exception $e) {
+            \Illuminate\Support\Facades\Log::error('Mail sending failed: ' . $e->getMessage());
         }
 
         $this->isSubmitted = true;

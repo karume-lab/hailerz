@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Enums\InquiryStatus;
 
+/**
+ * @property \Carbon\Carbon|null $event_date
+ */
 class Inquiry extends Model
 {
     use SoftDeletes;
@@ -24,5 +27,15 @@ class Inquiry extends Model
     public function talent(): BelongsTo
     {
         return $this->belongsTo(Talent::class);
+    }
+
+    public function getClientNameAttribute(): string
+    {
+        return "{$this->first_name} {$this->last_name}";
+    }
+
+    public function getClientEmailAttribute(): string
+    {
+        return $this->email;
     }
 }

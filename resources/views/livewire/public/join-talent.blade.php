@@ -5,9 +5,9 @@
                 <div class="mx-auto flex items-center justify-center h-24 w-24 rounded-full bg-brand-primary/10 mb-10">
                     <svg class="h-12 w-12 text-brand-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                 </div>
-                <h2 class="text-4xl font-bold text-text-primary mb-6 font-serif">Application Received</h2>
+                <h2 class="text-4xl font-bold text-text-primary mb-6 font-serif">Application Received!</h2>
                 <p class="text-lg text-text-secondary mb-12 max-w-xl mx-auto">
-                    Our A&R and talent procurement team will review your portfolio. If your act is a fit, an agent will reach out to discuss representation.
+                    We've sent a confirmation email to your inbox with a PDF summary of your application. Our A&R team will review your portfolio and reach out if your act is a fit for our exclusive network.
                 </p>
                 <x-button variant="primary" size="lg" href="/" wire:navigate>
                     Return to the Agency
@@ -74,6 +74,7 @@
                             <div>
                                 <label for="profile_photo_url" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Profile Photo URL <span class="text-red-500">*</span></label>
                                 <input type="text" id="profile_photo_url" wire:model="profile_photo_url" placeholder="https://..." class="block w-full px-6 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary outline-none text-text-primary font-medium">
+                                <p class="text-[10px] text-text-muted mt-2 italic">A high-quality link to your professional headshot.</p>
                                 @error('profile_photo_url') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
                             </div>
                         </div>
@@ -107,12 +108,13 @@
                             </div>
                             <div class="grid grid-cols-2 gap-4">
                                 <div>
-                                    <label for="min_rate" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Min Rate <span class="text-red-500">*</span></label>
+                                    <label for="min_rate" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Min Rate (₦) <span class="text-red-500">*</span></label>
                                     <input type="number" id="min_rate" wire:model="min_rate" class="block w-full px-6 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary outline-none text-text-primary font-medium">
+                                    <p class="text-[10px] text-text-muted mt-2 italic">Standard min/max booking fee range.</p>
                                     @error('min_rate') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
                                 </div>
                                 <div>
-                                    <label for="max_rate" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Max Rate <span class="text-red-500">*</span></label>
+                                    <label for="max_rate" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Max Rate (₦) <span class="text-red-500">*</span></label>
                                     <input type="number" id="max_rate" wire:model="max_rate" class="block w-full px-6 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary outline-none text-text-primary font-medium">
                                     @error('max_rate') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
                                 </div>
@@ -185,6 +187,7 @@
                                             <div>
                                                 <label class="block text-[10px] font-bold text-text-secondary uppercase tracking-widest mb-3">Media URL <span class="text-red-500">*</span></label>
                                                 <input type="text" wire:model="gallery.{{ $index }}.url" class="block w-full px-5 py-3.5 bg-surface-light border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary outline-none text-sm font-medium" placeholder="https://...">
+                                                <p class="text-[10px] text-text-muted mt-2 italic">Links to YouTube, SoundCloud, or portfolio images.</p>
                                                 @error('gallery.'.$index.'.url') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
                                             </div>
                                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -211,6 +214,7 @@
                             <div>
                                 <label for="bio" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Artist Bio (Min 200 Characters) <span class="text-red-500">*</span></label>
                                 <textarea id="bio" wire:model="bio" rows="6" class="block w-full px-6 py-5 bg-surface-muted border border-subtle rounded-2xl focus:ring-2 focus:ring-brand-primary outline-none text-text-primary font-medium resize-none"></textarea>
+                                <p class="text-[10px] text-text-muted mt-2 italic">A compelling professional summary for your public profile.</p>
                                 @error('bio') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
                             </div>
                             <div>
@@ -247,8 +251,14 @@
                                 Continue
                             </x-button>
                         @else
-                            <x-button variant="navy" size="lg" type="submit">
-                                Submit Talent Application
+                            <x-button variant="navy" size="lg" type="submit" wire:loading.attr="disabled" wire:target="submit">
+                                <span wire:loading.remove wire:target="submit">Submit Talent Application</span>
+                                <span wire:loading wire:target="submit" class="flex items-center justify-center">
+                                    <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                    </svg>
+                                </span>
                             </x-button>
                         @endif
                     </div>

@@ -16,12 +16,12 @@ return new class extends Migration {
             $table->string('artist_name');
             $table->string('real_name');
             $table->string('email');
-            $table->string('phone');
-            $table->string('location'); // City, State
+            $table->string('phone')->nullable();
+            $table->string('location')->nullable(); // City, State
             $table->string('profile_photo_url');
 
             // Professional Details
-            $table->string('category');
+            $table->string('category')->nullable();
             $table->string('genre')->nullable();
             $table->string('years_active');
             $table->decimal('min_rate', 12, 2);
@@ -40,7 +40,7 @@ return new class extends Migration {
             $table->text('press_features')->nullable();
 
             // Additional Information
-            $table->text('bio');
+            $table->text('bio')->nullable();
             $table->text('motivation'); // Why join Hailerz?
             $table->string('source')->nullable(); // How did you hear about us?
 

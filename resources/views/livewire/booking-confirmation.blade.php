@@ -20,7 +20,7 @@
     
     <div class="space-y-6">
         <x-button variant="primary" size="lg" href="/talent" wire:navigate>
-            Return to Talent
+            Browse Talent
         </x-button>
         <p class="text-[10px] font-bold text-text-muted uppercase tracking-widest">
             A confirmation of this submission has been dispatched to your registered email.

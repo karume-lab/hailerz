@@ -176,7 +176,7 @@
           <div class="flex justify-between items-center pt-6 border-t border-subtle ">
            <div>
             <p class="text-[10px] font-bold text-text-secondary uppercase tracking-widest">Starting Investment</p>
-            <p class="text-lg font-bold text-text-primary">${{ number_format($talent->starting_price ?? 0, 0) }}</p>
+            <p class="text-lg font-bold text-text-primary">₦{{ number_format($talent->starting_price ?? 0, 0) }}</p>
            </div>
            <x-button variant="ghost" size="sm" href="/talent/{{ $talent->slug }}" wire:navigate class="text-brand-primary hover:text-brand-primary/80">
             View Profile

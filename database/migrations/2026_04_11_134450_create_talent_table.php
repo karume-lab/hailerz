@@ -24,6 +24,7 @@ return new class extends Migration
             $table->text('internal_notes')->nullable(); // CRM ONLY
             $table->boolean('is_featured')->default(false);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

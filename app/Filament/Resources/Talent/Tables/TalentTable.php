@@ -29,7 +29,7 @@ class TalentTable
                     ->searchable(),
                 Tables\Columns\TextColumn::make('starting_price')
                     ->label('Minimum Fee')
-                    ->money('usd')
+                    ->money('NGN')
                     ->sortable(),
                 Tables\Columns\SelectColumn::make('status')
                     ->label('Talent Status')

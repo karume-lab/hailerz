@@ -5,12 +5,12 @@
                 <div class="mx-auto flex items-center justify-center h-24 w-24 rounded-full bg-brand-primary/10 mb-10">
                     <svg class="h-12 w-12 text-brand-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                 </div>
-                <h2 class="text-4xl font-bold text-text-primary mb-6 font-serif">We've received your request</h2>
+                <h2 class="text-4xl font-bold text-text-primary mb-6 font-serif">Inquiry Submitted Successfully!</h2>
                 <p class="text-lg text-text-secondary mb-12 max-w-xl mx-auto">
-                    One of our agents will look over your plans and get back to you within one business day. We'll send you a clear proposal with pricing and availability.
+                    A confirmation email has been sent to your inbox with a PDF summary of your event details. One of our agents will review your request and get back to you within one business day with a formal proposal.
                 </p>
                 <x-button variant="primary" size="lg" href="/talent" wire:navigate>
-                    Return to Talent
+                    Browse Talent
                 </x-button>
             </div>
         @else
@@ -108,6 +108,7 @@
                                     <option value="2 Hours">2 Hours</option>
                                     <option value="3+ Hours">3+ Hours</option>
                                 </select>
+                                <p class="text-[10px] text-text-muted mt-2 italic">How long would you like the artist to be on stage?</p>
                                 @error('performance_duration') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
                             </div>
                             <div class="md:col-span-2">
@@ -128,6 +129,7 @@
                             <div class="md:col-span-2">
                                 <label for="expected_guests" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Expected Number of Guests <span class="text-red-500">*</span></label>
                                 <input type="number" id="expected_guests" wire:model="expected_guests" class="block w-full px-6 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary outline-none text-text-primary font-medium transition-all">
+                                <p class="text-[10px] text-text-muted mt-2 italic">Estimated attendance helps us scale the technical and sound requirements.</p>
                                 @error('expected_guests') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
                             </div>
                         </div>
@@ -158,22 +160,25 @@
                                 <label for="budget_range" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Budget Range</label>
                                 <select id="budget_range" wire:model="budget_range" class="block w-full px-6 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary outline-none text-text-primary font-medium transition-all">
                                     <option value="">-- Select Budget --</option>
-                                    <option value="Under $1,000">Under $1,000</option>
-                                    <option value="$1,000 - $2,500">$1,000 - $2,500</option>
-                                    <option value="$2,500 - $5,000">$2,500 - $5,000</option>
-                                    <option value="$5,000 - $10,000">$5,000 - $10,000</option>
-                                    <option value="$10,000+">$10,000+</option>
+                                    <option value="Under ₦1,000">Under ₦1,000</option>
+                                    <option value="₦1,000 - ₦2,500">₦1,000 - ₦2,500</option>
+                                    <option value="₦2,500 - ₦5,000">₦2,500 - ₦5,000</option>
+                                    <option value="₦5,000 - ₦10,000">₦5,000 - ₦10,000</option>
+                                    <option value="₦10,000+">₦10,000+</option>
                                 </select>
+                                <p class="text-[10px] text-text-muted mt-2 italic">Total estimated budget for the talent, inclusive of fees.</p>
                                 @error('budget_range') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
                             </div>
                             <div>
                                 <label for="specific_talent" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Specific Talent Request</label>
                                 <input type="text" id="specific_talent" wire:model="specific_talent" class="block w-full px-6 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary outline-none text-text-primary font-medium transition-all">
+                                <p class="text-[10px] text-text-muted mt-2 italic">Leave blank if you'd like us to recommend a curated list of performers.</p>
                                 @error('specific_talent') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
                             </div>
                             <div class="md:col-span-2">
-                                <label for="additional_details" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Additional Details <span class="text-red-500">*</span></label>
+                                <label for="additional_details" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Additional Details</label>
                                 <textarea id="additional_details" wire:model="additional_details" rows="5" class="block w-full px-6 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary outline-none text-text-primary font-medium transition-all resize-none"></textarea>
+                                <p class="text-[10px] text-text-muted mt-2 italic">Tell us about the event vibe, technical needs, or any special requests.</p>
                                 @error('additional_details') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
                             </div>
                         </div>
@@ -211,8 +216,14 @@
                                 Continue
                             </x-button>
                         @else
-                            <x-button variant="navy" size="lg" type="submit">
-                                Send booking request
+                            <x-button variant="navy" size="lg" type="submit" wire:loading.attr="disabled" wire:target="submit">
+                                <span wire:loading.remove wire:target="submit">Send booking request</span>
+                                <span wire:loading wire:target="submit" class="flex items-center justify-center">
+                                    <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                    </svg>
+                                </span>
                             </x-button>
                         @endif
                     </div>
