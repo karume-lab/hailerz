@@ -2,17 +2,8 @@
 
   <!-- Hero / Primary Showcase -->
   <div class="relative h-[600px] bg-surface-dark overflow-hidden">
-    @if($talent->primary_image_url)
-      <img src="{{ $talent->primary_image_url }}" alt="{{ $talent->name }}"
-        class="w-full h-full object-cover grayscale opacity-60 transition-transform duration-1000 scale-105">
-    @elseif($talent->hasMedia('primary_image'))
-      <img src="{{ $talent->getFirstMediaUrl('primary_image') }}" alt="{{ $talent->name }}"
-        class="w-full h-full object-cover grayscale opacity-60 transition-transform duration-1000 scale-105">
-    @else
-      <div class="w-full h-full flex items-center justify-center">
-        <span class="text-9xl font-bold text-text-primary/5 font-serif">{{ substr($talent->name, 0, 1) }}</span>
-      </div>
-    @endif
+    <img src="{{ $talent->profile_photo_url }}" alt="{{ $talent->name }}"
+      class="w-full h-full object-cover grayscale opacity-60 transition-transform duration-1000 scale-105">
 
     <!-- Design Overlays -->
     <div

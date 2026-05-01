@@ -18,7 +18,7 @@ class TalentFactory extends Factory
     public function definition(): array
     {
         $categories = [
-            'Technical DJs' => [
+            'DJs' => [
                 'names' => ['DJ Horizon', 'Mixmaster Pro', 'Sound Architect X', 'Electronic Pulse', 'Sonic Curator'],
                 'bios' => [
                     "A technical virtuoso behind the decks, specializing in high-energy corporate galas and luxury product launches.",
@@ -29,7 +29,7 @@ class TalentFactory extends Factory
                 'images' => ['photo-1571266028243-e4733b0f0bb1', 'photo-1598387181032-a3103a2db5b3', 'photo-1574672280600-4accfa5b6f98'],
                 'video' => 'https://www.youtube.com/watch?v=zHn1A6M6_Yk'
             ],
-            'Keynote Speakers' => [
+            'Speakers' => [
                 'names' => ['Dr. Elena Vance', 'Marcus Chen, Futurist', 'Sarah O\'Connor, CEO', 'Julian Thorne', 'Amara Okafor'],
                 'bios' => [
                     "A visionary leader focused on the intersection of AI and human creativity, helping organizations navigate the future.",
@@ -40,7 +40,7 @@ class TalentFactory extends Factory
                 'images' => ['photo-1507679799987-c73779587ccf', 'photo-1475721027185-39a12947c004', 'photo-1544717305-2782549b5136'],
                 'video' => 'https://www.youtube.com/watch?v=7Pq-S557XQU'
             ],
-            'Live Event Bands' => [
+            'Musicians' => [
                 'names' => ['The Skyline Quintet', 'Midnight Velvet', 'Apex Live', 'The Grand Ensembles', 'Pulse Collective'],
                 'bios' => [
                     "A premium live band delivering sophisticated jazz and contemporary fusion for diplomatic and black-tie dinners.",
@@ -51,7 +51,7 @@ class TalentFactory extends Factory
                 'images' => ['photo-1533174072545-7a4b6ad7a6c3', 'photo-1501386761578-eac5c94b800a', 'photo-1511671782779-c97d3d27a1d4'],
                 'video' => 'https://www.youtube.com/watch?v=j_S6M9Z6mE8'
             ],
-            'Executive MCs' => [
+            'MCs' => [
                 'names' => ['Koffi Lion', 'Jessica Sterling', 'The Master of Ceremonies', 'David Grant', 'Elena Rossi'],
                 'bios' => [
                     "Professional moderator and event host with extensive experience in international summit facilitation.",
@@ -62,7 +62,7 @@ class TalentFactory extends Factory
                 'images' => ['photo-1515187029135-18ee286d815b', 'photo-1551818255-e6e10975bc17', 'photo-1520333789090-1afc82db536a'],
                 'video' => 'https://www.youtube.com/watch?v=uD4izufzh28'
             ],
-            'Experiential Acts' => [
+            'Variety Artists' => [
                 'names' => ['Digital Illusionist X', 'Aerial Synergy', 'The Light Painters', 'Cyber Cirque', 'Neo-Classical Fusion'],
                 'bios' => [
                     "Pushing the boundaries of perception with cutting-edge digital magic and interactive holographic technology.",

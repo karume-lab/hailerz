@@ -25,7 +25,7 @@ class ShowTalent extends Component
             ->layout('components.layouts.app', [
                 'ogTitle' => $this->talent->name . ' | Premium Talent',
                 'ogDescription' => Str::limit(strip_tags($this->talent->bio), 150),
-                'ogImage' => $this->talent->primary_image_url ?: $this->talent->getFirstMediaUrl('primary_image'),
+                'ogImage' => route('og.talent', $this->talent->slug),
             ]);
     }
 }

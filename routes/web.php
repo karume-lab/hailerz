@@ -17,11 +17,13 @@ use App\Livewire\Public\Legal\CancellationPolicy;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\OgImageController;
 
 // Public Frontends
 Route::get('/', Home::class)->name('home');
 Route::get('/talent', TalentDirectory::class)->name('talent.directory');
 Route::get('/talent/{slug}', ShowTalent::class)->name('talent.show');
+Route::get('/og/talent/{slug}', [OgImageController::class, 'show'])->name('og.talent');
 Route::get('/book', BookingWizard::class)->name('booking.wizard');
 Route::get('/book/confirm', BookingConfirmation::class)->name('booking.confirmation');
 

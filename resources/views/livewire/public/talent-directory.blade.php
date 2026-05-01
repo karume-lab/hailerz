@@ -144,15 +144,8 @@
         <div class="bg-surface-light rounded-2xl shadow-sm border border-subtle overflow-hidden group hover:shadow-2xl transition-all duration-500">
          <a href="/talent/{{ $talent->slug }}" wire:navigate class="block">
           <div class="group relative overflow-hidden aspect-3/4 bg-surface-dark">
-           @if($talent->primary_image_url)
-            <img src="{{ $talent->primary_image_url }}" width="400" height="533" loading="lazy" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="{{ $talent->name }}" />
-           @elseif($talent->hasMedia('primary_image'))
-            <img src="{{ $talent->getFirstMediaUrl('primary_image') }}" width="400" height="533" loading="lazy" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="{{ $talent->name }}" />
-            @else
-            <div class="w-full h-full flex items-center justify-center bg-surface-dark">
-             <span class="text-4xl font-bold text-text-inverse/20 font-serif">{{ substr($talent->name, 0, 1) }}</span>
-            </div>
-           @endif
+           <img src="{{ $talent->profile_photo_url }}" width="400" height="533" loading="lazy" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="{{ $talent->name }}" />
+           
            <div class="absolute inset-0 bg-linear-to-tr from-brand-primary/80 to-brand-secondary/40 mix-blend-color opacity-80 transition-opacity group-hover:opacity-60"></div>
            <div class="absolute inset-0 bg-linear-to-t from-surface-dark via-surface-dark/60 to-transparent"></div>
            

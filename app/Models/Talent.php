@@ -19,13 +19,35 @@ class Talent extends Model implements HasMedia
     protected $guarded = [];
     protected $appends = ['thumbnail_url'];
 
-    public function getThumbnailUrlAttribute(): ?string
+    public function getThumbnailUrlAttribute(): string
     {
         if ($this->primary_image_url) {
             return $this->primary_image_url;
         }
 
-        return $this->getFirstMediaUrl('primary_image', 'thumb') ?: null;
+        $mediaUrl = $this->getFirstMediaUrl('primary_image', 'thumb');
+        if ($mediaUrl) {
+            return $mediaUrl;
+        }
+
+        // Fallback to initials avatar when no image is available
+        $name = str_replace(' ', '+', $this->name);
+        return "https://ui-avatars.com/api/?name={$name}&background=223757&color=ffffff&size=400";
+    }
+
+    public function getProfilePhotoUrlAttribute(): string
+    {
+        if (!empty($this->primary_image_url)) {
+            return $this->primary_image_url;
+        }
+
+        if ($this->hasMedia('primary_image')) {
+            return $this->getFirstMediaUrl('primary_image', 'optimized') ?: $this->getFirstMediaUrl('primary_image');
+        }
+
+        // Bulletproof fallback
+        $name = str_replace(' ', '+', $this->name);
+        return "https://ui-avatars.com/api/?name={$name}&background=223757&color=ffffff&size=800";
     }
 
     protected function casts(): array
@@ -59,7 +81,7 @@ class Talent extends Model implements HasMedia
         return $this->morphMany(GalleryItem::class, 'galleryable');
     }
 
-    public function registerMediaConversions(Media $media = null): void
+    public function registerMediaConversions(?Media $media = null): void
     {
         $this->addMediaConversion('thumb')
             ->width(400)

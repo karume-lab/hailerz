@@ -15,7 +15,8 @@ class TalentTable
                 \Filament\Tables\Columns\SpatieMediaLibraryImageColumn::make('primary_image')
                     ->label('Artist Image')
                     ->collection('primary_image')
-                    ->circular(),
+                    ->circular()
+                    ->defaultImageUrl(fn ($record) => 'https://ui-avatars.com/api/?name=' . urlencode($record->name) . '&background=223757&color=ffffff'),
                 Tables\Columns\TextColumn::make('name')
                     ->label('Act / Performer')
                     ->searchable()
