@@ -30,13 +30,18 @@ class DatabaseSeeder extends Seeder
             ]
         );
 
-        // 2. High-End B2B Categories
+        // 2. Definitive Talent Categories
         $categories = [
-            'Keynote Speakers' => 'keynote-speakers',
-            'Live Event Bands' => 'live-event-bands',
-            'Executive MCs' => 'executive-mcs',
-            'Technical DJs' => 'technical-djs',
-            'Experiential Acts' => 'experiential-acts',
+            'Musicians' => 'musicians',
+            'DJs' => 'djs',
+            'Speakers' => 'speakers',
+            'Dancers' => 'dancers',
+            'Artists' => 'artists',
+            'Poets' => 'poets',
+            'Content Creators' => 'content-creators',
+            'Comedians' => 'comedians',
+            'MCs' => 'mcs',
+            'Variety Artists' => 'variety-artists',
         ];
 
         $categoryModels = [];
@@ -53,7 +58,7 @@ class DatabaseSeeder extends Seeder
         $djHero = Talent::updateOrCreate(
             ['slug' => 'dj-horizon-elite'],
             [
-                'category_id' => $categoryModels['Technical DJs']->id,
+                'category_id' => $categoryModels['DJs']->id,
                 'name' => 'DJ Horizon',
                 'primary_image_url' => 'https://images.unsplash.com/photo-1571266028243-e4733b0f0bb1?auto=format&fit=crop&w=1200&q=80',
                 'video_url' => 'https://www.youtube.com/watch?v=zHn1A6M6_Yk',
@@ -70,7 +75,7 @@ class DatabaseSeeder extends Seeder
         $speakerHero = Talent::updateOrCreate(
             ['slug' => 'marcus-chen-futurist'],
             [
-                'category_id' => $categoryModels['Keynote Speakers']->id,
+                'category_id' => $categoryModels['Speakers']->id,
                 'name' => 'Marcus Chen',
                 'primary_image_url' => 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=1200&q=80',
                 'video_url' => 'https://www.youtube.com/watch?v=7Pq-S557XQU',
@@ -87,7 +92,7 @@ class DatabaseSeeder extends Seeder
         $bandHero = Talent::updateOrCreate(
             ['slug' => 'skyline-quintet'],
             [
-                'category_id' => $categoryModels['Live Event Bands']->id,
+                'category_id' => $categoryModels['Musicians']->id,
                 'name' => 'The Skyline Quintet',
                 'primary_image_url' => 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=1200&q=80',
                 'video_url' => 'https://www.youtube.com/watch?v=j_S6M9Z6mE8',
@@ -104,7 +109,7 @@ class DatabaseSeeder extends Seeder
         $mcHero = Talent::updateOrCreate(
             ['slug' => 'jessica-sterling-mc'],
             [
-                'category_id' => $categoryModels['Executive MCs']->id,
+                'category_id' => $categoryModels['MCs']->id,
                 'name' => 'Jessica Sterling',
                 'primary_image_url' => 'https://images.unsplash.com/photo-1551818255-e6e10975bc17?auto=format&fit=crop&w=1200&q=80',
                 'video_url' => 'https://www.youtube.com/watch?v=uD4izufzh28',
@@ -117,11 +122,11 @@ class DatabaseSeeder extends Seeder
             ]
         );
 
-        // Experiential Act
-        $experientialHero = Talent::updateOrCreate(
+        // Variety Artist
+        $varietyHero = Talent::updateOrCreate(
             ['slug' => 'digital-illusionist-x'],
             [
-                'category_id' => $categoryModels['Experiential Acts']->id,
+                'category_id' => $categoryModels['Variety Artists']->id,
                 'name' => 'Digital Illusionist X',
                 'primary_image_url' => 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1200&q=80',
                 'video_url' => 'https://www.youtube.com/watch?v=60fD1432f78',
@@ -135,7 +140,7 @@ class DatabaseSeeder extends Seeder
         );
 
         // Add Gallery Items to Heroes
-        foreach ([$djHero, $speakerHero, $bandHero, $mcHero, $experientialHero] as $hero) {
+        foreach ([$djHero, $speakerHero, $bandHero, $mcHero, $varietyHero] as $hero) {
             \App\Models\GalleryItem::factory()->count(3)->create([
                 'galleryable_id' => $hero->id,
                 'galleryable_type' => Talent::class,
@@ -191,7 +196,7 @@ class DatabaseSeeder extends Seeder
                 'message' => 'Seeking an experienced MC to host our annual humanitarian awards. The role requires handling sensitive topics with grace and maintaining a formal tone.',
             ],
             [
-                'talent_id' => $experientialHero->id,
+                'talent_id' => $varietyHero->id,
                 'client_name' => 'Cybersecurity Expo',
                 'client_email' => 'exhibitions@cybersec.co.uk',
                 'event_date' => Carbon::now()->addMonths(6),

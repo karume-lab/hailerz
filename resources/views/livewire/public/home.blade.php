@@ -8,7 +8,7 @@
     <link rel="preload" as="image" href="{{ asset('images/home/musicians.webp') }}" type="image/webp" fetchpriority="low">
     <link rel="preload" as="image" href="{{ asset('images/home/speakers.webp') }}" type="image/webp" fetchpriority="low">
     <link rel="preload" as="image" href="{{ asset('images/home/djs.webp') }}" type="image/webp" fetchpriority="low">
-    <link rel="preload" as="image" href="{{ asset('images/home/specialty.webp') }}" type="image/webp" fetchpriority="low">
+    <link rel="preload" as="image" href="{{ asset('images/home/comedians.webp') }}" type="image/webp" fetchpriority="low">
 @endpush
 
 <div class="bg-surface-light">
@@ -27,8 +27,11 @@
                         Find the perfect talent to set the tone for your event.
                     </p>
                     <div class="flex flex-wrap gap-6">
+                        <x-button variant="secondary" size="lg" href="/join" wire:navigate>
+                            Join Talent
+                        </x-button>
                         <x-button variant="primary" size="lg" href="/talent" wire:navigate>
-                            Explore the Roster
+                            Find Talent
                         </x-button>
                     </div>
                 </div>
@@ -51,7 +54,7 @@
                                 </div>
                                 <div class="absolute bottom-6 left-6">
                                     <p class="text-text-inverse font-bold text-lg">Live Performance</p>
-                                    <p class="text-text-inverse/80 text-sm">Gala Dinners</p>
+                                    <p class="text-text-inverse/80 text-sm">Weddings</p>
                                 </div>
                             </div>
                         </div>
@@ -69,8 +72,8 @@
                                     class="absolute inset-0 bg-linear-to-t from-brand-primary/90 via-transparent to-transparent">
                                 </div>
                                 <div class="absolute bottom-6 left-6">
-                                    <p class="text-text-inverse font-bold text-lg">Keynote Speakers</p>
-                                    <p class="text-text-inverse/80 text-sm">Corporate Summits</p>
+                                    <p class="text-text-inverse font-bold text-lg">Special Guests</p>
+                                    <p class="text-text-inverse/80 text-sm">Birthday Parties</p>
                                 </div>
                             </div>
                         </div>
@@ -92,15 +95,12 @@
                 <p class="text-lg text-text-secondary">From first inquiry to the final performance, we manage every
                     detail so you don't have to.</p>
 
-                <div class="mt-12 aspect-video max-w-4xl mx-auto rounded-3xl overflow-hidden shadow-2xl border border-subtle bg-surface-dark">
-                    <iframe 
-                        class="w-full h-full"
-                        src="https://www.youtube.com/embed/LLdr6BqljEw" 
-                        title="How it Works" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                        referrerpolicy="strict-origin-when-cross-origin" 
-                        allowfullscreen>
+                <div
+                    class="mt-12 aspect-video max-w-4xl mx-auto rounded-3xl overflow-hidden shadow-2xl border border-subtle bg-surface-dark">
+                    <iframe class="w-full h-full" src="https://www.youtube.com/embed/LLdr6BqljEw" title="How it Works"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
                     </iframe>
                 </div>
             </div>
@@ -110,7 +110,7 @@
                     $services = [
                         [
                             'title' => 'Artist Selection',
-                            'desc' => 'Browse our roster of vetted performers and speakers. We\'ll help you find someone who actually fits your audience.',
+                            'desc' => 'Browse our roster of vetted musicians and speakers. We\'ll help you find someone who actually fits your audience.',
                             'icon' => 'M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10'
                         ],
                         [
@@ -143,13 +143,13 @@
         </div>
     </section>
 
-    <!-- Categories / The Roster -->
+    <!-- Categories / Talent -->
     <section class="py-32 bg-surface-light">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
                 <div class="max-w-2xl">
                     <h2 class="text-3xl md:text-5xl font-bold text-text-primary mb-6 font-serif">Browse our artists</h2>
-                    <p class="text-lg text-text-secondary">Find the right act for your gala or conference. Every artist
+                    <p class="text-lg text-text-secondary">Find the right act for your wedding or private celebration. Every artist
                         on our list has been personally vetted.</p>
                 </div>
                 <x-button variant="secondary" href="/talent" wire:navigate>
@@ -160,10 +160,10 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                 @php
                     $categories = [
-                        ['name' => 'Live Bands', 'slug' => 'musicians', 'img' => 'musicians.webp'],
-                        ['name' => 'Keynote Speakers', 'slug' => 'speakers', 'img' => 'speakers.webp'],
-                        ['name' => 'DJs & Electronics', 'slug' => 'djs', 'img' => 'djs.webp'],
-                        ['name' => 'Specialty Acts', 'slug' => 'specialty', 'img' => 'specialty.webp'],
+                        ['name' => 'Musicians', 'slug' => 'musicians', 'img' => 'musicians.webp'],
+                        ['name' => 'Speakers', 'slug' => 'speakers', 'img' => 'speakers.webp'],
+                        ['name' => 'DJs', 'slug' => 'djs', 'img' => 'djs.webp'],
+                        ['name' => 'Comedians', 'slug' => 'comedians', 'img' => 'comedians.webp'],
                     ];
                 @endphp
 

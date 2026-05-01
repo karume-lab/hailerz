@@ -10,15 +10,16 @@ class CategoryFactory extends Factory
     public function definition(): array
     {
         $name = $this->faker->unique()->randomElement([
-            'Keynote Speakers',
-            'Live Event Bands',
-            'Executive MCs',
-            'Technical DJs',
-            'Experiential Acts',
-            'Symphonic Ensembles',
-            'Tech & Futurist Speakers',
-            'Luxury Event Performers',
-            'Strategic Moderators'
+            'Musicians',
+            'DJs',
+            'Speakers',
+            'Dancers',
+            'Artists',
+            'Poets',
+            'Content Creators',
+            'Comedians',
+            'MCs',
+            'Variety Artists',
         ]);
         
         return [

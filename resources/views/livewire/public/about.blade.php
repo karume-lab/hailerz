@@ -20,7 +20,7 @@
         We represent the <span class="text-brand-secondary">artists</span> you want to book.
       </h1>
       <p class="mt-4 max-w-3xl text-xl md:text-2xl text-text-muted mx-auto leading-relaxed font-light">
-        Hailerz is a specialized talent agency. We help event planners and brands secure the best performers in the world without the usual back-and-forth.
+        Hailerz is a specialized talent agency. We help event planners and couples secure the best performers in the world without the usual back-and-forth.
       </p>
     </div>
   </div>
@@ -37,7 +37,7 @@
         Hailerz was founded on a simple idea: booking high-end talent should be easier. We saw too many planners struggling to get clear answers from artists, so we built an agency that prioritizes speed, clear pricing, and reliable service.
       </p>
       <p>
-        Today, we represent a handpicked list of performers, speakers, and DJs. We don't just fill slots; we help you find an artist who actually fits the tone of your night, whether it's a corporate gala or a private party.
+        Today, we represent a handpicked list of musicians, speakers, MCs, and content creators. We don't just fill slots; we help you find an artist who actually fits the tone of your night, whether it's a luxury wedding or a private party.
       </p>
       <p>
         We've built our reputation on being straightforward. We handle the contracts and the travel details so you can focus on running your event.
@@ -119,7 +119,7 @@
   <!-- Bottom CTA -->
   <div class="relative py-40 overflow-hidden bg-brand-primary">
     <div
-      class="absolute inset-0 opacity-20 bg-[url('https://images.unsplash.com/photo-1470225620780-dba8ba36b745?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')] bg-cover bg-center grayscale">
+      class="absolute inset-0 opacity-20 bg-cover bg-center grayscale" style="background-image: url('{{ asset('images/about/about-hero.webp') }}')">
     </div>
     <div
       class="absolute inset-0 bg-linear-to-tr from-brand-primary/80 to-brand-secondary/40 mix-blend-color opacity-40">
@@ -132,7 +132,7 @@
       </p>
       <div class="flex flex-col sm:flex-row justify-center gap-6">
         <x-button variant="primary" size="lg" href="/talent" wire:navigate>
-          Explore the Roster
+          Find Talent
         </x-button>
         <x-button variant="secondary" size="lg" href="/book" wire:navigate>
           Book Now

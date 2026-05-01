@@ -11,7 +11,7 @@
      One of our agents will look over your plans and get back to you within one business day. We'll send you a clear proposal with pricing and availability.
     </p>
     <x-button variant="primary" size="lg" href="/talent" wire:navigate>
-     Return to the Roster
+     Return to Talent
     </x-button>
    </div>
   @else

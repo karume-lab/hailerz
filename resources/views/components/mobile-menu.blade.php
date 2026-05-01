@@ -1,6 +1,6 @@
 @props([
     'links' => [
-        ['label' => 'The Roster', 'href' => '/talent'],
+        ['label' => 'Talent', 'href' => '/talent'],
         ['label' => 'Services', 'href' => '/services'],
         ['label' => 'Staffing', 'href' => '/staffing'],
         ['label' => 'The Agency', 'href' => '/about'],

@@ -9,7 +9,7 @@
    </div>
    <h1 class="text-5xl md:text-8xl font-bold text-text-inverse tracking-tight mb-8 font-serif leading-tight">How we help you <span class="text-white">book</span> talent</h1>
    <p class="text-xl md:text-2xl text-text-muted max-w-3xl mx-auto leading-relaxed font-light">
-    We provide reliable booking services for corporate galas and private functions. From finding the act to signing the contract, we manage the heavy lifting.
+    We provide reliable booking services for weddings, birthday parties, and premium private events. From finding the act to signing the contract, we manage the heavy lifting.
    </p>
   </div>
   
@@ -26,28 +26,28 @@
    </div>
 
    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-    @php
-     $categories = [
-      [
-       'name' => 'Keynote Speakers',
-       'desc' => 'Thought leaders, industry experts, and motivational speakers for corporate summits and conferences.',
-       'icon' => 'M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z',
-       'genres' => ['Business', 'Tech', 'Motivation', 'Policy']
-      ],
-      [
-       'name' => 'Live Bands & Ensembles',
-       'desc' => 'Full-scale musical acts providing high-energy entertainment for galas and large-scale celebrations.',
-       'icon' => 'M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2z',
-       'genres' => ['Contemporary', 'Jazz', 'Symphonic', 'Afro-Fusion']
-      ],
-      [
-       'name' => 'Corporate Performers',
-       'desc' => 'Dancers, specialty acts, and variety performers tailored for brand launches and gala dinners.',
-       'icon' => 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857',
-       'genres' => ['Contemporary', 'Acrobatic', 'Cultural', 'Theatre']
-      ],
-     ];
-    @endphp
+     @php
+      $categories = [
+       [
+        'name' => 'Speakers',
+        'desc' => 'Thought leaders and motivational speakers to inspire your guests at weddings, birthdays, and private events.',
+        'icon' => 'M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z',
+        'genres' => ['Keynote', 'Storytelling', 'Motivation', 'Celebrity']
+       ],
+       [
+        'name' => 'Musicians',
+        'desc' => 'World-class bands and soloists providing high-energy entertainment for weddings and luxury celebrations.',
+        'icon' => 'M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2z',
+        'genres' => ['Live Bands', 'Acoustic', 'Afro-Fusion', 'Jazz']
+       ],
+       [
+        'name' => 'Variety Artists',
+        'desc' => 'Dancers, poets, and specialty performers tailored for weddings and high-end birthday parties.',
+        'icon' => 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857',
+        'genres' => ['Dancers', 'Poets', 'Artists', 'Specialty']
+       ],
+      ];
+     @endphp
 
     @foreach($categories as $cat)
     <div class="bg-surface-light p-12 rounded-[2.5rem] border border-subtle shadow-sm hover:shadow-2xl transition-all duration-500 group">
@@ -91,7 +91,7 @@
     </div>
     <div class="relative mt-16 lg:mt-0">
      <div class="group relative overflow-hidden rounded-[3rem] aspect-4/5 bg-surface-dark border border-subtle">
-      <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=1000" loading="lazy" width="800" height="1000" class="w-full h-full object-cover grayscale opacity-60 transition-transform duration-700 group-hover:scale-105" alt="Event Logistics" />
+      <img src="{{ asset('images/services-logistics.webp') }}" loading="lazy" width="800" height="1000" class="w-full h-full object-cover grayscale opacity-60 transition-transform duration-700 group-hover:scale-105" alt="Event Logistics" />
       <div class="absolute inset-0 bg-linear-to-tr from-brand-primary/80 to-brand-secondary/40 mix-blend-color opacity-70"></div>
       <div class="absolute inset-0 bg-linear-to-t from-brand-primary via-transparent to-transparent"></div>
      </div>
@@ -147,7 +147,7 @@
    </p>
    <div class="flex flex-col sm:flex-row justify-center gap-6">
     <x-button variant="primary" size="lg" href="/talent" wire:navigate>
-     Browse the Roster
+     Browse Talent
     </x-button>
     <x-button variant="secondary" size="lg" href="/book" wire:navigate>
      Start Inquiry

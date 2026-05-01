@@ -21,7 +21,7 @@
      <span class="text-xs font-bold text-brand-primary uppercase tracking-widest">Agency Representation</span>
      <span class="h-px w-8 bg-brand-primary"></span>
     </div>
-    <h1 class="text-4xl md:text-6xl font-bold text-text-primary tracking-tight font-serif">Join the Roster</h1>
+    <h1 class="text-4xl md:text-6xl font-bold text-text-primary tracking-tight font-serif">Join Talent</h1>
     <p class="mt-4 text-lg text-text-secondary">Apply for inclusion in our exclusive talent network serving high-profile global clients.</p>
    </div>
 
