@@ -104,11 +104,7 @@
               :class="selectedId == {{ $talent['id'] }} ? 'bg-brand-primary/10' : ''"
              >
               <div class="w-12 h-12 rounded-lg overflow-hidden bg-brand-primary/5 shrink-0 flex items-center justify-center">
-               @if($talent['thumbnail_url'])
-                <img src="{{ $talent['thumbnail_url'] }}" alt="{{ $talent['name'] }}" class="w-full h-full object-cover">
-               @else
-                <span class="text-brand-primary font-bold">{{ substr($talent['name'], 0, 1) }}</span>
-               @endif
+               <img src="{{ $talent['thumbnail_url'] }}" alt="{{ $talent['name'] }}" class="w-full h-full object-cover">
               </div>
               <div>
                <div class="font-bold text-text-primary">{{ $talent['name'] }}</div>
@@ -153,11 +149,7 @@
          @if($this->selectedTalent)
           <div class="mt-8 p-6 bg-brand-primary/5 rounded-2xl border border-brand-primary/20 flex items-center gap-6 animate-fadeIn">
            <div class="w-24 h-24 rounded-xl overflow-hidden shadow-lg shrink-0">
-            @if($this->selectedTalent->thumbnail_url)
              <img src="{{ $this->selectedTalent->thumbnail_url }}" alt="{{ $this->selectedTalent->name }}" class="w-full h-full object-cover">
-            @else
-             <span class="text-3xl font-bold text-brand-primary font-serif">{{ substr($this->selectedTalent->name, 0, 1) }}</span>
-            @endif
            </div>
            <div class="flex-1">
             <div class="text-xs font-bold text-brand-primary uppercase tracking-widest mb-1">{{ $this->selectedTalent->category->name ?? 'Talent' }}</div>

@@ -7,123 +7,96 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Response;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
 
 class OgImageController extends Controller
 {
+    /**
+     * Generate and stream the Open Graph image for a talent.
+     * Designed exclusively for remote URLs and robust fallbacks.
+     */
     public function show(string $slug)
     {
         $talent = Talent::where('slug', $slug)->firstOrFail();
+        
+        // Cache Key as requested: v3 to distinguish from previous attempts
+        $cacheKey = "talent_og_v3_{$talent->id}";
 
-        // If GD is not available, redirect to the ui-avatars fallback immediately
-        if (!extension_loaded('gd')) {
-            $name = urlencode($talent->name);
-            return redirect("https://ui-avatars.com/api/?name={$name}&background=223757&color=ffffff&size=1200&format=png&bold=true&font-size=0.35");
-        }
-
-        /** @var int $talentId */
-        $talentId = $talent->id;
-        $cacheKey = "talent_og_image_bytes_{$talentId}";
-
-        // Cache the raw webp bytes (not the Response object)
         $imageBytes = Cache::remember($cacheKey, 86400, function () use ($talent) {
-            return $this->generateOgImage($talent);
+            try {
+                // Initialize Manager with GD Driver (standard for v4)
+                $manager = new ImageManager(new Driver());
+
+                // 1. Fetch Remote Image using profile_photo_url accessor
+                $sourceUrl = $talent->profile_photo_url;
+                $imageData = null;
+
+                try {
+                    // Fetch remote image with a 10s timeout as requested
+                    $response = Http::timeout(10)->get($sourceUrl);
+                    if ($response->successful()) {
+                        $imageData = $response->body();
+                    }
+                } catch (\Exception $e) {
+                    Log::warning("OG Fetch failed for talent {$talent->id}: " . $e->getMessage());
+                }
+
+                // 2. Load or Create Canvas
+                if (!$imageData) {
+                    // Fallback to solid canvas if fetch fails
+                    $image = $manager->createImage(1200, 630)->fill('223757');
+                } else {
+                    // In v4.0.2, decode() is the method to load image data
+                    $image = $manager->decode($imageData);
+                }
+
+                // 3. Composite Logic (1200x630 OG dimensions)
+                $image->cover(1200, 630);
+
+                // 4. Dark Overlay (v4 drawRectangle syntax)
+                $image->drawRectangle(function ($rect) {
+                    $rect->at(0, 0);
+                    $rect->size(1200, 630);
+                    $rect->background('rgba(0, 0, 0, 0.4)');
+                });
+
+                // 5. Place Logo (Top-Left, 40, 40)
+                $logoPath = public_path('images/logo.webp');
+                if (file_exists($logoPath)) {
+                    $logo = $manager->decode($logoPath);
+                    $logo->scale(height: 80);
+                    // In v4, insert() is the equivalent of v3's place()
+                    $image->insert($logo, 40, 40, 'top-left');
+                }
+
+                // 6. Encode and Return raw bytes
+                return $image->encodeUsingMediaType('image/webp')->toString();
+
+            } catch (\Throwable $e) {
+                Log::error("Critical OG generation failure for talent {$talent->id}: " . $e->getMessage());
+                
+                // Final bulletproof fallback: return a basic solid color canvas
+                try {
+                    $manager = new ImageManager(new Driver());
+                    return $manager->createImage(1200, 630)
+                        ->fill('223757')
+                        ->encodeUsingMediaType('image/webp')
+                        ->toString();
+                } catch (\Exception $finalError) {
+                    return null;
+                }
+            }
         });
 
         if (!$imageBytes) {
-            $name = urlencode($talent->name);
-            return redirect("https://ui-avatars.com/api/?name={$name}&background=223757&color=ffffff&size=1200&format=png&bold=true&font-size=0.35");
+            // Absolute last resort
+            return Response::make('', 404);
         }
 
         return Response::make($imageBytes, 200, [
             'Content-Type'  => 'image/webp',
             'Cache-Control' => 'public, max-age=86400',
         ]);
-    }
-
-    private function generateOgImage(Talent $talent): ?string
-    {
-        try {
-            $managerClass = \Intervention\Image\ImageManager::class;
-            $driverClass  = \Intervention\Image\Drivers\Gd\Driver::class;
-            $manager = $managerClass::usingDriver($driverClass);
-
-            /** @var int $talentId */
-            $talentId = $talent->id;
-
-            // 1. Determine the source image
-            $source = $talent->primary_image_url
-                ?: $talent->getFirstMediaUrl('primary_image', 'optimized');
-
-            $imageData = null;
-
-            // Try to fetch the primary image if it exists
-            if ($source) {
-                try {
-                    if (filter_var($source, FILTER_VALIDATE_URL)) {
-                        $response = Http::timeout(10)->get($source);
-                        if ($response->successful()) {
-                            $imageData = $response->body();
-                        }
-                    } elseif (file_exists($source)) {
-                        $imageData = file_get_contents($source);
-                    }
-                } catch (\Exception $e) {
-                    Log::warning("Failed to fetch primary image for talent {$talentId}, falling back to initials.");
-                }
-            }
-
-            // 2. Fallback to Initials if no image data
-            if (!$imageData) {
-                $name = urlencode($talent->name);
-                // We use a slightly different background or ensure the logo is visible
-                $fallbackUrl = "https://ui-avatars.com/api/?name={$name}&background=223757&color=ffffff&size=1200&font-size=0.35&bold=true";
-                try {
-                    $response = Http::timeout(10)->get($fallbackUrl);
-                    if ($response->successful()) {
-                        $imageData = $response->body();
-                    }
-                } catch (\Exception $e) {
-                    Log::warning("Failed to fetch initials avatar for talent {$talentId}.");
-                }
-            }
-
-            // 3. Create image object
-            if ($imageData) {
-                $image = $manager->decode($imageData);
-            } else {
-                // Absolute last resort: Solid background color
-                $image = $manager->createImage(1200, 630)->fill('223757');
-            }
-
-            // 4. Crop / resize to 1200x630 OG dimensions
-            $image->cover(1200, 630);
-
-            // 5. Dark overlay using drawRectangle
-            $image->drawRectangle(function ($rect) {
-                $rect->at(0, 0);
-                $rect->size(1200, 630);
-                $rect->background('rgba(0, 0, 0, 0.4)');
-            });
-
-            // 6. Hailerz logo (top-left)
-            $logoPath = public_path('images/logo.webp');
-            if (file_exists($logoPath)) {
-                // Use decode with the path directly (v4 supports this via FilePathImageDecoder)
-                $logo = $manager->decode($logoPath);
-                $logo->scale(height: 80); // Increased size slightly for better visibility
-                $image->insert($logo, 40, 40, 'top-left');
-            }
-
-            // 7. Encode to WebP and return raw bytes
-            return $image->encodeUsingMediaType('image/webp')->toString();
-
-        } catch (\Throwable $e) {
-            /** @var int $talentId */
-            $talentId = $talent->id;
-            Log::error("OG Image generation failed for talent {$talentId}: " . $e->getMessage(), [
-                'exception' => $e,
-            ]);
-            return null;
-        }
     }
 }

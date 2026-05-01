@@ -30,16 +30,10 @@ class Talent extends Model implements HasMedia
 
     public function getThumbnailUrlAttribute(): string
     {
-        if ($this->primary_image_url) {
+        if (!empty($this->primary_image_url)) {
             return $this->primary_image_url;
         }
 
-        $mediaUrl = $this->getFirstMediaUrl('primary_image', 'thumb');
-        if ($mediaUrl) {
-            return $mediaUrl;
-        }
-
-        // Fallback to initials avatar when no image is available
         $name = str_replace(' ', '+', $this->name);
         return "https://ui-avatars.com/api/?name={$name}&background=223757&color=ffffff&size=400";
     }
@@ -50,11 +44,6 @@ class Talent extends Model implements HasMedia
             return $this->primary_image_url;
         }
 
-        if ($this->hasMedia('primary_image')) {
-            return $this->getFirstMediaUrl('primary_image', 'optimized') ?: $this->getFirstMediaUrl('primary_image');
-        }
-
-        // Bulletproof fallback
         $name = str_replace(' ', '+', $this->name);
         return "https://ui-avatars.com/api/?name={$name}&background=223757&color=ffffff&size=800";
     }
