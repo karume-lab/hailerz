@@ -156,7 +156,7 @@
             <h4 class="text-xl font-bold text-text-primary font-serif">{{ $this->selectedTalent->name }}</h4>
             <div class="flex items-center gap-4 mt-2">
              <span class="text-sm text-text-secondary">Starting from <strong class="text-text-primary">${{ number_format($this->selectedTalent->starting_price, 0) }}</strong></span>
-             <a href="/talent/{{ $this->selectedTalent->id }}" target="_blank" class="text-xs font-bold text-brand-primary hover:underline flex items-center gap-1">
+             <a href="/talent/{{ $this->selectedTalent->slug }}" target="_blank" class="text-xs font-bold text-brand-primary hover:underline flex items-center gap-1">
               View Profile
               <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
              </a>

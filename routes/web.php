@@ -36,7 +36,7 @@ Route::get('/join', JoinTalent::class)->name('join');
 // Legal
 Route::get('/legal/terms', TermsOfService::class)->name('legal.terms');
 Route::get('/legal/privacy', PrivacyPolicy::class)->name('legal.privacy');
-Route::get('/legal/booking', BookingAgreement::class)->name('legal.booking');
+Route::get('/legal/booking-agreement', BookingAgreement::class)->name('legal.booking');
 Route::get('/legal/cancellation', CancellationPolicy::class)->name('legal.cancellation');
 
 // News / Blog
