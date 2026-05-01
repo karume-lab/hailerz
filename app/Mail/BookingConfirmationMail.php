@@ -54,14 +54,9 @@ class BookingConfirmationMail extends Mailable
         $pdf = Pdf::loadView('pdf.booking-inquiry', ['inquiry' => $this->inquiry]);
         $pdfContent = $pdf->output();
 
-        $logoPath = public_path('images/logo.webp');
-        
         return [
             Attachment::fromData(fn () => $pdfContent, 'Hailerz-Booking-Details.pdf')
                 ->withMime('application/pdf'),
-            Attachment::fromPath($logoPath)
-                ->as('logo.webp')
-                ->withMime('image/webp'),
         ];
     }
 }
