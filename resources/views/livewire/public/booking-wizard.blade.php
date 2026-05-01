@@ -47,22 +47,22 @@
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                             <div>
                                 <label for="first_name" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">First Name <span class="text-red-500">*</span></label>
-                                <input type="text" id="first_name" wire:model="first_name" class="block w-full px-6 py-4 bg-surface-muted border border-subtle placeholder-text-muted rounded-xl focus:ring-2 focus:ring-brand-primary outline-none text-text-primary font-medium transition-all">
+                                <input type="text" id="first_name" wire:model="first_name" autocomplete="given-name" aria-required="true" class="block w-full px-6 py-4 bg-surface-muted border border-subtle placeholder-text-muted rounded-xl focus:ring-2 focus:ring-brand-primary outline-none text-text-primary font-medium transition-all">
                                 @error('first_name') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
                             </div>
                             <div>
                                 <label for="last_name" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Last Name <span class="text-red-500">*</span></label>
-                                <input type="text" id="last_name" wire:model="last_name" class="block w-full px-6 py-4 bg-surface-muted border border-subtle placeholder-text-muted rounded-xl focus:ring-2 focus:ring-brand-primary outline-none text-text-primary font-medium transition-all">
+                                <input type="text" id="last_name" wire:model="last_name" autocomplete="family-name" aria-required="true" class="block w-full px-6 py-4 bg-surface-muted border border-subtle placeholder-text-muted rounded-xl focus:ring-2 focus:ring-brand-primary outline-none text-text-primary font-medium transition-all">
                                 @error('last_name') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
                             </div>
                             <div>
                                 <label for="email" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Email Address <span class="text-red-500">*</span></label>
-                                <input type="email" id="email" wire:model="email" class="block w-full px-6 py-4 bg-surface-muted border border-subtle placeholder-text-muted rounded-xl focus:ring-2 focus:ring-brand-primary outline-none text-text-primary font-medium transition-all">
+                                <input type="email" id="email" wire:model="email" autocomplete="email" aria-required="true" class="block w-full px-6 py-4 bg-surface-muted border border-subtle placeholder-text-muted rounded-xl focus:ring-2 focus:ring-brand-primary outline-none text-text-primary font-medium transition-all">
                                 @error('email') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
                             </div>
                             <div>
                                 <label for="phone" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Phone Number <span class="text-red-500">*</span></label>
-                                <input type="text" id="phone" wire:model="phone" class="block w-full px-6 py-4 bg-surface-muted border border-subtle placeholder-text-muted rounded-xl focus:ring-2 focus:ring-brand-primary outline-none text-text-primary font-medium transition-all">
+                                <input type="text" id="phone" wire:model="phone" autocomplete="tel" aria-required="true" class="block w-full px-6 py-4 bg-surface-muted border border-subtle placeholder-text-muted rounded-xl focus:ring-2 focus:ring-brand-primary outline-none text-text-primary font-medium transition-all">
                                 @error('phone') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
                             </div>
                             <div class="md:col-span-2">

@@ -111,8 +111,9 @@
         <iframe 
             class="w-full h-full"
             src="https://www.youtube.com/embed/LLdr6BqljEw" 
-            title="How it Works" 
+            title="Hailerz - How it Works" 
             frameborder="0" 
+            loading="lazy"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
             referrerpolicy="strict-origin-when-cross-origin" 
             allowfullscreen>

@@ -91,8 +91,8 @@
 
                 <div
                     class="mt-12 aspect-video max-w-4xl mx-auto rounded-3xl overflow-hidden shadow-2xl border border-subtle bg-surface-dark">
-                    <iframe class="w-full h-full" src="https://www.youtube.com/embed/LLdr6BqljEw" title="How it Works"
-                        frameborder="0"
+                    <iframe class="w-full h-full" src="https://www.youtube.com/embed/LLdr6BqljEw" title="Hailerz - How it Works"
+                        frameborder="0" loading="lazy"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
                     </iframe>
@@ -224,6 +224,8 @@
                         <button 
                             @click="active = (active === {{ $index }} ? null : {{ $index }})"
                             class="flex justify-between items-center w-full text-left py-8 focus:outline-none group transition-all"
+                            aria-label="Toggle FAQ: {{ $faq['q'] }}"
+                            :aria-expanded="active === {{ $index }} ? 'true' : 'false'"
                         >
                             <span class="text-xl md:text-2xl font-bold group-hover:text-brand-secondary transition-colors">{{ $faq['q'] }}</span>
                             <div 
@@ -343,6 +345,7 @@
                                     <label for="contactEmail"
                                         class="block text-xs font-bold text-text-secondary uppercase tracking-widest mb-2">Email</label>
                                     <input id="contactEmail" wire:model="contactEmail" type="email"
+                                        autocomplete="email"
                                         placeholder="Email Address"
                                         class="w-full px-5 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary focus:bg-surface-light focus:border-transparent outline-none transition-all text-text-primary placeholder-text-muted shadow-sm" />
                                     @error('contactEmail') <span class="text-red-500 text-xs mt-1">{{ $message }}</span>

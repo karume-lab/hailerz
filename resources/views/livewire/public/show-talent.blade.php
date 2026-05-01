@@ -54,6 +54,7 @@
 
               @if($embedUrl)
                 <iframe src="{{ $embedUrl }}" class="absolute inset-0 w-full h-full" frameborder="0"
+                  loading="lazy" title="{{ $talent->name }} - Performance Reel"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowfullscreen></iframe>
               @else
@@ -151,6 +152,7 @@
                       @if($galleryEmbedUrl)
                         <div class="aspect-video relative">
                           <iframe src="{{ $galleryEmbedUrl }}" class="absolute inset-0 w-full h-full" frameborder="0"
+                            loading="lazy" title="{{ $item->title ?? 'Gallery Video' }}"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen></iframe>
                         </div>
@@ -199,7 +201,7 @@
                 class="fixed inset-0 z-50 flex items-center justify-center bg-surface-dark/95 backdrop-blur-md p-4 md:p-10"
                 @click="lightboxOpen = false" @keydown.escape.window="lightboxOpen = false" x-cloak>
 
-                <button class="absolute top-8 right-8 text-white/50 hover:text-white transition-colors">
+                <button class="absolute top-8 right-8 text-white/50 hover:text-white transition-colors" aria-label="Close Lightbox">
                   <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12">
                     </path>

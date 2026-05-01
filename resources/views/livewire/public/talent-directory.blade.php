@@ -17,7 +17,7 @@
     <div class="sticky top-28 bg-surface-light p-8 rounded-3xl shadow-sm border border-subtle ">
      <div class="flex items-center justify-between mb-10">
       <h2 class="text-xs font-bold text-text-secondary uppercase tracking-widest">Refine Search</h2>
-      <button wire:click="resetFilters" class="text-[10px] font-bold text-brand-primary uppercase tracking-widest hover:underline transition-colors">
+      <button wire:click="resetFilters" aria-label="Reset all search filters" class="text-[10px] font-bold text-brand-primary uppercase tracking-widest hover:underline transition-colors">
        Reset All
       </button>
      </div>
@@ -108,7 +108,7 @@
       }">
        <div class="flex items-center justify-between mb-4">
         <label for="location" class="block text-[10px] font-bold text-text-secondary uppercase tracking-widest">Base Location</label>
-        <button @click="locateMe()" type="button" class="text-[10px] font-bold text-brand-primary uppercase tracking-widest hover:underline flex items-center gap-1">
+        <button @click="locateMe()" type="button" aria-label="Auto-detect my current location" class="text-[10px] font-bold text-brand-primary uppercase tracking-widest hover:underline flex items-center gap-1">
          <svg x-show="!isLocating" class="w-3 h-3 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
          <span x-text="isLocating ? '...' : 'Auto-Detect'"></span>
         </button>

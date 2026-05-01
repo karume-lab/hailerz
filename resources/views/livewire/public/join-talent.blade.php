@@ -48,22 +48,22 @@
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                             <div>
                                 <label for="artist_name" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Artist/Stage Name <span class="text-red-500">*</span></label>
-                                <input type="text" id="artist_name" wire:model="artist_name" class="block w-full px-6 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary outline-none text-text-primary font-medium">
+                                <input type="text" id="artist_name" wire:model="artist_name" autocomplete="nickname" aria-required="true" class="block w-full px-6 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary outline-none text-text-primary font-medium">
                                 @error('artist_name') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
                             </div>
                             <div>
                                 <label for="real_name" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Real Name <span class="text-red-500">*</span></label>
-                                <input type="text" id="real_name" wire:model="real_name" class="block w-full px-6 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary outline-none text-text-primary font-medium">
+                                <input type="text" id="real_name" wire:model="real_name" autocomplete="name" aria-required="true" class="block w-full px-6 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary outline-none text-text-primary font-medium">
                                 @error('real_name') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
                             </div>
                             <div>
                                 <label for="email" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Email Address <span class="text-red-500">*</span></label>
-                                <input type="email" id="email" wire:model="email" class="block w-full px-6 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary outline-none text-text-primary font-medium">
+                                <input type="email" id="email" wire:model="email" autocomplete="email" aria-required="true" class="block w-full px-6 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary outline-none text-text-primary font-medium">
                                 @error('email') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
                             </div>
                             <div>
                                 <label for="phone" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Phone Number <span class="text-red-500">*</span></label>
-                                <input type="text" id="phone" wire:model="phone" class="block w-full px-6 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary outline-none text-text-primary font-medium">
+                                <input type="text" id="phone" wire:model="phone" autocomplete="tel" aria-required="true" class="block w-full px-6 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary outline-none text-text-primary font-medium">
                                 @error('phone') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
                             </div>
                             <div>
