@@ -60,7 +60,7 @@ class DatabaseSeeder extends Seeder
             [
                 'category_id' => $categoryModels['DJs']->id,
                 'name' => 'DJ Horizon',
-                'primary_image_url' => 'https://images.unsplash.com/photo-1571266028243-e4733b0f0bb1?auto=format&fit=crop&w=1200&q=80',
+                'primary_image_url' => 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1200&q=80',
                 'video_url' => 'https://www.youtube.com/watch?v=zHn1A6M6_Yk',
                 'bio' => 'A technical virtuoso behind the decks, DJ Horizon specializes in high-energy corporate galas and luxury product launches. Known for a seamless blend of deep house and industrial textures, they have headlined major tech summits across EMEA.',
                 'technical_rider' => "Pioneer CDJ-3000 x 4\nDJM-900NXS2 mixer\n2x d&b audiotechnik M4 monitors\nDedicated sound engineer on site",
