@@ -304,7 +304,7 @@
                                 @enderror
                             </div>
                             <x-button type="submit" class="w-full shadow-lg shadow-brand-primary/20" size="lg">
-                                Book Now
+                                Send Message
                             </x-button>
                         </form>
                     @endif
