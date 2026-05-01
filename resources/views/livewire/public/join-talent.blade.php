@@ -50,36 +50,48 @@
        <div>
         <label for="artist_name" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Stage / Act Name</label>
         <input type="text" id="artist_name" wire:model="artist_name" class="block w-full px-6 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary focus:border-transparent outline-none text-text-primary placeholder-text-muted font-medium" placeholder="e.g. The Nairobi Symphony">
+        <p class="text-[10px] text-text-muted mt-2">This is the name that will be displayed on your public profile.</p>
         @error('artist_name') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
        </div>
 
        <div>
         <label for="email" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Professional Email</label>
         <input type="email" id="email" wire:model="email" class="block w-full px-6 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary focus:border-transparent outline-none text-text-primary placeholder-text-muted font-medium" placeholder="bookings@example.com">
+        <p class="text-[10px] text-text-muted mt-2">We will use this for all booking inquiries and official communication.</p>
         @error('email') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
        </div>
 
        <div>
         <label for="phone" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Direct Contact</label>
         <input type="tel" id="phone" wire:model="phone" class="block w-full px-6 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary focus:border-transparent outline-none text-text-primary placeholder-text-muted font-medium" placeholder="+254...">
+        <p class="text-[10px] text-text-muted mt-2">A mobile number where we can reach you or your manager directly.</p>
         @error('phone') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
        </div>
 
        <div>
         <label for="location" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Primary Base (City)</label>
         <input type="text" id="location" wire:model="location" class="block w-full px-6 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary focus:border-transparent outline-none text-text-primary placeholder-text-muted font-medium" placeholder="e.g. Nairobi, Kenya">
+        <p class="text-[10px] text-text-muted mt-2">Used to calculate travel logistics and local booking availability.</p>
         @error('location') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
        </div>
 
        <div>
         <label for="category" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Primary Discipline</label>
-        <input type="text" id="category" wire:model="category" class="block w-full px-6 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary focus:border-transparent outline-none text-text-primary placeholder-text-muted font-medium" placeholder="e.g. Keynote Speaker, Live Band">
+        <select id="category" wire:model="category" class="block w-full px-6 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary focus:border-transparent outline-none text-text-primary font-medium">
+         <option value="">Select a category...</option>
+         @foreach(\App\Models\Category::orderBy('name')->get() as $cat)
+          <option value="{{ $cat->name }}">{{ $cat->name }}</option>
+         @endforeach
+         <option value="Other">Other</option>
+        </select>
+        <p class="text-[10px] text-text-muted mt-2">Select the category that best describes your main performance act.</p>
         @error('category') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
        </div>
 
        <div>
         <label for="genre" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Style / Genre</label>
         <input type="text" id="genre" wire:model="genre" class="block w-full px-6 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary focus:border-transparent outline-none text-text-primary placeholder-text-muted font-medium" placeholder="e.g. Contemporary Jazz">
+        <p class="text-[10px] text-text-muted mt-2">Specify your artistic style (e.g., Acoustic, High-Energy, Corporate, etc.).</p>
         @error('genre') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
        </div>
       </div>
@@ -93,7 +105,7 @@
        <div>
         <label for="epk_link" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Electronic Press Kit (EPK) or Portfolio Link</label>
         <input type="url" id="epk_link" wire:model="epk_link" class="block w-full px-6 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary focus:border-transparent outline-none text-text-primary placeholder-text-muted font-medium" placeholder="https://talent.com/portfolio">
-        <p class="text-xs text-text-muted mt-3">EPKs must contain professional performance reels, high-resolution branding assets, and technical riders.</p>
+        <p class="text-[10px] text-text-muted mt-3 italic leading-relaxed">EPKs are mandatory for our review process. They must contain professional performance reels, high-resolution branding assets, and technical riders. We use this to evaluate your act for high-end corporate clients.</p>
         @error('epk_link') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
        </div>
  
@@ -101,11 +113,13 @@
         <div>
          <label for="instagram_url" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Instagram (Professional)</label>
          <input type="url" id="instagram_url" wire:model="instagram_url" class="block w-full px-6 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary focus:border-transparent outline-none text-text-primary placeholder-text-muted font-medium">
+         <p class="text-[10px] text-text-muted mt-2">Help us see your current brand engagement and aesthetic.</p>
         </div>
         
         <div>
          <label for="youtube_url" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Performance Channel (YouTube/Vimeo)</label>
          <input type="url" id="youtube_url" wire:model="youtube_url" class="block w-full px-6 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary focus:border-transparent outline-none text-text-primary placeholder-text-muted font-medium">
+         <p class="text-[10px] text-text-muted mt-2">Direct links to your live performances and high-quality video content.</p>
         </div>
        </div>
 
@@ -129,6 +143,7 @@
             <div>
              <label class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-2">Media URL (Image, YouTube, or Vimeo)</label>
              <input type="url" wire:model="gallery.{{ $index }}.url" class="block w-full px-4 py-3 bg-surface-muted border border-subtle rounded-lg focus:ring-2 focus:ring-brand-primary focus:border-transparent outline-none text-sm font-medium" placeholder="https://...">
+             <p class="text-[10px] text-text-muted mt-1">Specific highlights you want to showcase.</p>
              @error('gallery.'.$index.'.url') <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span> @enderror
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -163,6 +178,7 @@
        <div>
         <label for="bio" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Executive Summary / Career Highlights</label>
         <textarea id="bio" wire:model="bio" rows="4" class="block w-full px-6 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary focus:border-transparent outline-none text-text-primary placeholder-text-muted font-medium resize-none" placeholder="Detail your experience with corporate clients, notable venues, and performance scale..."></textarea>
+        <p class="text-[10px] text-text-muted mt-2 leading-relaxed">Provide a professional summary of your career. Focus on major corporate events, awards, or unique value propositions that make your act stand out.</p>
         @error('bio') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
        </div>
  
@@ -170,6 +186,7 @@
         <div>
          <label for="years_experience" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Years of Professional Performance</label>
          <input type="number" id="years_experience" wire:model="years_experience" class="block w-full px-6 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary focus:border-transparent outline-none text-text-primary font-medium">
+         <p class="text-[10px] text-text-muted mt-2">Total years performing at a professional, paid level.</p>
          @error('years_experience') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
         </div>
  
@@ -181,6 +198,7 @@
           </div>
           <input type="number" id="minimum_fee" wire:model="minimum_fee" class="block w-full pl-12 pr-6 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary focus:border-transparent outline-none text-lg font-bold text-text-primary" placeholder="1000">
          </div>
+         <p class="text-[10px] text-text-muted mt-2">Your base fee for a standard corporate set (before travel/logistics).</p>
          @error('minimum_fee') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
         </div>
        </div>
@@ -200,6 +218,7 @@
          <div class="mt-8">
           <label for="management_contact" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Management Contact Details</label>
           <input type="text" id="management_contact" wire:model="management_contact" class="block w-full px-6 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary focus:border-transparent outline-none text-text-primary placeholder-text-muted font-medium" placeholder="Agency Name / Contact Person / Email">
+          <p class="text-[10px] text-text-muted mt-2">We will coordinate directly with your representatives for any booking opportunities.</p>
           @error('management_contact') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
          </div>
         @endif
