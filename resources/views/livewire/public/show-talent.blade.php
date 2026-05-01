@@ -267,7 +267,7 @@
           </div>
 
           <x-button variant="primary" size="lg" class="w-full mb-6" href="/book?talent={{ $talent->id }}" wire:navigate>
-            Make Booking Inquiry
+            Book Now
           </x-button>
 
           <!-- Share -->

@@ -20,17 +20,15 @@
                 <div class="mb-16 lg:mb-0">
                     <h1
                         class="text-5xl md:text-7xl font-bold tracking-tight text-text-inverse mb-8 leading-[1.1] font-serif">
-                        Book the right talent for your next event.
+                        The Right <span class="text-brand-secondary">Talent</span> for Your Next Event.
                     </h1>
                     <p class="mt-4 max-w-xl text-lg md:text-xl text-text-muted mb-12 leading-relaxed">
-                        We represent the most requested artists for corporate events, galas, and private parties. Find the perfect act to set the tone for your night.
+                        We manage the outreach and negotiations with the most requested artists.
+                        Find the perfect talent to set the tone for your event.
                     </p>
                     <div class="flex flex-wrap gap-6">
                         <x-button variant="primary" size="lg" href="/talent" wire:navigate>
                             Explore the Roster
-                        </x-button>
-                        <x-button variant="secondary" size="lg" href="/contact" wire:navigate>
-                            Agency Inquiry
                         </x-button>
                     </div>
                 </div>
@@ -53,7 +51,7 @@
                                 </div>
                                 <div class="absolute bottom-6 left-6">
                                     <p class="text-text-inverse font-bold text-lg">Live Performance</p>
-                                    <p class="text-brand-secondary text-sm">Gala Dinners</p>
+                                    <p class="text-text-inverse/80 text-sm">Gala Dinners</p>
                                 </div>
                             </div>
                         </div>
@@ -89,8 +87,10 @@
     <section class="py-32 bg-surface-muted">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-20">
-                <h2 class="text-3xl md:text-5xl font-bold text-text-primary mb-6 font-serif">We handle the entire booking process</h2>
-                <p class="text-lg text-text-secondary">From first inquiry to the final performance, we manage every detail so you don't have to.</p>
+                <h2 class="text-3xl md:text-5xl font-bold text-text-primary mb-6 font-serif">We handle the entire
+                    booking process</h2>
+                <p class="text-lg text-text-secondary">From first inquiry to the final performance, we manage every
+                    detail so you don't have to.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
@@ -137,7 +137,8 @@
             <div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
                 <div class="max-w-2xl">
                     <h2 class="text-3xl md:text-5xl font-bold text-text-primary mb-6 font-serif">Browse our artists</h2>
-                    <p class="text-lg text-text-secondary">Find the right act for your gala or conference. Every artist on our list has been personally vetted.</p>
+                    <p class="text-lg text-text-secondary">Find the right act for your gala or conference. Every artist
+                        on our list has been personally vetted.</p>
                 </div>
                 <x-button variant="secondary" href="/talent" wire:navigate>
                     View Full Roster
@@ -195,9 +196,11 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="lg:grid lg:grid-cols-2 lg:gap-24 items-center">
                 <div>
-                    <h2 class="text-3xl md:text-6xl font-bold text-text-inverse mb-8 font-serif leading-tight">Let's talk about your event</h2>
+                    <h2 class="text-3xl md:text-6xl font-bold text-text-inverse mb-8 font-serif leading-tight">Let's
+                        talk about your event</h2>
                     <p class="text-xl text-text-inverse/80 mb-12 leading-relaxed">
-                        Talk to a real agent about your plans. We'll give you honest recommendations and handle the details.
+                        Talk to a real agent about your plans. We'll give you honest recommendations and handle the
+                        details.
                     </p>
 
                     <ul class="space-y-8 mb-12">
@@ -289,7 +292,7 @@
                                 @enderror
                             </div>
                             <x-button type="submit" class="w-full shadow-lg shadow-brand-primary/20" size="lg">
-                                Submit Booking Inquiry
+                                Book Now
                             </x-button>
                         </form>
                     @endif

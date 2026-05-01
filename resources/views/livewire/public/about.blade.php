@@ -135,7 +135,7 @@
           Explore the Roster
         </x-button>
         <x-button variant="secondary" size="lg" href="/book" wire:navigate>
-          Start Booking Inquiry
+          Book Now
         </x-button>
       </div>
     </div>

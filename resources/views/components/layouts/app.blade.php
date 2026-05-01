@@ -109,8 +109,8 @@
             <x-theme-toggle />
           </div>
 
-          <x-button variant="primary" size="sm" href="/book" wire:navigate class="flex bg-linear-to-tr from-brand-primary to-brand-secondary border-none shadow-lg px-6 py-2.5 rounded-full hover:scale-105 transition-transform text-xs sm:text-sm">
-            Booking Inquiry
+          <x-button variant="primary" size="sm" href="/book" wire:navigate class="flex border-none shadow-lg px-6 py-2.5 rounded-full hover:scale-105 transition-transform text-xs sm:text-sm">
+            Book Now
           </x-button>
 
           <!-- Mobile Menu Container -->

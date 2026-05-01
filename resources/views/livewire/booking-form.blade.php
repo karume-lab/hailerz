@@ -44,7 +44,7 @@ new class extends Component {
             <span class="h-px w-8 bg-brand-primary"></span>
             <span class="text-xs font-bold text-brand-primary uppercase tracking-widest">Procurement Step {{ $step }} of 2</span>
         </div>
-        <h2 class="text-3xl font-bold text-text-primary font-serif mb-10 tracking-tight">Booking Inquiry</h2>
+        <h2 class="text-3xl font-bold text-text-primary font-serif mb-10 tracking-tight">Book Now</h2>
         
         @if($step === 1)
             <div class="space-y-8">
