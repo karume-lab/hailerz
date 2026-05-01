@@ -30,6 +30,10 @@ class Talent extends Model implements HasMedia
 
     public function getThumbnailUrlAttribute(): string
     {
+        if ($this->hasMedia('primary_image')) {
+            return $this->getFirstMediaUrl('primary_image', 'thumb');
+        }
+
         if (!empty($this->primary_image_url)) {
             return $this->primary_image_url;
         }
@@ -40,6 +44,10 @@ class Talent extends Model implements HasMedia
 
     public function getProfilePhotoUrlAttribute(): string
     {
+        if ($this->hasMedia('primary_image')) {
+            return $this->getFirstMediaUrl('primary_image', 'optimized');
+        }
+
         if (!empty($this->primary_image_url)) {
             return $this->primary_image_url;
         }

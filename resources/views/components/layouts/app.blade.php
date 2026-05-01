@@ -28,6 +28,10 @@
   <meta name="twitter:image" content="{{ $ogImage ?? asset('images/logo.webp') }}">
 
   <!-- Self-hosted fonts loaded via @font-face + font-display:swap in app.css -->
+  <link rel="preload" href="/fonts/inter-latin-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/inter-latin-700.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/outfit-latin-600.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/outfit-latin-700.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="manifest" href="/manifest.json">
 
   @production
@@ -89,7 +93,7 @@
       <div class="flex justify-between items-center h-20">
         <div class="shrink-0 flex items-center">
           <a href="/" class="flex items-center gap-2.5" aria-label="Hailerz Home">
-            <img src="/images/logo.webp" alt="" aria-hidden="true" width="40" height="41"
+            <img src="/images/logo.webp" alt="" aria-hidden="true" width="40" height="41" fetchpriority="high" loading="eager"
               class="h-10 w-auto object-contain rounded-lg" />
             <span
               class="text-2xl font-bold tracking-tight font-serif {{ request()->is('/') ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary' }} transition-colors uppercase tracking-widest hidden lg:block">

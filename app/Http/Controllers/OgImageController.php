@@ -25,7 +25,7 @@ class OgImageController extends Controller
         $cacheKey = "talent_og_v6_{$talent->id}";
 
         // Cache the BASE64 encoded string, NOT the raw binary
-        $base64Image = Cache::remember($cacheKey, 86400, function () use ($talent) {
+        $base64Image = Cache::remember($cacheKey, 604800, function () use ($talent) {
             try {
                 $manager = new ImageManager(new Driver());
 
@@ -112,7 +112,7 @@ class OgImageController extends Controller
 
         return Response::make($imageBytes, 200, [
             'Content-Type'  => 'image/jpeg',
-            'Cache-Control' => 'public, max-age=86400',
+            'Cache-Control' => 'public, max-age=604800, stale-while-revalidate=86400',
         ]);
     }
 }

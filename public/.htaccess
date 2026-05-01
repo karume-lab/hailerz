@@ -9,6 +9,7 @@
     
     # 1. Force HTTPS
     RewriteCond %{HTTPS} off
+    RewriteCond %{HTTP:X-Forwarded-Proto} !https
     RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
     # 2. Handle Authorization Header

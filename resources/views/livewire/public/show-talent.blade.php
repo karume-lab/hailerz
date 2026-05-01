@@ -3,7 +3,7 @@
   <!-- Hero / Primary Showcase -->
   <div class="relative h-[600px] bg-surface-dark overflow-hidden">
     <img src="{{ $talent->profile_photo_url }}" alt="{{ $talent->name }}"
-      fetchpriority="high" decoding="async"
+      fetchpriority="high" decoding="sync" loading="eager"
       class="w-full h-full object-cover grayscale opacity-60 transition-transform duration-1000 scale-105"
       >
 

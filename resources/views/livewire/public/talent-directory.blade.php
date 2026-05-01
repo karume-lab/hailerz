@@ -146,7 +146,7 @@
           <div class="group relative overflow-hidden aspect-3/4 bg-surface-dark">
            <img
              src="{{ $talent->profile_photo_url }}"
-             width="400" height="533" loading="lazy"
+             width="400" height="533" loading="{{ $loop->iteration <= 6 ? 'eager' : 'lazy' }}" fetchpriority="{{ $loop->iteration <= 2 ? 'high' : 'auto' }}" decoding="async"
              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
              alt="{{ $talent->name }}"
            />
