@@ -21,8 +21,8 @@ class OgImageController extends Controller
     {
         $talent = Talent::where('slug', $slug)->firstOrFail();
         
-        // Bump cache key version to v5 to clear out any old WebP data and ensure JPEG serving
-        $cacheKey = "talent_og_v5_{$talent->id}";
+        // Bump cache key version to v6 to clear out any old data and ensure initials fallbacks are generated
+        $cacheKey = "talent_og_v6_{$talent->id}";
 
         // Cache the BASE64 encoded string, NOT the raw binary
         $base64Image = Cache::remember($cacheKey, 86400, function () use ($talent) {
@@ -45,8 +45,20 @@ class OgImageController extends Controller
 
                 // 2. Load or Create Canvas
                 if (!$imageData) {
-                    // Fallback to solid canvas if fetch fails
-                    $image = $manager->createImage(1200, 630)->fill('223757');
+                    // Fallback to initials if the primary fetch fails
+                    $name = str_replace(' ', '+', $talent->name);
+                    $fallbackUrl = "https://ui-avatars.com/api/?name={$name}&background=223757&color=ffffff&size=1200&format=png";
+                    
+                    try {
+                        $fallbackResponse = Http::timeout(5)->get($fallbackUrl);
+                        if ($fallbackResponse->successful()) {
+                            $image = $manager->decode($fallbackResponse->body());
+                        } else {
+                            $image = $manager->createImage(1200, 630)->fill('223757');
+                        }
+                    } catch (\Exception $e) {
+                        $image = $manager->createImage(1200, 630)->fill('223757');
+                    }
                 } else {
                     // Using decode() for v4 compatibility as established in previous fixes
                     $image = $manager->decode($imageData);
