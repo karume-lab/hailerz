@@ -144,7 +144,13 @@
         <div class="bg-surface-light rounded-2xl shadow-sm border border-subtle overflow-hidden group hover:shadow-2xl transition-all duration-500">
          <a href="/talent/{{ $talent->slug }}" wire:navigate class="block">
           <div class="group relative overflow-hidden aspect-3/4 bg-surface-dark">
-           <img src="{{ $talent->profile_photo_url }}" width="400" height="533" loading="lazy" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="{{ $talent->name }}" />
+           <img
+             src="{{ $talent->profile_photo_url }}"
+             width="400" height="533" loading="lazy"
+             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+             alt="{{ $talent->name }}"
+             onerror="this.onerror=null;this.src='https://ui-avatars.com/api/?name={{ urlencode($talent->name) }}&background=223757&color=ffffff&size=400&bold=true&font-size=0.35';"
+           />
            
            <div class="absolute inset-0 bg-linear-to-tr from-brand-primary/80 to-brand-secondary/40 mix-blend-color opacity-80 transition-opacity group-hover:opacity-60"></div>
            <div class="absolute inset-0 bg-linear-to-t from-surface-dark via-surface-dark/60 to-transparent"></div>

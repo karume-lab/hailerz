@@ -3,7 +3,8 @@
   <!-- Hero / Primary Showcase -->
   <div class="relative h-[600px] bg-surface-dark overflow-hidden">
     <img src="{{ $talent->profile_photo_url }}" alt="{{ $talent->name }}"
-      class="w-full h-full object-cover grayscale opacity-60 transition-transform duration-1000 scale-105">
+      class="w-full h-full object-cover grayscale opacity-60 transition-transform duration-1000 scale-105"
+      onerror="this.onerror=null;this.src='https://ui-avatars.com/api/?name={{ urlencode($talent->name) }}&background=223757&color=ffffff&size=1200&bold=true&font-size=0.35';">
 
     <!-- Design Overlays -->
     <div

@@ -11,6 +11,15 @@ use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
+/**
+ * @property int $id
+ * @property string $name
+ * @property string $slug
+ * @property string|null $primary_image_url
+ * @property string|null $bio
+ * @property float|null $starting_price
+ * @property bool $is_featured
+ */
 class Talent extends Model implements HasMedia
 {
     use InteractsWithMedia, HasFactory, SoftDeletes;

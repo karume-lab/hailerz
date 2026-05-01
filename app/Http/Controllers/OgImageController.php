@@ -20,7 +20,9 @@ class OgImageController extends Controller
             return redirect("https://ui-avatars.com/api/?name={$name}&background=223757&color=ffffff&size=1200&format=png&bold=true&font-size=0.35");
         }
 
-        $cacheKey = "talent_og_image_bytes_{$talent->id}";
+        /** @var int $talentId */
+        $talentId = $talent->id;
+        $cacheKey = "talent_og_image_bytes_{$talentId}";
 
         // Cache the raw webp bytes (not the Response object)
         $imageBytes = Cache::remember($cacheKey, 86400, function () use ($talent) {
@@ -28,7 +30,6 @@ class OgImageController extends Controller
         });
 
         if (!$imageBytes) {
-            // Generation failed — redirect to ui-avatars fallback
             $name = urlencode($talent->name);
             return redirect("https://ui-avatars.com/api/?name={$name}&background=223757&color=ffffff&size=1200&format=png&bold=true&font-size=0.35");
         }
@@ -42,58 +43,84 @@ class OgImageController extends Controller
     private function generateOgImage(Talent $talent): ?string
     {
         try {
-            // Lazy-load Intervention Image classes to avoid errors when GD is absent
             $managerClass = \Intervention\Image\ImageManager::class;
             $driverClass  = \Intervention\Image\Drivers\Gd\Driver::class;
-
             $manager = $managerClass::usingDriver($driverClass);
+
+            /** @var int $talentId */
+            $talentId = $talent->id;
 
             // 1. Determine the source image
             $source = $talent->primary_image_url
                 ?: $talent->getFirstMediaUrl('primary_image', 'optimized');
 
-            if (!$source) {
-                // Build initials image via ui-avatars and download it
-                $name   = urlencode($talent->name);
-                $source = "https://ui-avatars.com/api/?name={$name}&background=223757&color=ffffff&size=1200&font-size=0.35&bold=true";
-            }
+            $imageData = null;
 
-            // Fetch the image data (supports both URLs and local paths)
-            if (filter_var($source, FILTER_VALIDATE_URL)) {
-                $response = Http::timeout(15)->get($source);
-                if (!$response->successful()) {
-                    throw new \RuntimeException("Failed to fetch image: HTTP {$response->status()}");
+            // Try to fetch the primary image if it exists
+            if ($source) {
+                try {
+                    if (filter_var($source, FILTER_VALIDATE_URL)) {
+                        $response = Http::timeout(10)->get($source);
+                        if ($response->successful()) {
+                            $imageData = $response->body();
+                        }
+                    } elseif (file_exists($source)) {
+                        $imageData = file_get_contents($source);
+                    }
+                } catch (\Exception $e) {
+                    Log::warning("Failed to fetch primary image for talent {$talentId}, falling back to initials.");
                 }
-                $imageData = $response->body();
-            } else {
-                $imageData = file_get_contents($source);
             }
 
-            $image = $manager->decode($imageData);
+            // 2. Fallback to Initials if no image data
+            if (!$imageData) {
+                $name = urlencode($talent->name);
+                // We use a slightly different background or ensure the logo is visible
+                $fallbackUrl = "https://ui-avatars.com/api/?name={$name}&background=223757&color=ffffff&size=1200&font-size=0.35&bold=true";
+                try {
+                    $response = Http::timeout(10)->get($fallbackUrl);
+                    if ($response->successful()) {
+                        $imageData = $response->body();
+                    }
+                } catch (\Exception $e) {
+                    Log::warning("Failed to fetch initials avatar for talent {$talentId}.");
+                }
+            }
 
-            // 2. Crop / resize to 1200x630 OG dimensions
+            // 3. Create image object
+            if ($imageData) {
+                $image = $manager->decode($imageData);
+            } else {
+                // Absolute last resort: Solid background color
+                $image = $manager->createImage(1200, 630)->fill('223757');
+            }
+
+            // 4. Crop / resize to 1200x630 OG dimensions
             $image->cover(1200, 630);
 
-            // 3. Dark overlay using drawRectangle (fill() doesn't support rgba in v4)
+            // 5. Dark overlay using drawRectangle
             $image->drawRectangle(function ($rect) {
                 $rect->at(0, 0);
                 $rect->size(1200, 630);
-                $rect->background('rgba(0, 0, 0, 0.45)');
+                $rect->background('rgba(0, 0, 0, 0.4)');
             });
 
-            // 4. Hailerz logo (top-left)
+            // 6. Hailerz logo (top-left)
             $logoPath = public_path('images/logo.webp');
             if (file_exists($logoPath)) {
+                // Use decode with the path directly (v4 supports this via FilePathImageDecoder)
                 $logo = $manager->decode($logoPath);
-                $logo->scale(height: 60);
+                $logo->scale(height: 80); // Increased size slightly for better visibility
                 $image->insert($logo, 40, 40, 'top-left');
             }
 
-            // 5. Encode to WebP and return raw bytes
+            // 7. Encode to WebP and return raw bytes
             return $image->encodeUsingMediaType('image/webp')->toString();
 
         } catch (\Throwable $e) {
-            Log::error("OG Image generation failed for talent {$talent->id}: " . $e->getMessage(), [
+            /** @var int $talentId */
+            $talentId = $talent->id;
+            Log::error("OG Image generation failed for talent {$talentId}: " . $e->getMessage(), [
                 'exception' => $e,
             ]);
             return null;
