@@ -14,18 +14,19 @@ class OgImageController extends Controller
 {
     /**
      * Generate and stream the Open Graph image for a talent.
-     * Designed exclusively for remote URLs and robust fallbacks.
+     * Fixed for MySQL 'database' cache driver by using base64 encoding to avoid 
+     * 'Incorrect string value' errors with binary data.
      */
     public function show(string $slug)
     {
         $talent = Talent::where('slug', $slug)->firstOrFail();
         
-        // Cache Key as requested: v3 to distinguish from previous attempts
-        $cacheKey = "talent_og_v3_{$talent->id}";
+        // Bump cache key version to v4 to clear out any corrupted data
+        $cacheKey = "talent_og_v4_{$talent->id}";
 
-        $imageBytes = Cache::remember($cacheKey, 86400, function () use ($talent) {
+        // Cache the BASE64 encoded string, NOT the raw binary
+        $base64Image = Cache::remember($cacheKey, 86400, function () use ($talent) {
             try {
-                // Initialize Manager with GD Driver (standard for v4)
                 $manager = new ImageManager(new Driver());
 
                 // 1. Fetch Remote Image using profile_photo_url accessor
@@ -33,7 +34,7 @@ class OgImageController extends Controller
                 $imageData = null;
 
                 try {
-                    // Fetch remote image with a 10s timeout as requested
+                    // Fetch remote image with a 10s timeout
                     $response = Http::timeout(10)->get($sourceUrl);
                     if ($response->successful()) {
                         $imageData = $response->body();
@@ -47,7 +48,7 @@ class OgImageController extends Controller
                     // Fallback to solid canvas if fetch fails
                     $image = $manager->createImage(1200, 630)->fill('223757');
                 } else {
-                    // In v4.0.2, decode() is the method to load image data
+                    // Using decode() for v4 compatibility as established in previous fixes
                     $image = $manager->decode($imageData);
                 }
 
@@ -66,33 +67,36 @@ class OgImageController extends Controller
                 if (file_exists($logoPath)) {
                     $logo = $manager->decode($logoPath);
                     $logo->scale(height: 80);
-                    // In v4, insert() is the equivalent of v3's place()
+                    // In v4, insert() is used for placing overlays
                     $image->insert($logo, 40, 40, 'top-left');
                 }
 
-                // 6. Encode and Return raw bytes
-                return $image->encodeUsingMediaType('image/webp')->toString();
+                // Return the BASE64 encoded string so MySQL accepts it
+                return base64_encode($image->encodeUsingMediaType('image/webp')->toString());
 
             } catch (\Throwable $e) {
                 Log::error("Critical OG generation failure for talent {$talent->id}: " . $e->getMessage());
                 
-                // Final bulletproof fallback: return a basic solid color canvas
+                // Final bulletproof fallback: return a basic solid color canvas (base64 encoded)
                 try {
                     $manager = new ImageManager(new Driver());
-                    return $manager->createImage(1200, 630)
+                    $fallbackBytes = $manager->createImage(1200, 630)
                         ->fill('223757')
                         ->encodeUsingMediaType('image/webp')
                         ->toString();
+                    return base64_encode($fallbackBytes);
                 } catch (\Exception $finalError) {
                     return null;
                 }
             }
         });
 
-        if (!$imageBytes) {
-            // Absolute last resort
+        if (!$base64Image) {
             return Response::make('', 404);
         }
+
+        // Decode the base64 string back into binary bytes for the browser
+        $imageBytes = base64_decode($base64Image);
 
         return Response::make($imageBytes, 200, [
             'Content-Type'  => 'image/webp',
