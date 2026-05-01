@@ -31,7 +31,7 @@ class TalentTable
                     ->money('usd')
                     ->sortable(),
                 Tables\Columns\SelectColumn::make('status')
-                    ->label('Roster Status')
+                    ->label('Talent Status')
                     ->options([
                         'draft'  => 'Under Review',
                         'active' => 'Active',

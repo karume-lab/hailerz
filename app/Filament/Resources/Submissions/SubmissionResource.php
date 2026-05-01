@@ -26,17 +26,17 @@ class SubmissionResource extends Resource
 
     public static function getNavigationLabel(): string
     {
-        return 'Roster Applications';
+        return 'Talent Applications';
     }
 
     public static function getModelLabel(): string
     {
-        return 'Roster Application';
+        return 'Talent Application';
     }
 
     public static function getPluralModelLabel(): string
     {
-        return 'Roster Applications';
+        return 'Talent Applications';
     }
 
     public static function form(Schema $schema): Schema
@@ -67,7 +67,7 @@ class SubmissionResource extends Resource
                         ->label('Application Status')
                         ->options([
                             'pending'  => 'Pending Review',
-                            'approved' => 'Admitted to Roster',
+                            'approved' => 'Admitted to Talent',
                             'rejected' => 'Declined',
                         ])
                         ->columnSpanFull(),
@@ -122,14 +122,14 @@ class SubmissionResource extends Resource
                         default => 'warning',
                     })
                     ->formatStateUsing(fn (string $state): string => match ($state) {
-                        'approved' => 'Admitted to Roster',
+                        'approved' => 'Admitted to Talent',
                         'rejected' => 'Declined',
                         default => 'Pending Review',
                      }),
             ])
             ->actions([
                 Action::make('approve')
-                    ->label('Admit to Roster')
+                    ->label('Admit to Talent')
                     ->icon('heroicon-o-check')
                     ->color('success')
                     ->requiresConfirmation()
@@ -159,7 +159,7 @@ class SubmissionResource extends Resource
                         }
 
                         Notification::make()
-                            ->title('Act Admitted to Agency Roster')
+                            ->title('Act Admitted to Agency Talent')
                             ->body('A new talent profile has been initialized based on this application.')
                             ->success()
                             ->send();

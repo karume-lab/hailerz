@@ -215,7 +215,7 @@
      @else
       <div class="text-center py-32 bg-surface-light rounded-3xl border border-dashed border-subtle ">
        <h3 class="text-2xl font-bold text-text-primary mb-4 font-serif">No Results Found</h3>
-       <p class="text-text-secondary mb-8">Refine your criteria to explore our alternative roster members.</p>
+       <p class="text-text-secondary mb-8">Refine your criteria to explore our alternative talent members.</p>
        <x-button variant="secondary" wire:click="resetFilters">
         Clear All Filters
        </x-button>

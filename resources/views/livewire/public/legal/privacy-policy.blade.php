@@ -23,7 +23,7 @@
                 <p>We use secure servers and encryption to protect your information. Access to sensitive booking data is restricted to the specific agents who need it to manage your event.</p>
                 
                 <h2 class="text-2xl font-bold text-brand-primary mt-12 mb-6 font-serif">5. Get in touch</h2>
-                <p>If you have questions about your data or want to remove your profile from our roster, just email us at privacy@hailerz.com.</p>
+                <p>If you have questions about your data or want to remove your profile from our talent, just email us at privacy@hailerz.com.</p>
                 
                 <div class="mt-20 pt-10 border-t border-brand-primary/5">
                     <p class="text-xs text-text-muted italic tracking-wide uppercase">Last Updated: {{ date('F d, Y') }}</p>

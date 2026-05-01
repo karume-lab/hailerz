@@ -25,7 +25,7 @@
         <div class="flex items-center gap-3 mb-6">
           <span class="h-px w-12 bg-brand-primary"></span>
           <span
-            class="text-xs font-bold text-brand-primary uppercase tracking-widest">{{ $talent->category?->name ?? 'Premier Roster' }}</span>
+            class="text-xs font-bold text-brand-primary uppercase tracking-widest">{{ $talent->category?->name ?? 'Premier Talent' }}</span>
         </div>
         <h1 class="text-5xl md:text-8xl font-bold text-text-inverse tracking-tight font-serif">{{ $talent->name }}</h1>
       </div>
@@ -247,7 +247,7 @@
               </div>
               <div>
                 <p class="text-[10px] font-bold text-text-muted uppercase tracking-widest mb-1">Base Location</p>
-                <p class="text-text-primary font-semibold">{{ $talent->location ?? 'International Roster' }}</p>
+                <p class="text-text-primary font-semibold">{{ $talent->location ?? 'International Talent' }}</p>
               </div>
             </div>
             <div class="flex items-start gap-5">

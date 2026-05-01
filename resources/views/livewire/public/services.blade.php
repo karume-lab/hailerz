@@ -22,7 +22,7 @@
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
    <div class="text-center max-w-3xl mx-auto mb-24">
     <h2 class="text-3xl md:text-5xl font-bold text-text-primary mb-6 font-serif">The artists we represent</h2>
-    <p class="text-text-secondary text-lg">Every performer on our roster is personally vetted for their professionalism and performance quality.</p>
+    <p class="text-text-secondary text-lg">Every performer on our talent is personally vetted for their professionalism and performance quality.</p>
    </div>
 
    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">

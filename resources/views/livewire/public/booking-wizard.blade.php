@@ -68,7 +68,7 @@
            @click="open = !open"
            class="flex items-center justify-between w-full px-6 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary focus:border-transparent outline-none text-text-primary font-medium transition-all text-left"
           >
-           <span>{{ $this->selectedTalent ? $this->selectedTalent->name : '-- Select from Roster --' }}</span>
+           <span>{{ $this->selectedTalent ? $this->selectedTalent->name : '-- Select from Talent --' }}</span>
            <svg class="w-5 h-5 text-text-muted transition-transform" :class="open ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
            </svg>

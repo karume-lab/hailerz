@@ -11,7 +11,7 @@ use Livewire\Attributes\Layout;
 use Livewire\Attributes\Url;
 
 #[Layout('components.layouts.app')]
-#[Title('Hailerz | Roster Directory')]
+#[Title('Hailerz | Talent Directory')]
 class TalentDirectory extends Component
 {
     use WithPagination;

@@ -110,7 +110,7 @@
                     $services = [
                         [
                             'title' => 'Artist Selection',
-                            'desc' => 'Browse our roster of vetted musicians and speakers. We\'ll help you find someone who actually fits your audience.',
+                            'desc' => 'Browse our talent of vetted musicians and speakers. We\'ll help you find someone who actually fits your audience.',
                             'icon' => 'M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10'
                         ],
                         [
@@ -153,7 +153,7 @@
                         on our list has been personally vetted.</p>
                 </div>
                 <x-button variant="secondary" href="/talent" wire:navigate>
-                    View Full Roster
+                    View Full Talent
                 </x-button>
             </div>
 

@@ -100,7 +100,7 @@
         <nav class="hidden md:flex items-center space-x-10">
           <a href="/talent" wire:navigate
             class="text-xs font-bold {{ request()->is('talent*') ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary' }} transition-colors uppercase tracking-widest">The
-            Roster</a>
+            Talent</a>
           <a href="/services" wire:navigate
             class="text-xs font-bold {{ request()->is('services*') ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary' }} transition-colors uppercase tracking-widest">Services</a>
           <a href="/staffing" wire:navigate

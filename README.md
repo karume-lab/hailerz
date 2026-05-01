@@ -58,7 +58,7 @@ Access the admin panel at `/admin`. The panel is protected by Filament's built-i
 |---|---|
 | Talent | Full CRUD for artist profiles, including headshots, PDF riders, dynamic pricing, genre tags, video URL, and featured status |
 | Inquiries | Booking pipeline to track event requests from initial lead through to confirmed |
-| Submissions | Review portal for prospective artists applying to join the agency roster |
+| Submissions | Review portal for prospective artists applying to join the agency talent |
 | Posts | Editorial CMS for news articles and blog content |
 | Contents | Lightweight resource manager for downloadable industry guides and assets |
 | Email Templates | Template builder for outbound transactional and campaign emails sent from the admin panel |
@@ -72,14 +72,14 @@ All public routes are server-side rendered by Livewire for SEO compatibility. No
 | Route | Component | Description |
 |---|---|---|
 | `/` | `Home` | Landing page |
-| `/talent` | `TalentDirectory` | Reactive roster grid with category filtering |
+| `/talent` | `TalentDirectory` | Reactive talent grid with category filtering |
 | `/talent/{slug}` | `ShowTalent` | Individual artist profile page |
 | `/book` | `BookingWizard` | Multi-step event inquiry form |
 | `/book/confirm` | `BookingConfirmation` | Booking confirmation page |
 | `/about` | `About` | About page |
 | `/services` | `Services` | Services overview page |
 | `/contact` | `Contact` | Contact form |
-| `/join` | `JoinRoster` | Artist application portal |
+| `/join` | `JoinTalent` | Artist application portal |
 | `/news` | `PostList` | News and editorial listing |
 | `/news/{slug}` | `ShowPost` | Individual article view |
 | `/legal/terms` | `TermsOfService` | Terms of service |

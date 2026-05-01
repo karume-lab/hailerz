@@ -23,7 +23,7 @@
     <div class="max-w-md w-full text-center relative z-10">
         <h1 class="text-4xl font-bold mb-4 tracking-tight text-brand-secondary">Under Maintenance</h1>
         <p class="text-text-inverse/70 text-lg leading-relaxed mb-8">
-            We're currently performing some scheduled maintenance to improve our digital roster experience. We'll be back shortly!
+            We're currently performing some scheduled maintenance to improve our digital talent experience. We'll be back shortly!
         </p>
         <div class="text-text-inverse/50 text-sm font-semibold tracking-widest uppercase">
             &copy; {{ date('Y') }} Hailerz Agency.

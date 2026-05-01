@@ -224,8 +224,8 @@ class DatabaseSeeder extends Seeder
         EmailTemplate::updateOrCreate(
             ['name' => 'Application Received'],
             [
-                'subject' => 'Application for Roster Representation: {{artist_name}}',
-                'body' => '<p>Thank you for your interest in joining the Hailerz roster.</p><p>Our A&R and talent procurement team is currently reviewing your professional profile and performance assets. Due to the high volume of applications from world-class performers, we only reach out to candidates who align with our current corporate and luxury event requirements.</p><p>A senior agent will contact you within 5-7 business days if there is a potential fit for representation.</p><p>Regards,<br>Hailerz Talent Management</p>'
+                'subject' => 'Application for Talent Representation: {{artist_name}}',
+                'body' => '<p>Thank you for your interest in joining the Hailerz talent.</p><p>Our A&R and talent procurement team is currently reviewing your professional profile and performance assets. Due to the high volume of applications from world-class performers, we only reach out to candidates who align with our current corporate and luxury event requirements.</p><p>A senior agent will contact you within 5-7 business days if there is a potential fit for representation.</p><p>Regards,<br>Hailerz Talent Management</p>'
             ]
         );
 

@@ -37,7 +37,7 @@ new class extends Component {
             </div>
             <h2 class="text-3xl font-bold text-text-primary font-serif mb-4 tracking-tight">Inquiry Submitted</h2>
             <p class="text-text-secondary leading-relaxed font-light mb-8">Our procurement agents have received your specifications and will contact you shortly to discuss the engagement.</p>
-            <x-button variant="secondary" href="/talent">Back to Roster</x-button>
+            <x-button variant="secondary" href="/talent">Back to Talent</x-button>
         </div>
     @else
         <div class="flex items-center gap-3 mb-4">

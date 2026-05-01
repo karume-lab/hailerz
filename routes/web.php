@@ -6,7 +6,7 @@ use App\Livewire\Public\ShowTalent;
 use App\Livewire\Public\BookingWizard;
 use App\Livewire\Public\About;
 use App\Livewire\Public\Services;
-use App\Livewire\Public\JoinRoster;
+use App\Livewire\Public\JoinTalent;
 use App\Livewire\BookingConfirmation;
 use App\Livewire\PostList;
 use App\Livewire\ShowPost;
@@ -29,7 +29,7 @@ Route::get('/about', About::class)->name('about');
 Route::get('/services', Services::class)->name('services');
 Route::get('/staffing', \App\Livewire\Public\Staffing::class)->name('staffing');
 Route::get('/contact', \App\Livewire\Public\Contact::class)->name('contact');
-Route::get('/join', JoinRoster::class)->name('join');
+Route::get('/join', JoinTalent::class)->name('join');
 
 // Legal
 Route::get('/legal/terms', TermsOfService::class)->name('legal.terms');

@@ -102,7 +102,7 @@
                         Experienced People. <span class="text-brand-primary italic">Zero</span> Drama.
                     </h2>
                     <p class="text-xl text-text-secondary leading-relaxed font-light">
-                        We don't just send hands; we send experts. We personally interview every specialist on our roster to ensure they're professional, capable, and discreet.
+                        We don't just send hands; we send experts. We personally interview every specialist on our talent to ensure they're professional, capable, and discreet.
                     </p>
                     <div class="grid grid-cols-2 gap-8 pt-6">
                         <div>

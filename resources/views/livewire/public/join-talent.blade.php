@@ -223,7 +223,7 @@
        </x-button>
       @else
        <x-button variant="navy" size="lg" type="submit">
-        Submit Roster Application
+        Submit Talent Application
        </x-button>
       @endif
      </div>

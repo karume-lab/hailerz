@@ -9,8 +9,8 @@ use Livewire\Attributes\Layout;
 use Livewire\Attributes\Validate;
 
 #[Layout('components.layouts.app')]
-#[Title('Join Our Roster | Hailerz')]
-class JoinRoster extends Component
+#[Title('Join Our Talent | Hailerz')]
+class JoinTalent extends Component
 {
     public int $currentStep = 1;
     public bool $isSubmitted = false;
@@ -152,6 +152,6 @@ class JoinRoster extends Component
 
     public function render()
     {
-        return view('livewire.public.join-roster');
+        return view('livewire.public.join-talent');
     }
 }

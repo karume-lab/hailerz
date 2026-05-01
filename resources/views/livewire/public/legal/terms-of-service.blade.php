@@ -8,10 +8,10 @@
             <h1 class="text-4xl font-bold text-brand-primary mb-12 font-serif">Terms of Service</h1>
             
             <div class="prose prose-lg max-w-none text-text-secondary font-light leading-relaxed">
-                <p class="mb-10">Welcome to Hailerz. By using our site and browsing our roster, you're agreeing to these terms. They're here to keep things clear and professional for everyone involved.</p>
+                <p class="mb-10">Welcome to Hailerz. By using our site and browsing our talent, you're agreeing to these terms. They're here to keep things clear and professional for everyone involved.</p>
                 
                 <h2 class="text-2xl font-bold text-brand-primary mt-12 mb-6 font-serif">1. What we do</h2>
-                <p>We're a booking agency. Our job is to introduce you to the right artists, manage the negotiations, and handle the contracts. While we personally interview and vet everyone on our roster, the artist is ultimately responsible for their performance on the day of the event.</p>
+                <p>We're a booking agency. Our job is to introduce you to the right artists, manage the negotiations, and handle the contracts. While we personally interview and vet everyone on our talent, the artist is ultimately responsible for their performance on the day of the event.</p>
                 
                 <h2 class="text-2xl font-bold text-brand-primary mt-12 mb-6 font-serif">2. Your account</h2>
                 <p>Whether you're booking talent or you're an artist yourself, please keep your information accurate and up to date. We reserve the right to close accounts that don't meet our standards of professional conduct.</p>
