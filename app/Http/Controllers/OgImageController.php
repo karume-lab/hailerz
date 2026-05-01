@@ -21,8 +21,8 @@ class OgImageController extends Controller
     {
         $talent = Talent::where('slug', $slug)->firstOrFail();
         
-        // Bump cache key version to v4 to clear out any corrupted data
-        $cacheKey = "talent_og_v4_{$talent->id}";
+        // Bump cache key version to v5 to clear out any old WebP data and ensure JPEG serving
+        $cacheKey = "talent_og_v5_{$talent->id}";
 
         // Cache the BASE64 encoded string, NOT the raw binary
         $base64Image = Cache::remember($cacheKey, 86400, function () use ($talent) {
@@ -71,18 +71,18 @@ class OgImageController extends Controller
                     $image->insert($logo, 40, 40, 'top-left');
                 }
 
-                // Return the BASE64 encoded string so MySQL accepts it
-                return base64_encode($image->encodeUsingMediaType('image/webp')->toString());
+                // Return the BASE64 encoded string (JPEG) so MySQL accepts it
+                return base64_encode($image->encodeUsingMediaType('image/jpeg')->toString());
 
             } catch (\Throwable $e) {
                 Log::error("Critical OG generation failure for talent {$talent->id}: " . $e->getMessage());
                 
-                // Final bulletproof fallback: return a basic solid color canvas (base64 encoded)
+                // Final bulletproof fallback: return a basic solid color canvas (base64 encoded JPEG)
                 try {
                     $manager = new ImageManager(new Driver());
                     $fallbackBytes = $manager->createImage(1200, 630)
                         ->fill('223757')
-                        ->encodeUsingMediaType('image/webp')
+                        ->encodeUsingMediaType('image/jpeg')
                         ->toString();
                     return base64_encode($fallbackBytes);
                 } catch (\Exception $finalError) {
@@ -99,7 +99,7 @@ class OgImageController extends Controller
         $imageBytes = base64_decode($base64Image);
 
         return Response::make($imageBytes, 200, [
-            'Content-Type'  => 'image/webp',
+            'Content-Type'  => 'image/jpeg',
             'Cache-Control' => 'public, max-age=86400',
         ]);
     }
