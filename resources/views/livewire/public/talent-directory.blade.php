@@ -6,7 +6,7 @@
     <span class="h-px w-12 bg-brand-primary"></span>
     <span class="text-xs font-bold text-brand-primary uppercase tracking-widest">Global Talent Network</span>
    </div>
-   <h1 class="text-4xl md:text-6xl font-bold text-text-primary tracking-tight font-serif">Talent</h1>
+   <h1 class="text-4xl md:text-6xl font-bold text-text-primary tracking-tight font-serif"><span class="text-brand-secondary">Talent</span></h1>
    <p class="mt-4 text-lg text-text-secondary max-w-2xl">Discover and secure world-class performers, keynote speakers, and specialty acts for your next high-profile event.</p>
   </div>
 

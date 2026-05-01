@@ -7,7 +7,7 @@
     <span class="text-xs font-bold text-brand-primary uppercase tracking-widest">Agency Solutions</span>
     <span class="h-px w-12 bg-brand-primary"></span>
    </div>
-   <h1 class="text-5xl md:text-8xl font-bold text-text-inverse tracking-tight mb-8 font-serif leading-tight">How we help you <span class="text-white">book</span> talent</h1>
+   <h1 class="text-5xl md:text-8xl font-bold text-text-inverse tracking-tight mb-8 font-serif leading-tight">How we help you <span class="text-brand-secondary">book</span> talent</h1>
    <p class="text-xl md:text-2xl text-text-muted max-w-3xl mx-auto leading-relaxed font-light">
     We provide reliable booking services for weddings, birthday parties, and premium private events. From finding the act to signing the contract, we manage the heavy lifting.
    </p>
@@ -21,7 +21,7 @@
  <section class="py-32 bg-surface-muted">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
    <div class="text-center max-w-3xl mx-auto mb-24">
-    <h2 class="text-3xl md:text-5xl font-bold text-text-primary mb-6 font-serif">The artists we represent</h2>
+    <h2 class="text-3xl md:text-5xl font-bold text-text-primary mb-6 font-serif">The <span class="text-brand-secondary">artists</span> we represent</h2>
     <p class="text-text-secondary text-lg">Every performer on our talent is personally vetted for their professionalism and performance quality.</p>
    </div>
 
@@ -72,7 +72,7 @@
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
    <div class="lg:grid lg:grid-cols-2 lg:gap-24 items-center">
     <div>
-     <h2 class="text-3xl md:text-6xl font-bold text-text-inverse mb-8 font-serif leading-tight">We handle the logistics</h2>
+     <h2 class="text-3xl md:text-6xl font-bold text-text-inverse mb-8 font-serif leading-tight">We handle the <span class="text-brand-secondary">logistics</span></h2>
      <p class="text-xl text-text-muted mb-12 leading-relaxed font-light">We take care of the paperwork and technical details so you can focus on running your event.</p>
      
      <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
@@ -104,7 +104,7 @@
  <section class="py-32 bg-surface-light border-b border-brand-primary/5">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
    <div class="text-center max-w-3xl mx-auto mb-24">
-    <h2 class="text-3xl md:text-5xl font-bold text-text-primary mb-6 font-serif">How it works</h2>
+    <h2 class="text-3xl md:text-5xl font-bold text-text-primary mb-6 font-serif"><span class="text-brand-secondary">How</span> it works</h2>
     <p class="text-text-secondary text-lg">A simple, three-step process to get an artist on your stage.</p>
 
     <div class="mt-12 aspect-video max-w-4xl mx-auto rounded-[2.5rem] overflow-hidden shadow-2xl border border-subtle bg-surface-dark">
@@ -141,7 +141,7 @@
  <!-- Final CTA -->
  <section class="py-32 bg-surface-muted text-center">
   <div class="max-w-4xl mx-auto px-4">
-   <h2 class="text-3xl md:text-6xl font-bold text-text-primary mb-8 font-serif leading-tight">Ready to find your headliner?</h2>
+   <h2 class="text-3xl md:text-6xl font-bold text-text-primary mb-8 font-serif leading-tight">Ready to find your <span class="text-brand-secondary">headliner</span>?</h2>
    <p class="text-xl text-text-secondary mb-12 max-w-2xl mx-auto font-light leading-relaxed">
     Talk to one of our agents. We'll give you honest advice and handle the entire booking process from start to finish.
    </p>

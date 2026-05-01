@@ -8,7 +8,7 @@
                 <span class="h-px w-12 bg-brand-primary"></span>
             </div>
             <h1 class="text-5xl md:text-8xl font-bold text-text-inverse tracking-tight mb-8 font-serif leading-tight">
-                Professional <span class="text-white">support</span> for your production
+                Professional <span class="text-brand-secondary">support</span> for your production
             </h1>
             <p class="text-xl md:text-2xl text-text-muted max-w-3xl mx-auto leading-relaxed font-light">
                 Add experienced specialists to your production team. We provide the technical leads and professional support you need to run a high-end event.
@@ -30,7 +30,7 @@
     <section class="py-32 bg-surface-muted">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-24">
-                <h2 class="text-3xl md:text-5xl font-bold text-text-primary mb-6 font-serif tracking-tight">Specialists on call</h2>
+                <h2 class="text-3xl md:text-5xl font-bold text-text-primary mb-6 font-serif tracking-tight">Specialists on <span class="text-brand-secondary">call</span></h2>
                 <p class="text-text-secondary text-lg">Whether you need a lead technician or a full crew, we provide professionals who know how to work a high-stakes event.</p>
             </div>
 
@@ -99,7 +99,7 @@
                     </div>
                     <h2
                         class="text-4xl md:text-6xl font-bold text-text-primary font-serif tracking-tight leading-tight">
-                        Experienced People. <span class="text-brand-primary italic">Zero</span> Drama.
+                        Experienced People. <span class="text-brand-secondary italic">Zero</span> Drama.
                     </h2>
                     <p class="text-xl text-text-secondary leading-relaxed font-light">
                         We don't just send hands; we send experts. We personally interview every specialist on our talent to ensure they're professional, capable, and discreet.
@@ -148,7 +148,7 @@
     <section class="py-32 bg-surface-dark relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center max-w-3xl mx-auto mb-24">
-                <h2 class="text-3xl md:text-5xl font-bold text-text-inverse mb-6 font-serif tracking-tight">Why work with us</h2>
+                <h2 class="text-3xl md:text-5xl font-bold text-text-inverse mb-6 font-serif tracking-tight">Why work with <span class="text-brand-secondary">us</span></h2>
                 <p class="text-text-muted text-lg">We're not a temp agency. We're a partner in your event's success.</p>
             </div>
 
@@ -201,7 +201,7 @@
     <section class="py-40 bg-surface-muted text-center relative overflow-hidden">
         <div class="max-w-4xl mx-auto px-4 relative z-10">
             <h2 class="text-4xl md:text-7xl font-bold text-text-primary mb-8 font-serif tracking-tight leading-tight">
-                Build a better <span class="text-brand-primary italic">team</span>.</h2>
+                Build a better <span class="text-brand-secondary italic">team</span>.</h2>
             <p class="text-xl md:text-2xl text-text-secondary mb-12 font-light leading-relaxed">
                 See the difference that experienced professionals make. Let us help you staff your next event.
             </p>

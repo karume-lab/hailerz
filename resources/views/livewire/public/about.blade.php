@@ -31,7 +31,7 @@
       <span class="h-px w-8 bg-brand-primary"></span>
       <span class="text-xs font-bold text-brand-primary uppercase tracking-widest">Our Legacy</span>
     </div>
-    <h2 class="text-4xl md:text-6xl font-bold text-text-primary tracking-tight mb-12 font-serif">Why we started</h2>
+    <h2 class="text-4xl md:text-6xl font-bold text-text-primary tracking-tight mb-12 font-serif">Why we <span class="text-brand-secondary">started</span></h2>
     <div class="space-y-10 text-xl text-text-secondary leading-relaxed font-light">
       <p>
         Hailerz was founded on a simple idea: booking high-end talent should be easier. We saw too many planners struggling to get clear answers from artists, so we built an agency that prioritizes speed, clear pricing, and reliable service.
@@ -49,7 +49,7 @@
   <div class="bg-surface-light py-32 border-y border-subtle ">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center max-w-3xl mx-auto mb-20">
-        <h2 class="text-3xl md:text-5xl font-bold text-text-primary tracking-tight mb-6 font-serif">What we stand for</h2>
+        <h2 class="text-3xl md:text-5xl font-bold text-text-primary tracking-tight mb-6 font-serif">What we <span class="text-brand-secondary">stand for</span></h2>
         <p class="text-lg text-text-secondary">Our core values define how we work with both artists and clients.</p>
       </div>
 
@@ -80,7 +80,7 @@
   <div class="bg-surface-muted py-32">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center max-w-3xl mx-auto mb-20">
-        <h2 class="text-3xl md:text-5xl font-bold text-text-primary tracking-tight mb-6 font-serif">The Agents</h2>
+        <h2 class="text-3xl md:text-5xl font-bold text-text-primary tracking-tight mb-6 font-serif">The <span class="text-brand-secondary">Agents</span></h2>
         <p class="text-lg text-text-secondary">Meet the specialists dedicated to your event's success.</p>
       </div>
 

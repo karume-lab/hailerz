@@ -7,7 +7,7 @@
       <span class="h-px w-8 bg-brand-primary"></span>
       <span class="text-xs font-bold text-brand-primary uppercase tracking-widest">Connect</span>
      </div>
-     <h2 class="text-4xl font-bold tracking-tight text-text-primary font-serif">Get in Touch</h2>
+     <h2 class="text-4xl font-bold tracking-tight text-text-primary font-serif">Get in <span class="text-brand-secondary">Touch</span></h2>
      <p class="mt-6 text-lg leading-relaxed text-text-secondary font-light">
       Whether you're looking to secure talent for an upcoming event or discuss agency representation, our team of dedicated agents is here to assist.
      </p>
@@ -30,7 +30,7 @@
 
    <div class="pt-16 lg:grid lg:grid-cols-3 lg:gap-12 border-t border-subtle ">
     <div>
-     <h2 class="text-2xl font-bold tracking-tight text-text-primary font-serif mb-4">Agency Correspondence</h2>
+     <h2 class="text-2xl font-bold tracking-tight text-text-primary font-serif mb-4">Agency <span class="text-brand-secondary">Correspondence</span></h2>
      <p class="text-sm text-text-secondary font-light leading-relaxed">
       Complete the form below for general inquiries. For specific talent requests, we recommend using our <a href="/book" class="text-brand-primary font-bold hover:underline">Booking Wizard</a> for expedited processing.
      </p>

@@ -90,8 +90,7 @@
     <section class="py-32 bg-surface-muted">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-20">
-                <h2 class="text-3xl md:text-5xl font-bold text-text-primary mb-6 font-serif">We handle the entire
-                    booking process</h2>
+                <h2 class="text-3xl md:text-5xl font-bold text-text-primary mb-6 font-serif">We handle the entire <span class="text-brand-secondary">booking</span> process</h2>
                 <p class="text-lg text-text-secondary">From first inquiry to the final performance, we manage every
                     detail so you don't have to.</p>
 
@@ -148,7 +147,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
                 <div class="max-w-2xl">
-                    <h2 class="text-3xl md:text-5xl font-bold text-text-primary mb-6 font-serif">Browse our artists</h2>
+                    <h2 class="text-3xl md:text-5xl font-bold text-text-primary mb-6 font-serif">Browse our <span class="text-brand-secondary">artists</span></h2>
                     <p class="text-lg text-text-secondary">Find the right act for your wedding or private celebration. Every artist
                         on our list has been personally vetted.</p>
                 </div>
@@ -209,7 +208,7 @@
             <div class="lg:grid lg:grid-cols-2 lg:gap-24 items-center">
                 <div>
                     <h2 class="text-3xl md:text-6xl font-bold text-text-inverse mb-8 font-serif leading-tight">Let's
-                        talk about your event</h2>
+                        talk about your <span class="text-brand-secondary">event</span></h2>
                     <p class="text-xl text-text-inverse/80 mb-12 leading-relaxed">
                         Talk to a real agent about your plans. We'll give you honest recommendations and handle the
                         details.
@@ -303,7 +302,7 @@
                                 @error('contactMessage') <span class="text-red-500 text-xs mt-1">{{ $message }}</span>
                                 @enderror
                             </div>
-                            <x-button type="submit" class="w-full shadow-lg shadow-brand-primary/20" size="lg">
+                            <x-button type="submit" class="w-full shadow-lg shadow-brand-primary/20" size="lg" variant="secondary">
                                 Send Message
                             </x-button>
                         </form>

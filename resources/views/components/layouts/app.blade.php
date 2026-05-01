@@ -204,9 +204,9 @@
         </div>
 
         <div>
-          <h3 class="text-xs font-bold text-brand-primary uppercase tracking-widest mb-6">Secure the Act</h3>
+          <h3 class="text-xs font-bold text-brand-primary uppercase tracking-widest mb-6">Secure Talent</h3>
           <p class="text-sm text-text-secondary mb-6">Ready to elevate your next event with premium talent?</p>
-          <x-button variant="navy" size="sm" class="w-full border border-subtle" href="/book" wire:navigate>
+          <x-button variant="secondary" size="sm" class="w-full " href="/book" wire:navigate>
             Start Inquiry
           </x-button>
         </div>
