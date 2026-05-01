@@ -106,6 +106,18 @@
    <div class="text-center max-w-3xl mx-auto mb-24">
     <h2 class="text-3xl md:text-5xl font-bold text-text-primary mb-6 font-serif">How it works</h2>
     <p class="text-text-secondary text-lg">A simple, three-step process to get an artist on your stage.</p>
+
+    <div class="mt-12 aspect-video max-w-4xl mx-auto rounded-[2.5rem] overflow-hidden shadow-2xl border border-subtle bg-surface-dark">
+        <iframe 
+            class="w-full h-full"
+            src="https://www.youtube.com/embed/LLdr6BqljEw" 
+            title="How it Works" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            referrerpolicy="strict-origin-when-cross-origin" 
+            allowfullscreen>
+        </iframe>
+    </div>
    </div>
 
    <div class="grid grid-cols-1 md:grid-cols-3 gap-16">

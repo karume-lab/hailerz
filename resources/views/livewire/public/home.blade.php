@@ -91,6 +91,18 @@
                     booking process</h2>
                 <p class="text-lg text-text-secondary">From first inquiry to the final performance, we manage every
                     detail so you don't have to.</p>
+
+                <div class="mt-12 aspect-video max-w-4xl mx-auto rounded-3xl overflow-hidden shadow-2xl border border-subtle bg-surface-dark">
+                    <iframe 
+                        class="w-full h-full"
+                        src="https://www.youtube.com/embed/LLdr6BqljEw" 
+                        title="How it Works" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        referrerpolicy="strict-origin-when-cross-origin" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
