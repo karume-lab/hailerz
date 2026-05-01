@@ -14,7 +14,8 @@ use Livewire\Attributes\Validate;
 class BookingWizard extends Component
 {
     public int $currentStep = 1;
-    public $talents;
+    public string $search = '';
+    public int $perPage = 10;
     public ?int $preselectedTalentId = null;
 
     // Step 1: Event Details
@@ -54,11 +55,56 @@ class BookingWizard extends Component
 
     public function mount()
     {
-        $this->talents = Talent::where('status', 'active')->orderBy('name')->get();
         if (request()->has('talent')) {
             $this->preselectedTalentId = request('talent');
             $this->talent_id = $this->preselectedTalentId;
         }
+    }
+
+    public function updatedSearch()
+    {
+        $this->perPage = 10;
+    }
+
+    public function loadMore()
+    {
+        $this->perPage += 10;
+    }
+
+    public function getTalentsProperty()
+    {
+        return Talent::with('category')
+            ->where('status', 'active')
+            ->when($this->search, function($query) {
+                $query->where('name', 'like', '%' . $this->search . '%');
+            })
+            ->orderBy('name')
+            ->limit($this->perPage)
+            ->get()
+            ->map(function($t) {
+                return [
+                    'id' => $t->id,
+                    'name' => $t->name,
+                    'thumbnail_url' => $t->thumbnail_url,
+                    'category' => $t->category ? ['name' => $t->category->name] : null,
+                ];
+            });
+    }
+
+    public function getHasMoreProperty()
+    {
+        $total = Talent::where('status', 'active')
+            ->when($this->search, function($query) {
+                $query->where('name', 'like', '%' . $this->search . '%');
+            })
+            ->count();
+
+        return $total > $this->perPage;
+    }
+
+    public function getSelectedTalentProperty()
+    {
+        return $this->talent_id ? Talent::with('category')->find($this->talent_id) : null;
     }
 
     public function nextStep()

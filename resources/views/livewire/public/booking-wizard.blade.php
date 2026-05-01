@@ -47,18 +47,139 @@
       <h3 class="text-2xl font-bold text-text-primary font-serif">Event details</h3>
       
       <div class="grid grid-cols-1 gap-8">
-       <div>
-        <label for="talent_id" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Requested Talent / Act</label>
-        <select id="talent_id" wire:model="talent_id" class="block w-full px-6 py-4 bg-surface-muted border border-subtle placeholder-text-muted rounded-xl focus:ring-2 focus:ring-brand-primary focus:border-transparent outline-none text-text-primary font-medium transition-all appearance-none">
-         <option value="">-- Select from Roster --</option>
-         @foreach($talents as $t)
-          <option value="{{ $t->id }}">{{ $t->name }}</option>
-         @endforeach
-        </select>
-        @error('talent_id') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
-       </div>
+        <div class="relative">
+         <label for="talent_id" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Requested Talent / Act</label>
+         
+         <div 
+          x-data="{ 
+           open: false, 
+           selectedId: @entangle('talent_id').live,
+           selectTalent(id) {
+            this.selectedId = id;
+            this.open = false;
+           }
+          }" 
+          class="relative"
+          @click.away="open = false"
+         >
+          <!-- Trigger -->
+          <button 
+           type="button"
+           @click="open = !open"
+           class="flex items-center justify-between w-full px-6 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary focus:border-transparent outline-none text-text-primary font-medium transition-all text-left"
+          >
+           <span>{{ $this->selectedTalent ? $this->selectedTalent->name : '-- Select from Roster --' }}</span>
+           <svg class="w-5 h-5 text-text-muted transition-transform" :class="open ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+           </svg>
+          </button>
 
-       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <!-- Dropdown Content -->
+          <div 
+           x-show="open"
+           x-cloak
+           x-transition:enter="transition ease-out duration-200"
+           x-transition:enter-start="opacity-0 translate-y-1"
+           x-transition:enter-end="opacity-100 translate-y-0"
+           class="absolute z-50 w-full mt-2 bg-surface-light border border-subtle rounded-2xl shadow-2xl overflow-hidden"
+          >
+           <!-- Search Input -->
+           <div class="p-4 border-b border-subtle">
+            <input 
+             wire:model.live.debounce.300ms="search"
+             type="text" 
+             placeholder="Search talent..." 
+             class="w-full px-4 py-2 bg-surface-muted border border-subtle rounded-lg focus:ring-2 focus:ring-brand-primary focus:border-transparent outline-none text-sm"
+             @keydown.escape="open = false"
+            >
+           </div>
+
+           <!-- Options -->
+           <div class="max-h-80 overflow-y-auto">
+            @foreach($this->talents as $talent)
+             <div 
+              wire:key="talent-{{ $talent['id'] }}"
+              @click="selectTalent({{ $talent['id'] }})"
+              class="flex items-center gap-4 px-6 py-4 cursor-pointer hover:bg-brand-primary/5 transition-colors border-b border-subtle/50 last:border-0"
+              :class="selectedId == {{ $talent['id'] }} ? 'bg-brand-primary/10' : ''"
+             >
+              <div class="w-12 h-12 rounded-lg overflow-hidden bg-brand-primary/5 shrink-0 flex items-center justify-center">
+               @if($talent['thumbnail_url'])
+                <img src="{{ $talent['thumbnail_url'] }}" alt="{{ $talent['name'] }}" class="w-full h-full object-cover">
+               @else
+                <span class="text-brand-primary font-bold">{{ substr($talent['name'], 0, 1) }}</span>
+               @endif
+              </div>
+              <div>
+               <div class="font-bold text-text-primary">{{ $talent['name'] }}</div>
+               <div class="text-xs text-text-muted">{{ $talent['category']['name'] ?? 'Talent' }}</div>
+              </div>
+             </div>
+            @endforeach
+            
+            @if($this->hasMore)
+             <div 
+              x-data="{
+               observe() {
+                let observer = new IntersectionObserver((entries) => {
+                 entries.forEach(entry => {
+                  if (entry.isIntersecting) {
+                   @this.loadMore()
+                  }
+                 })
+                }, { threshold: 0.1 })
+                observer.observe($el)
+               }
+              }"
+              x-init="observe()"
+              class="px-6 py-4 text-center"
+             >
+              <div class="flex items-center justify-center gap-2 text-text-muted text-xs">
+               <svg class="animate-spin h-4 w-4" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path></svg>
+               Loading more...
+              </div>
+             </div>
+            @endif
+
+            @if(count($this->talents) === 0)
+             <div class="px-6 py-8 text-center text-text-muted">
+              No talent found matching "{{ $search }}"
+             </div>
+            @endif
+           </div>
+          </div>
+         </div>
+
+         @if($this->selectedTalent)
+          <div class="mt-8 p-6 bg-brand-primary/5 rounded-2xl border border-brand-primary/20 flex items-center gap-6 animate-fadeIn">
+           <div class="w-24 h-24 rounded-xl overflow-hidden shadow-lg shrink-0">
+            @if($this->selectedTalent->thumbnail_url)
+             <img src="{{ $this->selectedTalent->thumbnail_url }}" alt="{{ $this->selectedTalent->name }}" class="w-full h-full object-cover">
+            @else
+             <span class="text-3xl font-bold text-brand-primary font-serif">{{ substr($this->selectedTalent->name, 0, 1) }}</span>
+            @endif
+           </div>
+           <div class="flex-1">
+            <div class="text-xs font-bold text-brand-primary uppercase tracking-widest mb-1">{{ $this->selectedTalent->category->name ?? 'Talent' }}</div>
+            <h4 class="text-xl font-bold text-text-primary font-serif">{{ $this->selectedTalent->name }}</h4>
+            <div class="flex items-center gap-4 mt-2">
+             <span class="text-sm text-text-secondary">Starting from <strong class="text-text-primary">${{ number_format($this->selectedTalent->starting_price, 0) }}</strong></span>
+             <a href="/talent/{{ $this->selectedTalent->id }}" target="_blank" class="text-xs font-bold text-brand-primary hover:underline flex items-center gap-1">
+              View Profile
+              <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+             </a>
+            </div>
+           </div>
+           <button type="button" wire:click="$set('talent_id', null)" class="p-2 text-text-muted hover:text-red-500 transition-colors">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+           </button>
+          </div>
+         @endif
+
+         @error('talent_id') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
+        </div>
+
+       <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
         <div>
          <label for="event_date" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Engagement Date</label>
          <input type="date" id="event_date" wire:model="event_date" class="block w-full px-6 py-4 bg-surface-muted border border-subtle placeholder-text-muted rounded-xl focus:ring-2 focus:ring-brand-primary focus:border-transparent outline-none text-text-primary font-medium transition-all">
@@ -68,6 +189,11 @@
          <label for="event_location" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Venue / Location</label>
          <input type="text" id="event_location" wire:model="event_location" placeholder="e.g. Nairobi National Museum" class="block w-full px-6 py-4 bg-surface-muted border border-subtle placeholder-text-muted rounded-xl focus:ring-2 focus:ring-brand-primary focus:border-transparent outline-none text-text-primary font-medium transition-all">
          @error('event_location') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
+        </div>
+        <div class="md:col-span-2 xl:col-span-1">
+         <label for="estimated_attendance" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Est. Attendance</label>
+         <input type="number" id="estimated_attendance" wire:model="estimated_attendance" placeholder="e.g. 250" class="block w-full px-6 py-4 bg-surface-muted border border-subtle placeholder-text-muted rounded-xl focus:ring-2 focus:ring-brand-primary focus:border-transparent outline-none text-text-primary font-medium transition-all">
+         @error('estimated_attendance') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
         </div>
        </div>
        

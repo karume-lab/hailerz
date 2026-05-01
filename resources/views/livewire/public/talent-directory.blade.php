@@ -145,9 +145,9 @@
          <a href="/talent/{{ $talent->slug }}" wire:navigate class="block">
           <div class="group relative overflow-hidden aspect-3/4 bg-surface-dark">
            @if($talent->primary_image_url)
-            <img src="{{ $talent->primary_image_url }}" width="400" height="533" loading="lazy" class="w-full h-full object-cover grayscale transition-transform duration-700 group-hover:scale-110" alt="{{ $talent->name }}" />
+            <img src="{{ $talent->primary_image_url }}" width="400" height="533" loading="lazy" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="{{ $talent->name }}" />
            @elseif($talent->hasMedia('primary_image'))
-            <img src="{{ $talent->getFirstMediaUrl('primary_image') }}" width="400" height="533" loading="lazy" class="w-full h-full object-cover grayscale transition-transform duration-700 group-hover:scale-110" alt="{{ $talent->name }}" />
+            <img src="{{ $talent->getFirstMediaUrl('primary_image') }}" width="400" height="533" loading="lazy" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="{{ $talent->name }}" />
             @else
             <div class="w-full h-full flex items-center justify-center bg-surface-dark">
              <span class="text-4xl font-bold text-text-inverse/20 font-serif">{{ substr($talent->name, 0, 1) }}</span>

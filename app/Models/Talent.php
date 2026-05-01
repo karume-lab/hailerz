@@ -17,6 +17,16 @@ class Talent extends Model implements HasMedia
 
     protected $table = 'talents';
     protected $guarded = [];
+    protected $appends = ['thumbnail_url'];
+
+    public function getThumbnailUrlAttribute(): ?string
+    {
+        if ($this->primary_image_url) {
+            return $this->primary_image_url;
+        }
+
+        return $this->getFirstMediaUrl('primary_image', 'thumb') ?: null;
+    }
 
     protected function casts(): array
     {
