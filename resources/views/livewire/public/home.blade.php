@@ -178,7 +178,7 @@
                             class="absolute inset-0 bg-linear-to-tr from-brand-primary/80 to-brand-secondary/40 mix-blend-color opacity-90">
                         </div>
                         <div
-                            class="absolute inset-0 bg-linear-to-t from-brand-primary/90 via-brand-primary/20 to-transparent">
+                            class="absolute inset-0 bg-linear-to-t from-brand-primary via-brand-primary/40 to-transparent">
                         </div>
                         <div class="absolute bottom-10 left-10">
                             <h3 class="text-3xl font-bold text-text-inverse mb-2">{{ $cat['name'] }}</h3>
@@ -278,7 +278,7 @@
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div>
                                     <label for="contactName"
-                                        class="block text-xs font-bold text-brand-primary uppercase tracking-widest mb-2">Name</label>
+                                        class="block text-xs font-bold text-text-secondary uppercase tracking-widest mb-2">Name</label>
                                     <input id="contactName" wire:model="contactName" type="text" placeholder="Full Name"
                                         class="w-full px-5 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary focus:bg-surface-light focus:border-transparent outline-none transition-all text-text-primary placeholder-text-muted shadow-sm" />
                                     @error('contactName') <span class="text-red-500 text-xs mt-1">{{ $message }}</span>
@@ -286,7 +286,7 @@
                                 </div>
                                 <div>
                                     <label for="contactEmail"
-                                        class="block text-xs font-bold text-brand-primary uppercase tracking-widest mb-2">Email</label>
+                                        class="block text-xs font-bold text-text-secondary uppercase tracking-widest mb-2">Email</label>
                                     <input id="contactEmail" wire:model="contactEmail" type="email"
                                         placeholder="Email Address"
                                         class="w-full px-5 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary focus:bg-surface-light focus:border-transparent outline-none transition-all text-text-primary placeholder-text-muted shadow-sm" />
@@ -296,7 +296,7 @@
                             </div>
                             <div>
                                 <label for="contactMessage"
-                                    class="block text-xs font-bold text-brand-primary uppercase tracking-widest mb-2">Message</label>
+                                    class="block text-xs font-bold text-text-secondary uppercase tracking-widest mb-2">Message</label>
                                 <textarea id="contactMessage" wire:model="contactMessage" rows="5"
                                     placeholder="Tell us about your event and the talent you're interested in..."
                                     class="w-full px-5 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary focus:bg-surface-light focus:border-transparent outline-none transition-all resize-none text-text-primary placeholder-text-muted shadow-sm"></textarea>

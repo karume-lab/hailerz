@@ -16,7 +16,7 @@
    <aside class="w-full lg:w-1/4">
     <div class="sticky top-28 bg-surface-light p-8 rounded-3xl shadow-sm border border-subtle ">
      <div class="flex items-center justify-between mb-10">
-      <h2 class="text-xs font-bold text-text-muted uppercase tracking-widest">Refine Search</h2>
+      <h2 class="text-xs font-bold text-text-secondary uppercase tracking-widest">Refine Search</h2>
       <button wire:click="resetFilters" class="text-[10px] font-bold text-brand-primary uppercase tracking-widest hover:underline transition-colors">
        Reset All
       </button>
@@ -25,13 +25,13 @@
      <div class="space-y-10">
       <!-- Search -->
       <div>
-       <label for="search" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-4">Keywords</label>
+       <label for="search" class="block text-[10px] font-bold text-text-secondary uppercase tracking-widest mb-4">Keywords</label>
        <input wire:model.live.debounce.300ms="search" type="text" id="search" class="w-full px-5 py-4 bg-surface-muted border border-subtle placeholder-text-muted rounded-xl focus:ring-2 focus:ring-brand-primary focus:border-transparent transition-all outline-none text-text-primary text-sm font-medium" placeholder="Name or expertise...">
       </div>
 
       <!-- Sort Order -->
       <div>
-       <label for="sort" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-4">Priority</label>
+       <label for="sort" class="block text-[10px] font-bold text-text-secondary uppercase tracking-widest mb-4">Priority</label>
        <select wire:model.live="sort" id="sort" class="w-full px-5 py-4 bg-surface-muted border border-subtle placeholder-text-muted rounded-xl focus:ring-2 focus:ring-brand-primary focus:border-transparent transition-all outline-none text-text-primary text-sm font-medium appearance-none">
         <option value="name">Alphabetical</option>
         <option value="latest">Newly Commissioned</option>
@@ -42,7 +42,7 @@
 
       <!-- Category -->
       <div>
-       <label for="category" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-4">Talent Category</label>
+       <label for="category" class="block text-[10px] font-bold text-text-secondary uppercase tracking-widest mb-4">Talent Category</label>
        <select wire:model.live="category_id" id="category" class="w-full px-5 py-4 bg-surface-muted border border-subtle placeholder-text-muted rounded-xl focus:ring-2 focus:ring-brand-primary focus:border-transparent transition-all outline-none text-text-primary text-sm font-medium appearance-none">
         <option value="">All Disciplines</option>
         @foreach($categories as $category)
@@ -107,9 +107,9 @@
        }
       }">
        <div class="flex items-center justify-between mb-4">
-        <label for="location" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest">Base Location</label>
+        <label for="location" class="block text-[10px] font-bold text-text-secondary uppercase tracking-widest">Base Location</label>
         <button @click="locateMe()" type="button" class="text-[10px] font-bold text-brand-primary uppercase tracking-widest hover:underline flex items-center gap-1">
-         <svg x-show="!isLocating" class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
+         <svg x-show="!isLocating" class="w-3 h-3 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
          <span x-text="isLocating ? '...' : 'Auto-Detect'"></span>
         </button>
        </div>
@@ -154,7 +154,7 @@
             </div>
            @endif
            <div class="absolute inset-0 bg-linear-to-tr from-brand-primary/80 to-brand-secondary/40 mix-blend-color opacity-80 transition-opacity group-hover:opacity-60"></div>
-           <div class="absolute inset-0 bg-linear-to-t from-surface-dark/90 via-transparent to-transparent"></div>
+           <div class="absolute inset-0 bg-linear-to-t from-surface-dark via-surface-dark/60 to-transparent"></div>
            
            @if($talent->is_featured)
             <div class="absolute top-6 right-6 bg-brand-primary text-text-inverse text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">
@@ -163,7 +163,7 @@
            @endif
            
            <div class="absolute bottom-6 left-6">
-            <p class="text-[10px] font-bold text-brand-secondary uppercase tracking-widest mb-1">{{ $talent->category?->name ?? 'Professional' }}</p>
+            <p class="text-[10px] font-bold text-text-inverse/70 uppercase tracking-widest mb-1">{{ $talent->category?->name ?? 'Professional' }}</p>
             <h3 class="text-xl font-bold text-text-inverse">{{ $talent->name }}</h3>
            </div>
           </div>
@@ -171,13 +171,13 @@
          
          <div class="p-8">
           <div class="flex items-center gap-2 text-xs text-text-secondary mb-6">
-           <svg class="w-4 h-4 text-brand-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
+           <svg class="w-4 h-4 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
            {{ $talent->location ?? 'International' }}
           </div>
           
           <div class="flex justify-between items-center pt-6 border-t border-subtle ">
            <div>
-            <p class="text-[10px] font-bold text-text-muted uppercase tracking-widest">Starting Investment</p>
+            <p class="text-[10px] font-bold text-text-secondary uppercase tracking-widest">Starting Investment</p>
             <p class="text-lg font-bold text-text-primary">${{ number_format($talent->starting_price ?? 0, 0) }}</p>
            </div>
            <x-button variant="ghost" size="sm" href="/talent/{{ $talent->slug }}" wire:navigate class="text-brand-primary hover:text-brand-primary/80">

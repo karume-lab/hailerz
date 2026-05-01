@@ -25,7 +25,7 @@
         <div class="flex items-center gap-3 mb-6">
           <span class="h-px w-12 bg-brand-primary"></span>
           <span
-            class="text-xs font-bold text-brand-primary uppercase tracking-widest">{{ $talent->category?->name ?? 'Premier Talent' }}</span>
+            class="text-xs font-bold text-text-inverse/80 uppercase tracking-widest">{{ $talent->category?->name ?? 'Premier Talent' }}</span>
         </div>
         <h1 class="text-5xl md:text-8xl font-bold text-text-inverse tracking-tight font-serif">{{ $talent->name }}</h1>
       </div>
@@ -240,25 +240,25 @@
           <div class="space-y-8 mb-10">
             <div class="flex items-start gap-5">
               <div
-                class="h-10 w-10 rounded-xl bg-brand-primary/5 flex items-center justify-center text-brand-primary shrink-0">
+                class="h-10 w-10 rounded-xl bg-text-secondary/10 flex items-center justify-center text-text-secondary shrink-0">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
                 </svg>
               </div>
               <div>
-                <p class="text-[10px] font-bold text-text-muted uppercase tracking-widest mb-1">Base Location</p>
+                <p class="text-[10px] font-bold text-text-secondary uppercase tracking-widest mb-1">Base Location</p>
                 <p class="text-text-primary font-semibold">{{ $talent->location ?? 'International Talent' }}</p>
               </div>
             </div>
             <div class="flex items-start gap-5">
               <div
-                class="h-10 w-10 rounded-xl bg-brand-primary/5 flex items-center justify-center text-brand-primary shrink-0">
+                class="h-10 w-10 rounded-xl bg-text-secondary/10 flex items-center justify-center text-text-secondary shrink-0">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2"></path>
                 </svg>
               </div>
               <div>
-                <p class="text-[10px] font-bold text-text-muted uppercase tracking-widest mb-1">Starting Investment</p>
+                <p class="text-[10px] font-bold text-text-secondary uppercase tracking-widest mb-1">Starting Investment</p>
                 <p class="text-text-primary font-semibold text-xl">
                   {{ $talent->starting_price ? '$' . number_format($talent->starting_price, 0) : 'Custom Quotation' }}
                 </p>
