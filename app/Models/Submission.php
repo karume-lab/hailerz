@@ -10,27 +10,35 @@ class Submission extends Model
     use SoftDeletes;
     protected $fillable = [
         'artist_name',
+        'real_name',
         'email',
         'phone',
         'location',
-        'genre',
+        'profile_photo_url',
         'category',
-        'epk_link',
-        'instagram_url',
-        'spotify_url',
-        'youtube_url',
+        'genre',
+        'years_active',
+        'min_rate',
+        'max_rate',
+        'website_url',
+        'instagram_handle',
+        'facebook_url',
+        'youtube_channel',
+        'tiktok_handle',
+        'notable_venues',
+        'notable_clients',
+        'press_features',
         'bio',
-        'years_experience',
-        'minimum_fee',
-        'has_management',
-        'management_contact',
+        'motivation',
+        'source',
         'status',
     ];
 
     protected function casts(): array
     {
         return [
-            'has_management' => 'boolean',
+            'min_rate' => 'decimal:2',
+            'max_rate' => 'decimal:2',
         ];
     }
 

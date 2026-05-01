@@ -18,109 +18,108 @@ class BookingWizard extends Component
     public int $perPage = 10;
     public ?int $preselectedTalentId = null;
 
-    // Step 1: Event Details
-    #[Validate('required|exists:talents,id')]
-    public $talent_id;
+    // Step 1: Contact Information
+    #[Validate('required|string|max:255')]
+    public $first_name;
+    
+    #[Validate('required|string|max:255')]
+    public $last_name;
+    
+    #[Validate('required|email|max:255')]
+    public $email;
+    
+    #[Validate('required|string|max:20')]
+    public $phone;
+    
+    #[Validate('nullable|string|max:255')]
+    public $company;
+
+    // Step 2: Event Details
+    #[Validate('required|string')]
+    public $event_type;
     
     #[Validate('required|date|after:today')]
     public $event_date;
     
+    #[Validate('nullable|string')]
+    public $event_time;
+    
+    #[Validate('nullable|string')]
+    public $performance_duration;
+    
+    #[Validate('nullable|string|max:255')]
+    public $venue_name;
+    
     #[Validate('required|string|max:255')]
-    public $event_location;
+    public $city;
     
-    #[Validate('required|string|max:1000')]
-    public $event_description;
-
-    #[Validate('required|integer|min:10')]
-    public $estimated_attendance;
-
-    // Step 2: Budget
-    #[Validate('required|numeric|min:1000')]
-    public $proposed_budget;
-    
-    #[Validate('boolean')]
-    public $budget_flexible = false;
-
-    // Step 3: Client Info
     #[Validate('required|string|max:255')]
-    public $client_name;
+    public $state;
     
-    #[Validate('required|email|max:255')]
-    public $client_email;
+    #[Validate('required|integer|min:1')]
+    public $expected_guests;
+
+    // Step 3: Talent Preferences
+    #[Validate('required|string')]
+    public $talent_category;
     
-    #[Validate('required|string|max:20')]
-    public $client_phone;
+    #[Validate('nullable|string')]
+    public $preferred_genre;
+    
+    #[Validate('nullable|string')]
+    public $budget_range;
+    
+    #[Validate('nullable|string|max:255')]
+    public $specific_talent;
+    
+    #[Validate('required|string|max:2000')]
+    public $additional_details;
+
+    // Step 4: Misc
+    #[Validate('nullable|string')]
+    public $source;
 
     public bool $isComplete = false;
+    public $talent_id; // Keeping this for internal tracking if pre-selected
 
     public function mount()
     {
         if (request()->has('talent')) {
             $this->preselectedTalentId = request('talent');
             $this->talent_id = $this->preselectedTalentId;
+            
+            $talent = Talent::find($this->preselectedTalentId);
+            if ($talent) {
+                $this->specific_talent = $talent->name;
+                $this->budget_range = $talent->starting_price;
+                if ($talent->category) {
+                    $this->talent_category = $talent->category->name;
+                }
+            }
         }
-    }
-
-    public function updatedSearch()
-    {
-        $this->perPage = 10;
-    }
-
-    public function loadMore()
-    {
-        $this->perPage += 10;
-    }
-
-    public function getTalentsProperty()
-    {
-        return Talent::with('category')
-            ->where('status', 'active')
-            ->when($this->search, function($query) {
-                $query->where('name', 'like', '%' . $this->search . '%');
-            })
-            ->orderBy('name')
-            ->limit($this->perPage)
-            ->get()
-            ->map(function($t) {
-                return [
-                    'id' => $t->id,
-                    'name' => $t->name,
-                    'thumbnail_url' => $t->thumbnail_url,
-                    'category' => $t->category ? ['name' => $t->category->name] : null,
-                ];
-            });
-    }
-
-    public function getHasMoreProperty()
-    {
-        $total = Talent::where('status', 'active')
-            ->when($this->search, function($query) {
-                $query->where('name', 'like', '%' . $this->search . '%');
-            })
-            ->count();
-
-        return $total > $this->perPage;
-    }
-
-    public function getSelectedTalentProperty()
-    {
-        return $this->talent_id ? Talent::with('category')->find($this->talent_id) : null;
     }
 
     public function nextStep()
     {
         if ($this->currentStep === 1) {
             $this->validate([
-                'talent_id' => 'required|exists:talents,id',
-                'event_date' => 'required|date|after:today',
-                'event_location' => 'required|string|max:255',
-                'estimated_attendance' => 'required|integer|min:10',
-                'event_description' => 'required|string|max:1000',
+                'first_name' => 'required|string|max:255',
+                'last_name' => 'required|string|max:255',
+                'email' => 'required|email|max:255',
+                'phone' => 'required|string|max:20',
             ]);
         } elseif ($this->currentStep === 2) {
             $this->validate([
-                'proposed_budget' => 'required|numeric|min:1000',
-                'budget_flexible' => 'boolean',
+                'event_type' => 'required|string',
+                'event_date' => 'required|date|after:today',
+                'city' => 'required|string|max:255',
+                'state' => 'required|string|max:255',
+                'expected_guests' => 'required|integer|min:1',
+            ]);
+        } elseif ($this->currentStep === 3) {
+            $this->validate([
+                'talent_category' => 'required|string',
+                'additional_details' => 'required|string|max:2000',
             ]);
         }
         
@@ -138,15 +137,25 @@ class BookingWizard extends Component
 
         Inquiry::create([
             'talent_id' => $this->talent_id,
-            'client_name' => $this->client_name,
-            'client_email' => $this->client_email,
-            'client_phone' => $this->client_phone,
+            'first_name' => $this->first_name,
+            'last_name' => $this->last_name,
+            'email' => $this->email,
+            'phone' => $this->phone,
+            'company' => $this->company,
+            'event_type' => $this->event_type,
             'event_date' => $this->event_date,
-            'event_location' => $this->event_location,
-            'estimated_attendance' => $this->estimated_attendance,
-            'message' => $this->event_description,
-            'budget' => $this->proposed_budget,
-            'budget_flexible' => $this->budget_flexible,
+            'event_time' => $this->event_time,
+            'performance_duration' => $this->performance_duration,
+            'venue_name' => $this->venue_name,
+            'city' => $this->city,
+            'state' => $this->state,
+            'expected_guests' => $this->expected_guests,
+            'talent_category' => $this->talent_category,
+            'preferred_genre' => $this->preferred_genre,
+            'budget_range' => $this->budget_range,
+            'specific_talent' => $this->specific_talent,
+            'additional_details' => $this->additional_details,
+            'source' => $this->source,
             'status' => 'new',
         ]);
 

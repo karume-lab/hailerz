@@ -15,58 +15,78 @@ class JoinTalent extends Component
     public int $currentStep = 1;
     public bool $isSubmitted = false;
 
-    // Step 1: Identity
+    // Step 1: Artist Information
     #[Validate('required|string|max:255')]
     public string $artist_name = '';
+
+    #[Validate('required|string|max:255')]
+    public string $real_name = '';
 
     #[Validate('required|email|max:255')]
     public string $email = '';
 
-    #[Validate('nullable|string|max:20')]
+    #[Validate('required|string|max:20')]
     public string $phone = '';
 
-    #[Validate('nullable|string|max:255')]
-    public string $location = '';
+    #[Validate('required|string|max:255')]
+    public string $location = ''; // City, State
 
-    #[Validate('required|string|max:100')]
-    public string $genre = '';
+    #[Validate('required|url|max:255')]
+    public string $profile_photo_url = '';
 
+    // Step 2: Professional Details
     #[Validate('required|string|max:100')]
     public string $category = '';
 
-    #[Validate('required_if:category,Other|nullable|string|max:100')]
-    public string $other_category = '';
-
-    // Step 2: Media & Presence
-    #[Validate('required|url|max:255')]
-    public string $epk_link = '';
-
-    #[Validate('nullable|url|max:255')]
-    public string $instagram_url = '';
-
-    #[Validate('nullable|url|max:255')]
-    public string $spotify_url = '';
-
-    #[Validate('nullable|url|max:255')]
-    public string $youtube_url = '';
-
-    // Step 3: Background & Fees
-    #[Validate('required|string|min:50|max:1000')]
-    public string $bio = '';
-
-    #[Validate('required|integer|min:0|max:50')]
-    public int $years_experience = 0;
-
     #[Validate('nullable|string|max:100')]
-    public string $minimum_fee = '';
+    public string $genre = '';
 
-    #[Validate('boolean')]
-    public bool $has_management = false;
+    #[Validate('required|string|max:100')]
+    public string $years_active = '';
+
+    #[Validate('required|numeric|min:0')]
+    public $min_rate;
+
+    #[Validate('required|numeric|min:0')]
+    public $max_rate;
+
+    // Step 3: Online Presence
+    #[Validate('nullable|url|max:255')]
+    public string $website_url = '';
 
     #[Validate('nullable|string|max:255')]
-    public string $management_contact = '';
+    public string $instagram_handle = '';
 
-    // Gallery Items
+    #[Validate('nullable|url|max:255')]
+    public string $facebook_url = '';
+
+    #[Validate('nullable|url|max:255')]
+    public string $youtube_channel = '';
+
+    #[Validate('nullable|string|max:255')]
+    public string $tiktok_handle = '';
+
+    // Step 4: Experience & Credentials
+    #[Validate('nullable|string|max:2000')]
+    public string $notable_venues = '';
+
+    #[Validate('nullable|string|max:2000')]
+    public string $notable_clients = '';
+
+    #[Validate('nullable|string|max:2000')]
+    public string $press_features = '';
+
+    // Step 5: Additional Information
+    #[Validate('required|string|min:200|max:5000')]
+    public string $bio = '';
+
+    #[Validate('required|string|max:2000')]
+    public string $motivation = '';
+
+    #[Validate('nullable|string')]
+    public string $source = '';
+
+    // Gallery Items (PRESERVED)
     public array $gallery = [];
 
     public function addGalleryItem(): void
@@ -88,21 +108,27 @@ class JoinTalent extends Component
     {
         match ($this->currentStep) {
             1 => $this->validate([
-                'artist_name' => 'required|string|max:255',
-                'email'       => 'required|email|max:255',
-                'phone'       => 'nullable|string|max:20',
-                'location'    => 'nullable|string|max:255',
-                'genre'       => 'required|string|max:100',
-                'category'    => 'required|string|max:100',
+                'artist_name'       => 'required|string|max:255',
+                'real_name'         => 'required|string|max:255',
+                'email'             => 'required|email|max:255',
+                'phone'             => 'required|string|max:20',
+                'location'          => 'required|string|max:255',
+                'profile_photo_url' => 'required|url|max:255',
             ]),
             2 => $this->validate([
-                'epk_link'      => 'required|url|max:255',
-                'instagram_url' => 'nullable|url|max:255',
-                'spotify_url'   => 'nullable|url|max:255',
-                'youtube_url'   => 'nullable|url|max:255',
+                'category'     => 'required|string|max:100',
+                'years_active' => 'required|string|max:100',
+                'min_rate'     => 'required|numeric|min:0',
+                'max_rate'     => 'required|numeric|min:0',
+            ]),
+            3 => $this->validate([
+                'website_url'      => 'nullable|url|max:255',
+                'facebook_url'     => 'nullable|url|max:255',
+                'youtube_channel'  => 'nullable|url|max:255',
+            ]),
+            4 => $this->validate([
                 'gallery.*.url' => 'required|url|max:255',
                 'gallery.*.title' => 'nullable|string|max:255',
-                'gallery.*.description' => 'nullable|string|max:1000',
             ]),
             default => null,
         };
@@ -118,30 +144,34 @@ class JoinTalent extends Component
     public function submit(): void
     {
         $this->validate([
-            'bio'                => 'required|string|min:50|max:1000',
-            'years_experience'   => 'required|integer|min:0|max:50',
-            'minimum_fee'        => 'nullable|string|max:100',
-            'has_management'     => 'boolean',
-            'management_contact' => 'nullable|string|max:255',
+            'bio'        => 'required|string|min:200|max:5000',
+            'motivation' => 'required|string|max:2000',
         ]);
 
         $submission = Submission::create([
-            'artist_name'        => $this->artist_name,
-            'email'              => $this->email,
-            'phone'              => $this->phone,
-            'location'           => $this->location,
-            'genre'              => $this->genre,
-            'category'           => $this->category === 'Other' ? $this->other_category : $this->category,
-            'epk_link'           => $this->epk_link,
-            'instagram_url'      => $this->instagram_url,
-            'spotify_url'        => $this->spotify_url,
-            'youtube_url'        => $this->youtube_url,
-            'bio'                => $this->bio,
-            'years_experience'   => $this->years_experience,
-            'minimum_fee'        => $this->minimum_fee,
-            'has_management'     => $this->has_management,
-            'management_contact' => $this->management_contact,
-            'status'             => 'pending',
+            'artist_name'       => $this->artist_name,
+            'real_name'         => $this->real_name,
+            'email'             => $this->email,
+            'phone'             => $this->phone,
+            'location'          => $this->location,
+            'profile_photo_url' => $this->profile_photo_url,
+            'category'          => $this->category,
+            'genre'             => $this->genre,
+            'years_active'      => $this->years_active,
+            'min_rate'          => $this->min_rate,
+            'max_rate'          => $this->max_rate,
+            'website_url'       => $this->website_url,
+            'instagram_handle'  => $this->instagram_handle,
+            'facebook_url'      => $this->facebook_url,
+            'youtube_channel'   => $this->youtube_channel,
+            'tiktok_handle'     => $this->tiktok_handle,
+            'notable_venues'    => $this->notable_venues,
+            'notable_clients'   => $this->notable_clients,
+            'press_features'    => $this->press_features,
+            'bio'               => $this->bio,
+            'motivation'        => $this->motivation,
+            'source'            => $this->source,
+            'status'            => 'pending',
         ]);
 
         foreach ($this->gallery as $item) {

@@ -16,7 +16,7 @@ class Inquiry extends Model
     {
         return [
             'event_date' => 'date',
-            'budget' => 'decimal:2',
+            'expected_guests' => 'integer',
             'status' => InquiryStatus::class,
         ];
     }
