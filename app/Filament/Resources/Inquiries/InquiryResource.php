@@ -25,7 +25,7 @@ class InquiryResource extends Resource
 
     public static function getNavigationLabel(): string
     {
-        return 'Booking Inquiries';
+        return 'Pipeline';
     }
 
     public static function getModelLabel(): string
@@ -58,7 +58,7 @@ class InquiryResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => \App\Filament\Resources\Inquiries\Pages\BookingPipeline::route('/'),
+            'index' => ListInquiries::route('/'),
             'create' => CreateInquiry::route('/create'),
             'edit' => EditInquiry::route('/{record}/edit'),
         ];
