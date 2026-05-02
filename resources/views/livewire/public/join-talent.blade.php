@@ -127,24 +127,29 @@
                         <h3 class="text-2xl font-bold text-text-primary font-serif">Online Presence</h3>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                             <div>
-                                <label for="website_url" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Website</label>
-                                <input type="text" id="website_url" wire:model="website_url" placeholder="https://..." class="block w-full px-6 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary outline-none text-text-primary font-medium">
+                                <label for="website_url" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Website Link</label>
+                                <input type="url" id="website_url" wire:model="website_url" placeholder="https://..." class="block w-full px-6 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary outline-none text-text-primary font-medium">
+                                @error('website_url') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
                             </div>
                             <div>
-                                <label for="instagram_handle" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Instagram Handle</label>
-                                <input type="text" id="instagram_handle" wire:model="instagram_handle" placeholder="@handle" class="block w-full px-6 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary outline-none text-text-primary font-medium">
+                                <label for="instagram_handle" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Instagram Link</label>
+                                <input type="url" id="instagram_handle" wire:model="instagram_handle" placeholder="https://instagram.com/..." class="block w-full px-6 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary outline-none text-text-primary font-medium">
+                                @error('instagram_handle') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
                             </div>
                             <div>
-                                <label for="facebook_url" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Facebook Page</label>
-                                <input type="text" id="facebook_url" wire:model="facebook_url" placeholder="https://..." class="block w-full px-6 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary outline-none text-text-primary font-medium">
+                                <label for="facebook_url" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Facebook Page Link</label>
+                                <input type="url" id="facebook_url" wire:model="facebook_url" placeholder="https://..." class="block w-full px-6 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary outline-none text-text-primary font-medium">
+                                @error('facebook_url') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
                             </div>
                             <div>
-                                <label for="youtube_channel" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">YouTube Channel</label>
-                                <input type="text" id="youtube_channel" wire:model="youtube_channel" placeholder="https://..." class="block w-full px-6 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary outline-none text-text-primary font-medium">
+                                <label for="youtube_channel" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">YouTube Channel Link</label>
+                                <input type="url" id="youtube_channel" wire:model="youtube_channel" placeholder="https://..." class="block w-full px-6 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary outline-none text-text-primary font-medium">
+                                @error('youtube_channel') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
                             </div>
                             <div>
-                                <label for="tiktok_handle" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">TikTok</label>
-                                <input type="text" id="tiktok_handle" wire:model="tiktok_handle" placeholder="@handle" class="block w-full px-6 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary outline-none text-text-primary font-medium">
+                                <label for="tiktok_handle" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">TikTok Link</label>
+                                <input type="url" id="tiktok_handle" wire:model="tiktok_handle" placeholder="https://tiktok.com/@..." class="block w-full px-6 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary outline-none text-text-primary font-medium">
+                                @error('tiktok_handle') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
                             </div>
                         </div>
                     </div>

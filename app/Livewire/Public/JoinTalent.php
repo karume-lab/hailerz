@@ -50,14 +50,14 @@ class JoinTalent extends Component
     #[Validate('required|numeric|min:0')]
     public $min_rate;
 
-    #[Validate('required|numeric|min:0')]
+    #[Validate('required|numeric|gt:min_rate')]
     public $max_rate;
 
     // Step 3: Online Presence
     #[Validate('nullable|url|max:255')]
     public string $website_url = '';
 
-    #[Validate('nullable|string|max:255')]
+    #[Validate('nullable|url|max:255')]
     public string $instagram_handle = '';
 
     #[Validate('nullable|url|max:255')]
@@ -66,7 +66,7 @@ class JoinTalent extends Component
     #[Validate('nullable|url|max:255')]
     public string $youtube_channel = '';
 
-    #[Validate('nullable|string|max:255')]
+    #[Validate('nullable|url|max:255')]
     public string $tiktok_handle = '';
 
     // Step 4: Experience & Credentials
@@ -122,12 +122,14 @@ class JoinTalent extends Component
                 'category'     => 'required|string|max:100',
                 'years_active' => 'required|string|max:100',
                 'min_rate'     => 'required|numeric|min:0',
-                'max_rate'     => 'required|numeric|min:0',
+                'max_rate'     => 'required|numeric|gt:min_rate',
             ]),
             3 => $this->validate([
                 'website_url'      => 'nullable|url|max:255',
+                'instagram_handle' => 'nullable|url|max:255',
                 'facebook_url'     => 'nullable|url|max:255',
                 'youtube_channel'  => 'nullable|url|max:255',
+                'tiktok_handle'    => 'nullable|url|max:255',
             ]),
             4 => $this->validate([
                 'gallery.*.url' => 'required|url|max:255',
