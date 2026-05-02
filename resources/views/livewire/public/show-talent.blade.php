@@ -36,7 +36,7 @@
         @if($talent->video_url)
           <section class="mb-20">
             <div
-              class="aspect-video w-full rounded-4xl overflow-hidden bg-surface-dark shadow-2xl border border-subtle relative group">
+              class="aspect-video w-full rounded-md overflow-hidden bg-surface-dark shadow-2xl border border-subtle relative group">
               @php
                 $embedUrl = '';
                 if (str_contains($talent->video_url, 'youtube.com') || str_contains($talent->video_url, 'youtu.be')) {
@@ -103,7 +103,7 @@
           @if($talent->technical_rider)
             <div x-show="activeTab === 'rider'" x-cloak x-transition:enter="transition ease-out duration-300"
               x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0"
-              class="bg-surface-light p-8 md:p-12 rounded-3xl border border-subtle shadow-sm prose max-w-none text-text-secondary">
+              class="bg-surface-light p-8 md:p-12 rounded-md border border-subtle shadow-sm prose max-w-none text-text-secondary">
               <h3 class="text-text-primary mb-6 font-serif">Production & Technical Rider</h3>
               @if(filter_var($talent->technical_rider, FILTER_VALIDATE_URL))
                 <p>Our technical requirements are available at the following link:</p>
@@ -120,46 +120,62 @@
             x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0"
             x-data="{ 
                   lightboxOpen: false, 
-                  lightboxImage: '', 
+                  lightboxType: 'image',
+                  lightboxUrl: '', 
                   lightboxTitle: '',
-                  openLightbox(url, title) {
-                      this.lightboxImage = url;
+                  openLightbox(url, title, type = 'image') {
+                      this.lightboxUrl = url;
                       this.lightboxTitle = title;
+                      this.lightboxType = type;
                       this.lightboxOpen = true;
                   }
                }">
             @if($talent->galleryItems->count() > 0)
-              <div class="columns-1 sm:columns-2 lg:columns-3 gap-8 space-y-8">
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                 @foreach($talent->galleryItems as $item)
                   <div
-                    class="break-inside-avoid group bg-surface-light rounded-3xl overflow-hidden border border-subtle shadow-sm hover:shadow-xl transition-all duration-500">
-                    <div class="relative overflow-hidden bg-surface-dark">
+                    class="group bg-surface-light rounded-md overflow-hidden border border-subtle shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col h-full">
+                    <div class="relative overflow-hidden bg-surface-dark aspect-video">
                       @php
                         $galleryEmbedUrl = '';
+                        $thumbnailUrl = $item->url;
+                        $isvimeo = false;
+                        
                         if (str_contains($item->url, 'youtube.com') || str_contains($item->url, 'youtu.be')) {
                           preg_match('/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/ ]{11})/i', $item->url, $match);
                           if (isset($match[1])) {
-                            $galleryEmbedUrl = "https://www.youtube.com/embed/{$match[1]}?autoplay=0&rel=0";
+                            $galleryEmbedUrl = "https://www.youtube.com/embed/{$match[1]}?autoplay=1&rel=0";
+                            $thumbnailUrl = "https://img.youtube.com/vi/{$match[1]}/hqdefault.jpg";
                           }
                         } elseif (str_contains($item->url, 'vimeo.com')) {
                           preg_match('/vimeo\.com\/(?:channels\/(?:\w+\/)?|groups\/(?:[^\/]*)\/videos\/|album\/(?:\d+)\/video\/|video\/|)(\d+)(?:$|\/|\?)/i', $item->url, $match);
                           if (isset($match[1])) {
-                            $galleryEmbedUrl = "https://player.vimeo.com/video/{$match[1]}";
+                            $galleryEmbedUrl = "https://player.vimeo.com/video/{$match[1]}?autoplay=1";
+                            $isvimeo = true;
+                            // Vimeo thumbnails usually require an API call, so we'll just use the URL if it's an image or a placeholder
                           }
                         }
                       @endphp
 
                       @if($galleryEmbedUrl)
-                        <div class="aspect-video relative">
-                          <iframe src="{{ $galleryEmbedUrl }}" class="absolute inset-0 w-full h-full" frameborder="0"
-                            loading="lazy" title="{{ $item->title ?? 'Gallery Video' }}"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen></iframe>
+                        <div class="relative cursor-pointer w-full h-full" @click="openLightbox('{{ $galleryEmbedUrl }}', '{{ $item->title }}', 'video')">
+                          <img src="{{ $thumbnailUrl }}" loading="lazy" decoding="async"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                            alt="{{ $item->title ?? 'Gallery Video' }}" />
+                          
+                          <!-- Play Button Overlay -->
+                          <div class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/40 transition-colors">
+                            <div class="w-16 h-16 rounded-full bg-brand-primary/90 flex items-center justify-center text-white shadow-lg transform group-hover:scale-110 transition-transform">
+                              <svg class="w-8 h-8 ml-1" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M8 5v14l11-7z" />
+                              </svg>
+                            </div>
+                          </div>
                         </div>
                       @else
-                        <div class="relative cursor-zoom-in" @click="openLightbox('{{ $item->url }}', '{{ $item->title }}')">
+                        <div class="relative cursor-zoom-in w-full h-full" @click="openLightbox('{{ $item->url }}', '{{ $item->title }}', 'image')">
                           <img src="{{ $item->url }}" loading="lazy" decoding="async"
-                            class="w-full h-auto object-cover grayscale transition-transform duration-700 group-hover:scale-110"
+                            class="w-full h-full object-cover grayscale transition-transform duration-700 group-hover:scale-110"
                             alt="{{ $item->title ?? 'Gallery Image for ' . $talent->name }}" />
                           <div
                             class="absolute inset-0 bg-linear-to-tr from-brand-primary/80 to-brand-secondary/40 mix-blend-color opacity-20 group-hover:opacity-10 transition-opacity">
@@ -180,12 +196,12 @@
                       @endif
                     </div>
                     @if($item->title || $item->description)
-                      <div class="p-6">
+                      <div class="p-6 flex-1 flex flex-col justify-center">
                         @if($item->title)
                           <h4 class="text-sm font-bold text-text-primary uppercase tracking-widest mb-1">{{ $item->title }}</h4>
                         @endif
                         @if($item->description)
-                          <p class="text-xs text-text-muted leading-relaxed">{{ $item->description }}</p>
+                          <p class="text-xs text-text-muted leading-relaxed line-clamp-2">{{ $item->description }}</p>
                         @endif
                       </div>
                     @endif
@@ -198,10 +214,10 @@
                 x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
                 x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100"
                 x-transition:leave-end="opacity-0"
-                class="fixed inset-0 z-50 flex items-center justify-center bg-surface-dark/95 backdrop-blur-md p-4 md:p-10"
+                class="fixed inset-0 z-100 flex items-center justify-center bg-surface-dark/95 backdrop-blur-md p-4 md:p-10"
                 @click="lightboxOpen = false" @keydown.escape.window="lightboxOpen = false" x-cloak>
 
-                <button class="absolute top-8 right-8 text-white/50 hover:text-white transition-colors" aria-label="Close Lightbox">
+                <button class="absolute top-8 right-8 text-white/50 hover:text-white transition-colors z-101" aria-label="Close Lightbox">
                   <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12">
                     </path>
@@ -209,16 +225,23 @@
                 </button>
 
                 <div class="max-w-5xl w-full flex flex-col items-center" @click.stop>
-                  <img :src="lightboxImage"
-                    class="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl border border-white/10"
-                    :alt="lightboxTitle">
+                  <template x-if="lightboxType === 'image'">
+                    <img :src="lightboxUrl"
+                      class="max-w-full max-h-[85vh] object-contain rounded-md shadow-2xl border border-white/10"
+                      :alt="lightboxTitle">
+                  </template>
+                  <template x-if="lightboxType === 'video'">
+                    <div class="aspect-video w-full max-w-4xl rounded-md overflow-hidden shadow-2xl border border-white/10">
+                      <iframe :src="lightboxUrl" class="w-full h-full" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                  </template>
                   <div class="mt-6 text-center" x-show="lightboxTitle">
                     <h4 x-text="lightboxTitle" class="text-text-inverse text-xl font-serif tracking-wide"></h4>
                   </div>
                 </div>
               </div>
             @else
-              <div class="py-20 text-center border-2 border-dashed border-subtle rounded-3xl">
+              <div class="py-20 text-center border-2 border-dashed border-subtle rounded-md">
                 <p class="text-text-muted text-xs font-bold uppercase tracking-widest">Extended portfolio available upon
                   request</p>
               </div>
@@ -229,7 +252,7 @@
 
       <!-- Sticky Sidebar -->
       <div class="w-full lg:w-1/3">
-        <div class="sticky top-28 bg-surface-light p-10 rounded-[2.5rem] shadow-2xl border border-subtle ">
+        <div class="sticky top-28 bg-surface-light p-10 rounded-md shadow-2xl border border-subtle ">
           <h3 class="text-2xl font-bold text-text-primary mb-8 font-serif">Booking Information</h3>
 
           <div class="space-y-8 mb-10">
@@ -270,7 +293,7 @@
             <h4 class="text-2xl font-bold text-text-primary font-serif mb-8">Online Presence</h4>
             <div class="grid grid-cols-2 gap-6">
               @if($talent->website_url)
-                <a href="{{ $talent->website_url }}" target="_blank" class="block p-6 bg-surface-muted border border-subtle rounded-2xl hover:bg-brand-primary/10 transition-all group">
+                <a href="{{ $talent->website_url }}" target="_blank" class="block p-6 bg-surface-muted border border-subtle rounded-md hover:bg-brand-primary/10 transition-all group h-full">
                     <p class="text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Website</p>
                     <p class="text-sm text-text-primary font-medium truncate">{{ $talent->website_url }}</p>
                 </a>
@@ -278,21 +301,21 @@
 
               @if($talent->instagram_handle)
                 @php $igUrl = str_starts_with($talent->instagram_handle, 'http') ? $talent->instagram_handle : 'https://instagram.com/' . ltrim($talent->instagram_handle, '@'); @endphp
-                <a href="{{ $igUrl }}" target="_blank" class="block p-6 bg-surface-muted border border-subtle rounded-2xl hover:bg-brand-primary/10 transition-all group">
+                <a href="{{ $igUrl }}" target="_blank" class="block p-6 bg-surface-muted border border-subtle rounded-md hover:bg-brand-primary/10 transition-all group h-full">
                     <p class="text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Instagram Handle</p>
                     <p class="text-sm text-text-primary font-medium truncate">{{ $talent->instagram_handle }}</p>
                 </a>
               @endif
 
               @if($talent->facebook_url)
-                <a href="{{ $talent->facebook_url }}" target="_blank" class="block p-6 bg-surface-muted border border-subtle rounded-2xl hover:bg-brand-primary/10 transition-all group">
+                <a href="{{ $talent->facebook_url }}" target="_blank" class="block p-6 bg-surface-muted border border-subtle rounded-md hover:bg-brand-primary/10 transition-all group h-full">
                     <p class="text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Facebook Page</p>
                     <p class="text-sm text-text-primary font-medium truncate">{{ $talent->facebook_url }}</p>
                 </a>
               @endif
 
               @if($talent->youtube_channel)
-                <a href="{{ $talent->youtube_channel }}" target="_blank" class="block p-6 bg-surface-muted border border-subtle rounded-2xl hover:bg-brand-primary/10 transition-all group">
+                <a href="{{ $talent->youtube_channel }}" target="_blank" class="block p-6 bg-surface-muted border border-subtle rounded-md hover:bg-brand-primary/10 transition-all group h-full">
                     <p class="text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">YouTube Channel</p>
                     <p class="text-sm text-text-primary font-medium truncate">{{ $talent->youtube_channel }}</p>
                 </a>
@@ -300,7 +323,7 @@
 
               @if($talent->tiktok_handle)
                 @php $tiktokUrl = str_starts_with($talent->tiktok_handle, 'http') ? $talent->tiktok_handle : 'https://tiktok.com/@' . ltrim($talent->tiktok_handle, '@'); @endphp
-                <a href="{{ $tiktokUrl }}" target="_blank" class="block p-6 bg-surface-muted border border-subtle rounded-2xl hover:bg-brand-primary/10 transition-all group">
+                <a href="{{ $tiktokUrl }}" target="_blank" class="block p-6 bg-surface-muted border border-subtle rounded-md hover:bg-brand-primary/10 transition-all group h-full">
                     <p class="text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">TikTok</p>
                     <p class="text-sm text-text-primary font-medium truncate">{{ $talent->tiktok_handle }}</p>
                 </a>

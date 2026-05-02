@@ -14,7 +14,7 @@
    
    <!-- Sidebar Filters -->
    <aside class="w-full lg:w-1/4">
-    <div class="sticky top-28 bg-surface-light p-8 rounded-3xl shadow-sm border border-subtle ">
+    <div class="sticky top-28 bg-surface-light p-8 rounded-md shadow-sm border border-subtle ">
      <div class="flex items-center justify-between mb-10">
       <h2 class="text-xs font-bold text-text-secondary uppercase tracking-widest">Refine Search</h2>
       <button wire:click="resetFilters" aria-label="Reset all search filters" class="text-[10px] font-bold text-brand-primary uppercase tracking-widest hover:underline transition-colors">
@@ -26,13 +26,13 @@
       <!-- Search -->
       <div>
        <label for="search" class="block text-[10px] font-bold text-text-secondary uppercase tracking-widest mb-4">Keywords</label>
-       <input wire:model.live.debounce.300ms="search" type="text" id="search" class="w-full px-5 py-4 bg-surface-muted border border-subtle placeholder-text-muted rounded-xl focus:ring-2 focus:ring-brand-primary focus:border-transparent transition-all outline-none text-text-primary text-sm font-medium" placeholder="Name or expertise...">
+       <input wire:model.live.debounce.300ms="search" type="text" id="search" class="w-full px-5 py-4 bg-surface-muted border border-subtle placeholder-text-muted rounded-md focus:ring-2 focus:ring-brand-primary focus:border-transparent transition-all outline-none text-text-primary text-sm font-medium" placeholder="Name or expertise...">
       </div>
 
       <!-- Sort Order -->
       <div>
        <label for="sort" class="block text-[10px] font-bold text-text-secondary uppercase tracking-widest mb-4">Priority</label>
-       <select wire:model.live="sort" id="sort" class="w-full px-5 py-4 bg-surface-muted border border-subtle placeholder-text-muted rounded-xl focus:ring-2 focus:ring-brand-primary focus:border-transparent transition-all outline-none text-text-primary text-sm font-medium appearance-none">
+       <select wire:model.live="sort" id="sort" class="w-full px-5 py-4 bg-surface-muted border border-subtle placeholder-text-muted rounded-md focus:ring-2 focus:ring-brand-primary focus:border-transparent transition-all outline-none text-text-primary text-sm font-medium appearance-none">
         <option value="name">Alphabetical</option>
         <option value="latest">Newly Commissioned</option>
         <option value="price_asc">Investment: Low to High</option>
@@ -43,7 +43,7 @@
       <!-- Category -->
       <div>
        <label for="category" class="block text-[10px] font-bold text-text-secondary uppercase tracking-widest mb-4">Talent Category</label>
-       <select wire:model.live="category_id" id="category" class="w-full px-5 py-4 bg-surface-muted border border-subtle placeholder-text-muted rounded-xl focus:ring-2 focus:ring-brand-primary focus:border-transparent transition-all outline-none text-text-primary text-sm font-medium appearance-none">
+       <select wire:model.live="category_id" id="category" class="w-full px-5 py-4 bg-surface-muted border border-subtle placeholder-text-muted rounded-md focus:ring-2 focus:ring-brand-primary focus:border-transparent transition-all outline-none text-text-primary text-sm font-medium appearance-none">
         <option value="">All Disciplines</option>
         @foreach($categories as $category)
          <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -122,7 +122,7 @@
         list="location-suggestions"
         autocomplete="off"
         placeholder="City or region..."
-        class="w-full px-5 py-4 bg-surface-muted border border-subtle placeholder-text-muted rounded-xl focus:ring-2 focus:ring-brand-primary focus:border-transparent transition-all outline-none text-text-primary text-sm font-medium"
+        class="w-full px-5 py-4 bg-surface-muted border border-subtle placeholder-text-muted rounded-md focus:ring-2 focus:ring-brand-primary focus:border-transparent transition-all outline-none text-text-primary text-sm font-medium"
        >
        <datalist id="location-suggestions">
         @foreach($locations as $loc)
@@ -141,7 +141,7 @@
      @if($talents->count() > 0)
       <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
        @foreach($talents as $talent)
-        <div class="bg-surface-light rounded-2xl shadow-sm border border-subtle overflow-hidden group hover:shadow-2xl transition-all duration-500">
+        <div class="bg-surface-light rounded-md shadow-sm border border-subtle overflow-hidden group hover:shadow-2xl transition-all duration-500 flex flex-col h-full">
          <a href="/talent/{{ $talent->slug }}" wire:navigate class="block">
           <div class="group relative overflow-hidden aspect-3/4 bg-surface-dark">
            <img
@@ -167,7 +167,7 @@
           </div>
          </a>
          
-         <div class="p-8">
+         <div class="p-8 flex-1 flex flex-col justify-between">
           <div class="flex items-center gap-2 text-xs text-text-secondary mb-6">
            <svg class="w-4 h-4 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
            {{ $talent->location ?? 'International' }}
