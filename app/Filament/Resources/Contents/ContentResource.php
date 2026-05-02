@@ -71,6 +71,10 @@ class ContentResource extends Resource
                 Tables\Columns\TextColumn::make('type')->badge(),
                 Tables\Columns\IconColumn::make('is_published')->boolean(),
             ])
+            ->filters([
+                Tables\Filters\TernaryFilter::make('is_published')
+                    ->label('Publication Status')
+            ])
             ->actions([
                 EditAction::make(),
             ]);
