@@ -9,7 +9,7 @@ Hi {{ $submission->artist_name }},
 
 Welcome to the **Hailerz** community! We have successfully received your application to join our exclusive talent network.
 
-Attached to this email is a PDF summary of your professional details for your records. Our A&R team is excited to review your portfolio and will reach out to you if your act is a fit for our roster.
+Attached to this email is a PDF summary of your professional details for your records. We are excited to review your portfolio and will reach out to you if your act is a fit for our roster.
 
 In the meantime, feel free to update your portfolio link if anything changes.
 

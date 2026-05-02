@@ -22,7 +22,7 @@ class SubmissionResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-inbox-arrow-down';
 
-    protected static string|UnitEnum|null $navigationGroup = 'A&R / Talent Procurement';
+    protected static string|UnitEnum|null $navigationGroup = 'Talent Procurement';
 
     public static function getNavigationLabel(): string
     {
