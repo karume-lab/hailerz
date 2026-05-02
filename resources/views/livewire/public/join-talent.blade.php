@@ -7,7 +7,7 @@
                 </div>
                 <h2 class="text-4xl font-bold text-text-primary mb-6 font-serif">Application Received!</h2>
                 <p class="text-lg text-text-secondary mb-12 max-w-xl mx-auto">
-                    We've sent a confirmation email to your inbox with a PDF summary of your application. Our A&R team will review your portfolio and reach out if your act is a fit for our exclusive network.
+                    We've sent a confirmation email to your inbox with a PDF summary of your application. We will review your portfolio and reach out if your act is a fit for our exclusive network.
                 </p>
                 <x-button variant="primary" size="lg" href="/" wire:navigate>
                     Return to the Agency
