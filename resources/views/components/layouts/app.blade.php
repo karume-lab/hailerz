@@ -112,8 +112,6 @@
           <a href="/about" wire:navigate
             class="text-xs font-bold {{ request()->is('about*') ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary' }} transition-colors uppercase tracking-widest">The
             Agency</a>
-          <a href="/resources" wire:navigate
-            class="text-xs font-bold {{ request()->is('resources*') ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary' }} transition-colors uppercase tracking-widest">Resources</a>
         </nav>
 
         <div class="flex items-center space-x-4">
@@ -206,8 +204,6 @@
                 class="text-sm text-text-secondary hover:text-brand-primary transition-colors">Join Talent</a></li>
             <li><a href="/contact" wire:navigate
                 class="text-sm text-text-secondary hover:text-brand-primary transition-colors">Contact</a></li>
-            <li><a href="/resources" wire:navigate
-                class="text-sm text-text-secondary hover:text-brand-primary transition-colors">Resources</a></li>
           </ul>
         </div>
 

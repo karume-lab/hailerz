@@ -4,7 +4,6 @@
         ['label' => 'Services', 'href' => '/services'],
         ['label' => 'Staffing', 'href' => '/staffing'],
         ['label' => 'The Agency', 'href' => '/about'],
-        ['label' => 'Resources', 'href' => '/resources'],
     ]
 ])
 

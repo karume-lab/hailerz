@@ -39,13 +39,6 @@ Route::get('/legal/privacy', PrivacyPolicy::class)->name('legal.privacy');
 Route::get('/legal/booking-agreement', BookingAgreement::class)->name('legal.booking');
 Route::get('/legal/cancellation', CancellationPolicy::class)->name('legal.cancellation');
 
-// News / Blog
-Route::get('/news', PostList::class)->name('news.index');
-Route::get('/news/{slug}', ShowPost::class)->name('news.show');
-
-// Resources
-Route::get('/resources', \App\Livewire\Public\Resources::class)->name('resources.index');
-
 // Maintenance
 Route::view('/maintenance', 'maintenance')->name('maintenance');
 

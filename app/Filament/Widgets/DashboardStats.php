@@ -34,12 +34,6 @@ class DashboardStats extends BaseWidget
                 ->color('info')
                 ->url('/admin/inquiries?tableFilters[status][value]=confirmed'),
 
-            Stat::make('Unpublished Resources', \App\Models\ContentResource::where('is_published', false)->count())
-                ->description('Drafts requiring review')
-                ->descriptionIcon('heroicon-m-document-text')
-                ->color('gray')
-                ->url('/admin/contents?tableFilters[is_published][value]=0'),
-
             Stat::make('Confirmed Bookings', Inquiry::where('status', InquiryStatus::Confirmed)->count())
                 ->description('Total successful conversions')
                 ->descriptionIcon('heroicon-m-check-badge')
