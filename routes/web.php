@@ -43,6 +43,9 @@ Route::get('/legal/cancellation', CancellationPolicy::class)->name('legal.cancel
 Route::get('/news', PostList::class)->name('news.index');
 Route::get('/news/{slug}', ShowPost::class)->name('news.show');
 
+// Resources
+Route::get('/resources', \App\Livewire\Public\Resources::class)->name('resources.index');
+
 // Maintenance
 Route::view('/maintenance', 'maintenance')->name('maintenance');
 

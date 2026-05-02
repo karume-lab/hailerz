@@ -8,6 +8,7 @@ use App\Models\Inquiry;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\EmailTemplate;
+use App\Models\ContentResource;
 use App\Enums\InquiryStatus;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
@@ -236,5 +237,44 @@ class DatabaseSeeder extends Seeder
                 'body' => '<p>Thank you for submitting your booking inquiry.</p><p>A senior booking agent has been assigned to your request and is currently reviewing your event specifications and investment parameters. We prioritize providing comprehensive, tailored proposals that ensure the perfect alignment between talent and event DNA.</p><p>You can expect a formal proposal or a request for a briefing call within 24 business hours.</p><p>Best regards,<br>Hailerz Agency Team</p>'
             ]
         );
+
+        // 8. Content Resources
+        $resources = [
+            [
+                'title' => 'The Event Planner’s Guide to Premium Entertainment',
+                'type' => 'guide',
+                'content' => 'A comprehensive whitepaper detailing how to select, contract, and manage top-tier talent for high-stakes corporate environments. Covers everything from technical riders to rider hospitality.',
+                'file_path' => 'https://example.com/guides/event-planner-guide-2026.pdf',
+                'is_published' => true,
+            ],
+            [
+                'title' => 'Agency Rate Card 2026 (EMEA)',
+                'type' => 'asset',
+                'content' => 'Our latest standard rate card for regional and international talent bookings across Europe and the Middle East.',
+                'file_path' => 'https://example.com/assets/hailerz-rate-card-2026.pdf',
+                'is_published' => true,
+            ],
+            [
+                'title' => 'Hailerz Expands into Southeast Asia',
+                'type' => 'news',
+                'content' => 'We are thrilled to announce the opening of our new regional hub in Singapore, dedicated to serving the rapidly growing luxury event market in SE Asia.',
+                'file_path' => null,
+                'is_published' => true,
+            ],
+            [
+                'title' => 'Technical Rider Template for International Speakers',
+                'type' => 'asset',
+                'content' => 'A standardized technical requirement document that ensures your keynote speakers have everything they need for a flawless delivery.',
+                'file_path' => 'https://example.com/assets/technical-rider-template.docx',
+                'is_published' => true,
+            ],
+        ];
+
+        foreach ($resources as $resourceData) {
+            ContentResource::updateOrCreate(
+                ['title' => $resourceData['title']],
+                $resourceData
+            );
+        }
     }
 }
