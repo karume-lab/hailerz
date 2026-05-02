@@ -14,75 +14,94 @@ class InquiryForm
     {
         return $schema->components([
 
-            Section::make('Event Planner / Organization')
+            Section::make('Client Information')
                 ->schema([
-                    Forms\Components\TextInput::make('client_name')
-                        ->label('Contact Person / Organization')
+                    Forms\Components\TextInput::make('first_name')
                         ->required()
                         ->columnSpan(1),
-                    Forms\Components\TextInput::make('client_email')
-                        ->label('Professional Email')
+                    Forms\Components\TextInput::make('last_name')
                         ->required()
+                        ->columnSpan(1),
+                    Forms\Components\TextInput::make('email')
                         ->email()
+                        ->required()
                         ->columnSpan(1),
+                    Forms\Components\TextInput::make('phone')
+                        ->required()
+                        ->columnSpan(1),
+                    Forms\Components\TextInput::make('company')
+                        ->columnSpanFull(),
                 ])
                 ->columns(2)
                 ->columnSpanFull(),
 
-            Section::make('Engagement Specifications')
+            Section::make('Event Specifications')
                 ->schema([
                     Forms\Components\Select::make('talent_id')
                         ->label('Requested Talent / Act')
                         ->relationship('talent', 'name')
                         ->searchable()
                         ->preload()
-                        ->placeholder('General Agency Inquiry')
                         ->columnSpan(1),
-                    Forms\Components\Select::make('event_type')
-                        ->label('Nature of Event')
-                        ->options([
-                            'Corporate'  => 'Corporate Gala / Summit',
-                            'Wedding'    => 'Luxury Wedding',
-                            'Private'    => 'Private Exclusive Party',
-                            'Nightclub'  => 'Premier Venue / Ticketed',
-                            'Conference' => 'Professional Conference',
-                            'Other'      => 'Special Engagement',
-                        ])
+                    Forms\Components\TextInput::make('event_type')
                         ->required()
                         ->columnSpan(1),
                     Forms\Components\DatePicker::make('event_date')
-                        ->label('Proposed Engagement Date')
                         ->required()
                         ->columnSpan(1),
-                    Forms\Components\TextInput::make('budget')
-                        ->label('Allocated Talent Budget (USD)')
+                    Forms\Components\TextInput::make('event_time')
+                        ->columnSpan(1),
+                    Forms\Components\TextInput::make('performance_duration')
+                        ->columnSpan(1),
+                    Forms\Components\TextInput::make('venue_name')
+                        ->columnSpan(1),
+                    Forms\Components\TextInput::make('city')
+                        ->required()
+                        ->columnSpan(1),
+                    Forms\Components\TextInput::make('state')
+                        ->required()
+                        ->columnSpan(1),
+                    Forms\Components\TextInput::make('expected_guests')
                         ->numeric()
-                        ->prefix('$')
+                        ->required()
                         ->columnSpan(1),
                 ])
                 ->columns(2)
                 ->columnSpanFull(),
 
-            Section::make('Requirements & Briefing')
+            Section::make('Talent Preferences')
                 ->schema([
-                    Forms\Components\Textarea::make('message')
-                        ->label('Event Concept & Performer Brief')
+                    Forms\Components\TextInput::make('talent_category')
                         ->required()
+                        ->columnSpan(1),
+                    Forms\Components\TextInput::make('preferred_genre')
+                        ->columnSpan(1),
+                    Forms\Components\TextInput::make('budget_range')
+                        ->columnSpan(1),
+                    Forms\Components\TextInput::make('specific_talent')
+                        ->columnSpan(1),
+                    Forms\Components\Textarea::make('additional_details')
                         ->rows(6)
                         ->columnSpanFull(),
                 ])
+                ->columns(2)
                 ->columnSpanFull(),
 
-            Section::make('Procurement Workflow Stage')
+            Section::make('Procurement & Status')
                 ->schema([
+                    Forms\Components\TextInput::make('source')
+                        ->label('Source')
+                        ->disabled()
+                        ->columnSpan(1),
                     Forms\Components\Select::make('status')
                         ->label('Inquiry Stage')
                         ->options(collect(InquiryStatus::cases())->mapWithKeys(
                             fn (InquiryStatus $s) => [$s->value => $s->kanbanTitle()]
                         ))
                         ->required()
-                        ->columnSpanFull(),
+                        ->columnSpan(1),
                 ])
+                ->columns(2)
                 ->columnSpanFull(),
         ]);
     }

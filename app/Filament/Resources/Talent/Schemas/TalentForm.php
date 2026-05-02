@@ -71,6 +71,28 @@ class TalentForm
                     Forms\Components\TextInput::make('technical_rider')
                         ->label('Technical Rider URL')
                         ->columnSpanFull(),
+                    
+                    Forms\Components\TextInput::make('website_url')
+                        ->label('Website URL')
+                        ->url()
+                        ->columnSpan(1),
+                    Forms\Components\TextInput::make('instagram_handle')
+                        ->label('Instagram URL')
+                        ->url()
+                        ->columnSpan(1),
+                    Forms\Components\TextInput::make('facebook_url')
+                        ->label('Facebook URL')
+                        ->url()
+                        ->columnSpan(1),
+                    Forms\Components\TextInput::make('youtube_channel')
+                        ->label('YouTube Channel URL')
+                        ->url()
+                        ->columnSpan(1),
+                    Forms\Components\TextInput::make('tiktok_handle')
+                        ->label('TikTok URL')
+                        ->url()
+                        ->columnSpan(1),
+
                     Forms\Components\Repeater::make('gallery')
                         ->relationship('gallery')
                         ->label('Portfolio Gallery Links')

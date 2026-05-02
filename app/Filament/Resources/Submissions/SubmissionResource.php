@@ -42,10 +42,14 @@ class SubmissionResource extends Resource
     public static function form(Schema $schema): Schema
     {
         return $schema->components([
-            \Filament\Schemas\Components\Section::make('Applicant Details')
+            \Filament\Schemas\Components\Section::make('Applicant Personal Information')
                 ->schema([
                     Forms\Components\TextInput::make('artist_name')
                         ->label('Performer / Act Name')
+                        ->required()
+                        ->columnSpan(1),
+                    Forms\Components\TextInput::make('real_name')
+                        ->label('Legal / Real Name')
                         ->required()
                         ->columnSpan(1),
                     Forms\Components\TextInput::make('email')
@@ -53,12 +57,100 @@ class SubmissionResource extends Resource
                         ->email()
                         ->required()
                         ->columnSpan(1),
-                    Forms\Components\TextInput::make('epk_link')
+                    Forms\Components\TextInput::make('phone')
+                        ->label('Phone Number')
+                        ->required()
+                        ->columnSpan(1),
+                    Forms\Components\TextInput::make('location')
+                        ->label('Base Location')
+                        ->required()
+                        ->columnSpanFull(),
+                    Forms\Components\TextInput::make('profile_photo_url')
+                        ->label('Profile Photo URL')
                         ->url()
-                        ->label('Electronic Press Kit (EPK)')
                         ->columnSpanFull(),
                 ])
                 ->columns(2)
+                ->columnSpanFull(),
+
+            \Filament\Schemas\Components\Section::make('Professional Details')
+                ->schema([
+                    Forms\Components\TextInput::make('category')
+                        ->label('Talent Category')
+                        ->columnSpan(1),
+                    Forms\Components\TextInput::make('genre')
+                        ->label('Primary Genre')
+                        ->columnSpan(1),
+                    Forms\Components\TextInput::make('years_active')
+                        ->label('Years Active')
+                        ->columnSpan(1),
+                    Forms\Components\TextInput::make('min_rate')
+                        ->label('Minimum Rate (₦)')
+                        ->numeric()
+                        ->prefix('₦')
+                        ->columnSpan(1),
+                    Forms\Components\TextInput::make('max_rate')
+                        ->label('Maximum Rate (₦)')
+                        ->numeric()
+                        ->prefix('₦')
+                        ->columnSpan(1),
+                ])
+                ->columns(2)
+                ->columnSpanFull(),
+
+            \Filament\Schemas\Components\Section::make('Online Presence')
+                ->schema([
+                    Forms\Components\TextInput::make('website_url')
+                        ->label('Website')
+                        ->url()
+                        ->columnSpan(1),
+                    Forms\Components\TextInput::make('instagram_handle')
+                        ->label('Instagram')
+                        ->url()
+                        ->columnSpan(1),
+                    Forms\Components\TextInput::make('facebook_url')
+                        ->label('Facebook')
+                        ->url()
+                        ->columnSpan(1),
+                    Forms\Components\TextInput::make('youtube_channel')
+                        ->label('YouTube')
+                        ->url()
+                        ->columnSpan(1),
+                    Forms\Components\TextInput::make('tiktok_handle')
+                        ->label('TikTok')
+                        ->url()
+                        ->columnSpan(1),
+                ])
+                ->columns(2)
+                ->columnSpanFull(),
+
+            \Filament\Schemas\Components\Section::make('Experience & Credentials')
+                ->schema([
+                    Forms\Components\Textarea::make('notable_venues')
+                        ->label('Notable Venues')
+                        ->rows(3),
+                    Forms\Components\Textarea::make('notable_clients')
+                        ->label('Notable Clients')
+                        ->rows(3),
+                    Forms\Components\Textarea::make('press_features')
+                        ->label('Press & Awards')
+                        ->rows(3),
+                ])
+                ->columnSpanFull(),
+
+            \Filament\Schemas\Components\Section::make('Artist Statement')
+                ->schema([
+                    Forms\Components\Textarea::make('bio')
+                        ->label('Artist Biography')
+                        ->required()
+                        ->rows(6),
+                    Forms\Components\Textarea::make('motivation')
+                        ->label('Motivation to Join')
+                        ->rows(4),
+                    Forms\Components\TextInput::make('source')
+                        ->label('How they heard about us')
+                        ->disabled(),
+                ])
                 ->columnSpanFull(),
 
             \Filament\Schemas\Components\Section::make('Application Status')
@@ -75,7 +167,7 @@ class SubmissionResource extends Resource
                 ->columnSpanFull(),
 
             \Filament\Schemas\Components\Section::make('Media Gallery')
-                ->description('Links to media provided by the applicant')
+                ->description('Portfolio links provided by the applicant')
                 ->schema([
                     Forms\Components\Repeater::make('gallery')
                         ->relationship('gallery')
@@ -110,9 +202,8 @@ class SubmissionResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('email')
                     ->label('Professional Email'),
-                Tables\Columns\TextColumn::make('epk_link')
-                    ->label('EPK')
-                    ->copyable(),
+                Tables\Columns\TextColumn::make('category')
+                    ->label('Category'),
                 Tables\Columns\TextColumn::make('status')
                     ->label('Status')
                     ->badge()
@@ -136,14 +227,25 @@ class SubmissionResource extends Resource
                     ->hidden(fn (Submission $record) => $record->status !== 'pending')
                     ->action(function (Submission $record) {
                         $record->update(['status' => 'approved']);
+
+                        // Find or create category based on the string value from submission
+                        $category = \App\Models\Category::firstOrCreate(['name' => $record->category]);
+
                         // Automatically create the Talent profile
                         $talent = Talent::create([
                             'name' => $record->artist_name,
-                            'category_id' => 1, // Default, admin adjusts later
+                            'category_id' => $category->id,
                             'bio' => $record->bio,
                             'location' => $record->location,
-                            'starting_price' => (float)$record->minimum_fee,
-                            'video_url' => $record->youtube_url ?? $record->epk_link,
+                            'starting_price' => $record->min_rate,
+                            'genre' => $record->genre,
+                            'years_active' => $record->years_active,
+                            'website_url' => $record->website_url,
+                            'instagram_handle' => $record->instagram_handle,
+                            'facebook_url' => $record->facebook_url,
+                            'youtube_channel' => $record->youtube_channel,
+                            'tiktok_handle' => $record->tiktok_handle,
+                            'primary_image_url' => $record->profile_photo_url,
                             'status' => 'active',
                             'slug' => \Illuminate\Support\Str::slug($record->artist_name),
                         ]);
@@ -154,7 +256,6 @@ class SubmissionResource extends Resource
                                 'url' => $item->url,
                                 'title' => $item->title,
                                 'description' => $item->description,
-                                'sort_order' => $item->sort_order,
                             ]);
                         }
 

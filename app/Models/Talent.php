@@ -87,6 +87,11 @@ class Talent extends Model implements HasMedia
         return $this->morphMany(GalleryItem::class, 'galleryable');
     }
 
+    public function gallery(): \Illuminate\Database\Eloquent\Relations\MorphMany
+    {
+        return $this->morphMany(GalleryItem::class, 'galleryable');
+    }
+
     public function registerMediaConversions(?Media $media = null): void
     {
         $this->addMediaConversion('thumb')
