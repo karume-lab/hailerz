@@ -1,4 +1,19 @@
 <x-filament-panels::page>
+  <style>
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: rgba(156, 163, 175, 0.2);
+      border-radius: 10px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: rgba(156, 163, 175, 0.4);
+    }
+  </style>
   {{-- View Switcher --}}
   <div class="mb-8 flex justify-start">
     <div class="inline-flex p-1.5 bg-gray-50 dark:bg-white/5 rounded-xl border border-gray-200 dark:border-white/10 shadow-inner">
@@ -62,27 +77,27 @@
           </div>
 
           {{-- Cards area --}}
-          <div class="flex-1 flex flex-col gap-5 p-4 rounded-3xl border border-gray-200 dark:border-white/10 bg-gray-50/50 dark:bg-white/5 min-h-[450px] shadow-inner transition-colors duration-500">
+          <div 
+            class="flex-1 flex flex-col gap-5 p-4 rounded-3xl border border-gray-200 dark:border-white/10 bg-gray-50/50 dark:bg-white/5 min-h-[450px] max-h-[calc(100vh-320px)] overflow-y-auto shadow-inner transition-colors duration-500 custom-scrollbar"
+          >
             <template x-for="inquiry in (inquiries['{{ $status->value }}'] || [])" :key="inquiry.id">
-              <div
+              <a 
+                :href="inquiry.edit_url"
                 draggable="true"
                 @dragstart="startDragging(inquiry.id)"
-                class="group relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-white/10 p-6 rounded-2xl shadow-sm cursor-grab active:cursor-grabbing active:scale-[0.98] hover:border-primary-500 hover:shadow-2xl hover:-translate-y-1 transition-all duration-500 overflow-hidden"
+                class="group relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-white/10 p-6 rounded-2xl shadow-sm cursor-grab active:cursor-grabbing active:scale-[0.98] hover:border-primary-500 hover:shadow-2xl hover:-translate-y-1 transition-all duration-500 overflow-hidden block"
               >
                 {{-- Brand Accent --}}
                 <div class="absolute top-0 left-0 w-full h-1 bg-primary-600 dark:bg-primary-400 opacity-0 group-hover:opacity-100 transition-opacity"></div>
 
-                {{-- Edit button, revealed on hover --}}
-                <div class="absolute top-5 right-5 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0">
-                  <a :href="inquiry.edit_url" class="flex items-center justify-center w-8 h-8 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 hover:text-primary-600 transition-colors shadow-sm">
-                    <x-filament::icon icon="heroicon-m-pencil-square" class="w-4 h-4" />
-                  </a>
-                </div>
-
                 {{-- Client name & ref --}}
                 <div class="mb-5">
                   <div class="text-[15px] font-bold text-gray-950 dark:text-white tracking-tight leading-tight mb-1" x-text="inquiry.client_name"></div>
-                  <span class="text-[10px] text-gray-500 dark:text-gray-400 font-black uppercase tracking-widest" x-text="'#INQ-' + inquiry.id"></span>
+                  <div class="flex items-center gap-2">
+                    <span class="text-[10px] text-gray-500 dark:text-gray-400 font-black uppercase tracking-widest" x-text="'#INQ-' + inquiry.id"></span>
+                    <span class="w-1 h-1 bg-gray-300 dark:bg-gray-700 rounded-full"></span>
+                    <span class="text-[10px] text-primary-600 dark:text-primary-400 font-black uppercase tracking-widest" x-text="inquiry.event_type"></span>
+                  </div>
                 </div>
 
                 {{-- Details --}}
@@ -94,15 +109,27 @@
                     <span x-text="inquiry.talent_name"></span>
                   </div>
 
+                  <div class="flex items-center gap-2.5 text-xs font-semibold text-gray-600 dark:text-gray-400">
+                    <div class="w-6 h-6 rounded-lg bg-gray-500/10 flex items-center justify-center">
+                      <svg class="w-3.5 h-3.5 text-gray-500 dark:text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" /><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" /></svg>
+                    </div>
+                    <span x-text="inquiry.event_location"></span>
+                  </div>
+
                   <div class="flex items-center justify-between mt-2">
                     <div class="flex items-center gap-2 text-[10px] font-bold text-gray-500 dark:text-gray-400 uppercase tracking-widest">
                       <svg class="w-3.5 h-3.5 text-secondary-600 dark:text-secondary-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" /></svg>
                       <span x-text="inquiry.event_date || 'TBD'"></span>
                     </div>
-                    <div class="px-2.5 py-1 rounded-lg bg-gray-900 dark:bg-white text-[11px] font-black text-white dark:text-gray-900" x-text="inquiry.budget"></div>
+                    <div class="flex items-center gap-2">
+                      <template x-if="inquiry.budget_flexible">
+                        <span class="px-1.5 py-0.5 rounded bg-amber-500/10 text-amber-600 text-[8px] font-black uppercase tracking-tighter border border-amber-500/20">Flex</span>
+                      </template>
+                      <div class="px-2.5 py-1 rounded-lg bg-gray-900 dark:bg-white text-[11px] font-black text-white dark:text-gray-900" x-text="inquiry.budget"></div>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </a>
             </template>
 
             {{-- Empty drop zone --}}

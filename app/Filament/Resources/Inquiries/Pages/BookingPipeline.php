@@ -31,7 +31,7 @@ class BookingPipeline extends Page implements HasTable
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-view-columns';
 
     #[Url(as: 'view', history: true)]
-    public string $activeView = 'kanban';
+    public string $activeView = 'table';
 
     public array $inquiries = [];
 
@@ -47,13 +47,16 @@ class BookingPipeline extends Page implements HasTable
             ->get()
             ->groupBy(fn (Inquiry $i) => $i->status->value)
             ->map(fn ($group) => $group->map(fn (Inquiry $i) => [
-                'id'          => $i->id,
-                'client_name' => $i->client_name,
-                'event_date'  => $i->event_date ? \Illuminate\Support\Carbon::parse($i->event_date)->format('M d, Y') : null,
-                'talent_name' => $i->talent?->name ?? 'General Inquiry',
-                'budget'      => $i->budget ? '₦' . number_format((float) $i->budget, 0) : 'TBC',
-                'status'      => $i->status->value,
-                'edit_url'    => InquiryResource::getUrl('edit', ['record' => $i->id]),
+                'id'             => $i->id,
+                'client_name'    => $i->client_name,
+                'event_date'     => $i->event_date ? \Illuminate\Support\Carbon::parse($i->event_date)->format('M d, Y') : null,
+                'event_type'     => $i->event_type,
+                'event_location' => $i->event_location ?? $i->city,
+                'budget_flexible' => $i->budget_flexible,
+                'talent_name'    => $i->talent?->name ?? 'General Inquiry',
+                'budget'         => $i->budget ? '₦' . number_format((float) $i->budget, 0) : 'TBC',
+                'status'         => $i->status->value,
+                'edit_url'       => InquiryResource::getUrl('edit', ['record' => $i->id]),
             ])->values()->toArray())
             ->toArray();
     }
