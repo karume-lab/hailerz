@@ -1,6 +1,6 @@
 @push('head')
     {{-- Preload hero background image --}}
-    <link rel="preload" as="image" href="{{ asset('images/home/hero-bg.jpg') }}" fetchpriority="high">
+    <link rel="preload" as="image" href="{{ asset('images/home/hero-bg.webp') }}" fetchpriority="high">
 @endpush
 
 <div class="bg-surface-light">
@@ -8,7 +8,7 @@
     <section class="relative min-h-[85vh] flex items-center justify-center pt-32 pb-20 overflow-hidden">
         <!-- Background Image with Overlay -->
         <div class="absolute inset-0 z-0">
-            <img src="{{ asset('images/home/hero-bg.jpg') }}" class="w-full h-full object-cover"
+            <img src="{{ asset('images/home/hero-bg.webp') }}" class="w-full h-full object-cover"
                 alt="Hero background - Rays of light illuminating a stage">
             <div class="absolute inset-0 bg-black/70 bg-linear-to-b from-black/40 via-transparent to-black/60"></div>
         </div>

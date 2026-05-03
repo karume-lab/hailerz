@@ -97,11 +97,13 @@ class Talent extends Model implements HasMedia
         $this->addMediaConversion('thumb')
             ->width(400)
             ->height(400)
-            ->sharpen(10);
+            ->sharpen(10)
+            ->format('webp');
 
         $this->addMediaConversion('optimized')
             ->width(1200)
             ->height(800)
-            ->withResponsiveImages();
+            ->withResponsiveImages()
+            ->format('webp');
     }
 }

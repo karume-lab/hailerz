@@ -78,11 +78,6 @@
         @php
             $logoPath = public_path('images/logo.webp');
             $mime = 'image/webp';
-            
-            if (!file_exists($logoPath)) {
-                $logoPath = public_path('images/logo.png');
-                $mime = 'image/png';
-            }
         @endphp
         @if(file_exists($logoPath))
             <img src="data:{{ $mime }};base64,{{ base64_encode(file_get_contents($logoPath)) }}" alt="Hailerz Logo">
