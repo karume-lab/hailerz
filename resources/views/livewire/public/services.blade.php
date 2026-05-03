@@ -7,9 +7,9 @@
     <span class="text-xs font-bold text-brand-primary uppercase tracking-widest">Agency Solutions</span>
     <span class="h-px w-12 bg-brand-primary"></span>
    </div>
-   <h1 class="text-5xl md:text-8xl font-bold text-text-inverse tracking-tight mb-8 font-serif leading-tight">How we help you <span class="text-brand-secondary">book</span> talent</h1>
+   <h1 class="text-5xl md:text-8xl font-bold text-text-inverse tracking-tight mb-8 font-serif leading-tight">Bespoke Entertainment <span class="text-brand-secondary">Solutions</span></h1>
    <p class="text-xl md:text-2xl text-text-muted max-w-3xl mx-auto leading-relaxed font-light">
-    We provide reliable booking services for weddings, birthday parties, and premium private events. From finding the act to signing the contract, we manage the heavy lifting.
+    We provide premier talent booking for weddings, high-profile celebrations, and exclusive private events. From discovery to performance, we manage every detail.
    </p>
   </div>
   
@@ -21,8 +21,8 @@
  <section class="py-32 bg-surface-muted">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
    <div class="text-center max-w-3xl mx-auto mb-24">
-    <h2 class="text-3xl md:text-5xl font-bold text-text-primary mb-6 font-serif">The <span class="text-brand-secondary">artists</span> we represent</h2>
-    <p class="text-text-secondary text-lg">Every performer on our talent is personally vetted for their professionalism and performance quality.</p>
+    <h2 class="text-3xl md:text-5xl font-bold text-text-primary mb-6 font-serif">Our <span class="text-brand-secondary">Premier Roster</span></h2>
+    <p class="text-text-secondary text-lg">Discover top-tier musicians, DJs, and speakers. Each artist is meticulously vetted to guarantee an unforgettable performance.</p>
    </div>
 
    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
@@ -30,21 +30,21 @@
       $categories = [
        [
         'name' => 'Speakers',
-        'desc' => 'Thought leaders and motivational speakers to inspire your guests at weddings, birthdays, and private events.',
+        'desc' => 'Keynote speakers and thought leaders who inspire and educate at high-profile events and private celebrations.',
         'icon' => 'M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z',
-        'genres' => ['Keynote', 'Storytelling', 'Motivation', 'Celebrity']
+        'genres' => ['Keynote', 'Motivational', 'Educational', 'Celebrity']
        ],
        [
         'name' => 'Musicians',
-        'desc' => 'World-class bands and soloists providing high-energy entertainment for weddings and luxury celebrations.',
+        'desc' => 'Premier bands and soloists providing high-energy, world-class entertainment for luxury weddings and events.',
         'icon' => 'M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2z',
         'genres' => ['Live Bands', 'Acoustic', 'Afro-Fusion', 'Jazz']
        ],
        [
-        'name' => 'Variety Artists',
-        'desc' => 'Dancers, poets, and specialty performers tailored for weddings and high-end birthday parties.',
+        'name' => 'DJs & Producers',
+        'desc' => 'Professional DJs who read the room and keep the energy high for unforgettable celebrations.',
         'icon' => 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857',
-        'genres' => ['Dancers', 'Poets', 'Artists', 'Specialty']
+        'genres' => ['Club DJs', 'Event DJs', 'Remixers', 'Specialty']
        ],
       ];
      @endphp
@@ -72,15 +72,15 @@
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
    <div class="lg:grid lg:grid-cols-2 lg:gap-24 items-center">
     <div>
-     <h2 class="text-3xl md:text-6xl font-bold text-text-inverse mb-8 font-serif leading-tight">We handle the <span class="text-brand-secondary">logistics</span></h2>
-     <p class="text-xl text-text-muted mb-12 leading-relaxed font-light">We take care of the paperwork and technical details so you can focus on running your event.</p>
+     <h2 class="text-3xl md:text-6xl font-bold text-text-inverse mb-8 font-serif leading-tight">Seamless <span class="text-brand-secondary">Logistics</span> Management</h2>
+     <p class="text-xl text-text-muted mb-12 leading-relaxed font-light">Our team handles the technical and administrative complexities, allowing you to focus on the celebration.</p>
      
      <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
       @foreach([
-       ['Pricing & Contracts', 'Clear, straightforward contracts that protect both you and the artist.'],
-       ['Tech Requirements', 'We\'ll coordinate all the sound and lighting needs with the artist\'s team.'],
-       ['Travel & Stays', 'We manage the artist\'s travel and accommodation so you don\'t have to.'],
-       ['Quality Control', 'We personally check in after every show to ensure our standards were met.'],
+       ['Contracts & Negotiations', 'Professional, transparent contracts and secure negotiations to protect your investment.'],
+       ['Technical Direction', 'Coordinating all sound, lighting, and technical requirements with the talent\'s team.'],
+       ['Concierge Travel', 'Managing travel and luxury accommodations for the talent, ensuring they arrive ready to perform.'],
+       ['Quality Assurance', 'We maintain the highest standards, personally checking in after every event to ensure excellence.'],
       ] as $pillar)
       <div class="space-y-3">
        <h3 class="text-text-inverse font-bold text-sm uppercase tracking-widest">{{ $pillar[0] }}</h3>
@@ -104,8 +104,8 @@
  <section class="py-32 bg-surface-light border-b border-brand-primary/5">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
    <div class="text-center max-w-3xl mx-auto mb-24">
-    <h2 class="text-3xl md:text-5xl font-bold text-text-primary mb-6 font-serif"><span class="text-brand-secondary">How</span> it works</h2>
-    <p class="text-text-secondary text-lg">A simple, three-step process to get an artist on your stage.</p>
+    <h2 class="text-3xl md:text-5xl font-bold text-text-primary mb-6 font-serif">The <span class="text-brand-secondary">Booking</span> Experience</h2>
+    <p class="text-text-secondary text-lg">A simple, three-step process to secure premier talent for your stage.</p>
 
     <div class="mt-12 aspect-video max-w-4xl mx-auto rounded-[2.5rem] overflow-hidden shadow-2xl border border-subtle bg-surface-dark">
         <iframe 
@@ -123,9 +123,9 @@
 
    <div class="grid grid-cols-1 md:grid-cols-3 gap-16">
     @foreach([
-     ['01', 'Tell us about your event', 'Let us know your dates, budget, and the kind of vibe you\'re looking for.'],
-     ['02', 'Review the shortlist', 'We\'ll send you a list of available artists who fit your needs, with clear pricing for each.'],
-     ['03', 'Lock in the date', 'Once you\'ve made a choice, we\'ll handle the contract and deposit to secure the date.'],
+     ['01', 'Define Your Vision', 'Share your event details, budget, and the specific atmosphere you want to create.'],
+     ['02', 'Curated Recommendations', 'Receive a hand-picked list of premier talent that aligns with your vision and requirements.'],
+     ['03', 'Secure Your Date', 'Finalize the details with secure contracts and professional coordination to lock in your booking.'],
     ] as $step)
     <div class="relative">
      <span class="text-8xl font-black text-text-primary/5 absolute -top-12 -left-4">{{ $step[0] }}</span>
@@ -142,9 +142,9 @@
  <!-- Final CTA -->
  <section class="py-32 bg-surface-muted text-center">
   <div class="max-w-4xl mx-auto px-4">
-   <h2 class="text-3xl md:text-6xl font-bold text-text-primary mb-8 font-serif leading-tight">Ready to find your <span class="text-brand-secondary">headliner</span>?</h2>
+   <h2 class="text-3xl md:text-6xl font-bold text-text-primary mb-8 font-serif leading-tight">Find Your <span class="text-brand-secondary">Perfect Match</span>.</h2>
    <p class="text-xl text-text-secondary mb-12 max-w-2xl mx-auto font-light leading-relaxed">
-    Talk to one of our agents. We'll give you honest advice and handle the entire booking process from start to finish.
+    Connect with our dedicated agents for bespoke recommendations and a seamless booking experience from start to finish.
    </p>
    <div class="flex flex-col sm:flex-row justify-center gap-6">
     <x-button variant="primary" size="lg" href="/talent" wire:navigate>

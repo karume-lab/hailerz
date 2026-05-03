@@ -7,9 +7,9 @@
       <span class="h-px w-8 bg-brand-primary"></span>
       <span class="text-xs font-bold text-brand-primary uppercase tracking-widest">Connect</span>
      </div>
-     <h2 class="text-4xl font-bold tracking-tight text-text-primary font-serif">Get in <span class="text-brand-secondary">Touch</span></h2>
+     <h2 class="text-4xl font-bold tracking-tight text-text-primary font-serif">Ready to <span class="text-brand-secondary">Work Together?</span></h2>
      <p class="mt-6 text-lg leading-relaxed text-text-secondary font-light">
-      Whether you're looking to secure talent for an upcoming event or discuss agency representation, our team of dedicated agents is here to assist.
+      Whether you're looking to book top-tier talent for an upcoming event or discuss agency representation, our team is here to assist you.
      </p>
     </div>
     <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:col-span-2">
@@ -30,9 +30,9 @@
 
    <div class="pt-16 lg:grid lg:grid-cols-3 lg:gap-12 border-t border-subtle ">
     <div>
-     <h2 class="text-2xl font-bold tracking-tight text-text-primary font-serif mb-4">Agency <span class="text-brand-secondary">Correspondence</span></h2>
+     <h2 class="text-2xl font-bold tracking-tight text-text-primary font-serif mb-4">Direct <span class="text-brand-secondary">Inquiries</span></h2>
      <p class="text-sm text-text-secondary font-light leading-relaxed">
-      Complete the form below for general inquiries. For specific talent requests, we recommend using our <a href="/book" class="text-brand-primary font-bold hover:underline">Booking Wizard</a> for expedited processing.
+      Reach out and we'll respond promptly to your request. For urgent booking needs, we recommend using our <a href="/book" class="text-brand-primary font-bold hover:underline">expedited request process</a>.
      </p>
     </div>
     <div class="lg:col-span-2">
@@ -63,12 +63,12 @@
       </div>
       <div class="sm:col-span-2">
        <label for="message" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Message</label>
-       <textarea wire:model="message" id="message" rows="5" placeholder="Detail your inquiry or project requirements..." class="block w-full px-6 py-4 bg-surface-muted border border-subtle placeholder-text-muted rounded-xl focus:ring-2 focus:ring-brand-primary focus:border-transparent outline-none text-text-primary text-sm font-medium transition-all resize-none"></textarea>
+       <textarea wire:model="message" id="message" rows="5" placeholder="Tell us about your event vision and the talent you're interested in..." class="block w-full px-6 py-4 bg-surface-muted border border-subtle placeholder-text-muted rounded-xl focus:ring-2 focus:ring-brand-primary focus:border-transparent outline-none text-text-primary text-sm font-medium transition-all resize-none"></textarea>
        @error('message') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
       </div>
       <div class="sm:col-span-2 flex justify-end">
        <x-button type="submit" size="lg">
-        Send Correspondence
+        Send Message
        </x-button>
       </div>
      </form>

@@ -8,10 +8,10 @@
                 <span class="h-px w-12 bg-brand-primary"></span>
             </div>
             <h1 class="text-5xl md:text-8xl font-bold text-text-inverse tracking-tight mb-8 font-serif leading-tight">
-                Professional <span class="text-brand-secondary">support</span> for your production
+                Premier <span class="text-brand-secondary">Production</span> Support
             </h1>
             <p class="text-xl md:text-2xl text-text-muted max-w-3xl mx-auto leading-relaxed font-light">
-                Add experienced specialists to your production team. We provide the technical leads and professional support you need to run a high-end event.
+                Elevate your event with our elite roster of production specialists. We provide the technical leads and professional support required for high-end celebrations.
             </p>
         </div>
 
@@ -30,8 +30,8 @@
     <section class="py-32 bg-surface-muted">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-24">
-                <h2 class="text-3xl md:text-5xl font-bold text-text-primary mb-6 font-serif tracking-tight">Specialists on <span class="text-brand-secondary">call</span></h2>
-                <p class="text-text-secondary text-lg">Whether you need a lead technician or a full crew, we provide professionals who know how to work a high-stakes event.</p>
+                <h2 class="text-3xl md:text-5xl font-bold text-text-primary mb-6 font-serif tracking-tight">Specialists on <span class="text-brand-secondary">Call</span></h2>
+                <p class="text-text-secondary text-lg">Whether you need a senior technical lead or a full production crew, we provide vetted professionals who excel in high-stakes environments.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
@@ -99,10 +99,10 @@
                     </div>
                     <h2
                         class="text-4xl md:text-6xl font-bold text-text-primary font-serif tracking-tight leading-tight">
-                        Experienced People. <span class="text-brand-secondary italic">Zero</span> Drama.
+                        Exceptional Talent. <span class="text-brand-secondary italic">Flawless</span> Execution.
                     </h2>
                     <p class="text-xl text-text-secondary leading-relaxed font-light">
-                        We don't just send hands; we send experts. We personally interview every specialist on our talent to ensure they're professional, capable, and discreet.
+                        We don’t just provide staff; we provide experts. Every specialist is meticulously vetted to ensure they meet our rigorous standards for professionalism and discretion.
                     </p>
                     <div class="grid grid-cols-2 gap-8 pt-6">
                         <div>
@@ -148,8 +148,8 @@
     <section class="py-32 bg-surface-dark relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center max-w-3xl mx-auto mb-24">
-                <h2 class="text-3xl md:text-5xl font-bold text-text-inverse mb-6 font-serif tracking-tight">Why work with <span class="text-brand-secondary">us</span></h2>
-                <p class="text-text-muted text-lg">We're not a temp agency. We're a partner in your event's success.</p>
+                <h2 class="text-3xl md:text-5_xl font-bold text-text-inverse mb-6 font-serif tracking-tight">The Hailerz <span class="text-brand-secondary">Advantage</span></h2>
+                <p class="text-text-muted text-lg">We are your dedicated partner in event success, providing a white-glove approach to production staffing.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
@@ -159,8 +159,8 @@
                         <span class="font-bold">01</span>
                     </div>
                     <div>
-                        <h3 class="text-2xl font-bold text-text-inverse mb-4 font-serif">We know our people</h3>
-                        <p class="text-text-muted leading-relaxed font-light">We personally interview everyone on our team and verify their experience before they ever step foot on your site.</p>
+                        <h3 class="text-2xl font-bold text-text-inverse mb-4 font-serif">Vetted Excellence</h3>
+                        <p class="text-text-muted leading-relaxed font-light">We personally interview and verify the experience of every specialist before they join our elite roster.</p>
                     </div>
                 </div>
                 <div class="flex gap-8">
@@ -169,8 +169,8 @@
                         <span class="font-bold">02</span>
                     </div>
                     <div>
-                        <h3 class="text-2xl font-bold text-text-inverse mb-4 font-serif">Quick Turnaround</h3>
-                        <p class="text-text-muted leading-relaxed font-light">Need someone last minute? Our network allows us to find and place professionals quickly, even for international shows.</p>
+                        <h3 class="text-2xl font-bold text-text-inverse mb-4 font-serif">Global Reach</h3>
+                        <p class="text-text-muted leading-relaxed font-light">Our extensive network allows us to place top-tier professionals quickly, anywhere in the world.</p>
                     </div>
                 </div>
                 <div class="flex gap-8">
@@ -179,8 +179,8 @@
                         <span class="font-bold">03</span>
                     </div>
                     <div>
-                        <h3 class="text-2xl font-bold text-text-inverse mb-4 font-serif">The right fit</h3>
-                        <p class="text-text-muted leading-relaxed font-light">We don't just fill slots. We match specialists to your specific technical needs and the tone of your event.</p>
+                        <h3 class="text-2xl font-bold text-text-inverse mb-4 font-serif">Bespoke Matching</h3>
+                        <p class="text-text-muted leading-relaxed font-light">We match specialists to your specific technical requirements and the unique tone of your event.</p>
                     </div>
                 </div>
                 <div class="flex gap-8">
@@ -189,8 +189,8 @@
                         <span class="font-bold">04</span>
                     </div>
                     <div>
-                        <h3 class="text-2xl font-bold text-text-inverse mb-4 font-serif">We handle the details</h3>
-                        <p class="text-text-muted leading-relaxed font-light">We manage the travel, stays, and paperwork so you can focus on the show.</p>
+                        <h3 class="text-2xl font-bold text-text-inverse mb-4 font-serif">Seamless Management</h3>
+                        <p class="text-text-muted leading-relaxed font-light">From travel logistics to secure contracts, we handle the details so you can focus on the performance.</p>
                     </div>
                 </div>
             </div>
@@ -201,9 +201,9 @@
     <section class="py-40 bg-surface-muted text-center relative overflow-hidden">
         <div class="max-w-4xl mx-auto px-4 relative z-10">
             <h2 class="text-4xl md:text-7xl font-bold text-text-primary mb-8 font-serif tracking-tight leading-tight">
-                Build a better <span class="text-brand-secondary italic">team</span>.</h2>
+                Build an <span class="text-brand-secondary italic">Elite</span> Team.</h2>
             <p class="text-xl md:text-2xl text-text-secondary mb-12 font-light leading-relaxed">
-                See the difference that experienced professionals make. Let us help you staff your next event.
+                Experience the difference of working with world-class professionals. Let us help you staff your next unforgettable event.
             </p>
             <div class="flex flex-col sm:flex-row justify-center gap-6">
                 <x-button variant="primary" size="lg" href="/contact" wire:navigate>

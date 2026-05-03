@@ -15,15 +15,15 @@
                 <div class="mb-16 lg:mb-0">
                     <h1
                         class="text-5xl md:text-7xl font-bold tracking-tight text-text-inverse mb-8 leading-[1.1] font-serif">
-                        The Right <span class="text-brand-secondary">Talent</span> for Your Next Event.
+                        Book Top <span class="text-brand-secondary">Talent</span> for Your Event.
                     </h1>
                     <p class="mt-4 max-w-xl text-lg md:text-xl text-text-muted mb-12 leading-relaxed">
-                        We manage the outreach and negotiations with the most requested artists.
-                        Find the perfect talent to set the tone for your event.
+                        Connect with premier musicians, speakers, and performers for unforgettable experiences. 
+                        We curate the best so you can celebrate with confidence.
                     </p>
                     <div class="flex flex-wrap gap-6">
                         <x-button variant="secondary" size="lg" href="/join" wire:navigate>
-                            Join Talent
+                            Join Our Roster
                         </x-button>
                         <x-button variant="primary" size="lg" href="/talent" wire:navigate>
                             Find Talent
@@ -48,8 +48,8 @@
                                     class="absolute inset-0 bg-linear-to-t from-brand-primary/90 via-transparent to-transparent">
                                 </div>
                                 <div class="absolute bottom-6 left-6">
-                                    <p class="text-text-inverse font-bold text-lg">Live Performance</p>
-                                    <p class="text-text-inverse/80 text-sm">Weddings</p>
+                                    <p class="text-text-inverse font-bold text-lg">Premium Artists</p>
+                                    <p class="text-text-inverse/80 text-sm">Bespoke Events</p>
                                 </div>
                             </div>
                         </div>
@@ -67,8 +67,8 @@
                                     class="absolute inset-0 bg-linear-to-t from-brand-primary/90 via-transparent to-transparent">
                                 </div>
                                 <div class="absolute bottom-6 left-6">
-                                    <p class="text-text-inverse font-bold text-lg">Special Guests</p>
-                                    <p class="text-text-inverse/80 text-sm">Birthday Parties</p>
+                                    <p class="text-text-inverse font-bold text-lg">Curated Talent</p>
+                                    <p class="text-text-inverse/80 text-sm">Private Celebrations</p>
                                 </div>
                             </div>
                         </div>
@@ -85,9 +85,9 @@
     <section class="py-32 bg-surface-muted">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-20">
-                <h2 class="text-3xl md:text-5xl font-bold text-text-primary mb-6 font-serif">We handle the entire <span class="text-brand-secondary">booking</span> process</h2>
-                <p class="text-lg text-text-secondary">From first inquiry to the final performance, we manage every
-                    detail so you don't have to.</p>
+                <h2 class="text-3xl md:text-5xl font-bold text-text-primary mb-6 font-serif">Premier Talent <span class="text-brand-secondary">Booking</span> for Every Occasion</h2>
+                <p class="text-lg text-text-secondary">Experience a seamless booking process. From curation to performance, 
+                    we elevate your event with hand-picked entertainment.</p>
 
                 <div
                     class="mt-12 aspect-video max-w-4xl mx-auto rounded-3xl overflow-hidden shadow-2xl border border-subtle bg-surface-dark">
@@ -103,18 +103,18 @@
                 @php
                     $services = [
                         [
-                            'title' => 'Artist Selection',
-                            'desc' => 'Browse our talent of vetted musicians and speakers. We\'ll help you find someone who actually fits your audience.',
+                            'title' => 'Curated Selection',
+                            'desc' => 'Search our vetted directory of top-tier talent. We bridge the gap between world-class performers and your specific vision.',
                             'icon' => 'M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10'
                         ],
                         [
-                            'title' => 'Clear Contracts',
-                            'desc' => 'We handle all the paperwork and pricing talks, ensuring everything is professional and easy to understand from the start.',
+                            'title' => 'Bespoke Contracts',
+                            'desc' => 'Enjoy professional, transparent negotiations and secure contracts. We handle the complexities so you don\'t have to.',
                             'icon' => 'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z'
                         ],
                         [
-                            'title' => 'Event Day Support',
-                            'desc' => 'We\'re here to manage the logistics and make sure the artist has everything they need to perform.',
+                            'title' => 'White-Glove Support',
+                            'desc' => 'Our team ensures every detail is perfect on the day of your event, providing peace of mind and flawless execution.',
                             'icon' => 'M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z'
                         ]
                     ];
@@ -142,9 +142,9 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
                 <div class="max-w-2xl">
-                    <h2 class="text-3xl md:text-5xl font-bold text-text-primary mb-6 font-serif">Browse our <span class="text-brand-secondary">artists</span></h2>
-                    <p class="text-lg text-text-secondary">Find the right act for your wedding or private celebration. Every artist
-                        on our list has been personally vetted.</p>
+                    <h2 class="text-3xl md:text-5xl font-bold text-text-primary mb-6 font-serif">Explore Our <span class="text-brand-secondary">Premier Roster</span></h2>
+                    <p class="text-lg text-text-secondary">Discover top-tier musicians, DJs, and speakers. Each artist 
+                        is meticulously vetted to guarantee an unforgettable performance.</p>
                 </div>
                 <x-button variant="secondary" href="/talent" wire:navigate>
                     View Full Talent
@@ -201,20 +201,20 @@
                 @php
                     $faqs = [
                         [
-                            'q' => 'How far in advance should I book?',
-                            'a' => 'We recommend booking 2-6 months in advance for best availability, especially for peak seasons (summer and holidays). However, we can often accommodate last-minute requests depending on talent availability.'
+                            'q' => 'When should I start the booking process?',
+                            'a' => 'For the best availability, we recommend reaching out 3-6 months in advance, especially for high-profile talent and peak dates. However, we can often accommodate last-minute requests depending on the roster.'
                         ],
                         [
-                            'q' => 'What happens after I submit this form?',
-                            'a' => 'Our team will review your request within 24 hours and send you personalized talent recommendations with availability and pricing. You\'ll have the opportunity to review profiles, watch videos, and ask questions before making a decision.'
+                            'q' => 'What happens after I submit a request?',
+                            'a' => 'Our agents will review your vision and provide a curated list of recommendations with pricing and availability within 24 hours. You\'ll have the opportunity to review media kits and profiles before securing your booking.'
                         ],
                         [
-                            'q' => 'Are there any booking fees?',
-                            'a' => 'There are no booking fees for clients. Our service is free - you only pay the agreed-upon performance fee to the talent. We handle all contracts, logistics, and coordination at no additional cost.'
+                            'q' => 'Are there hidden booking fees?',
+                            'a' => 'Transparency is our priority. Our booking service is free for clients; you only pay the agreed performance fee for the talent you choose. We handle all logistics and contracts as part of our premium service.'
                         ],
                         [
-                            'q' => 'Can I request multiple talent options?',
-                            'a' => 'Absolutely! We\'ll provide you with several options that match your criteria. You can review all recommendations and choose the performer that best fits your vision and budget.'
+                            'q' => 'Can I browse multiple categories?',
+                            'a' => 'Of course. We encourage you to explore our entire directory to find the perfect combination of entertainment for your event.'
                         ]
                     ];
                 @endphp
@@ -265,11 +265,10 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="lg:grid lg:grid-cols-2 lg:gap-24 items-center">
                 <div>
-                    <h2 class="text-3xl md:text-6xl font-bold text-text-inverse mb-8 font-serif leading-tight">Let's
-                        talk about your <span class="text-brand-secondary">event</span></h2>
+                    <h2 class="text-3xl md:text-6xl font-bold text-text-inverse mb-8 font-serif leading-tight">Ready to <span class="text-brand-secondary">Work Together?</span></h2>
                     <p class="text-xl text-text-inverse/80 mb-12 leading-relaxed">
-                        Talk to a real agent about your plans. We'll give you honest recommendations and handle the
-                        details.
+                        Let’s create something unforgettable. Reach out to our dedicated agents for bespoke recommendations 
+                        tailored to your vision.
                     </p>
 
                     <ul class="space-y-8 mb-12">
@@ -298,8 +297,8 @@
                                 </svg>
                             </div>
                             <div>
-                                <h3 class="text-text-inverse font-bold">Quick Responses</h3>
-                                <p class="text-text-inverse/60 text-sm">Expect a reply within one business day.</p>
+                                <h3 class="text-text-inverse font-bold">Premium Support</h3>
+                                <p class="text-text-inverse/60 text-sm">Our agents respond promptly to every inquiry.</p>
                             </div>
                         </li>
                     </ul>
@@ -356,7 +355,7 @@
                                 <label for="contactMessage"
                                     class="block text-xs font-bold text-text-secondary uppercase tracking-widest mb-2">Message</label>
                                 <textarea id="contactMessage" wire:model="contactMessage" rows="5"
-                                    placeholder="Tell us about your event and the talent you're interested in..."
+                                    placeholder="Tell us about your event vision and the type of talent you're looking for..."
                                     class="w-full px-5 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary focus:bg-surface-light focus:border-transparent outline-none transition-all resize-none text-text-primary placeholder-text-muted shadow-sm"></textarea>
                                 @error('contactMessage') <span class="text-red-500 text-xs mt-1">{{ $message }}</span>
                                 @enderror

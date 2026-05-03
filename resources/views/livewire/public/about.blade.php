@@ -16,11 +16,11 @@
         <span class="text-xs font-bold text-brand-primary uppercase tracking-widest">About the Agency</span>
         <span class="h-px w-12 bg-brand-primary"></span>
       </div>
-      <h1 class="text-5xl md:text-8xl font-bold text-text-inverse tracking-tight mb-8 font-serif leading-tight">
-        We represent the <span class="text-brand-secondary">artists</span> you want to book.
+       <h1 class="text-5xl md:text-8xl font-bold text-text-inverse tracking-tight mb-8 font-serif leading-tight">
+        We Curate the <span class="text-brand-secondary">Artists</span> Who Define Your Event.
       </h1>
       <p class="mt-4 max-w-3xl text-xl md:text-2xl text-text-muted mx-auto leading-relaxed font-light">
-        Hailerz is a specialized talent agency. We help event planners and couples secure the best performers in the world without the usual back-and-forth.
+        Hailerz is a premier entertainment agency dedicated to bridging the gap between top-tier talent and high-profile events. We deliver excellence, every time.
       </p>
     </div>
   </div>
@@ -31,16 +31,16 @@
       <span class="h-px w-8 bg-brand-primary"></span>
       <span class="text-xs font-bold text-brand-primary uppercase tracking-widest">Our Legacy</span>
     </div>
-    <h2 class="text-4xl md:text-6xl font-bold text-text-primary tracking-tight mb-12 font-serif">Why we <span class="text-brand-secondary">started</span></h2>
+    <h2 class="text-4xl md:text-6xl font-bold text-text-primary tracking-tight mb-12 font-serif">Our <span class="text-brand-secondary">Vision</span></h2>
     <div class="space-y-10 text-xl text-text-secondary leading-relaxed font-light">
       <p>
-        Hailerz was founded on a simple idea: booking high-end talent should be easier. We saw too many planners struggling to get clear answers from artists, so we built an agency that prioritizes speed, clear pricing, and reliable service.
+        Hailerz was born from a commitment to excellence in the entertainment industry. We believe that booking top-tier talent should be a seamless, premium experience for every client.
       </p>
       <p>
-        Today, we represent a handpicked list of musicians, speakers, MCs, and content creators. We don't just fill slots; we help you find an artist who actually fits the tone of your night, whether it's a luxury wedding or a private party.
+        Our curated roster features the world’s most sought-after musicians, speakers, and performers. We don’t just book talent; we curate memories, ensuring each act perfectly aligns with the tone and luxury of your event.
       </p>
       <p>
-        We've built our reputation on being straightforward. We handle the contracts and the travel details so you can focus on running your event.
+        From vetting to execution, we handle every detail with precision. Our reputation is built on reliability, professionalism, and an unwavering focus on quality.
       </p>
     </div>
   </div>
@@ -49,17 +49,17 @@
   <div class="bg-surface-light py-32 border-y border-subtle ">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center max-w-3xl mx-auto mb-20">
-        <h2 class="text-3xl md:text-5xl font-bold text-text-primary tracking-tight mb-6 font-serif">What we <span class="text-brand-secondary">stand for</span></h2>
-        <p class="text-lg text-text-secondary">Our core values define how we work with both artists and clients.</p>
+        <h2 class="text-3xl md:text-5xl font-bold text-text-primary tracking-tight mb-6 font-serif">Our <span class="text-brand-secondary">Core Standards</span></h2>
+        <p class="text-lg text-text-secondary">We operate at the intersection of luxury, talent, and professional execution.</p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         @php
           $values = [
-            ['title' => 'Quality', 'desc' => 'We only work with artists who we know can deliver a professional show every single time.'],
-            ['title' => 'Discretion', 'desc' => 'We operate with the highest level of confidentiality for our high-profile clients.'],
-            ['title' => 'Collaboration', 'desc' => 'We work closely with you as a partner, not just another vendor.'],
-            ['title' => 'Honesty', 'desc' => 'Clear pricing and straightforward contracts are at the core of how we work.'],
+            ['title' => 'Curation', 'desc' => 'We only represent artists who meet our rigorous standards for performance, professionalism, and stage presence.'],
+            ['title' => 'Discretion', 'desc' => 'Operating with the utmost confidentiality for our high-profile clients and exclusive events.'],
+            ['title' => 'Excellence', 'desc' => 'Our team is dedicated to providing a white-glove service that exceeds expectations from first inquiry to final applause.'],
+            ['title' => 'Transparency', 'desc' => 'Clear communication, secure contracts, and professional negotiations are the foundation of our agency.'],
           ];
         @endphp
 
@@ -80,8 +80,8 @@
   <div class="bg-surface-muted py-32">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center max-w-3xl mx-auto mb-20">
-        <h2 class="text-3xl md:text-5xl font-bold text-text-primary tracking-tight mb-6 font-serif">The <span class="text-brand-secondary">Agents</span></h2>
-        <p class="text-lg text-text-secondary">Meet the specialists dedicated to your event's success.</p>
+        <h2 class="text-3xl md:text-5xl font-bold text-text-primary tracking-tight mb-6 font-serif">The <span class="text-brand-secondary">Specialists</span></h2>
+        <p class="text-lg text-text-secondary">Meet the dedicated agents who bring your vision to life with expertise and passion.</p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
@@ -126,9 +126,9 @@
     </div>
 
     <div class="relative max-w-4xl mx-auto px-4 text-center">
-      <h2 class="text-4xl md:text-7xl font-bold text-text-inverse mb-8 tracking-tight font-serif">Ready to book?</h2>
+      <h2 class="text-4xl md:text-7xl font-bold text-text-inverse mb-8 tracking-tight font-serif">Let’s Create Something Unforgettable.</h2>
       <p class="text-xl md:text-2xl text-text-muted mb-12 font-light leading-relaxed">
-        Work with us to find the right artist and handle the booking from start to finish.
+        Partner with Hailerz to secure premier talent for your next event. Experience the difference of a truly curated booking process.
       </p>
       <div class="flex flex-col sm:flex-row justify-center gap-6">
         <x-button variant="primary" size="lg" href="/talent" wire:navigate>

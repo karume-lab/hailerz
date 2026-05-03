@@ -6,8 +6,8 @@
     <span class="h-px w-12 bg-brand-primary"></span>
     <span class="text-xs font-bold text-brand-primary uppercase tracking-widest">Global Talent Network</span>
    </div>
-   <h1 class="text-4xl md:text-6xl font-bold text-text-primary tracking-tight font-serif"><span class="text-brand-secondary">Talent</span></h1>
-   <p class="mt-4 text-lg text-text-secondary max-w-2xl">Discover and secure world-class performers, keynote speakers, and specialty acts for your next high-profile event.</p>
+   <h1 class="text-4xl md:text-6xl font-bold text-text-primary tracking-tight font-serif"><span class="text-brand-secondary">Premier</span> Roster</h1>
+   <p class="mt-4 text-lg text-text-secondary max-w-2xl">Explore and secure the world’s most sought-after musicians, speakers, and performers for your next high-profile event.</p>
   </div>
 
   <div class="flex flex-col lg:flex-row gap-12">
@@ -16,7 +16,7 @@
    <aside class="w-full lg:w-1/4">
     <div class="sticky top-28 bg-surface-light p-8 rounded-md shadow-sm border border-subtle ">
      <div class="flex items-center justify-between mb-10">
-      <h2 class="text-xs font-bold text-text-secondary uppercase tracking-widest">Refine Search</h2>
+      <h2 class="text-xs font-bold text-text-secondary uppercase tracking-widest">Refine Selection</h2>
       <button wire:click="resetFilters" aria-label="Reset all search filters" class="text-[10px] font-bold text-brand-primary uppercase tracking-widest hover:underline transition-colors">
        Reset All
       </button>
@@ -31,10 +31,10 @@
 
       <!-- Sort Order -->
       <div>
-       <label for="sort" class="block text-[10px] font-bold text-text-secondary uppercase tracking-widest mb-4">Priority</label>
+       <label for="sort" class="block text-[10px] font-bold text-text-secondary uppercase tracking-widest mb-4">Order</label>
        <select wire:model.live="sort" id="sort" class="w-full px-5 py-4 bg-surface-muted border border-subtle placeholder-text-muted rounded-md focus:ring-2 focus:ring-brand-primary focus:border-transparent transition-all outline-none text-text-primary text-sm font-medium appearance-none">
         <option value="name">Alphabetical</option>
-        <option value="latest">Newly Commissioned</option>
+        <option value="latest">Newly Represented</option>
         <option value="price_asc">Investment: Low to High</option>
         <option value="price_desc">Investment: High to Low</option>
        </select>
@@ -42,7 +42,7 @@
 
       <!-- Category -->
       <div>
-       <label for="category" class="block text-[10px] font-bold text-text-secondary uppercase tracking-widest mb-4">Talent Category</label>
+       <label for="category" class="block text-[10px] font-bold text-text-secondary uppercase tracking-widest mb-4">Discipline</label>
        <select wire:model.live="category_id" id="category" class="w-full px-5 py-4 bg-surface-muted border border-subtle placeholder-text-muted rounded-md focus:ring-2 focus:ring-brand-primary focus:border-transparent transition-all outline-none text-text-primary text-sm font-medium appearance-none">
         <option value="">All Disciplines</option>
         @foreach($categories as $category)
@@ -213,7 +213,7 @@
      @else
       <div class="text-center py-32 bg-surface-light rounded-3xl border border-dashed border-subtle ">
        <h3 class="text-2xl font-bold text-text-primary mb-4 font-serif">No Results Found</h3>
-       <p class="text-text-secondary mb-8">Refine your criteria to explore our alternative talent members.</p>
+       <p class="text-text-secondary mb-8">Refine your selection to explore our alternative talent members.</p>
        <x-button variant="secondary" wire:click="resetFilters">
         Clear All Filters
        </x-button>
