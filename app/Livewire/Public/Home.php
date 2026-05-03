@@ -6,6 +6,8 @@ use Livewire\Component;
 use Livewire\Attributes\Title;
 use Livewire\Attributes\Layout;
 use Illuminate\Support\Facades\Log;
+use App\Models\Talent;
+use App\Models\Category;
 
 #[Layout('components.layouts.app')]
 #[Title('Hailerz | Premium Talent Booking Agency')]
@@ -54,6 +56,40 @@ class Home extends Component
 
     public function render()
     {
-        return view('livewire.public.home');
+        $featuredTalents = Talent::where('is_featured', true)
+            ->where('status', 'active')
+            ->with('category')
+            ->inRandomOrder()
+            ->limit(4)
+            ->get();
+
+        $categories = Category::withCount(['talents' => function($query) {
+            $query->where('status', 'active');
+        }])
+        ->with(['talents' => function($query) {
+            $query->where('status', 'active')->limit(1);
+        }])
+        ->get()
+        ->map(function($category) {
+            $category->default_image = match($category->slug) {
+                'musicians' => asset('images/home/musicians.webp'),
+                'djs' => asset('images/home/djs.webp'),
+                'speakers' => asset('images/home/speakers.webp'),
+                'comedians' => asset('images/home/comedians.webp'),
+                'dancers' => asset('images/categories/dancers.webp'),
+                'artists' => asset('images/categories/artists.webp'),
+                'poets' => asset('images/categories/poets.webp'),
+                'content-creators' => asset('images/categories/content-creators.webp'),
+                'mcs' => asset('images/categories/mcs.webp'),
+                'variety-artists' => asset('images/categories/variety-artists.webp'),
+                default => asset('images/home/specialty.webp'),
+            };
+            return $category;
+        });
+
+        return view('livewire.public.home', [
+            'featuredTalents' => $featuredTalents,
+            'categories'      => $categories,
+        ]);
     }
 }

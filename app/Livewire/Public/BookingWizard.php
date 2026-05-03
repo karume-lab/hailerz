@@ -8,6 +8,8 @@ use Livewire\Component;
 use Livewire\Attributes\Title;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Validate;
+use Livewire\Attributes\Computed;
+use Livewire\WithPagination;
 use App\Mail\BookingConfirmationMail;
 use Illuminate\Support\Facades\Mail;
 
@@ -16,10 +18,16 @@ use Illuminate\Support\Facades\Mail;
 #[Title('Hailerz | Professional Inquiry')]
 class BookingWizard extends Component
 {
+    use WithPagination;
+
     public int $currentStep = 1;
     public string $search = '';
     public int $perPage = 10;
     public ?int $preselectedTalentId = null;
+    
+    public string $talentSearch = '';
+    public int $talentLimit = 5;
+    public ?Talent $selectedTalent = null;
 
     // Step 1: Contact Information
     #[Validate('required|string|max:255')]
@@ -88,18 +96,58 @@ class BookingWizard extends Component
     public function mount()
     {
         if (request()->has('talent')) {
-            $this->preselectedTalentId = request('talent');
-            $this->talent_id = $this->preselectedTalentId;
+            $this->selectTalent(request('talent'));
+        }
+    }
+
+    #[Computed]
+    public function searchableTalents()
+    {
+        return Talent::where('status', 'active')
+            ->when($this->talentSearch, function($query) {
+                $query->where('name', 'like', '%' . $this->talentSearch . '%');
+            })
+            ->with('category')
+            ->limit($this->talentLimit)
+            ->get();
+    }
+
+    public function loadMoreTalents()
+    {
+        $this->talentLimit += 5;
+    }
+
+    public function selectTalent($talentId)
+    {
+        $talent = Talent::with('category')->find($talentId);
+        if ($talent) {
+            $this->selectedTalent = $talent;
+            $this->talent_id = $talent->id;
+            $this->specific_talent = $talent->name;
             
-            $talent = Talent::find($this->preselectedTalentId);
-            if ($talent) {
-                $this->specific_talent = $talent->name;
-                $this->budget_range = $talent->starting_price;
-                if ($talent->category) {
-                    $this->talent_category = $talent->category->name;
-                }
+            // Auto-fill category if available
+            if ($talent->category) {
+                $this->talent_category = $talent->category->name;
+            }
+            
+            // Auto-fill budget if starting price is available
+            if ($talent->starting_price) {
+                $price = (float)$talent->starting_price;
+                if ($price < 1000) $this->budget_range = 'Under ₦1,000';
+                elseif ($price <= 2500) $this->budget_range = '₦1,000 - ₦2,500';
+                elseif ($price <= 5000) $this->budget_range = '₦2,500 - ₦5,000';
+                elseif ($price <= 10000) $this->budget_range = '₦5,000 - ₦10,000';
+                else $this->budget_range = '₦10,000+';
             }
         }
+        $this->talentSearch = '';
+    }
+
+    public function clearTalent()
+    {
+        $this->selectedTalent = null;
+        $this->talent_id = null;
+        $this->specific_talent = '';
     }
 
     public function nextStep()

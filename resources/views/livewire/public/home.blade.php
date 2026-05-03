@@ -125,54 +125,170 @@
         </div>
     </section>
 
-    <!-- Categories / Talent -->
-    <section class="py-32 bg-surface-light">
+    <!-- Featured Talent Section -->
+    <section class="py-32 bg-surface-dark">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
-                <div class="max-w-2xl">
-                    <h2 class="text-3xl md:text-5xl font-bold text-text-primary mb-6 font-serif">Explore Our <span
-                            class="text-brand-secondary">Premier Roster</span></h2>
-                    <p class="text-lg text-text-secondary">Discover top-tier musicians, DJs, and speakers. Each artist
-                        is meticulously vetted to guarantee an unforgettable performance.</p>
-                </div>
-                <x-button variant="secondary" href="/talent" wire:navigate>
-                    View Full Talent
-                </x-button>
+            <div class="text-center max-w-3xl mx-auto mb-20">
+                <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">Featured Talent</h2>
+                <p class="text-lg text-white/60">Discover our handpicked performers</p>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                @php
-                    $categories = [
-                        ['name' => 'Musicians', 'slug' => 'musicians', 'img' => 'musicians.webp'],
-                        ['name' => 'Speakers', 'slug' => 'speakers', 'img' => 'speakers.webp'],
-                        ['name' => 'DJs', 'slug' => 'djs', 'img' => 'djs.webp'],
-                        ['name' => 'Comedians', 'slug' => 'comedians', 'img' => 'comedians.webp'],
-                    ];
-                @endphp
+            @if($featuredTalents->count() >= 4)
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                    <!-- Card 1: Tall Left Card -->
+                    <div
+                        class="lg:col-span-5 lg:row-span-2 group relative overflow-hidden rounded-3xl aspect-4/5 lg:aspect-auto shadow-2xl">
+                        <img src="{{ $featuredTalents[0]->profile_photo_url }}" alt="{{ $featuredTalents[0]->name }}"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-linear-to-t from-black/90 via-black/20 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-8 w-full">
+                            <h3 class="text-2xl font-bold text-white mb-1">{{ $featuredTalents[0]->name }}</h3>
+                            <p class="text-white/70 text-sm font-medium mb-6">{{ $featuredTalents[0]->category->name }}</p>
 
-                @foreach($categories as $cat)
-                    <a href="/talent?category={{ $cat['slug'] }}"
-                        class="group block relative h-[450px] rounded-3xl overflow-hidden shadow-lg">
-                        <img src="{{ asset('images/home/' . $cat['img']) }}" loading="lazy" decoding="async" width="640"
-                            height="720"
-                            class="absolute inset-0 w-full h-full object-cover grayscale transition-transform duration-1000 group-hover:scale-110"
-                            alt="Browse {{ $cat['name'] }} category" />
-                        <div
-                            class="absolute inset-0 bg-linear-to-tr from-brand-primary/80 to-brand-secondary/40 mix-blend-color opacity-90">
-                        </div>
-                        <div class="absolute inset-0 bg-linear-to-t from-brand-primary via-brand-primary/40 to-transparent">
-                        </div>
-                        <div class="absolute bottom-10 left-10">
-                            <h3 class="text-3xl font-bold text-text-inverse mb-2">{{ $cat['name'] }}</h3>
-                            <div
-                                class="flex items-center gap-2 text-text-inverse font-semibold uppercase tracking-widest text-xs">
-                                <span>Browse Category</span>
-                                <svg class="w-4 h-4 transform group-hover:translate-x-2 transition-transform" fill="none"
-                                    stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                                </svg>
+                            <div class="flex gap-3">
+                                <x-button href="/talent/{{ $featuredTalents[0]->slug }}" variant="secondary" size="sm"
+                                    class="rounded-lg">
+                                    View Profile
+                                </x-button>
+                                <x-button href="/book?talent={{ $featuredTalents[0]->id }}" variant="primary" size="sm"
+                                    class="rounded-lg">
+                                    Book
+                                </x-button>
                             </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Side Wrapper -->
+                    <div class="lg:col-span-7 grid grid-cols-2 gap-6">
+                        <!-- Card 2: Wide Top Card -->
+                        <div
+                            class="col-span-2 group relative overflow-hidden rounded-3xl aspect-video lg:aspect-21/9 shadow-xl">
+                            <img src="{{ $featuredTalents[1]->profile_photo_url }}" alt="{{ $featuredTalents[1]->name }}"
+                                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                            <div class="absolute inset-0 bg-linear-to-t from-black/90 via-black/20 to-transparent"></div>
+                            <div class="absolute bottom-0 left-0 p-8 w-full">
+                                <h3 class="text-xl font-bold text-white mb-1">{{ $featuredTalents[1]->name }}</h3>
+                                <p class="text-white/70 text-sm font-medium mb-4">{{ $featuredTalents[1]->category->name }}
+                                </p>
+
+                                <div class="flex gap-3">
+                                    <x-button href="/talent/{{ $featuredTalents[1]->slug }}" variant="secondary" size="sm"
+                                        class="rounded-lg">
+                                        View Profile
+                                    </x-button>
+                                    <x-button href="/book?talent={{ $featuredTalents[1]->id }}" variant="primary" size="sm"
+                                        class="rounded-lg">
+                                        Book
+                                    </x-button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 3: Square Bottom Left -->
+                        <div class="col-span-1 group relative overflow-hidden rounded-3xl aspect-square shadow-xl">
+                            <img src="{{ $featuredTalents[2]->profile_photo_url }}" alt="{{ $featuredTalents[2]->name }}"
+                                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                            <div class="absolute inset-0 bg-linear-to-t from-black/90 via-black/20 to-transparent"></div>
+                            <div class="absolute bottom-0 left-0 p-6 w-full">
+                                <h3 class="text-lg font-bold text-white mb-1">{{ $featuredTalents[2]->name }}</h3>
+                                <p class="text-white/70 text-xs font-medium mb-4">{{ $featuredTalents[2]->category->name }}
+                                </p>
+
+                                <div class="flex flex-col sm:flex-row gap-2">
+                                    <x-button href="/talent/{{ $featuredTalents[2]->slug }}" variant="secondary" size="sm"
+                                        class="rounded-lg px-3!">
+                                        View Profile
+                                    </x-button>
+                                    <x-button href="/book?talent={{ $featuredTalents[2]->id }}" variant="primary" size="sm"
+                                        class="rounded-lg px-3!">
+                                        Book
+                                    </x-button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 4: Square Bottom Right -->
+                        <div class="col-span-1 group relative overflow-hidden rounded-3xl aspect-square shadow-xl">
+                            <img src="{{ $featuredTalents[3]->profile_photo_url }}" alt="{{ $featuredTalents[3]->name }}"
+                                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                            <div class="absolute inset-0 bg-linear-to-t from-black/90 via-black/20 to-transparent"></div>
+                            <div class="absolute bottom-0 left-0 p-6 w-full">
+                                <h3 class="text-lg font-bold text-white mb-1">{{ $featuredTalents[3]->name }}</h3>
+                                <p class="text-white/70 text-xs font-medium mb-4">{{ $featuredTalents[3]->category->name }}
+                                </p>
+
+                                <div class="flex flex-col sm:flex-row gap-2">
+                                    <x-button href="/talent/{{ $featuredTalents[3]->slug }}" variant="secondary" size="sm"
+                                        class="rounded-lg px-3!">
+                                        View Profile </x-button>
+                                    <x-button href="/book?talent={{ $featuredTalents[3]->id }}" variant="primary" size="sm"
+                                        class="rounded-lg px-3!">
+                                        Book
+                                    </x-button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @else
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    @foreach($featuredTalents as $talent)
+                        <div class="group relative overflow-hidden rounded-3xl aspect-square shadow-xl">
+                            <img src="{{ $talent->profile_photo_url }}" alt="{{ $talent->name }}"
+                                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                            <div class="absolute inset-0 bg-linear-to-t from-black/90 via-black/20 to-transparent"></div>
+                            <div class="absolute bottom-0 left-0 p-6 w-full">
+                                <h3 class="text-lg font-bold text-white mb-1">{{ $talent->name }}</h3>
+                                <p class="text-white/70 text-xs font-medium mb-4">{{ $talent->category->name }}</p>
+                                <div class="flex gap-2">
+                                    <x-button href="/talent/{{ $talent->slug }}" variant="secondary" size="sm"
+                                        class="rounded-lg">
+                                        View Profile </x-button>
+                                    <x-button href="/book?talent={{ $talent->id }}" variant="primary" size="sm"
+                                        class="rounded-lg">
+                                        Book
+                                    </x-button>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            @endif
+
+            <div class="mt-16 text-center">
+                <a href="/talent" wire:navigate
+                    class="inline-block px-8 py-3 border border-brand-secondary text-brand-secondary hover:bg-brand-secondary hover:text-white transition-all rounded-lg font-bold">
+                    Browse All Talent
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Browse by Category Section -->
+    <section class="py-32 bg-surface-muted">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-20">
+                <h2 class="text-4xl md:text-5xl font-bold text-text-primary mb-6">Browse by Category</h2>
+                <p class="text-lg text-text-secondary">Find the perfect talent for your event</p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                @foreach($categories as $category)
+                    @php
+                        $representativeTalent = $category->talents->first();
+                        $bgImage = $representativeTalent ? $representativeTalent->profile_photo_url : $category->default_image;
+                    @endphp
+                    <a href="/talent?category={{ $category->slug }}" wire:navigate
+                        class="group relative aspect-square rounded-3xl overflow-hidden shadow-lg">
+                        {{-- Use a representative talent image or default mapping --}}
+                        <img src="{{ $bgImage }}" alt="{{ $category->name }}"
+                            class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+
+                        <div class="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors"></div>
+
+                        <div class="absolute inset-0 flex flex-col items-center justify-center text-center p-4">
+                            <h3 class="text-2xl font-bold text-white">{{ $category->name }}</h3>
+                            <p class="text-white/80 text-sm mt-1">{{ $category->talents_count }} Artists</p>
                         </div>
                     </a>
                 @endforeach

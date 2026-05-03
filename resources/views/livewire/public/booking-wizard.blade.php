@@ -169,10 +169,97 @@
                                 <p class="text-[10px] text-text-muted mt-2 italic">Total estimated budget for the talent, inclusive of fees.</p>
                                 @error('budget_range') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
                             </div>
-                            <div>
+                            <div class="md:col-span-2">
                                 <label for="specific_talent" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Specific Talent Request</label>
-                                <input type="text" id="specific_talent" wire:model="specific_talent" class="block w-full px-6 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary outline-none text-text-primary font-medium transition-all">
-                                <p class="text-[10px] text-text-muted mt-2 italic">Leave blank if you'd like us to recommend a curated list of performers.</p>
+                                
+                                @if($selectedTalent)
+                                    <!-- Selected Talent Card -->
+                                    <div class="bg-surface-muted border border-brand-primary/20 rounded-2xl p-6 flex items-center justify-between group shadow-sm">
+                                        <div class="flex items-center gap-6">
+                                            <div class="h-16 w-16 rounded-xl overflow-hidden shadow-md">
+                                                <img src="{{ $selectedTalent->profile_photo_url }}" alt="{{ $selectedTalent->name }}" class="w-full h-full object-cover">
+                                            </div>
+                                            <div>
+                                                <h4 class="text-lg font-bold text-text-primary">{{ $selectedTalent->name }}</h4>
+                                                <p class="text-sm text-brand-secondary font-medium">{{ $selectedTalent->category->name }}</p>
+                                                @if($selectedTalent->starting_price)
+                                                    <p class="text-xs text-text-muted mt-1">Starting from ₦{{ number_format($selectedTalent->starting_price) }}</p>
+                                                @endif
+                                            </div>
+                                        </div>
+                                        <x-button type="button" wire:click="clearTalent" variant="secondary" size="sm" class="rounded-lg">
+                                            Change Talent
+                                        </x-button>
+                                    </div>
+                                @else
+                                    <!-- Custom Browsable Talent Selector -->
+                                    <div x-data="{ open: false }" class="relative">
+                                        <!-- Trigger -->
+                                        <button type="button" 
+                                            @click="open = !open"
+                                            class="w-full flex items-center justify-between px-6 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary outline-none text-text-primary font-medium transition-all text-left">
+                                            <span class="text-text-muted">-- Select from Talent --</span>
+                                            <svg class="h-5 w-5 text-text-muted transition-transform duration-300" :class="{ 'rotate-180': open }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                            </svg>
+                                        </button>
+
+                                        <!-- Dropdown Menu -->
+                                        <div x-show="open" 
+                                             x-cloak
+                                             @click.away="open = false"
+                                             class="absolute z-50 w-full mt-2 bg-surface-light border border-subtle rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-128">
+                                            
+                                            <!-- Search Bar Inside Dropdown -->
+                                            <div class="p-4 border-b border-subtle bg-surface-muted/30">
+                                                <div class="relative">
+                                                    <div class="absolute inset-y-0 left-4 flex items-center pointer-events-none">
+                                                        <svg class="h-4 w-4 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                                                    </div>
+                                                    <input type="text" 
+                                                        wire:model.live.debounce.300ms="talentSearch"
+                                                        placeholder="Search talent..."
+                                                        class="block w-full pl-11 pr-4 py-3 bg-surface-muted border border-subtle placeholder-text-muted rounded-xl focus:ring-2 focus:ring-brand-primary outline-none text-sm text-text-primary font-medium transition-all">
+                                                </div>
+                                            </div>
+
+                                            <!-- Talent List -->
+                                            <ul class="flex-1 overflow-y-auto divide-y divide-subtle min-h-48">
+                                                @forelse($this->searchableTalents as $talent)
+                                                    <li wire:key="talent-{{ $talent->id }}"
+                                                        wire:click="selectTalent({{ $talent->id }})"
+                                                        @click="open = false"
+                                                        class="p-4 flex items-center gap-4 hover:bg-surface-muted cursor-pointer transition-colors group">
+                                                        <div class="h-12 w-12 rounded-lg overflow-hidden shrink-0 shadow-sm group-hover:shadow-md transition-shadow">
+                                                            <img src="{{ $talent->profile_photo_url }}" alt="{{ $talent->name }}" class="w-full h-full object-cover">
+                                                        </div>
+                                                        <div class="flex-1 min-w-0">
+                                                            <p class="text-sm font-bold text-text-primary truncate">{{ $talent->name }}</p>
+                                                            <p class="text-xs text-text-muted">{{ $talent->category->name }}</p>
+                                                        </div>
+                                                        @if($talent->starting_price)
+                                                            <div class="text-right">
+                                                                <p class="text-xs font-bold text-brand-secondary">₦{{ number_format($talent->starting_price) }}</p>
+                                                            </div>
+                                                        @endif
+                                                    </li>
+                                                @empty
+                                                    <li class="p-12 text-center">
+                                                        <p class="text-text-muted italic text-sm">No talents found matching your search.</p>
+                                                    </li>
+                                                @endforelse
+                                            </ul>
+                                            
+                                            @if($this->searchableTalents->count() >= $talentLimit)
+                                                <div class="p-4 bg-surface-muted text-center border-t border-subtle">
+                                                    <button type="button" wire:click="loadMoreTalents" class="text-xs font-bold text-brand-primary hover:underline">
+                                                        Load more talents
+                                                    </button>
+                                                </div>
+                                            @endif
+                                        </div>
+                                    </div>
+                                @endif
                                 @error('specific_talent') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
                             </div>
                             <div class="md:col-span-2">
