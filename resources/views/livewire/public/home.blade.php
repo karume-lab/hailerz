@@ -1,96 +1,86 @@
 @push('head')
-    {{-- Preload above-fold hero images (highest priority) --}}
-    <link rel="preload" as="image" href="{{ asset('images/home/hero-card-1.webp') }}" type="image/webp"
-        fetchpriority="high">
-    <link rel="preload" as="image" href="{{ asset('images/home/hero-card-2.webp') }}" type="image/webp"
-        fetchpriority="high">
+    {{-- Preload hero background image --}}
+    <link rel="preload" as="image" href="{{ asset('images/home/hero-bg.jpg') }}" fetchpriority="high">
 @endpush
 
 <div class="bg-surface-light">
     <!-- Hero Section -->
-    <section class="relative bg-surface-dark pt-32 pb-40 overflow-hidden">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="lg:grid lg:grid-cols-2 lg:gap-16 items-center">
-                <!-- Left Content -->
-                <div class="mb-16 lg:mb-0">
-                    <h1
-                        class="text-5xl md:text-7xl font-bold tracking-tight text-text-inverse mb-8 leading-[1.1] font-serif">
-                        Book Top <span class="text-brand-secondary">Talent</span> for Your Event.
-                    </h1>
-                    <p class="mt-4 max-w-xl text-lg md:text-xl text-text-muted mb-12 leading-relaxed">
-                        Premium talent booking agency connecting you with top musicians, variety artists, DJs, and performers for unforgettable events.
-                    </p>
-                    <div class="flex flex-wrap gap-6">
-                        <x-button variant="secondary" size="lg" href="/join" wire:navigate>
-                            Join Our Roster
-                        </x-button>
-                        <x-button variant="primary" size="lg" href="/talent" wire:navigate>
-                            Find Talent
-                        </x-button>
-                    </div>
-                </div>
-
-                <!-- Right Content: Talent Showcase -->
-                <div class="relative">
-                    <div class="grid grid-cols-2 gap-6">
-                        <div class="space-y-6 pt-12">
-                            <div
-                                class="group relative overflow-hidden rounded-2xl aspect-3/4 bg-surface-dark border border-subtle">
-                                <img src="{{ asset('images/home/hero-card-1.webp') }}" loading="eager"
-                                    fetchpriority="high" decoding="async" width="664" height="887"
-                                    class="w-full h-full object-cover grayscale transition-transform duration-700 group-hover:scale-110"
-                                    alt="Live Performance Showcase - Artist performing on stage" />
-                                <div
-                                    class="absolute inset-0 bg-linear-to-tr from-brand-primary/80 to-brand-secondary/40 mix-blend-color">
-                                </div>
-                                <div
-                                    class="absolute inset-0 bg-linear-to-t from-brand-primary/90 via-transparent to-transparent">
-                                </div>
-                                <div class="absolute bottom-6 left-6">
-                                    <p class="text-text-inverse font-bold text-lg">Premium Artists</p>
-                                    <p class="text-text-inverse/80 text-sm">Bespoke Events</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="space-y-6">
-                            <div
-                                class="group relative overflow-hidden rounded-2xl aspect-3/4 bg-surface-dark border border-subtle">
-                                <img src="{{ asset('images/home/hero-card-2.webp') }}" loading="eager"
-                                    fetchpriority="high" decoding="async" width="664" height="887"
-                                    class="w-full h-full object-cover grayscale transition-transform duration-700 group-hover:scale-110"
-                                    alt="Keynote Speaker Showcase - Professional speaker at an event" />
-                                <div
-                                    class="absolute inset-0 bg-linear-to-tr from-brand-primary/80 to-brand-secondary/40 mix-blend-color">
-                                </div>
-                                <div
-                                    class="absolute inset-0 bg-linear-to-t from-brand-primary/90 via-transparent to-transparent">
-                                </div>
-                                <div class="absolute bottom-6 left-6">
-                                    <p class="text-text-inverse font-bold text-lg">Curated Talent</p>
-                                    <p class="text-text-inverse/80 text-sm">Private Celebrations</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <section class="relative min-h-[85vh] flex items-center justify-center pt-32 pb-20 overflow-hidden">
+        <!-- Background Image with Overlay -->
+        <div class="absolute inset-0 z-0">
+            <img src="{{ asset('images/home/hero-bg.jpg') }}" class="w-full h-full object-cover"
+                alt="Hero background - Rays of light illuminating a stage">
+            <div class="absolute inset-0 bg-black/70 bg-linear-to-b from-black/40 via-transparent to-black/60"></div>
         </div>
 
-        <!-- Background Elements -->
-        <div class="absolute top-0 right-0 w-1/2 h-full bg-linear-to-l from-brand-primary/5 to-transparent"></div>
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <h1 class="text-5xl md:text-8xl font-bold tracking-tight text-white mb-8 leading-tight font-sans">
+                Book Top Talent
+            </h1>
+            <p class="text-xl md:text-2xl text-white/90 mb-12 max-w-3xl mx-auto font-medium leading-relaxed">
+                Connect with premier musicians, bands, and performers for unforgettable events
+            </p>
+
+            <!-- Search Bar -->
+            <form wire:submit="searchTalent" class="relative max-w-4xl mx-auto mb-10 group">
+                <div
+                    class="flex flex-col md:flex-row gap-3 p-2 bg-white/10 backdrop-blur-xl rounded-2xl border border-white/20 shadow-[0_20px_50px_rgba(0,0,0,0.5)] transition-all duration-500 hover:bg-white/15">
+                    <div class="flex-1 relative">
+                        <div class="absolute inset-y-0 left-5 flex items-center pointer-events-none">
+                            <svg class="h-6 w-6 text-white/50 group-hover:text-white/80 transition-colors" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                            </svg>
+                        </div>
+                        <input type="text" wire:model="search" placeholder="Search by name, genre, or location..."
+                            class="w-full pl-14 pr-6 py-5 bg-transparent text-white placeholder-white/50 border-none focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 text-xl font-medium outline-none">
+                    </div>
+                    <x-button type="submit" variant="primary" size="lg" class="px-10 py-5 active:scale-95 transform">
+                        Find Talent
+                    </x-button>
+                </div>
+            </form>
+
+            <!-- Quick Links / Categories -->
+            <div
+                class="flex flex-wrap justify-center gap-x-8 gap-y-4 text-xs font-bold uppercase tracking-widest text-white">
+                <a href="/talent?category=musicians" wire:navigate
+                    class="hover:text-brand-secondary transition-all hover:scale-105 transform">Musicians</a>
+                <a href="/talent?category=djs" wire:navigate
+                    class="hover:text-brand-secondary transition-all hover:scale-105 transform">DJs</a>
+                <a href="/talent?category=speakers" wire:navigate
+                    class="hover:text-brand-secondary transition-all hover:scale-105 transform">Speakers</a>
+                <a href="/talent?category=dancers" wire:navigate
+                    class="hover:text-brand-secondary transition-all hover:scale-105 transform">Dancers</a>
+                <a href="/talent?category=artists" wire:navigate
+                    class="hover:text-brand-secondary transition-all hover:scale-105 transform">Artists</a>
+                <a href="/talent?category=poets" wire:navigate
+                    class="hover:text-brand-secondary transition-all hover:scale-105 transform">Poets</a>
+                <a href="/talent?category=content-creators" wire:navigate
+                    class="hover:text-brand-secondary transition-all hover:scale-105 transform">Content Creators</a>
+                <a href="/talent?category=comedians" wire:navigate
+                    class="hover:text-brand-secondary transition-all hover:scale-105 transform">Comedians</a>
+                <a href="/talent?category=mcs" wire:navigate
+                    class="hover:text-brand-secondary transition-all hover:scale-105 transform">MCs</a>
+                <a href="/talent?category=variety-artists" wire:navigate
+                    class="hover:text-brand-secondary transition-all hover:scale-105 transform">Variety Artists</a>
+            </div>
+        </div>
     </section>
 
     <!-- How It Works -->
     <section class="py-32 bg-surface-muted">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-20">
-                <h2 class="text-3xl md:text-5xl font-bold text-text-primary mb-6 font-serif">Book Talent in <span class="text-brand-secondary">Three Simple Steps</span></h2>
-                <p class="text-lg text-text-secondary">We've made discovering and booking world-class performers effortless.</p>
+                <h2 class="text-3xl md:text-5xl font-bold text-text-primary mb-6 font-serif">Book Talent in <span
+                        class="text-brand-secondary">Three Simple Steps</span></h2>
+                <p class="text-lg text-text-secondary">Watch how Hailerz connects you with world-class talent.</p>
 
                 <div
                     class="mt-12 aspect-video max-w-4xl mx-auto rounded-3xl overflow-hidden shadow-2xl border border-subtle bg-surface-dark">
-                    <iframe class="w-full h-full" src="https://www.youtube.com/embed/LLdr6BqljEw" title="Hailerz - How it Works"
-                        frameborder="0" loading="lazy"
+                    <iframe class="w-full h-full" src="https://www.youtube.com/embed/LLdr6BqljEw"
+                        title="Hailerz - How it Works" frameborder="0" loading="lazy"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
                     </iframe>
@@ -140,8 +130,9 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
                 <div class="max-w-2xl">
-                    <h2 class="text-3xl md:text-5xl font-bold text-text-primary mb-6 font-serif">Explore Our <span class="text-brand-secondary">Premier Roster</span></h2>
-                    <p class="text-lg text-text-secondary">Discover top-tier musicians, DJs, and speakers. Each artist 
+                    <h2 class="text-3xl md:text-5xl font-bold text-text-primary mb-6 font-serif">Explore Our <span
+                            class="text-brand-secondary">Premier Roster</span></h2>
+                    <p class="text-lg text-text-secondary">Discover top-tier musicians, DJs, and speakers. Each artist
                         is meticulously vetted to guarantee an unforgettable performance.</p>
                 </div>
                 <x-button variant="secondary" href="/talent" wire:navigate>
@@ -169,8 +160,7 @@
                         <div
                             class="absolute inset-0 bg-linear-to-tr from-brand-primary/80 to-brand-secondary/40 mix-blend-color opacity-90">
                         </div>
-                        <div
-                            class="absolute inset-0 bg-linear-to-t from-brand-primary via-brand-primary/40 to-transparent">
+                        <div class="absolute inset-0 bg-linear-to-t from-brand-primary via-brand-primary/40 to-transparent">
                         </div>
                         <div class="absolute bottom-10 left-10">
                             <h3 class="text-3xl font-bold text-text-inverse mb-2">{{ $cat['name'] }}</h3>
@@ -193,8 +183,9 @@
     <!-- Booking FAQs Section -->
     <section class="py-32 bg-surface-dark text-text-inverse">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl md:text-5xl font-bold text-center mb-16 font-serif">Booking <span class="text-brand-secondary">FAQs</span></h2>
-            
+            <h2 class="text-3xl md:text-5xl font-bold text-center mb-16 font-serif">Booking <span
+                    class="text-brand-secondary">FAQs</span></h2>
+
             <div x-data="{ active: 0 }" class="space-y-4">
                 @php
                     $faqs = [
@@ -219,32 +210,23 @@
 
                 @foreach($faqs as $index => $faq)
                     <div class="border-b border-subtle/20">
-                        <button 
-                            @click="active = (active === {{ $index }} ? null : {{ $index }})"
+                        <button @click="active = (active === {{ $index }} ? null : {{ $index }})"
                             class="flex justify-between items-center w-full text-left py-8 focus:outline-none group transition-all"
                             aria-label="Toggle FAQ: {{ $faq['q'] }}"
-                            :aria-expanded="active === {{ $index }} ? 'true' : 'false'"
-                        >
-                            <span class="text-xl md:text-2xl font-bold group-hover:text-brand-secondary transition-colors">{{ $faq['q'] }}</span>
-                            <div 
-                                class="h-8 w-8 rounded-full border border-subtle/30 flex items-center justify-center group-hover:border-brand-secondary transition-colors"
-                                :class="{ 'bg-brand-secondary border-brand-secondary': active === {{ $index }} }"
-                            >
-                                <svg 
-                                    class="w-4 h-4 transform transition-transform duration-300" 
+                            :aria-expanded="active === {{ $index }} ? 'true' : 'false'">
+                            <span
+                                class="text-xl md:text-2xl font-bold group-hover:text-brand-secondary transition-colors">{{ $faq['q'] }}</span>
+                            <div class="h-8 w-8 rounded-full border border-subtle/30 flex items-center justify-center group-hover:border-brand-secondary transition-colors"
+                                :class="{ 'bg-brand-secondary border-brand-secondary': active === {{ $index }} }">
+                                <svg class="w-4 h-4 transform transition-transform duration-300"
                                     :class="{ 'rotate-180': active === {{ $index }}, 'text-text-inverse': active === {{ $index }} }"
-                                    fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                >
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                    fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M19 9l-7 7-7-7"></path>
                                 </svg>
                             </div>
                         </button>
-                        <div 
-                            x-show="active === {{ $index }}" 
-                            x-collapse
-                            x-cloak
-                            class="overflow-hidden"
-                        >
+                        <div x-show="active === {{ $index }}" x-collapse x-cloak class="overflow-hidden">
                             <p class="pb-8 text-lg text-text-muted leading-relaxed max-w-3xl">{{ $faq['a'] }}</p>
                         </div>
                     </div>
@@ -263,9 +245,12 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="lg:grid lg:grid-cols-2 lg:gap-24 items-center">
                 <div>
-                    <h2 class="text-3xl md:text-6xl font-bold text-text-inverse mb-8 font-serif leading-tight">Ready to <span class="text-brand-secondary">Work Together?</span></h2>
+                    <h2 class="text-3xl md:text-6xl font-bold text-text-inverse mb-8 font-serif leading-tight">Ready to
+                        <span class="text-brand-secondary">Work Together?</span>
+                    </h2>
                     <p class="text-xl text-text-inverse/80 mb-12 leading-relaxed">
-                        Let’s create something unforgettable. Reach out to our dedicated agents for bespoke recommendations 
+                        Let’s create something unforgettable. Reach out to our dedicated agents for bespoke
+                        recommendations
                         tailored to your vision.
                     </p>
 
@@ -296,7 +281,8 @@
                             </div>
                             <div>
                                 <h3 class="text-text-inverse font-bold">Premium Support</h3>
-                                <p class="text-text-inverse/60 text-sm">Our agents respond promptly to every inquiry.</p>
+                                <p class="text-text-inverse/60 text-sm">Our agents respond promptly to every inquiry.
+                                </p>
                             </div>
                         </li>
                     </ul>
@@ -341,8 +327,7 @@
                                 <div>
                                     <label for="contactEmail"
                                         class="block text-xs font-bold text-text-secondary uppercase tracking-widest mb-2">Email</label>
-                                    <input id="contactEmail" wire:model="contactEmail" type="email"
-                                        autocomplete="email"
+                                    <input id="contactEmail" wire:model="contactEmail" type="email" autocomplete="email"
                                         placeholder="Email Address"
                                         class="w-full px-5 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary focus:bg-surface-light focus:border-transparent outline-none transition-all text-text-primary placeholder-text-muted shadow-sm" />
                                     @error('contactEmail') <span class="text-red-500 text-xs mt-1">{{ $message }}</span>
@@ -358,12 +343,17 @@
                                 @error('contactMessage') <span class="text-red-500 text-xs mt-1">{{ $message }}</span>
                                 @enderror
                             </div>
-                            <x-button type="submit" class="w-full shadow-lg shadow-brand-primary/20" size="lg" variant="secondary" wire:loading.attr="disabled" wire:target="submitContact">
+                            <x-button type="submit" class="w-full shadow-lg shadow-brand-primary/20" size="lg"
+                                variant="secondary" wire:loading.attr="disabled" wire:target="submitContact">
                                 <span wire:loading.remove wire:target="submitContact">Send Message</span>
                                 <span wire:loading wire:target="submitContact" class="flex items-center justify-center">
-                                    <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                    <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg"
+                                        fill="none" viewBox="0 0 24 24">
+                                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
+                                            stroke-width="4"></circle>
+                                        <path class="opacity-75" fill="currentColor"
+                                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                                        </path>
                                     </svg>
                                 </span>
                             </x-button>

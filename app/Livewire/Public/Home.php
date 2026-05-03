@@ -11,11 +11,18 @@ use Illuminate\Support\Facades\Log;
 #[Title('Hailerz | Premium Talent Booking Agency')]
 class Home extends Component
 {
+    public string $search = '';
+
     // Contact form
     public string $contactName = '';
     public string $contactEmail = '';
     public string $contactMessage = '';
     public bool $contactSent = false;
+
+    public function searchTalent()
+    {
+        return $this->redirectRoute('talent.directory', ['search' => $this->search], navigate: true);
+    }
 
     protected array $rules = [
         'contactName'    => 'required|string|max:255',

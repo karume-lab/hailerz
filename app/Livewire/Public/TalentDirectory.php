@@ -19,6 +19,9 @@ class TalentDirectory extends Component
     #[Url(history: true, except: '')]
     public string $search = '';
 
+    #[Url(history: true, except: '')]
+    public string $category = '';
+
     #[Url(history: true, except: null)]
     public ?int $category_id = null;
 
@@ -83,6 +86,7 @@ class TalentDirectory extends Component
         $talents = Talent::query()
             ->where('status', 'active')
             ->when($this->search, fn ($query) => $query->where('name', 'like', '%' . $this->search . '%'))
+            ->when($this->category, fn ($query) => $query->whereHas('category', fn ($q) => $q->where('slug', $this->category)))
             ->when($this->event, fn ($query) => $query->where('bio', 'like', '%' . str_replace('_', ' ', $this->event) . '%'))
             ->when($this->location, fn ($query) => $query->where('location', 'like', '%' . $this->location . '%'))
             ->when($this->genre, fn ($query) => $query->where('genre', $this->genre))
