@@ -8,10 +8,10 @@
                 <span class="h-px w-12 bg-brand-primary"></span>
             </div>
             <h1 class="text-5xl md:text-8xl font-bold text-text-inverse tracking-tight mb-8 font-serif leading-tight">
-                Premier <span class="text-brand-secondary">Production</span> Support
+                World-Class <span class="text-brand-secondary">Production</span> Support
             </h1>
             <p class="text-xl md:text-2xl text-text-muted max-w-3xl mx-auto leading-relaxed font-light">
-                Elevate your event with our elite roster of production specialists. We provide the technical leads and professional support required for high-end celebrations.
+                Experience seamless event execution with our network of production specialists. We provide the technical expertise and professional support to bring your vision to life.
             </p>
         </div>
 
@@ -30,8 +30,8 @@
     <section class="py-32 bg-surface-muted">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-24">
-                <h2 class="text-3xl md:text-5xl font-bold text-text-primary mb-6 font-serif tracking-tight">Specialists on <span class="text-brand-secondary">Call</span></h2>
-                <p class="text-text-secondary text-lg">Whether you need a senior technical lead or a full production crew, we provide vetted professionals who excel in high-stakes environments.</p>
+                <h2 class="text-3xl md:text-5xl font-bold text-text-primary mb-6 font-serif tracking-tight">Specialists for <span class="text-brand-secondary">Every Stage</span></h2>
+                <p class="text-text-secondary text-lg">Whether you need a technical lead or a full production crew, we provide vetted professionals who ensure your event flows smoothly.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
@@ -99,10 +99,10 @@
                     </div>
                     <h2
                         class="text-4xl md:text-6xl font-bold text-text-primary font-serif tracking-tight leading-tight">
-                        Exceptional Talent. <span class="text-brand-secondary italic">Flawless</span> Execution.
+                        Vetted Talent. <span class="text-brand-secondary italic">Seamless</span> Execution.
                     </h2>
                     <p class="text-xl text-text-secondary leading-relaxed font-light">
-                        We don’t just provide staff; we provide experts. Every specialist is meticulously vetted to ensure they meet our rigorous standards for professionalism and discretion.
+                        We don’t just provide staff; we provide solutions. Every specialist is carefully vetted to ensure they deliver standout support and professional excellence.
                     </p>
                     <div class="grid grid-cols-2 gap-8 pt-6">
                         <div>

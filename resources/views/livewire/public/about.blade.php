@@ -1,6 +1,6 @@
 <div class="bg-surface-muted min-h-screen">
   <!-- Hero Section -->
-  <div class="relative bg-surface-dark min-h-[70vh] flex items-center justify-center overflow-hidden">
+  <div class="relative bg-surface-dark min-h-[60vh] flex items-center justify-center overflow-hidden">
     <div class="absolute inset-0 overflow-hidden">
       <img src="{{ asset('images/about/about-hero.webp') }}" alt="Premium Event" loading="eager" width="1280"
         height="720" class="w-full h-full object-cover grayscale opacity-40">
@@ -11,16 +11,11 @@
     </div>
 
     <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <div class="flex items-center justify-center gap-3 mb-8">
-        <span class="h-px w-12 bg-brand-primary"></span>
-        <span class="text-xs font-bold text-brand-primary uppercase tracking-widest">About the Agency</span>
-        <span class="h-px w-12 bg-brand-primary"></span>
-      </div>
        <h1 class="text-5xl md:text-8xl font-bold text-text-inverse tracking-tight mb-8 font-serif leading-tight">
-        We Curate the <span class="text-brand-secondary">Artists</span> Who Define Your Event.
+        Making Every <span class="text-brand-secondary">Event</span> Unforgettable
       </h1>
       <p class="mt-4 max-w-3xl text-xl md:text-2xl text-text-muted mx-auto leading-relaxed font-light">
-        Hailerz is a premier entertainment agency dedicated to bridging the gap between top-tier talent and high-profile events. We deliver excellence, every time.
+        We connect event planners with world-class talent to create extraordinary experiences that audiences remember forever.
       </p>
     </div>
   </div>
@@ -29,18 +24,18 @@
   <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
     <div class="flex items-center gap-3 mb-6">
       <span class="h-px w-8 bg-brand-primary"></span>
-      <span class="text-xs font-bold text-brand-primary uppercase tracking-widest">Our Legacy</span>
+      <span class="text-xs font-bold text-brand-primary uppercase tracking-widest">Our Story</span>
     </div>
-    <h2 class="text-4xl md:text-6xl font-bold text-text-primary tracking-tight mb-12 font-serif">Our <span class="text-brand-secondary">Vision</span></h2>
+    <h2 class="text-4xl md:text-6xl font-bold text-text-primary tracking-tight mb-12 font-serif">Making Talent <span class="text-brand-secondary">Effortless</span></h2>
     <div class="space-y-10 text-xl text-text-secondary leading-relaxed font-light">
       <p>
-        Hailerz was born from a commitment to excellence in the entertainment industry. We believe that booking top-tier talent should be a seamless, premium experience for every client.
+        Hailerz exists for one reason — to make discovering and booking incredible talent effortless. Born from the real struggles event planners face when trying to find reliable, high‑quality performers, Hailerz was created to bridge that gap with a platform built on trust, creativity, and community.
       </p>
       <p>
-        Our curated roster features the world’s most sought-after musicians, speakers, and performers. We don’t just book talent; we curate memories, ensuring each act perfectly aligns with the tone and luxury of your event.
+        Today, we proudly represent a growing network of over 100 talented creatives across multiple categories and genres. From intimate gatherings to large corporate events and festivals, we've helped bring unforgettable performances to life.
       </p>
       <p>
-        From vetting to execution, we handle every detail with precision. Our reputation is built on reliability, professionalism, and an unwavering focus on quality.
+        Hailerz has become the go‑to space for planners who value excellence. Every talent on our platform goes through a careful vetting process to ensure they deliver standout performances. And with our team handling the logistics, you're free to focus on what matters most — creating meaningful, memorable experiences.
       </p>
     </div>
   </div>
@@ -49,17 +44,17 @@
   <div class="bg-surface-light py-32 border-y border-subtle ">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center max-w-3xl mx-auto mb-20">
-        <h2 class="text-3xl md:text-5xl font-bold text-text-primary tracking-tight mb-6 font-serif">Our <span class="text-brand-secondary">Core Standards</span></h2>
-        <p class="text-lg text-text-secondary">We operate at the intersection of luxury, talent, and professional execution.</p>
+        <h2 class="text-3xl md:text-5xl font-bold text-text-primary tracking-tight mb-6 font-serif">Our <span class="text-brand-secondary">Core Principles</span></h2>
+        <p class="text-lg text-text-secondary">These core principles guide everything we do</p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         @php
           $values = [
-            ['title' => 'Curation', 'desc' => 'We only represent artists who meet our rigorous standards for performance, professionalism, and stage presence.'],
-            ['title' => 'Discretion', 'desc' => 'Operating with the utmost confidentiality for our high-profile clients and exclusive events.'],
-            ['title' => 'Excellence', 'desc' => 'Our team is dedicated to providing a white-glove service that exceeds expectations from first inquiry to final applause.'],
-            ['title' => 'Transparency', 'desc' => 'Clear communication, secure contracts, and professional negotiations are the foundation of our agency.'],
+            ['title' => 'Quality', 'desc' => 'We curate only the finest talent and deliver exceptional service on every booking.'],
+            ['title' => 'Passion', 'desc' => 'We love what we do and it shows in our dedication to creating unforgettable events.'],
+            ['title' => 'Community', 'desc' => 'We build lasting relationships with both clients and talent based on trust and respect.'],
+            ['title' => 'Integrity', 'desc' => 'We operate with transparency, honesty, and professionalism in every interaction.'],
           ];
         @endphp
 
@@ -76,12 +71,47 @@
     </div>
   </div>
 
-  <!-- Team Section -->
+  <!-- Why Choose Us -->
   <div class="bg-surface-muted py-32">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center max-w-3xl mx-auto mb-20">
-        <h2 class="text-3xl md:text-5xl font-bold text-text-primary tracking-tight mb-6 font-serif">The <span class="text-brand-secondary">Specialists</span></h2>
-        <p class="text-lg text-text-secondary">Meet the dedicated agents who bring your vision to life with expertise and passion.</p>
+        <h2 class="text-3xl md:text-5xl font-bold text-text-primary tracking-tight mb-6 font-serif">Why Planners <span class="text-brand-secondary">Choose Hailerz</span></h2>
+        <p class="text-lg text-text-secondary">We handle the logistics so you can focus on the experience.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+        @php
+          $reasons = [
+            ['title' => 'Rigorous Vetting', 'desc' => 'Every artist undergoes a comprehensive evaluation including performance reviews and technical assessments.'],
+            ['title' => 'End-to-End Support', 'desc' => 'Our dedicated team handles contracts, logistics, technical requirements, and coordination.'],
+            ['title' => 'No Booking Fees', 'desc' => 'No hidden fees or surprises. You pay the artist directly - our service is free for clients.'],
+            ['title' => 'Nationwide Reach', 'desc' => 'Access top talent across the country with our extensive network of performers in major cities.'],
+            ['title' => 'Rapid Response', 'desc' => 'Our team responds to inquiries within 24 hours with personalized recommendations.'],
+            ['title' => 'Proven Results', 'desc' => 'Thousands of successful events and a 98% client satisfaction rate speak to our commitment.'],
+          ];
+        @endphp
+
+        @foreach($reasons as $reason)
+          <div class="flex gap-6">
+            <div class="shrink-0 h-12 w-12 rounded-2xl bg-brand-primary/10 flex items-center justify-center text-brand-primary">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold text-text-primary mb-2">{{ $reason['title'] }}</h3>
+              <p class="text-text-secondary leading-relaxed font-light">{{ $reason['desc'] }}</p>
+            </div>
+          </div>
+        @endforeach
+      </div>
+    </div>
+  </div>
+
+  <!-- Team Section -->
+  <div class="bg-surface-light py-32 border-t border-subtle">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-20">
+        <h2 class="text-3xl md:text-5xl font-bold text-text-primary tracking-tight mb-6 font-serif">Our <span class="text-brand-secondary">Specialists</span></h2>
+        <p class="text-lg text-text-secondary">Passionate professionals dedicated to your success</p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
@@ -126,9 +156,9 @@
     </div>
 
     <div class="relative max-w-4xl mx-auto px-4 text-center">
-      <h2 class="text-4xl md:text-7xl font-bold text-text-inverse mb-8 tracking-tight font-serif">Let’s Create Something Unforgettable.</h2>
+      <h2 class="text-4xl md:text-7xl font-bold text-text-inverse mb-8 tracking-tight font-serif">Ready to book top talent for your next event?</h2>
       <p class="text-xl md:text-2xl text-text-muted mb-12 font-light leading-relaxed">
-        Partner with Hailerz to secure premier talent for your next event. Experience the difference of a truly curated booking process.
+        Let us help you find the perfect performer for your next event. Browse our roster or submit a booking inquiry today.
       </p>
       <div class="flex flex-col sm:flex-row justify-center gap-6">
         <x-button variant="primary" size="lg" href="/talent" wire:navigate>

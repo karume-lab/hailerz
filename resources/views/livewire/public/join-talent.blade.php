@@ -17,11 +17,11 @@
             <div class="text-center mb-16">
                 <div class="flex items-center justify-center gap-3 mb-4">
                     <span class="h-px w-8 bg-brand-primary"></span>
-                    <span class="text-xs font-bold text-brand-primary uppercase tracking-widest">Join Talent</span>
+                    <span class="text-xs font-bold text-brand-primary uppercase tracking-widest">Join the Roster</span>
                     <span class="h-px w-8 bg-brand-primary"></span>
                 </div>
-                <h1 class="text-4xl md:text-6xl font-bold text-text-primary tracking-tight font-serif">Join <span class="text-brand-secondary">Hailerz</span></h1>
-                <p class="mt-4 text-lg text-text-secondary">Apply for inclusion in our exclusive talent network.</p>
+                <h1 class="text-4xl md:text-6xl font-bold text-text-primary tracking-tight font-serif">Join the <span class="text-brand-secondary">Hailerz Roster</span></h1>
+                <p class="mt-4 text-lg text-text-secondary">Become part of a premier network of performers, musicians, and creatives.</p>
             </div>
 
             <!-- Progress Indicator -->

@@ -18,8 +18,7 @@
                         Book Top <span class="text-brand-secondary">Talent</span> for Your Event.
                     </h1>
                     <p class="mt-4 max-w-xl text-lg md:text-xl text-text-muted mb-12 leading-relaxed">
-                        Connect with premier musicians, speakers, and performers for unforgettable experiences. 
-                        We curate the best so you can celebrate with confidence.
+                        Premium talent booking agency connecting you with top musicians, variety artists, DJs, and performers for unforgettable events.
                     </p>
                     <div class="flex flex-wrap gap-6">
                         <x-button variant="secondary" size="lg" href="/join" wire:navigate>
@@ -81,13 +80,12 @@
         <div class="absolute top-0 right-0 w-1/2 h-full bg-linear-to-l from-brand-primary/5 to-transparent"></div>
     </section>
 
-    <!-- Services Overview -->
+    <!-- How It Works -->
     <section class="py-32 bg-surface-muted">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-20">
-                <h2 class="text-3xl md:text-5xl font-bold text-text-primary mb-6 font-serif">Premier Talent <span class="text-brand-secondary">Booking</span> for Every Occasion</h2>
-                <p class="text-lg text-text-secondary">Experience a seamless booking process. From curation to performance, 
-                    we elevate your event with hand-picked entertainment.</p>
+                <h2 class="text-3xl md:text-5xl font-bold text-text-primary mb-6 font-serif">Book Talent in <span class="text-brand-secondary">Three Simple Steps</span></h2>
+                <p class="text-lg text-text-secondary">We've made discovering and booking world-class performers effortless.</p>
 
                 <div
                     class="mt-12 aspect-video max-w-4xl mx-auto rounded-3xl overflow-hidden shadow-2xl border border-subtle bg-surface-dark">
@@ -101,36 +99,36 @@
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
                 @php
-                    $services = [
+                    $steps = [
                         [
-                            'title' => 'Curated Selection',
-                            'desc' => 'Search our vetted directory of top-tier talent. We bridge the gap between world-class performers and your specific vision.',
-                            'icon' => 'M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10'
+                            'title' => 'Search',
+                            'desc' => 'Search our curated directory of top talent by category, genre, or location to find the perfect fit.',
+                            'icon' => 'M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z'
                         ],
                         [
-                            'title' => 'Bespoke Contracts',
-                            'desc' => 'Enjoy professional, transparent negotiations and secure contracts. We handle the complexities so you don\'t have to.',
-                            'icon' => 'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z'
+                            'title' => 'Review',
+                            'desc' => 'View detailed profiles with photos, videos, and reviews to find your perfect match with confidence.',
+                            'icon' => 'M15 12a3 3 0 11-6 0 3 3 0 016 0z M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z'
                         ],
                         [
-                            'title' => 'White-Glove Support',
-                            'desc' => 'Our team ensures every detail is perfect on the day of your event, providing peace of mind and flawless execution.',
-                            'icon' => 'M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z'
+                            'title' => 'Book',
+                            'desc' => 'Submit an inquiry directly from their profile and finalize your booking with our dedicated agents.',
+                            'icon' => 'M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z'
                         ]
                     ];
                 @endphp
 
-                @foreach($services as $service)
+                @foreach($steps as $step)
                     <div
-                        class="bg-surface-light p-10 rounded-3xl border border-subtle shadow-sm hover:shadow-xl transition-all duration-500 group">
+                        class="bg-surface-light p-10 rounded-3xl border border-subtle shadow-sm hover:shadow-xl transition-all duration-500 group text-center">
                         <div
-                            class="h-14 w-14 rounded-2xl bg-brand-primary/10 text-brand-primary flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
-                            <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="{{ $service['icon'] }}"></path>
+                            class="h-16 w-16 mx-auto rounded-2xl bg-brand-primary/10 text-brand-primary flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="{{ $step['icon'] }}"></path>
                             </svg>
                         </div>
-                        <h3 class="text-2xl font-bold text-text-primary mb-4">{{ $service['title'] }}</h3>
-                        <p class="text-text-secondary leading-relaxed">{{ $service['desc'] }}</p>
+                        <h3 class="text-2xl font-bold text-text-primary mb-4">{{ $step['title'] }}</h3>
+                        <p class="text-text-secondary leading-relaxed">{{ $step['desc'] }}</p>
                     </div>
                 @endforeach
             </div>
