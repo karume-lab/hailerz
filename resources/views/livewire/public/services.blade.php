@@ -159,8 +159,7 @@
           </div>
         @endforeach
       </div>
-    </div>
-  </section>
+    </section>
 
   <!-- Final CTA -->
   <section class="py-32 bg-brand-primary text-center relative overflow-hidden">
