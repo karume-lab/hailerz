@@ -21,7 +21,7 @@
   </div>
 
   <!-- Our Story Section -->
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-32 reveal">
     <div class="flex items-center gap-3 mb-6">
       <span class="h-px w-8 bg-brand-primary"></span>
       <span class="text-xs font-bold text-brand-primary uppercase tracking-widest">Our Story</span>
@@ -43,7 +43,7 @@
   <!-- Our Values -->
   <div class="bg-surface-light py-32 border-y border-subtle ">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-3xl mx-auto mb-20">
+      <div class="text-center max-w-3xl mx-auto mb-20 reveal">
         <h2 class="text-3xl md:text-5xl font-bold text-text-primary tracking-tight mb-6 font-serif">Our <span class="text-brand-secondary">Core Principles</span></h2>
         <p class="text-lg text-text-secondary">These core principles guide everything we do</p>
       </div>
@@ -58,9 +58,9 @@
           ];
         @endphp
 
-        @foreach($values as $value)
+        @foreach($values as $index => $value)
           <div
-            class="bg-surface-muted p-10 rounded-3xl border border-subtle group hover:bg-brand-primary transition-all duration-500 hover:shadow-2xl">
+            class="bg-surface-muted p-10 rounded-3xl border border-subtle group hover:bg-brand-primary transition-all duration-500 hover:shadow-2xl reveal {{ $index % 4 === 1 ? 'reveal-delay-100' : ($index % 4 === 2 ? 'reveal-delay-200' : ($index % 4 === 3 ? 'reveal-delay-300' : '')) }}">
             <h3 class="text-2xl font-bold text-text-primary mb-4 font-serif group-hover:text-text-inverse transition-colors">
               {{ $value['title'] }}</h3>
             <p class="text-text-secondary leading-relaxed font-light group-hover:text-text-inverse/70 transition-colors">
@@ -74,7 +74,7 @@
   <!-- Why Choose Us -->
   <div class="bg-surface-muted py-32">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-3xl mx-auto mb-20">
+      <div class="text-center max-w-3xl mx-auto mb-20 reveal">
         <h2 class="text-3xl md:text-5xl font-bold text-text-primary tracking-tight mb-6 font-serif">Why Planners <span class="text-brand-secondary">Choose Hailerz</span></h2>
         <p class="text-lg text-text-secondary">We handle the logistics so you can focus on the experience.</p>
       </div>
@@ -91,8 +91,8 @@
           ];
         @endphp
 
-        @foreach($reasons as $reason)
-          <div class="flex gap-6">
+        @foreach($reasons as $index => $reason)
+          <div class="flex gap-6 reveal {{ $index % 3 === 1 ? 'reveal-delay-100' : ($index % 3 === 2 ? 'reveal-delay-200' : '') }}">
             <div class="shrink-0 h-12 w-12 rounded-2xl bg-brand-primary/10 flex items-center justify-center text-brand-primary">
               <x-lucide-check class="w-6 h-6" stroke-width="2" />
             </div>
@@ -109,7 +109,7 @@
   <!-- Team Section -->
   <div class="bg-surface-light py-32 border-t border-subtle">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-3xl mx-auto mb-20">
+      <div class="text-center max-w-3xl mx-auto mb-20 reveal">
         <h2 class="text-3xl md:text-5xl font-bold text-text-primary tracking-tight mb-6 font-serif">Our <span class="text-brand-secondary">Specialists</span></h2>
         <p class="text-lg text-text-secondary">Passionate professionals dedicated to your success</p>
       </div>
@@ -123,9 +123,9 @@
           ];
         @endphp
 
-        @foreach($team as $member)
+        @foreach($team as $index => $member)
           <div
-            class="group relative overflow-hidden rounded-[2.5rem] aspect-3/4 bg-surface-dark border border-subtle shadow-xl">
+            class="group relative overflow-hidden rounded-[2.5rem] aspect-3/4 bg-surface-dark border border-subtle shadow-xl reveal {{ $index % 3 === 1 ? 'reveal-delay-100' : ($index % 3 === 2 ? 'reveal-delay-200' : '') }}">
             <img src="{{ asset('images/about/' . $member['img']) }}" loading="lazy" width="400" height="533"
               class="w-full h-full object-cover grayscale transition-transform duration-700 group-hover:scale-110"
               alt="{{ $member['name'] }}" />
@@ -155,7 +155,7 @@
       class="absolute inset-0 bg-linear-to-tr from-brand-primary/80 to-brand-secondary/40 mix-blend-color opacity-40">
     </div>
 
-    <div class="relative max-w-4xl mx-auto px-4 text-center">
+    <div class="relative max-w-4xl mx-auto px-4 text-center reveal">
       <h2 class="text-4xl md:text-7xl font-bold text-text-inverse mb-8 tracking-tight font-serif">Ready to book top talent for your next event?</h2>
       <p class="text-xl md:text-2xl text-text-muted mb-12 font-light leading-relaxed">
         Let us help you find the perfect performer for your next event. Browse our roster or submit a booking inquiry today.

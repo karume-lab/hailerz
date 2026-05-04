@@ -29,7 +29,7 @@
     <!-- Core Solutions -->
     <section class="py-32 bg-surface-muted">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-24">
+            <div class="text-center max-w-3xl mx-auto mb-24 reveal">
                 <h2 class="text-3xl md:text-5xl font-bold text-text-primary mb-6 font-serif tracking-tight">Specialists for <span class="text-brand-secondary">Every Stage</span></h2>
                 <p class="text-text-secondary text-lg">Whether you need a technical lead or a full production crew, we provide vetted professionals who ensure your event flows smoothly.</p>
             </div>
@@ -70,9 +70,9 @@
                     ];
                 @endphp
 
-                @foreach($solutions as $solution)
+                @foreach($solutions as $index => $solution)
                     <div
-                        class="bg-surface-light p-12 rounded-[2.5rem] border border-subtle shadow-sm hover:shadow-2xl transition-all duration-500 group">
+                        class="bg-surface-light p-12 rounded-[2.5rem] border border-subtle shadow-sm hover:shadow-2xl transition-all duration-500 group reveal {{ $index % 3 === 1 ? 'reveal-delay-100' : ($index % 3 === 2 ? 'reveal-delay-200' : '') }}">
                         <div
                             class="w-16 h-16 bg-brand-primary/10 rounded-2xl flex items-center justify-center text-brand-primary mb-8 group-hover:scale-110 transition-transform">
                             <x-dynamic-component :component="'lucide-' . $solution['icon']" class="w-8 h-8" stroke-width="2" />
@@ -89,7 +89,7 @@
     <section class="py-32 bg-surface-light">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="lg:grid lg:grid-cols-2 lg:gap-24 items-center">
-                <div class="space-y-10">
+                <div class="space-y-10 reveal">
                     <div class="flex items-center gap-3">
                         <span class="h-px w-8 bg-brand-primary"></span>
                         <span class="text-xs font-bold text-brand-primary uppercase tracking-widest">Our Standards</span>
@@ -114,7 +114,7 @@
                     </div>
                 </div>
                 <div class="mt-16 lg:mt-0 grid grid-cols-2 gap-6">
-                    <div class="group relative overflow-hidden rounded-xl aspect-3/4 bg-surface-dark shadow-2xl">
+                    <div class="group relative overflow-hidden rounded-xl aspect-3/4 bg-surface-dark shadow-2xl reveal reveal-delay-100">
                         <img src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&q=80&w=1000"
                             loading="lazy" width="500" height="667" alt="Corporate Event Production"
                             class="w-full h-full object-cover grayscale transition-transform duration-500 group-hover:scale-105" />
@@ -125,7 +125,7 @@
                             class="absolute inset-0 bg-linear-to-t from-brand-primary/90 via-transparent to-transparent">
                         </div>
                     </div>
-                    <div class="group relative overflow-hidden rounded-xl aspect-3/4 bg-surface-dark shadow-2xl mt-12">
+                    <div class="group relative overflow-hidden rounded-xl aspect-3/4 bg-surface-dark shadow-2xl mt-12 reveal reveal-delay-300">
                         <img src="https://images.unsplash.com/photo-1540575861501-7ad05823c23d?auto=format&fit=crop&q=80&w=1000"
                             loading="lazy" width="500" height="667" alt="Professional Staffing On-site"
                             class="w-full h-full object-cover grayscale transition-transform duration-500 group-hover:scale-105" />
@@ -144,13 +144,13 @@
     <!-- Why Choose Section -->
     <section class="py-32 bg-surface-dark relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="text-center max-w-3xl mx-auto mb-24">
+            <div class="text-center max-w-3xl mx-auto mb-24 reveal">
                 <h2 class="text-3xl md:text-5_xl font-bold text-text-inverse mb-6 font-serif tracking-tight">The Hailerz <span class="text-brand-secondary">Advantage</span></h2>
                 <p class="text-text-muted text-lg">We are your dedicated partner in event success, providing a white-glove approach to production staffing.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
-                <div class="flex gap-8">
+                <div class="flex gap-8 reveal">
                     <div
                         class="h-12 w-12 rounded-full bg-brand-primary/20 flex items-center justify-center text-brand-primary shrink-0">
                         <span class="font-bold">01</span>
@@ -160,7 +160,7 @@
                         <p class="text-text-muted leading-relaxed font-light">We personally interview and verify the experience of every specialist before they join our elite roster.</p>
                     </div>
                 </div>
-                <div class="flex gap-8">
+                <div class="flex gap-8 reveal reveal-delay-100">
                     <div
                         class="h-12 w-12 rounded-full bg-brand-primary/20 flex items-center justify-center text-brand-primary shrink-0">
                         <span class="font-bold">02</span>
@@ -170,7 +170,7 @@
                         <p class="text-text-muted leading-relaxed font-light">Our extensive network allows us to place top-tier professionals quickly, anywhere in the world.</p>
                     </div>
                 </div>
-                <div class="flex gap-8">
+                <div class="flex gap-8 reveal reveal-delay-200">
                     <div
                         class="h-12 w-12 rounded-full bg-brand-primary/20 flex items-center justify-center text-brand-primary shrink-0">
                         <span class="font-bold">03</span>
@@ -180,7 +180,7 @@
                         <p class="text-text-muted leading-relaxed font-light">We match specialists to your specific technical requirements and the unique tone of your event.</p>
                     </div>
                 </div>
-                <div class="flex gap-8">
+                <div class="flex gap-8 reveal reveal-delay-300">
                     <div
                         class="h-12 w-12 rounded-full bg-brand-primary/20 flex items-center justify-center text-brand-primary shrink-0">
                         <span class="font-bold">04</span>
@@ -196,7 +196,7 @@
 
     <!-- Final CTA -->
     <section class="py-40 bg-surface-muted text-center relative overflow-hidden">
-        <div class="max-w-4xl mx-auto px-4 relative z-10">
+        <div class="max-w-4xl mx-auto px-4 relative z-10 reveal">
             <h2 class="text-4xl md:text-7xl font-bold text-text-primary mb-8 font-serif tracking-tight leading-tight">
                 Build an <span class="text-brand-secondary italic">Elite</span> Team.</h2>
             <p class="text-xl md:text-2xl text-text-secondary mb-12 font-light leading-relaxed">

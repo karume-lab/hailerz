@@ -68,13 +68,13 @@
     <!-- How It Works -->
     <section class="py-32 bg-surface-muted">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-20">
+            <div class="text-center max-w-3xl mx-auto mb-20 reveal">
                 <h2 class="text-3xl md:text-5xl font-bold text-text-primary mb-6 font-serif">Book Talent in <span
                         class="text-brand-secondary">Three Simple Steps</span></h2>
                 <p class="text-lg text-text-secondary">Watch how Hailerz connects you with world-class talent.</p>
 
                 <div
-                    class="mt-12 aspect-video max-w-4xl mx-auto rounded-3xl overflow-hidden shadow-2xl border border-subtle bg-surface-dark">
+                    class="mt-12 aspect-video max-w-4xl mx-auto rounded-3xl overflow-hidden shadow-2xl border border-subtle bg-surface-dark reveal reveal-delay-200">
                     <iframe class="w-full h-full" src="https://www.youtube.com/embed/LLdr6BqljEw"
                         title="Hailerz - How it Works" frameborder="0" loading="lazy"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -104,9 +104,9 @@
                     ];
                 @endphp
 
-                @foreach($steps as $step)
+                @foreach($steps as $index => $step)
                     <div
-                        class="bg-surface-light p-10 rounded-3xl border border-subtle shadow-sm hover:shadow-xl transition-all duration-500 group text-center">
+                        class="bg-surface-light p-10 rounded-3xl border border-subtle shadow-sm hover:shadow-xl transition-all duration-500 group text-center reveal {{ $index === 1 ? 'reveal-delay-100' : ($index === 2 ? 'reveal-delay-200' : '') }}">
                         <div
                             class="h-16 w-16 mx-auto rounded-2xl bg-brand-primary/10 text-brand-primary flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
                             <x-dynamic-component :component="'lucide-' . $step['icon']" class="w-8 h-8" stroke-width="2" />
@@ -122,7 +122,7 @@
     <!-- Featured Talent Section -->
     <section class="py-32 bg-surface-dark">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-20">
+            <div class="text-center max-w-3xl mx-auto mb-20 reveal">
                 <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">Featured Talent</h2>
                 <p class="text-lg text-white/60">Discover our handpicked performers</p>
             </div>
@@ -131,7 +131,7 @@
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
                     <!-- Card 1: Tall Left Card -->
                     <div
-                        class="lg:col-span-5 lg:row-span-2 group relative overflow-hidden rounded-3xl aspect-4/5 lg:aspect-auto shadow-2xl">
+                        class="lg:col-span-5 lg:row-span-2 group relative overflow-hidden rounded-3xl aspect-4/5 lg:aspect-auto shadow-2xl reveal">
                         <img src="{{ $featuredTalents[0]->profile_photo_url }}" alt="{{ $featuredTalents[0]->name }}"
                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
                         <div class="absolute inset-0 bg-linear-to-t from-black/90 via-black/20 to-transparent"></div>
@@ -156,7 +156,7 @@
                     <div class="lg:col-span-7 grid grid-cols-2 gap-6">
                         <!-- Card 2: Wide Top Card -->
                         <div
-                            class="col-span-2 group relative overflow-hidden rounded-3xl aspect-video lg:aspect-21/9 shadow-xl">
+                            class="col-span-2 group relative overflow-hidden rounded-3xl aspect-video lg:aspect-21/9 shadow-xl reveal reveal-delay-100">
                             <img src="{{ $featuredTalents[1]->profile_photo_url }}" alt="{{ $featuredTalents[1]->name }}"
                                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
                             <div class="absolute inset-0 bg-linear-to-t from-black/90 via-black/20 to-transparent"></div>
@@ -179,7 +179,7 @@
                         </div>
 
                         <!-- Card 3: Square Bottom Left -->
-                        <div class="col-span-1 group relative overflow-hidden rounded-3xl aspect-square shadow-xl">
+                        <div class="col-span-1 group relative overflow-hidden rounded-3xl aspect-square shadow-xl reveal reveal-delay-200">
                             <img src="{{ $featuredTalents[2]->profile_photo_url }}" alt="{{ $featuredTalents[2]->name }}"
                                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
                             <div class="absolute inset-0 bg-linear-to-t from-black/90 via-black/20 to-transparent"></div>
@@ -202,7 +202,7 @@
                         </div>
 
                         <!-- Card 4: Square Bottom Right -->
-                        <div class="col-span-1 group relative overflow-hidden rounded-3xl aspect-square shadow-xl">
+                        <div class="col-span-1 group relative overflow-hidden rounded-3xl aspect-square shadow-xl reveal reveal-delay-300">
                             <img src="{{ $featuredTalents[3]->profile_photo_url }}" alt="{{ $featuredTalents[3]->name }}"
                                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
                             <div class="absolute inset-0 bg-linear-to-t from-black/90 via-black/20 to-transparent"></div>
@@ -261,19 +261,19 @@
     <!-- Browse by Category Section -->
     <section class="py-32 bg-surface-muted">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-20">
+            <div class="text-center max-w-3xl mx-auto mb-20 reveal">
                 <h2 class="text-4xl md:text-5xl font-bold text-text-primary mb-6">Browse by Category</h2>
                 <p class="text-lg text-text-secondary">Find the perfect talent for your event</p>
             </div>
 
             <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                @foreach($categories as $category)
+                @foreach($categories as $index => $category)
                     @php
                         $representativeTalent = $category->talents->first();
                         $bgImage = $representativeTalent ? $representativeTalent->profile_photo_url : $category->default_image;
                     @endphp
                     <a href="/talent?category={{ $category->slug }}" wire:navigate
-                        class="group relative aspect-square rounded-3xl overflow-hidden shadow-lg">
+                        class="group relative aspect-square rounded-3xl overflow-hidden shadow-lg reveal {{ $index % 4 === 1 ? 'reveal-delay-100' : ($index % 4 === 2 ? 'reveal-delay-200' : ($index % 4 === 3 ? 'reveal-delay-300' : '')) }}">
                         {{-- Use a representative talent image or default mapping --}}
                         <img src="{{ $bgImage }}" alt="{{ $category->name }}"
                             class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
@@ -293,7 +293,7 @@
     <!-- Booking FAQs Section -->
     <section class="py-32 bg-surface-dark text-text-inverse">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl md:text-5xl font-bold text-center mb-16 font-serif">Booking <span
+            <h2 class="text-3xl md:text-5xl font-bold text-center mb-16 font-serif reveal">Booking <span
                     class="text-brand-secondary">FAQs</span></h2>
 
             <div x-data="{ active: 0 }" class="space-y-4">
@@ -319,7 +319,7 @@
                 @endphp
 
                 @foreach($faqs as $index => $faq)
-                    <div class="border-b border-subtle/20">
+                    <div class="border-b border-subtle/20 reveal {{ $index % 2 === 1 ? 'reveal-delay-100' : '' }}">
                         <button @click="active = (active === {{ $index }} ? null : {{ $index }})"
                             class="flex justify-between items-center w-full text-left py-8 focus:outline-none group transition-all"
                             aria-label="Toggle FAQ: {{ $faq['q'] }}"
@@ -350,7 +350,7 @@
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="lg:grid lg:grid-cols-2 lg:gap-24 items-center">
-                <div>
+                <div class="reveal">
                     <h2 class="text-3xl md:text-6xl font-bold text-text-inverse mb-8 font-serif leading-tight">Ready to
                         <span class="text-brand-secondary">Work Together?</span>
                     </h2>
@@ -386,7 +386,7 @@
                 </div>
 
                 <div
-                    class="bg-surface-light/95 backdrop-blur-xl p-10 rounded-3xl shadow-2xl border border-subtle relative overflow-hidden">
+                    class="bg-surface-light/95 backdrop-blur-xl p-10 rounded-3xl shadow-2xl border border-subtle relative overflow-hidden reveal reveal-delay-200">
                     {{-- Subtle background decoration to break the flat white --}}
                     <div
                         class="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 bg-brand-primary/5 rounded-full blur-3xl pointer-events-none">
