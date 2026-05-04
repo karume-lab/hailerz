@@ -3,28 +3,28 @@
   <div class="mx-auto max-w-2xl space-y-16 lg:mx-0 lg:max-w-none">
    <div class="grid grid-cols-1 gap-x-12 gap-y-10 lg:grid-cols-3">
     <div>
-     <div class="flex items-center gap-3 mb-6">
-      <span class="h-px w-8 bg-brand-primary"></span>
-      <span class="text-xs font-bold text-brand-primary uppercase tracking-widest">Connect</span>
-     </div>
-     <h2 class="text-4xl font-bold tracking-tight text-text-primary font-serif">Ready to <span class="text-brand-secondary">Work Together?</span></h2>
+     <x-section-heading 
+        subtitle="Connect" 
+        title='Ready to <span class="text-brand-secondary">Work Together?</span>' 
+        class="mb-6"
+      />
      <p class="mt-6 text-lg leading-relaxed text-text-secondary font-light">
       Whether you're looking to book top-tier talent for an upcoming event or discuss agency representation, our team is here to assist you.
      </p>
     </div>
     <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:col-span-2">
-     <div class="rounded-3xl bg-surface-light p-10 border border-subtle shadow-sm">
-      <h3 class="text-xs font-bold text-brand-primary uppercase tracking-[0.2em] mb-4">Headquarters</h3>
-      <address class="not-italic text-sm text-text-secondary leading-relaxed">
-       Westlands Business District<br>
-       Nairobi, Kenya
-      </address>
-     </div>
-     <div class="rounded-3xl bg-surface-light p-10 border border-subtle shadow-sm">
-      <h3 class="text-xs font-bold text-brand-primary uppercase tracking-[0.2em] mb-4">Direct Inquiry</h3>
-      <p class="text-sm text-text-secondary mb-2">General: <a class="font-bold text-brand-primary hover:underline transition-colors" href="mailto:info@hailerz.com">info@hailerz.com</a></p>
-      <p class="text-sm text-text-secondary">Bookings: <a class="font-bold text-brand-primary hover:underline transition-colors" href="mailto:bookings@hailerz.com">bookings@hailerz.com</a></p>
-     </div>
+      <x-card padding="p-10">
+       <h3 class="text-xs font-bold text-brand-primary uppercase tracking-[0.2em] mb-4">Headquarters</h3>
+       <address class="not-italic text-sm text-text-secondary leading-relaxed">
+        Westlands Business District<br>
+        Nairobi, Kenya
+       </address>
+      </x-card>
+      <x-card padding="p-10">
+       <h3 class="text-xs font-bold text-brand-primary uppercase tracking-[0.2em] mb-4">Direct Inquiry</h3>
+       <p class="text-sm text-text-secondary mb-2">General: <a class="font-bold text-brand-primary hover:underline transition-colors" href="mailto:info@hailerz.com">info@hailerz.com</a></p>
+       <p class="text-sm text-text-secondary">Bookings: <a class="font-bold text-brand-primary hover:underline transition-colors" href="mailto:bookings@hailerz.com">bookings@hailerz.com</a></p>
+      </x-card>
     </div>
    </div>
 
@@ -46,26 +46,10 @@
      @endif
 
      <form wire:submit="submit" class="grid grid-cols-1 gap-y-8 sm:grid-cols-2 sm:gap-x-8">
-      <div>
-       <label for="name" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Full Name</label>
-       <input wire:model="name" type="text" id="name" placeholder="Name or Organization" class="block w-full px-6 py-4 bg-surface-muted border border-subtle placeholder-text-muted rounded-xl focus:ring-2 focus:ring-brand-primary focus:border-transparent outline-none text-text-primary text-sm font-medium transition-all">
-       @error('name') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
-      </div>
-      <div>
-       <label for="email" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Professional Email</label>
-       <input wire:model="email" type="email" id="email" placeholder="email@company.com" class="block w-full px-6 py-4 bg-surface-muted border border-subtle placeholder-text-muted rounded-xl focus:ring-2 focus:ring-brand-primary focus:border-transparent outline-none text-text-primary text-sm font-medium transition-all">
-       @error('email') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
-      </div>
-      <div class="sm:col-span-2">
-       <label for="subject" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Inquiry Subject</label>
-       <input wire:model="subject" type="text" id="subject" class="block w-full px-6 py-4 bg-surface-muted border border-subtle placeholder-text-muted rounded-xl focus:ring-2 focus:ring-brand-primary focus:border-transparent outline-none text-text-primary text-sm font-medium transition-all">
-       @error('subject') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
-      </div>
-      <div class="sm:col-span-2">
-       <label for="message" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Message</label>
-       <textarea wire:model="message" id="message" rows="5" placeholder="Tell us about your event vision and the talent you're interested in..." class="block w-full px-6 py-4 bg-surface-muted border border-subtle placeholder-text-muted rounded-xl focus:ring-2 focus:ring-brand-primary focus:border-transparent outline-none text-text-primary text-sm font-medium transition-all resize-none"></textarea>
-       @error('message') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
-      </div>
+       <x-input wire:model="name" name="name" label="Full Name" placeholder="Name or Organization" />
+       <x-input wire:model="email" name="email" type="email" label="Professional Email" placeholder="email@company.com" />
+       <x-input wire:model="subject" name="subject" label="Inquiry Subject" class="sm:col-span-2" />
+       <x-textarea wire:model="message" name="message" label="Message" rows="5" placeholder="Tell us about your event vision and the talent you're interested in..." class="sm:col-span-2" />
       <div class="sm:col-span-2 flex justify-end">
        <x-button type="submit" size="lg">
         Send Message

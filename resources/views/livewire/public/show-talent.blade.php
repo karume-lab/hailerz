@@ -101,9 +101,9 @@
 
           {{-- Technical Requirements --}}
           @if($talent->technical_rider)
-            <div x-show="activeTab === 'rider'" x-cloak x-transition:enter="transition ease-out duration-300"
+            <x-card padding="p-8 md:p-12" x-show="activeTab === 'rider'" x-cloak x-transition:enter="transition ease-out duration-300"
               x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0"
-              class="bg-surface-light p-8 md:p-12 rounded-md border border-subtle shadow-sm prose max-w-none text-text-secondary">
+              class="prose max-w-none text-text-secondary">
               <h3 class="text-text-primary mb-6 font-serif">Production & Technical Rider</h3>
               @if(filter_var($talent->technical_rider, FILTER_VALIDATE_URL))
                 <p>Our technical requirements are available at the following link:</p>
@@ -112,7 +112,7 @@
               @else
                 {!! $talent->technical_rider !!}
               @endif
-            </div>
+            </x-card>
           @endif
 
           {{-- Portfolio Gallery --}}
@@ -133,8 +133,7 @@
             @if($talent->galleryItems->count() > 0)
               <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                 @foreach($talent->galleryItems as $item)
-                  <div
-                    class="group bg-surface-light rounded-md overflow-hidden border border-subtle shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col h-full">
+                  <x-card padding="p-0" class="group transition-all duration-500 flex flex-col h-full overflow-hidden">
                     <div class="relative overflow-hidden bg-surface-dark aspect-video">
                       @php
                         $galleryEmbedUrl = '';
@@ -200,7 +199,7 @@
                         @endif
                       </div>
                     @endif
-                  </div>
+                  </x-card>
                 @endforeach
               </div>
 
@@ -242,9 +241,8 @@
         </div>
       </div>
 
-      <!-- Sticky Sidebar -->
       <div class="w-full lg:w-1/3">
-        <div class="sticky top-28 bg-surface-light p-10 rounded-md shadow-2xl border border-subtle ">
+        <x-card padding="p-10" class="sticky top-28 shadow-2xl">
           <h3 class="text-2xl font-bold text-text-primary mb-8 font-serif">Booking Information</h3>
 
           <div class="space-y-8 mb-10">

@@ -1,0 +1,29 @@
+@props([
+    'label' => null,
+    'name' => null,
+])
+
+@php
+    $errorClass = $errors->has($name) ? 'border-red-500 ring-red-500/20' : 'border-subtle focus:ring-brand-primary';
+@endphp
+
+<div class="w-full">
+    @if($label)
+        <label @if($name) for="{{ $name }}" @endif class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">
+            {{ $label }}
+        </label>
+    @endif
+
+    <input 
+        @if($name) id="{{ $name }}" name="{{ $name }}" @endif
+        {{ $attributes->merge([
+            'class' => "block w-full px-6 py-4 bg-surface-muted border placeholder-text-muted rounded-xl focus:ring-2 outline-none text-text-primary text-sm font-medium transition-all " . $errorClass
+        ]) }}
+    />
+
+    @if($name)
+        @error($name)
+            <span class="text-red-500 text-[11px] font-bold mt-2 block tracking-tight">{{ $message }}</span>
+        @enderror
+    @endif
+</div>

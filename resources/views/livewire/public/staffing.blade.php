@@ -29,10 +29,12 @@
     <!-- Core Solutions -->
     <section class="py-32 bg-surface-muted">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-24 reveal">
-                <h2 class="text-3xl md:text-5xl font-bold text-text-primary mb-6 font-serif tracking-tight">Specialists for <span class="text-brand-secondary">Every Stage</span></h2>
-                <p class="text-text-secondary text-lg">Whether you need a technical lead or a full production crew, we provide vetted professionals who ensure your event flows smoothly.</p>
-            </div>
+            <x-section-heading 
+              align="center" 
+              subtitle="Whether you need a technical lead or a full production crew, we provide vetted professionals who ensure your event flows smoothly." 
+              title='Specialists for <span class="text-brand-secondary">Every Stage</span>' 
+              class="reveal"
+            />
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
                 @php
@@ -71,15 +73,14 @@
                 @endphp
 
                 @foreach($solutions as $index => $solution)
-                    <div
-                        class="bg-surface-light p-12 rounded-[2.5rem] border border-subtle shadow-sm hover:shadow-2xl transition-all duration-500 group reveal {{ $index % 3 === 1 ? 'reveal-delay-100' : ($index % 3 === 2 ? 'reveal-delay-200' : '') }}">
+                    <x-card padding="p-12" class="reveal {{ $index % 3 === 1 ? 'reveal-delay-100' : ($index % 3 === 2 ? 'reveal-delay-200' : '') }}">
                         <div
                             class="w-16 h-16 bg-brand-primary/10 rounded-2xl flex items-center justify-center text-brand-primary mb-8 group-hover:scale-110 transition-transform">
                             <x-dynamic-component :component="'lucide-' . $solution['icon']" class="w-8 h-8" stroke-width="2" />
                         </div>
                         <h3 class="text-2xl font-bold text-text-primary mb-4 font-serif">{{ $solution['title'] }}</h3>
                         <p class="text-text-secondary leading-relaxed font-light">{{ $solution['desc'] }}</p>
-                    </div>
+                    </x-card>
                 @endforeach
             </div>
         </div>
@@ -144,10 +145,12 @@
     <!-- Why Choose Section -->
     <section class="py-32 bg-surface-dark relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="text-center max-w-3xl mx-auto mb-24 reveal">
-                <h2 class="text-3xl md:text-5_xl font-bold text-text-inverse mb-6 font-serif tracking-tight">The Hailerz <span class="text-brand-secondary">Advantage</span></h2>
-                <p class="text-text-muted text-lg">We are your dedicated partner in event success, providing a white-glove approach to production staffing.</p>
-            </div>
+            <x-section-heading 
+              align="center" 
+              subtitle="We are your dedicated partner in event success, providing a white-glove approach to production staffing." 
+              title='The Hailerz <span class="text-brand-secondary">Advantage</span>' 
+              class="reveal"
+            />
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
                 <div class="flex gap-8 reveal">

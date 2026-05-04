@@ -1,7 +1,7 @@
 <div class="bg-surface-muted min-h-screen py-24">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         @if($isComplete)
-            <div class="bg-surface-light rounded-[2.5rem] p-16 text-center shadow-2xl border border-subtle">
+            <x-card padding="p-16" class="text-center shadow-2xl">
                 <div class="mx-auto flex items-center justify-center h-24 w-24 rounded-full bg-brand-primary/10 mb-10">
                     <x-lucide-check class="h-12 w-12 text-brand-primary" stroke-width="2" />
                 </div>
@@ -12,17 +12,15 @@
                 <x-button variant="primary" size="lg" href="/talent" wire:navigate>
                     Browse Talent
                 </x-button>
-            </div>
+            </x-card>
         @else
-            <div class="mb-16 text-center">
-                <div class="flex items-center justify-center gap-3 mb-4">
-                    <span class="h-px w-8 bg-brand-primary"></span>
-                    <span class="text-xs font-bold text-brand-primary uppercase tracking-widest">Inquiry Wizard</span>
-                    <span class="h-px w-8 bg-brand-primary"></span>
-                </div>
-                <h1 class="text-4xl md:text-6xl font-bold text-text-primary tracking-tight font-serif">Start your booking</h1>
-                <p class="mt-4 text-lg text-text-secondary">Fill in the details below so we can find the right artist for your event.</p>
-            </div>
+            <x-section-heading 
+                align="center" 
+                subtitle="Inquiry Wizard" 
+                title="Start your booking" 
+                class="mb-16"
+            />
+            <p class="mt--12 mb-16 text-center text-lg text-text-secondary">Fill in the details below so we can find the right artist for your event.</p>
 
             <!-- Progress Indicator -->
             <div class="mb-16">
@@ -39,37 +37,17 @@
                 </div>
             </div>
 
-            <div class="bg-surface-light shadow-2xl rounded-[2.5rem] p-10 sm:p-16 border border-subtle">
+            <x-card padding="p-10 sm:p-16" class="shadow-2xl">
                 <form wire:submit.prevent="submit">
                     <!-- Step 1: Contact Information -->
                     <div class="{{ $currentStep != 1 ? 'hidden' : 'block' }} space-y-10">
                         <h3 class="text-2xl font-bold text-text-primary font-serif">Contact Information</h3>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                            <div>
-                                <label for="first_name" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">First Name <span class="text-red-500">*</span></label>
-                                <input type="text" id="first_name" wire:model="first_name" autocomplete="given-name" aria-required="true" class="block w-full px-6 py-4 bg-surface-muted border border-subtle placeholder-text-muted rounded-xl focus:ring-2 focus:ring-brand-primary outline-none text-text-primary font-medium transition-all">
-                                @error('first_name') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
-                            </div>
-                            <div>
-                                <label for="last_name" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Last Name <span class="text-red-500">*</span></label>
-                                <input type="text" id="last_name" wire:model="last_name" autocomplete="family-name" aria-required="true" class="block w-full px-6 py-4 bg-surface-muted border border-subtle placeholder-text-muted rounded-xl focus:ring-2 focus:ring-brand-primary outline-none text-text-primary font-medium transition-all">
-                                @error('last_name') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
-                            </div>
-                            <div>
-                                <label for="email" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Email Address <span class="text-red-500">*</span></label>
-                                <input type="email" id="email" wire:model="email" autocomplete="email" aria-required="true" class="block w-full px-6 py-4 bg-surface-muted border border-subtle placeholder-text-muted rounded-xl focus:ring-2 focus:ring-brand-primary outline-none text-text-primary font-medium transition-all">
-                                @error('email') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
-                            </div>
-                            <div>
-                                <label for="phone" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Phone Number <span class="text-red-500">*</span></label>
-                                <input type="text" id="phone" wire:model="phone" autocomplete="tel" aria-required="true" class="block w-full px-6 py-4 bg-surface-muted border border-subtle placeholder-text-muted rounded-xl focus:ring-2 focus:ring-brand-primary outline-none text-text-primary font-medium transition-all">
-                                @error('phone') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
-                            </div>
-                            <div class="md:col-span-2">
-                                <label for="company" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Company/Organization</label>
-                                <input type="text" id="company" wire:model="company" class="block w-full px-6 py-4 bg-surface-muted border border-subtle placeholder-text-muted rounded-xl focus:ring-2 focus:ring-brand-primary outline-none text-text-primary font-medium transition-all">
-                                @error('company') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
-                            </div>
+                            <x-input wire:model="first_name" name="first_name" label="First Name *" autocomplete="given-name" />
+                            <x-input wire:model="last_name" name="last_name" label="Last Name *" autocomplete="family-name" />
+                            <x-input wire:model="email" name="email" type="email" label="Email Address *" autocomplete="email" />
+                            <x-input wire:model="phone" name="phone" label="Phone Number *" autocomplete="tel" />
+                            <x-input wire:model="company" name="company" label="Company/Organization" class="md:col-span-2" />
                         </div>
                     </div>
 
@@ -77,61 +55,28 @@
                     <div class="{{ $currentStep != 2 ? 'hidden' : 'block' }} space-y-10">
                         <h3 class="text-2xl font-bold text-text-primary font-serif">Event Details</h3>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                            <div>
-                                <label for="event_type" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Event Type <span class="text-red-500">*</span></label>
-                                <select id="event_type" wire:model="event_type" class="block w-full px-6 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary outline-none text-text-primary font-medium transition-all">
-                                    <option value="">-- Select Type --</option>
-                                    <option value="Wedding">Wedding</option>
-                                    <option value="Corporate Event">Corporate Event</option>
-                                    <option value="Private Party">Private Party</option>
-                                    <option value="Concert/Festival">Concert/Festival</option>
-                                    <option value="Other">Other</option>
-                                </select>
-                                @error('event_type') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
-                            </div>
-                            <div>
-                                <label for="event_date" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Event Date <span class="text-red-500">*</span></label>
-                                <input type="date" id="event_date" wire:model="event_date" class="block w-full px-6 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary outline-none text-text-primary font-medium transition-all">
-                                @error('event_date') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
-                            </div>
-                            <div>
-                                <label for="event_time" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Event Time</label>
-                                <input type="time" id="event_time" wire:model="event_time" class="block w-full px-6 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary outline-none text-text-primary font-medium transition-all">
-                                @error('event_time') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
-                            </div>
-                            <div>
-                                <label for="performance_duration" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Performance Duration</label>
-                                <select id="performance_duration" wire:model="performance_duration" class="block w-full px-6 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary outline-none text-text-primary font-medium transition-all">
-                                    <option value="">-- Select Duration --</option>
-                                    <option value="30 Minutes">30 Minutes</option>
-                                    <option value="1 Hour">1 Hour</option>
-                                    <option value="2 Hours">2 Hours</option>
-                                    <option value="3+ Hours">3+ Hours</option>
-                                </select>
-                                <p class="text-[10px] text-text-muted mt-2 italic">How long would you like the artist to be on stage?</p>
-                                @error('performance_duration') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
-                            </div>
-                            <div class="md:col-span-2">
-                                <label for="venue_name" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Venue Name</label>
-                                <input type="text" id="venue_name" wire:model="venue_name" class="block w-full px-6 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary outline-none text-text-primary font-medium transition-all">
-                                @error('venue_name') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
-                            </div>
-                            <div>
-                                <label for="city" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">City <span class="text-red-500">*</span></label>
-                                <input type="text" id="city" wire:model="city" class="block w-full px-6 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary outline-none text-text-primary font-medium transition-all">
-                                @error('city') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
-                            </div>
-                            <div>
-                                <label for="state" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">State <span class="text-red-500">*</span></label>
-                                <input type="text" id="state" wire:model="state" class="block w-full px-6 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary outline-none text-text-primary font-medium transition-all">
-                                @error('state') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
-                            </div>
-                            <div class="md:col-span-2">
-                                <label for="expected_guests" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Expected Number of Guests <span class="text-red-500">*</span></label>
-                                <input type="number" id="expected_guests" wire:model="expected_guests" class="block w-full px-6 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary outline-none text-text-primary font-medium transition-all">
-                                <p class="text-[10px] text-text-muted mt-2 italic">Estimated attendance helps us scale the technical and sound requirements.</p>
-                                @error('expected_guests') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
-                            </div>
+                            <x-select wire:model="event_type" name="event_type" label="Event Type *">
+                                <option value="">-- Select Type --</option>
+                                <option value="Wedding">Wedding</option>
+                                <option value="Corporate Event">Corporate Event</option>
+                                <option value="Private Party">Private Party</option>
+                                <option value="Concert/Festival">Concert/Festival</option>
+                                <option value="Other">Other</option>
+                            </x-select>
+                            <x-input wire:model="event_date" name="event_date" type="date" label="Event Date *" />
+                            <x-input wire:model="event_time" name="event_time" type="time" label="Event Time" />
+                            <x-select wire:model="performance_duration" name="performance_duration" label="Performance Duration">
+                                <option value="">-- Select Duration --</option>
+                                <option value="30 Minutes">30 Minutes</option>
+                                <option value="1 Hour">1 Hour</option>
+                                <option value="2 Hours">2 Hours</option>
+                                <option value="3+ Hours">3+ Hours</option>
+                            </x-select>
+                            <x-input wire:model="venue_name" name="venue_name" label="Venue Name" class="md:col-span-2" />
+                            <x-input wire:model="city" name="city" label="City *" />
+                            <x-input wire:model="state" name="state" label="State *" />
+                            <x-input wire:model="expected_guests" name="expected_guests" type="number" label="Expected Number of Guests *" class="md:col-span-2" />
+                        </div>
                         </div>
                     </div>
 
@@ -139,36 +84,23 @@
                     <div class="{{ $currentStep != 3 ? 'hidden' : 'block' }} space-y-10">
                         <h3 class="text-2xl font-bold text-text-primary font-serif">Talent Preferences</h3>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                            <div>
-                                <label for="talent_category" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Talent Category <span class="text-red-500">*</span></label>
-                                <select id="talent_category" wire:model="talent_category" class="block w-full px-6 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary outline-none text-text-primary font-medium transition-all">
-                                    <option value="">-- Select Category --</option>
-                                    <option value="Musicians">Musicians</option>
-                                    <option value="Speakers">Speakers</option>
-                                    <option value="DJs">DJs</option>
-                                    <option value="Comedians">Comedians</option>
-                                    <option value="Other">Other</option>
-                                </select>
-                                @error('talent_category') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
-                            </div>
-                            <div>
-                                <label for="preferred_genre" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Preferred Genre</label>
-                                <input type="text" id="preferred_genre" wire:model="preferred_genre" class="block w-full px-6 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary outline-none text-text-primary font-medium transition-all">
-                                @error('preferred_genre') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
-                            </div>
-                            <div>
-                                <label for="budget_range" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Budget Range</label>
-                                <select id="budget_range" wire:model="budget_range" class="block w-full px-6 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary outline-none text-text-primary font-medium transition-all">
-                                    <option value="">-- Select Budget --</option>
-                                    <option value="Under ₦1,000">Under ₦1,000</option>
-                                    <option value="₦1,000 - ₦2,500">₦1,000 - ₦2,500</option>
-                                    <option value="₦2,500 - ₦5,000">₦2,500 - ₦5,000</option>
-                                    <option value="₦5,000 - ₦10,000">₦5,000 - ₦10,000</option>
-                                    <option value="₦10,000+">₦10,000+</option>
-                                </select>
-                                <p class="text-[10px] text-text-muted mt-2 italic">Total estimated budget for the talent, inclusive of fees.</p>
-                                @error('budget_range') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
-                            </div>
+                            <x-select wire:model="talent_category" name="talent_category" label="Talent Category *">
+                                <option value="">-- Select Category --</option>
+                                <option value="Musicians">Musicians</option>
+                                <option value="Speakers">Speakers</option>
+                                <option value="DJs">DJs</option>
+                                <option value="Comedians">Comedians</option>
+                                <option value="Other">Other</option>
+                            </x-select>
+                            <x-input wire:model="preferred_genre" name="preferred_genre" label="Preferred Genre" />
+                            <x-select wire:model="budget_range" name="budget_range" label="Budget Range">
+                                <option value="">-- Select Budget --</option>
+                                <option value="Under ₦1,000">Under ₦1,000</option>
+                                <option value="₦1,000 - ₦2,500">₦1,000 - ₦2,500</option>
+                                <option value="₦2,500 - ₦5,000">₦2,500 - ₦5,000</option>
+                                <option value="₦5,000 - ₦10,000">₦5,000 - ₦10,000</option>
+                                <option value="₦10,000+">₦10,000+</option>
+                            </x-select>
                             <div class="md:col-span-2">
                                 <label for="specific_talent" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Specific Talent Request</label>
                                 
@@ -260,30 +192,22 @@
                                 @endif
                                 @error('specific_talent') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
                             </div>
-                            <div class="md:col-span-2">
-                                <label for="additional_details" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Additional Details</label>
-                                <textarea id="additional_details" wire:model="additional_details" rows="5" class="block w-full px-6 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary outline-none text-text-primary font-medium transition-all resize-none"></textarea>
-                                <p class="text-[10px] text-text-muted mt-2 italic">Tell us about the event vibe, technical needs, or any special requests.</p>
-                                @error('additional_details') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
-                            </div>
+                            <x-textarea wire:model="additional_details" name="additional_details" label="Additional Details" rows="5" placeholder="Tell us about the event vibe, technical needs, or any special requests." class="md:col-span-2" />
+                        </div>
                         </div>
                     </div>
 
                     <!-- Step 4: Misc -->
                     <div class="{{ $currentStep != 4 ? 'hidden' : 'block' }} space-y-10">
                         <h3 class="text-2xl font-bold text-text-primary font-serif">Final Details</h3>
-                        <div>
-                            <label for="source" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">How did you hear about us?</label>
-                            <select id="source" wire:model="source" class="block w-full px-6 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary outline-none text-text-primary font-medium transition-all">
-                                <option value="">-- Select Option --</option>
-                                <option value="Search Engine">Search Engine</option>
-                                <option value="Social Media">Social Media</option>
-                                <option value="Word of Mouth">Word of Mouth</option>
-                                <option value="Advertisement">Advertisement</option>
-                                <option value="Other">Other</option>
-                            </select>
-                            @error('source') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
-                        </div>
+                        <x-select wire:model="source" name="source" label="How did you hear about us?">
+                            <option value="">-- Select Option --</option>
+                            <option value="Search Engine">Search Engine</option>
+                            <option value="Social Media">Social Media</option>
+                            <option value="Word of Mouth">Word of Mouth</option>
+                            <option value="Advertisement">Advertisement</option>
+                            <option value="Other">Other</option>
+                        </x-select>
                     </div>
 
                     <!-- Navigation -->
@@ -301,7 +225,7 @@
                                 Continue
                             </x-button>
                         @else
-                            <x-button variant="navy" size="lg" type="submit" wire:loading.attr="disabled" wire:target="submit">
+                            <x-button variant="primary" size="lg" type="submit" wire:loading.attr="disabled" wire:target="submit">
                                 <span wire:loading.remove wire:target="submit">Send booking request</span>
                                 <span wire:loading wire:target="submit" class="flex items-center justify-center">
                                     <x-lucide-loader-2 class="animate-spin h-5 w-5 text-white" stroke-width="2" />
@@ -310,7 +234,7 @@
                         @endif
                     </div>
                 </form>
-            </div>
+            </x-card>
         @endif
     </div>
 </div>

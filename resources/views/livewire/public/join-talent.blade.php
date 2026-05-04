@@ -1,7 +1,7 @@
 <div class="bg-surface-muted min-h-screen py-24">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         @if($isSubmitted)
-            <div class="bg-surface-light rounded-[2.5rem] p-16 text-center shadow-2xl border border-subtle mt-12">
+            <x-card padding="p-16" class="text-center shadow-2xl mt-12">
                 <div class="mx-auto flex items-center justify-center h-24 w-24 rounded-full bg-brand-primary/10 mb-10">
                     <x-lucide-check class="h-12 w-12 text-brand-primary" stroke-width="2" />
                 </div>
@@ -12,17 +12,15 @@
                 <x-button variant="primary" size="lg" href="/" wire:navigate>
                     Return to the Agency
                 </x-button>
-            </div>
+            </x-card>
         @else
-            <div class="text-center mb-16">
-                <div class="flex items-center justify-center gap-3 mb-4">
-                    <span class="h-px w-8 bg-brand-primary"></span>
-                    <span class="text-xs font-bold text-brand-primary uppercase tracking-widest">Join the Roster</span>
-                    <span class="h-px w-8 bg-brand-primary"></span>
-                </div>
-                <h1 class="text-4xl md:text-6xl font-bold text-text-primary tracking-tight font-serif">Join the <span class="text-brand-secondary">Hailerz Roster</span></h1>
-                <p class="mt-4 text-lg text-text-secondary">Become part of a premier network of performers, musicians, and creatives.</p>
-            </div>
+            <x-section-heading 
+                align="center" 
+                subtitle="Join the Roster" 
+                title='Join the <span class="text-brand-secondary">Hailerz Roster</span>' 
+                class="mb-16"
+            />
+            <p class="mt--12 mb-16 text-center text-lg text-text-secondary">Become part of a premier network of performers, musicians, and creatives.</p>
 
             <!-- Progress Indicator -->
             <div class="mb-16 max-w-3xl mx-auto">
@@ -40,43 +38,18 @@
                 </div>
             </div>
 
-            <div class="w-full bg-surface-light p-10 sm:p-16 rounded-[2.5rem] shadow-2xl border border-subtle">
+            <x-card padding="p-10 sm:p-16" class="shadow-2xl">
                 <form wire:submit.prevent="submit">
                     <!-- Step 1: Artist Information -->
                     <div class="{{ $currentStep != 1 ? 'hidden' : 'block' }} space-y-10">
                         <h3 class="text-2xl font-bold text-text-primary font-serif">Artist Information</h3>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                            <div>
-                                <label for="artist_name" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Artist/Stage Name <span class="text-red-500">*</span></label>
-                                <input type="text" id="artist_name" wire:model="artist_name" autocomplete="nickname" aria-required="true" class="block w-full px-6 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary outline-none text-text-primary font-medium">
-                                @error('artist_name') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
-                            </div>
-                            <div>
-                                <label for="real_name" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Real Name <span class="text-red-500">*</span></label>
-                                <input type="text" id="real_name" wire:model="real_name" autocomplete="name" aria-required="true" class="block w-full px-6 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary outline-none text-text-primary font-medium">
-                                @error('real_name') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
-                            </div>
-                            <div>
-                                <label for="email" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Email Address <span class="text-red-500">*</span></label>
-                                <input type="email" id="email" wire:model="email" autocomplete="email" aria-required="true" class="block w-full px-6 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary outline-none text-text-primary font-medium">
-                                @error('email') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
-                            </div>
-                            <div>
-                                <label for="phone" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Phone Number <span class="text-red-500">*</span></label>
-                                <input type="text" id="phone" wire:model="phone" autocomplete="tel" aria-required="true" class="block w-full px-6 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary outline-none text-text-primary font-medium">
-                                @error('phone') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
-                            </div>
-                            <div>
-                                <label for="location" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Location (City, State) <span class="text-red-500">*</span></label>
-                                <input type="text" id="location" wire:model="location" class="block w-full px-6 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary outline-none text-text-primary font-medium">
-                                @error('location') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
-                            </div>
-                            <div>
-                                <label for="profile_photo_url" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Profile Photo URL <span class="text-red-500">*</span></label>
-                                <input type="text" id="profile_photo_url" wire:model="profile_photo_url" placeholder="https://..." class="block w-full px-6 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary outline-none text-text-primary font-medium">
-                                <p class="text-[10px] text-text-muted mt-2 italic">A high-quality link to your professional headshot.</p>
-                                @error('profile_photo_url') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
-                            </div>
+                            <x-input wire:model="artist_name" name="artist_name" label="Artist/Stage Name *" autocomplete="nickname" />
+                            <x-input wire:model="real_name" name="real_name" label="Real Name *" autocomplete="name" />
+                            <x-input wire:model="email" name="email" type="email" label="Email Address *" autocomplete="email" />
+                            <x-input wire:model="phone" name="phone" label="Phone Number *" autocomplete="tel" />
+                            <x-input wire:model="location" name="location" label="Location (City, State) *" />
+                            <x-input wire:model="profile_photo_url" name="profile_photo_url" label="Profile Photo URL *" placeholder="https://..." />
                         </div>
                     </div>
 
@@ -84,40 +57,19 @@
                     <div class="{{ $currentStep != 2 ? 'hidden' : 'block' }} space-y-10">
                         <h3 class="text-2xl font-bold text-text-primary font-serif">Professional Details</h3>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                            <div>
-                                <label for="category" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Talent Category <span class="text-red-500">*</span></label>
-                                <select id="category" wire:model="category" class="block w-full px-6 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary outline-none text-text-primary font-medium">
-                                    <option value="">-- Select Category --</option>
-                                    <option value="Musicians">Musicians</option>
-                                    <option value="Speakers">Speakers</option>
-                                    <option value="DJs">DJs</option>
-                                    <option value="Comedians">Comedians</option>
-                                    <option value="Other">Other</option>
-                                </select>
-                                @error('category') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
-                            </div>
-                            <div>
-                                <label for="genre" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Primary Genre/Style</label>
-                                <input type="text" id="genre" wire:model="genre" class="block w-full px-6 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary outline-none text-text-primary font-medium">
-                                @error('genre') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
-                            </div>
-                            <div>
-                                <label for="years_active" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Years Active <span class="text-red-500">*</span></label>
-                                <input type="text" id="years_active" wire:model="years_active" class="block w-full px-6 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary outline-none text-text-primary font-medium">
-                                @error('years_active') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
-                            </div>
+                            <x-select wire:model="category" name="category" label="Talent Category *">
+                                <option value="">-- Select Category --</option>
+                                <option value="Musicians">Musicians</option>
+                                <option value="Speakers">Speakers</option>
+                                <option value="DJs">DJs</option>
+                                <option value="Comedians">Comedians</option>
+                                <option value="Other">Other</option>
+                            </x-select>
+                            <x-input wire:model="genre" name="genre" label="Primary Genre/Style" />
+                            <x-input wire:model="years_active" name="years_active" label="Years Active *" />
                             <div class="grid grid-cols-2 gap-4">
-                                <div>
-                                    <label for="min_rate" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Min Rate (₦) <span class="text-red-500">*</span></label>
-                                    <input type="number" id="min_rate" wire:model="min_rate" class="block w-full px-6 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary outline-none text-text-primary font-medium">
-                                    <p class="text-[10px] text-text-muted mt-2 italic">Standard min/max booking fee range.</p>
-                                    @error('min_rate') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
-                                </div>
-                                <div>
-                                    <label for="max_rate" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Max Rate (₦) <span class="text-red-500">*</span></label>
-                                    <input type="number" id="max_rate" wire:model="max_rate" class="block w-full px-6 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary outline-none text-text-primary font-medium">
-                                    @error('max_rate') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
-                                </div>
+                                <x-input wire:model="min_rate" name="min_rate" type="number" label="Min Rate (₦) *" />
+                                <x-input wire:model="max_rate" name="max_rate" type="number" label="Max Rate (₦) *" />
                             </div>
                         </div>
                     </div>
@@ -126,31 +78,11 @@
                     <div class="{{ $currentStep != 3 ? 'hidden' : 'block' }} space-y-10">
                         <h3 class="text-2xl font-bold text-text-primary font-serif">Online Presence</h3>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                            <div>
-                                <label for="website_url" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Website Link</label>
-                                <input type="url" id="website_url" wire:model="website_url" placeholder="https://..." class="block w-full px-6 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary outline-none text-text-primary font-medium">
-                                @error('website_url') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
-                            </div>
-                            <div>
-                                <label for="instagram_handle" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Instagram Link</label>
-                                <input type="url" id="instagram_handle" wire:model="instagram_handle" placeholder="https://instagram.com/..." class="block w-full px-6 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary outline-none text-text-primary font-medium">
-                                @error('instagram_handle') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
-                            </div>
-                            <div>
-                                <label for="facebook_url" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Facebook Page Link</label>
-                                <input type="url" id="facebook_url" wire:model="facebook_url" placeholder="https://..." class="block w-full px-6 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary outline-none text-text-primary font-medium">
-                                @error('facebook_url') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
-                            </div>
-                            <div>
-                                <label for="youtube_channel" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">YouTube Channel Link</label>
-                                <input type="url" id="youtube_channel" wire:model="youtube_channel" placeholder="https://..." class="block w-full px-6 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary outline-none text-text-primary font-medium">
-                                @error('youtube_channel') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
-                            </div>
-                            <div>
-                                <label for="tiktok_handle" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">TikTok Link</label>
-                                <input type="url" id="tiktok_handle" wire:model="tiktok_handle" placeholder="https://tiktok.com/@..." class="block w-full px-6 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary outline-none text-text-primary font-medium">
-                                @error('tiktok_handle') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
-                            </div>
+                            <x-input wire:model="website_url" name="website_url" type="url" label="Website Link" placeholder="https://..." />
+                            <x-input wire:model="instagram_handle" name="instagram_handle" type="url" label="Instagram Link" placeholder="https://instagram.com/..." />
+                            <x-input wire:model="facebook_url" name="facebook_url" type="url" label="Facebook Page Link" placeholder="https://..." />
+                            <x-input wire:model="youtube_channel" name="youtube_channel" type="url" label="YouTube Channel Link" placeholder="https://..." />
+                            <x-input wire:model="tiktok_handle" name="tiktok_handle" type="url" label="TikTok Link" placeholder="https://tiktok.com/@..." />
                         </div>
                     </div>
 
@@ -158,18 +90,9 @@
                     <div class="{{ $currentStep != 4 ? 'hidden' : 'block' }} space-y-10">
                         <h3 class="text-2xl font-bold text-text-primary font-serif">Experience & Portfolio</h3>
                         <div class="grid grid-cols-1 gap-8">
-                            <div>
-                                <label for="notable_venues" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Notable Venues Performed</label>
-                                <textarea id="notable_venues" wire:model="notable_venues" rows="3" class="block w-full px-6 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary outline-none text-text-primary font-medium resize-none"></textarea>
-                            </div>
-                            <div>
-                                <label for="notable_clients" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Notable Events/Clients</label>
-                                <textarea id="notable_clients" wire:model="notable_clients" rows="3" class="block w-full px-6 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary outline-none text-text-primary font-medium resize-none"></textarea>
-                            </div>
-                            <div>
-                                <label for="press_features" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Press Features/Awards</label>
-                                <textarea id="press_features" wire:model="press_features" rows="3" class="block w-full px-6 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary outline-none text-text-primary font-medium resize-none"></textarea>
-                            </div>
+                            <x-textarea wire:model="notable_venues" name="notable_venues" label="Notable Venues Performed" rows="3" />
+                            <x-textarea wire:model="notable_clients" name="notable_clients" label="Notable Events/Clients" rows="3" />
+                            <x-textarea wire:model="press_features" name="press_features" label="Press Features/Awards" rows="3" />
                         </div>
 
                         <!-- Gallery (PRESERVED) -->
@@ -216,28 +139,16 @@
                     <div class="{{ $currentStep != 5 ? 'hidden' : 'block' }} space-y-10">
                         <h3 class="text-2xl font-bold text-text-primary font-serif">Additional Information</h3>
                         <div class="space-y-8">
-                            <div>
-                                <label for="bio" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Artist Bio (Min 200 Characters) <span class="text-red-500">*</span></label>
-                                <textarea id="bio" wire:model="bio" rows="6" class="block w-full px-6 py-5 bg-surface-muted border border-subtle rounded-2xl focus:ring-2 focus:ring-brand-primary outline-none text-text-primary font-medium resize-none"></textarea>
-                                <p class="text-[10px] text-text-muted mt-2 italic">A compelling professional summary for your public profile.</p>
-                                @error('bio') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
-                            </div>
-                            <div>
-                                <label for="motivation" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Why do you want to join Hailerz? <span class="text-red-500">*</span></label>
-                                <textarea id="motivation" wire:model="motivation" rows="4" class="block w-full px-6 py-5 bg-surface-muted border border-subtle rounded-2xl focus:ring-2 focus:ring-brand-primary outline-none text-text-primary font-medium resize-none"></textarea>
-                                @error('motivation') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
-                            </div>
-                            <div>
-                                <label for="source" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">How did you hear about us?</label>
-                                <select id="source" wire:model="source" class="block w-full px-6 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary outline-none text-text-primary font-medium transition-all">
-                                    <option value="">-- Select Option --</option>
-                                    <option value="Search Engine">Search Engine</option>
-                                    <option value="Social Media">Social Media</option>
-                                    <option value="Word of Mouth">Word of Mouth</option>
-                                    <option value="Advertisement">Advertisement</option>
-                                    <option value="Other">Other</option>
-                                </select>
-                            </div>
+                            <x-textarea wire:model="bio" name="bio" label="Artist Bio (Min 200 Characters) *" rows="6" />
+                            <x-textarea wire:model="motivation" name="motivation" label="Why do you want to join Hailerz? *" rows="4" />
+                            <x-select wire:model="source" name="source" label="How did you hear about us?">
+                                <option value="">-- Select Option --</option>
+                                <option value="Search Engine">Search Engine</option>
+                                <option value="Social Media">Social Media</option>
+                                <option value="Word of Mouth">Word of Mouth</option>
+                                <option value="Advertisement">Advertisement</option>
+                                <option value="Other">Other</option>
+                            </x-select>
                         </div>
                     </div>
 
@@ -256,7 +167,7 @@
                                 Continue
                             </x-button>
                         @else
-                            <x-button variant="navy" size="lg" type="submit" wire:loading.attr="disabled" wire:target="submit">
+                            <x-button variant="primary" size="lg" type="submit" wire:loading.attr="disabled" wire:target="submit">
                                 <span wire:loading.remove wire:target="submit">Submit Talent Application</span>
                                 <span wire:loading wire:target="submit" class="flex items-center justify-center">
                                     <x-lucide-loader-2 class="animate-spin h-5 w-5 text-white" stroke-width="2" />
@@ -265,7 +176,7 @@
                         @endif
                     </div>
                 </form>
-            </div>
+            </x-card>
         @endif
     </div>
 </div>

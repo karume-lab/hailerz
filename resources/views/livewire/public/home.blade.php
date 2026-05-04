@@ -105,15 +105,17 @@
                 @endphp
 
                 @foreach($steps as $index => $step)
-                    <div
-                        class="bg-surface-light p-10 rounded-3xl border border-subtle shadow-sm hover:shadow-xl transition-all duration-500 group text-center reveal {{ $index === 1 ? 'reveal-delay-100' : ($index === 2 ? 'reveal-delay-200' : '') }}">
-                        <div
-                            class="h-16 w-16 mx-auto rounded-2xl bg-brand-primary/10 text-brand-primary flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
+                    <x-card 
+                        padding="p-10" 
+                        hover 
+                        class="text-center reveal {{ $index === 1 ? 'reveal-delay-100' : ($index === 2 ? 'reveal-delay-200' : '') }}"
+                    >
+                        <div class="h-16 w-16 mx-auto rounded-2xl bg-brand-primary/10 text-brand-primary flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
                             <x-dynamic-component :component="'lucide-' . $step['icon']" class="w-8 h-8" stroke-width="2" />
                         </div>
                         <h3 class="text-2xl font-bold text-text-primary mb-4">{{ $step['title'] }}</h3>
                         <p class="text-text-secondary leading-relaxed">{{ $step['desc'] }}</p>
-                    </div>
+                    </x-card>
                 @endforeach
             </div>
         </div>
@@ -385,8 +387,7 @@
                     </ul>
                 </div>
 
-                <div
-                    class="bg-surface-light/95 backdrop-blur-xl p-10 rounded-3xl shadow-2xl border border-subtle relative overflow-hidden reveal reveal-delay-200">
+                <x-card padding="p-10" class="backdrop-blur-xl shadow-2xl relative overflow-hidden reveal reveal-delay-200">
                     {{-- Subtle background decoration to break the flat white --}}
                     <div
                         class="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 bg-brand-primary/5 rounded-full blur-3xl pointer-events-none">
@@ -410,33 +411,10 @@
                     @else
                         <form wire:submit="submitContact" class="relative z-10 space-y-6">
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div>
-                                    <label for="contactName"
-                                        class="block text-xs font-bold text-text-secondary uppercase tracking-widest mb-2">Name</label>
-                                    <input id="contactName" wire:model="contactName" type="text" placeholder="Full Name"
-                                        class="w-full px-5 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary focus:bg-surface-light focus:border-transparent outline-none transition-all text-text-primary placeholder-text-muted shadow-sm" />
-                                    @error('contactName') <span class="text-red-500 text-xs mt-1">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                                <div>
-                                    <label for="contactEmail"
-                                        class="block text-xs font-bold text-text-secondary uppercase tracking-widest mb-2">Email</label>
-                                    <input id="contactEmail" wire:model="contactEmail" type="email" autocomplete="email"
-                                        placeholder="Email Address"
-                                        class="w-full px-5 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary focus:bg-surface-light focus:border-transparent outline-none transition-all text-text-primary placeholder-text-muted shadow-sm" />
-                                    @error('contactEmail') <span class="text-red-500 text-xs mt-1">{{ $message }}</span>
-                                    @enderror
-                                </div>
+                                <x-input wire:model="contactName" name="contactName" label="Name" placeholder="Full Name" />
+                                <x-input wire:model="contactEmail" name="contactEmail" type="email" label="Email" placeholder="Email Address" />
                             </div>
-                            <div>
-                                <label for="contactMessage"
-                                    class="block text-xs font-bold text-text-secondary uppercase tracking-widest mb-2">Message</label>
-                                <textarea id="contactMessage" wire:model="contactMessage" rows="5"
-                                    placeholder="Tell us about your event vision and the type of talent you're looking for..."
-                                    class="w-full px-5 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary focus:bg-surface-light focus:border-transparent outline-none transition-all resize-none text-text-primary placeholder-text-muted shadow-sm"></textarea>
-                                @error('contactMessage') <span class="text-red-500 text-xs mt-1">{{ $message }}</span>
-                                @enderror
-                            </div>
+                            <x-textarea wire:model="contactMessage" name="contactMessage" label="Message" rows="5" placeholder="Tell us about your event vision and the type of talent you're looking for..." />
                             <x-button type="submit" class="w-full shadow-lg shadow-brand-primary/20" size="lg"
                                 variant="secondary" wire:loading.attr="disabled" wire:target="submitContact">
                                 <span wire:loading.remove wire:target="submitContact">Send Message</span>
@@ -446,7 +424,7 @@
                             </x-button>
                         </form>
                     @endif
-                </div>
+                </x-card>
             </div>
         </div>
 

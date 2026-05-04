@@ -22,11 +22,10 @@
 
   <!-- Our Story Section -->
   <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-32 reveal">
-    <div class="flex items-center gap-3 mb-6">
-      <span class="h-px w-8 bg-brand-primary"></span>
-      <span class="text-xs font-bold text-brand-primary uppercase tracking-widest">Our Story</span>
-    </div>
-    <h2 class="text-4xl md:text-6xl font-bold text-text-primary tracking-tight mb-12 font-serif">Making Talent <span class="text-brand-secondary">Effortless</span></h2>
+    <x-section-heading 
+      subtitle="Our Story" 
+      title='Making Talent <span class="text-brand-secondary">Effortless</span>' 
+    />
     <div class="space-y-10 text-xl text-text-secondary leading-relaxed font-light">
       <p>
         Hailerz exists for one reason — to make discovering and booking incredible talent effortless. Born from the real struggles event planners face when trying to find reliable, high‑quality performers, Hailerz was created to bridge that gap with a platform built on trust, creativity, and community.
@@ -43,10 +42,12 @@
   <!-- Our Values -->
   <div class="bg-surface-light py-32 border-y border-subtle ">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-3xl mx-auto mb-20 reveal">
-        <h2 class="text-3xl md:text-5xl font-bold text-text-primary tracking-tight mb-6 font-serif">Our <span class="text-brand-secondary">Core Principles</span></h2>
-        <p class="text-lg text-text-secondary">These core principles guide everything we do</p>
-      </div>
+      <x-section-heading 
+        align="center" 
+        subtitle="These core principles guide everything we do" 
+        title='Our <span class="text-brand-secondary">Core Principles</span>' 
+        class="reveal"
+      />
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         @php
@@ -59,13 +60,12 @@
         @endphp
 
         @foreach($values as $index => $value)
-          <div
-            class="bg-surface-muted p-10 rounded-3xl border border-subtle group hover:bg-brand-primary transition-all duration-500 hover:shadow-2xl reveal {{ $index % 4 === 1 ? 'reveal-delay-100' : ($index % 4 === 2 ? 'reveal-delay-200' : ($index % 4 === 3 ? 'reveal-delay-300' : '')) }}">
+          <x-card class="bg-surface-muted group hover:bg-brand-primary reveal {{ $index % 4 === 1 ? 'reveal-delay-100' : ($index % 4 === 2 ? 'reveal-delay-200' : ($index % 4 === 3 ? 'reveal-delay-300' : '')) }}">
             <h3 class="text-2xl font-bold text-text-primary mb-4 font-serif group-hover:text-text-inverse transition-colors">
               {{ $value['title'] }}</h3>
             <p class="text-text-secondary leading-relaxed font-light group-hover:text-text-inverse/70 transition-colors">
               {{ $value['desc'] }}</p>
-          </div>
+          </x-card>
         @endforeach
       </div>
     </div>
@@ -74,10 +74,12 @@
   <!-- Why Choose Us -->
   <div class="bg-surface-muted py-32">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-3xl mx-auto mb-20 reveal">
-        <h2 class="text-3xl md:text-5xl font-bold text-text-primary tracking-tight mb-6 font-serif">Why Planners <span class="text-brand-secondary">Choose Hailerz</span></h2>
-        <p class="text-lg text-text-secondary">We handle the logistics so you can focus on the experience.</p>
-      </div>
+      <x-section-heading 
+        align="center" 
+        subtitle="We handle the logistics so you can focus on the experience." 
+        title='Why Planners <span class="text-brand-secondary">Choose Hailerz</span>' 
+        class="reveal"
+      />
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
         @php
@@ -109,10 +111,12 @@
   <!-- Team Section -->
   <div class="bg-surface-light py-32 border-t border-subtle">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-3xl mx-auto mb-20 reveal">
-        <h2 class="text-3xl md:text-5xl font-bold text-text-primary tracking-tight mb-6 font-serif">Our <span class="text-brand-secondary">Specialists</span></h2>
-        <p class="text-lg text-text-secondary">Passionate professionals dedicated to your success</p>
-      </div>
+      <x-section-heading 
+        align="center" 
+        subtitle="Passionate professionals dedicated to your success" 
+        title='Our <span class="text-brand-secondary">Specialists</span>' 
+        class="reveal"
+      />
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
         @php

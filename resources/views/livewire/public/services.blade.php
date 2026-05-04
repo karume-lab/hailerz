@@ -20,10 +20,12 @@
   <!-- Talent Categories -->
   <section class="py-32 bg-surface-muted">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-3xl mx-auto mb-24 reveal">
-        <h2 class="text-3xl md:text-5xl font-bold text-text-primary mb-6 font-serif">Entertainment <span class="text-brand-secondary">Categories</span></h2>
-        <p class="text-text-secondary text-lg">World-class performers across every category and genre</p>
-      </div>
+      <x-section-heading 
+        align="center" 
+        title='Entertainment <span class="text-brand-secondary">Categories</span>' 
+        subtitle="World-class performers across every category and genre"
+        class="reveal"
+      />
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
         @php
@@ -68,7 +70,7 @@
         @endphp
 
         @foreach($categories as $index => $cat)
-          <div class="bg-surface-light p-10 rounded-[2.5rem] border border-subtle shadow-sm hover:shadow-2xl transition-all duration-500 group reveal {{ $index % 3 === 1 ? 'reveal-delay-100' : ($index % 3 === 2 ? 'reveal-delay-200' : '') }}">
+          <x-card class="reveal {{ $index % 3 === 1 ? 'reveal-delay-100' : ($index % 3 === 2 ? 'reveal-delay-200' : '') }}">
             <div class="w-16 h-16 bg-brand-primary/10 rounded-2xl flex items-center justify-center text-brand-primary mb-8 group-hover:scale-110 transition-transform">
               <x-dynamic-component :component="'lucide-' . $cat['icon']" class="w-8 h-8" stroke-width="2" />
             </div>
@@ -76,7 +78,7 @@
             <p class="text-text-secondary mb-6 leading-relaxed">{{ $cat['desc'] }}</p>
             <p class="text-xs font-bold text-brand-primary uppercase tracking-widest">Most Popular for:</p>
             <p class="text-sm text-text-muted italic">{{ $cat['popular'] }}</p>
-          </div>
+          </x-card>
         @endforeach
       </div>
     </div>
@@ -85,10 +87,12 @@
   <!-- Occasions -->
   <section class="py-32 bg-surface-light border-y border-subtle">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-3xl mx-auto mb-20 reveal">
-        <h2 class="text-3xl md:text-5xl font-bold text-text-primary mb-6 font-serif">Specialized for <span class="text-brand-secondary">Every Occasion</span></h2>
-        <p class="text-lg text-text-secondary">We provide the perfect talent to match your event's atmosphere.</p>
-      </div>
+      <x-section-heading 
+        align="center" 
+        title='Specialized for <span class="text-brand-secondary">Every Occasion</span>' 
+        subtitle="We provide the perfect talent to match your event's atmosphere."
+        class="reveal"
+      />
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         @php
@@ -103,10 +107,10 @@
         @endphp
 
         @foreach($occasions as $index => $occ)
-          <div class="bg-surface-muted p-8 rounded-3xl border border-subtle hover:border-brand-primary transition-colors reveal {{ $index % 3 === 1 ? 'reveal-delay-100' : ($index % 3 === 2 ? 'reveal-delay-200' : '') }}">
+          <x-card padding="p-8" class="bg-surface-muted hover:border-brand-primary reveal {{ $index % 3 === 1 ? 'reveal-delay-100' : ($index % 3 === 2 ? 'reveal-delay-200' : '') }}">
             <h3 class="text-xl font-bold text-text-primary mb-4">{{ $occ['title'] }}</h3>
             <p class="text-text-secondary leading-relaxed font-light">{{ $occ['desc'] }}</p>
-          </div>
+          </x-card>
         @endforeach
       </div>
     </div>
@@ -115,11 +119,14 @@
   <!-- Process -->
   <section class="py-32 bg-surface-muted">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-3xl mx-auto mb-24 reveal">
-        <h2 class="text-3xl md:text-5xl font-bold text-text-primary mb-6 font-serif">The <span class="text-brand-secondary">Booking</span> Process</h2>
-        <p class="text-text-secondary text-lg">A simple, three-step process to secure world-class talent.</p>
+      <x-section-heading 
+        align="center" 
+        title='The <span class="text-brand-secondary">Booking</span> Process' 
+        subtitle="A simple, three-step process to secure world-class talent."
+        class="reveal"
+      />
 
-        <div class="mt-12 aspect-video max-w-4xl mx-auto rounded-[2.5rem] overflow-hidden shadow-2xl border border-subtle bg-surface-dark reveal reveal-delay-200">
+      <div class="mt-12 aspect-video max-w-4xl mx-auto rounded-[2.5rem] overflow-hidden shadow-2xl border border-subtle bg-surface-dark reveal reveal-delay-200">
             <iframe 
                 class="w-full h-full"
                 src="https://www.youtube.com/embed/LLdr6BqljEw" 

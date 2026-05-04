@@ -1,20 +1,18 @@
 <div class="bg-surface-muted min-h-screen py-20">
  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
   
-  <div class="mb-16">
-   <div class="flex items-center gap-3 mb-4">
-    <span class="h-px w-12 bg-brand-primary"></span>
-    <span class="text-xs font-bold text-brand-primary uppercase tracking-widest">Global Talent Network</span>
-   </div>
-   <h1 class="text-4xl md:text-6xl font-bold text-text-primary tracking-tight font-serif"><span class="text-brand-secondary">Premier</span> Roster</h1>
-   <p class="mt-4 text-lg text-text-secondary max-w-2xl">Explore and secure the world’s most sought-after musicians, speakers, and performers for your next high-profile event.</p>
-  </div>
+   <x-section-heading 
+     subtitle="Global Talent Network" 
+     title='<span class="text-brand-secondary">Premier</span> Roster' 
+     class="mb-16"
+   />
+   <p class="mt--12 mb-16 text-lg text-text-secondary max-w-2xl">Explore and secure the world’s most sought-after musicians, speakers, and performers for your next high-profile event.</p>
 
   <div class="flex flex-col lg:flex-row gap-12">
    
    <!-- Sidebar Filters -->
    <aside class="w-full lg:w-1/4">
-    <div class="sticky top-28 bg-surface-light p-8 rounded-md shadow-sm border border-subtle ">
+    <x-card padding="p-8" class="sticky top-28">
      <div class="flex items-center justify-between mb-10">
       <h2 class="text-xs font-bold text-text-secondary uppercase tracking-widest">Refine Selection</h2>
       <button wire:click="resetFilters" aria-label="Reset all search filters" class="text-[10px] font-bold text-brand-primary uppercase tracking-widest hover:underline transition-colors">
@@ -24,32 +22,23 @@
      
      <div class="space-y-10">
       <!-- Search -->
-      <div>
-       <label for="search" class="block text-[10px] font-bold text-text-secondary uppercase tracking-widest mb-4">Keywords</label>
-       <input wire:model.live.debounce.300ms="search" type="text" id="search" class="w-full px-5 py-4 bg-surface-muted border border-subtle placeholder-text-muted rounded-md focus:ring-2 focus:ring-brand-primary focus:border-transparent transition-all outline-none text-text-primary text-sm font-medium" placeholder="Name or expertise...">
-      </div>
+      <x-input wire:model.live.debounce.300ms="search" name="search" label="Keywords" placeholder="Name or expertise..." />
 
       <!-- Sort Order -->
-      <div>
-       <label for="sort" class="block text-[10px] font-bold text-text-secondary uppercase tracking-widest mb-4">Order</label>
-       <select wire:model.live="sort" id="sort" class="w-full px-5 py-4 bg-surface-muted border border-subtle placeholder-text-muted rounded-md focus:ring-2 focus:ring-brand-primary focus:border-transparent transition-all outline-none text-text-primary text-sm font-medium appearance-none">
-        <option value="name">Alphabetical</option>
-        <option value="latest">Newly Represented</option>
-        <option value="price_asc">Investment: Low to High</option>
-        <option value="price_desc">Investment: High to Low</option>
-       </select>
-      </div>
+      <x-select wire:model.live="sort" name="sort" label="Order">
+       <option value="name">Alphabetical</option>
+       <option value="latest">Newly Represented</option>
+       <option value="price_asc">Investment: Low to High</option>
+       <option value="price_desc">Investment: High to Low</option>
+      </x-select>
 
       <!-- Category -->
-      <div>
-       <label for="category" class="block text-[10px] font-bold text-text-secondary uppercase tracking-widest mb-4">Discipline</label>
-       <select wire:model.live="category_id" id="category" class="w-full px-5 py-4 bg-surface-muted border border-subtle placeholder-text-muted rounded-md focus:ring-2 focus:ring-brand-primary focus:border-transparent transition-all outline-none text-text-primary text-sm font-medium appearance-none">
-        <option value="">All Disciplines</option>
-        @foreach($categories as $category)
-         <option value="{{ $category->id }}">{{ $category->name }}</option>
-        @endforeach
-       </select>
-      </div>
+      <x-select wire:model.live="category_id" name="category" label="Discipline">
+       <option value="">All Disciplines</option>
+       @foreach($categories as $category)
+        <option value="{{ $category->id }}">{{ $category->name }}</option>
+       @endforeach
+      </x-select>
 
       <!-- Location -->
       <div x-data="{
@@ -131,7 +120,7 @@
        </datalist>
       </div>
      </div>
-    </div>
+    </x-card>
    </aside>
 
    <!-- Talent Grid -->
@@ -141,7 +130,7 @@
      @if($talents->count() > 0)
       <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
        @foreach($talents as $talent)
-        <div class="bg-surface-light rounded-md shadow-sm border border-subtle overflow-hidden group hover:shadow-2xl transition-all duration-500 flex flex-col h-full">
+        <x-card padding="p-0" class="group transition-all duration-500 flex flex-col h-full overflow-hidden">
          <a href="/talent/{{ $talent->slug }}" wire:navigate class="block">
           <div class="group relative overflow-hidden aspect-3/4 bg-surface-dark">
            <img
@@ -183,7 +172,7 @@
            </x-button>
           </div>
          </div>
-        </div>
+        </x-card>
        @endforeach
       </div>
       
@@ -211,13 +200,13 @@
        </div>
       @endif
      @else
-      <div class="text-center py-32 bg-surface-light rounded-3xl border border-dashed border-subtle ">
+      <x-card padding="py-32" class="text-center border-dashed">
        <h3 class="text-2xl font-bold text-text-primary mb-4 font-serif">No Results Found</h3>
        <p class="text-text-secondary mb-8">Refine your selection to explore our alternative talent members.</p>
        <x-button variant="secondary" wire:click="resetFilters">
         Clear All Filters
        </x-button>
-      </div>
+      </x-card>
      @endif
     </div>
 
