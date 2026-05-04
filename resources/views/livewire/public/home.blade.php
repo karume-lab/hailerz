@@ -27,11 +27,7 @@
                     class="flex flex-col md:flex-row gap-3 p-2 bg-white/10 backdrop-blur-xl rounded-2xl border border-white/20 shadow-[0_20px_50px_rgba(0,0,0,0.5)] transition-all duration-500 hover:bg-white/15">
                     <div class="flex-1 relative">
                         <div class="absolute inset-y-0 left-5 flex items-center pointer-events-none">
-                            <svg class="h-6 w-6 text-white/50 group-hover:text-white/80 transition-colors" fill="none"
-                                stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
-                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                            </svg>
+                            <x-lucide-search class="h-6 w-6 text-white/50 group-hover:text-white/80 transition-colors" stroke-width="2.5" />
                         </div>
                         <input type="text" wire:model="search" placeholder="Search by name, genre, or location..."
                             class="w-full pl-14 pr-6 py-5 bg-transparent text-white placeholder-white/50 border-none focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 text-xl font-medium outline-none">
@@ -93,17 +89,17 @@
                         [
                             'title' => 'Search',
                             'desc' => 'Search our curated directory of top talent by category, genre, or location to find the perfect fit.',
-                            'icon' => 'M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z'
+                            'icon' => 'search'
                         ],
                         [
                             'title' => 'Review',
                             'desc' => 'View detailed profiles with photos, videos, and reviews to find your perfect match with confidence.',
-                            'icon' => 'M15 12a3 3 0 11-6 0 3 3 0 016 0z M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z'
+                            'icon' => 'user-check'
                         ],
                         [
                             'title' => 'Book',
                             'desc' => 'Submit an inquiry directly from their profile and finalize your booking with our dedicated agents.',
-                            'icon' => 'M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z'
+                            'icon' => 'calendar-check'
                         ]
                     ];
                 @endphp
@@ -113,9 +109,7 @@
                         class="bg-surface-light p-10 rounded-3xl border border-subtle shadow-sm hover:shadow-xl transition-all duration-500 group text-center">
                         <div
                             class="h-16 w-16 mx-auto rounded-2xl bg-brand-primary/10 text-brand-primary flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
-                            <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="{{ $step['icon'] }}"></path>
-                            </svg>
+                            <x-dynamic-component :component="'lucide-' . $step['icon']" class="w-8 h-8" stroke-width="2" />
                         </div>
                         <h3 class="text-2xl font-bold text-text-primary mb-4">{{ $step['title'] }}</h3>
                         <p class="text-text-secondary leading-relaxed">{{ $step['desc'] }}</p>
@@ -334,12 +328,8 @@
                                 class="text-xl md:text-2xl font-bold group-hover:text-brand-secondary transition-colors">{{ $faq['q'] }}</span>
                             <div class="h-8 w-8 rounded-full border border-subtle/30 flex items-center justify-center group-hover:border-brand-secondary transition-colors"
                                 :class="{ 'bg-brand-secondary border-brand-secondary': active === {{ $index }} }">
-                                <svg class="w-4 h-4 transform transition-transform duration-300"
-                                    :class="{ 'rotate-180': active === {{ $index }}, 'text-text-inverse': active === {{ $index }} }"
-                                    fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M19 9l-7 7-7-7"></path>
-                                </svg>
+                                <x-lucide-chevron-down class="w-4 h-4 transform transition-transform duration-300"
+                                    x-bind:class="{ 'rotate-180': active === {{ $index }}, 'text-text-inverse': active === {{ $index }} }" stroke-width="2" />
                             </div>
                         </button>
                         <div x-show="active === {{ $index }}" x-collapse x-cloak class="overflow-hidden">
@@ -374,12 +364,7 @@
                         <li class="flex items-center gap-6">
                             <div
                                 class="h-14 w-14 rounded-2xl bg-text-inverse/10 flex items-center justify-center text-text-inverse shrink-0 backdrop-blur-sm border border-subtle">
-                                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
-                                    viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
-                                    </path>
-                                </svg>
+                                <x-lucide-mail class="w-6 h-6" stroke-width="2" />
                             </div>
                             <div>
                                 <h3 class="text-text-inverse font-bold">Send us a message</h3>
@@ -389,11 +374,7 @@
                         <li class="flex items-center gap-6">
                             <div
                                 class="h-14 w-14 rounded-2xl bg-text-inverse/10 flex items-center justify-center text-text-inverse shrink-0 backdrop-blur-sm border border-subtle">
-                                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
-                                    viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
+                                <x-lucide-clock class="w-6 h-6" stroke-width="2" />
                             </div>
                             <div>
                                 <h3 class="text-text-inverse font-bold">Premium Support</h3>
@@ -418,10 +399,7 @@
                         <div class="relative z-10 flex flex-col items-center text-center py-12 gap-6">
                             <div
                                 class="h-20 w-20 rounded-full bg-green-100 text-green-600 flex items-center justify-center">
-                                <svg class="w-10 h-10" fill="none" stroke="currentColor" stroke-width="2"
-                                    viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
-                                </svg>
+                                <x-lucide-check class="w-10 h-10" stroke-width="2" />
                             </div>
                             <h3 class="text-3xl font-bold text-text-primary">Inquiry Received</h3>
                             <p class="text-text-secondary">An agent will review your request and
@@ -463,14 +441,7 @@
                                 variant="secondary" wire:loading.attr="disabled" wire:target="submitContact">
                                 <span wire:loading.remove wire:target="submitContact">Send Message</span>
                                 <span wire:loading wire:target="submitContact" class="flex items-center justify-center">
-                                    <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg"
-                                        fill="none" viewBox="0 0 24 24">
-                                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
-                                            stroke-width="4"></circle>
-                                        <path class="opacity-75" fill="currentColor"
-                                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
-                                        </path>
-                                    </svg>
+                                    <x-lucide-loader-2 class="animate-spin h-5 w-5 text-white" stroke-width="2" />
                                 </span>
                             </x-button>
                         </form>

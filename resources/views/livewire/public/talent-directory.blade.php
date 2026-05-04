@@ -109,7 +109,7 @@
        <div class="flex items-center justify-between mb-4">
         <label for="location" class="block text-[10px] font-bold text-text-secondary uppercase tracking-widest">Base Location</label>
         <button @click="locateMe()" type="button" aria-label="Auto-detect my current location" class="text-[10px] font-bold text-brand-primary uppercase tracking-widest hover:underline flex items-center gap-1">
-         <svg x-show="!isLocating" class="w-3 h-3 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
+         <x-lucide-map-pin x-show="!isLocating" class="w-3 h-3 text-text-secondary" stroke-width="2" />
          <span x-text="isLocating ? '...' : 'Auto-Detect'"></span>
         </button>
        </div>
@@ -169,7 +169,7 @@
          
          <div class="p-8 flex-1 flex flex-col justify-between">
           <div class="flex items-center gap-2 text-xs text-text-secondary mb-6">
-           <svg class="w-4 h-4 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
+           <x-lucide-map-pin class="w-4 h-4 text-text-secondary" stroke-width="2" />
            {{ $talent->location ?? 'International' }}
           </div>
           
@@ -205,7 +205,7 @@
         }
        }" x-init="observe()" class="mt-12 py-12 flex justify-center">
         <div class="flex items-center gap-3 text-text-muted">
-         <svg class="animate-spin h-5 w-5" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path></svg>
+         <x-lucide-loader-2 class="animate-spin h-5 w-5" stroke-width="2" />
          <span class="text-sm font-semibold uppercase tracking-widest">Loading More Talent...</span>
         </div>
        </div>

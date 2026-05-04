@@ -32,37 +32,37 @@
               'name' => 'Solo Musicians',
               'desc' => 'Solo instrumentalists and vocalists across all genres - from classical pianists to contemporary guitarists.',
               'popular' => 'Weddings, Corporate Dinners, Private Parties',
-              'icon' => 'M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2z'
+              'icon' => 'music'
             ],
             [
               'name' => 'Bands & Ensembles',
               'desc' => 'Full ensembles and variety acts that bring energy and diversity to any event, from acoustic trios to full performance groups.',
               'popular' => 'Weddings, Festivals, Corporate Events',
-              'icon' => 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857'
+              'icon' => 'users'
             ],
             [
               'name' => 'DJs',
               'desc' => 'Professional DJs who read the room and keep the energy high with expertly curated playlists and mixing.',
               'popular' => 'Clubs, Parties, Weddings, Corporate Events',
-              'icon' => 'M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2z'
+              'icon' => 'disc'
             ],
             [
               'name' => 'Keynote Speakers',
               'desc' => 'Motivational speakers and industry experts who inspire and educate audiences.',
               'popular' => 'Conferences, Corporate Events, Fundraisers',
-              'icon' => 'M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z'
+              'icon' => 'mic'
             ],
             [
               'name' => 'Dancers & Performers',
               'desc' => 'Professional dancers and choreographers specializing in contemporary, traditional, and Afrobeat performances.',
               'popular' => 'Weddings, Cultural Events, Corporate Shows',
-              'icon' => 'M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z'
+              'icon' => 'smile'
             ],
             [
               'name' => 'Visual Artists',
               'desc' => 'Live painters and visual artists who create stunning artwork during your event as entertainment.',
               'popular' => 'Corporate Events, Exhibitions, Private Parties',
-              'icon' => 'M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z'
+              'icon' => 'palette'
             ],
           ];
         @endphp
@@ -70,7 +70,7 @@
         @foreach($categories as $cat)
           <div class="bg-surface-light p-10 rounded-[2.5rem] border border-subtle shadow-sm hover:shadow-2xl transition-all duration-500 group">
             <div class="w-16 h-16 bg-brand-primary/10 rounded-2xl flex items-center justify-center text-brand-primary mb-8 group-hover:scale-110 transition-transform">
-              <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="{{ $cat['icon'] }}"></path></svg>
+              <x-dynamic-component :component="'lucide-' . $cat['icon']" class="w-8 h-8" stroke-width="2" />
             </div>
             <h3 class="text-2xl font-bold text-text-primary mb-4 font-serif">{{ $cat['name'] }}</h3>
             <p class="text-text-secondary mb-6 leading-relaxed">{{ $cat['desc'] }}</p>

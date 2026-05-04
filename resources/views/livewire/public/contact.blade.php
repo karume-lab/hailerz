@@ -39,7 +39,7 @@
      @if (session('success'))
       <div class="rounded-2xl bg-green-50 p-6 mb-8 border border-green-100 flex items-center gap-4">
        <div class="shrink-0 h-10 w-10 bg-green-100 rounded-full flex items-center justify-center text-green-600">
-        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+        <x-lucide-check class="h-6 w-6" stroke-width="2" />
        </div>
        <p class="text-sm font-bold text-green-800">{{ session('success') }}</p>
       </div>

@@ -94,7 +94,7 @@
         @foreach($reasons as $reason)
           <div class="flex gap-6">
             <div class="shrink-0 h-12 w-12 rounded-2xl bg-brand-primary/10 flex items-center justify-center text-brand-primary">
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+              <x-lucide-check class="w-6 h-6" stroke-width="2" />
             </div>
             <div>
               <h3 class="text-xl font-bold text-text-primary mb-2">{{ $reason['title'] }}</h3>

@@ -40,32 +40,32 @@
                         [
                             'title' => 'Technical Direction',
                             'desc' => 'Senior technical leads to oversee sound, lighting, and video integration for complex event environments.',
-                            'icon' => 'M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z'
+                            'icon' => 'monitor'
                         ],
                         [
                             'title' => 'Stage Management',
                             'desc' => 'Professional stage managers dedicated to flawless transitions, talent coordination, and schedule adherence.',
-                            'icon' => 'M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z'
+                            'icon' => 'clock'
                         ],
                         [
                             'title' => 'Hospitality & VIP Leads',
                             'desc' => 'Elite staffing for high-profile guest management, hospitality suites, and backstage artist relations.',
-                            'icon' => 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857'
+                            'icon' => 'users'
                         ],
                         [
                             'title' => 'Production Assistants',
                             'desc' => 'Highly trained assistants to support on-site logistics, procurement tracking, and general event operations.',
-                            'icon' => 'M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z'
+                            'icon' => 'briefcase'
                         ],
                         [
                             'title' => 'Show Callers',
                             'desc' => 'Precision-focused professionals to manage cues, timing, and synchronization across all technical departments.',
-                            'icon' => 'M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z'
+                            'icon' => 'mic'
                         ],
                         [
                             'title' => 'Audio-Visual Crew',
                             'desc' => 'Vetted AV technicians, camera operators, and lighting specialists for seamless production execution.',
-                            'icon' => 'M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z'
+                            'icon' => 'video'
                         ],
                     ];
                 @endphp
@@ -75,10 +75,7 @@
                         class="bg-surface-light p-12 rounded-[2.5rem] border border-subtle shadow-sm hover:shadow-2xl transition-all duration-500 group">
                         <div
                             class="w-16 h-16 bg-brand-primary/10 rounded-2xl flex items-center justify-center text-brand-primary mb-8 group-hover:scale-110 transition-transform">
-                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="{{ $solution['icon'] }}"></path>
-                            </svg>
+                            <x-dynamic-component :component="'lucide-' . $solution['icon']" class="w-8 h-8" stroke-width="2" />
                         </div>
                         <h3 class="text-2xl font-bold text-text-primary mb-4 font-serif">{{ $solution['title'] }}</h3>
                         <p class="text-text-secondary leading-relaxed font-light">{{ $solution['desc'] }}</p>

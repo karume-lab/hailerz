@@ -3,7 +3,7 @@
         @if($isComplete)
             <div class="bg-surface-light rounded-[2.5rem] p-16 text-center shadow-2xl border border-subtle">
                 <div class="mx-auto flex items-center justify-center h-24 w-24 rounded-full bg-brand-primary/10 mb-10">
-                    <svg class="h-12 w-12 text-brand-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    <x-lucide-check class="h-12 w-12 text-brand-primary" stroke-width="2" />
                 </div>
                 <h2 class="text-4xl font-bold text-text-primary mb-6 font-serif">Inquiry Submitted Successfully!</h2>
                 <p class="text-lg text-text-secondary mb-12 max-w-xl mx-auto">
@@ -199,9 +199,7 @@
                                             @click="open = !open"
                                             class="w-full flex items-center justify-between px-6 py-4 bg-surface-muted border border-subtle rounded-xl focus:ring-2 focus:ring-brand-primary outline-none text-text-primary font-medium transition-all text-left">
                                             <span class="text-text-muted">-- Select from Talent --</span>
-                                            <svg class="h-5 w-5 text-text-muted transition-transform duration-300" :class="{ 'rotate-180': open }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                                            </svg>
+                                            <x-lucide-chevron-down class="h-5 w-5 text-text-muted transition-transform duration-300" x-bind:class="{ 'rotate-180': open }" stroke-width="2" />
                                         </button>
 
                                         <!-- Dropdown Menu -->
@@ -214,7 +212,7 @@
                                             <div class="p-4 border-b border-subtle bg-surface-muted/30">
                                                 <div class="relative">
                                                     <div class="absolute inset-y-0 left-4 flex items-center pointer-events-none">
-                                                        <svg class="h-4 w-4 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                                                        <x-lucide-search class="h-4 w-4 text-text-muted" stroke-width="2" />
                                                     </div>
                                                     <input type="text" 
                                                         wire:model.live.debounce.300ms="talentSearch"
@@ -306,10 +304,7 @@
                             <x-button variant="navy" size="lg" type="submit" wire:loading.attr="disabled" wire:target="submit">
                                 <span wire:loading.remove wire:target="submit">Send booking request</span>
                                 <span wire:loading wire:target="submit" class="flex items-center justify-center">
-                                    <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                                    </svg>
+                                    <x-lucide-loader-2 class="animate-spin h-5 w-5 text-white" stroke-width="2" />
                                 </span>
                             </x-button>
                         @endif
