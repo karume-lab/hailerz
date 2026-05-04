@@ -15,7 +15,7 @@
 
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
             <h1 class="text-5xl md:text-8xl font-bold tracking-tight text-white mb-8 leading-tight font-sans">
-                Book Top Talent
+                <span class="text-brand-secondary">Book</span> Top Talent
             </h1>
             <p class="text-xl md:text-2xl text-white/90 mb-12 max-w-3xl mx-auto font-medium leading-relaxed">
                 Connect with premier musicians, bands, and performers for unforgettable events
@@ -27,7 +27,8 @@
                     class="flex flex-col md:flex-row gap-3 p-2 bg-white/10 backdrop-blur-xl rounded-2xl border border-white/20 shadow-[0_20px_50px_rgba(0,0,0,0.5)] transition-all duration-500 hover:bg-white/15">
                     <div class="flex-1 relative">
                         <div class="absolute inset-y-0 left-5 flex items-center pointer-events-none">
-                            <x-lucide-search class="h-6 w-6 text-white/50 group-hover:text-white/80 transition-colors" stroke-width="2.5" />
+                            <x-lucide-search class="h-6 w-6 text-white/50 group-hover:text-white/80 transition-colors"
+                                stroke-width="2.5" />
                         </div>
                         <input type="text" wire:model="search" placeholder="Search by name, genre, or location..."
                             class="w-full pl-14 pr-6 py-5 bg-transparent text-white placeholder-white/50 border-none focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 text-xl font-medium outline-none">
@@ -105,12 +106,10 @@
                 @endphp
 
                 @foreach($steps as $index => $step)
-                    <x-card 
-                        padding="p-10" 
-                        hover 
-                        class="text-center reveal {{ $index === 1 ? 'reveal-delay-100' : ($index === 2 ? 'reveal-delay-200' : '') }}"
-                    >
-                        <div class="h-16 w-16 mx-auto rounded-2xl bg-brand-primary/10 text-brand-primary flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
+                    <x-card padding="p-10" hover
+                        class="text-center reveal {{ $index === 1 ? 'reveal-delay-100' : ($index === 2 ? 'reveal-delay-200' : '') }}">
+                        <div
+                            class="h-16 w-16 mx-auto rounded-2xl bg-brand-primary/10 text-brand-primary flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
                             <x-dynamic-component :component="'lucide-' . $step['icon']" class="w-8 h-8" stroke-width="2" />
                         </div>
                         <h3 class="text-2xl font-bold text-text-primary mb-4">{{ $step['title'] }}</h3>
@@ -181,7 +180,8 @@
                         </div>
 
                         <!-- Card 3: Square Bottom Left -->
-                        <div class="col-span-1 group relative overflow-hidden rounded-3xl aspect-square shadow-xl reveal reveal-delay-200">
+                        <div
+                            class="col-span-1 group relative overflow-hidden rounded-3xl aspect-square shadow-xl reveal reveal-delay-200">
                             <img src="{{ $featuredTalents[2]->profile_photo_url }}" alt="{{ $featuredTalents[2]->name }}"
                                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
                             <div class="absolute inset-0 bg-linear-to-t from-black/90 via-black/20 to-transparent"></div>
@@ -204,7 +204,8 @@
                         </div>
 
                         <!-- Card 4: Square Bottom Right -->
-                        <div class="col-span-1 group relative overflow-hidden rounded-3xl aspect-square shadow-xl reveal reveal-delay-300">
+                        <div
+                            class="col-span-1 group relative overflow-hidden rounded-3xl aspect-square shadow-xl reveal reveal-delay-300">
                             <img src="{{ $featuredTalents[3]->profile_photo_url }}" alt="{{ $featuredTalents[3]->name }}"
                                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
                             <div class="absolute inset-0 bg-linear-to-t from-black/90 via-black/20 to-transparent"></div>
@@ -331,7 +332,8 @@
                             <div class="h-8 w-8 rounded-full border border-subtle/30 flex items-center justify-center group-hover:border-brand-secondary transition-colors"
                                 :class="{ 'bg-brand-secondary border-brand-secondary': active === {{ $index }} }">
                                 <x-lucide-chevron-down class="w-4 h-4 transform transition-transform duration-300"
-                                    x-bind:class="{ 'rotate-180': active === {{ $index }}, 'text-text-inverse': active === {{ $index }} }" stroke-width="2" />
+                                    x-bind:class="{ 'rotate-180': active === {{ $index }}, 'text-text-inverse': active === {{ $index }} }"
+                                    stroke-width="2" />
                             </div>
                         </button>
                         <div x-show="active === {{ $index }}" x-collapse x-cloak class="overflow-hidden">
@@ -387,7 +389,8 @@
                     </ul>
                 </div>
 
-                <x-card padding="p-10" class="backdrop-blur-xl shadow-2xl relative overflow-hidden reveal reveal-delay-200">
+                <x-card padding="p-10"
+                    class="backdrop-blur-xl shadow-2xl relative overflow-hidden reveal reveal-delay-200">
                     {{-- Subtle background decoration to break the flat white --}}
                     <div
                         class="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 bg-brand-primary/5 rounded-full blur-3xl pointer-events-none">
@@ -412,9 +415,11 @@
                         <form wire:submit="submitContact" class="relative z-10 space-y-6">
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <x-input wire:model="contactName" name="contactName" label="Name" placeholder="Full Name" />
-                                <x-input wire:model="contactEmail" name="contactEmail" type="email" label="Email" placeholder="Email Address" />
+                                <x-input wire:model="contactEmail" name="contactEmail" type="email" label="Email"
+                                    placeholder="Email Address" />
                             </div>
-                            <x-textarea wire:model="contactMessage" name="contactMessage" label="Message" rows="5" placeholder="Tell us about your event vision and the type of talent you're looking for..." />
+                            <x-textarea wire:model="contactMessage" name="contactMessage" label="Message" rows="5"
+                                placeholder="Tell us about your event vision and the type of talent you're looking for..." />
                             <x-button type="submit" class="w-full shadow-lg shadow-brand-primary/20" size="lg"
                                 variant="secondary" wire:loading.attr="disabled" wire:target="submitContact">
                                 <span wire:loading.remove wire:target="submitContact">Send Message</span>

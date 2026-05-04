@@ -128,6 +128,10 @@
                       this.lightboxTitle = title;
                       this.lightboxType = type;
                       this.lightboxOpen = true;
+                  },
+                  closeLightbox() {
+                      this.lightboxOpen = false;
+                      this.lightboxUrl = '';
                   }
                }">
             @if($talent->galleryItems->count() > 0)
@@ -208,10 +212,10 @@
                 x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
                 x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100"
                 x-transition:leave-end="opacity-0"
-                class="fixed inset-0 z-100 flex items-center justify-center bg-surface-dark/95 backdrop-blur-md p-4 md:p-10"
-                @click="lightboxOpen = false" @keydown.escape.window="lightboxOpen = false" x-cloak>
+                class="fixed inset-0 z-100 flex items-center justify-center bg-surface-dark/80 backdrop-blur-xl p-4 md:p-10"
+                @click="closeLightbox()" @keydown.escape.window="closeLightbox()" x-cloak>
 
-                <button class="absolute top-8 right-8 text-white/50 hover:text-white transition-colors z-101" aria-label="Close Lightbox">
+                <button @click="closeLightbox()" class="absolute top-8 right-8 text-white/50 hover:text-white transition-colors z-101" aria-label="Close Lightbox">
                   <x-lucide-x class="w-8 h-8" stroke-width="1.5" />
                 </button>
 
@@ -415,7 +419,7 @@
                  </div>
             </div>
           </div>
-        </div>
+        </x-card>
       </div>
 
     </div>
