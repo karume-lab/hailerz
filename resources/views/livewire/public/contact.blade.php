@@ -1,63 +1,183 @@
 <div class="bg-surface-muted min-h-screen py-32">
- <div class="mx-auto max-w-7xl px-6 lg:px-8">
-  <div class="mx-auto max-w-2xl space-y-16 lg:mx-0 lg:max-w-none">
-   <div class="grid grid-cols-1 gap-x-12 gap-y-10 lg:grid-cols-3">
-    <div>
-     <x-section-heading 
-        subtitle="Connect" 
-        title='Ready to <span class="text-brand-secondary">Work Together?</span>' 
-        class="mb-6"
-      />
-     <p class="mt-6 text-lg leading-relaxed text-text-secondary font-light">
-      Whether you're looking to book top-tier talent for an upcoming event or discuss agency representation, our team is here to assist you.
-     </p>
-    </div>
-    <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:col-span-2">
-      <x-card padding="p-10">
-       <h3 class="text-xs font-bold text-brand-primary uppercase tracking-[0.2em] mb-4">Headquarters</h3>
-       <address class="not-italic text-sm text-text-secondary leading-relaxed">
-        Westlands Business District<br>
-        Nairobi, Kenya
-       </address>
-      </x-card>
-      <x-card padding="p-10">
-       <h3 class="text-xs font-bold text-brand-primary uppercase tracking-[0.2em] mb-4">Direct Inquiry</h3>
-       <p class="text-sm text-text-secondary mb-2">General: <a class="font-bold text-brand-primary hover:underline transition-colors" href="mailto:info@hailerz.com">info@hailerz.com</a></p>
-       <p class="text-sm text-text-secondary">Bookings: <a class="font-bold text-brand-primary hover:underline transition-colors" href="mailto:bookings@hailerz.com">bookings@hailerz.com</a></p>
-      </x-card>
-    </div>
-   </div>
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+        {{-- Hero Header --}}
+        <div class="text-center mb-24">
+            <h1 class="text-4xl md:text-6xl font-bold text-text-primary mb-6">Get In Touch</h1>
+            <p class="text-xl text-text-secondary max-w-2xl mx-auto font-light">
+                Have questions? Need help finding talent? We're here to assist you.
+            </p>
+        </div>
 
-   <div class="pt-16 lg:grid lg:grid-cols-3 lg:gap-12 border-t border-subtle ">
-    <div>
-     <h2 class="text-2xl font-bold tracking-tight text-text-primary  mb-4">Direct <span class="text-brand-secondary">Inquiries</span></h2>
-     <p class="text-sm text-text-secondary font-light leading-relaxed">
-      Reach out and we'll respond promptly to your request. For urgent booking needs, we recommend using our <a href="/book" class="text-brand-primary font-bold hover:underline">expedited request process</a>.
-     </p>
-    </div>
-    <div class="lg:col-span-2">
-     @if (session('success'))
-      <div class="rounded-2xl bg-green-50 p-6 mb-8 border border-green-100 flex items-center gap-4">
-       <div class="shrink-0 h-10 w-10 bg-green-100 rounded-full flex items-center justify-center text-green-600">
-        <x-lucide-check class="h-6 w-6" stroke-width="2" />
-       </div>
-       <p class="text-sm font-bold text-green-800">{{ session('success') }}</p>
-      </div>
-     @endif
+        <div class="lg:grid lg:grid-cols-12 lg:gap-16">
+            {{-- Left Column: Contact Information --}}
+            <div class="lg:col-span-5 space-y-8">
+                <div>
+                    <h2 class="text-2xl font-bold text-text-primary mb-4">Contact Information</h2>
+                    <p class="text-text-secondary leading-relaxed mb-8 font-light">
+                        Reach out through any of these channels and we'll respond promptly.
+                    </p>
+                </div>
 
-     <form wire:submit="submit" class="grid grid-cols-1 gap-y-8 sm:grid-cols-2 sm:gap-x-8">
-       <x-input wire:model="name" name="name" label="Full Name" placeholder="Name or Organization" />
-       <x-input wire:model="email" name="email" type="email" label="Professional Email" placeholder="email@company.com" />
-       <x-input wire:model="subject" name="subject" label="Inquiry Subject" class="sm:col-span-2" />
-       <x-textarea wire:model="message" name="message" label="Message" rows="5" placeholder="Tell us about your event vision and the talent you're interested in..." class="sm:col-span-2" />
-      <div class="sm:col-span-2 flex justify-end">
-       <x-button type="submit" size="lg">
-        Send Message
-       </x-button>
-      </div>
-     </form>
+                <x-card padding="p-8" class="shadow-xl border-none space-y-8">
+                    {{-- Phone --}}
+                    <div class="flex items-start gap-6">
+                        <div class="h-12 w-12 rounded-xl bg-brand-primary/10 flex items-center justify-center text-brand-primary shrink-0">
+                            <x-lucide-phone class="w-5 h-5" stroke-width="2" />
+                        </div>
+                        <div>
+                            <h3 class="text-base font-bold text-text-primary mb-1">Phone</h3>
+                            <p class="text-text-secondary">+234 8138234230</p>
+                            <p class="text-xs text-text-muted mt-1">Mon-Fri, 9am-6pm</p>
+                        </div>
+                    </div>
+
+                    {{-- Email --}}
+                    <div class="flex items-start gap-6">
+                        <div class="h-12 w-12 rounded-xl bg-brand-primary/10 flex items-center justify-center text-brand-primary shrink-0">
+                            <x-lucide-mail class="w-5 h-5" stroke-width="2" />
+                        </div>
+                        <div>
+                            <h3 class="text-base font-bold text-text-primary mb-1">Email</h3>
+                            <a href="mailto:info@hailerz.com" class="text-text-secondary hover:text-brand-primary transition-colors">info@hailerz.com</a>
+                            <p class="text-xs text-text-muted mt-1">We respond within 24 hours</p>
+                        </div>
+                    </div>
+
+                    {{-- Office --}}
+                    <div class="flex items-start gap-6">
+                        <div class="h-12 w-12 rounded-xl bg-brand-primary/10 flex items-center justify-center text-brand-primary shrink-0">
+                            <x-lucide-map-pin class="w-5 h-5" stroke-width="2" />
+                        </div>
+                        <div>
+                            <h3 class="text-base font-bold text-text-primary mb-1">Office</h3>
+                            <p class="text-text-secondary leading-relaxed">
+                                6 Kolawole Shonibare St.<br>
+                                Ilupeju, Lagos, Nigeria
+                            </p>
+                        </div>
+                    </div>
+
+                    {{-- Business Hours --}}
+                    <div class="flex items-start gap-6">
+                        <div class="h-12 w-12 rounded-xl bg-brand-primary/10 flex items-center justify-center text-brand-primary shrink-0">
+                            <x-lucide-clock class="w-5 h-5" stroke-width="2" />
+                        </div>
+                        <div>
+                            <h3 class="text-base font-bold text-text-primary mb-1">Business Hours</h3>
+                            <div class="text-sm text-text-secondary space-y-1">
+                                <p>Monday - Friday: 9am - 6pm</p>
+                                <p>Saturday: 10am - 4pm</p>
+                                <p>Sunday: Closed</p>
+                            </div>
+                        </div>
+                    </div>
+                </x-card>
+
+                {{-- Book Talent CTA --}}
+                <x-card padding="p-8" class="bg-brand-primary/5 border-brand-primary/10 shadow-lg">
+                    <h3 class="text-lg font-bold text-text-primary mb-2">Looking to Book Talent?</h3>
+                    <p class="text-sm text-text-secondary mb-6 leading-relaxed">
+                        For booking inquiries, use our dedicated booking form for faster service.
+                    </p>
+                    <x-button href="/book" wire:navigate class="w-full" variant="primary">
+                        Go to Booking Form
+                    </x-button>
+                </x-card>
+            </div>
+
+            {{-- Right Column: Send Message Form --}}
+            <div class="mt-16 lg:mt-0 lg:col-span-7">
+                <x-card padding="p-8 md:p-12" class="shadow-2xl border-none">
+                    <h2 class="text-2xl font-bold text-text-primary mb-8">Send Us a Message</h2>
+
+                    @if (session('success'))
+                        <div class="rounded-2xl bg-green-50 p-6 mb-8 border border-green-100 flex items-center gap-4">
+                            <div class="shrink-0 h-10 w-10 bg-green-100 rounded-full flex items-center justify-center text-green-600">
+                                <x-lucide-check class="h-6 w-6" stroke-width="2" />
+                            </div>
+                            <p class="text-sm font-bold text-green-800">{{ session('success') }}</p>
+                        </div>
+                    @endif
+
+                    <form wire:submit="submit" class="space-y-6">
+                        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                            <x-input wire:model="first_name" name="first_name" label="First Name *" placeholder="John" />
+                            <x-input wire:model="last_name" name="last_name" label="Last Name *" placeholder="Smith" />
+                        </div>
+                        
+                        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                            <x-input wire:model="email" name="email" type="email" label="Email Address *" placeholder="john@example.com" />
+                            <x-input wire:model="phone" name="phone" label="Phone Number" placeholder="(555) 123-4567" />
+                        </div>
+
+                        <x-select 
+                            wire:model="subject" 
+                            name="subject" 
+                            label="Subject *"
+                            placeholder="Select a subject"
+                            :options="[
+                                'General Inquiry' => 'General Inquiry',
+                                'Booking Request' => 'Booking Request',
+                                'Talent Representation' => 'Talent Representation',
+                                'Partnerships' => 'Partnerships',
+                                'Other' => 'Other'
+                            ]"
+                        />
+
+                        <x-textarea wire:model="message" name="message" label="Message *" rows="5" placeholder="Tell us how we can help you..." />
+
+                        <div class="pt-4">
+                            <x-button type="submit" class="w-full" size="lg">
+                                Send Message
+                            </x-button>
+                            <p class="text-center text-xs text-text-secondary mt-6 font-medium">
+                                We'll respond to your inquiry within 24 hours.
+                            </p>
+                        </div>
+                    </form>
+                </x-card>
+            </div>
+        </div>
+
+        {{-- Bottom Section: Need Something Specific? --}}
+        <div class="mt-32 pt-24 border-t border-subtle text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-text-primary mb-4">Need Something Specific?</h2>
+            <p class="text-lg text-text-secondary mb-16">Quick links to help you find what you need</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+                {{-- Browse Talent --}}
+                <x-card padding="p-8" class="flex flex-col h-full bg-surface-light border-subtle">
+                    <h3 class="text-xl font-bold text-text-primary mb-4">Browse Talent</h3>
+                    <p class="text-sm text-text-secondary mb-8 grow leading-relaxed">
+                        Explore our directory of musicians, bands, DJs, and speakers
+                    </p>
+                    <x-button href="/talent" wire:navigate variant="outline" size="sm" class="w-full">
+                        View Directory
+                    </x-button>
+                </x-card>
+
+                {{-- Book Talent --}}
+                <x-card padding="p-8" class="flex flex-col h-full bg-surface-light border-subtle">
+                    <h3 class="text-xl font-bold text-text-primary mb-4">Book Talent</h3>
+                    <p class="text-sm text-text-secondary mb-8 grow leading-relaxed">
+                        Submit a booking inquiry and get matched with perfect performers
+                    </p>
+                    <x-button href="/book" wire:navigate variant="outline" size="sm" class="w-full">
+                        Start Booking
+                    </x-button>
+                </x-card>
+
+                {{-- FAQs --}}
+                <x-card padding="p-8" class="flex flex-col h-full bg-surface-light border-subtle">
+                    <h3 class="text-xl font-bold text-text-primary mb-4">FAQs</h3>
+                    <p class="text-sm text-text-secondary mb-8 grow leading-relaxed">
+                        Find answers to commonly asked questions about our services
+                    </p>
+                    <x-button href="/#faqs" wire:navigate variant="outline" size="sm" class="w-full">
+                        Read FAQs
+                    </x-button>
+                </x-card>
+            </div>
+        </div>
     </div>
-   </div>
-  </div>
- </div>
 </div>

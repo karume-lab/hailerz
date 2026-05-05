@@ -1,6 +1,8 @@
 @props([
     'label' => null,
     'name' => null,
+    'options' => [],
+    'placeholder' => null,
 ])
 
 @php
@@ -14,14 +16,28 @@
         </label>
     @endif
 
-    <select 
-        @if($name) id="{{ $name }}" name="{{ $name }}" @endif
-        {{ $attributes->merge([
-            'class' => "block w-full px-6 py-4 bg-surface-muted border rounded-xl focus:ring-2 outline-none text-text-primary text-sm font-medium transition-all appearance-none " . $errorClass
-        ]) }}
-    >
-        {{ $slot }}
-    </select>
+    <div class="relative">
+        <select 
+            @if($name) id="{{ $name }}" name="{{ $name }}" @endif
+            {{ $attributes->merge([
+                'class' => "block w-full px-6 py-4 bg-surface-muted border rounded-xl focus:ring-2 outline-none text-text-primary text-sm font-medium transition-all appearance-none " . $errorClass
+            ]) }}
+        >
+            @if($placeholder)
+                <option value="" disabled selected>{{ $placeholder }}</option>
+            @endif
+            
+            @foreach($options as $value => $label)
+                <option value="{{ $value }}">{{ $label }}</option>
+            @endforeach
+            
+            {{ $slot }}
+        </select>
+        
+        <div class="absolute inset-y-0 right-5 flex items-center pointer-events-none">
+            <x-lucide-chevron-down class="h-4 w-4 text-text-muted" stroke-width="2.5" />
+        </div>
+    </div>
 
     @if($name)
         @error($name)

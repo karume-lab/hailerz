@@ -17,9 +17,12 @@ class Home extends Component
     public string $search = '';
 
     // Contact form
-    public string $contactName = '';
-    public string $contactEmail = '';
-    public string $contactMessage = '';
+    public string $first_name = '';
+    public string $last_name = '';
+    public string $email = '';
+    public string $phone = '';
+    public string $subject = '';
+    public string $message = '';
     public bool $contactSent = false;
 
     public function searchTalent()
@@ -28,30 +31,37 @@ class Home extends Component
     }
 
     protected array $rules = [
-        'contactName'    => 'required|string|max:255',
-        'contactEmail'   => 'required|email|max:255',
-        'contactMessage' => 'required|string|min:10',
+        'first_name' => 'required|string|max:255',
+        'last_name'  => 'required|string|max:255',
+        'email'      => 'required|email|max:255',
+        'phone'      => 'nullable|string|max:20',
+        'subject'    => 'required|string|max:255',
+        'message'    => 'required|string|min:10',
     ];
 
     protected array $messages = [
-        'contactName.required'    => 'Please enter your name.',
-        'contactEmail.required'   => 'Please enter a valid email address.',
-        'contactMessage.required' => 'Please write a message.',
-        'contactMessage.min'      => 'Your message should be at least 10 characters.',
+        'first_name.required' => 'Please enter your first name.',
+        'last_name.required'  => 'Please enter your last name.',
+        'email.required'      => 'Please enter a valid email address.',
+        'subject.required'    => 'Please select a subject.',
+        'message.required'    => 'Please write a message.',
+        'message.min'         => 'Your message should be at least 10 characters.',
     ];
 
     public function submitContact(): void
     {
         $this->validate();
 
-        // Log the submission; swap for Mail::to() once an email driver is configured
         Log::info('Home contact form submission', [
-            'name'    => $this->contactName,
-            'email'   => $this->contactEmail,
-            'message' => $this->contactMessage,
+            'first_name' => $this->first_name,
+            'last_name'  => $this->last_name,
+            'email'      => $this->email,
+            'phone'      => $this->phone,
+            'subject'    => $this->subject,
+            'message'    => $this->message,
         ]);
 
-        $this->reset('contactName', 'contactEmail', 'contactMessage');
+        $this->reset('first_name', 'last_name', 'email', 'phone', 'subject', 'message');
         $this->contactSent = true;
     }
 
