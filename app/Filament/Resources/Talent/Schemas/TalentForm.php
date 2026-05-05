@@ -20,7 +20,7 @@ class TalentForm
                         ->label('Performer / Act Name')
                         ->required()
                         ->live(onBlur: true)
-                        ->afterStateUpdated(fn (string $operation, $state, $set)
+                        ->afterStateUpdated(fn(string $operation, $state, $set)
                             => $operation === 'create' ? $set('slug', Str::slug($state)) : null)
                         ->columnSpan(1),
                     Forms\Components\TextInput::make('slug')
@@ -52,7 +52,7 @@ class TalentForm
                 ->columnSpanFull(),
 
             Section::make('Media & Performance Assets')
-                ->description('All media should be provided as links — no file uploads required.')
+                ->description('All media should be provided as links - no file uploads required.')
                 ->schema([
                     Forms\Components\TextInput::make('primary_image_url')
                         ->label('Primary Promotional Image URL')
@@ -71,7 +71,7 @@ class TalentForm
                     Forms\Components\TextInput::make('technical_rider')
                         ->label('Technical Rider URL')
                         ->columnSpanFull(),
-                    
+
                     Forms\Components\TextInput::make('website_url')
                         ->label('Website URL')
                         ->url()
@@ -137,7 +137,7 @@ class TalentForm
                     Forms\Components\Select::make('status')
                         ->label('Talent Status')
                         ->options([
-                            'draft'  => 'Under Review',
+                            'draft' => 'Under Review',
                             'active' => 'Active on Talent',
                             'hidden' => 'Archived / Private',
                         ])
@@ -149,7 +149,7 @@ class TalentForm
                         ->columnSpan(1),
                     Forms\Components\Textarea::make('internal_notes')
                         ->label('Internal Agency Notes')
-                        ->helperText('Notes for internal booking agents only — never shown to clients.')
+                        ->helperText('Notes for internal booking agents only - never shown to clients.')
                         ->rows(3)
                         ->columnSpanFull(),
                 ])

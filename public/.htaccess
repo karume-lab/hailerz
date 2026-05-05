@@ -68,7 +68,7 @@
 
 # 4. Cache-Control for static assets (explicit headers)
 <IfModule mod_headers.c>
-    # HTML pages — no-cache (not no-store) so bfcache works for back/forward nav
+    # HTML pages - no-cache (not no-store) so bfcache works for back/forward nav
     <FilesMatch "\.php$">
         Header set Cache-Control "private, no-cache"
     </FilesMatch>
@@ -78,7 +78,7 @@
         Header set Cache-Control "public, max-age=31536000, immutable"
     </FilesMatch>
 
-    # Images and fonts — long cache, but not immutable (no hash in filename)
+    # Images and fonts - long cache, but not immutable (no hash in filename)
     <FilesMatch "\.(webp|jpeg|jpg|png|gif|svg|ico|woff|woff2)$">
         Header set Cache-Control "public, max-age=31536000, stale-while-revalidate=86400"
     </FilesMatch>
@@ -90,16 +90,16 @@
     Header always set X-Frame-Options "SAMEORIGIN"
     Header always set Referrer-Policy "strict-origin-when-cross-origin"
 
-    # HSTS — force HTTPS for 1 year, include subdomains
+    # HSTS - force HTTPS for 1 year, include subdomains
     Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
 
-    # Cross-Origin-Opener-Policy — prevents cross-origin window attacks
+    # Cross-Origin-Opener-Policy - prevents cross-origin window attacks
     Header always set Cross-Origin-Opener-Policy "same-origin"
 
     # Cross-Origin-Resource-Policy
     Header always set Cross-Origin-Resource-Policy "same-origin"
 
-    # Permissions-Policy — disable unused browser features
+    # Permissions-Policy - disable unused browser features
     Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(self), payment=()"
 
     # Content-Security-Policy

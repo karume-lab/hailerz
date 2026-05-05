@@ -212,17 +212,17 @@
                     <!-- Navigation -->
                     <div class="flex items-center justify-start gap-4 mt-16 pt-10 border-t border-subtle">
                         @if($currentStep > 1)
-                            <x-button type="button" variant="ghost" wire:click="previousStep">
+                            <x-button type="button" variant="outline" wire:click="previousStep">
                                 Previous Step
                             </x-button>
                         @endif
 
                         @if($currentStep < 4)
-                            <x-button type="button" variant="accent" size="lg" wire:click="nextStep">
+                            <x-button type="button" variant="primary" size="lg" wire:click="nextStep">
                                 Continue
                             </x-button>
                         @else
-                            <x-button variant="accent" size="lg" type="submit" wire:loading.attr="disabled" wire:target="submit">
+                            <x-button variant="primary" size="lg" type="submit" wire:loading.attr="disabled" wire:target="submit">
                                 <span wire:loading.remove wire:target="submit">Send booking request</span>
                                 <span wire:loading wire:target="submit" class="flex items-center justify-center">
                                     <x-lucide-loader-2 class="animate-spin h-5 w-5 text-brand-primary" stroke-width="2" />
