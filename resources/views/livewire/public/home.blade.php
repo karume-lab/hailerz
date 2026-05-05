@@ -14,7 +14,7 @@
         </div>
 
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-            <x-heading level="h1" title="Book Top Talent" emphasis="Book" class="text-white mb-8" />
+            <x-heading level="h1" title="Book Top Talent" emphasis="Book" align="center" class="text-white mb-8" />
             <p class="text-xl md:text-2xl text-white/90 mb-12 max-w-3xl mx-auto font-medium leading-relaxed">
                 Connect with premier musicians, bands, and performers for unforgettable events
             </p>
@@ -22,11 +22,10 @@
             <!-- Search Bar -->
             <form wire:submit="searchTalent" class="relative max-w-4xl mx-auto mb-10 group">
                 <div
-                    class="flex flex-col md:flex-row gap-3 p-2 bg-white/10 backdrop-blur-xl rounded-full border border-white/20 shadow-[0_20px_50px_rgba(0,0,0,0.5)] transition-all duration-500 hover:bg-white/15">
+                    class="flex flex-col md:flex-row gap-3 p-3 md:p-2 bg-white/10 backdrop-blur-xl rounded-xl md:rounded-full border border-white/20 shadow-[0_20px_50px_rgba(0,0,0,0.5)] transition-all duration-500 hover:bg-white/15">
                     <x-input wire:model="search" placeholder="Search by name, genre, or location..." icon="search"
-                        class="flex-1 bg-transparent border-none text-white placeholder-white/50 ring-0 py-5 text-xl" />
-                    <x-button type="submit" variant="primary" size="lg"
-                        class="px-10 py-5 active:scale-95 transform flex-1/4">
+                        class="flex-1 bg-transparent border-none text-white placeholder-white/50 ring-0 py-4 md:py-5 text-lg md:text-xl" />
+                    <x-button type="submit" variant="primary" class="active:scale-95 transform flex-1/4">
                         Find Talent
                     </x-button>
                 </div>
@@ -34,27 +33,27 @@
 
             <!-- Quick Links / Categories -->
             <div
-                class="flex flex-wrap justify-center gap-x-8 gap-y-4 text-xs font-bold uppercase tracking-widest text-white">
+                class="flex flex-wrap justify-center gap-x-6 md:gap-x-12 gap-y-6 mt-12 text-xs font-bold uppercase tracking-widest text-white/80">
                 <a href="/talent?category=musicians" wire:navigate
-                    class="hover:text-brand-accent transition-all hover:scale-105 transform">Musicians</a>
+                    class="hover:text-brand-primary transition-all hover:scale-105 transform">Musicians</a>
                 <a href="/talent?category=djs" wire:navigate
-                    class="hover:text-brand-accent transition-all hover:scale-105 transform">DJs</a>
+                    class="hover:text-brand-primary transition-all hover:scale-105 transform">DJs</a>
                 <a href="/talent?category=speakers" wire:navigate
-                    class="hover:text-brand-accent transition-all hover:scale-105 transform">Speakers</a>
+                    class="hover:text-brand-primary transition-all hover:scale-105 transform">Speakers</a>
                 <a href="/talent?category=dancers" wire:navigate
-                    class="hover:text-brand-accent transition-all hover:scale-105 transform">Dancers</a>
+                    class="hover:text-brand-primary transition-all hover:scale-105 transform">Dancers</a>
                 <a href="/talent?category=artists" wire:navigate
-                    class="hover:text-brand-accent transition-all hover:scale-105 transform">Artists</a>
+                    class="hover:text-brand-primary transition-all hover:scale-105 transform">Artists</a>
                 <a href="/talent?category=poets" wire:navigate
-                    class="hover:text-brand-accent transition-all hover:scale-105 transform">Poets</a>
+                    class="hover:text-brand-primary transition-all hover:scale-105 transform">Poets</a>
                 <a href="/talent?category=content-creators" wire:navigate
-                    class="hover:text-brand-accent transition-all hover:scale-105 transform">Content Creators</a>
+                    class="hover:text-brand-primary transition-all hover:scale-105 transform whitespace-nowrap">Content Creators</a>
                 <a href="/talent?category=comedians" wire:navigate
-                    class="hover:text-brand-accent transition-all hover:scale-105 transform">Comedians</a>
+                    class="hover:text-brand-primary transition-all hover:scale-105 transform">Comedians</a>
                 <a href="/talent?category=mcs" wire:navigate
-                    class="hover:text-brand-accent transition-all hover:scale-105 transform">MCs</a>
+                    class="hover:text-brand-primary transition-all hover:scale-105 transform">MCs</a>
                 <a href="/talent?category=variety-artists" wire:navigate
-                    class="hover:text-brand-accent transition-all hover:scale-105 transform">Variety Artists</a>
+                    class="hover:text-brand-primary transition-all hover:scale-105 transform whitespace-nowrap">Variety Artists</a>
             </div>
         </div>
     </section>
@@ -62,9 +61,9 @@
     <!-- How It Works -->
     <section class="py-32 bg-surface-muted">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-20 reveal">
-                <x-heading level="h2" title="Book Talent in Three Simple Steps" emphasis="Three Simple Steps" class="text-text-primary mb-6" />
-                <p class="text-lg text-text-secondary">Watch how Hailerz connects you with world-class talent.</p>
+            <div class="text-center mb-20 reveal">
+                <x-heading level="h2" title="Book Talent in Three Simple Steps" emphasis="Three Simple Steps" align="center" class="text-text-primary mb-10" />
+                <p class="text-lg text-text-secondary mx-auto max-w-2xl">Watch how Hailerz connects you with world-class talent.</p>
 
                 <div
                     class="mt-12 aspect-video max-w-4xl mx-auto rounded-3xl overflow-hidden shadow-2xl border border-subtle bg-surface-dark reveal reveal-delay-200">
@@ -108,9 +107,9 @@
     <!-- Featured Talent Section -->
     <section class="py-32 bg-surface-dark">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-20 reveal">
-                <x-heading level="h2" title="Featured Talent" emphasis="Featured" class="text-white mb-6" />
-                <p class="text-lg text-white/60">Discover our handpicked performers</p>
+            <div class="text-center mb-20 reveal">
+                <x-heading level="h2" title="Featured Talent" emphasis="Featured" align="center" class="text-white mb-6" />
+                <p class="text-lg text-white/60 mx-auto max-w-2xl">Discover our handpicked performers</p>
             </div>
 
             @if($featuredTalents->count() >= 4)
@@ -121,15 +120,15 @@
                         <img src="{{ $featuredTalents[0]->profile_photo_url }}" alt="{{ $featuredTalents[0]->name }}"
                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
                         <div class="absolute inset-0 bg-linear-to-t from-black/90 via-black/20 to-transparent"></div>
-                        <div class="absolute bottom-0 left-0 p-8 w-full">
-                            <h3 class="text-2xl font-bold text-white mb-1">{{ $featuredTalents[0]->name }}</h3>
-                            <p class="text-white/70 text-sm font-medium mb-6">{{ $featuredTalents[0]->category->name }}</p>
+                        <div class="absolute bottom-0 left-0 p-6 sm:p-8 w-full">
+                            <h3 class="text-xl sm:text-2xl font-bold text-white mb-1">{{ $featuredTalents[0]->name }}</h3>
+                            <p class="text-white/70 text-xs sm:text-sm font-medium mb-4 sm:mb-6">{{ $featuredTalents[0]->category->name }}</p>
 
-                            <div class="flex gap-3">
-                                <x-button href="/talent/{{ $featuredTalents[0]->slug }}" variant="outline" size="sm">
+                            <div class="flex flex-col sm:flex-row gap-3">
+                                <x-button href="/talent/{{ $featuredTalents[0]->slug }}" variant="outline" size="sm" class="w-full sm:w-auto">
                                     View Profile
                                 </x-button>
-                                <x-button href="/book?talent={{ $featuredTalents[0]->id }}" variant="primary" size="sm">
+                                <x-button href="/book?talent={{ $featuredTalents[0]->id }}" variant="primary" size="sm" class="w-full sm:w-auto">
                                     Book
                                 </x-button>
                             </div>
@@ -144,16 +143,16 @@
                             <img src="{{ $featuredTalents[1]->profile_photo_url }}" alt="{{ $featuredTalents[1]->name }}"
                                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
                             <div class="absolute inset-0 bg-linear-to-t from-black/90 via-black/20 to-transparent"></div>
-                            <div class="absolute bottom-0 left-0 p-8 w-full">
-                                <h3 class="text-xl font-bold text-white mb-1">{{ $featuredTalents[1]->name }}</h3>
-                                <p class="text-white/70 text-sm font-medium mb-4">{{ $featuredTalents[1]->category->name }}
+                            <div class="absolute bottom-0 left-0 p-6 sm:p-8 w-full">
+                                <h3 class="text-xl sm:text-2xl font-bold text-white mb-1">{{ $featuredTalents[1]->name }}</h3>
+                                <p class="text-white/70 text-xs sm:text-sm font-medium mb-4 sm:mb-6">{{ $featuredTalents[1]->category->name }}
                                 </p>
 
-                                <div class="flex gap-3">
-                                    <x-button href="/talent/{{ $featuredTalents[1]->slug }}" variant="outline" size="sm">
+                                <div class="flex flex-col sm:flex-row gap-3">
+                                    <x-button href="/talent/{{ $featuredTalents[1]->slug }}" variant="outline" size="sm" class="w-full sm:w-auto">
                                         View Profile
                                     </x-button>
-                                    <x-button href="/book?talent={{ $featuredTalents[1]->id }}" variant="primary" size="sm">
+                                    <x-button href="/book?talent={{ $featuredTalents[1]->id }}" variant="primary" size="sm" class="w-full sm:w-auto">
                                         Book
                                     </x-button>
                                 </div>
@@ -166,16 +165,16 @@
                             <img src="{{ $featuredTalents[2]->profile_photo_url }}" alt="{{ $featuredTalents[2]->name }}"
                                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
                             <div class="absolute inset-0 bg-linear-to-t from-black/90 via-black/20 to-transparent"></div>
-                            <div class="absolute bottom-0 left-0 p-6 w-full">
-                                <h3 class="text-lg font-bold text-white mb-1">{{ $featuredTalents[2]->name }}</h3>
-                                <p class="text-white/70 text-xs font-medium mb-4">{{ $featuredTalents[2]->category->name }}
+                            <div class="absolute bottom-0 left-0 p-5 sm:p-6 w-full">
+                                <h3 class="text-base sm:text-lg font-bold text-white mb-1">{{ $featuredTalents[2]->name }}</h3>
+                                <p class="text-white/70 text-[10px] sm:text-xs font-medium mb-3 sm:mb-4">{{ $featuredTalents[2]->category->name }}
                                 </p>
 
                                 <div class="flex flex-col sm:flex-row gap-2">
-                                    <x-button href="/talent/{{ $featuredTalents[2]->slug }}" variant="outline" size="sm">
+                                    <x-button href="/talent/{{ $featuredTalents[2]->slug }}" variant="outline" size="sm" class="text-[10px] sm:text-xs py-2">
                                         View Profile
                                     </x-button>
-                                    <x-button href="/book?talent={{ $featuredTalents[2]->id }}" variant="primary" size="sm">
+                                    <x-button href="/book?talent={{ $featuredTalents[2]->id }}" variant="primary" size="sm" class="text-[10px] sm:text-xs py-2">
                                         Book
                                     </x-button>
                                 </div>
@@ -188,15 +187,15 @@
                             <img src="{{ $featuredTalents[3]->profile_photo_url }}" alt="{{ $featuredTalents[3]->name }}"
                                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
                             <div class="absolute inset-0 bg-linear-to-t from-black/90 via-black/20 to-transparent"></div>
-                            <div class="absolute bottom-0 left-0 p-6 w-full">
-                                <h3 class="text-lg font-bold text-white mb-1">{{ $featuredTalents[3]->name }}</h3>
-                                <p class="text-white/70 text-xs font-medium mb-4">{{ $featuredTalents[3]->category->name }}
+                            <div class="absolute bottom-0 left-0 p-5 sm:p-6 w-full">
+                                <h3 class="text-base sm:text-lg font-bold text-white mb-1">{{ $featuredTalents[3]->name }}</h3>
+                                <p class="text-white/70 text-[10px] sm:text-xs font-medium mb-3 sm:mb-4">{{ $featuredTalents[3]->category->name }}
                                 </p>
 
                                 <div class="flex flex-col sm:flex-row gap-2">
-                                    <x-button href="/talent/{{ $featuredTalents[3]->slug }}" variant="outline" size="sm">
+                                    <x-button href="/talent/{{ $featuredTalents[3]->slug }}" variant="outline" size="sm" class="text-[10px] sm:text-xs py-2">
                                         View Profile </x-button>
-                                    <x-button href="/book?talent={{ $featuredTalents[3]->id }}" variant="primary" size="sm">
+                                    <x-button href="/book?talent={{ $featuredTalents[3]->id }}" variant="primary" size="sm" class="text-[10px] sm:text-xs py-2">
                                         Book
                                     </x-button>
                                 </div>
@@ -211,13 +210,13 @@
                             <img src="{{ $talent->profile_photo_url }}" alt="{{ $talent->name }}"
                                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
                             <div class="absolute inset-0 bg-linear-to-t from-black/90 via-black/20 to-transparent"></div>
-                            <div class="absolute bottom-0 left-0 p-6 w-full">
-                                <h3 class="text-lg font-bold text-white mb-1">{{ $talent->name }}</h3>
-                                <p class="text-white/70 text-xs font-medium mb-4">{{ $talent->category->name }}</p>
-                                <div class="flex gap-2">
-                                    <x-button href="/talent/{{ $talent->slug }}" variant="outline" size="sm">
+                            <div class="absolute bottom-0 left-0 p-5 w-full">
+                                <h3 class="text-base sm:text-lg font-bold text-white mb-1">{{ $talent->name }}</h3>
+                                <p class="text-white/70 text-[10px] sm:text-xs font-medium mb-3 sm:mb-4">{{ $talent->category->name }}</p>
+                                <div class="flex flex-col sm:flex-row gap-2">
+                                    <x-button href="/talent/{{ $talent->slug }}" variant="outline" size="sm" class="text-[10px] sm:text-xs py-2">
                                         View Profile </x-button>
-                                    <x-button href="/book?talent={{ $talent->id }}" variant="primary" size="sm">
+                                    <x-button href="/book?talent={{ $talent->id }}" variant="primary" size="sm" class="text-[10px] sm:text-xs py-2">
                                         Book
                                     </x-button>
                                 </div>
@@ -238,9 +237,9 @@
     <!-- Browse by Category Section -->
     <section class="py-32 bg-surface-muted">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-20 reveal">
-                <x-heading level="h2" title="Browse by Category" emphasis="Category" class="text-text-primary mb-6" />
-                <p class="text-lg text-text-secondary">Find the perfect talent for your event</p>
+            <div class="text-center mb-20 reveal">
+                <x-heading level="h2" title="Browse by Category" emphasis="Category" align="center" class="text-text-primary mb-6" />
+                <p class="text-lg text-text-secondary mx-auto max-w-2xl">Find the perfect talent for your event</p>
             </div>
 
             <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
@@ -270,7 +269,7 @@
     <!-- Booking FAQs Section -->
     <section id="faqs" class="py-32 bg-surface-dark text-text-inverse">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <x-heading level="h2" title="Booking FAQs" emphasis="FAQs" class="text-center mb-16 reveal" />
+            <x-heading level="h2" title="Booking FAQs" emphasis="FAQs" align="center" class="text-center mb-16 reveal" />
 
             <div x-data="{ active: 0 }" class="space-y-6">
 
@@ -300,48 +299,49 @@
     </section>
 
     <!-- Contact / Inquiry Section -->
-    <section class="py-32 bg-brand-primary relative overflow-hidden">
+    <section class="py-20 md:py-32 bg-brand-accent relative overflow-hidden">
         {{-- Background Decorative Elements --}}
         <div class="absolute top-0 right-0 w-1/3 h-full bg-linear-to-l from-text-inverse/5 to-transparent"></div>
         <div class="absolute -top-24 -left-24 w-96 h-96 bg-brand-secondary/20 rounded-full blur-3xl"></div>
         <div class="absolute -bottom-24 -right-24 w-96 h-96 bg-text-inverse/5 rounded-full blur-3xl"></div>
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="lg:grid lg:grid-cols-2 lg:gap-24 items-center">
+            <div class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
                 <div class="reveal">
-                    <x-heading level="h2" title="Ready to Work Together?" emphasis="Work Together?" class="text-text-inverse mb-8" />
-                    <p class="text-xl text-text-inverse/80 mb-12 leading-relaxed">
+                    <x-heading level="h2" title="Ready to Work Together?" emphasis="Work Together?"
+                        class="text-text-inverse mb-6 md:mb-8" />
+                    <p class="text-lg md:text-xl text-text-inverse/80 mb-8 md:mb-12 leading-relaxed">
                         Let's create something unforgettable. Reach out to our dedicated agents for bespoke
                         recommendations
                         tailored to your vision.
                     </p>
 
-                    <ul class="space-y-8 mb-12">
-                        <li class="flex items-center gap-6">
+                    <ul class="space-y-6 md:space-y-8 mb-10 md:mb-12">
+                        <li class="flex items-center gap-4 md:gap-6">
                             <div
-                                class="h-14 w-14 rounded-2xl bg-text-inverse/10 flex items-center justify-center text-text-inverse shrink-0 backdrop-blur-sm border border-subtle">
-                                <x-lucide-mail class="w-6 h-6" stroke-width="2" />
+                                class="h-12 w-12 md:h-14 md:w-14 rounded-2xl bg-text-inverse/10 flex items-center justify-center text-text-inverse shrink-0 backdrop-blur-sm border border-subtle">
+                                <x-lucide-mail class="w-5 h-5 md:w-6 md:h-6" stroke-width="2" />
                             </div>
                             <div>
-                                <h3 class="text-text-inverse font-bold">Send us a message</h3>
-                                <p class="text-text-inverse/60 text-sm">info@hailerz.com</p>
+                                <h3 class="text-text-inverse font-bold text-sm md:text-base">Send us a message</h3>
+                                <p class="text-text-inverse/60 text-xs md:text-sm">info@hailerz.com</p>
                             </div>
                         </li>
-                        <li class="flex items-center gap-6">
+                        <li class="flex items-center gap-4 md:gap-6">
                             <div
-                                class="h-14 w-14 rounded-2xl bg-text-inverse/10 flex items-center justify-center text-text-inverse shrink-0 backdrop-blur-sm border border-subtle">
-                                <x-lucide-clock class="w-6 h-6" stroke-width="2" />
+                                class="h-12 w-12 md:h-14 md:w-14 rounded-2xl bg-text-inverse/10 flex items-center justify-center text-text-inverse shrink-0 backdrop-blur-sm border border-subtle">
+                                <x-lucide-clock class="w-5 h-5 md:w-6 md:h-6" stroke-width="2" />
                             </div>
                             <div>
-                                <h3 class="text-text-inverse font-bold">Premium Support</h3>
-                                <p class="text-text-inverse/60 text-sm">Our agents respond promptly to every inquiry.
+                                <h3 class="text-text-inverse font-bold text-sm md:text-base">Premium Support</h3>
+                                <p class="text-text-inverse/60 text-xs md:text-sm">Our agents respond promptly to every inquiry.
                                 </p>
                             </div>
                         </li>
                     </ul>
                 </div>
 
-                <x-card padding="p-10"
+                <x-card padding="p-6 md:p-10"
                     class="backdrop-blur-xl shadow-2xl relative overflow-hidden reveal reveal-delay-200">
                     {{-- Subtle background decoration to break the flat white --}}
                     <div
@@ -352,25 +352,25 @@
                     </div>
 
                     @if($contactSent)
-                        <div class="relative z-10 flex flex-col items-center text-center py-12 gap-6">
+                        <div class="relative z-10 flex flex-col items-center text-center py-8 md:py-12 gap-6">
                             <div
-                                class="h-20 w-20 rounded-full bg-green-100 text-green-600 flex items-center justify-center">
-                                <x-lucide-check class="w-10 h-10" stroke-width="2" />
+                                class="h-16 w-16 md:h-20 md:w-20 rounded-full bg-green-100 text-green-600 flex items-center justify-center">
+                                <x-lucide-check class="w-8 h-8 md:w-10 md:h-10" stroke-width="2" />
                             </div>
-                            <h3 class="text-3xl font-bold text-text-primary">Inquiry Received</h3>
-                            <p class="text-text-secondary">An agent will review your request and
+                            <h3 class="text-2xl md:text-3xl font-bold text-text-primary">Inquiry Received</h3>
+                            <p class="text-text-secondary text-sm md:text-base">An agent will review your request and
                                 contact you shortly.</p>
                             <button wire:click="$set('contactSent', false)"
-                                class="text-brand-primary font-bold hover:underline">Submit another inquiry</button>
+                                class="text-brand-primary font-bold hover:underline text-sm">Submit another inquiry</button>
                         </div>
                     @else
-                                    <form wire:submit="submitContact" class="relative z-10 space-y-6">
-                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <form wire:submit="submitContact" class="relative z-10 space-y-4 md:space-y-6">
+                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                                             <x-input wire:model="first_name" name="first_name" label="First Name *"
                                                 placeholder="John" />
                                             <x-input wire:model="last_name" name="last_name" label="Last Name *" placeholder="Smith" />
                                         </div>
-                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                                             <x-input wire:model="email" name="email" type="email" label="Email Address *"
                                                 placeholder="john@example.com" />
                                             <x-input wire:model="phone" name="phone" label="Phone Number"
@@ -386,10 +386,10 @@
                             'Other' => 'Other'
                         ]" />
 
-                                        <x-textarea wire:model="message" name="message" label="Message *" rows="5"
+                                        <x-textarea wire:model="message" name="message" label="Message *" rows="4" md:rows="5"
                                             placeholder="Tell us how we can help you..." />
 
-                                        <div class="pt-4">
+                                        <div class="pt-2 md:pt-4">
                                             <x-button type="submit" class="w-full shadow-lg shadow-brand-accent/20" size="lg"
                                                 variant="primary" wire:loading.attr="disabled" wire:target="submitContact">
                                                 <span wire:loading.remove wire:target="submitContact">Send Message</span>
@@ -397,7 +397,7 @@
                                                     <x-lucide-loader-2 class="animate-spin h-5 w-5 text-white" stroke-width="2" />
                                                 </span>
                                             </x-button>
-                                            <p class="text-center text-xs text-text-inverse/60 mt-4 font-medium">
+                                            <p class="text-center text-[10px] md:text-xs text-text-inverse/60 mt-4 font-medium">
                                                 We'll respond to your inquiry within 24 hours.
                                             </p>
                                         </div>

@@ -11,8 +11,8 @@
     </div>
 
     <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <x-heading level="h1" title="Making Every Event Unforgettable" emphasis="Event" class="text-text-inverse mb-8" />
-      <p class="mt-4 max-w-3xl text-xl md:text-2xl text-text-muted mx-auto leading-relaxed font-light">
+      <x-heading level="h1" title="Making Every Event Unforgettable" emphasis="Event" align="center" class="text-text-inverse mb-8" />
+      <p class="mt-4 max-w-3xl text-xl md:text-2xl text-white/80 mx-auto leading-relaxed font-light">
         We connect event planners with world-class talent to create extraordinary experiences that audiences remember
         forever.
       </p>
@@ -104,7 +104,7 @@
   <div class="bg-surface-light py-32 border-t border-subtle">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <x-heading align="center" subtitle="Passionate professionals dedicated to your success"
-        title="Our Specialists" emphasis="Specialists" class="reveal" />
+        title="Our Team" emphasis="Team" class="reveal" />
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
         @php
@@ -149,8 +149,8 @@
     </div>
 
     <div class="relative max-w-4xl mx-auto px-4 text-center reveal">
-      <x-heading level="h2" title="Ready to book top talent for your next event?" emphasis="book top talent" class="text-text-inverse mb-8" />
-      <p class="text-xl md:text-2xl text-text-muted mb-12 font-light leading-relaxed">
+      <x-heading level="h2" title="Ready to book top talent for your next event?" emphasis="book top talent" align="center" class="text-text-inverse mb-8" />
+      <p class="text-xl md:text-2xl text-white/80 mb-12 font-light leading-relaxed">
         Let us help you find the perfect performer for your next event. Browse our roster or submit a booking inquiry
         today.
       </p>

@@ -20,7 +20,7 @@
           <span
             class="text-xs font-bold text-text-inverse/80 uppercase tracking-widest">{{ $talent->category?->name ?? 'Premier Talent' }}</span>
         </div>
-        <h1 class="text-5xl md:text-8xl font-bold text-text-inverse tracking-tight ">{{ $talent->name }}</h1>
+        <h1 class="text-4xl sm:text-6xl md:text-8xl font-bold text-text-inverse tracking-tight wrap-break-words">{{ $talent->name }}</h1>
       </div>
     </div>
   </div>
@@ -68,9 +68,8 @@
           </section>
         @endif
 
-        <!-- Navigation Tabs -->
-        <div class="mb-12 border-b border-subtle ">
-          <nav class="flex space-x-12">
+        <div class="mb-12 border-b border-subtle overflow-x-auto scrollbar-hide">
+          <nav class="flex space-x-8 md:space-x-12 min-w-max">
             <button @click="activeTab = 'bio'"
               :class="activeTab === 'bio' ? 'border-brand-primary text-text-primary' : 'border-transparent text-text-muted hover:text-text-primary'"
               class="pb-6 border-b-2 font-bold text-xs uppercase tracking-widest transition-all outline-none">
@@ -246,7 +245,7 @@
       </div>
 
       <div class="w-full lg:w-1/3">
-        <x-card padding="p-10" class="sticky top-28 shadow-2xl">
+        <x-card padding="p-6 md:p-10" class="lg:sticky lg:top-28 shadow-2xl">
           <h3 class="text-2xl font-bold text-text-primary mb-8 ">Booking Information</h3>
 
           <div class="space-y-8 mb-10">
@@ -281,7 +280,7 @@
           @if($talent->website_url || $talent->instagram_handle || $talent->facebook_url || $talent->youtube_channel || $talent->tiktok_handle)
           <div class="pt-8 border-t border-subtle mb-6">
             <h4 class="text-2xl font-bold text-text-primary  mb-8">Online Presence</h4>
-            <div class="grid grid-cols-2 gap-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
               @if($talent->website_url)
                 <a href="{{ $talent->website_url }}" target="_blank" class="block p-6 bg-surface-muted border border-subtle rounded-md hover:bg-brand-primary/10 transition-all group h-full">
                     <p class="text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Website</p>
@@ -407,14 +406,14 @@
                           </div>
 
                           <!-- Link Copy Box -->
-                          <div class="mt-2 flex items-center bg-black rounded-full border border-white/10 p-1.5 shadow-inner">
+                          <div class="mt-2 flex flex-col sm:flex-row items-center bg-black rounded-2xl sm:rounded-full border border-white/10 p-1.5 shadow-inner gap-2 sm:gap-0">
                               <x-input 
                                   x-model="url" 
                                   readonly 
-                                  class="flex-1 bg-transparent! border-none! text-text-inverse! text-[14px]! py-2.5! ring-0!" 
+                                  class="w-full sm:flex-1 bg-transparent! border-none! text-text-inverse! text-[13px] sm:text-[14px]! py-2! sm:py-2.5! ring-0!" 
                               />
                               <button @click="navigator.clipboard.writeText(url); copied = true; setTimeout(() => copied = false, 2000)" 
-                                      class="px-5 py-2.5 bg-white/10 hover:bg-white/20 text-white text-[14px] font-medium rounded-full transition-colors shrink-0">
+                                      class="w-full sm:w-auto px-5 py-2 sm:py-2.5 bg-white/10 hover:bg-white/20 text-white text-[13px] sm:text-[14px] font-medium rounded-xl sm:rounded-full transition-colors shrink-0">
                                   <span x-text="copied ? 'Copied' : 'Copy'"></span>
                               </button>
                           </div>

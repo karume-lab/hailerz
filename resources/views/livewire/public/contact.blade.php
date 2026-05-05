@@ -22,7 +22,7 @@
                     {{-- Phone --}}
                     <div class="flex items-start gap-6">
                         <div
-                            class="h-12 w-12 rounded-xl bg-brand-primary/10 flex items-center justify-center text-brand-primary shrink-0">
+                            class="h-12 w-12 rounded-2xl bg-brand-primary/10 flex items-center justify-center text-brand-primary shrink-0">
                             <x-lucide-phone class="w-5 h-5" stroke-width="2" />
                         </div>
                         <div>
@@ -35,7 +35,7 @@
                     {{-- Email --}}
                     <div class="flex items-start gap-6">
                         <div
-                            class="h-12 w-12 rounded-xl bg-brand-primary/10 flex items-center justify-center text-brand-primary shrink-0">
+                            class="h-12 w-12 rounded-2xl bg-brand-primary/10 flex items-center justify-center text-brand-primary shrink-0">
                             <x-lucide-mail class="w-5 h-5" stroke-width="2" />
                         </div>
                         <div>
@@ -49,7 +49,7 @@
                     {{-- Office --}}
                     <div class="flex items-start gap-6">
                         <div
-                            class="h-12 w-12 rounded-xl bg-brand-primary/10 flex items-center justify-center text-brand-primary shrink-0">
+                            class="h-12 w-12 rounded-2xl bg-brand-primary/10 flex items-center justify-center text-brand-primary shrink-0">
                             <x-lucide-map-pin class="w-5 h-5" stroke-width="2" />
                         </div>
                         <div>
@@ -64,7 +64,7 @@
                     {{-- Business Hours --}}
                     <div class="flex items-start gap-6">
                         <div
-                            class="h-12 w-12 rounded-xl bg-brand-primary/10 flex items-center justify-center text-brand-primary shrink-0">
+                            class="h-12 w-12 rounded-2xl bg-brand-primary/10 flex items-center justify-center text-brand-primary shrink-0">
                             <x-lucide-clock class="w-5 h-5" stroke-width="2" />
                         </div>
                         <div>
@@ -92,54 +92,61 @@
 
             {{-- Right Column: Send Message Form --}}
             <div class="mt-16 lg:mt-0 lg:col-span-7">
-                <x-card padding="p-8 md:p-12" class="shadow-2xl border-none">
+                <x-card padding="p-6 md:p-12" class="shadow-2xl border-none relative overflow-hidden">
                     <h2 class="text-2xl font-bold text-text-primary mb-8">Send Us a Message</h2>
 
-                    @if (session('success'))
-                        <div class="rounded-2xl bg-green-50 p-6 mb-8 border border-green-100 flex items-center gap-4">
+                    @if($contactSent)
+                        <div class="relative z-10 flex flex-col items-center text-center py-12 gap-6">
                             <div
-                                class="shrink-0 h-10 w-10 bg-green-100 rounded-full flex items-center justify-center text-green-600">
-                                <x-lucide-check class="h-6 w-6" stroke-width="2" />
+                                class="h-20 w-20 rounded-full bg-green-100 text-green-600 flex items-center justify-center">
+                                <x-lucide-check class="w-10 h-10" stroke-width="2" />
                             </div>
-                            <p class="text-sm font-bold text-green-800">{{ session('success') }}</p>
+                            <h3 class="text-3xl font-bold text-text-primary">Inquiry Received</h3>
+                            <p class="text-text-secondary">An agent will review your request and
+                                contact you shortly.</p>
+                            <button wire:click="$set('contactSent', false)"
+                                class="text-brand-primary font-bold hover:underline">Submit another inquiry</button>
                         </div>
+                    @else
+                        <form wire:submit="submitContact" class="space-y-6">
+                            <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                                <x-input wire:model="first_name" name="first_name" label="First Name *"
+                                    placeholder="John" />
+                                <x-input wire:model="last_name" name="last_name" label="Last Name *" placeholder="Smith" />
+                            </div>
+
+                            <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                                <x-input wire:model="email" name="email" type="email" label="Email Address *"
+                                    placeholder="john@example.com" />
+                                <x-input wire:model="phone" name="phone" label="Phone Number"
+                                    placeholder="(555) 123-4567" />
+                            </div>
+
+                            <x-select wire:model="subject" name="subject" label="Subject *" placeholder="Select a subject"
+                                :options="[
+            'General Inquiry' => 'General Inquiry',
+            'Booking Request' => 'Booking Request',
+            'Talent Representation' => 'Talent Representation',
+            'Partnerships' => 'Partnerships',
+            'Other' => 'Other'
+        ]" />
+
+                            <x-textarea wire:model="message" name="message" label="Message *" rows="5"
+                                placeholder="Tell us how we can help you..." />
+
+                            <div class="pt-4">
+                                <x-button type="submit" class="w-full shadow-lg shadow-brand-primary/20" size="lg" variant="primary" wire:loading.attr="disabled" wire:target="submitContact">
+                                    <span wire:loading.remove wire:target="submitContact">Send Message</span>
+                                    <span wire:loading wire:target="submitContact" class="flex items-center justify-center">
+                                        <x-lucide-loader-2 class="animate-spin h-5 w-5 text-white" stroke-width="2" />
+                                    </span>
+                                </x-button>
+                                <p class="text-center text-xs text-text-muted mt-6 font-medium">
+                                    We'll respond to your inquiry within 24 hours.
+                                </p>
+                            </div>
+                        </form>
                     @endif
-
-                    <form wire:submit="submit" class="space-y-6">
-                        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
-                            <x-input wire:model="first_name" name="first_name" label="First Name *"
-                                placeholder="John" />
-                            <x-input wire:model="last_name" name="last_name" label="Last Name *" placeholder="Smith" />
-                        </div>
-
-                        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
-                            <x-input wire:model="email" name="email" type="email" label="Email Address *"
-                                placeholder="john@example.com" />
-                            <x-input wire:model="phone" name="phone" label="Phone Number"
-                                placeholder="(555) 123-4567" />
-                        </div>
-
-                        <x-select wire:model="subject" name="subject" label="Subject *" placeholder="Select a subject"
-                            :options="[
-        'General Inquiry' => 'General Inquiry',
-        'Booking Request' => 'Booking Request',
-        'Talent Representation' => 'Talent Representation',
-        'Partnerships' => 'Partnerships',
-        'Other' => 'Other'
-    ]" />
-
-                        <x-textarea wire:model="message" name="message" label="Message *" rows="5"
-                            placeholder="Tell us how we can help you..." />
-
-                        <div class="pt-4">
-                            <x-button type="submit" class="w-full" size="lg">
-                                Send Message
-                            </x-button>
-                            <p class="text-center text-xs text-text-secondary mt-6 font-medium">
-                                We'll respond to your inquiry within 24 hours.
-                            </p>
-                        </div>
-                    </form>
                 </x-card>
             </div>
         </div>

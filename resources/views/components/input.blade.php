@@ -26,8 +26,8 @@
         <input 
             @if($name) id="{{ $name }}" name="{{ $name }}" @endif
             {{ $attributes->merge([
-                'class' => "block w-full py-4 {$paddingClass} bg-surface-muted border placeholder-text-muted rounded-full focus:ring-2 outline-none text-text-primary text-sm font-medium transition-all " . $errorClass
-            ]) }}
+                'class' => "block w-full py-4 {$paddingClass} bg-surface-muted border border-transparent placeholder-text-muted rounded-full focus:ring-2 outline-none text-text-primary font-medium transition-all " . $errorClass
+            ])->class(['text-sm' => !Str::contains($attributes->get('class'), 'text-')]) }}
         />
     </div>
 

@@ -13,6 +13,8 @@ class Contact extends Component
     public $subject;
     public $message;
 
+    public $contactSent = false;
+
     protected $rules = [
         'first_name' => 'required|string|max:255',
         'last_name' => 'required|string|max:255',
@@ -22,7 +24,7 @@ class Contact extends Component
         'message' => 'required|string',
     ];
 
-    public function submit()
+    public function submitContact()
     {
         $this->validate();
 
@@ -36,9 +38,8 @@ class Contact extends Component
             'message' => $this->message,
         ]);
 
-        session()->flash('success', 'Your message has been sent successfully. We will get back to you shortly.');
-
         $this->reset(['first_name', 'last_name', 'email', 'phone', 'subject', 'message']);
+        $this->contactSent = true;
     }
 
     public function render()

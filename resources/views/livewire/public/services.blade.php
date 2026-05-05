@@ -7,8 +7,8 @@
         <span class="text-xs font-bold text-brand-primary uppercase tracking-widest">Our Services</span>
         <span class="h-px w-12 bg-brand-primary"></span>
       </div>
-      <x-heading level="h1" title="World-Class Performers for Every Event" emphasis="Performers" class="text-text-inverse mb-8" />
-      <p class="text-xl md:text-2xl text-text-muted max-w-3xl mx-auto leading-relaxed font-light">
+      <x-heading level="h1" title="World-Class Performers for Every Event" emphasis="Performers" align="center" class="text-text-inverse mb-10" />
+      <p class="text-xl md:text-2xl text-text-inverse max-w-3xl mx-auto leading-relaxed font-light">
         Comprehensive talent booking and event entertainment solutions tailored to your needs. We handle everything so
         you can focus on your event.
       </p>
@@ -83,7 +83,7 @@
   <section class="py-32 bg-surface-light border-y border-subtle">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <x-heading align="center" title="Specialized for Every Occasion" emphasis="Every Occasion"
-        subtitle="We provide the perfect talent to match your event's atmosphere." class="reveal" />
+        subtitle="We provide the perfect talent to match your event's atmosphere." class="reveal mb-12" />
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         @php

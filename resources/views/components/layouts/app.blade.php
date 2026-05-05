@@ -28,9 +28,12 @@
   <meta name="twitter:image" content="{{ $ogImage ?? asset('images/logo.webp') }}">
 
   <!-- Fenomen Sans preloads -->
-  <link rel="preload" href="{{ asset('fonts/fenomen-sans/FenomenSans.woff2') }}" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="{{ asset('fonts/fenomen-sans/FenomenSans-Book.woff2') }}" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="{{ asset('fonts/fenomen-sans/FenomenSans-Bold.woff2') }}" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="{{ asset('fonts/fenomen-sans/FenomenSans.woff2') }}" as="font" type="font/woff2"
+    crossorigin>
+  <link rel="preload" href="{{ asset('fonts/fenomen-sans/FenomenSans-Book.woff2') }}" as="font" type="font/woff2"
+    crossorigin>
+  <link rel="preload" href="{{ asset('fonts/fenomen-sans/FenomenSans-Bold.woff2') }}" as="font" type="font/woff2"
+    crossorigin>
   <link rel="manifest" href="{{ asset('manifest.json') }}">
 
   @production
@@ -83,8 +86,7 @@
   @livewireStyles
 </head>
 
-<body
-  class="bg-surface-light text-text-primary  antialiased flex flex-col min-h-screen transition-colors duration-300">
+<body class="bg-surface-light text-text-primary  antialiased flex flex-col min-h-screen transition-colors duration-300">
 
   <header
     class="sticky top-0 z-50 w-full backdrop-blur-xl bg-surface-light/90 border-b border-subtle transition-colors duration-300">
@@ -92,27 +94,26 @@
       <div class="flex justify-between items-center h-20">
         <div class="shrink-0 flex items-center">
           <a href="/" class="flex items-center gap-2.5" aria-label="Hailerz Home">
-            <img src="{{ asset('images/logo.webp') }}" alt="" aria-hidden="true" width="40" height="41" fetchpriority="high" loading="eager"
-              class="h-10 w-auto object-contain rounded-lg" />
+            <img src="{{ asset('images/logo.webp') }}" alt="" aria-hidden="true" width="40" height="41"
+              fetchpriority="high" loading="eager" class="h-10 w-auto object-contain rounded-lg" />
             <span
-              class="text-2xl font-bold tracking-tight  {{ request()->is('/') ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary' }} transition-colors uppercase tracking-widest hidden lg:block">
+              class="text-2xl font-semibold tracking-tight  {{ request()->is('/') ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary' }} transition-colors uppercase tracking-widest hidden lg:block">
               Hailerz
             </span>
           </a>
         </div>
         <nav class="hidden md:flex items-center space-x-10">
           <a href="/talent" wire:navigate
-            class="text-xs font-bold {{ request()->is('talent*') ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary' }} transition-colors uppercase tracking-widest">The
+            class="{{ request()->is('talent*') ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary' }} transition-colors uppercase tracking-widest">The
             Talent</a>
           <a href="/services" wire:navigate
-            class="text-xs font-bold {{ request()->is('services*') ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary' }} transition-colors uppercase tracking-widest">Services</a>
+            class="{{ request()->is('services*') ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary' }} transition-colors uppercase tracking-widest">Services</a>
           <a href="/staffing" wire:navigate
-            class="text-xs font-bold {{ request()->is('staffing*') ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary' }} transition-colors uppercase tracking-widest">Staffing</a>
+            class="{{ request()->is('staffing*') ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary' }} transition-colors uppercase tracking-widest">Staffing</a>
           <a href="/about" wire:navigate
-            class="text-xs font-bold {{ request()->is('about*') ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary' }} transition-colors uppercase tracking-widest">The
-            Agency</a>
+            class="{{ request()->is('about*') ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary' }} transition-colors uppercase tracking-widest">About</a>
           <a href="/contact" wire:navigate
-            class="text-xs font-bold {{ request()->is('contact*') ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary' }} transition-colors uppercase tracking-widest">Contact</a>
+            class="{{ request()->is('contact*') ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary' }} transition-colors uppercase tracking-widest">Contact</a>
         </nav>
 
         <div class="flex items-center space-x-4">
@@ -152,11 +153,13 @@
             Premium talent booking for unforgettable events.
           </p>
           <div class="flex flex-wrap gap-4">
-            <a href="https://www.facebook.com/hailerzdotcom/" target="_blank" rel="noopener" aria-label="Connect with Hailerz on Facebook"
+            <a href="https://www.facebook.com/hailerzdotcom/" target="_blank" rel="noopener"
+              aria-label="Connect with Hailerz on Facebook"
               class="h-12 w-12 rounded-full bg-surface-muted hover:bg-brand-secondary/20 transition-colors flex items-center justify-center text-text-secondary">
               <x-lucide-facebook class="w-5 h-5" stroke-width="2" />
             </a>
-            <a href="https://www.instagram.com/hailerzdotcom/" target="_blank" rel="noopener" aria-label="Follow Hailerz on Instagram"
+            <a href="https://www.instagram.com/hailerzdotcom/" target="_blank" rel="noopener"
+              aria-label="Follow Hailerz on Instagram"
               class="h-12 w-12 rounded-full bg-surface-muted hover:bg-brand-secondary/20 transition-colors flex items-center justify-center text-text-secondary">
               <x-lucide-instagram class="w-5 h-5" stroke-width="2" />
             </a>
@@ -164,15 +167,22 @@
               class="h-12 w-12 rounded-full bg-surface-muted hover:bg-brand-secondary/20 transition-colors flex items-center justify-center text-text-secondary">
               <x-lucide-twitter class="w-5 h-5" stroke-width="2" />
             </a>
-            <a href="https://www.youtube.com/@hailerzdotcom" target="_blank" rel="noopener" aria-label="Subscribe to Hailerz on YouTube"
+            <a href="https://www.youtube.com/@hailerzdotcom" target="_blank" rel="noopener"
+              aria-label="Subscribe to Hailerz on YouTube"
               class="h-12 w-12 rounded-full bg-surface-muted hover:bg-brand-secondary/20 transition-colors flex items-center justify-center text-text-secondary">
               <x-lucide-youtube class="w-5 h-5" stroke-width="2" />
             </a>
-            <a href="https://www.tiktok.com/@hailerzdotcom" target="_blank" rel="noopener" aria-label="Follow Hailerz on TikTok"
+            <a href="https://www.tiktok.com/@hailerzdotcom" target="_blank" rel="noopener"
+              aria-label="Follow Hailerz on TikTok"
               class="h-12 w-12 rounded-full bg-surface-muted hover:bg-brand-secondary/20 transition-colors flex items-center justify-center text-text-secondary">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tiktok"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" /></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-tiktok">
+                <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
+              </svg>
             </a>
-            <a href="https://www.linkedin.com/company/hailerz-global-talent/" target="_blank" rel="noopener" aria-label="Connect with Hailerz on LinkedIn"
+            <a href="https://www.linkedin.com/company/hailerz-global-talent/" target="_blank" rel="noopener"
+              aria-label="Connect with Hailerz on LinkedIn"
               class="h-12 w-12 rounded-full bg-surface-muted hover:bg-brand-secondary/20 transition-colors flex items-center justify-center text-text-secondary">
               <x-lucide-linkedin class="w-5 h-5" stroke-width="2" />
             </a>

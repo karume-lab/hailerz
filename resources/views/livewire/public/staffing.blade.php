@@ -8,11 +8,11 @@
                     Personnel</span>
                 <span class="h-px w-12 bg-brand-primary"></span>
             </div>
-            <x-heading level="h1" title="Elevate the Guest Experience" emphasis="Guest Experience" class="text-text-inverse mb-8" />
-            <p class="text-xl md:text-2xl text-text-muted max-w-3xl mx-auto leading-relaxed font-light">
-                Beyond world-class performers, we provide the polished, professional personnel required to execute
-                flawless events. From VIP hosts to dedicated artist liaisons, our staff ensures your vision is delivered
-                perfectly.
+            <x-heading level="h1" title="Hire Elite Event Personnel" emphasis="Elite Event" align="center"
+                class="text-text-inverse mb-8" />
+            <p class="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto leading-relaxed font-light">
+                Secure the polished, professional personnel required to execute flawless events. From VIP hosts to
+                dedicated artist liaisons, we provide the expert staffing your vision deserves.
             </p>
         </div>
 
@@ -32,8 +32,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <x-heading align="center"
                 subtitle="From the red carpet to the green room, we supply the industry's most articulate and capable event professionals."
-                title="Specialized Roles for Flawless Events" emphasis="Flawless Events"
-                class="reveal" />
+                title="Specialized Roles for Flawless Events" emphasis="Flawless Events" class="reveal" />
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
                 @php
@@ -89,7 +88,8 @@
                         <span class="text-xs font-bold text-brand-primary uppercase tracking-widest">Our
                             Standards</span>
                     </div>
-                    <x-heading level="h2" title="White-Glove Service. Impeccable Delivery." emphasis="Impeccable" :italic="true" class="text-text-primary mb-8" />
+                    <x-heading level="h2" title="White-Glove Service. Impeccable Delivery." emphasis="Impeccable"
+                        :italic="true" class="text-text-primary mb-8" />
                     <p class="text-xl text-text-secondary leading-relaxed font-light">
                         We don't just fill roles. We provide polished professionals who deeply understand the nuances of
                         high-end entertainment and luxury hospitality. When you book staff through Hailerz, you are
@@ -141,7 +141,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-16 mt-16">
                 <div class="flex gap-8 reveal border-b border-white/10 pb-8 md:border-none md:pb-0">
                     <div
-                        class="h-12 w-12 rounded-full bg-brand-accent/10 flex items-center justify-center text-brand-accent shrink-0">
+                        class="h-12 w-12 rounded-full bg-brand-secondary/10 text-brand-secondary flex items-center justify-center shrink-0">
                         <span class="font-bold">01</span>
                     </div>
                     <div>
@@ -153,7 +153,7 @@
                 </div>
                 <div class="flex gap-8 reveal reveal-delay-100 border-b border-white/10 pb-8 md:border-none md:pb-0">
                     <div
-                        class="h-12 w-12 rounded-full bg-brand-accent/10 flex items-center justify-center text-brand-accent shrink-0">
+                        class="h-12 w-12 rounded-full bg-brand-secondary/10 text-brand-secondary flex items-center justify-center shrink-0">
                         <span class="font-bold">02</span>
                     </div>
                     <div>
@@ -165,7 +165,7 @@
                 </div>
                 <div class="flex gap-8 reveal reveal-delay-200 border-b border-white/10 pb-8 md:border-none md:pb-0">
                     <div
-                        class="h-12 w-12 rounded-full bg-brand-accent/10 flex items-center justify-center text-brand-accent shrink-0">
+                        class="h-12 w-12 rounded-full bg-brand-secondary/10 text-brand-secondary flex items-center justify-center shrink-0">
                         <span class="font-bold">03</span>
                     </div>
                     <div>
@@ -177,7 +177,7 @@
                 </div>
                 <div class="flex gap-8 reveal reveal-delay-300">
                     <div
-                        class="h-12 w-12 rounded-full bg-brand-accent/10 flex items-center justify-center text-brand-accent shrink-0">
+                        class="h-12 w-12 rounded-full bg-brand-secondary/10 text-brand-secondary flex items-center justify-center shrink-0">
                         <span class="font-bold">04</span>
                     </div>
                     <div>
@@ -193,7 +193,8 @@
     <!-- Final CTA -->
     <section class="py-40 bg-brand-accent text-center relative overflow-hidden">
         <div class="max-w-4xl mx-auto px-4 relative z-10 reveal">
-            <x-heading level="h2" title="Assemble Your Event Team." emphasis="Event Team" :italic="true" class="text-text-inverse mb-8" />
+            <x-heading level="h2" title="Assemble Your Event Team." emphasis="Event Team" :italic="true"
+                class="text-text-inverse mb-8" />
             <p class="text-xl md:text-2xl text-text-inverse/80 mb-12 font-light leading-relaxed">
                 From the stage to the floor, ensure every touchpoint of your event is handled by industry experts.
             </p>

@@ -3,7 +3,7 @@
         ['label' => 'Talent', 'href' => '/talent'],
         ['label' => 'Services', 'href' => '/services'],
         ['label' => 'Staffing', 'href' => '/staffing'],
-        ['label' => 'The Agency', 'href' => '/about'],
+        ['label' => 'About', 'href' => '/about'],
         ['label' => 'Contact', 'href' => '/contact'],
     ]
 ])
@@ -40,7 +40,7 @@
                     <a href="{{ $link['href'] }}" 
                         wire:navigate
                         @click="open = false"
-                        class="text-4xl font-bold tracking-tight text-text-primary hover:text-brand-primary transition-all duration-300  {{ request()->is(ltrim($link['href'], '/') . '*') ? 'text-brand-primary' : '' }}">
+                        class="text-xl {{ request()->is(ltrim($link['href'], '/') . '*') ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary' }} transition-colors uppercase tracking-widest">
                         {{ $link['label'] }}
                     </a>
                 @endforeach
@@ -56,12 +56,24 @@
                         </div>
                         <div class="flex flex-col gap-1 items-end">
                             <span class="text-[10px] font-bold text-text-muted uppercase tracking-widest">Connect</span>
-                            <div class="flex gap-4">
-                                <a href="#" aria-label="Connect on LinkedIn" class="text-text-secondary hover:text-brand-primary transition-colors">
-                                    <x-lucide-linkedin class="w-6 h-6" stroke-width="2" />
+                            <div class="flex flex-wrap justify-end gap-4">
+                                <a href="https://www.facebook.com/hailerzdotcom/" target="_blank" rel="noopener" aria-label="Connect on Facebook" class="text-text-secondary hover:text-brand-primary transition-colors">
+                                    <x-lucide-facebook class="w-6 h-6" stroke-width="2" />
                                 </a>
-                                <a href="#" aria-label="Follow on Instagram" class="text-text-secondary hover:text-brand-primary transition-colors">
+                                <a href="https://www.instagram.com/hailerzdotcom/" target="_blank" rel="noopener" aria-label="Follow on Instagram" class="text-text-secondary hover:text-brand-primary transition-colors">
                                     <x-lucide-instagram class="w-6 h-6" stroke-width="2" />
+                                </a>
+                                <a href="https://x.com/hailerzdotcom" target="_blank" rel="noopener" aria-label="Follow on X" class="text-text-secondary hover:text-brand-primary transition-colors">
+                                    <x-lucide-twitter class="w-6 h-6" stroke-width="2" />
+                                </a>
+                                <a href="https://www.youtube.com/@hailerzdotcom" target="_blank" rel="noopener" aria-label="Subscribe on YouTube" class="text-text-secondary hover:text-brand-primary transition-colors">
+                                    <x-lucide-youtube class="w-6 h-6" stroke-width="2" />
+                                </a>
+                                <a href="https://www.tiktok.com/@hailerzdotcom" target="_blank" rel="noopener" aria-label="Follow on TikTok" class="text-text-secondary hover:text-brand-primary transition-colors">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tiktok"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" /></svg>
+                                </a>
+                                <a href="https://www.linkedin.com/company/hailerz-global-talent/" target="_blank" rel="noopener" aria-label="Connect on LinkedIn" class="text-text-secondary hover:text-brand-primary transition-colors">
+                                    <x-lucide-linkedin class="w-6 h-6" stroke-width="2" />
                                 </a>
                             </div>
                         </div>
