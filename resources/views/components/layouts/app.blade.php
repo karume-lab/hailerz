@@ -149,7 +149,7 @@
           <p class="text-text-secondary leading-relaxed text-sm mb-6">
             Premium talent booking for unforgettable events.
           </p>
-          <div class="flex gap-4">
+          <div class="flex flex-wrap gap-4">
             <a href="https://www.facebook.com/hailerzdotcom/" target="_blank" rel="noopener" aria-label="Connect with Hailerz on Facebook"
               class="h-12 w-12 rounded-xl bg-surface-muted hover:bg-brand-primary/20 transition-colors flex items-center justify-center text-text-secondary">
               <x-lucide-facebook class="w-5 h-5" stroke-width="2" />
@@ -158,9 +158,21 @@
               class="h-12 w-12 rounded-xl bg-surface-muted hover:bg-brand-primary/20 transition-colors flex items-center justify-center text-text-secondary">
               <x-lucide-instagram class="w-5 h-5" stroke-width="2" />
             </a>
-            <a href="https://twitter.com/hailerzdotcom" target="_blank" rel="noopener" aria-label="Follow Hailerz on Twitter"
+            <a href="https://x.com/hailerzdotcom" target="_blank" rel="noopener" aria-label="Follow Hailerz on X"
               class="h-12 w-12 rounded-xl bg-surface-muted hover:bg-brand-primary/20 transition-colors flex items-center justify-center text-text-secondary">
               <x-lucide-twitter class="w-5 h-5" stroke-width="2" />
+            </a>
+            <a href="https://www.youtube.com/@hailerzdotcom" target="_blank" rel="noopener" aria-label="Subscribe to Hailerz on YouTube"
+              class="h-12 w-12 rounded-xl bg-surface-muted hover:bg-brand-primary/20 transition-colors flex items-center justify-center text-text-secondary">
+              <x-lucide-youtube class="w-5 h-5" stroke-width="2" />
+            </a>
+            <a href="https://www.tiktok.com/@hailerzdotcom" target="_blank" rel="noopener" aria-label="Follow Hailerz on TikTok"
+              class="h-12 w-12 rounded-xl bg-surface-muted hover:bg-brand-primary/20 transition-colors flex items-center justify-center text-text-secondary">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tiktok"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" /></svg>
+            </a>
+            <a href="https://www.linkedin.com/company/hailerz-global-talent/" target="_blank" rel="noopener" aria-label="Connect with Hailerz on LinkedIn"
+              class="h-12 w-12 rounded-xl bg-surface-muted hover:bg-brand-primary/20 transition-colors flex items-center justify-center text-text-secondary">
+              <x-lucide-linkedin class="w-5 h-5" stroke-width="2" />
             </a>
           </div>
         </div>
