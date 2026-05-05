@@ -7,7 +7,7 @@ use Livewire\Attributes\Title;
 use Livewire\Attributes\Layout;
 
 #[Layout('components.layouts.app')]
-#[Title('Event Staffing & Augmentation | Hailerz')]
+#[Title('Event Staffing | Hailerz')]
 class Staffing extends Component
 {
     public function render()

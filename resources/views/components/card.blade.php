@@ -4,11 +4,13 @@
 ])
 
 @php
-    $baseClasses = 'bg-surface-light rounded-[2.5rem] border border-subtle transition-all duration-500 group';
+    $baseClasses = 'bg-surface-light rounded-[3rem] border border-brand-primary/10 transition-all duration-500 group';
     
     if ($hover) {
-        $baseClasses .= ' shadow-sm hover:shadow-2xl';
+        $baseClasses .= ' shadow-sm hover:shadow-md';
     }
+    
+    $baseClasses = str_replace('border-subtle', 'border-brand-primary/10', $baseClasses);
 @endphp
 
 <div {{ $attributes->merge(['class' => $baseClasses . ' ' . $padding]) }}>

@@ -6,7 +6,7 @@
 ])
 
 @php
-    $errorClass = $errors->has($name) ? 'border-red-500 ring-red-500/20' : 'border-subtle focus:ring-brand-primary';
+    $errorClass = $errors->has($name) ? 'border-red-500 ring-red-500/20' : 'border-subtle focus:ring-brand-secondary';
 @endphp
 
 <div class="w-full">
@@ -20,7 +20,7 @@
         <select 
             @if($name) id="{{ $name }}" name="{{ $name }}" @endif
             {{ $attributes->merge([
-                'class' => "block w-full px-6 py-4 bg-surface-muted border rounded-xl focus:ring-2 outline-none text-text-primary text-sm font-medium transition-all appearance-none " . $errorClass
+                'class' => "block w-full px-6 py-4 bg-surface-muted border rounded-full focus:ring-2 outline-none text-text-primary text-sm font-medium transition-all appearance-none " . $errorClass
             ]) }}
         >
             @if($placeholder)

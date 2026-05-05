@@ -1,10 +1,12 @@
 @props([
     'label' => null,
     'name' => null,
+    'icon' => null,
 ])
 
 @php
-    $errorClass = $errors->has($name) ? 'border-red-500 ring-red-500/20' : 'border-subtle focus:ring-brand-primary';
+    $errorClass = $errors->has($name) ? 'border-red-500 ring-red-500/20' : 'border-subtle focus:ring-brand-secondary';
+    $paddingClass = $icon ? 'pl-14 pr-6' : 'px-6';
 @endphp
 
 <div class="w-full">
@@ -14,12 +16,20 @@
         </label>
     @endif
 
-    <input 
-        @if($name) id="{{ $name }}" name="{{ $name }}" @endif
-        {{ $attributes->merge([
-            'class' => "block w-full px-6 py-4 bg-surface-muted border placeholder-text-muted rounded-xl focus:ring-2 outline-none text-text-primary text-sm font-medium transition-all " . $errorClass
-        ]) }}
-    />
+    <div class="relative group/input">
+        @if($icon)
+            <div class="absolute inset-y-0 left-5 flex items-center pointer-events-none text-text-muted group-focus-within/input:text-brand-secondary transition-colors">
+                <x-dynamic-component :component="'lucide-' . $icon" class="h-5 w-5" stroke-width="2" />
+            </div>
+        @endif
+
+        <input 
+            @if($name) id="{{ $name }}" name="{{ $name }}" @endif
+            {{ $attributes->merge([
+                'class' => "block w-full py-4 {$paddingClass} bg-surface-muted border placeholder-text-muted rounded-full focus:ring-2 outline-none text-text-primary text-sm font-medium transition-all " . $errorClass
+            ]) }}
+        />
+    </div>
 
     @if($name)
         @error($name)

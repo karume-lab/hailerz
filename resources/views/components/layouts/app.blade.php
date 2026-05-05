@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description"
     content="Premium talent booking agency connecting you with top musicians, variety artists, DJs, and performers for unforgettable events.">
-  <meta name="theme-color" content="#223757">
+  <meta name="theme-color" content="#21395c">
   <link rel="apple-touch-icon" href="/images/logo.webp">
 
   <title>{{ $title ?? 'Hailerz | Premium Talent Booking Agency' }}</title>
@@ -122,7 +122,7 @@
           </div>
 
           <x-button variant="primary" size="sm" href="/book" wire:navigate
-            class="flex border-none shadow-lg px-6 py-2.5 rounded-full hover:scale-105 transition-transform text-xs sm:text-sm">
+            class="flex border-none shadow-sm px-6 py-2.5 rounded-full hover:scale-105 transition-transform text-xs sm:text-sm">
             Book Now
           </x-button>
 
@@ -153,27 +153,27 @@
           </p>
           <div class="flex flex-wrap gap-4">
             <a href="https://www.facebook.com/hailerzdotcom/" target="_blank" rel="noopener" aria-label="Connect with Hailerz on Facebook"
-              class="h-12 w-12 rounded-xl bg-surface-muted hover:bg-brand-primary/20 transition-colors flex items-center justify-center text-text-secondary">
+              class="h-12 w-12 rounded-full bg-surface-muted hover:bg-brand-secondary/20 transition-colors flex items-center justify-center text-text-secondary">
               <x-lucide-facebook class="w-5 h-5" stroke-width="2" />
             </a>
             <a href="https://www.instagram.com/hailerzdotcom/" target="_blank" rel="noopener" aria-label="Follow Hailerz on Instagram"
-              class="h-12 w-12 rounded-xl bg-surface-muted hover:bg-brand-primary/20 transition-colors flex items-center justify-center text-text-secondary">
+              class="h-12 w-12 rounded-full bg-surface-muted hover:bg-brand-secondary/20 transition-colors flex items-center justify-center text-text-secondary">
               <x-lucide-instagram class="w-5 h-5" stroke-width="2" />
             </a>
             <a href="https://x.com/hailerzdotcom" target="_blank" rel="noopener" aria-label="Follow Hailerz on X"
-              class="h-12 w-12 rounded-xl bg-surface-muted hover:bg-brand-primary/20 transition-colors flex items-center justify-center text-text-secondary">
+              class="h-12 w-12 rounded-full bg-surface-muted hover:bg-brand-secondary/20 transition-colors flex items-center justify-center text-text-secondary">
               <x-lucide-twitter class="w-5 h-5" stroke-width="2" />
             </a>
             <a href="https://www.youtube.com/@hailerzdotcom" target="_blank" rel="noopener" aria-label="Subscribe to Hailerz on YouTube"
-              class="h-12 w-12 rounded-xl bg-surface-muted hover:bg-brand-primary/20 transition-colors flex items-center justify-center text-text-secondary">
+              class="h-12 w-12 rounded-full bg-surface-muted hover:bg-brand-secondary/20 transition-colors flex items-center justify-center text-text-secondary">
               <x-lucide-youtube class="w-5 h-5" stroke-width="2" />
             </a>
             <a href="https://www.tiktok.com/@hailerzdotcom" target="_blank" rel="noopener" aria-label="Follow Hailerz on TikTok"
-              class="h-12 w-12 rounded-xl bg-surface-muted hover:bg-brand-primary/20 transition-colors flex items-center justify-center text-text-secondary">
+              class="h-12 w-12 rounded-full bg-surface-muted hover:bg-brand-secondary/20 transition-colors flex items-center justify-center text-text-secondary">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tiktok"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" /></svg>
             </a>
             <a href="https://www.linkedin.com/company/hailerz-global-talent/" target="_blank" rel="noopener" aria-label="Connect with Hailerz on LinkedIn"
-              class="h-12 w-12 rounded-xl bg-surface-muted hover:bg-brand-primary/20 transition-colors flex items-center justify-center text-text-secondary">
+              class="h-12 w-12 rounded-full bg-surface-muted hover:bg-brand-secondary/20 transition-colors flex items-center justify-center text-text-secondary">
               <x-lucide-linkedin class="w-5 h-5" stroke-width="2" />
             </a>
           </div>
@@ -202,7 +202,7 @@
                 class="text-sm text-text-secondary hover:text-brand-primary transition-colors">Services</a></li>
             <li><a href="/staffing" wire:navigate
                 class="text-sm text-text-secondary hover:text-brand-primary transition-colors">Staffing &
-                Augmentation</a></li>
+                Staffing</a></li>
             <li><a href="/join" wire:navigate
                 class="text-sm text-text-secondary hover:text-brand-primary transition-colors">Join Talent</a></li>
             <li><a href="/contact" wire:navigate
@@ -213,7 +213,7 @@
         <div>
           <h3 class="text-xs font-bold text-brand-primary uppercase tracking-widest mb-6">Secure Talent</h3>
           <p class="text-sm text-text-secondary mb-6">Ready to elevate your next event with premium talent?</p>
-          <x-button variant="secondary" size="sm" class="w-full " href="/book" wire:navigate>
+          <x-button variant="primary" size="sm" class="w-full" href="/book" wire:navigate>
             Start Inquiry
           </x-button>
         </div>

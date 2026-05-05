@@ -325,11 +325,12 @@
           <!-- Share -->
           <div class="pt-8 border-t border-subtle " x-data="{ showShareModal: false, copied: false, url: window.location.href }">
             <div class="flex items-center justify-between gap-4">
-              <button
+              <x-button
                 @click="showShareModal = true"
-                class="flex-1 px-4 py-3 bg-surface-muted rounded-xl text-xs font-bold text-text-primary uppercase tracking-widest hover:bg-brand-primary/10 transition-colors shadow-sm border border-subtle">
+                variant="outline"
+                class="w-full">
                 Share Portfolio
-              </button>
+              </x-button>
             </div>
 
             <!-- Share Modal -->
@@ -339,7 +340,7 @@
                  @keydown.escape.window="showShareModal = false">
                  
                  <div @click.away="showShareModal = false"
-                      class="bg-[#212121] text-[#f1f1f1] w-full max-w-[520px] rounded-2xl shadow-2xl flex flex-col "
+                      class="bg-surface-dark text-text-inverse w-full max-w-[520px] rounded-2xl shadow-sm border border-white/10 flex flex-col "
                       x-transition:enter="transition ease-out duration-300"
                       x-transition:enter-start="opacity-0 translate-y-8 sm:translate-y-0 sm:scale-95"
                       x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
@@ -406,10 +407,12 @@
                           </div>
 
                           <!-- Link Copy Box -->
-                          <div class="mt-2 flex items-center bg-[#0f0f0f] rounded-xl border border-white/10 p-1.5 pl-4 shadow-inner">
-                              <div class="flex-1 overflow-hidden mr-2">
-                                  <p class="text-[14px] text-[#f1f1f1] truncate" x-text="url"></p>
-                              </div>
+                          <div class="mt-2 flex items-center bg-black rounded-full border border-white/10 p-1.5 shadow-inner">
+                              <x-input 
+                                  x-model="url" 
+                                  readonly 
+                                  class="flex-1 bg-transparent! border-none! text-text-inverse! text-[14px]! py-2.5! ring-0!" 
+                              />
                               <button @click="navigator.clipboard.writeText(url); copied = true; setTimeout(() => copied = false, 2000)" 
                                       class="px-5 py-2.5 bg-white/10 hover:bg-white/20 text-white text-[14px] font-medium rounded-full transition-colors shrink-0">
                                   <span x-text="copied ? 'Copied' : 'Copy'"></span>

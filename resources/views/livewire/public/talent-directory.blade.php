@@ -1,47 +1,47 @@
 <div class="bg-surface-muted min-h-screen py-20">
- <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-  
-   <x-section-heading 
-     subtitle="Global Talent Network" 
-     title='<span class="text-brand-secondary">Premier</span> Roster' 
-     class="mb-16"
-   />
-   <p class="mt--12 mb-16 text-lg text-text-secondary max-w-2xl">Explore and secure the world’s most sought-after musicians, speakers, and performers for your next high-profile event.</p>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-  <div class="flex flex-col lg:flex-row gap-12">
-   
-   <!-- Sidebar Filters -->
-   <aside class="w-full lg:w-1/4">
-    <x-card padding="p-8" class="sticky top-28">
-     <div class="flex items-center justify-between mb-10">
-      <h2 class="text-xs font-bold text-text-secondary uppercase tracking-widest">Refine Selection</h2>
-      <button wire:click="resetFilters" aria-label="Reset all search filters" class="text-[10px] font-bold text-brand-primary uppercase tracking-widest hover:underline transition-colors">
-       Reset All
-      </button>
-     </div>
-     
-     <div class="space-y-10">
-      <!-- Search -->
-      <x-input wire:model.live.debounce.300ms="search" name="search" label="Keywords" placeholder="Name or expertise..." />
+    <x-heading subtitle="Global Talent Network" title="Premier Roster" emphasis="Premier"
+      class="mb-16" />
+    <p class="mt--12 mb-16 text-lg text-text-secondary max-w-2xl">Explore and secure the world’s most sought-after
+      musicians, speakers, and performers for your next high-profile event.</p>
 
-      <!-- Sort Order -->
-      <x-select wire:model.live="sort" name="sort" label="Order">
-       <option value="name">Alphabetical</option>
-       <option value="latest">Newly Represented</option>
-       <option value="price_asc">Investment: Low to High</option>
-       <option value="price_desc">Investment: High to Low</option>
-      </x-select>
+    <div class="flex flex-col lg:flex-row gap-12">
 
-      <!-- Category -->
-      <x-select wire:model.live="category_id" name="category" label="Discipline">
-       <option value="">All Disciplines</option>
-       @foreach($categories as $category)
-        <option value="{{ $category->id }}">{{ $category->name }}</option>
-       @endforeach
-      </x-select>
+      <!-- Sidebar Filters -->
+      <aside class="w-full lg:w-1/4">
+        <x-card padding="p-8" class="sticky top-28">
+          <div class="flex items-center justify-between mb-10">
+            <h2 class="text-xs font-bold text-text-secondary uppercase tracking-widest">Refine Selection</h2>
+            <button wire:click="resetFilters" aria-label="Reset all search filters"
+              class="text-[10px] font-bold text-brand-primary uppercase tracking-widest hover:underline transition-colors">
+              Reset All
+            </button>
+          </div>
 
-      <!-- Location -->
-      <div x-data="{
+          <div class="space-y-10">
+            <!-- Search -->
+            <x-input wire:model.live.debounce.300ms="search" name="search" label="Keywords"
+              placeholder="Name or expertise..." />
+
+            <!-- Sort Order -->
+            <x-select wire:model.live="sort" name="sort" label="Order">
+              <option value="name">Alphabetical</option>
+              <option value="latest">Newly Represented</option>
+              <option value="price_asc">Investment: Low to High</option>
+              <option value="price_desc">Investment: High to Low</option>
+            </x-select>
+
+            <!-- Category -->
+            <x-select wire:model.live="category_id" name="category" label="Discipline">
+              <option value="">All Disciplines</option>
+              @foreach($categories as $category)
+                <option value="{{ $category->id }}">{{ $category->name }}</option>
+              @endforeach
+            </x-select>
+
+            <!-- Location -->
+            <div x-data="{
        isLocating: false,
        locationError: '',
        async tryIpFallback() {
@@ -95,122 +95,129 @@
         );
        }
       }">
-       <div class="flex items-center justify-between mb-4">
-        <label for="location" class="block text-[10px] font-bold text-text-secondary uppercase tracking-widest">Base Location</label>
-        <button @click="locateMe()" type="button" aria-label="Auto-detect my current location" class="text-[10px] font-bold text-brand-primary uppercase tracking-widest hover:underline flex items-center gap-1">
-         <x-lucide-map-pin x-show="!isLocating" class="w-3 h-3 text-text-secondary" stroke-width="2" />
-         <span x-text="isLocating ? '...' : 'Auto-Detect'"></span>
-        </button>
-       </div>
-       <p x-show="locationError === 'denied'" class="text-[10px] text-red-400 mb-2">Location access denied. Please type your city manually.</p>
-       <p x-show="locationError === 'unavailable'" class="text-[10px] text-amber-400 mb-2">Could not detect location. Please type your city manually.</p>
-       <input
-        wire:model.live.debounce.300ms="location"
-        type="text"
-        id="location"
-        list="location-suggestions"
-        autocomplete="off"
-        placeholder="City or region..."
-        class="w-full px-5 py-4 bg-surface-muted border border-subtle placeholder-text-muted rounded-md focus:ring-2 focus:ring-brand-primary focus:border-transparent transition-all outline-none text-text-primary text-sm font-medium"
-       >
-       <datalist id="location-suggestions">
-        @foreach($locations as $loc)
-         <option value="{{ $loc }}">
-        @endforeach
-       </datalist>
-      </div>
-     </div>
-    </x-card>
-   </aside>
-
-   <!-- Talent Grid -->
-   <main class="w-full lg:w-3/4">
-    
-    <div class="transition-opacity duration-300">
-     @if($talents->count() > 0)
-      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
-       @foreach($talents as $talent)
-        <x-card padding="p-0" class="group transition-all duration-500 flex flex-col h-full overflow-hidden">
-         <a href="/talent/{{ $talent->slug }}" wire:navigate class="block">
-          <div class="group relative overflow-hidden aspect-3/4 bg-surface-dark">
-           <img
-             src="{{ $talent->profile_photo_url }}"
-             width="400" height="533" loading="{{ $loop->iteration <= 6 ? 'eager' : 'lazy' }}" fetchpriority="{{ $loop->iteration <= 2 ? 'high' : 'auto' }}" decoding="async"
-             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-             alt="{{ $talent->name }}"
-           />
-           
-           <div class="absolute inset-0 bg-linear-to-tr from-brand-primary/80 to-brand-secondary/40 mix-blend-color opacity-80 transition-opacity group-hover:opacity-60"></div>
-           <div class="absolute inset-0 bg-linear-to-t from-surface-dark via-surface-dark/60 to-transparent"></div>
-           
-           @if($talent->is_featured)
-            <div class="absolute top-6 right-6 bg-brand-primary text-text-inverse text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">
-             Premier Act
+              <div class="flex items-center justify-between mb-4">
+                <label for="location"
+                  class="block text-[10px] font-bold text-text-secondary uppercase tracking-widest">Base
+                  Location</label>
+                <button @click="locateMe()" type="button" aria-label="Auto-detect my current location"
+                  class="text-[10px] font-bold text-brand-primary uppercase tracking-widest hover:underline flex items-center gap-1">
+                  <x-lucide-map-pin x-show="!isLocating" class="w-3 h-3 text-text-secondary" stroke-width="2" />
+                  <span x-text="isLocating ? '...' : 'Auto-Detect'"></span>
+                </button>
+              </div>
+              <p x-show="locationError === 'denied'" class="text-[10px] text-red-400 mb-2">Location access denied.
+                Please type your city manually.</p>
+              <p x-show="locationError === 'unavailable'" class="text-[10px] text-amber-400 mb-2">Could not detect
+                location. Please type your city manually.</p>
+              <input wire:model.live.debounce.300ms="location" type="text" id="location" list="location-suggestions"
+                autocomplete="off" placeholder="City or region..."
+                class="w-full px-5 py-4 bg-surface-muted border border-subtle placeholder-text-muted rounded-md focus:ring-2 focus:ring-brand-primary focus:border-transparent transition-all outline-none text-text-primary text-sm font-medium">
+              <datalist id="location-suggestions">
+                @foreach($locations as $loc)
+                  <option value="{{ $loc }}">
+                @endforeach
+              </datalist>
             </div>
-           @endif
-           
-           <div class="absolute bottom-6 left-6">
-            <p class="text-[10px] font-bold text-text-inverse/70 uppercase tracking-widest mb-1">{{ $talent->category?->name ?? 'Professional' }}</p>
-            <h3 class="text-xl font-bold text-text-inverse">{{ $talent->name }}</h3>
-           </div>
           </div>
-         </a>
-         
-         <div class="p-8 flex-1 flex flex-col justify-between">
-          <div class="flex items-center gap-2 text-xs text-text-secondary mb-6">
-           <x-lucide-map-pin class="w-4 h-4 text-text-secondary" stroke-width="2" />
-           {{ $talent->location ?? 'International' }}
-          </div>
-          
-          <div class="flex justify-between items-center pt-6 border-t border-subtle ">
-           <div>
-            <p class="text-[10px] font-bold text-text-secondary uppercase tracking-widest">Starting Investment</p>
-            <p class="text-lg font-bold text-text-primary">₦{{ number_format($talent->starting_price ?? 0, 0) }}</p>
-           </div>
-           <x-button variant="ghost" size="sm" href="/talent/{{ $talent->slug }}" wire:navigate class="text-brand-primary hover:text-brand-primary/80">
-            View Profile
-           </x-button>
-          </div>
-         </div>
         </x-card>
-       @endforeach
-      </div>
-      
-      @if($talents->hasMorePages())
-       <div x-data="{
-        isLoading: false,
-        observe() {
-         let observer = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-           if (entry.isIntersecting && !this.isLoading) {
-            this.isLoading = true;
-            @this.loadMore().then(() => {
-             this.isLoading = false;
-            });
-           }
-          })
-         }, { rootMargin: '400px' })
-         observer.observe(this.$el)
-        }
-       }" x-init="observe()" class="mt-12 py-12 flex justify-center">
-        <div class="flex items-center gap-3 text-text-muted">
-         <x-lucide-loader-2 class="animate-spin h-5 w-5" stroke-width="2" />
-         <span class="text-sm font-semibold uppercase tracking-widest">Loading More Talent...</span>
-        </div>
-       </div>
-      @endif
-     @else
-      <x-card padding="py-32" class="text-center border-dashed">
-       <h3 class="text-2xl font-bold text-text-primary mb-4 ">No Results Found</h3>
-       <p class="text-text-secondary mb-8">Refine your selection to explore our alternative talent members.</p>
-       <x-button variant="secondary" wire:click="resetFilters">
-        Clear All Filters
-       </x-button>
-      </x-card>
-     @endif
-    </div>
+      </aside>
 
-   </main>
+      <!-- Talent Grid -->
+      <main class="w-full lg:w-3/4">
+
+        <div class="transition-opacity duration-300">
+          @if($talents->count() > 0)
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+              @foreach($talents as $talent)
+                <x-card padding="p-0" class="group transition-all duration-500 flex flex-col h-full overflow-hidden">
+                  <a href="/talent/{{ $talent->slug }}" wire:navigate class="block">
+                    <div class="group relative overflow-hidden aspect-3/4 bg-surface-dark">
+                      <img src="{{ $talent->profile_photo_url }}" width="400" height="533"
+                        loading="{{ $loop->iteration <= 6 ? 'eager' : 'lazy' }}"
+                        fetchpriority="{{ $loop->iteration <= 2 ? 'high' : 'auto' }}" decoding="async"
+                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        alt="{{ $talent->name }}" />
+
+                      <div
+                        class="absolute inset-0 bg-linear-to-tr from-brand-primary/80 to-brand-secondary/40 mix-blend-color opacity-80 transition-opacity group-hover:opacity-60">
+                      </div>
+                      <div class="absolute inset-0 bg-linear-to-t from-surface-dark via-surface-dark/60 to-transparent">
+                      </div>
+
+                      @if($talent->is_featured)
+                        <div
+                          class="absolute top-6 right-6 bg-brand-primary text-text-inverse text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">
+                          Premier Act
+                        </div>
+                      @endif
+
+                      <div class="absolute bottom-6 left-6">
+                        <p class="text-[10px] font-bold text-text-inverse/70 uppercase tracking-widest mb-1">
+                          {{ $talent->category?->name ?? 'Professional' }}
+                        </p>
+                        <h3 class="text-xl font-bold text-text-inverse">{{ $talent->name }}</h3>
+                      </div>
+                    </div>
+                  </a>
+
+                  <div class="p-8 flex-1 flex flex-col justify-between">
+                    <div class="flex items-center gap-2 text-xs text-text-secondary mb-6">
+                      <x-lucide-map-pin class="w-4 h-4 text-text-secondary" stroke-width="2" />
+                      {{ $talent->location ?? 'International' }}
+                    </div>
+
+                    <div class="flex justify-between items-center pt-6 border-t border-subtle ">
+                      <div>
+                        <p class="text-[10px] font-bold text-text-secondary uppercase tracking-widest">Starting Investment
+                        </p>
+                        <p class="text-lg font-bold text-text-primary">₦{{ number_format($talent->starting_price ?? 0, 0) }}
+                        </p>
+                      </div>
+                      <x-button variant="ghost" size="sm" href="/talent/{{ $talent->slug }}" wire:navigate
+                        class="text-brand-primary hover:text-brand-primary/80">
+                        View Profile
+                      </x-button>
+                    </div>
+                  </div>
+                </x-card>
+              @endforeach
+            </div>
+
+            @if($talents->hasMorePages())
+              <div x-data="{
+                    isLoading: false,
+                    observe() {
+                     let observer = new IntersectionObserver((entries) => {
+                      entries.forEach(entry => {
+                       if (entry.isIntersecting && !this.isLoading) {
+                        this.isLoading = true;
+                        @this.loadMore().then(() => {
+                         this.isLoading = false;
+                        });
+                       }
+                      })
+                     }, { rootMargin: '400px' })
+                     observer.observe(this.$el)
+                    }
+                   }" x-init="observe()" class="mt-12 py-12 flex justify-center">
+                <div class="flex items-center gap-3 text-text-muted">
+                  <x-lucide-loader-2 class="animate-spin h-5 w-5" stroke-width="2" />
+                  <span class="text-sm font-semibold uppercase tracking-widest">Loading More Talent...</span>
+                </div>
+              </div>
+            @endif
+          @else
+            <x-card padding="py-32" class="text-center border-dashed">
+              <h3 class="text-2xl font-bold text-text-primary mb-4 ">No Results Found</h3>
+              <p class="text-text-secondary mb-8">Refine your selection to explore our alternative talent members.</p>
+              <x-button variant="secondary" wire:click="resetFilters">
+                Clear All Filters
+              </x-button>
+            </x-card>
+          @endif
+        </div>
+
+      </main>
+    </div>
   </div>
- </div>
 </div>

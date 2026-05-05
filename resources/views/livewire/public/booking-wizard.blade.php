@@ -5,16 +5,17 @@
                 <div class="mx-auto flex items-center justify-center h-24 w-24 rounded-full bg-brand-primary/10 mb-10">
                     <x-lucide-check class="h-12 w-12 text-brand-primary" stroke-width="2" />
                 </div>
-                <h2 class="text-4xl font-bold text-text-primary mb-6 ">Inquiry Submitted Successfully!</h2>
+                <x-heading level="h2" title="We've Got Your Request!" emphasis="Got Your Request!" class="text-text-primary mb-6" />
                 <p class="text-lg text-text-secondary mb-12 max-w-xl mx-auto">
-                    A confirmation email has been sent to your inbox with a PDF summary of your event details. One of our agents will review your request and get back to you within one business day with a formal proposal.
+                    Thanks for reaching out! We've sent a summary of your event details to your inbox. 
+                    One of our agents will review everything and get back to you within one business day with a formal proposal.
                 </p>
                 <x-button variant="primary" size="lg" href="/talent" wire:navigate>
                     Browse Talent
                 </x-button>
             </x-card>
         @else
-            <x-section-heading 
+            <x-heading 
                 align="center" 
                 subtitle="Inquiry Wizard" 
                 title="Start your booking" 
@@ -114,13 +115,13 @@
                                                 </div>
                                                 <div>
                                                     <h4 class="text-lg font-bold text-text-primary">{{ $selectedTalent->name }}</h4>
-                                                    <p class="text-sm text-brand-secondary font-medium">{{ $selectedTalent->category->name }}</p>
+                                                    <p class="text-sm text-brand-primary font-medium">{{ $selectedTalent->category->name }}</p>
                                                     @if($selectedTalent->starting_price)
                                                         <p class="text-xs text-text-muted mt-1">Starting from ₦{{ number_format($selectedTalent->starting_price) }}</p>
                                                     @endif
                                                 </div>
                                             </div>
-                                            <x-button type="button" wire:click="clearTalent" variant="secondary" size="sm" class="rounded-lg">
+                                            <x-button type="button" wire:click="clearTalent" variant="outline" size="sm" class="rounded-lg">
                                                 Change Talent
                                             </x-button>
                                         </div>
@@ -143,15 +144,12 @@
                                                 
                                                 <!-- Search Bar Inside Dropdown -->
                                                 <div class="p-4 border-b border-subtle bg-surface-muted/30">
-                                                    <div class="relative">
-                                                        <div class="absolute inset-y-0 left-4 flex items-center pointer-events-none">
-                                                            <x-lucide-search class="h-4 w-4 text-text-muted" stroke-width="2" />
-                                                        </div>
-                                                        <input type="text" 
-                                                            wire:model.live.debounce.300ms="talentSearch"
-                                                            placeholder="Search talent..."
-                                                            class="block w-full pl-11 pr-4 py-3 bg-surface-muted border border-subtle placeholder-text-muted rounded-xl focus:ring-2 focus:ring-brand-primary outline-none text-sm text-text-primary font-medium transition-all">
-                                                    </div>
+                                                    <x-input 
+                                                        wire:model.live.debounce.300ms="talentSearch"
+                                                        placeholder="Search talent..."
+                                                        icon="search"
+                                                        class="py-3! text-sm!"
+                                                    />
                                                 </div>
 
                                                 <!-- Talent List -->
@@ -170,7 +168,7 @@
                                                             </div>
                                                             @if($talent->starting_price)
                                                                 <div class="text-right">
-                                                                    <p class="text-xs font-bold text-brand-secondary">₦{{ number_format($talent->starting_price) }}</p>
+                                                                    <p class="text-xs font-bold text-brand-primary">₦{{ number_format($talent->starting_price) }}</p>
                                                                 </div>
                                                             @endif
                                                         </li>
@@ -220,14 +218,14 @@
                         @endif
 
                         @if($currentStep < 4)
-                            <x-button type="button" variant="primary" size="lg" wire:click="nextStep">
+                            <x-button type="button" variant="accent" size="lg" wire:click="nextStep">
                                 Continue
                             </x-button>
                         @else
-                            <x-button variant="primary" size="lg" type="submit" wire:loading.attr="disabled" wire:target="submit">
+                            <x-button variant="accent" size="lg" type="submit" wire:loading.attr="disabled" wire:target="submit">
                                 <span wire:loading.remove wire:target="submit">Send booking request</span>
                                 <span wire:loading wire:target="submit" class="flex items-center justify-center">
-                                    <x-lucide-loader-2 class="animate-spin h-5 w-5 text-white" stroke-width="2" />
+                                    <x-lucide-loader-2 class="animate-spin h-5 w-5 text-brand-primary" stroke-width="2" />
                                 </span>
                             </x-button>
                         @endif

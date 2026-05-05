@@ -21,7 +21,8 @@
                 <x-card padding="p-8" class="shadow-xl border-none space-y-8">
                     {{-- Phone --}}
                     <div class="flex items-start gap-6">
-                        <div class="h-12 w-12 rounded-xl bg-brand-primary/10 flex items-center justify-center text-brand-primary shrink-0">
+                        <div
+                            class="h-12 w-12 rounded-xl bg-brand-primary/10 flex items-center justify-center text-brand-primary shrink-0">
                             <x-lucide-phone class="w-5 h-5" stroke-width="2" />
                         </div>
                         <div>
@@ -33,19 +34,22 @@
 
                     {{-- Email --}}
                     <div class="flex items-start gap-6">
-                        <div class="h-12 w-12 rounded-xl bg-brand-primary/10 flex items-center justify-center text-brand-primary shrink-0">
+                        <div
+                            class="h-12 w-12 rounded-xl bg-brand-primary/10 flex items-center justify-center text-brand-primary shrink-0">
                             <x-lucide-mail class="w-5 h-5" stroke-width="2" />
                         </div>
                         <div>
                             <h3 class="text-base font-bold text-text-primary mb-1">Email</h3>
-                            <a href="mailto:info@hailerz.com" class="text-text-secondary hover:text-brand-primary transition-colors">info@hailerz.com</a>
+                            <a href="mailto:info@hailerz.com"
+                                class="text-text-secondary hover:text-brand-primary transition-colors">info@hailerz.com</a>
                             <p class="text-xs text-text-muted mt-1">We respond within 24 hours</p>
                         </div>
                     </div>
 
                     {{-- Office --}}
                     <div class="flex items-start gap-6">
-                        <div class="h-12 w-12 rounded-xl bg-brand-primary/10 flex items-center justify-center text-brand-primary shrink-0">
+                        <div
+                            class="h-12 w-12 rounded-xl bg-brand-primary/10 flex items-center justify-center text-brand-primary shrink-0">
                             <x-lucide-map-pin class="w-5 h-5" stroke-width="2" />
                         </div>
                         <div>
@@ -59,7 +63,8 @@
 
                     {{-- Business Hours --}}
                     <div class="flex items-start gap-6">
-                        <div class="h-12 w-12 rounded-xl bg-brand-primary/10 flex items-center justify-center text-brand-primary shrink-0">
+                        <div
+                            class="h-12 w-12 rounded-xl bg-brand-primary/10 flex items-center justify-center text-brand-primary shrink-0">
                             <x-lucide-clock class="w-5 h-5" stroke-width="2" />
                         </div>
                         <div>
@@ -92,7 +97,8 @@
 
                     @if (session('success'))
                         <div class="rounded-2xl bg-green-50 p-6 mb-8 border border-green-100 flex items-center gap-4">
-                            <div class="shrink-0 h-10 w-10 bg-green-100 rounded-full flex items-center justify-center text-green-600">
+                            <div
+                                class="shrink-0 h-10 w-10 bg-green-100 rounded-full flex items-center justify-center text-green-600">
                                 <x-lucide-check class="h-6 w-6" stroke-width="2" />
                             </div>
                             <p class="text-sm font-bold text-green-800">{{ session('success') }}</p>
@@ -101,30 +107,29 @@
 
                     <form wire:submit="submit" class="space-y-6">
                         <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
-                            <x-input wire:model="first_name" name="first_name" label="First Name *" placeholder="John" />
+                            <x-input wire:model="first_name" name="first_name" label="First Name *"
+                                placeholder="John" />
                             <x-input wire:model="last_name" name="last_name" label="Last Name *" placeholder="Smith" />
                         </div>
-                        
+
                         <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
-                            <x-input wire:model="email" name="email" type="email" label="Email Address *" placeholder="john@example.com" />
-                            <x-input wire:model="phone" name="phone" label="Phone Number" placeholder="(555) 123-4567" />
+                            <x-input wire:model="email" name="email" type="email" label="Email Address *"
+                                placeholder="john@example.com" />
+                            <x-input wire:model="phone" name="phone" label="Phone Number"
+                                placeholder="(555) 123-4567" />
                         </div>
 
-                        <x-select 
-                            wire:model="subject" 
-                            name="subject" 
-                            label="Subject *"
-                            placeholder="Select a subject"
+                        <x-select wire:model="subject" name="subject" label="Subject *" placeholder="Select a subject"
                             :options="[
-                                'General Inquiry' => 'General Inquiry',
-                                'Booking Request' => 'Booking Request',
-                                'Talent Representation' => 'Talent Representation',
-                                'Partnerships' => 'Partnerships',
-                                'Other' => 'Other'
-                            ]"
-                        />
+        'General Inquiry' => 'General Inquiry',
+        'Booking Request' => 'Booking Request',
+        'Talent Representation' => 'Talent Representation',
+        'Partnerships' => 'Partnerships',
+        'Other' => 'Other'
+    ]" />
 
-                        <x-textarea wire:model="message" name="message" label="Message *" rows="5" placeholder="Tell us how we can help you..." />
+                        <x-textarea wire:model="message" name="message" label="Message *" rows="5"
+                            placeholder="Tell us how we can help you..." />
 
                         <div class="pt-4">
                             <x-button type="submit" class="w-full" size="lg">
