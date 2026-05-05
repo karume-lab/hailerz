@@ -21,6 +21,17 @@ The architecture is designed to deliver a reactive, server-side-rendered experie
 
 ---
 
+## Design System & UI
+
+The platform utilizes a premium, mobile-first design system built on Vanilla CSS and Tailwind utility classes. Key design principles include:
+
+- **Component-Driven Architecture**: Consistent use of Blade components (`x-heading`, `x-button`, `x-card`) ensures visual harmony across all public-facing pages.
+- **Responsive Overhaul**: Every section, from the talent directory grids to complex multi-step forms, is optimized for seamless mobile interaction, prioritizing touch-friendly layouts and legible typography.
+- **Unified Inquiry Flow**: A standardized booking and contact experience across the `Home` and `Contact` pages, featuring a high-contrast success state UI for immediate user feedback.
+- **Cinematic Visuals**: Strategic use of high-quality imagery, subtle micro-animations (via `reveal` classes), and carefully balanced dark overlays to maintain readability on rich background elements.
+
+---
+
 ## Project Structure
 
 ```
