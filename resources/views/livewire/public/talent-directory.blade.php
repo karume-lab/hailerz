@@ -174,7 +174,7 @@
                         </p>
                       </div>
                       <x-button variant="outline" size="sm" href="/talent/{{ $talent->slug }}" wire:navigate
-                        class="text-brand-primary hover:text-brand-primary/80">
+                        class="text-brand-primary hover:text-brand-primary/80" aria-label="View profile of {{ $talent->name }}">
                         View Profile
                       </x-button>
                     </div>

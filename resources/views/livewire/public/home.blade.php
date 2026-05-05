@@ -126,7 +126,7 @@
                             <p class="text-white/70 text-xs sm:text-sm font-medium mb-4 sm:mb-6">{{ $featuredTalents[0]->category->name }}</p>
 
                             <div class="flex flex-col sm:flex-row gap-3">
-                                <x-button href="/talent/{{ $featuredTalents[0]->slug }}" variant="outline" size="sm" class="w-full sm:w-auto">
+                                <x-button href="/talent/{{ $featuredTalents[0]->slug }}" variant="outline" size="sm" class="w-full sm:w-auto" aria-label="View profile of {{ $featuredTalents[0]->name }}">
                                     View Profile
                                 </x-button>
                                 <x-button href="/book?talent={{ $featuredTalents[0]->id }}" variant="primary" size="sm" class="w-full sm:w-auto">
@@ -150,7 +150,7 @@
                                 </p>
 
                                 <div class="flex flex-col sm:flex-row gap-3">
-                                    <x-button href="/talent/{{ $featuredTalents[1]->slug }}" variant="outline" size="sm" class="w-full sm:w-auto">
+                                    <x-button href="/talent/{{ $featuredTalents[1]->slug }}" variant="outline" size="sm" class="w-full sm:w-auto" aria-label="View profile of {{ $featuredTalents[1]->name }}">
                                         View Profile
                                     </x-button>
                                     <x-button href="/book?talent={{ $featuredTalents[1]->id }}" variant="primary" size="sm" class="w-full sm:w-auto">
@@ -172,7 +172,7 @@
                                 </p>
 
                                 <div class="flex flex-col sm:flex-row gap-2">
-                                    <x-button href="/talent/{{ $featuredTalents[2]->slug }}" variant="outline" size="sm" class="text-[10px] sm:text-xs py-2">
+                                    <x-button href="/talent/{{ $featuredTalents[2]->slug }}" variant="outline" size="sm" class="text-[10px] sm:text-xs py-2" aria-label="View profile of {{ $featuredTalents[2]->name }}">
                                         View Profile
                                     </x-button>
                                     <x-button href="/book?talent={{ $featuredTalents[2]->id }}" variant="primary" size="sm" class="text-[10px] sm:text-xs py-2">
@@ -194,7 +194,7 @@
                                 </p>
 
                                 <div class="flex flex-col sm:flex-row gap-2">
-                                    <x-button href="/talent/{{ $featuredTalents[3]->slug }}" variant="outline" size="sm" class="text-[10px] sm:text-xs py-2">
+                                    <x-button href="/talent/{{ $featuredTalents[3]->slug }}" variant="outline" size="sm" class="text-[10px] sm:text-xs py-2" aria-label="View profile of {{ $featuredTalents[3]->name }}">
                                         View Profile </x-button>
                                     <x-button href="/book?talent={{ $featuredTalents[3]->id }}" variant="primary" size="sm" class="text-[10px] sm:text-xs py-2">
                                         Book
@@ -215,7 +215,7 @@
                                 <h3 class="text-base sm:text-lg font-bold text-white mb-1">{{ $talent->name }}</h3>
                                 <p class="text-white/70 text-[10px] sm:text-xs font-medium mb-3 sm:mb-4">{{ $talent->category->name }}</p>
                                 <div class="flex flex-col sm:flex-row gap-2">
-                                    <x-button href="/talent/{{ $talent->slug }}" variant="outline" size="sm" class="text-[10px] sm:text-xs py-2">
+                                    <x-button href="/talent/{{ $talent->slug }}" variant="outline" size="sm" class="text-[10px] sm:text-xs py-2" aria-label="View profile of {{ $talent->name }}">
                                         View Profile </x-button>
                                     <x-button href="/book?talent={{ $talent->id }}" variant="primary" size="sm" class="text-[10px] sm:text-xs py-2">
                                         Book

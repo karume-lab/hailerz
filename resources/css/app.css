@@ -104,7 +104,7 @@
 
 @layer base {
     :root {
-        --brand-primary: #1a8aa7;
+        --brand-primary: #146c84;
         --brand-secondary: #65c4af;
         --brand-accent: #21395c;
 
@@ -120,7 +120,7 @@
     }
 
     .dark {
-        --brand-primary: #1a8aa7;
+        --brand-primary: #146c84;
         --brand-secondary: #65c4af;
         --brand-accent: #21395c;
 
