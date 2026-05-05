@@ -7,7 +7,7 @@
   <meta name="description"
     content="Premium talent booking agency connecting you with top musicians, variety artists, DJs, and performers for unforgettable events.">
   <meta name="theme-color" content="#21395c">
-  <link rel="apple-touch-icon" href="/images/logo.webp">
+  <link rel="apple-touch-icon" href="{{ asset('images/logo.webp') }}">
 
   <title>{{ $title ?? 'Hailerz | Premium Talent Booking Agency' }}</title>
 
@@ -28,10 +28,10 @@
   <meta name="twitter:image" content="{{ $ogImage ?? asset('images/logo.webp') }}">
 
   <!-- Fenomen Sans preloads -->
-  <link rel="preload" href="/fonts/fenomen-sans/FenomenSans.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="/fonts/fenomen-sans/FenomenSans-Book.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="/fonts/fenomen-sans/FenomenSans-Bold.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="manifest" href="/manifest.json">
+  <link rel="preload" href="{{ asset('fonts/fenomen-sans/FenomenSans.woff2') }}" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="{{ asset('fonts/fenomen-sans/FenomenSans-Book.woff2') }}" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="{{ asset('fonts/fenomen-sans/FenomenSans-Bold.woff2') }}" as="font" type="font/woff2" crossorigin>
+  <link rel="manifest" href="{{ asset('manifest.json') }}">
 
   @production
     <script>
@@ -56,7 +56,7 @@
   @endproduction
 
   <link rel="canonical" href="{{ url()->current() }}">
-  <link rel="icon" href="/images/logo.webp" type="image/webp">
+  <link rel="icon" href="{{ asset('images/logo.webp') }}" type="image/webp">
 
   @vite(['resources/css/app.css', 'resources/js/app.js'])
 
@@ -92,7 +92,7 @@
       <div class="flex justify-between items-center h-20">
         <div class="shrink-0 flex items-center">
           <a href="/" class="flex items-center gap-2.5" aria-label="Hailerz Home">
-            <img src="/images/logo.webp" alt="" aria-hidden="true" width="40" height="41" fetchpriority="high" loading="eager"
+            <img src="{{ asset('images/logo.webp') }}" alt="" aria-hidden="true" width="40" height="41" fetchpriority="high" loading="eager"
               class="h-10 w-auto object-contain rounded-lg" />
             <span
               class="text-2xl font-bold tracking-tight  {{ request()->is('/') ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary' }} transition-colors uppercase tracking-widest hidden lg:block">
@@ -142,7 +142,7 @@
       <div class="grid grid-cols-1 md:grid-cols-4 gap-16">
         <div class="col-span-1 md:col-span-1">
           <a href="/" class="flex items-center gap-2.5 mb-6" aria-label="Hailerz Home">
-            <img src="/images/logo.webp" alt="" aria-hidden="true" width="32" height="33"
+            <img src="{{ asset('images/logo.webp') }}" alt="" aria-hidden="true" width="32" height="33"
               class="h-8 w-auto object-contain rounded" />
             <span class="text-2xl font-bold tracking-tight text-brand-primary ">
               Hailerz
