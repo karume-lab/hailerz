@@ -9,7 +9,7 @@
         <!-- Background Image with Overlay -->
         <div class="absolute inset-0 z-0">
             <img src="{{ asset('images/home/hero-bg.webp') }}" class="w-full h-full object-cover"
-                alt="Hero background - Rays of light illuminating a stage">
+                alt="Hero background - Rays of light illuminating a stage" fetchpriority="high" decoding="sync">
             <div class="absolute inset-0 bg-black/20 bg-linear-to-b from-black/40 via-transparent to-black/60"></div>
         </div>
 
@@ -69,6 +69,7 @@
                     class="mt-12 aspect-video max-w-4xl mx-auto rounded-3xl overflow-hidden shadow-2xl border border-subtle bg-surface-dark reveal reveal-delay-200">
                     <iframe class="w-full h-full" src="https://www.youtube.com/embed/LLdr6BqljEw"
                         title="Hailerz - How it Works" frameborder="0" loading="lazy"
+                        srcdoc="<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img,span{position:absolute;width:100%;top:0;bottom:0;margin:auto}span{height:1.5em;text-align:center;font:48px/1.5 sans-serif;color:white;text-shadow:0 0 0.5em black}</style><a href=https://www.youtube.com/embed/LLdr6BqljEw?autoplay=1><img src=https://img.youtube.com/vi/LLdr6BqljEw/hqdefault.jpg alt='Hailerz - How it Works'><span>▶</span></a>"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
                     </iframe>
@@ -118,7 +119,7 @@
                     <div
                         class="lg:col-span-5 lg:row-span-2 group relative overflow-hidden rounded-3xl aspect-4/5 lg:aspect-auto shadow-2xl reveal">
                         <img src="{{ $featuredTalents[0]->profile_photo_url }}" alt="{{ $featuredTalents[0]->name }}"
-                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" decoding="async">
                         <div class="absolute inset-0 bg-linear-to-t from-black/90 via-black/20 to-transparent"></div>
                         <div class="absolute bottom-0 left-0 p-6 sm:p-8 w-full">
                             <h3 class="text-xl sm:text-2xl font-bold text-white mb-1">{{ $featuredTalents[0]->name }}</h3>
@@ -141,7 +142,7 @@
                         <div
                             class="col-span-2 group relative overflow-hidden rounded-3xl aspect-video lg:aspect-21/9 shadow-xl reveal reveal-delay-100">
                             <img src="{{ $featuredTalents[1]->profile_photo_url }}" alt="{{ $featuredTalents[1]->name }}"
-                                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" decoding="async">
                             <div class="absolute inset-0 bg-linear-to-t from-black/90 via-black/20 to-transparent"></div>
                             <div class="absolute bottom-0 left-0 p-6 sm:p-8 w-full">
                                 <h3 class="text-xl sm:text-2xl font-bold text-white mb-1">{{ $featuredTalents[1]->name }}</h3>
@@ -163,7 +164,7 @@
                         <div
                             class="col-span-1 group relative overflow-hidden rounded-3xl aspect-square shadow-xl reveal reveal-delay-200">
                             <img src="{{ $featuredTalents[2]->profile_photo_url }}" alt="{{ $featuredTalents[2]->name }}"
-                                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" decoding="async">
                             <div class="absolute inset-0 bg-linear-to-t from-black/90 via-black/20 to-transparent"></div>
                             <div class="absolute bottom-0 left-0 p-5 sm:p-6 w-full">
                                 <h3 class="text-base sm:text-lg font-bold text-white mb-1">{{ $featuredTalents[2]->name }}</h3>
@@ -185,7 +186,7 @@
                         <div
                             class="col-span-1 group relative overflow-hidden rounded-3xl aspect-square shadow-xl reveal reveal-delay-300">
                             <img src="{{ $featuredTalents[3]->profile_photo_url }}" alt="{{ $featuredTalents[3]->name }}"
-                                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" decoding="async">
                             <div class="absolute inset-0 bg-linear-to-t from-black/90 via-black/20 to-transparent"></div>
                             <div class="absolute bottom-0 left-0 p-5 sm:p-6 w-full">
                                 <h3 class="text-base sm:text-lg font-bold text-white mb-1">{{ $featuredTalents[3]->name }}</h3>
@@ -208,7 +209,7 @@
                     @foreach($featuredTalents as $talent)
                         <div class="group relative overflow-hidden rounded-3xl aspect-square shadow-xl">
                             <img src="{{ $talent->profile_photo_url }}" alt="{{ $talent->name }}"
-                                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" decoding="async">
                             <div class="absolute inset-0 bg-linear-to-t from-black/90 via-black/20 to-transparent"></div>
                             <div class="absolute bottom-0 left-0 p-5 w-full">
                                 <h3 class="text-base sm:text-lg font-bold text-white mb-1">{{ $talent->name }}</h3>
@@ -250,9 +251,8 @@
                     @endphp
                     <a href="/talent?category={{ $category->slug }}" wire:navigate
                         class="group relative aspect-square rounded-3xl overflow-hidden shadow-lg reveal {{ $index % 4 === 1 ? 'reveal-delay-100' : ($index % 4 === 2 ? 'reveal-delay-200' : ($index % 4 === 3 ? 'reveal-delay-300' : '')) }}">
-                        {{-- Use a representative talent image or default mapping --}}
                         <img src="{{ $bgImage }}" alt="{{ $category->name }}"
-                            class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                            class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" decoding="async">
 
                         <div class="absolute inset-0 bg-black/48 group-hover:bg-black/40 transition-colors"></div>
 
