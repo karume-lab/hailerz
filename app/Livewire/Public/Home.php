@@ -8,6 +8,7 @@ use Livewire\Attributes\Layout;
 use Illuminate\Support\Facades\Log;
 use App\Models\Talent;
 use App\Models\Category;
+use App\Models\Faq;
 
 #[Layout('components.layouts.app')]
 #[Title('Hailerz | Premium Talent Booking Agency')]
@@ -87,9 +88,14 @@ class Home extends Component
             return $category;
         });
 
+        $faqs = Faq::where('is_published', true)
+            ->orderBy('sort_order')
+            ->get();
+            
         return view('livewire.public.home', [
             'featuredTalents' => $featuredTalents,
             'categories'      => $categories,
+            'faqs'            => $faqs,
         ]);
     }
 }

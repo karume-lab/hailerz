@@ -300,35 +300,16 @@
                     class="text-brand-secondary">FAQs</span></h2>
 
             <div x-data="{ active: 0 }" class="space-y-4">
-                @php
-                    $faqs = [
-                        [
-                            'q' => 'When should I start the booking process?',
-                            'a' => 'For the best availability, we recommend reaching out 3-6 months in advance, especially for high-profile talent and peak dates. However, we can often accommodate last-minute requests depending on the roster.'
-                        ],
-                        [
-                            'q' => 'What happens after I submit a request?',
-                            'a' => 'Our agents will review your vision and provide a curated list of recommendations with pricing and availability within 24 hours. You\'ll have the opportunity to review media kits and profiles before securing your booking.'
-                        ],
-                        [
-                            'q' => 'Are there hidden booking fees?',
-                            'a' => 'Transparency is our priority. Our booking service is free for clients; you only pay the agreed performance fee for the talent you choose. We handle all logistics and contracts as part of our premium service.'
-                        ],
-                        [
-                            'q' => 'Can I browse multiple categories?',
-                            'a' => 'Of course. We encourage you to explore our entire directory to find the perfect combination of entertainment for your event.'
-                        ]
-                    ];
-                @endphp
+
 
                 @foreach($faqs as $index => $faq)
                     <div class="border-b border-subtle/20 reveal {{ $index % 2 === 1 ? 'reveal-delay-100' : '' }}">
                         <button @click="active = (active === {{ $index }} ? null : {{ $index }})"
                             class="flex justify-between items-center w-full text-left py-8 focus:outline-none group transition-all"
-                            aria-label="Toggle FAQ: {{ $faq['q'] }}"
+                            aria-label="Toggle FAQ: {{ $faq->question }}"
                             :aria-expanded="active === {{ $index }} ? 'true' : 'false'">
                             <span
-                                class="text-xl md:text-2xl font-bold group-hover:text-brand-secondary transition-colors">{{ $faq['q'] }}</span>
+                                class="text-xl md:text-2xl font-bold group-hover:text-brand-secondary transition-colors">{{ $faq->question }}</span>
                             <div class="h-8 w-8 rounded-full border border-subtle/30 flex items-center justify-center group-hover:border-brand-secondary transition-colors"
                                 :class="{ 'bg-brand-secondary border-brand-secondary': active === {{ $index }} }">
                                 <x-lucide-chevron-down class="w-4 h-4 transform transition-transform duration-300"
@@ -337,7 +318,7 @@
                             </div>
                         </button>
                         <div x-show="active === {{ $index }}" x-collapse x-cloak class="overflow-hidden">
-                            <p class="pb-8 text-lg text-text-muted leading-relaxed max-w-3xl">{{ $faq['a'] }}</p>
+                            <p class="pb-8 text-lg text-text-muted leading-relaxed max-w-3xl">{{ $faq->answer }}</p>
                         </div>
                     </div>
                 @endforeach
