@@ -5,7 +5,7 @@
                 <div class="mx-auto flex items-center justify-center h-24 w-24 rounded-full bg-brand-primary/10 mb-10">
                     <x-lucide-check class="h-12 w-12 text-brand-primary" stroke-width="2" />
                 </div>
-                <h2 class="text-4xl font-bold text-text-primary mb-6 font-serif">Application Received!</h2>
+                <h2 class="text-4xl font-bold text-text-primary mb-6 ">Application Received!</h2>
                 <p class="text-lg text-text-secondary mb-12 max-w-xl mx-auto">
                     We've sent a confirmation email to your inbox with a PDF summary of your application. We will review your portfolio and reach out if your act is a fit for our exclusive network.
                 </p>
@@ -44,7 +44,7 @@
                     <div class="flex-1 overflow-y-auto max-h-[60vh] pr-4 -mr-4 scrollbar-thin scrollbar-thumb-brand-primary/20 scrollbar-track-transparent">
                         <!-- Step 1: Artist Information -->
                         <div class="{{ $currentStep != 1 ? 'hidden' : 'block' }} space-y-10">
-                            <h3 class="text-2xl font-bold text-text-primary font-serif">Artist Information</h3>
+                            <h3 class="text-2xl font-bold text-text-primary ">Artist Information</h3>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                                 <x-input wire:model="artist_name" name="artist_name" label="Artist/Stage Name *" autocomplete="nickname" />
                                 <x-input wire:model="real_name" name="real_name" label="Real Name *" autocomplete="name" />
@@ -57,7 +57,7 @@
 
                         <!-- Step 2: Professional Details -->
                         <div class="{{ $currentStep != 2 ? 'hidden' : 'block' }} space-y-10">
-                            <h3 class="text-2xl font-bold text-text-primary font-serif">Professional Details</h3>
+                            <h3 class="text-2xl font-bold text-text-primary ">Professional Details</h3>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                                 <x-select wire:model="category" name="category" label="Talent Category *">
                                     <option value="">-- Select Category --</option>
@@ -78,7 +78,7 @@
 
                         <!-- Step 3: Online Presence -->
                         <div class="{{ $currentStep != 3 ? 'hidden' : 'block' }} space-y-10">
-                            <h3 class="text-2xl font-bold text-text-primary font-serif">Online Presence</h3>
+                            <h3 class="text-2xl font-bold text-text-primary ">Online Presence</h3>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                                 <x-input wire:model="website_url" name="website_url" type="url" label="Website Link" placeholder="https://..." />
                                 <x-input wire:model="instagram_handle" name="instagram_handle" type="url" label="Instagram Link" placeholder="https://instagram.com/..." />
@@ -90,7 +90,7 @@
 
                         <!-- Step 4: Experience & Gallery -->
                         <div class="{{ $currentStep != 4 ? 'hidden' : 'block' }} space-y-10">
-                            <h3 class="text-2xl font-bold text-text-primary font-serif">Experience & Portfolio</h3>
+                            <h3 class="text-2xl font-bold text-text-primary ">Experience & Portfolio</h3>
                             <div class="grid grid-cols-1 gap-8">
                                 <x-textarea wire:model="notable_venues" name="notable_venues" label="Notable Venues Performed" rows="3" />
                                 <x-textarea wire:model="notable_clients" name="notable_clients" label="Notable Events/Clients" rows="3" />
@@ -139,7 +139,7 @@
 
                         <!-- Step 5: Additional Info -->
                         <div class="{{ $currentStep != 5 ? 'hidden' : 'block' }} space-y-10">
-                            <h3 class="text-2xl font-bold text-text-primary font-serif">Additional Information</h3>
+                            <h3 class="text-2xl font-bold text-text-primary ">Additional Information</h3>
                             <div class="space-y-8">
                                 <x-textarea wire:model="bio" name="bio" label="Artist Bio (Min 200 Characters) *" rows="6" />
                                 <x-textarea wire:model="motivation" name="motivation" label="Why do you want to join Hailerz? *" rows="4" />

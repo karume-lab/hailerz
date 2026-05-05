@@ -9,7 +9,7 @@
         <span class="h-px w-8 bg-brand-primary"></span>
     </div>
 
-    <h1 class="text-4xl md:text-6xl font-serif font-black text-brand-primary mb-8 tracking-tight">
+    <h1 class="text-4xl md:text-6xl  font-black text-brand-primary mb-8 tracking-tight">
         Engagement Logged
     </h1>
     

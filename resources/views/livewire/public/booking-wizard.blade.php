@@ -5,7 +5,7 @@
                 <div class="mx-auto flex items-center justify-center h-24 w-24 rounded-full bg-brand-primary/10 mb-10">
                     <x-lucide-check class="h-12 w-12 text-brand-primary" stroke-width="2" />
                 </div>
-                <h2 class="text-4xl font-bold text-text-primary mb-6 font-serif">Inquiry Submitted Successfully!</h2>
+                <h2 class="text-4xl font-bold text-text-primary mb-6 ">Inquiry Submitted Successfully!</h2>
                 <p class="text-lg text-text-secondary mb-12 max-w-xl mx-auto">
                     A confirmation email has been sent to your inbox with a PDF summary of your event details. One of our agents will review your request and get back to you within one business day with a formal proposal.
                 </p>
@@ -43,7 +43,7 @@
                     <div class="flex-1 overflow-y-auto max-h-[60vh] pr-4 -mr-4 scrollbar-thin scrollbar-thumb-brand-primary/20 scrollbar-track-transparent">
                         <!-- Step 1: Contact Information -->
                         <div class="{{ $currentStep != 1 ? 'hidden' : 'block' }} space-y-10">
-                            <h3 class="text-2xl font-bold text-text-primary font-serif">Contact Information</h3>
+                            <h3 class="text-2xl font-bold text-text-primary ">Contact Information</h3>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                                 <x-input wire:model="first_name" name="first_name" label="First Name *" autocomplete="given-name" />
                                 <x-input wire:model="last_name" name="last_name" label="Last Name *" autocomplete="family-name" />
@@ -55,7 +55,7 @@
 
                         <!-- Step 2: Event Details -->
                         <div class="{{ $currentStep != 2 ? 'hidden' : 'block' }} space-y-10">
-                            <h3 class="text-2xl font-bold text-text-primary font-serif">Event Details</h3>
+                            <h3 class="text-2xl font-bold text-text-primary ">Event Details</h3>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                                 <x-select wire:model="event_type" name="event_type" label="Event Type *">
                                     <option value="">-- Select Type --</option>
@@ -83,7 +83,7 @@
 
                         <!-- Step 3: Talent Preferences -->
                         <div class="{{ $currentStep != 3 ? 'hidden' : 'block' }} space-y-10">
-                            <h3 class="text-2xl font-bold text-text-primary font-serif">Talent Preferences</h3>
+                            <h3 class="text-2xl font-bold text-text-primary ">Talent Preferences</h3>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                                 <x-select wire:model="talent_category" name="talent_category" label="Talent Category *">
                                     <option value="">-- Select Category --</option>
@@ -199,7 +199,7 @@
 
                         <!-- Step 4: Misc -->
                         <div class="{{ $currentStep != 4 ? 'hidden' : 'block' }} space-y-10">
-                            <h3 class="text-2xl font-bold text-text-primary font-serif">Final Details</h3>
+                            <h3 class="text-2xl font-bold text-text-primary ">Final Details</h3>
                             <x-select wire:model="source" name="source" label="How did you hear about us?">
                                 <option value="">-- Select Option --</option>
                                 <option value="Search Engine">Search Engine</option>

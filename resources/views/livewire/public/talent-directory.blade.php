@@ -201,7 +201,7 @@
       @endif
      @else
       <x-card padding="py-32" class="text-center border-dashed">
-       <h3 class="text-2xl font-bold text-text-primary mb-4 font-serif">No Results Found</h3>
+       <h3 class="text-2xl font-bold text-text-primary mb-4 ">No Results Found</h3>
        <p class="text-text-secondary mb-8">Refine your selection to explore our alternative talent members.</p>
        <x-button variant="secondary" wire:click="resetFilters">
         Clear All Filters

@@ -27,11 +27,10 @@
     content="{{ $ogDescription ?? 'A boutique talent agency specializing in securing world-class performers for corporate events, galas, and private functions.' }}">
   <meta name="twitter:image" content="{{ $ogImage ?? asset('images/logo.webp') }}">
 
-  <!-- Self-hosted fonts loaded via @font-face + font-display:swap in app.css -->
-  <link rel="preload" href="/fonts/inter-latin-400.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="/fonts/inter-latin-700.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="/fonts/outfit-latin-600.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="/fonts/outfit-latin-700.woff2" as="font" type="font/woff2" crossorigin>
+  <!-- Fenomen Sans preloads -->
+  <link rel="preload" href="/fonts/fenomen-sans/FenomenSans.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/fenomen-sans/FenomenSans-Book.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/fenomen-sans/FenomenSans-Bold.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="manifest" href="/manifest.json">
 
   @production
@@ -85,7 +84,7 @@
 </head>
 
 <body
-  class="bg-surface-light text-text-primary font-sans antialiased flex flex-col min-h-screen transition-colors duration-300">
+  class="bg-surface-light text-text-primary  antialiased flex flex-col min-h-screen transition-colors duration-300">
 
   <header
     class="sticky top-0 z-50 w-full backdrop-blur-xl bg-surface-light/90 border-b border-subtle transition-colors duration-300">
@@ -96,7 +95,7 @@
             <img src="/images/logo.webp" alt="" aria-hidden="true" width="40" height="41" fetchpriority="high" loading="eager"
               class="h-10 w-auto object-contain rounded-lg" />
             <span
-              class="text-2xl font-bold tracking-tight font-serif {{ request()->is('/') ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary' }} transition-colors uppercase tracking-widest hidden lg:block">
+              class="text-2xl font-bold tracking-tight  {{ request()->is('/') ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary' }} transition-colors uppercase tracking-widest hidden lg:block">
               Hailerz
             </span>
           </a>
@@ -143,7 +142,7 @@
           <a href="/" class="flex items-center gap-2.5 mb-6" aria-label="Hailerz Home">
             <img src="/images/logo.webp" alt="" aria-hidden="true" width="32" height="33"
               class="h-8 w-auto object-contain rounded" />
-            <span class="text-2xl font-bold tracking-tight text-brand-primary font-serif">
+            <span class="text-2xl font-bold tracking-tight text-brand-primary ">
               Hailerz
             </span>
           </a>

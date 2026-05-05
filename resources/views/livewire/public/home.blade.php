@@ -14,7 +14,7 @@
         </div>
 
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-            <h1 class="text-5xl md:text-8xl font-bold tracking-tight text-white mb-8 leading-tight font-sans">
+            <h1 class="text-5xl md:text-8xl font-bold tracking-tight text-white mb-8 leading-tight ">
                 <span class="text-brand-secondary">Book</span> Top Talent
             </h1>
             <p class="text-xl md:text-2xl text-white/90 mb-12 max-w-3xl mx-auto font-medium leading-relaxed">
@@ -70,7 +70,7 @@
     <section class="py-32 bg-surface-muted">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-20 reveal">
-                <h2 class="text-3xl md:text-5xl font-bold text-text-primary mb-6 font-serif">Book Talent in <span
+                <h2 class="text-3xl md:text-5xl font-bold text-text-primary mb-6 ">Book Talent in <span
                         class="text-brand-secondary">Three Simple Steps</span></h2>
                 <p class="text-lg text-text-secondary">Watch how Hailerz connects you with world-class talent.</p>
 
@@ -296,7 +296,7 @@
     <!-- Booking FAQs Section -->
     <section class="py-32 bg-surface-dark text-text-inverse">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl md:text-5xl font-bold text-center mb-16 font-serif reveal">Booking <span
+            <h2 class="text-3xl md:text-5xl font-bold text-center mb-16  reveal">Booking <span
                     class="text-brand-secondary">FAQs</span></h2>
 
             <div x-data="{ active: 0 }" class="space-y-4">
@@ -355,7 +355,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="lg:grid lg:grid-cols-2 lg:gap-24 items-center">
                 <div class="reveal">
-                    <h2 class="text-3xl md:text-6xl font-bold text-text-inverse mb-8 font-serif leading-tight">Ready to
+                    <h2 class="text-3xl md:text-6xl font-bold text-text-inverse mb-8  leading-tight">Ready to
                         <span class="text-brand-secondary">Work Together?</span>
                     </h2>
                     <p class="text-xl text-text-inverse/80 mb-12 leading-relaxed">

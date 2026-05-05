@@ -4,8 +4,20 @@
     <meta charset="utf-8">
     <title>{{ $title ?? 'Hailerz Document' }}</title>
     <style>
+        @font-face {
+            font-family: 'Fenomen Sans';
+            src: url('{{ public_path('fonts/fenomen-sans/FenomenSans.woff2') }}') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Fenomen Sans';
+            src: url('{{ public_path('fonts/fenomen-sans/FenomenSans-Bold.woff2') }}') format('woff2');
+            font-weight: bold;
+            font-style: normal;
+        }
         body {
-            font-family: 'Helvetica', 'Arial', sans-serif;
+            font-family: 'Fenomen Sans', 'Helvetica', 'Arial', sans-serif;
             margin: 0;
             padding: 0;
             color: #333;

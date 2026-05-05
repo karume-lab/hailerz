@@ -35,7 +35,7 @@ new class extends Component {
             <div class="w-20 h-20 bg-brand-secondary/10 text-brand-secondary rounded-full flex items-center justify-center mx-auto mb-8">
                 <x-lucide-check class="w-10 h-10" stroke-width="2" />
             </div>
-            <h2 class="text-3xl font-bold text-text-primary font-serif mb-4 tracking-tight">Inquiry Submitted</h2>
+            <h2 class="text-3xl font-bold text-text-primary  mb-4 tracking-tight">Inquiry Submitted</h2>
             <p class="text-text-secondary leading-relaxed font-light mb-8">Our procurement agents have received your specifications and will contact you shortly to discuss the engagement.</p>
             <x-button variant="secondary" href="/talent">Back to Talent</x-button>
         </div>
@@ -44,7 +44,7 @@ new class extends Component {
             <span class="h-px w-8 bg-brand-primary"></span>
             <span class="text-xs font-bold text-brand-primary uppercase tracking-widest">Procurement Step {{ $step }} of 2</span>
         </div>
-        <h2 class="text-3xl font-bold text-text-primary font-serif mb-10 tracking-tight">Book Now</h2>
+        <h2 class="text-3xl font-bold text-text-primary  mb-10 tracking-tight">Book Now</h2>
         
         @if($step === 1)
             <div class="space-y-8">

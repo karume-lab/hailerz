@@ -7,7 +7,7 @@
                 <span class="text-xs font-bold text-brand-primary uppercase tracking-widest">Expert Support</span>
                 <span class="h-px w-12 bg-brand-primary"></span>
             </div>
-            <h1 class="text-5xl md:text-8xl font-bold text-text-inverse tracking-tight mb-8 font-serif leading-tight">
+            <h1 class="text-5xl md:text-8xl font-bold text-text-inverse tracking-tight mb-8  leading-tight">
                 World-Class <span class="text-brand-secondary">Production</span> Support
             </h1>
             <p class="text-xl md:text-2xl text-text-muted max-w-3xl mx-auto leading-relaxed font-light">
@@ -78,7 +78,7 @@
                             <x-dynamic-component :component="'lucide-' . $solution['icon']" class="w-8 h-8"
                                 stroke-width="2" />
                         </div>
-                        <h3 class="text-2xl font-bold text-text-primary mb-4 font-serif">{{ $solution['title'] }}</h3>
+                        <h3 class="text-2xl font-bold text-text-primary mb-4 ">{{ $solution['title'] }}</h3>
                         <p class="text-text-secondary leading-relaxed font-light">{{ $solution['desc'] }}</p>
                     </x-card>
                 @endforeach
@@ -97,7 +97,7 @@
                             Standards</span>
                     </div>
                     <h2
-                        class="text-4xl md:text-6xl font-bold text-text-primary font-serif tracking-tight leading-tight">
+                        class="text-4xl md:text-6xl font-bold text-text-primary  tracking-tight leading-tight">
                         Vetted Talent. <span class="text-brand-secondary italic">Seamless</span> Execution.
                     </h2>
                     <p class="text-xl text-text-secondary leading-relaxed font-light">
@@ -106,12 +106,12 @@
                     </p>
                     <div class="grid grid-cols-2 gap-8 pt-6">
                         <div>
-                            <h3 class="text-4xl font-bold text-text-primary mb-2 font-serif">500+</h3>
+                            <h3 class="text-4xl font-bold text-text-primary mb-2 ">500+</h3>
                             <p class="text-xs font-bold text-text-muted uppercase tracking-widest">Vetted Specialists
                             </p>
                         </div>
                         <div>
-                            <h3 class="text-4xl font-bold text-text-primary mb-2 font-serif">24/7</h3>
+                            <h3 class="text-4xl font-bold text-text-primary mb-2 ">24/7</h3>
                             <p class="text-xs font-bold text-text-muted uppercase tracking-widest">Logistics Support</p>
                         </div>
                     </div>
@@ -160,7 +160,7 @@
                         <span class="font-bold">01</span>
                     </div>
                     <div>
-                        <h3 class="text-2xl font-bold text-text-inverse mb-4 font-serif">Vetted Excellence</h3>
+                        <h3 class="text-2xl font-bold text-text-inverse mb-4 ">Vetted Excellence</h3>
                         <p class="text-text-muted leading-relaxed font-light">We personally interview and verify the
                             experience of every specialist before they join our elite roster.</p>
                     </div>
@@ -171,7 +171,7 @@
                         <span class="font-bold">02</span>
                     </div>
                     <div>
-                        <h3 class="text-2xl font-bold text-text-inverse mb-4 font-serif">Global Reach</h3>
+                        <h3 class="text-2xl font-bold text-text-inverse mb-4 ">Global Reach</h3>
                         <p class="text-text-muted leading-relaxed font-light">Our extensive network allows us to place
                             top-tier professionals quickly, anywhere in the world.</p>
                     </div>
@@ -182,7 +182,7 @@
                         <span class="font-bold">03</span>
                     </div>
                     <div>
-                        <h3 class="text-2xl font-bold text-text-inverse mb-4 font-serif">Bespoke Matching</h3>
+                        <h3 class="text-2xl font-bold text-text-inverse mb-4 ">Bespoke Matching</h3>
                         <p class="text-text-muted leading-relaxed font-light">We match specialists to your specific
                             technical requirements and the unique tone of your event.</p>
                     </div>
@@ -193,7 +193,7 @@
                         <span class="font-bold">04</span>
                     </div>
                     <div>
-                        <h3 class="text-2xl font-bold text-text-inverse mb-4 font-serif">Seamless Management</h3>
+                        <h3 class="text-2xl font-bold text-text-inverse mb-4 ">Seamless Management</h3>
                         <p class="text-text-muted leading-relaxed font-light">From travel logistics to secure contracts,
                             we handle the details so you can focus on the performance.</p>
                     </div>
@@ -205,7 +205,7 @@
     <!-- Final CTA -->
     <section class="py-40 bg-surface-muted text-center relative overflow-hidden">
         <div class="max-w-4xl mx-auto px-4 relative z-10 reveal">
-            <h2 class="text-4xl md:text-7xl font-bold text-text-primary mb-8 font-serif tracking-tight leading-tight">
+            <h2 class="text-4xl md:text-7xl font-bold text-text-primary mb-8  tracking-tight leading-tight">
                 Build an <span class="text-brand-secondary italic">Elite</span> Team.</h2>
             <p class="text-xl md:text-2xl text-text-secondary mb-12 font-light leading-relaxed">
                 Experience the difference of working with world-class professionals. Let us help you staff your next

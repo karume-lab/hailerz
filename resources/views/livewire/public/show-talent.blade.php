@@ -20,7 +20,7 @@
           <span
             class="text-xs font-bold text-text-inverse/80 uppercase tracking-widest">{{ $talent->category?->name ?? 'Premier Talent' }}</span>
         </div>
-        <h1 class="text-5xl md:text-8xl font-bold text-text-inverse tracking-tight font-serif">{{ $talent->name }}</h1>
+        <h1 class="text-5xl md:text-8xl font-bold text-text-inverse tracking-tight ">{{ $talent->name }}</h1>
       </div>
     </div>
   </div>
@@ -104,7 +104,7 @@
             <x-card padding="p-8 md:p-12" x-show="activeTab === 'rider'" x-cloak x-transition:enter="transition ease-out duration-300"
               x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0"
               class="prose max-w-none text-text-secondary">
-              <h3 class="text-text-primary mb-6 font-serif">Production & Technical Rider</h3>
+              <h3 class="text-text-primary mb-6 ">Production & Technical Rider</h3>
               @if(filter_var($talent->technical_rider, FILTER_VALIDATE_URL))
                 <p>Our technical requirements are available at the following link:</p>
                 <a href="{{ $talent->technical_rider }}" target="_blank"
@@ -231,7 +231,7 @@
                     </div>
                   </template>
                   <div class="mt-6 text-center" x-show="lightboxTitle">
-                    <h4 x-text="lightboxTitle" class="text-text-inverse text-xl font-serif tracking-wide"></h4>
+                    <h4 x-text="lightboxTitle" class="text-text-inverse text-xl  tracking-wide"></h4>
                   </div>
                 </div>
               </div>
@@ -247,7 +247,7 @@
 
       <div class="w-full lg:w-1/3">
         <x-card padding="p-10" class="sticky top-28 shadow-2xl">
-          <h3 class="text-2xl font-bold text-text-primary mb-8 font-serif">Booking Information</h3>
+          <h3 class="text-2xl font-bold text-text-primary mb-8 ">Booking Information</h3>
 
           <div class="space-y-8 mb-10">
             <div class="flex items-start gap-5">
@@ -280,7 +280,7 @@
 
           @if($talent->website_url || $talent->instagram_handle || $talent->facebook_url || $talent->youtube_channel || $talent->tiktok_handle)
           <div class="pt-8 border-t border-subtle mb-6">
-            <h4 class="text-2xl font-bold text-text-primary font-serif mb-8">Online Presence</h4>
+            <h4 class="text-2xl font-bold text-text-primary  mb-8">Online Presence</h4>
             <div class="grid grid-cols-2 gap-6">
               @if($talent->website_url)
                 <a href="{{ $talent->website_url }}" target="_blank" class="block p-6 bg-surface-muted border border-subtle rounded-md hover:bg-brand-primary/10 transition-all group h-full">
@@ -339,7 +339,7 @@
                  @keydown.escape.window="showShareModal = false">
                  
                  <div @click.away="showShareModal = false"
-                      class="bg-[#212121] text-[#f1f1f1] w-full max-w-[520px] rounded-2xl shadow-2xl flex flex-col font-sans"
+                      class="bg-[#212121] text-[#f1f1f1] w-full max-w-[520px] rounded-2xl shadow-2xl flex flex-col "
                       x-transition:enter="transition ease-out duration-300"
                       x-transition:enter-start="opacity-0 translate-y-8 sm:translate-y-0 sm:scale-95"
                       x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"

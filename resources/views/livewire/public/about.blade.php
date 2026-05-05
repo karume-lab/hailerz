@@ -11,7 +11,7 @@
     </div>
 
     <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-       <h1 class="text-5xl md:text-8xl font-bold text-text-inverse tracking-tight mb-8 font-serif leading-tight">
+       <h1 class="text-5xl md:text-8xl font-bold text-text-inverse tracking-tight mb-8  leading-tight">
         Making Every <span class="text-brand-secondary">Event</span> Unforgettable
       </h1>
       <p class="mt-4 max-w-3xl text-xl md:text-2xl text-text-muted mx-auto leading-relaxed font-light">
@@ -61,7 +61,7 @@
 
         @foreach($values as $index => $value)
           <x-card class="bg-surface-muted group hover:bg-brand-primary reveal {{ $index % 4 === 1 ? 'reveal-delay-100' : ($index % 4 === 2 ? 'reveal-delay-200' : ($index % 4 === 3 ? 'reveal-delay-300' : '')) }}">
-            <h3 class="text-2xl font-bold text-text-primary mb-4 font-serif group-hover:text-text-inverse transition-colors">
+            <h3 class="text-2xl font-bold text-text-primary mb-4  group-hover:text-text-inverse transition-colors">
               {{ $value['title'] }}</h3>
             <p class="text-text-secondary leading-relaxed font-light group-hover:text-text-inverse/70 transition-colors">
               {{ $value['desc'] }}</p>
@@ -138,7 +138,7 @@
             </div>
             <div class="absolute inset-0 bg-linear-to-t from-brand-primary/90 via-brand-primary/20 to-transparent"></div>
             <div class="absolute bottom-10 left-10 right-10">
-              <h3 class="text-3xl font-bold text-text-inverse mb-2 font-serif">{{ $member['name'] }}</h3>
+              <h3 class="text-3xl font-bold text-text-inverse mb-2 ">{{ $member['name'] }}</h3>
               <p class="text-brand-secondary text-xs font-bold uppercase tracking-widest mb-4">{{ $member['role'] }}</p>
               <p
                 class="text-text-inverse/60 text-sm leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500">
@@ -160,7 +160,7 @@
     </div>
 
     <div class="relative max-w-4xl mx-auto px-4 text-center reveal">
-      <h2 class="text-4xl md:text-7xl font-bold text-text-inverse mb-8 tracking-tight font-serif">Ready to book top talent for your next event?</h2>
+      <h2 class="text-4xl md:text-7xl font-bold text-text-inverse mb-8 tracking-tight ">Ready to book top talent for your next event?</h2>
       <p class="text-xl md:text-2xl text-text-muted mb-12 font-light leading-relaxed">
         Let us help you find the perfect performer for your next event. Browse our roster or submit a booking inquiry today.
       </p>

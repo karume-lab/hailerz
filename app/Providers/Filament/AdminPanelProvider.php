@@ -28,7 +28,7 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->login()
-            ->font('Outfit')
+            ->font('Fenomen Sans')
             ->brandLogo(asset('images/logo.webp'))
             ->brandLogoHeight('2.5rem')
             ->maxContentWidth(\Filament\Support\Enums\Width::SevenExtraLarge)

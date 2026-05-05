@@ -6,13 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Maintenance | Hailerz</title>
 
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=outfit:400,600,700" rel="stylesheet" />
+
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="bg-surface-dark text-text-inverse flex items-center justify-center min-h-screen px-6 antialiased font-sans overflow-hidden">
+<body class="bg-surface-dark text-text-inverse flex items-center justify-center min-h-screen px-6 antialiased  overflow-hidden">
     <!-- Bouncing Logo Container -->
     <div class="fixed inset-0 pointer-events-none z-50">
         <div id="bouncing-logo" class="absolute h-24 w-auto flex items-center justify-center">

@@ -25,7 +25,7 @@
         </div>
     @endif
 
-    <h2 class="text-4xl md:text-6xl font-bold text-text-primary tracking-tight font-serif leading-tight">
+    <h2 class="text-4xl md:text-6xl font-bold text-text-primary tracking-tight  leading-tight">
         {!! $title !!}
     </h2>
 </div>

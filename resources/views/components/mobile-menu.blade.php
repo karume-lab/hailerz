@@ -39,7 +39,7 @@
                     <a href="{{ $link['href'] }}" 
                         wire:navigate
                         @click="open = false"
-                        class="text-4xl font-bold tracking-tight text-text-primary hover:text-brand-primary transition-all duration-300 font-serif {{ request()->is(ltrim($link['href'], '/') . '*') ? 'text-brand-primary' : '' }}">
+                        class="text-4xl font-bold tracking-tight text-text-primary hover:text-brand-primary transition-all duration-300  {{ request()->is(ltrim($link['href'], '/') . '*') ? 'text-brand-primary' : '' }}">
                         {{ $link['label'] }}
                     </a>
                 @endforeach

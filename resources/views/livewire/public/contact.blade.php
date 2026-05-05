@@ -30,7 +30,7 @@
 
    <div class="pt-16 lg:grid lg:grid-cols-3 lg:gap-12 border-t border-subtle ">
     <div>
-     <h2 class="text-2xl font-bold tracking-tight text-text-primary font-serif mb-4">Direct <span class="text-brand-secondary">Inquiries</span></h2>
+     <h2 class="text-2xl font-bold tracking-tight text-text-primary  mb-4">Direct <span class="text-brand-secondary">Inquiries</span></h2>
      <p class="text-sm text-text-secondary font-light leading-relaxed">
       Reach out and we'll respond promptly to your request. For urgent booking needs, we recommend using our <a href="/book" class="text-brand-primary font-bold hover:underline">expedited request process</a>.
      </p>

@@ -7,7 +7,7 @@
         <span class="text-xs font-bold text-brand-primary uppercase tracking-widest">Our Services</span>
         <span class="h-px w-12 bg-brand-primary"></span>
       </div>
-      <h1 class="text-5xl md:text-8xl font-bold text-text-inverse tracking-tight mb-8 font-serif leading-tight">World-Class <span class="text-brand-secondary">Performers</span> for Every Event</h1>
+      <h1 class="text-5xl md:text-8xl font-bold text-text-inverse tracking-tight mb-8  leading-tight">World-Class <span class="text-brand-secondary">Performers</span> for Every Event</h1>
       <p class="text-xl md:text-2xl text-text-muted max-w-3xl mx-auto leading-relaxed font-light">
         Comprehensive talent booking and event entertainment solutions tailored to your needs. We handle everything so you can focus on your event.
       </p>
@@ -74,7 +74,7 @@
             <div class="w-16 h-16 bg-brand-primary/10 rounded-2xl flex items-center justify-center text-brand-primary mb-8 group-hover:scale-110 transition-transform">
               <x-dynamic-component :component="'lucide-' . $cat['icon']" class="w-8 h-8" stroke-width="2" />
             </div>
-            <h3 class="text-2xl font-bold text-text-primary mb-4 font-serif">{{ $cat['name'] }}</h3>
+            <h3 class="text-2xl font-bold text-text-primary mb-4 ">{{ $cat['name'] }}</h3>
             <p class="text-text-secondary mb-6 leading-relaxed">{{ $cat['desc'] }}</p>
             <p class="text-xs font-bold text-brand-primary uppercase tracking-widest">Most Popular for:</p>
             <p class="text-sm text-text-muted italic">{{ $cat['popular'] }}</p>
@@ -154,7 +154,7 @@
             <div class="w-16 h-16 bg-brand-primary text-text-inverse rounded-full flex items-center justify-center mx-auto mb-8 text-2xl font-bold shadow-lg">
               {{ $index + 1 }}
             </div>
-            <h3 class="text-2xl font-bold text-text-primary mb-4 font-serif">{{ $step[0] }}</h3>
+            <h3 class="text-2xl font-bold text-text-primary mb-4 ">{{ $step[0] }}</h3>
             <p class="text-text-secondary leading-relaxed font-light">{{ $step[1] }}</p>
           </div>
         @endforeach
@@ -164,7 +164,7 @@
   <!-- Final CTA -->
   <section class="py-32 bg-brand-primary text-center relative overflow-hidden">
     <div class="max-w-4xl mx-auto px-4 relative z-10 reveal">
-      <h2 class="text-3xl md:text-6xl font-bold text-text-inverse mb-8 font-serif leading-tight">Ready to Find Your <span class="text-brand-secondary">Perfect Match?</span></h2>
+      <h2 class="text-3xl md:text-6xl font-bold text-text-inverse mb-8  leading-tight">Ready to Find Your <span class="text-brand-secondary">Perfect Match?</span></h2>
       <p class="text-xl text-text-inverse/80 mb-12 max-w-2xl mx-auto font-light leading-relaxed">
         Let us help you find the perfect performer for your next event. Browse our roster or submit a booking inquiry today.
       </p>
