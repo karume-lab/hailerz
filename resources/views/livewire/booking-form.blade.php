@@ -35,7 +35,7 @@ new class extends Component {
             <div class="w-20 h-20 bg-brand-secondary/10 text-brand-secondary rounded-full flex items-center justify-center mx-auto mb-8">
                 <x-lucide-check class="w-10 h-10" stroke-width="2" />
             </div>
-            <x-heading level="h2" title="We've Got It!" emphasis="Got It!" class="text-text-primary mb-4" />
+            <x-heading level="h2" title="We've Got It!" class="text-text-primary mb-4" />
             <p class="text-text-secondary leading-relaxed font-light mb-8">Thanks for reaching out! Our team has received your request and we'll get back to you shortly to chat about the details.</p>
             <x-button variant="primary" href="/talent">Back to Talent</x-button>
         </div>

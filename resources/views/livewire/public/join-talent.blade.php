@@ -5,7 +5,7 @@
                 <div class="mx-auto flex items-center justify-center h-24 w-24 rounded-full bg-brand-primary/10 mb-10">
                     <x-lucide-check class="h-12 w-12 text-brand-primary" stroke-width="2" />
                 </div>
-                <x-heading level="h2" title="Application Submitted!" emphasis="Submitted!" class="text-text-primary mb-6" />
+                <x-heading level="h2" title="Application Submitted!" class="text-text-primary mb-6" />
                 <p class="text-lg text-text-secondary mb-12 max-w-xl mx-auto">
                     Thanks for sharing your talent with us! We've successfully received your application. 
                     Our team will review your portfolio and reach out within 5-7 business days if there's a potential fit for our roster.
@@ -20,7 +20,7 @@
         <section class="relative py-20 md:py-32 bg-linear-to-br from-surface-light via-surface-light to-brand-primary/5">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="max-w-4xl mx-auto text-center">
-                    <x-heading level="h1" title="Join the Hailerz Roster" emphasis="Hailerz Roster" align="center" class="mb-6" />
+                    <x-heading level="h1" title="Join the Hailerz Roster" align="center" class="mb-6" />
                     <p class="text-xl text-text-secondary mb-8">
                         Are you a talented performer looking to take your career to the next level?
                         Join our exclusive roster of premium talent and get booked for high-profile events across Nigeria.

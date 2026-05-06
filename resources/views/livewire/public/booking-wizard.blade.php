@@ -5,7 +5,7 @@
                 <div class="mx-auto flex items-center justify-center h-24 w-24 rounded-full bg-brand-primary/10 mb-10">
                     <x-lucide-check class="h-12 w-12 text-brand-primary" stroke-width="2" />
                 </div>
-                <x-heading level="h2" title="We've Got Your Request!" emphasis="Got Your Request!" class="text-text-primary mb-6" />
+                <x-heading level="h2" title="We've Got Your Request!" class="text-text-primary mb-6" />
                 <p class="text-lg text-text-secondary mb-12 max-w-xl mx-auto">
                     Thanks for reaching out! We've sent a summary of your event details to your inbox. 
                     One of our agents will review everything and get back to you within one business day with a formal proposal.

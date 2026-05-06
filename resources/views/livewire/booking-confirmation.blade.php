@@ -9,7 +9,7 @@
         <span class="h-px w-12 bg-brand-primary"></span>
     </div>
 
-    <x-heading level="h1" title="You're All Set!" emphasis="All Set!" class="text-text-primary mb-8" />
+    <x-heading level="h1" title="You're All Set!" class="text-text-primary mb-8" />
     
     <p class="text-xl text-text-secondary mb-12 leading-relaxed font-light">
         We've received your booking request and our team is already on it. 

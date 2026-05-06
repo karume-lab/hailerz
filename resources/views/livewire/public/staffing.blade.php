@@ -8,7 +8,7 @@
                     Personnel</span>
                 <span class="h-px w-12 bg-brand-primary"></span>
             </div>
-            <x-heading level="h1" title="Hire Elite Event Personnel" emphasis="Elite Event" align="center"
+            <x-heading level="h1" title="Hire Elite Event Personnel" align="center"
                 class="text-text-inverse mb-8" />
             <p class="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto leading-relaxed font-light">
                 Secure the polished, professional personnel required to execute flawless events. From VIP hosts to
@@ -30,7 +30,7 @@
     <!-- Core Solutions -->
     <section class="py-32 bg-surface-muted">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <x-heading align="center" title="Specialized Roles for Flawless Events" emphasis="Flawless Events"
+            <x-heading align="center" title="Specialized Roles for Flawless Events"
                 class="reveal" />
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 my-8">
                 @php
@@ -81,7 +81,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="lg:grid lg:grid-cols-2 lg:gap-24 items-center">
                 <div class="space-y-10 reveal">
-                    <x-heading level="h2" title="White-Glove Service. Impeccable Delivery." emphasis="Impeccable"
+                    <x-heading level="h2" title="White-Glove Service. Impeccable Delivery."
                         class="text-text-primary mb-8" />
                     <p class="text-xl text-text-secondary leading-relaxed font-light">
                         We don't just fill roles. We provide polished professionals who deeply understand the nuances of
@@ -127,7 +127,7 @@
     <!-- Why Choose Section -->
     <section class="py-32 bg-surface-dark relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <x-heading align="center" title="The Hailerz Advantage" emphasis="Advantage" class="reveal text-white my-8" />
+            <x-heading align="center" title="The Hailerz Advantage" class="reveal text-white my-8" />
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
                 <div class="flex gap-8 reveal border-b border-white/10 pb-8 md:border-none md:pb-0">
@@ -184,7 +184,7 @@
     <!-- Final CTA -->
     <section class="py-40 bg-brand-accent text-center relative overflow-hidden">
         <div class="max-w-4xl mx-auto px-4 relative z-10 reveal">
-            <x-heading level="h2" title="Assemble Your Event Team." emphasis="Event Team" align="center"
+            <x-heading level="h2" title="Assemble Your Event Team." align="center"
                 class="text-text-inverse mb-8" />
             <p class="text-xl md:text-2xl text-text-inverse/80 mb-12 font-light leading-relaxed">
                 From the stage to the floor, ensure every touchpoint of your event is handled by industry experts.

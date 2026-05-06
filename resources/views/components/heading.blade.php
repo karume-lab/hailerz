@@ -1,16 +1,11 @@
 @props([
     'level' => 'h2',
     'title' => null,
-    'emphasis' => null,
     'align' => 'left',
 ])
 
 @php
     $content = $title ?? $slot->toHtml();
-    if ($emphasis) {
-        $emphasisClasses = 'text-brand-secondary';
-        $content = str_replace($emphasis, '<span class="' . $emphasisClasses . '">' . $emphasis . '</span>', $content);
-    }
 
     $sizes = [
         'h1' => 'text-5xl md:text-8xl',

@@ -7,7 +7,7 @@
     </div>
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-      <x-heading level="h1" title="Making Every Event Unforgettable" emphasis="Unforgettable" align="center"
+      <x-heading level="h1" title="Making Every Event Unforgettable" align="center"
         class="text-text-inverse mb-6 text-5xl md:text-7xl" />
       <p class="text-xl md:text-2xl text-text-inverse/90 max-w-3xl mx-auto leading-relaxed font-light">
         We connect event planners with premium talent to create extraordinary experiences that audiences remember
