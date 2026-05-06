@@ -174,10 +174,10 @@
         Let's create an unforgettable event. Browse our talent directory or submit a booking inquiry today.
       </p>
       <div class="flex flex-col sm:flex-row gap-6 justify-center">
-        <x-button variant="outline" size="lg" href="/talent" wire:navigate>
+        <x-button variant="outline" size="lg" href="/talent" wire:navigate class="w-full sm:w-auto">
           Browse Talent
         </x-button>
-        <x-button variant="primary" size="lg" href="/book" wire:navigate>
+        <x-button variant="primary" size="lg" href="/book" wire:navigate class="w-full sm:w-auto">
           Book Now
         </x-button>
       </div>

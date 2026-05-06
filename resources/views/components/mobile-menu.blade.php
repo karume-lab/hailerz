@@ -1,5 +1,6 @@
 @props([
     'links' => [
+        ['label' => 'Home', 'href' => '/'],
         ['label' => 'Talent', 'href' => '/talent'],
         ['label' => 'Services', 'href' => '/services'],
         ['label' => 'Staffing', 'href' => '/staffing'],
@@ -48,6 +49,7 @@
 
             <div class="mt-auto pb-12 space-y-8">
                 <div class="h-px bg-subtle w-full"></div>
+
                 <div class="flex flex-col gap-6">
                     <div class="flex justify-between items-center">
                         <div class="flex flex-col gap-1">

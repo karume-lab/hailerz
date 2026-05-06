@@ -122,8 +122,10 @@
       <div class="flex justify-between items-center h-20">
         <div class="shrink-0 flex items-center">
           <a href="/" class="flex items-center gap-2.5" aria-label="Hailerz Home">
+            <img src="{{ asset('images/logo.webp') }}" alt="" aria-hidden="true" width="32" height="33"
+              class="h-8 w-auto object-contain rounded" />
             <span
-              class="text-2xl font-semibold tracking-tight  {{ request()->is('/') ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary' }} transition-colors hidden lg:block">
+              class="text-xl sm:text-2xl font-semibold tracking-tight text-brand-primary transition-colors">
               Hailerz
             </span>
           </a>
@@ -152,7 +154,7 @@
           <a href="/join" wire:navigate
             class="{{ request()->is('join*') ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary' }} transition-colors">Submissions</a>
           <x-button variant="primary" size="sm" href="/book" wire:navigate
-            class="flex border-none shadow-sm px-6 py-2.5 rounded-full hover:scale-105 transition-transform text-xs sm:text-sm">
+            class="border-none shadow-sm px-6 py-2.5 rounded-full hover:scale-105 transition-transform text-xs sm:text-sm">
             Book Now
           </x-button>
 
