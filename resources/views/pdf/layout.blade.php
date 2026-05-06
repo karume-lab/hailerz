@@ -5,23 +5,16 @@
     <title>{{ $title ?? 'Hailerz Document' }}</title>
     <style>
         @font-face {
-            font-family: 'Fenomen Sans';
-            src: url('{{ resource_path('fonts/fenomen-sans/FenomenSans.woff2') }}') format('woff2');
-            font-weight: normal;
-            font-style: normal;
-        }
-        @font-face {
-            font-family: 'Fenomen Sans';
-            src: url('{{ resource_path('fonts/fenomen-sans/FenomenSans-Bold.woff2') }}') format('woff2');
-            font-weight: bold;
-            font-style: normal;
+            font-family: 'Inter';
+            src: url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
         }
         body {
-            font-family: 'Fenomen Sans', 'Helvetica', 'Arial', sans-serif;
+            font-family: 'Inter', 'Helvetica', 'Arial', sans-serif;
+            font-size: 14px;
+            color: #111827;
+            line-height: 1.6;
             margin: 0;
             padding: 0;
-            color: #333;
-            line-height: 1.6;
         }
         .header {
             background-color: #223757;

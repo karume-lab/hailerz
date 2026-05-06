@@ -88,25 +88,25 @@
         <div class="shrink-0 flex items-center">
           <a href="/" class="flex items-center gap-2.5" aria-label="Hailerz Home">
             <span
-              class="text-2xl font-semibold tracking-tight  {{ request()->is('/') ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary' }} transition-colors uppercase tracking-widest hidden lg:block">
+              class="text-2xl font-semibold tracking-tight  {{ request()->is('/') ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary' }} transition-colors hidden lg:block">
               Hailerz
             </span>
           </a>
         </div>
         <nav class="hidden md:flex items-center space-x-10">
           <a href="/talent" wire:navigate
-            class="{{ request()->is('talent*') ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary' }} transition-colors uppercase tracking-widest">
+            class="{{ request()->is('talent*') ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary' }} transition-colors">
             Browse Talent</a>
           <a href="/services" wire:navigate
-            class="{{ request()->is('services*') ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary' }} transition-colors uppercase tracking-widest">Services</a>
+            class="{{ request()->is('services*') ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary' }} transition-colors">Services</a>
           <a href="/about" wire:navigate
-            class="{{ request()->is('about*') ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary' }} transition-colors uppercase tracking-widest">About</a>
+            class="{{ request()->is('about*') ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary' }} transition-colors">About</a>
           <a href="/resources" wire:navigate
-            class="{{ request()->is('resources*') ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary' }} transition-colors uppercase tracking-widest">Resources</a>
+            class="{{ request()->is('resources*') ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary' }} transition-colors">Resources</a>
           <a href="/staffing" wire:navigate
-            class="{{ request()->is('staffing*') ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary' }} transition-colors uppercase tracking-widest">Staffing</a>
+            class="{{ request()->is('staffing*') ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary' }} transition-colors">Staffing</a>
           <a href="/contact" wire:navigate
-            class="{{ request()->is('contact*') ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary' }} transition-colors uppercase tracking-widest">Contact</a>
+            class="{{ request()->is('contact*') ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary' }} transition-colors">Contact</a>
         </nav>
 
         <div class="flex items-center space-x-4">
@@ -115,7 +115,7 @@
             <x-theme-toggle />
           </div>
           <a href="/join" wire:navigate
-            class="{{ request()->is('join*') ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary' }} transition-colors uppercase tracking-widest">Submissions</a>
+            class="{{ request()->is('join*') ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary' }} transition-colors">Submissions</a>
           <x-button variant="primary" size="sm" href="/book" wire:navigate
             class="flex border-none shadow-sm px-6 py-2.5 rounded-full hover:scale-105 transition-transform text-xs sm:text-sm">
             Book Now

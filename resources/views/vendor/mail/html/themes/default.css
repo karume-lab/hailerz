@@ -1,22 +1,11 @@
 /* Base */
 
-@font-face {
-    font-family: 'Fenomen Sans';
-    font-style: normal;
-    font-weight: 400;
-    src: url('https://raw.githubusercontent.com/jjinni/fenomen-sans-typeface/master/FenomenSans/FenomenSans.woff2') format('woff2');
-}
-@font-face {
-    font-family: 'Fenomen Sans';
-    font-style: normal;
-    font-weight: 700;
-    src: url('https://raw.githubusercontent.com/jjinni/fenomen-sans-typeface/master/FenomenSans-Bold/FenomenSans-Bold.woff2') format('woff2');
-}
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
 
 body,
-body *:not(html):not(style):not(br):not(tr):not(code) {
+body *:not(html):not(style):not(br):not(tr):not(td) {
     box-sizing: border-box;
-    font-family: 'Fenomen Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif,
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif,
         'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
     position: relative;
 }
