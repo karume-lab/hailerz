@@ -238,5 +238,11 @@ class DatabaseSeeder extends Seeder
             ]
         );
 
+        // 8. Call Additional Seeders
+        $this->call([
+            FaqSeeder::class,
+            PostSeeder::class,
+        ]);
+
     }
 }

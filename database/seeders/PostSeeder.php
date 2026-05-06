@@ -18,7 +18,7 @@ class PostSeeder extends Seeder
                 'slug' => 'how-to-choose-the-right-talent-for-your-event',
                 'category' => 'Guides',
                 'author' => 'Hailerz Team',
-                'image_url' => asset('images/resources/blog-1.webp'),
+                'image_url' => '/images/resources/blog-1.webp',
                 'subtitle' => 'Picking the perfect performer can make or break your event. Here are the key questions to ask before you book.',
                 'content' => [
                     ['type' => 'p', 'text' => 'Choosing the right talent for your event is one of the most important decisions you will make. The right performer can elevate your event from good to unforgettable, while the wrong choice can leave guests disappointed.'],
@@ -39,7 +39,7 @@ class PostSeeder extends Seeder
                 'slug' => 'top-event-trends-in-nigeria-2026',
                 'category' => 'Industry',
                 'author' => 'Hailerz Team',
-                'image_url' => asset('images/resources/blog-2.webp'),
+                'image_url' => '/images/resources/blog-2.webp',
                 'subtitle' => 'From Afrobeats fusion to immersive experiences, discover what is shaping the Nigerian event industry this year.',
                 'content' => [
                     ['type' => 'p', 'text' => 'The Nigerian event industry is booming, and 2026 is shaping up to be an exciting year. Here are the top trends we are seeing:'],
@@ -60,7 +60,7 @@ class PostSeeder extends Seeder
                 'slug' => 'hailerz-launch-event-recap',
                 'category' => 'News',
                 'author' => 'Hailerz Team',
-                'image_url' => asset('images/resources/blog-3.webp'),
+                'image_url' => '/images/resources/blog-3.webp',
                 'subtitle' => 'Over 200 guests joined us to celebrate the official launch of Hailerz. Here is what went down.',
                 'content' => [
                     ['type' => 'p', 'text' => 'Last week, we celebrated the official launch of Hailerz with an unforgettable evening at the Eko Hotel & Suites in Lagos.'],
