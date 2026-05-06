@@ -70,9 +70,8 @@
 
                 <div
                     class="mt-12 aspect-video max-w-4xl mx-auto rounded-3xl overflow-hidden shadow-2xl border border-subtle bg-surface-dark reveal reveal-delay-200">
-                    <iframe class="w-full h-full" src="https://www.youtube.com/embed/LLdr6BqljEw"
+                    <iframe class="w-full h-full" src="https://www.youtube.com/embed/LLdr6BqljEw?autoplay=1&mute=1&rel=0"
                         title="Hailerz - How it Works" frameborder="0" loading="lazy"
-                        srcdoc="<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img,span{position:absolute;width:100%;top:0;bottom:0;margin:auto}span{height:1.5em;text-align:center;font:48px/1.5 sans-serif;color:white;text-shadow:0 0 0.5em black}</style><a href=https://www.youtube.com/embed/LLdr6BqljEw?autoplay=1><img src=https://img.youtube.com/vi/LLdr6BqljEw/hqdefault.jpg alt='Hailerz - How it Works'><span>▶</span></a>"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
                     </iframe>

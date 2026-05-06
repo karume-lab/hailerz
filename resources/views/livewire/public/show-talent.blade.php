@@ -42,7 +42,7 @@
                 if (str_contains($talent->video_url, 'youtube.com') || str_contains($talent->video_url, 'youtu.be')) {
                   preg_match('/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/ ]{11})/i', $talent->video_url, $match);
                   if (isset($match[1])) {
-                    $embedUrl = "https://www.youtube.com/embed/{$match[1]}?autoplay=0&rel=0";
+                    $embedUrl = "https://www.youtube.com/embed/{$match[1]}?autoplay=1&mute=1&rel=0";
                   }
                 } elseif (str_contains($talent->video_url, 'vimeo.com')) {
                   preg_match('/vimeo\.com\/(?:channels\/(?:\w+\/)?|groups\/(?:[^\/]*)\/videos\/|album\/(?:\d+)\/video\/|video\/|)(\d+)(?:$|\/|\?)/i', $talent->video_url, $match);
@@ -146,7 +146,7 @@
                         if (str_contains($item->url, 'youtube.com') || str_contains($item->url, 'youtu.be')) {
                           preg_match('/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/ ]{11})/i', $item->url, $match);
                           if (isset($match[1])) {
-                            $galleryEmbedUrl = "https://www.youtube.com/embed/{$match[1]}?autoplay=1&rel=0";
+                            $galleryEmbedUrl = "https://www.youtube.com/embed/{$match[1]}?autoplay=1&mute=1&rel=0";
                             $thumbnailUrl = "https://img.youtube.com/vi/{$match[1]}/hqdefault.jpg";
                           }
                         } elseif (str_contains($item->url, 'vimeo.com')) {
