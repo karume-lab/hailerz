@@ -74,29 +74,20 @@ class Home extends Component
             ->limit(4)
             ->get();
 
-        $categories = Category::withCount(['talents' => function($query) {
+        $categories = Category::withCount(['talents' => function ($query) {
             $query->where('status', 'active');
         }])
-        ->with(['talents' => function($query) {
-            $query->where('status', 'active')->limit(1);
-        }])
-        ->get()
-        ->map(function($category) {
-            $category->default_image = match($category->slug) {
-                'musicians' => asset('images/home/musicians.webp'),
-                'djs' => asset('images/home/djs.webp'),
-                'speakers' => asset('images/home/speakers.webp'),
-                'comedians' => asset('images/home/comedians.webp'),
-                'dancers' => asset('images/categories/dancers.webp'),
-                'artists' => asset('images/categories/artists.webp'),
-                'poets' => asset('images/categories/poets.webp'),
-                'content-creators' => asset('images/categories/content-creators.webp'),
-                'mcs' => asset('images/categories/mcs.webp'),
-                'variety-artists' => asset('images/categories/variety-artists.webp'),
-                default => asset('images/home/specialty.webp'),
-            };
-            return $category;
-        });
+            ->with(['talents' => function ($query) {
+                $query->where('status', 'active')->limit(1);
+            }])
+            ->get()
+            ->filter(function ($category) {
+                return file_exists(public_path("images/home/{$category->slug}.webp"));
+            })
+            ->map(function ($category) {
+                $category->default_image = asset("images/home/{$category->slug}.webp");
+                return $category;
+            });
 
         $faqs = Faq::where('is_published', true)
             ->orderBy('sort_order')

@@ -30,11 +30,9 @@
     <!-- Core Solutions -->
     <section class="py-32 bg-surface-muted">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <x-heading align="center"
-                subtitle="From the red carpet to the green room, we supply the industry's most articulate and capable event professionals."
-                title="Specialized Roles for Flawless Events" emphasis="Flawless Events" class="reveal" />
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            <x-heading align="center" title="Specialized Roles for Flawless Events" emphasis="Flawless Events"
+                class="reveal" />
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 my-8">
                 @php
                     $solutions = [
                         [
@@ -83,13 +81,8 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="lg:grid lg:grid-cols-2 lg:gap-24 items-center">
                 <div class="space-y-10 reveal">
-                    <div class="flex items-center gap-3">
-                        <span class="h-px w-8 bg-brand-primary"></span>
-                        <span class="text-xs font-bold text-brand-primary uppercase tracking-widest">Our
-                            Standards</span>
-                    </div>
                     <x-heading level="h2" title="White-Glove Service. Impeccable Delivery." emphasis="Impeccable"
-                        :italic="true" class="text-text-primary mb-8" />
+                        class="text-text-primary mb-8" />
                     <p class="text-xl text-text-secondary leading-relaxed font-light">
                         We don't just fill roles. We provide polished professionals who deeply understand the nuances of
                         high-end entertainment and luxury hospitality. When you book staff through Hailerz, you are
@@ -110,8 +103,8 @@
                 <div class="mt-16 lg:mt-0 grid grid-cols-2 gap-6">
                     <div
                         class="group relative overflow-hidden rounded-2xl aspect-3/4 bg-surface-dark shadow-sm hover:shadow-xl transition-shadow duration-500 reveal reveal-delay-100">
-                        <img src="/images/staffing/luxury-hospitality.webp"
-                            loading="lazy" width="500" height="667" alt="Luxury Event Hospitality"
+                        <img src="/images/staffing/luxury-hospitality.webp" loading="lazy" width="500" height="667"
+                            alt="Luxury Event Hospitality"
                             class="w-full h-full object-cover grayscale transition-transform duration-700 group-hover:scale-105" />
                         <div
                             class="absolute inset-0 bg-linear-to-tr from-brand-primary/60 to-brand-secondary/20 mix-blend-multiply opacity-80">
@@ -119,8 +112,8 @@
                     </div>
                     <div
                         class="group relative overflow-hidden rounded-2xl aspect-3/4 bg-surface-dark shadow-sm hover:shadow-xl transition-shadow duration-500 mt-12 reveal reveal-delay-300">
-                        <img src="/images/staffing/event-coordination.webp"
-                            loading="lazy" width="500" height="667" alt="Event Coordination"
+                        <img src="/images/staffing/event-coordination.webp" loading="lazy" width="500" height="667"
+                            alt="Event Coordination"
                             class="w-full h-full object-cover grayscale transition-transform duration-700 group-hover:scale-105" />
                         <div
                             class="absolute inset-0 bg-linear-to-tr from-brand-primary/60 to-brand-secondary/20 mix-blend-multiply opacity-80">
@@ -134,11 +127,9 @@
     <!-- Why Choose Section -->
     <section class="py-32 bg-surface-dark relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <x-heading align="center"
-                subtitle="We are your dedicated hospitality partner, providing a meticulous approach to staffing your most important occasions."
-                title="The Hailerz Advantage" emphasis="Advantage" class="reveal text-white" />
+            <x-heading align="center" title="The Hailerz Advantage" emphasis="Advantage" class="reveal text-white my-8" />
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 mt-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
                 <div class="flex gap-8 reveal border-b border-white/10 pb-8 md:border-none md:pb-0">
                     <div
                         class="h-12 w-12 rounded-full bg-brand-secondary/10 text-brand-secondary flex items-center justify-center shrink-0">
@@ -193,7 +184,7 @@
     <!-- Final CTA -->
     <section class="py-40 bg-brand-accent text-center relative overflow-hidden">
         <div class="max-w-4xl mx-auto px-4 relative z-10 reveal">
-            <x-heading level="h2" title="Assemble Your Event Team." emphasis="Event Team" :italic="true"
+            <x-heading level="h2" title="Assemble Your Event Team." emphasis="Event Team" align="center"
                 class="text-text-inverse mb-8" />
             <p class="text-xl md:text-2xl text-text-inverse/80 mb-12 font-light leading-relaxed">
                 From the stage to the floor, ensure every touchpoint of your event is handled by industry experts.

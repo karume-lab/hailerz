@@ -1,7 +1,7 @@
 <div class="bg-surface-muted min-h-screen py-20">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-    <x-heading subtitle="Global Talent Network" title="Premier Roster" emphasis="Premier"
+    <x-heading title="Premier Roster" emphasis="Premier"
       class="mb-16" />
     <p class="mt--12 mb-16 text-lg text-text-secondary max-w-2xl">Explore and secure the world’s most sought-after
       musicians, speakers, and performers for your next high-profile event.</p>

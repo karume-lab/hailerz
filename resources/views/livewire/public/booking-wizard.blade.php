@@ -17,7 +17,6 @@
         @else
             <x-heading 
                 align="center" 
-                subtitle="Inquiry Wizard" 
                 title="Start your booking" 
                 class="mb-16"
             />

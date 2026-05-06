@@ -79,7 +79,8 @@ class TalentFactory extends Factory
         $data = $categories[$categoryName];
         
         $name = fake()->randomElement($data['names']);
-        $imageName = fake()->randomElement($data['images']);
+        $imageNumber = fake()->numberBetween(1, 4);
+        $imageName = "talent-{$imageNumber}";
 
         return [
             'category_id' => \App\Models\Category::where('name', $categoryName)->first()?->id ?? \App\Models\Category::factory(),
@@ -88,7 +89,7 @@ class TalentFactory extends Factory
             'bio' => fake()->randomElement($data['bios']),
             'technical_rider' => $data['riders'],
             'video_url' => $data['video'],
-            'primary_image_url' => "/images/talents/{$imageName}.webp",
+            'primary_image_url' => "/images/home/featured/{$imageName}.webp",
             'starting_price' => fake()->randomFloat(2, 2500, 20000),
             'location' => fake()->city() . ', ' . fake()->country(),
             'status' => 'active',

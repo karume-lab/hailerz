@@ -2,7 +2,7 @@
   <!-- Hero Section -->
   <section class="relative bg-surface-dark py-24 lg:py-32 border-b border-subtle">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-      <x-heading level="h1" title="Our Services" align="center" class="text-text-inverse mb-6" />
+      <x-heading level="h1" title="Our Services" emphasis="Services" align="center" class="text-text-inverse mb-6" />
       <p class="text-xl text-text-inverse/80 max-w-3xl mx-auto leading-relaxed font-light">
         Comprehensive talent booking and event entertainment solutions tailored to your needs
       </p>
@@ -13,7 +13,7 @@
   <section class="py-24 bg-surface-light">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16">
-        <x-heading level="h2" title="Talent Categories" align="center" class="mb-4" />
+        <x-heading level="h2" title="Talent Categories" emphasis="Categories" align="center" class="mb-4" />
         <p class="text-lg text-text-secondary max-w-2xl mx-auto">Premium performers across every category and genre</p>
       </div>
 
@@ -160,7 +160,7 @@
   <section class="py-24 bg-surface-muted/30 border-y border-subtle">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16">
-        <x-heading level="h2" title="Events We Serve" align="center" class="mb-4" />
+        <x-heading level="h2" title="Events We Serve" emphasis="Serve" align="center" class="mb-4" />
         <p class="text-lg text-text-secondary">Specialized talent for every occasion</p>
       </div>
 
@@ -191,7 +191,7 @@
   <section class="py-24 bg-surface-light">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16">
-        <x-heading level="h2" title="Full-Service Support" align="center" class="mb-4" />
+        <x-heading level="h2" title="Full-Service Support" emphasis="Support" align="center" class="mb-4" />
         <p class="text-lg text-text-secondary max-w-2xl mx-auto">We handle everything so you can focus on your event</p>
       </div>
 
@@ -230,7 +230,7 @@
   <section class="py-24 bg-surface-muted/30 border-y border-subtle">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16">
-        <x-heading level="h2" title="How It Works" align="center" class="mb-4" />
+        <x-heading level="h2" title="How It Works" emphasis="Works" align="center" class="mb-4" />
         <p class="text-lg text-text-secondary">Simple, transparent process from inquiry to performance</p>
       </div>
 
@@ -268,7 +268,7 @@
   <section class="py-24 bg-surface-light">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="max-w-4xl mx-auto">
-        <x-heading level="h2" title="Transparent Pricing" align="center" class="mb-12" />
+        <x-heading level="h2" title="Transparent Pricing" emphasis="Pricing" align="center" class="mb-12" />
 
         <div class="rounded-3xl border border-subtle bg-surface-light p-8 md:p-12 shadow-sm mb-12">
           <div class="space-y-10">
@@ -329,7 +329,7 @@
   <!-- Ready to Get Started -->
   <section class="py-24 bg-brand-accent border-t border-subtle">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <x-heading level="h2" title="Ready to Get Started?" align="center" class="text-text-inverse mb-6" />
+      <x-heading level="h2" title="Ready to Get Started?" emphasis="Started?" align="center" class="text-text-inverse mb-6" />
       <p class="text-xl text-text-inverse/80 mb-12">Let's find the perfect talent for your event. Browse our directory
         or submit a booking inquiry today.</p>
       <div class="flex flex-col sm:flex-row gap-6 justify-center">

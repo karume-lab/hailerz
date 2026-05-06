@@ -2,7 +2,7 @@
     <div class="mx-auto max-w-7xl px-6 lg:px-8">
         {{-- Hero Header --}}
         <div class="text-center mb-24">
-            <h1 class="text-4xl md:text-6xl font-bold text-text-primary mb-6">Get In Touch</h1>
+            <x-heading level="h1" title="Get In Touch" align="center" class="mb-6" />
             <p class="text-xl text-text-secondary max-w-2xl mx-auto font-light">
                 Have questions? Need help finding talent? We're here to assist you.
             </p>
@@ -108,44 +108,45 @@
                                 class="text-brand-primary font-bold hover:underline">Submit another inquiry</button>
                         </div>
                     @else
-                        <form wire:submit="submitContact" class="space-y-6">
-                            <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
-                                <x-input wire:model="first_name" name="first_name" label="First Name *"
-                                    placeholder="John" />
-                                <x-input wire:model="last_name" name="last_name" label="Last Name *" placeholder="Smith" />
-                            </div>
+                                    <form wire:submit="submitContact" class="space-y-6">
+                                        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                                            <x-input wire:model="first_name" name="first_name" label="First Name *"
+                                                placeholder="John" />
+                                            <x-input wire:model="last_name" name="last_name" label="Last Name *" placeholder="Smith" />
+                                        </div>
 
-                            <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
-                                <x-input wire:model="email" name="email" type="email" label="Email Address *"
-                                    placeholder="john@example.com" />
-                                <x-input wire:model="phone" name="phone" label="Phone Number"
-                                    placeholder="(555) 123-4567" />
-                            </div>
+                                        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                                            <x-input wire:model="email" name="email" type="email" label="Email Address *"
+                                                placeholder="john@example.com" />
+                                            <x-input wire:model="phone" name="phone" label="Phone Number"
+                                                placeholder="(555) 123-4567" />
+                                        </div>
 
-                            <x-select wire:model="subject" name="subject" label="Subject *" placeholder="Select a subject"
-                                :options="[
-            'General Inquiry' => 'General Inquiry',
-            'Booking Request' => 'Booking Request',
-            'Talent Representation' => 'Talent Representation',
-            'Partnerships' => 'Partnerships',
-            'Other' => 'Other'
-        ]" />
+                                        <x-select wire:model="subject" name="subject" label="Subject *" placeholder="Select a subject"
+                                            :options="[
+                            'General Inquiry' => 'General Inquiry',
+                            'Booking Request' => 'Booking Request',
+                            'Talent Representation' => 'Talent Representation',
+                            'Partnerships' => 'Partnerships',
+                            'Other' => 'Other'
+                        ]" />
 
-                            <x-textarea wire:model="message" name="message" label="Message *" rows="5"
-                                placeholder="Tell us how we can help you..." />
+                                        <x-textarea wire:model="message" name="message" label="Message *" rows="5"
+                                            placeholder="Tell us how we can help you..." />
 
-                            <div class="pt-4">
-                                <x-button type="submit" class="w-full shadow-lg shadow-brand-primary/20" size="lg" variant="primary" wire:loading.attr="disabled" wire:target="submitContact">
-                                    <span wire:loading.remove wire:target="submitContact">Send Message</span>
-                                    <span wire:loading wire:target="submitContact" class="flex items-center justify-center">
-                                        <x-lucide-loader-2 class="animate-spin h-5 w-5 text-white" stroke-width="2" />
-                                    </span>
-                                </x-button>
-                                <p class="text-center text-xs text-text-muted mt-6 font-medium">
-                                    We'll respond to your inquiry within 24 hours.
-                                </p>
-                            </div>
-                        </form>
+                                        <div class="pt-4">
+                                            <x-button type="submit" class="w-full shadow-lg shadow-brand-primary/20" size="lg"
+                                                variant="primary" wire:loading.attr="disabled" wire:target="submitContact">
+                                                <span wire:loading.remove wire:target="submitContact">Send Message</span>
+                                                <span wire:loading wire:target="submitContact" class="flex items-center justify-center">
+                                                    <x-lucide-loader-2 class="animate-spin h-5 w-5 text-white" stroke-width="2" />
+                                                </span>
+                                            </x-button>
+                                            <p class="text-center text-xs text-text-muted mt-6 font-medium">
+                                                We'll respond to your inquiry within 24 hours.
+                                            </p>
+                                        </div>
+                                    </form>
                     @endif
                 </x-card>
             </div>
