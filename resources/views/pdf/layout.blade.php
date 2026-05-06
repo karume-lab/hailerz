@@ -6,13 +6,13 @@
     <style>
         @font-face {
             font-family: 'Fenomen Sans';
-            src: url('{{ public_path('fonts/fenomen-sans/FenomenSans.woff2') }}') format('woff2');
+            src: url('{{ resource_path('fonts/fenomen-sans/FenomenSans.woff2') }}') format('woff2');
             font-weight: normal;
             font-style: normal;
         }
         @font-face {
             font-family: 'Fenomen Sans';
-            src: url('{{ public_path('fonts/fenomen-sans/FenomenSans-Bold.woff2') }}') format('woff2');
+            src: url('{{ resource_path('fonts/fenomen-sans/FenomenSans-Bold.woff2') }}') format('woff2');
             font-weight: bold;
             font-style: normal;
         }

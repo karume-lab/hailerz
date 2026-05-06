@@ -12,13 +12,12 @@ use Illuminate\Support\Facades\Mail;
 
 
 #[Layout('components.layouts.app')]
-#[Title('Join Our Talent | Hailerz')]
+#[Title('Join Our Roster - Talent Submissions | Hailerz')]
 class JoinTalent extends Component
 {
-    public int $currentStep = 1;
     public bool $isSubmitted = false;
 
-    // Step 1: Artist Information
+    // Artist Information
     #[Validate('required|string|max:255')]
     public string $artist_name = '';
 
@@ -32,12 +31,12 @@ class JoinTalent extends Component
     public string $phone = '';
 
     #[Validate('required|string|max:255')]
-    public string $location = ''; // City, State
+    public string $location = '';
 
     #[Validate('required|url|max:255')]
     public string $profile_photo_url = '';
 
-    // Step 2: Professional Details
+    // Professional Details
     #[Validate('required|string|max:100')]
     public string $category = '';
 
@@ -50,26 +49,26 @@ class JoinTalent extends Component
     #[Validate('required|numeric|min:0')]
     public $min_rate;
 
-    #[Validate('required|numeric|gt:min_rate')]
+    #[Validate('required|numeric|min:0')]
     public $max_rate;
 
-    // Step 3: Online Presence
+    // Online Presence
     #[Validate('nullable|url|max:255')]
     public string $website_url = '';
 
-    #[Validate('nullable|url|max:255')]
+    #[Validate('nullable|string|max:255')]
     public string $instagram_handle = '';
 
-    #[Validate('nullable|url|max:255')]
+    #[Validate('nullable|string|max:255')]
     public string $facebook_url = '';
 
-    #[Validate('nullable|url|max:255')]
+    #[Validate('nullable|string|max:255')]
     public string $youtube_channel = '';
 
-    #[Validate('nullable|url|max:255')]
+    #[Validate('nullable|string|max:255')]
     public string $tiktok_handle = '';
 
-    // Step 4: Experience & Credentials
+    // Experience & Credentials
     #[Validate('nullable|string|max:2000')]
     public string $notable_venues = '';
 
@@ -79,7 +78,7 @@ class JoinTalent extends Component
     #[Validate('nullable|string|max:2000')]
     public string $press_features = '';
 
-    // Step 5: Additional Information
+    // Additional Information
     #[Validate('required|string|min:200|max:5000')]
     public string $bio = '';
 
@@ -89,7 +88,7 @@ class JoinTalent extends Component
     #[Validate('nullable|string')]
     public string $source = '';
 
-    // Gallery Items (PRESERVED)
+    // Gallery Items
     public array $gallery = [];
 
     public function addGalleryItem(): void
@@ -107,50 +106,22 @@ class JoinTalent extends Component
         $this->gallery = array_values($this->gallery);
     }
 
-    public function nextStep(): void
-    {
-        match ($this->currentStep) {
-            1 => $this->validate([
-                'artist_name'       => 'required|string|max:255',
-                'real_name'         => 'required|string|max:255',
-                'email'             => 'required|email|max:255',
-                'phone'             => 'required|string|max:20',
-                'location'          => 'required|string|max:255',
-                'profile_photo_url' => 'required|url|max:255',
-            ]),
-            2 => $this->validate([
-                'category'     => 'required|string|max:100',
-                'years_active' => 'required|string|max:100',
-                'min_rate'     => 'required|numeric|min:0',
-                'max_rate'     => 'required|numeric|gt:min_rate',
-            ]),
-            3 => $this->validate([
-                'website_url'      => 'nullable|url|max:255',
-                'instagram_handle' => 'nullable|url|max:255',
-                'facebook_url'     => 'nullable|url|max:255',
-                'youtube_channel'  => 'nullable|url|max:255',
-                'tiktok_handle'    => 'nullable|url|max:255',
-            ]),
-            4 => $this->validate([
-                'gallery.*.url' => 'required|url|max:255',
-                'gallery.*.title' => 'nullable|string|max:255',
-            ]),
-            default => null,
-        };
-
-        $this->currentStep++;
-    }
-
-    public function previousStep(): void
-    {
-        $this->currentStep--;
-    }
-
     public function submit(): void
     {
         $this->validate([
-            'bio'        => 'required|string|min:200|max:5000',
+            'artist_name' => 'required|string|max:255',
+            'real_name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'phone' => 'required|string|max:20',
+            'location' => 'required|string|max:255',
+            'profile_photo_url' => 'required|url|max:255',
+            'category' => 'required|string|max:100',
+            'years_active' => 'required|string|max:100',
+            'min_rate' => 'required|numeric|min:0',
+            'max_rate' => 'required|numeric|min:0',
+            'bio' => 'required|string|min:200|max:5000',
             'motivation' => 'required|string|max:2000',
+            'gallery.*.url' => 'required|url|max:255',
         ]);
 
         $submission = Submission::create([
@@ -186,9 +157,7 @@ class JoinTalent extends Component
         }
 
         try {
-            \Illuminate\Support\Facades\Log::info('Attempting to send talent application email to: ' . $submission->email);
             Mail::to($submission->email)->send(new TalentSubmissionMail($submission));
-            \Illuminate\Support\Facades\Log::info('Talent application email sent successfully.');
         } catch (\Exception $e) {
             \Illuminate\Support\Facades\Log::error('Mail sending failed: ' . $e->getMessage());
         }

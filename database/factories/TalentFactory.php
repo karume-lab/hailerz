@@ -44,7 +44,7 @@ class TalentFactory extends Factory
                 'names' => ['The Skyline Quintet', 'Midnight Velvet', 'Apex Live', 'The Grand Ensembles', 'Pulse Collective'],
                 'bios' => [
                     "A premium live band delivering sophisticated jazz and contemporary fusion for diplomatic and black-tie dinners.",
-                    "The ultimate high-octane ensemble for corporate celebrations, featuring world-class vocalists and a tight horn section.",
+                    "The ultimate high-octane ensemble for corporate celebrations, featuring exceptional vocalists and a tight horn section.",
                     "Specializing in tailored musical journeys that elevate event atmospheres with elegance and professional artistry."
                 ],
                 'riders' => "Full PA system, 5x vocal mics, drum kit shell pack, bass & guitar amps, and a 20x15ft stage area.",

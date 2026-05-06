@@ -209,7 +209,8 @@ class DatabaseSeeder extends Seeder
             Inquiry::create(array_merge($inquiryData, ['status' => InquiryStatus::New]));
         }
 
-        // 6. News Posts
+        // 6. News Posts (Commented out as Post model is missing)
+        /*
         Post::updateOrCreate(
             ['slug' => 'future-of-corporate-entertainment-2026'],
             [
@@ -218,13 +219,14 @@ class DatabaseSeeder extends Seeder
                 'is_published' => true,
             ]
         );
+        */
 
         // 7. Email Templates (B2B Tone)
         EmailTemplate::updateOrCreate(
             ['name' => 'Application Received'],
             [
                 'subject' => 'Application for Talent Representation: {{artist_name}}',
-                'body' => '<p>Thank you for your interest in joining the Hailerz talent.</p><p>We are currently reviewing your professional profile and performance assets. Due to the high volume of applications from world-class performers, we only reach out to candidates who align with our current corporate and luxury event requirements.</p><p>A senior agent will contact you within 5-7 business days if there is a potential fit for representation.</p><p>Regards,<br>Hailerz Talent Management</p>'
+                'body' => '<p>Thank you for your interest in joining the Hailerz talent pool.</p><p>We are currently reviewing your professional profile and performance assets. Due to the high volume of applications from talented performers, we only reach out to candidates who align with our current corporate and luxury event requirements.</p><p>A senior agent will contact you within 5-7 business days if there is a potential fit for representation.</p><p>Regards,<br>Hailerz Talent Management</p>'
             ]
         );
 

@@ -115,4 +115,66 @@ class OgImageController extends Controller
             'Cache-Control' => 'public, max-age=604800, stale-while-revalidate=86400',
         ]);
     }
+
+    public function resource(string $slug)
+    {
+        $post = \App\Models\Post::where('slug', $slug)->firstOrFail();
+        
+        $cacheKey = "resource_og_v1_{$post->id}";
+
+        $base64Image = Cache::remember($cacheKey, 604800, function () use ($post) {
+            try {
+                $manager = new ImageManager(new Driver());
+                $sourceUrl = $post->image_url;
+                $imageData = null;
+
+                try {
+                    $response = Http::timeout(10)->get($sourceUrl);
+                    if ($response->successful()) {
+                        $imageData = $response->body();
+                    }
+                } catch (\Exception $e) {
+                    Log::warning("OG Fetch failed for resource {$post->id}: " . $e->getMessage());
+                }
+
+                if (!$imageData) {
+                    $image = $manager->createImage(1200, 630)->fill('111827');
+                } else {
+                    $image = $manager->decode($imageData);
+                }
+
+                $image->cover(1200, 630);
+
+                $image->drawRectangle(function ($rect) {
+                    $rect->at(0, 0);
+                    $rect->size(1200, 630);
+                    $rect->background('rgba(0, 0, 0, 0.4)');
+                });
+
+                $logoPath = public_path('images/logo.webp');
+                if (file_exists($logoPath)) {
+                    $logo = $manager->decode($logoPath);
+                    $logo->scale(height: 80);
+                    $image->insert($logo, 40, 40, 'top-left');
+                }
+
+                return base64_encode($image->encodeUsingMediaType('image/jpeg')->toString());
+
+            } catch (\Throwable $e) {
+                Log::error("Critical OG generation failure for resource {$post->id}: " . $e->getMessage());
+                return null;
+            }
+        });
+
+        if (!$base64Image) {
+            return Response::make('', 404);
+        }
+
+        $imageBytes = base64_decode($base64Image);
+
+        return Response::make($imageBytes, 200, [
+            'Content-Type'  => 'image/jpeg',
+            'Cache-Control' => 'public, max-age=604800, stale-while-revalidate=86400',
+        ]);
+    }
 }

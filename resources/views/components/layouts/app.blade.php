@@ -16,7 +16,7 @@
   <meta property="og:url" content="{{ url()->current() }}">
   <meta property="og:title" content="{{ $ogTitle ?? ($title ?? 'Hailerz | Premium Talent Booking Agency') }}">
   <meta property="og:description"
-    content="{{ $ogDescription ?? 'A boutique talent agency specializing in securing world-class performers for corporate events, galas, and private functions.' }}">
+    content="{{ $ogDescription ?? 'A boutique talent agency specializing in securing premium performers for corporate events, galas, and private functions.' }}">
   <meta property="og:image" content="{{ $ogImage ?? asset('images/logo.webp') }}">
 
   <!-- Twitter -->
@@ -24,16 +24,9 @@
   <meta name="twitter:url" content="{{ url()->current() }}">
   <meta name="twitter:title" content="{{ $ogTitle ?? ($title ?? 'Hailerz | Premium Talent Booking Agency') }}">
   <meta name="twitter:description"
-    content="{{ $ogDescription ?? 'A boutique talent agency specializing in securing world-class performers for corporate events, galas, and private functions.' }}">
+    content="{{ $ogDescription ?? 'A boutique talent agency specializing in securing premium performers for corporate events, galas, and private functions.' }}">
   <meta name="twitter:image" content="{{ $ogImage ?? asset('images/logo.webp') }}">
 
-  <!-- Fenomen Sans preloads -->
-  <link rel="preload" href="{{ asset('fonts/fenomen-sans/FenomenSans.woff2') }}" as="font" type="font/woff2"
-    crossorigin>
-  <link rel="preload" href="{{ asset('fonts/fenomen-sans/FenomenSans-Book.woff2') }}" as="font" type="font/woff2"
-    crossorigin>
-  <link rel="preload" href="{{ asset('fonts/fenomen-sans/FenomenSans-Bold.woff2') }}" as="font" type="font/woff2"
-    crossorigin>
   <link rel="manifest" href="{{ asset('manifest.json') }}">
 
   @production
@@ -59,7 +52,7 @@
   @endproduction
 
   <link rel="canonical" href="{{ url()->current() }}">
-  <link rel="icon" href="{{ asset('images/logo.webp') }}" type="image/webp">
+  <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
 
   @vite(['resources/css/app.css', 'resources/js/app.js'])
 
@@ -86,16 +79,14 @@
   @livewireStyles
 </head>
 
-<body class="bg-surface-light text-text-primary  antialiased flex flex-col min-h-screen transition-colors duration-300">
+<body class="bg-surface-light text-text-primary antialiased flex flex-col min-h-screen transition-colors duration-300">
 
   <header
     class="sticky top-0 z-50 w-full backdrop-blur-xl bg-surface-light/90 border-b border-subtle transition-colors duration-300">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center h-20">
         <div class="shrink-0 flex items-center">
           <a href="/" class="flex items-center gap-2.5" aria-label="Hailerz Home">
-            <img src="{{ asset('images/logo.webp') }}" alt="" aria-hidden="true" width="40" height="41"
-              fetchpriority="high" loading="eager" class="h-10 w-auto object-contain rounded-lg" />
             <span
               class="text-2xl font-semibold tracking-tight  {{ request()->is('/') ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary' }} transition-colors uppercase tracking-widest hidden lg:block">
               Hailerz
@@ -104,14 +95,16 @@
         </div>
         <nav class="hidden md:flex items-center space-x-10">
           <a href="/talent" wire:navigate
-            class="{{ request()->is('talent*') ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary' }} transition-colors uppercase tracking-widest">The
-            Talent</a>
+            class="{{ request()->is('talent*') ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary' }} transition-colors uppercase tracking-widest">
+            Browse Talent</a>
           <a href="/services" wire:navigate
             class="{{ request()->is('services*') ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary' }} transition-colors uppercase tracking-widest">Services</a>
-          <a href="/staffing" wire:navigate
-            class="{{ request()->is('staffing*') ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary' }} transition-colors uppercase tracking-widest">Staffing</a>
           <a href="/about" wire:navigate
             class="{{ request()->is('about*') ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary' }} transition-colors uppercase tracking-widest">About</a>
+          <a href="/resources" wire:navigate
+            class="{{ request()->is('resources*') ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary' }} transition-colors uppercase tracking-widest">Resources</a>
+          <a href="/staffing" wire:navigate
+            class="{{ request()->is('staffing*') ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary' }} transition-colors uppercase tracking-widest">Staffing</a>
           <a href="/contact" wire:navigate
             class="{{ request()->is('contact*') ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary' }} transition-colors uppercase tracking-widest">Contact</a>
         </nav>
@@ -121,7 +114,8 @@
           <div class="hidden md:block">
             <x-theme-toggle />
           </div>
-
+          <a href="/join" wire:navigate
+            class="{{ request()->is('join*') ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary' }} transition-colors uppercase tracking-widest">Submissions</a>
           <x-button variant="primary" size="sm" href="/book" wire:navigate
             class="flex border-none shadow-sm px-6 py-2.5 rounded-full hover:scale-105 transition-transform text-xs sm:text-sm">
             Book Now

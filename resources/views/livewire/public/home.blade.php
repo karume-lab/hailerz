@@ -47,13 +47,15 @@
                 <a href="/talent?category=poets" wire:navigate
                     class="hover:text-brand-primary transition-all hover:scale-105 transform">Poets</a>
                 <a href="/talent?category=content-creators" wire:navigate
-                    class="hover:text-brand-primary transition-all hover:scale-105 transform whitespace-nowrap">Content Creators</a>
+                    class="hover:text-brand-primary transition-all hover:scale-105 transform whitespace-nowrap">Content
+                    Creators</a>
                 <a href="/talent?category=comedians" wire:navigate
                     class="hover:text-brand-primary transition-all hover:scale-105 transform">Comedians</a>
                 <a href="/talent?category=mcs" wire:navigate
                     class="hover:text-brand-primary transition-all hover:scale-105 transform">MCs</a>
                 <a href="/talent?category=variety-artists" wire:navigate
-                    class="hover:text-brand-primary transition-all hover:scale-105 transform whitespace-nowrap">Variety Artists</a>
+                    class="hover:text-brand-primary transition-all hover:scale-105 transform whitespace-nowrap">Variety
+                    Artists</a>
             </div>
         </div>
     </section>
@@ -62,8 +64,9 @@
     <section class="py-32 bg-surface-muted">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-20 reveal">
-                <x-heading level="h2" title="Book Talent in Three Simple Steps" emphasis="Three Simple Steps" align="center" class="text-text-primary mb-10" />
-                <p class="text-lg text-text-secondary mx-auto max-w-2xl">Watch how Hailerz connects you with world-class talent.</p>
+                <x-heading level="h2" title="Join Our Talent Pool" emphasis="Talent Pool" align="center"
+                    class="text-text-primary mb-10" />
+                <p class="text-lg text-text-secondary mx-auto max-w-2xl">Get Seen. Get featured.</p>
 
                 <div
                     class="mt-12 aspect-video max-w-4xl mx-auto rounded-3xl overflow-hidden shadow-2xl border border-subtle bg-surface-dark reveal reveal-delay-200">
@@ -76,6 +79,8 @@
                 </div>
             </div>
 
+            <x-heading level="h2" title="Book Talent in Three Simple Steps" emphasis="Three Simple Steps" align="center"
+                class="text-text-primary mb-10" />
             <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
                 @php
                     $steps = [
@@ -109,7 +114,8 @@
     <section class="py-32 bg-surface-dark">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-20 reveal">
-                <x-heading level="h2" title="Featured Talent" emphasis="Featured" align="center" class="text-white mb-6" />
+                <x-heading level="h2" title="Featured Talent" emphasis="Featured" align="center"
+                    class="text-white mb-6" />
                 <p class="text-lg text-white/60 mx-auto max-w-2xl">Discover our handpicked performers</p>
             </div>
 
@@ -119,17 +125,22 @@
                     <div
                         class="lg:col-span-5 lg:row-span-2 group relative overflow-hidden rounded-3xl aspect-4/5 lg:aspect-auto shadow-2xl reveal">
                         <img src="{{ $featuredTalents[0]->profile_photo_url }}" alt="{{ $featuredTalents[0]->name }}"
-                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" decoding="async">
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                            loading="lazy" decoding="async">
                         <div class="absolute inset-0 bg-linear-to-t from-black/90 via-black/20 to-transparent"></div>
                         <div class="absolute bottom-0 left-0 p-6 sm:p-8 w-full">
                             <h3 class="text-xl sm:text-2xl font-bold text-white mb-1">{{ $featuredTalents[0]->name }}</h3>
-                            <p class="text-white/70 text-xs sm:text-sm font-medium mb-4 sm:mb-6">{{ $featuredTalents[0]->category->name }}</p>
+                            <p class="text-white/70 text-xs sm:text-sm font-medium mb-4 sm:mb-6">
+                                {{ $featuredTalents[0]->category->name }}
+                            </p>
 
                             <div class="flex flex-col sm:flex-row gap-3">
-                                <x-button href="/talent/{{ $featuredTalents[0]->slug }}" variant="outline" size="sm" class="w-full sm:w-auto" aria-label="View profile of {{ $featuredTalents[0]->name }}">
+                                <x-button href="/talent/{{ $featuredTalents[0]->slug }}" variant="outline" size="sm"
+                                    class="w-full sm:w-auto" aria-label="View profile of {{ $featuredTalents[0]->name }}">
                                     View Profile
                                 </x-button>
-                                <x-button href="/book?talent={{ $featuredTalents[0]->id }}" variant="primary" size="sm" class="w-full sm:w-auto">
+                                <x-button href="/book?talent={{ $featuredTalents[0]->id }}" variant="primary" size="sm"
+                                    class="w-full sm:w-auto">
                                     Book
                                 </x-button>
                             </div>
@@ -142,18 +153,24 @@
                         <div
                             class="col-span-2 group relative overflow-hidden rounded-3xl aspect-video lg:aspect-21/9 shadow-xl reveal reveal-delay-100">
                             <img src="{{ $featuredTalents[1]->profile_photo_url }}" alt="{{ $featuredTalents[1]->name }}"
-                                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" decoding="async">
+                                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                loading="lazy" decoding="async">
                             <div class="absolute inset-0 bg-linear-to-t from-black/90 via-black/20 to-transparent"></div>
                             <div class="absolute bottom-0 left-0 p-6 sm:p-8 w-full">
-                                <h3 class="text-xl sm:text-2xl font-bold text-white mb-1">{{ $featuredTalents[1]->name }}</h3>
-                                <p class="text-white/70 text-xs sm:text-sm font-medium mb-4 sm:mb-6">{{ $featuredTalents[1]->category->name }}
+                                <h3 class="text-xl sm:text-2xl font-bold text-white mb-1">{{ $featuredTalents[1]->name }}
+                                </h3>
+                                <p class="text-white/70 text-xs sm:text-sm font-medium mb-4 sm:mb-6">
+                                    {{ $featuredTalents[1]->category->name }}
                                 </p>
 
                                 <div class="flex flex-col sm:flex-row gap-3">
-                                    <x-button href="/talent/{{ $featuredTalents[1]->slug }}" variant="outline" size="sm" class="w-full sm:w-auto" aria-label="View profile of {{ $featuredTalents[1]->name }}">
+                                    <x-button href="/talent/{{ $featuredTalents[1]->slug }}" variant="outline" size="sm"
+                                        class="w-full sm:w-auto"
+                                        aria-label="View profile of {{ $featuredTalents[1]->name }}">
                                         View Profile
                                     </x-button>
-                                    <x-button href="/book?talent={{ $featuredTalents[1]->id }}" variant="primary" size="sm" class="w-full sm:w-auto">
+                                    <x-button href="/book?talent={{ $featuredTalents[1]->id }}" variant="primary" size="sm"
+                                        class="w-full sm:w-auto">
                                         Book
                                     </x-button>
                                 </div>
@@ -164,18 +181,24 @@
                         <div
                             class="col-span-1 group relative overflow-hidden rounded-3xl aspect-square shadow-xl reveal reveal-delay-200">
                             <img src="{{ $featuredTalents[2]->profile_photo_url }}" alt="{{ $featuredTalents[2]->name }}"
-                                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" decoding="async">
+                                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                loading="lazy" decoding="async">
                             <div class="absolute inset-0 bg-linear-to-t from-black/90 via-black/20 to-transparent"></div>
                             <div class="absolute bottom-0 left-0 p-5 sm:p-6 w-full">
-                                <h3 class="text-base sm:text-lg font-bold text-white mb-1">{{ $featuredTalents[2]->name }}</h3>
-                                <p class="text-white/70 text-[10px] sm:text-xs font-medium mb-3 sm:mb-4">{{ $featuredTalents[2]->category->name }}
+                                <h3 class="text-base sm:text-lg font-bold text-white mb-1">{{ $featuredTalents[2]->name }}
+                                </h3>
+                                <p class="text-white/70 text-[10px] sm:text-xs font-medium mb-3 sm:mb-4">
+                                    {{ $featuredTalents[2]->category->name }}
                                 </p>
 
                                 <div class="flex flex-col sm:flex-row gap-2">
-                                    <x-button href="/talent/{{ $featuredTalents[2]->slug }}" variant="outline" size="sm" class="text-[10px] sm:text-xs py-2" aria-label="View profile of {{ $featuredTalents[2]->name }}">
+                                    <x-button href="/talent/{{ $featuredTalents[2]->slug }}" variant="outline" size="sm"
+                                        class="text-[10px] sm:text-xs py-2"
+                                        aria-label="View profile of {{ $featuredTalents[2]->name }}">
                                         View Profile
                                     </x-button>
-                                    <x-button href="/book?talent={{ $featuredTalents[2]->id }}" variant="primary" size="sm" class="text-[10px] sm:text-xs py-2">
+                                    <x-button href="/book?talent={{ $featuredTalents[2]->id }}" variant="primary" size="sm"
+                                        class="text-[10px] sm:text-xs py-2">
                                         Book
                                     </x-button>
                                 </div>
@@ -186,17 +209,23 @@
                         <div
                             class="col-span-1 group relative overflow-hidden rounded-3xl aspect-square shadow-xl reveal reveal-delay-300">
                             <img src="{{ $featuredTalents[3]->profile_photo_url }}" alt="{{ $featuredTalents[3]->name }}"
-                                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" decoding="async">
+                                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                loading="lazy" decoding="async">
                             <div class="absolute inset-0 bg-linear-to-t from-black/90 via-black/20 to-transparent"></div>
                             <div class="absolute bottom-0 left-0 p-5 sm:p-6 w-full">
-                                <h3 class="text-base sm:text-lg font-bold text-white mb-1">{{ $featuredTalents[3]->name }}</h3>
-                                <p class="text-white/70 text-[10px] sm:text-xs font-medium mb-3 sm:mb-4">{{ $featuredTalents[3]->category->name }}
+                                <h3 class="text-base sm:text-lg font-bold text-white mb-1">{{ $featuredTalents[3]->name }}
+                                </h3>
+                                <p class="text-white/70 text-[10px] sm:text-xs font-medium mb-3 sm:mb-4">
+                                    {{ $featuredTalents[3]->category->name }}
                                 </p>
 
                                 <div class="flex flex-col sm:flex-row gap-2">
-                                    <x-button href="/talent/{{ $featuredTalents[3]->slug }}" variant="outline" size="sm" class="text-[10px] sm:text-xs py-2" aria-label="View profile of {{ $featuredTalents[3]->name }}">
+                                    <x-button href="/talent/{{ $featuredTalents[3]->slug }}" variant="outline" size="sm"
+                                        class="text-[10px] sm:text-xs py-2"
+                                        aria-label="View profile of {{ $featuredTalents[3]->name }}">
                                         View Profile </x-button>
-                                    <x-button href="/book?talent={{ $featuredTalents[3]->id }}" variant="primary" size="sm" class="text-[10px] sm:text-xs py-2">
+                                    <x-button href="/book?talent={{ $featuredTalents[3]->id }}" variant="primary" size="sm"
+                                        class="text-[10px] sm:text-xs py-2">
                                         Book
                                     </x-button>
                                 </div>
@@ -209,15 +238,20 @@
                     @foreach($featuredTalents as $talent)
                         <div class="group relative overflow-hidden rounded-3xl aspect-square shadow-xl">
                             <img src="{{ $talent->profile_photo_url }}" alt="{{ $talent->name }}"
-                                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" decoding="async">
+                                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                loading="lazy" decoding="async">
                             <div class="absolute inset-0 bg-linear-to-t from-black/90 via-black/20 to-transparent"></div>
                             <div class="absolute bottom-0 left-0 p-5 w-full">
                                 <h3 class="text-base sm:text-lg font-bold text-white mb-1">{{ $talent->name }}</h3>
-                                <p class="text-white/70 text-[10px] sm:text-xs font-medium mb-3 sm:mb-4">{{ $talent->category->name }}</p>
+                                <p class="text-white/70 text-[10px] sm:text-xs font-medium mb-3 sm:mb-4">
+                                    {{ $talent->category->name }}
+                                </p>
                                 <div class="flex flex-col sm:flex-row gap-2">
-                                    <x-button href="/talent/{{ $talent->slug }}" variant="outline" size="sm" class="text-[10px] sm:text-xs py-2" aria-label="View profile of {{ $talent->name }}">
+                                    <x-button href="/talent/{{ $talent->slug }}" variant="outline" size="sm"
+                                        class="text-[10px] sm:text-xs py-2" aria-label="View profile of {{ $talent->name }}">
                                         View Profile </x-button>
-                                    <x-button href="/book?talent={{ $talent->id }}" variant="primary" size="sm" class="text-[10px] sm:text-xs py-2">
+                                    <x-button href="/book?talent={{ $talent->id }}" variant="primary" size="sm"
+                                        class="text-[10px] sm:text-xs py-2">
                                         Book
                                     </x-button>
                                 </div>
@@ -239,7 +273,8 @@
     <section class="py-32 bg-surface-muted">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-20 reveal">
-                <x-heading level="h2" title="Browse by Category" emphasis="Category" align="center" class="text-text-primary mb-6" />
+                <x-heading level="h2" title="Browse by Category" emphasis="Category" align="center"
+                    class="text-text-primary mb-6" />
                 <p class="text-lg text-text-secondary mx-auto max-w-2xl">Find the perfect talent for your event</p>
             </div>
 
@@ -252,7 +287,8 @@
                     <a href="/talent?category={{ $category->slug }}" wire:navigate
                         class="group relative aspect-square rounded-3xl overflow-hidden shadow-lg reveal {{ $index % 4 === 1 ? 'reveal-delay-100' : ($index % 4 === 2 ? 'reveal-delay-200' : ($index % 4 === 3 ? 'reveal-delay-300' : '')) }}">
                         <img src="{{ $bgImage }}" alt="{{ $category->name }}"
-                            class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" decoding="async">
+                            class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                            loading="lazy" decoding="async">
 
                         <div class="absolute inset-0 bg-black/48 group-hover:bg-black/40 transition-colors"></div>
 
@@ -269,7 +305,8 @@
     <!-- Booking FAQs Section -->
     <section id="faqs" class="py-32 bg-surface-dark text-text-inverse">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <x-heading level="h2" title="Booking FAQs" emphasis="FAQs" align="center" class="text-center mb-16 reveal" />
+            <x-heading level="h2" title="Booking FAQs" emphasis="FAQs" align="center"
+                class="text-center mb-16 reveal" />
 
             <div x-data="{ active: 0 }" class="space-y-6">
 
@@ -334,7 +371,8 @@
                             </div>
                             <div>
                                 <h3 class="text-text-inverse font-bold text-sm md:text-base">Premium Support</h3>
-                                <p class="text-text-inverse/60 text-xs md:text-sm">Our agents respond promptly to every inquiry.
+                                <p class="text-text-inverse/60 text-xs md:text-sm">Our agents respond promptly to every
+                                    inquiry.
                                 </p>
                             </div>
                         </li>

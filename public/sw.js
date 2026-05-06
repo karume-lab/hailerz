@@ -1,7 +1,7 @@
 const CACHE_NAME = 'hailerz-v1';
 const ASSETS_TO_CACHE = [
     '/',
-    '/logo.webp',
+    '/images/logo.webp',
     '/manifest.json'
 ];
 
