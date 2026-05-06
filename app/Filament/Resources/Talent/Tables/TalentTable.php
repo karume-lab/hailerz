@@ -35,6 +35,7 @@ class TalentTable
                     ->label('Talent Status')
                     ->options([
                         'draft'  => 'Under Review',
+                        'awaiting_agreement' => 'Awaiting Agreement',
                         'active' => 'Active',
                         'hidden' => 'Archived',
                     ])
@@ -49,12 +50,32 @@ class TalentTable
                 Tables\Filters\SelectFilter::make('status')
                     ->options([
                         'draft'  => 'Under Review',
+                        'awaiting_agreement' => 'Awaiting Agreement',
                         'active' => 'Active',
                         'hidden' => 'Archived',
                     ]),
             ])
             ->actions([
                 Actions\EditAction::make(),
+                Actions\Action::make('mark_signed')
+                    ->label('Agreement Signed')
+                    ->icon('heroicon-o-check-badge')
+                    ->color('success')
+                    ->requiresConfirmation()
+                    ->hidden(fn (Talent $record) => $record->has_signed_agreement)
+                    ->action(function (Talent $record) {
+                        $record->update([
+                            'has_signed_agreement' => true,
+                            'agreement_signed_at' => now(),
+                            'status' => 'active',
+                        ]);
+
+                        \Filament\Notifications\Notification::make()
+                            ->title('Agreement Marked as Signed')
+                            ->body("{$record->name} is now active on the public site.")
+                            ->success()
+                            ->send();
+                    }),
                 Actions\DeleteAction::make(),
             ])
             ->bulkActions([

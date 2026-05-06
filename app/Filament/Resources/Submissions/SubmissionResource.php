@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\Submissions;
 
 use App\Filament\Resources\Submissions\Pages;
+use App\Mail\TalentAgreementMail;
 use App\Models\Submission;
 use App\Models\Talent;
 use BackedEnum;
@@ -14,6 +15,7 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Illuminate\Support\Facades\Mail;
 use UnitEnum;
 
 class SubmissionResource extends Resource
@@ -230,6 +232,7 @@ class SubmissionResource extends Resource
                         // Automatically create the Talent profile
                         $talent = Talent::create([
                             'name' => $record->artist_name,
+                            'email' => $record->email,
                             'category_id' => $category->id,
                             'bio' => $record->bio,
                             'location' => $record->location,
@@ -242,9 +245,12 @@ class SubmissionResource extends Resource
                             'youtube_channel' => $record->youtube_channel,
                             'tiktok_handle' => $record->tiktok_handle,
                             'primary_image_url' => $record->profile_photo_url,
-                            'status' => 'active',
+                            'status' => 'awaiting_agreement',
                             'slug' => \Illuminate\Support\Str::slug($record->artist_name),
                         ]);
+
+                        // Send Agreement Email
+                        Mail::to($talent->email)->send(new TalentAgreementMail($talent));
 
                         // Sync Gallery Items
                         foreach ($record->gallery as $item) {

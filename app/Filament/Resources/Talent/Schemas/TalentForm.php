@@ -35,7 +35,12 @@ class TalentForm
                         ->searchable()
                         ->preload()
                         ->required()
-                        ->columnSpanFull(),
+                        ->columnSpan(1),
+                    Forms\Components\TextInput::make('email')
+                        ->label('Contact Email')
+                        ->email()
+                        ->required()
+                        ->columnSpan(1),
                 ])
                 ->columns(2)
                 ->columnSpanFull(),
@@ -138,6 +143,7 @@ class TalentForm
                         ->label('Talent Status')
                         ->options([
                             'draft' => 'Under Review',
+                            'awaiting_agreement' => 'Awaiting Agreement',
                             'active' => 'Active on Talent',
                             'hidden' => 'Archived / Private',
                         ])
@@ -146,6 +152,13 @@ class TalentForm
                     Forms\Components\Toggle::make('is_featured')
                         ->label('Premium Placement')
                         ->inline(false)
+                        ->columnSpan(1),
+                    Forms\Components\Toggle::make('has_signed_agreement')
+                        ->label('Agreement Signed')
+                        ->inline(false)
+                        ->columnSpan(1),
+                    Forms\Components\DateTimePicker::make('agreement_signed_at')
+                        ->label('Signed At')
                         ->columnSpan(1),
                     Forms\Components\Textarea::make('internal_notes')
                         ->label('Internal Agency Notes')
