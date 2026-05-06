@@ -9,7 +9,7 @@
             src: url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
         }
         body {
-            font-family: 'Inter', 'Helvetica', 'Arial', sans-serif;
+            font-family: 'DejaVu Sans', sans-serif;
             font-size: 14px;
             color: #111827;
             line-height: 1.6;

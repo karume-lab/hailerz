@@ -94,7 +94,7 @@
         @endif
         <tr>
             <td class="label">Budget Range:</td>
-            <td>{{ $inquiry->budget_range }} {{ $inquiry->budget_flexible ? '(Flexible)' : '' }}</td>
+            <td>{!! str_replace('₦', '&#8358;', $inquiry->budget_range) !!} {{ $inquiry->budget_flexible ? '(Flexible)' : '' }}</td>
         </tr>
     </table>
 </div>

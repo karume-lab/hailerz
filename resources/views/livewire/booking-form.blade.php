@@ -85,11 +85,8 @@ new class extends Component {
                     <x-button variant="secondary" class="flex-1" wire:click="$set('step', 1)">
                         Edit Details
                     </x-button>
-                    <x-button variant="primary" class="flex-1 relative" wire:click="submit" wire:loading.attr="disabled">
-                        <span wire:loading.class="invisible" wire:target="submit">Send Booking Request</span>
-                        <div wire:loading wire:target="submit" class="absolute inset-0 flex items-center justify-center">
-                            <x-lucide-loader-2 class="animate-spin h-5 w-5" stroke-width="2" />
-                        </div>
+                    <x-button variant="primary" class="flex-1" wire:click="submit" wire:loading.attr="disabled">
+                        Send Booking Request
                     </x-button>
                 </div>
             </div>

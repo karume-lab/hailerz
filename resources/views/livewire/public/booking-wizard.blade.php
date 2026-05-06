@@ -10,7 +10,7 @@
                     Thanks for reaching out! We've sent a summary of your event details to your inbox. 
                     One of our agents will review everything and get back to you within one business day with a formal proposal.
                 </p>
-                <x-button variant="primary" size="lg" href="/talent" wire:navigate>
+                <x-button variant="primary" href="/talent" wire:navigate>
                     Browse Talent
                 </x-button>
             </x-card>
@@ -190,7 +190,9 @@
                                     @endif
                                     @error('specific_talent') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
                                 </div>
-                                <x-textarea wire:model="additional_details" name="additional_details" label="Additional Details" rows="5" placeholder="Tell us about the event vibe, technical needs, or any special requests." class="md:col-span-2" />
+                                <div class="md:col-span-2">
+                                    <x-textarea wire:model="additional_details" name="additional_details" label="Additional Details" rows="5" placeholder="Tell us about the event vibe, technical needs, or any special requests." />
+                                </div>
                             </div>
                         </div>
 
@@ -221,11 +223,8 @@
                                 Continue
                             </x-button>
                         @else
-                            <x-button variant="primary" type="submit" wire:loading.attr="disabled" wire:target="submit" class="relative">
-                                <span wire:loading.class="invisible" wire:target="submit">Send booking request</span>
-                                <div wire:loading wire:target="submit" class="absolute inset-0 flex items-center justify-center">
-                                    <x-lucide-loader-2 class="animate-spin h-5 w-5" stroke-width="2" />
-                                </div>
+                            <x-button variant="primary" type="submit" wire:loading.attr="disabled" wire:target="submit">
+                                Send booking request
                             </x-button>
                         @endif
                     </div>
