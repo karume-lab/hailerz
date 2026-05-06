@@ -65,7 +65,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-20 reveal">
                 <x-heading level="h2" title="Join Our Talent Pool" align="center"
-                    class="text-text-primary mb-10" />
+                    class="text-text-primary" />
                 <p class="text-lg text-text-secondary mx-auto max-w-2xl">Get Seen. Get featured.</p>
 
                 <div

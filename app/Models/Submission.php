@@ -25,11 +25,11 @@ class Submission extends Model
         'facebook_url',
         'youtube_channel',
         'tiktok_handle',
-        'notable_venues',
+
         'notable_clients',
         'press_features',
         'bio',
-        'motivation',
+
         'source',
         'status',
     ];

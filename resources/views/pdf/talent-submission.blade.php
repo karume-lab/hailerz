@@ -102,12 +102,10 @@
     </div>
 </div>
 
-@if($submission->notable_venues || $submission->notable_clients)
+@if($submission->notable_clients)
 <div class="section">
     <div class="section-title">Experience</div>
-    @if($submission->notable_venues)
-    <p><strong>Notable Venues:</strong> {{ $submission->notable_venues }}</p>
-    @endif
+
     @if($submission->notable_clients)
     <p><strong>Notable Clients:</strong> {{ $submission->notable_clients }}</p>
     @endif
@@ -125,11 +123,6 @@
 </div>
 @endif
 
-@if($submission->motivation)
-<div class="section">
-    <div class="section-title">Motivation</div>
-    <p>{{ $submission->motivation }}</p>
-</div>
-@endif
+
 
 @endsection

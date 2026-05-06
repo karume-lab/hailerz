@@ -69,8 +69,7 @@ class JoinTalent extends Component
     public string $tiktok_handle = '';
 
     // Experience & Credentials
-    #[Validate('nullable|string|max:2000')]
-    public string $notable_venues = '';
+
 
     #[Validate('nullable|string|max:2000')]
     public string $notable_clients = '';
@@ -82,8 +81,7 @@ class JoinTalent extends Component
     #[Validate('required|string|min:200|max:5000')]
     public string $bio = '';
 
-    #[Validate('required|string|max:2000')]
-    public string $motivation = '';
+
 
     #[Validate('nullable|string')]
     public string $source = '';
@@ -120,7 +118,7 @@ class JoinTalent extends Component
             'min_rate' => 'required|numeric|min:0',
             'max_rate' => 'required|numeric|min:0',
             'bio' => 'required|string|min:200|max:5000',
-            'motivation' => 'required|string|max:2000',
+
             'gallery.*.url' => 'required|url|max:255',
         ]);
 
@@ -141,11 +139,11 @@ class JoinTalent extends Component
             'facebook_url'      => $this->facebook_url,
             'youtube_channel'   => $this->youtube_channel,
             'tiktok_handle'     => $this->tiktok_handle,
-            'notable_venues'    => $this->notable_venues,
+
             'notable_clients'   => $this->notable_clients,
             'press_features'    => $this->press_features,
             'bio'               => $this->bio,
-            'motivation'        => $this->motivation,
+
             'source'            => $this->source,
             'status'            => 'pending',
         ]);

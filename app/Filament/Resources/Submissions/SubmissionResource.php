@@ -126,9 +126,7 @@ class SubmissionResource extends Resource
 
             \Filament\Schemas\Components\Section::make('Experience & Credentials')
                 ->schema([
-                    Forms\Components\Textarea::make('notable_venues')
-                        ->label('Notable Venues')
-                        ->rows(3),
+
                     Forms\Components\Textarea::make('notable_clients')
                         ->label('Notable Clients')
                         ->rows(3),
@@ -144,9 +142,7 @@ class SubmissionResource extends Resource
                         ->label('Artist Biography')
                         ->required()
                         ->rows(6),
-                    Forms\Components\Textarea::make('motivation')
-                        ->label('Motivation to Join')
-                        ->rows(4),
+
                     Forms\Components\TextInput::make('source')
                         ->label('How they heard about us')
                         ->disabled(),

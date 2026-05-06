@@ -240,7 +240,7 @@
                             <div class="space-y-8">
                                 <h3 class="text-2xl font-bold text-text-primary border-b border-subtle pb-4">Experience & Credentials</h3>
                                 <div class="space-y-6">
-                                    <x-textarea wire:model="notable_venues" label="Notable Venues Performed" rows="3" placeholder="List notable venues where you've performed" />
+
                                     <x-textarea wire:model="notable_clients" label="Notable Events/Clients" rows="3" placeholder="Describe significant events or high-profile clients you've worked with" />
                                     <x-textarea wire:model="press_features" label="Press Features/Awards" rows="3" placeholder="Any media features, awards, or recognition you've received" />
                                 </div>
@@ -287,7 +287,7 @@
                                 <h3 class="text-2xl font-bold text-text-primary border-b border-subtle pb-4">Additional Information</h3>
                                 <div class="space-y-6">
                                     <x-textarea wire:model="bio" label="Artist Bio *" rows="5" placeholder="Tell us about yourself, your style, and what makes you unique as a performer (200-500 words)" />
-                                    <x-textarea wire:model="motivation" label="Why do you want to join Hailerz? *" rows="4" placeholder="What are your goals and how do you think Hailerz can help you achieve them?" />
+
                                     <x-select wire:model="source" label="How did you hear about us?">
                                         <option value="">Select an option</option>
                                         <option value="google">Google Search</option>
