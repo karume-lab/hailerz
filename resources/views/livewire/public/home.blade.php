@@ -327,7 +327,7 @@
                             </div>
                         </button>
                         <div x-show="active === {{ $index }}" x-collapse x-cloak class="overflow-hidden">
-                            <p class="pb-8 text-lg text-text-muted leading-relaxed max-w-3xl">{{ $faq->answer }}</p>
+                            <p class="pb-8 text-lg leading-relaxed max-w-3xl">{{ $faq->answer }}</p>
                         </div>
                     </div>
                 @endforeach
