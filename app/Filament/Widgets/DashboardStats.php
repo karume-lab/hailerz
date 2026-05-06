@@ -45,6 +45,12 @@ class DashboardStats extends BaseWidget
                 ->descriptionIcon('heroicon-m-users')
                 ->color('success')
                 ->url('/admin/talent?tableFilters[status][value]=active'),
+
+            Stat::make('Published Resources', \App\Models\Post::where('is_published', true)->count())
+                ->description('Articles live on the site')
+                ->descriptionIcon('heroicon-m-book-open')
+                ->color('primary')
+                ->url('/admin/posts'),
         ];
     }
 }
