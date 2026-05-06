@@ -26,7 +26,7 @@ class TalentFactory extends Factory
                     "With over 15 years of international experience, they are the go-to sound architect for Fortune 500 closing parties."
                 ],
                 'riders' => "Pioneer CDJ-3000 x 3, DJM-900NXS2 mixer, dedicated monitoring system, and professional-grade booth lighting.",
-                'images' => ['photo-1571266028243-e4733b0f0bb1', 'photo-1598387181032-a3103a2db5b3', 'photo-1574672280600-4accfa5b6f98'],
+                'images' => ['dj-hero', 'dj-set-1', 'dj-set-2'],
                 'video' => 'https://www.youtube.com/watch?v=zHn1A6M6_Yk'
             ],
             'Speakers' => [
@@ -37,7 +37,7 @@ class TalentFactory extends Factory
                     "Empowering teams through narrative-driven sessions on leadership, resilience, and the evolving global economy."
                 ],
                 'riders' => "Lavalier microphone (Sennheiser or Shure), confidence monitor, remote slide clicker, and high-speed fiber internet for live demos.",
-                'images' => ['photo-1507679799987-c73779587ccf', 'photo-1475721027185-39a12947c004', 'photo-1544717305-2782549b5136'],
+                'images' => ['speaker-hero', 'speaker-1', 'speaker-2'],
                 'video' => 'https://www.youtube.com/watch?v=7Pq-S557XQU'
             ],
             'Musicians' => [
@@ -48,7 +48,7 @@ class TalentFactory extends Factory
                     "Specializing in tailored musical journeys that elevate event atmospheres with elegance and professional artistry."
                 ],
                 'riders' => "Full PA system, 5x vocal mics, drum kit shell pack, bass & guitar amps, and a 20x15ft stage area.",
-                'images' => ['photo-1533174072545-7a4b6ad7a6c3', 'photo-1501386761578-eac5c94b800a', 'photo-1511671782779-c97d3d27a1d4'],
+                'images' => ['band-hero', 'musician-1', 'musician-2'],
                 'video' => 'https://www.youtube.com/watch?v=j_S6M9Z6mE8'
             ],
             'MCs' => [
@@ -59,7 +59,7 @@ class TalentFactory extends Factory
                     "An executive host who seamlessly bridges the gap between speakers and the audience with wit and authority."
                 ],
                 'riders' => "Wireless handheld microphone, lectern with reading light, and a detailed run-of-show briefing session.",
-                'images' => ['photo-1515187029135-18ee286d815b', 'photo-1551818255-e6e10975bc17', 'photo-1520333789090-1afc82db536a'],
+                'images' => ['mc-hero', 'mc-1', 'mc-2'],
                 'video' => 'https://www.youtube.com/watch?v=uD4izufzh28'
             ],
             'Variety Artists' => [
@@ -70,7 +70,7 @@ class TalentFactory extends Factory
                     "Creating live, light-based art installations that transform event spaces into immersive brand stories."
                 ],
                 'riders' => "DMX-controlled lighting rig, heavy-duty rigging points (certified), and a 30-minute technical soundcheck.",
-                'images' => ['photo-1492684223066-81342ee5ff30', 'photo-1481162853357-588f0fb38581', 'photo-1504196606672-aef5c9cefc92'],
+                'images' => ['illusionist-hero', 'variety-1', 'variety-2'],
                 'video' => 'https://www.youtube.com/watch?v=60fD1432f78'
             ]
         ];
@@ -79,7 +79,7 @@ class TalentFactory extends Factory
         $data = $categories[$categoryName];
         
         $name = fake()->randomElement($data['names']);
-        $imageId = fake()->randomElement($data['images']);
+        $imageName = fake()->randomElement($data['images']);
 
         return [
             'category_id' => \App\Models\Category::where('name', $categoryName)->first()?->id ?? \App\Models\Category::factory(),
@@ -88,7 +88,7 @@ class TalentFactory extends Factory
             'bio' => fake()->randomElement($data['bios']),
             'technical_rider' => $data['riders'],
             'video_url' => $data['video'],
-            'primary_image_url' => "https://images.unsplash.com/{$imageId}?auto=format&fit=crop&w=1200&q=80",
+            'primary_image_url' => "/images/talents/{$imageName}.webp",
             'starting_price' => fake()->randomFloat(2, 2500, 20000),
             'location' => fake()->city() . ', ' . fake()->country(),
             'status' => 'active',

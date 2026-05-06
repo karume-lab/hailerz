@@ -110,7 +110,7 @@
                 <div class="mt-16 lg:mt-0 grid grid-cols-2 gap-6">
                     <div
                         class="group relative overflow-hidden rounded-2xl aspect-3/4 bg-surface-dark shadow-sm hover:shadow-xl transition-shadow duration-500 reveal reveal-delay-100">
-                        <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=1000"
+                        <img src="/images/staffing/luxury-hospitality.webp"
                             loading="lazy" width="500" height="667" alt="Luxury Event Hospitality"
                             class="w-full h-full object-cover grayscale transition-transform duration-700 group-hover:scale-105" />
                         <div
@@ -119,7 +119,7 @@
                     </div>
                     <div
                         class="group relative overflow-hidden rounded-2xl aspect-3/4 bg-surface-dark shadow-sm hover:shadow-xl transition-shadow duration-500 mt-12 reveal reveal-delay-300">
-                        <img src="https://images.unsplash.com/photo-1515162816999-a0c47dc192f7?auto=format&fit=crop&q=80&w=1000"
+                        <img src="/images/staffing/event-coordination.webp"
                             loading="lazy" width="500" height="667" alt="Event Coordination"
                             class="w-full h-full object-cover grayscale transition-transform duration-700 group-hover:scale-105" />
                         <div

@@ -59,7 +59,7 @@ class DatabaseSeeder extends Seeder
             [
                 'category_id' => $categoryModels['DJs']->id,
                 'name' => 'DJ Horizon',
-                'primary_image_url' => 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1200&q=80',
+                'primary_image_url' => '/images/talents/dj-hero.webp',
                 'video_url' => 'https://www.youtube.com/watch?v=zHn1A6M6_Yk',
                 'bio' => 'A technical virtuoso behind the decks, DJ Horizon specializes in high-energy corporate galas and luxury product launches. Known for a seamless blend of deep house and industrial textures, they have headlined major tech summits across EMEA.',
                 'technical_rider' => "Pioneer CDJ-3000 x 4\nDJM-900NXS2 mixer\n2x d&b audiotechnik M4 monitors\nDedicated sound engineer on site",
@@ -76,7 +76,7 @@ class DatabaseSeeder extends Seeder
             [
                 'category_id' => $categoryModels['Speakers']->id,
                 'name' => 'Marcus Chen',
-                'primary_image_url' => 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=1200&q=80',
+                'primary_image_url' => '/images/talents/speaker-hero.webp',
                 'video_url' => 'https://www.youtube.com/watch?v=7Pq-S557XQU',
                 'bio' => 'Marcus Chen is a global strategic advisor and futurist known for high-impact keynotes on digital transformation, AI ethics, and the future of work. His sessions at the World Economic Forum have been cited as "essential guidance for the C-suite".',
                 'technical_rider' => "Lavalier microphone (Sennheiser G4 or similar)\nConfidence monitor (min 24 inch)\nRemote slide clicker (Logitech Spotlight)\nHigh-speed fiber internet for live demos",
@@ -93,7 +93,7 @@ class DatabaseSeeder extends Seeder
             [
                 'category_id' => $categoryModels['Musicians']->id,
                 'name' => 'The Skyline Quintet',
-                'primary_image_url' => 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=1200&q=80',
+                'primary_image_url' => '/images/talents/band-hero.webp',
                 'video_url' => 'https://www.youtube.com/watch?v=j_S6M9Z6mE8',
                 'bio' => 'The Skyline Quintet delivers sophisticated jazz and contemporary fusion. From diplomatic dinners at the UN to black-tie galas in Monaco, their professional artistry and elegant presence are unmatched in the corporate circuit.',
                 'technical_rider' => "Full PA system suitable for 500+ guests\n5x vocal microphones (Shure SM58)\nDrum kit shell pack\nBass & guitar amplifiers\n20x15ft stage area minimum",
@@ -110,7 +110,7 @@ class DatabaseSeeder extends Seeder
             [
                 'category_id' => $categoryModels['MCs']->id,
                 'name' => 'Jessica Sterling',
-                'primary_image_url' => 'https://images.unsplash.com/photo-1551818255-e6e10975bc17?auto=format&fit=crop&w=1200&q=80',
+                'primary_image_url' => '/images/talents/mc-hero.webp',
                 'video_url' => 'https://www.youtube.com/watch?v=uD4izufzh28',
                 'bio' => 'Jessica Sterling is the premier choice for corporate awards ceremonies. With a background in broadcast journalism, she brings impeccable timing, wit, and a sophisticated stage presence to every international summit she facilitates.',
                 'technical_rider' => "Wireless handheld microphone\nLectern with reading light\nFull run-of-show briefing session 24h prior",
@@ -127,7 +127,7 @@ class DatabaseSeeder extends Seeder
             [
                 'category_id' => $categoryModels['Variety Artists']->id,
                 'name' => 'Digital Illusionist X',
-                'primary_image_url' => 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1200&q=80',
+                'primary_image_url' => '/images/talents/illusionist-hero.webp',
                 'video_url' => 'https://www.youtube.com/watch?v=60fD1432f78',
                 'bio' => 'Pushing the boundaries of perception, Digital Illusionist X combines cutting-edge holographic technology with classic sleight of hand. Perfect for tech product launches and innovation-themed galas.',
                 'technical_rider' => "4K Projector (min 10,000 lumens)\nDMX-controlled lighting rig\nBlack stage backdrop (Velvet)\nStage size: 12ft x 12ft minimum",
