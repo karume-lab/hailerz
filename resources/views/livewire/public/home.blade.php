@@ -307,13 +307,13 @@
             <x-heading level="h2" title="Booking FAQs" align="center"
                 class="text-center mb-16 reveal" />
 
-            <div x-data="{ active: 0 }" class="space-y-6">
+            <div x-data="{ active: null }" class="space-y-6">
 
 
                 @foreach($faqs as $index => $faq)
-                    <div class="border-b border-subtle/20 reveal {{ $index % 2 === 1 ? 'reveal-delay-100' : '' }}">
-                        <button @click="active = (active === {{ $index }} ? null : {{ $index }})"
-                            class="flex justify-between items-center w-full text-left py-8 focus:outline-none group transition-all"
+                    <div @click="active = (active === {{ $index }} ? null : {{ $index }})"
+                        class="border-2 border-brand-primary px-4 rounded-xl reveal cursor-pointer {{ $index % 2 === 1 ? 'reveal-delay-100' : '' }}">
+                        <button class="flex justify-between items-center w-full text-left py-8 focus:outline-none group transition-all"
                             aria-label="Toggle FAQ: {{ $faq->question }}"
                             :aria-expanded="active === {{ $index }} ? 'true' : 'false'">
                             <span

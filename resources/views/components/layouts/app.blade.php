@@ -182,7 +182,7 @@
           <p class="text-text-secondary leading-relaxed text-sm mb-6">
             Premium talent booking for unforgettable events.
           </p>
-          <div class="flex flex-wrap gap-4">
+          <div class="grid grid-cols-3 gap-4 w-fit">
             <a href="https://www.facebook.com/hailerzdotcom/" target="_blank" rel="noopener"
               aria-label="Connect with Hailerz on Facebook"
               class="h-12 w-12 rounded-full bg-surface-muted hover:bg-brand-secondary/20 transition-colors flex items-center justify-center text-text-secondary">
