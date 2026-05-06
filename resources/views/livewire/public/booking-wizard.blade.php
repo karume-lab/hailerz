@@ -40,7 +40,7 @@
             <x-card padding="p-10 sm:p-16" class="shadow-2xl">
                 <form wire:submit.prevent="submit" class="flex flex-col h-full">
                     <!-- Scrollable Content Area -->
-                    <div class="flex-1 overflow-y-auto max-h-[60vh] pr-4 -mr-4 scrollbar-thin scrollbar-thumb-brand-primary/20 scrollbar-track-transparent">
+                    <div class="flex-1 overflow-y-auto max-h-[60vh] pr-4 -mr-4 scrollbar-thin scrollbar-thumb-brand-primary/20 scrollbar-track-transparent" data-lenis-prevent>
                         <!-- Step 1: Contact Information -->
                         <div class="{{ $currentStep != 1 ? 'hidden' : 'block' }} space-y-10">
                             <h3 class="text-2xl font-bold text-text-primary ">Contact Information</h3>
@@ -209,7 +209,7 @@
                     </div>
 
                     <!-- Navigation -->
-                    <div class="flex items-center justify-start gap-4 mt-16 pt-10 border-t border-subtle">
+                    <div class="flex items-center justify-end gap-4 mt-16 pt-10 border-t border-subtle">
                         @if($currentStep > 1)
                             <x-button type="button" variant="outline" wire:click="previousStep">
                                 Previous Step
@@ -217,15 +217,15 @@
                         @endif
 
                         @if($currentStep < 4)
-                            <x-button type="button" variant="primary" size="lg" wire:click="nextStep">
+                            <x-button type="button" variant="primary" wire:click="nextStep">
                                 Continue
                             </x-button>
                         @else
-                            <x-button variant="primary" size="lg" type="submit" wire:loading.attr="disabled" wire:target="submit">
-                                <span wire:loading.remove wire:target="submit">Send booking request</span>
-                                <span wire:loading wire:target="submit" class="flex items-center justify-center">
-                                    <x-lucide-loader-2 class="animate-spin h-5 w-5 text-brand-primary" stroke-width="2" />
-                                </span>
+                            <x-button variant="primary" type="submit" wire:loading.attr="disabled" wire:target="submit" class="relative">
+                                <span wire:loading.class="invisible" wire:target="submit">Send booking request</span>
+                                <div wire:loading wire:target="submit" class="absolute inset-0 flex items-center justify-center">
+                                    <x-lucide-loader-2 class="animate-spin h-5 w-5" stroke-width="2" />
+                                </div>
                             </x-button>
                         @endif
                     </div>

@@ -20,7 +20,7 @@
         <select 
             @if($name) id="{{ $name }}" name="{{ $name }}" @endif
             {{ $attributes->merge([
-                'class' => "block w-full px-6 py-4 bg-surface-muted border rounded-full focus:ring-2 outline-none text-text-primary text-sm font-medium transition-all appearance-none " . $errorClass
+                'class' => "block w-full px-6 py-4 bg-surface-muted border rounded-full focus:ring-2 focus:ring-inset outline-none text-text-primary text-sm font-medium transition-all appearance-none " . $errorClass
             ]) }}
         >
             @if($placeholder)

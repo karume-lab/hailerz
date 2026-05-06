@@ -308,12 +308,11 @@
                                 </p>
                             </div>
 
-                            <x-button variant="accent" size="lg" type="submit" class="w-full h-14 text-lg" wire:loading.attr="disabled">
-                                <span wire:loading.remove>Submit Application</span>
-                                <span wire:loading class="flex items-center gap-2">
-                                    <x-lucide-loader-2 class="animate-spin h-5 w-5" />
-                                    Submitting...
-                                </span>
+                            <x-button variant="accent" size="lg" type="submit" class="w-full h-14 text-lg relative" wire:loading.attr="disabled">
+                                <span wire:loading.class="invisible">Submit Application</span>
+                                <div wire:loading class="absolute inset-0 flex items-center justify-center">
+                                    <x-lucide-loader-2 class="animate-spin h-6 w-6" />
+                                </div>
                             </x-button>
                         </form>
                     </x-card>

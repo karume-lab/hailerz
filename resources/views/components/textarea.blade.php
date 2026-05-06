@@ -17,7 +17,7 @@
     <textarea 
         @if($name) id="{{ $name }}" name="{{ $name }}" @endif
         {{ $attributes->merge([
-            'class' => "block w-full px-8 py-6 bg-surface-muted border placeholder-text-muted rounded-[2rem] focus:ring-2 outline-none text-text-primary text-sm font-medium transition-all resize-none " . $errorClass
+            'class' => "block w-full px-8 py-6 bg-surface-muted border placeholder-text-muted rounded-[2rem] focus:ring-2 focus:ring-inset outline-none text-text-primary text-sm font-medium transition-all resize-none " . $errorClass
         ]) }}
     >{{ $slot }}</textarea>
 
