@@ -10,8 +10,6 @@ use Filament\Pages\Dashboard;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
-use Filament\Widgets\AccountWidget;
-use Filament\Widgets\FilamentInfoWidget;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Foundation\Http\Middleware\PreventRequestForgery;
@@ -28,16 +26,16 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->login()
-            ->font('Fenomen Sans')
+            ->font('Inter')
             ->brandLogo(asset('images/logo.webp'))
             ->brandLogoHeight('2.5rem')
             ->maxContentWidth(\Filament\Support\Enums\Width::SevenExtraLarge)
             ->colors([
-                'primary' => '#223757',
-                'secondary' => '#6abfab',
-                'info' => '#6abfab',
+                'primary' => '#146c84',
+                'secondary' => '#65c4af',
+                'info' => '#65c4af',
                 'danger' => Color::Rose,
-                'gray' => Color::Slate,
+                'gray' => Color::Gray,
                 'success' => Color::Emerald,
                 'warning' => Color::Amber,
             ])

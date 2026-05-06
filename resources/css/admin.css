@@ -10,9 +10,22 @@
         max-height: 2.25rem !important;
     }
 
-    /* Custom scrollbar for Kanban board */
+    /* Custom scrollbar for Kanban board or long lists */
     .overflow-x-auto {
         scrollbar-width: thin;
-        scrollbar-color: rgba(34, 55, 87, 0.2) transparent;
+        scrollbar-color: rgba(20, 108, 132, 0.2) transparent;
+    }
+
+    /* Match Admin Buttons to Main Site Style */
+    .fi-btn {
+        border-radius: 9999px !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.1em !important;
+        font-weight: 600 !important;
+        transition: all 0.3s ease !important;
+    }
+
+    .fi-btn:hover {
+        transform: scale(1.02);
     }
 }
