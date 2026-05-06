@@ -1,2 +1,7 @@
 User-agent: *
 Disallow:
+
+User-agent: facebookexternalhit
+Allow: /
+
+Sitemap: https://tiwafoods.com/sitemap.xml
