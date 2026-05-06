@@ -35,4 +35,12 @@ return [
         ],
     ],
 
+    'drift' => [
+        'id' => env('DRIFT_ID'),
+    ],
+
+    'ir' => [
+        'token' => env('IR_SITE_VERIFICATION_TOKEN'),
+    ],
+
 ];
