@@ -21,11 +21,8 @@ class OgImageController extends Controller
     {
         $talent = Talent::where('slug', $slug)->firstOrFail();
         
-        // Bump cache key version to v6 to clear out any old data and ensure initials fallbacks are generated
-        $cacheKey = "talent_og_v6_{$talent->id}";
-
-        // Cache the BASE64 encoded string, NOT the raw binary
-        $base64Image = Cache::remember($cacheKey, 604800, function () use ($talent) {
+        // Use the Cacheable trait's cacheRemember method which handles key generation and invalidation
+        $base64Image = $talent->cacheRemember('og_image', 604800, function () use ($talent) {
             try {
                 $manager = new ImageManager(new Driver());
 
@@ -120,9 +117,8 @@ class OgImageController extends Controller
     {
         $post = \App\Models\Post::where('slug', $slug)->firstOrFail();
         
-        $cacheKey = "resource_og_v1_{$post->id}";
-
-        $base64Image = Cache::remember($cacheKey, 604800, function () use ($post) {
+        // Use the Cacheable trait's cacheRemember method for posts
+        $base64Image = $post->cacheRemember('og_image', 604800, function () use ($post) {
             try {
                 $manager = new ImageManager(new Driver());
                 $sourceUrl = $post->image_url;

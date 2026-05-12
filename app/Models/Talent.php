@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\Cacheable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -22,7 +23,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
  */
 class Talent extends Model implements HasMedia
 {
-    use InteractsWithMedia, HasFactory, SoftDeletes;
+    use InteractsWithMedia, HasFactory, SoftDeletes, Cacheable;
 
     protected $table = 'talents';
     protected $guarded = [];

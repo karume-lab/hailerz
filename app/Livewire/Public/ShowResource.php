@@ -24,7 +24,7 @@ class ShowResource extends Component
             ->layout('components.layouts.app', [
                 'title' => $this->post->title . ' — Resources',
                 'description' => $this->post->subtitle,
-                'ogImage' => route('og.resource', $this->post->slug),
+                'ogImage' => route('og.resource', ['slug' => $this->post->slug, 'v' => $this->post->updated_at?->timestamp]),
             ]);
     }
 }
