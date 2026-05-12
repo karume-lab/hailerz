@@ -223,7 +223,7 @@
                                 Continue
                             </x-button>
                         @else
-                            <x-button variant="primary" type="submit" wire:loading.attr="disabled" wire:target="submit">
+                            <x-button variant="primary" type="submit" wire:target="submit">
                                 Send booking request
                             </x-button>
                         @endif
