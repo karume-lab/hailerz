@@ -54,10 +54,10 @@
 
             {{-- Spinner: hidden by default, shown by Livewire's wire:loading during network requests --}}
             <span
-                wire:loading.class.remove="hidden"
-                wire:loading.class="flex"
+                wire:loading.flex
                 @if($loadingTarget) wire:target="{{ $loadingTarget }}" @endif
-                class="hidden absolute inset-0 items-center justify-center"
+                class="absolute inset-0 items-center justify-center"
+                style="display: none;"
             >
                 <svg class="animate-spin h-[1.2em] w-[1.2em]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                     <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3.5"></circle>
