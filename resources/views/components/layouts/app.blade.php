@@ -145,19 +145,18 @@
             class="{{ request()->is('contact*') ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary' }} transition-colors">Contact</a>
         </nav>
 
-        <div class="flex items-center space-x-4">
-          <!-- Desktop Theme Toggle -->
-          <div class="hidden md:block">
+        <div class="flex items-center space-x-2 sm:space-x-4">
+          <div class="hidden md:flex items-center space-x-4">
             <x-theme-toggle />
+            <a href="/join" wire:navigate
+              class="{{ request()->is('join*') ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary' }} transition-colors text-sm font-medium">Submissions</a>
           </div>
-          <a href="/join" wire:navigate
-            class="{{ request()->is('join*') ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary' }} transition-colors">Submissions</a>
+
           <x-button variant="primary" size="sm" href="/book" wire:navigate
-            class="border-none shadow-sm px-6 py-2.5 rounded-full hover:scale-105 transition-transform text-xs sm:text-sm">
+            class="border-none shadow-sm px-4 sm:px-6 py-2 sm:py-2.5 rounded-full hover:scale-105 transition-transform text-[10px] sm:text-sm">
             Book Now
           </x-button>
-
-          <!-- Mobile Menu Container -->
+          
           <x-mobile-menu />
         </div>
       </div>

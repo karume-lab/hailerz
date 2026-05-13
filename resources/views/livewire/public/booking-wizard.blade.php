@@ -11,7 +11,7 @@
                     One of our agents will review everything and get back to you within one business day with a formal proposal.
                 </p>
                 <x-button variant="primary" href="/talent" wire:navigate>
-                    Browse Talent
+                    Book another talent
                 </x-button>
             </x-card>
         @else
