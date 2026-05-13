@@ -71,7 +71,7 @@ class Staffing extends Component
             ->get()
             ->map(function ($category) {
                 // Use a default image if one exists for the slug, otherwise it will fall back to talent photo or placeholder
-                $path = "images/categories/{$category->slug}.webp";
+                $path = "images/home/{$category->slug}.webp";
                 $category->default_image = file_exists(public_path($path)) 
                     ? asset($path) 
                     : asset('images/placeholder-category.webp');

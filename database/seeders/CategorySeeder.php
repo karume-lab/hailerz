@@ -20,7 +20,8 @@ class CategorySeeder extends Seeder
                 'description' => 'Solo instrumentalists and vocalists across all genres - from classical pianists to contemporary guitarists.',
                 'popular_genres' => ['Jazz', 'Classical', 'Pop', 'Rock', 'Country', 'R&B'],
                 'popular_for' => 'Weddings, Corporate Dinners, Private Parties',
-                'typical_pricing' => '₦30k - ₦80k'
+                'typical_pricing' => '₦30k - ₦80k',
+                'is_professional' => false
             ],
             [
                 'name' => 'Variety Artists',
@@ -29,7 +30,8 @@ class CategorySeeder extends Seeder
                 'description' => 'Full ensembles and variety acts that bring energy and diversity to any event, from acoustic trios to full performance groups.',
                 'popular_genres' => ['Rock', 'Jazz', 'Cover Bands', 'Indie', 'Blues', 'Folk'],
                 'popular_for' => 'Weddings, Festivals, Corporate Events',
-                'typical_pricing' => '₦80k - ₦230k'
+                'typical_pricing' => '₦80k - ₦230k',
+                'is_professional' => false
             ],
             [
                 'name' => 'DJs',
@@ -38,7 +40,8 @@ class CategorySeeder extends Seeder
                 'description' => 'Professional DJs who read the room and keep the energy high with expertly curated playlists and mixing.',
                 'popular_genres' => ['EDM', 'Hip Hop', 'House', 'Top 40', 'Latin', 'Throwback'],
                 'popular_for' => 'Clubs, Parties, Weddings, Corporate Events',
-                'typical_pricing' => '₦50k - ₦120k'
+                'typical_pricing' => '₦50k - ₦120k',
+                'is_professional' => true
             ],
             [
                 'name' => 'Speakers',
@@ -47,7 +50,8 @@ class CategorySeeder extends Seeder
                 'description' => 'Keynote speakers, motivational speakers, and industry experts who inspire and educate audiences.',
                 'popular_genres' => ['Business', 'Tech', 'Motivation', 'Entertainment', 'Education'],
                 'popular_for' => 'Conferences, Corporate Events, Fundraisers',
-                'typical_pricing' => '₦150k - ₦750k+'
+                'typical_pricing' => '₦150k - ₦750k+',
+                'is_professional' => true
             ],
             [
                 'name' => 'Dancers',
@@ -56,7 +60,8 @@ class CategorySeeder extends Seeder
                 'description' => 'Professional dancers and choreographers specializing in contemporary, traditional, and Afrobeat performances.',
                 'popular_genres' => ['Contemporary', 'Afrobeat', 'Traditional', 'Hip Hop', 'Ballet'],
                 'popular_for' => 'Weddings, Cultural Events, Corporate Shows',
-                'typical_pricing' => '₦40k - ₦100k'
+                'typical_pricing' => '₦40k - ₦100k',
+                'is_professional' => false
             ],
             [
                 'name' => 'Artists',
@@ -65,7 +70,8 @@ class CategorySeeder extends Seeder
                 'description' => 'Live painters and visual artists who create stunning artwork during your event as entertainment.',
                 'popular_genres' => ['Live Painting', 'Portrait Art', 'Abstract', 'Graffiti', 'Digital Art'],
                 'popular_for' => 'Corporate Events, Exhibitions, Private Parties',
-                'typical_pricing' => '₦50k - ₦150k'
+                'typical_pricing' => '₦50k - ₦150k',
+                'is_professional' => false
             ],
             [
                 'name' => 'Poets',
@@ -74,7 +80,8 @@ class CategorySeeder extends Seeder
                 'description' => 'Spoken word artists and poets who captivate audiences with powerful performances and storytelling.',
                 'popular_genres' => ['Spoken Word', 'Poetry', 'Storytelling', 'Slam Poetry'],
                 'popular_for' => 'Cultural Events, Conferences, Intimate Gatherings',
-                'typical_pricing' => '₦30k - ₦70k'
+                'typical_pricing' => '₦30k - ₦70k',
+                'is_professional' => false
             ],
             [
                 'name' => 'Content Creators',
@@ -83,7 +90,8 @@ class CategorySeeder extends Seeder
                 'description' => 'Social media influencers and content creators who bring modern digital engagement to your brand.',
                 'popular_genres' => ['Social Media', 'Lifestyle', 'Fashion', 'Tech', 'Food'],
                 'popular_for' => 'Brand Launches, Product Events, Marketing Campaigns',
-                'typical_pricing' => '₦100k - ₦500k+'
+                'typical_pricing' => '₦100k - ₦500k+',
+                'is_professional' => false
             ],
             [
                 'name' => 'Comedians',
@@ -92,7 +100,8 @@ class CategorySeeder extends Seeder
                 'description' => 'Stand-up comedians and comedy performers who bring laughter and entertainment to any occasion.',
                 'popular_genres' => ['Stand-up', 'Improv', 'Sketch Comedy', 'Clean Comedy', 'Roast'],
                 'popular_for' => 'Corporate Events, Private Parties, Fundraisers',
-                'typical_pricing' => '₦70k - ₦250k'
+                'typical_pricing' => '₦70k - ₦250k',
+                'is_professional' => false
             ],
             [
                 'name' => 'MCs',
@@ -101,7 +110,8 @@ class CategorySeeder extends Seeder
                 'description' => 'Professional event hosts and masters of ceremony who keep your event flowing smoothly and engaging.',
                 'popular_genres' => ['Event Hosting', 'Emcee', 'Announcer', 'Moderator'],
                 'popular_for' => 'Weddings, Conferences, Award Ceremonies, Galas',
-                'typical_pricing' => '₦50k - ₦200k'
+                'typical_pricing' => '₦50k - ₦200k',
+                'is_professional' => true
             ],
         ];
 
