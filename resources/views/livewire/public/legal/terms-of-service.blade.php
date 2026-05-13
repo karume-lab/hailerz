@@ -16,6 +16,9 @@
                 <h2 class="text-2xl font-bold text-brand-primary mt-12 mb-6 ">2. Your account</h2>
                 <p>Whether you're booking talent or you're an artist yourself, please keep your information accurate and up to date. We reserve the right to close accounts that don't meet our standards of professional conduct.</p>
                 
+                <h3 class="text-xl font-bold text-brand-primary mt-8 mb-4">Talent Attendance & No-Show Policy</h3>
+                <p>Professionalism is at the core of Hailerz. Artists are expected to attend all confirmed bookings. In the event of a "No Show" (failure to attend a booking without valid reason), the event will be flagged. If an artist receives **three (3) No-Show reports within a rolling 12-month period**, their profile will be automatically **frozen**. A frozen profile remains viewable on the platform for portfolio purposes but is disabled for all new booking inquiries. Artists may appeal a frozen status by contacting our administration.</p>
+                
                 <h2 class="text-2xl font-bold text-brand-primary mt-12 mb-6 ">3. How bookings work</h2>
                 <p>Sending an inquiry through the site doesn't mean an artist is booked. A booking is only official once both parties have signed a formal contract and the initial deposit has been paid.</p>
                 

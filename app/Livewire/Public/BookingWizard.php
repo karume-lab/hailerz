@@ -150,6 +150,9 @@ class BookingWizard extends Component
     {
         $talent = Talent::with('category')->find($talentId);
         if ($talent) {
+            if ($talent->is_frozen) {
+                return;
+            }
             $this->selectedTalent = $talent;
             $this->talent_id = $talent->id;
             $this->specific_talent = $talent->name;

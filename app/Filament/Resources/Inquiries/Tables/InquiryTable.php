@@ -69,6 +69,36 @@ class InquiryTable
     {
         return [
             Actions\ActionGroup::make([
+                Actions\Action::make('markNoShow')
+                    ->label('Flag No Show')
+                    ->icon('heroicon-o-exclamation-triangle')
+                    ->color('danger')
+                    ->requiresConfirmation()
+                    ->hidden(fn ($record) => $record->is_no_show || !$record->talent_id)
+                    ->action(function ($record) {
+                        $record->update(['is_no_show' => true]);
+                        
+                        $talent = $record->talent;
+                        $noShowCount = \App\Models\Inquiry::where('talent_id', $talent->id)
+                            ->where('is_no_show', true)
+                            ->where('created_at', '>=', now()->subYear())
+                            ->count();
+                            
+                        if ($noShowCount >= 3) {
+                            $talent->update(['is_frozen' => true]);
+                            try {
+                                \Illuminate\Support\Facades\Mail::to($talent->email)->send(new \App\Mail\TalentFrozenMail($talent));
+                            } catch (\Exception $e) {
+                                \Illuminate\Support\Facades\Log::error('Freeze mail failed: ' . $e->getMessage());
+                            }
+                        }
+                        
+                        \Filament\Notifications\Notification::make()
+                            ->title('Marked as No Show')
+                            ->body($noShowCount >= 3 ? "Talent profile has been frozen due to reaching {$noShowCount} no-shows." : "No-show recorded. Total count: {$noShowCount}/3.")
+                            ->success()
+                            ->send();
+                    }),
                 Actions\Action::make('sendEmail')
                     ->label('Send Email')
                     ->icon('heroicon-o-envelope')

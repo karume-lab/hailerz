@@ -164,19 +164,37 @@
                                                 <ul class="flex-1 overflow-y-auto divide-y divide-subtle min-h-48">
                                                     @forelse($this->searchableTalents as $talent)
                                                         <li wire:key="talent-{{ $talent->id }}"
-                                                            wire:click="selectTalent({{ $talent->id }})"
-                                                            @click="open = false"
-                                                            class="p-4 flex items-center gap-4 hover:bg-surface-muted cursor-pointer transition-colors group">
-                                                            <div class="h-12 w-12 rounded-lg overflow-hidden shrink-0 shadow-sm group-hover:shadow-md transition-shadow">
+                                                            @if(!$talent->is_frozen) 
+                                                                wire:click="selectTalent({{ $talent->id }})"
+                                                                @click="open = false"
+                                                                class="p-4 flex items-center gap-4 hover:bg-surface-muted cursor-pointer transition-colors group"
+                                                            @else
+                                                                class="p-4 flex items-center gap-4 bg-surface-muted/30 cursor-not-allowed opacity-60 grayscale transition-colors group"
+                                                            @endif
+                                                        >
+                                                            <div class="h-12 w-12 rounded-lg overflow-hidden shrink-0 shadow-sm group-hover:shadow-md transition-shadow relative">
                                                                 <img src="{{ $talent->profile_photo_url }}" alt="{{ $talent->name }}" class="w-full h-full object-cover">
+                                                                @if($talent->is_frozen)
+                                                                    <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+                                                                        <x-lucide-lock class="w-4 h-4 text-white" />
+                                                                    </div>
+                                                                @endif
                                                             </div>
                                                             <div class="flex-1 min-w-0">
-                                                                <p class="text-sm font-bold text-text-primary truncate">{{ $talent->name }}</p>
+                                                                <div class="flex items-center gap-2">
+                                                                    <p class="text-sm font-bold text-text-primary truncate">{{ $talent->name }}</p>
+                                                                    @if($talent->is_frozen)
+                                                                        <span class="text-[8px] font-bold bg-red-100 text-red-600 px-1.5 py-0.5 rounded uppercase tracking-wider">Frozen</span>
+                                                                    @endif
+                                                                </div>
                                                                 <p class="text-xs text-text-muted">{{ $talent->category->name }}</p>
                                                             </div>
                                                             @if($talent->starting_price)
                                                                 <div class="text-right">
                                                                     <p class="text-xs font-bold text-brand-primary">₦{{ number_format($talent->starting_price) }}</p>
+                                                                    @if($talent->is_frozen)
+                                                                        <p class="text-[8px] text-red-500 font-bold mt-1">Unavailable</p>
+                                                                    @endif
                                                                 </div>
                                                             @endif
                                                         </li>

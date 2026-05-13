@@ -30,6 +30,13 @@ Welcome to the **Hailerz** community! We have successfully received your applica
 2. **Discovery Call**: If your act is a fit for our current roster needs, we will reach out to schedule a brief virtual discovery call to get to know you better.
 3. **Onboarding**: Once approved, you'll be officially onboarded to the Hailerz platform and made available for bookings with our premium clients.
 
+---
+
+### Important: Reliability & No-Show Policy
+To maintain our reputation for premium service, we enforce a strict reliability policy. Any artist who accumulates **three (3) No-Show reports within a 12-month period** will have their profile **frozen**. A frozen profile remains viewable for portfolio purposes but is disabled for all future bookings. We value your professionalism and commitment to our clients.
+
+---
+
 Attached to this email is a PDF summary of your full application for your records.
 
 ---

@@ -21,6 +21,7 @@ class Inquiry extends Model
             'event_date' => 'date',
             'expected_guests' => 'integer',
             'status' => InquiryStatus::class,
+            'is_no_show' => 'boolean',
         ];
     }
 

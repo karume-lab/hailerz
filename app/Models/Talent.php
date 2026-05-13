@@ -62,6 +62,7 @@ class Talent extends Model implements HasMedia
         return [
             'starting_price' => 'decimal:2',
             'is_featured' => 'boolean',
+            'is_frozen' => 'boolean',
             'has_signed_agreement' => 'boolean',
             'agreement_signed_at' => 'datetime',
         ];
