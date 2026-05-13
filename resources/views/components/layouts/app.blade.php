@@ -223,12 +223,10 @@
           <ul class="space-y-4">
             <li><a href="/talent" wire:navigate
                 class="text-sm text-text-secondary hover:text-brand-primary transition-colors">Browse Talent</a></li>
-            <li><a href="/talent?category=speakers"
-                class="text-sm text-text-secondary hover:text-brand-primary transition-colors">Speakers</a></li>
-            <li><a href="/talent?category=musicians"
-                class="text-sm text-text-secondary hover:text-brand-primary transition-colors">Musicians</a></li>
-            <li><a href="/talent?category=variety-artists"
-                class="text-sm text-text-secondary hover:text-brand-primary transition-colors">Variety Artists</a></li>
+            @foreach($allCategories->take(4) as $cat)
+            <li><a href="/talent?category={{ $cat->slug }}"
+                class="text-sm text-text-secondary hover:text-brand-primary transition-colors">{{ $cat->name }}</a></li>
+            @endforeach
           </ul>
         </div>
 

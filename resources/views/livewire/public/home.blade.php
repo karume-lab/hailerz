@@ -34,28 +34,10 @@
             <!-- Quick Links / Categories -->
             <div
                 class="flex flex-wrap justify-center gap-x-6 md:gap-x-12 gap-y-6 mt-12 text-xs font-bold uppercase tracking-widest text-white/80">
-                <a href="/talent?category=musicians" wire:navigate
-                    class="hover:text-brand-primary transition-all hover:scale-105 transform">Musicians</a>
-                <a href="/talent?category=djs" wire:navigate
-                    class="hover:text-brand-primary transition-all hover:scale-105 transform">DJs</a>
-                <a href="/talent?category=speakers" wire:navigate
-                    class="hover:text-brand-primary transition-all hover:scale-105 transform">Speakers</a>
-                <a href="/talent?category=dancers" wire:navigate
-                    class="hover:text-brand-primary transition-all hover:scale-105 transform">Dancers</a>
-                <a href="/talent?category=artists" wire:navigate
-                    class="hover:text-brand-primary transition-all hover:scale-105 transform">Artists</a>
-                <a href="/talent?category=poets" wire:navigate
-                    class="hover:text-brand-primary transition-all hover:scale-105 transform">Poets</a>
-                <a href="/talent?category=content-creators" wire:navigate
-                    class="hover:text-brand-primary transition-all hover:scale-105 transform whitespace-nowrap">Content
-                    Creators</a>
-                <a href="/talent?category=comedians" wire:navigate
-                    class="hover:text-brand-primary transition-all hover:scale-105 transform">Comedians</a>
-                <a href="/talent?category=mcs" wire:navigate
-                    class="hover:text-brand-primary transition-all hover:scale-105 transform">MCs</a>
-                <a href="/talent?category=variety-artists" wire:navigate
-                    class="hover:text-brand-primary transition-all hover:scale-105 transform whitespace-nowrap">Variety
-                    Artists</a>
+                @foreach($allCategories as $cat)
+                <a href="/talent?category={{ $cat->slug }}" wire:navigate
+                    class="hover:text-brand-primary transition-all hover:scale-105 transform whitespace-nowrap">{{ $cat->name }}</a>
+                @endforeach
             </div>
         </div>
     </section>

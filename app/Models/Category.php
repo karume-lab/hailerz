@@ -12,6 +12,10 @@ class Category extends Model
 
     protected $guarded = [];
 
+    protected $casts = [
+        'popular_genres' => 'array',
+    ];
+
     public function talents(): HasMany
     {
         return $this->hasMany(Talent::class);

@@ -9,7 +9,7 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function run(): void
+    public function up(): void
     {
         Schema::table('categories', function (Blueprint $table) {
             $table->text('description')->nullable();
@@ -23,7 +23,7 @@ return new class extends Migration
     /**
      * Reverse the migrations.
      */
-    public function rollback(): void
+    public function down(): void
     {
         Schema::table('categories', function (Blueprint $table) {
             $table->dropColumn(['description', 'icon', 'typical_pricing', 'popular_genres', 'popular_for']);

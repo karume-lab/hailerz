@@ -18,127 +18,26 @@
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-        @php
-          $categories = [
-            [
-              'name' => 'Musicians',
-              'slug' => 'musicians',
-              'icon' => 'music',
-              'desc' => 'Solo instrumentalists and vocalists across all genres - from classical pianists to contemporary guitarists.',
-              'genres' => ['Jazz', 'Classical', 'Pop', 'Rock', 'Country', 'R&B'],
-              'popular' => 'Weddings, Corporate Dinners, Private Parties'
-            ],
-            [
-              'name' => 'Variety Artists',
-              'slug' => 'variety-artists',
-              'icon' => 'users',
-              'desc' => 'Full ensembles and variety acts that bring energy and diversity to any event, from acoustic trios to full performance groups.',
-              'genres' => ['Rock', 'Jazz', 'Cover Bands', 'Indie', 'Blues', 'Folk'],
-              'popular' => 'Weddings, Festivals, Corporate Events'
-            ],
-            [
-              'name' => 'DJs',
-              'slug' => 'djs',
-              'icon' => 'disc',
-              'desc' => 'Professional DJs who read the room and keep the energy high with expertly curated playlists and mixing.',
-              'genres' => ['EDM', 'Hip Hop', 'House', 'Top 40', 'Latin', 'Throwback'],
-              'popular' => 'Clubs, Parties, Weddings, Corporate Events'
-            ],
-            [
-              'name' => 'Speakers',
-              'slug' => 'speakers',
-              'icon' => 'mic',
-              'desc' => 'Keynote speakers, motivational speakers, and industry experts who inspire and educate audiences.',
-              'genres' => ['Business', 'Tech', 'Motivation', 'Entertainment', 'Education'],
-              'popular' => 'Conferences, Corporate Events, Fundraisers'
-            ],
-            [
-              'name' => 'Dancers',
-              'slug' => 'dancers',
-              'icon' => 'sparkles',
-              'desc' => 'Professional dancers and choreographers specializing in contemporary, traditional, and Afrobeat performances.',
-              'genres' => ['Contemporary', 'Afrobeat', 'Traditional', 'Hip Hop', 'Ballet'],
-              'popular' => 'Weddings, Cultural Events, Corporate Shows'
-            ],
-            [
-              'name' => 'Artists',
-              'slug' => 'artists',
-              'icon' => 'palette',
-              'desc' => 'Live painters and visual artists who create stunning artwork during your event as entertainment.',
-              'genres' => ['Live Painting', 'Portrait Art', 'Abstract', 'Graffiti', 'Digital Art'],
-              'popular' => 'Corporate Events, Exhibitions, Private Parties'
-            ],
-            [
-              'name' => 'Poets',
-              'slug' => 'poets',
-              'icon' => 'book-open',
-              'desc' => 'Spoken word artists and poets who captivate audiences with powerful performances and storytelling.',
-              'genres' => ['Spoken Word', 'Poetry', 'Storytelling', 'Slam Poetry'],
-              'popular' => 'Cultural Events, Conferences, Intimate Gatherings'
-            ],
-            [
-              'name' => 'Content Creators',
-              'slug' => 'content-creators',
-              'icon' => 'video',
-              'desc' => 'Social media influencers and content creators who bring modern digital engagement to your brand.',
-              'genres' => ['Social Media', 'Lifestyle', 'Fashion', 'Tech', 'Food'],
-              'popular' => 'Brand Launches, Product Events, Marketing Campaigns'
-            ],
-            [
-              'name' => 'Comedians',
-              'slug' => 'comedians',
-              'icon' => 'laugh',
-              'desc' => 'Stand-up comedians and comedy performers who bring laughter and entertainment to any occasion.',
-              'genres' => ['Stand-up', 'Improv', 'Sketch Comedy', 'Clean Comedy', 'Roast'],
-              'popular' => 'Corporate Events, Private Parties, Fundraisers'
-            ],
-            [
-              'name' => 'MCs',
-              'slug' => 'mcs',
-              'icon' => 'megaphone',
-              'desc' => 'Professional event hosts and masters of ceremony who keep your event flowing smoothly and engaging.',
-              'genres' => ['Event Hosting', 'Emcee', 'Announcer', 'Moderator'],
-              'popular' => 'Weddings, Conferences, Award Ceremonies, Galas'
-            ]
-          ];
-        @endphp
-
-        @foreach($categories as $cat)
-          <a href="/talent?category={{ $cat['slug'] }}" wire:navigate
+        @foreach($allCategories as $cat)
+          <a href="/talent?category={{ $cat->slug }}" wire:navigate
             class="group rounded-3xl border border-subtle bg-surface-light p-8 shadow-sm flex flex-col h-full hover:border-brand-primary hover:shadow-lg transition-all duration-300">
             <div
               class="w-16 h-16 bg-brand-primary/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-brand-primary group-hover:text-text-inverse transition-colors duration-300">
-              @if($cat['icon'] === 'music') <x-lucide-music
-                class="w-8 h-8 text-brand-primary group-hover:text-text-inverse" />
-              @elseif($cat['icon'] === 'users') <x-lucide-users
-                class="w-8 h-8 text-brand-primary group-hover:text-text-inverse" />
-              @elseif($cat['icon'] === 'disc') <x-lucide-disc
-                class="w-8 h-8 text-brand-primary group-hover:text-text-inverse" />
-              @elseif($cat['icon'] === 'mic') <x-lucide-mic
-                class="w-8 h-8 text-brand-primary group-hover:text-text-inverse" />
-              @elseif($cat['icon'] === 'sparkles') <x-lucide-sparkles
-                class="w-8 h-8 text-brand-primary group-hover:text-text-inverse" />
-              @elseif($cat['icon'] === 'palette') <x-lucide-palette
-                class="w-8 h-8 text-brand-primary group-hover:text-text-inverse" />
-              @elseif($cat['icon'] === 'book-open') <x-lucide-book-open
-                class="w-8 h-8 text-brand-primary group-hover:text-text-inverse" />
-              @elseif($cat['icon'] === 'video') <x-lucide-video
-                class="w-8 h-8 text-brand-primary group-hover:text-text-inverse" />
-              @elseif($cat['icon'] === 'laugh') <x-lucide-laugh
-                class="w-8 h-8 text-brand-primary group-hover:text-text-inverse" />
-              @elseif($cat['icon'] === 'megaphone') <x-lucide-megaphone
-                class="w-8 h-8 text-brand-primary group-hover:text-text-inverse" />
-              @endif
+              @php
+                $iconName = $cat->icon ?? 'users';
+              @endphp
+              <x-dynamic-component :component="'lucide-' . $iconName" class="w-8 h-8 text-brand-primary group-hover:text-text-inverse" />
             </div>
             <h3 class="text-2xl font-bold mb-3 text-text-primary group-hover:text-brand-primary transition-colors">
-              {{ $cat['name'] }}
+              {{ $cat->name }}
             </h3>
-            <p class="text-text-secondary text-sm leading-relaxed mb-6 grow">{{ $cat['desc'] }}</p>
+            <p class="text-text-secondary text-sm leading-relaxed mb-6 grow">{{ $cat->description }}</p>
 
+            @if($cat->popular_genres)
             <div class="mb-6">
               <h4 class="text-xs font-bold text-text-primary uppercase tracking-widest mb-3">Popular Genres:</h4>
               <div class="flex flex-wrap gap-2">
-                @foreach($cat['genres'] as $genre)
+                @foreach($cat->popular_genres as $genre)
                   <span
                     class="px-3 py-1 bg-surface-muted text-text-secondary text-[10px] font-bold rounded-full border border-subtle">
                     {{ $genre }}
@@ -146,9 +45,10 @@
                 @endforeach
               </div>
             </div>
+            @endif
 
             <div class="pt-6 border-t border-subtle">
-              <p class="text-xs text-text-muted italic">Most Popular for: {{ $cat['popular'] }}</p>
+              <p class="text-xs text-text-muted italic">Most Popular for: {{ $cat->popular_for }}</p>
             </div>
           </a>
         @endforeach

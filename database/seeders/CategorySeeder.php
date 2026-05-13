@@ -13,22 +13,102 @@ class CategorySeeder extends Seeder
     public function run(): void
     {
         $categories = [
-            'Musicians' => 'musicians',
-            'DJs' => 'djs',
-            'Speakers' => 'speakers',
-            'Dancers' => 'dancers',
-            'Artists' => 'artists',
-            'Poets' => 'poets',
-            'Content Creators' => 'content-creators',
-            'Comedians' => 'comedians',
-            'MCs' => 'mcs',
-            'Variety Artists' => 'variety-artists',
+            [
+                'name' => 'Musicians',
+                'slug' => 'musicians',
+                'icon' => 'music',
+                'description' => 'Solo instrumentalists and vocalists across all genres - from classical pianists to contemporary guitarists.',
+                'popular_genres' => ['Jazz', 'Classical', 'Pop', 'Rock', 'Country', 'R&B'],
+                'popular_for' => 'Weddings, Corporate Dinners, Private Parties',
+                'typical_pricing' => '₦30k - ₦80k'
+            ],
+            [
+                'name' => 'Variety Artists',
+                'slug' => 'variety-artists',
+                'icon' => 'users',
+                'description' => 'Full ensembles and variety acts that bring energy and diversity to any event, from acoustic trios to full performance groups.',
+                'popular_genres' => ['Rock', 'Jazz', 'Cover Bands', 'Indie', 'Blues', 'Folk'],
+                'popular_for' => 'Weddings, Festivals, Corporate Events',
+                'typical_pricing' => '₦80k - ₦230k'
+            ],
+            [
+                'name' => 'DJs',
+                'slug' => 'djs',
+                'icon' => 'disc',
+                'description' => 'Professional DJs who read the room and keep the energy high with expertly curated playlists and mixing.',
+                'popular_genres' => ['EDM', 'Hip Hop', 'House', 'Top 40', 'Latin', 'Throwback'],
+                'popular_for' => 'Clubs, Parties, Weddings, Corporate Events',
+                'typical_pricing' => '₦50k - ₦120k'
+            ],
+            [
+                'name' => 'Speakers',
+                'slug' => 'speakers',
+                'icon' => 'mic',
+                'description' => 'Keynote speakers, motivational speakers, and industry experts who inspire and educate audiences.',
+                'popular_genres' => ['Business', 'Tech', 'Motivation', 'Entertainment', 'Education'],
+                'popular_for' => 'Conferences, Corporate Events, Fundraisers',
+                'typical_pricing' => '₦150k - ₦750k+'
+            ],
+            [
+                'name' => 'Dancers',
+                'slug' => 'dancers',
+                'icon' => 'sparkles',
+                'description' => 'Professional dancers and choreographers specializing in contemporary, traditional, and Afrobeat performances.',
+                'popular_genres' => ['Contemporary', 'Afrobeat', 'Traditional', 'Hip Hop', 'Ballet'],
+                'popular_for' => 'Weddings, Cultural Events, Corporate Shows',
+                'typical_pricing' => '₦40k - ₦100k'
+            ],
+            [
+                'name' => 'Artists',
+                'slug' => 'artists',
+                'icon' => 'palette',
+                'description' => 'Live painters and visual artists who create stunning artwork during your event as entertainment.',
+                'popular_genres' => ['Live Painting', 'Portrait Art', 'Abstract', 'Graffiti', 'Digital Art'],
+                'popular_for' => 'Corporate Events, Exhibitions, Private Parties',
+                'typical_pricing' => '₦50k - ₦150k'
+            ],
+            [
+                'name' => 'Poets',
+                'slug' => 'poets',
+                'icon' => 'book-open',
+                'description' => 'Spoken word artists and poets who captivate audiences with powerful performances and storytelling.',
+                'popular_genres' => ['Spoken Word', 'Poetry', 'Storytelling', 'Slam Poetry'],
+                'popular_for' => 'Cultural Events, Conferences, Intimate Gatherings',
+                'typical_pricing' => '₦30k - ₦70k'
+            ],
+            [
+                'name' => 'Content Creators',
+                'slug' => 'content-creators',
+                'icon' => 'video',
+                'description' => 'Social media influencers and content creators who bring modern digital engagement to your brand.',
+                'popular_genres' => ['Social Media', 'Lifestyle', 'Fashion', 'Tech', 'Food'],
+                'popular_for' => 'Brand Launches, Product Events, Marketing Campaigns',
+                'typical_pricing' => '₦100k - ₦500k+'
+            ],
+            [
+                'name' => 'Comedians',
+                'slug' => 'comedians',
+                'icon' => 'laugh',
+                'description' => 'Stand-up comedians and comedy performers who bring laughter and entertainment to any occasion.',
+                'popular_genres' => ['Stand-up', 'Improv', 'Sketch Comedy', 'Clean Comedy', 'Roast'],
+                'popular_for' => 'Corporate Events, Private Parties, Fundraisers',
+                'typical_pricing' => '₦70k - ₦250k'
+            ],
+            [
+                'name' => 'MCs',
+                'slug' => 'mcs',
+                'icon' => 'megaphone',
+                'description' => 'Professional event hosts and masters of ceremony who keep your event flowing smoothly and engaging.',
+                'popular_genres' => ['Event Hosting', 'Emcee', 'Announcer', 'Moderator'],
+                'popular_for' => 'Weddings, Conferences, Award Ceremonies, Galas',
+                'typical_pricing' => '₦50k - ₦200k'
+            ],
         ];
 
-        foreach ($categories as $name => $slug) {
+        foreach ($categories as $data) {
             Category::updateOrCreate(
-                ['slug' => $slug],
-                ['name' => $name, 'is_active' => true]
+                ['slug' => $data['slug']],
+                array_merge($data, ['is_active' => true])
             );
         }
     }
