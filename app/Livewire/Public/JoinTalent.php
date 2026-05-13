@@ -23,11 +23,16 @@ class JoinTalent extends Component
     public bool $is_accurate = false;
 
     // Artist Information
-    #[Validate('required|string|max:255')]
-    public string $artist_name = '';
+    #[Validate('required|string|in:individual,group')]
+    public string $talent_type = 'individual';
+
+    public ?int $member_count = null;
 
     #[Validate('required|string|max:255')]
-    public string $real_name = '';
+    public string $artist_name = ''; // Act/Group Name
+
+    #[Validate('required|string|max:255')]
+    public string $real_name = ''; // Contact Person Name
 
     #[Validate('required|email|max:255')]
     public string $email = '';
@@ -113,6 +118,8 @@ class JoinTalent extends Component
     {
         if ($this->currentStep === 1) {
             $this->validate([
+                'talent_type' => 'required|string|in:individual,group',
+                'member_count' => 'required_if:talent_type,group|nullable|integer|min:2',
                 'artist_name' => 'required|string|max:255',
                 'real_name' => 'required|string|max:255',
                 'email' => 'required|email|max:255',
@@ -147,6 +154,8 @@ class JoinTalent extends Component
         $this->validate();
 
         $submission = Submission::create([
+            'talent_type'       => $this->talent_type,
+            'member_count'      => $this->member_count,
             'artist_name'       => $this->artist_name,
             'real_name'         => $this->real_name,
             'email'             => $this->email,

@@ -10,7 +10,8 @@ Hi {{ $submission->artist_name }},
 Welcome to the **Hailerz** community! We have successfully received your application to join our exclusive talent network. Here is a summary of the professional profile you submitted:
 
 ### Professional Profile
-- **Stage Name:** {{ $submission->artist_name }}
+- **Act Name:** {{ $submission->artist_name }}
+- **Type:** {{ ucfirst($submission->talent_type) }} @if($submission->talent_type === 'group')({{ $submission->member_count }} members)@endif
 - **Category:** {{ $submission->category }}
 - **Location:** {{ $submission->location }}
 - **Experience:** {{ $submission->years_active }}

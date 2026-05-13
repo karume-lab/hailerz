@@ -195,10 +195,31 @@
                         <form wire:submit.prevent="submit" class="space-y-12">
                             <!-- Step 1: Artist Information -->
                             <div class="{{ $currentStep != 1 ? 'hidden' : 'block' }} space-y-10">
-                                <h3 class="text-2xl font-bold text-text-primary border-b border-subtle pb-4">Artist Information</h3>
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    <x-input wire:model="artist_name" label="Artist/Stage Name *" placeholder="Your stage name" />
-                                    <x-input wire:model="real_name" label="Real Name *" placeholder="Your legal name" />
+                                <h3 class="text-2xl font-bold text-text-primary border-b border-subtle pb-4">Act Information</h3>
+                                
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                    <div class="md:col-span-2">
+                                        <label class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-4">Talent Type *</label>
+                                        <div class="grid grid-cols-2 gap-4">
+                                            <button type="button" wire:click="$set('talent_type', 'individual')" class="flex items-center justify-center gap-3 p-4 rounded-xl border {{ $talent_type === 'individual' ? 'border-brand-primary bg-brand-primary/5 text-brand-primary' : 'border-subtle bg-surface-light text-text-secondary hover:border-brand-primary/30' }} transition-all">
+                                                <x-lucide-user class="w-5 h-5" />
+                                                <span class="font-bold">Individual</span>
+                                            </button>
+                                            <button type="button" wire:click="$set('talent_type', 'group')" class="flex items-center justify-center gap-3 p-4 rounded-xl border {{ $talent_type === 'group' ? 'border-brand-primary bg-brand-primary/5 text-brand-primary' : 'border-subtle bg-surface-light text-text-secondary hover:border-brand-primary/30' }} transition-all">
+                                                <x-lucide-users class="w-5 h-5" />
+                                                <span class="font-bold">Group / Band</span>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    @if($talent_type === 'group')
+                                        <div class="md:col-span-2">
+                                            <x-input wire:model="member_count" type="number" label="Number of Members *" placeholder="e.g. 4" />
+                                        </div>
+                                    @endif
+
+                                    <x-input wire:model="artist_name" label="Act / Group Name *" placeholder="Your stage or band name" />
+                                    <x-input wire:model="real_name" label="Contact Person Name *" placeholder="Your legal name" />
                                     <x-input wire:model="email" type="email" label="Email Address *" placeholder="your@email.com" />
                                     <x-input wire:model="phone" type="tel" label="Phone Number *" placeholder="+234 XXX XXX XXXX" />
                                     <div class="md:col-span-2">
@@ -206,7 +227,7 @@
                                     </div>
                                     <div class="md:col-span-2">
                                         <x-input wire:model="profile_photo_url" label="Profile Photo URL *" placeholder="https://... (direct link to image)" />
-                                        <p class="text-xs text-text-muted mt-2">Provide a high-quality link to your headshot or promotional photo.</p>
+                                        <p class="text-xs text-text-muted mt-2">Provide a high-quality link to your official promotional photo or logo.</p>
                                     </div>
                                 </div>
                             </div>
