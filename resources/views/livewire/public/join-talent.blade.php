@@ -5,7 +5,7 @@
                 <div class="mx-auto flex items-center justify-center h-24 w-24 rounded-full bg-brand-primary/10 mb-10">
                     <x-lucide-check class="h-12 w-12 text-brand-primary" stroke-width="2" />
                 </div>
-                <x-heading level="h2" title="Application Submitted!" class="text-text-primary mb-6" />
+                <x-heading level="h2" title="Application Submitted!" align="center" class="text-text-primary mb-6" />
                 <p class="text-lg text-text-secondary mb-12 max-w-xl mx-auto">
                     Thanks for sharing your talent with us! We've successfully received your application. 
                     Our team will review your portfolio and reach out within 5-7 business days if there's a potential fit for our roster.
