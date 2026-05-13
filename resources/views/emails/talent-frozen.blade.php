@@ -13,7 +13,7 @@ We are writing to inform you that your Hailerz profile has been **frozen** due t
 **How to Appeal:**
 If you believe this was done in error or if there were extenuating circumstances for your absences, you may submit an appeal to our administration team.
 
-Please contact us at: [{{ config('mail.from.address') }}](mailto:{{ config('mail.from.address') }})
+Please contact us at: [info@hailerz.com](mailto:info@hailerz.com)
 
 Best regards,  
 **The Hailerz Team**

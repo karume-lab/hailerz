@@ -14,7 +14,7 @@ To finalize your onboarding and have your profile listed on our public directory
 ### Next Steps:
 1. Review the terms of the agreement detailed in the attached document.
 2. Print, sign, and scan the document (or use a digital signature).
-3. Email the signed copy back to us at **info@hailerz.com**.
+3. Email the signed copy back to us at [**info@hailerz.com**](mailto:info@hailerz.com).
 
 Once we receive and verify your signed agreement, we will activate your profile on the Hailerz platform.
 

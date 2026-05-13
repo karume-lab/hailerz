@@ -11,10 +11,16 @@
                 <p class="mb-10">At Hailerz, we take your privacy seriously. This page explains how we handle your personal and professional information when you use our services.</p>
                 
                 <h2 class="text-2xl font-bold text-brand-primary mt-12 mb-6 ">1. What we collect</h2>
-                <p>We only collect what we need to book talent and handle contracts. This includes your contact details, event plans, and the payment information required to secure a booking.</p>
+                <p>We collect information necessary to connect premium talent with clients. This includes:</p>
+                <ul class="list-disc pl-6 space-y-2 mb-6">
+                    <li><strong>Contact Details:</strong> Names, email addresses, and phone numbers.</li>
+                    <li><strong>Talent Profiles:</strong> Biographies, performance videos, social media handles, and professional rates.</li>
+                    <li><strong>Group Information:</strong> For bands and crews, we collect details about members and group structure.</li>
+                    <li><strong>Event Logistics:</strong> Dates, locations, and vision for your inquiries.</li>
+                </ul>
                 
                 <h2 class="text-2xl font-bold text-brand-primary mt-12 mb-6 ">2. How we use it</h2>
-                <p>We use your data to manage inquiries, finalize contracts, and keep our service running smoothly. We don't sell or trade your information to outside marketing companies.</p>
+                <p>We use your data to manage booking inquiries, facilitate talent vetting, and ensure reliability. For artists, this includes tracking performance attendance to maintain our quality standards. We do not sell or trade your personal information to third-party marketing companies.</p>
                 
                 <h2 class="text-2xl font-bold text-brand-primary mt-12 mb-6 ">3. Privacy for high-profile events</h2>
                 <p>For our high-profile clients and artists, we go the extra mile to keep things quiet. Your event details are only shared with the specific people who need to know to make the performance happen.</p>
@@ -23,7 +29,7 @@
                 <p>We use secure servers and encryption to protect your information. Access to sensitive booking data is restricted to the specific agents who need it to manage your event.</p>
                 
                 <h2 class="text-2xl font-bold text-brand-primary mt-12 mb-6 ">5. Get in touch</h2>
-                <p>If you have questions about your data or want to remove your profile from our talent, just email us at privacy@hailerz.com.</p>
+                <p>If you have questions about your data or want to remove your profile from our talent, just email us at <a href="mailto:info@hailerz.com" class="text-brand-primary hover:underline">info@hailerz.com</a>.</p>
                 
                 <div class="mt-20 pt-10 border-t border-brand-primary/5">
                     <p class="text-xs text-text-muted italic tracking-wide uppercase">Last Updated: {{ date('F d, Y') }}</p>

@@ -26,7 +26,7 @@
                 <p>All photos and videos of artists on this site belong to the artists themselves or to the Agency. Please don't use these assets for your own marketing or commercial purposes without getting permission first.</p>
                 
                 <h2 class="text-2xl font-bold text-brand-primary mt-12 mb-6 ">5. Legal Jurisdiction</h2>
-                <p>These terms are governed by the laws of Kenya. Any legal issues that can't be resolved through talk will be handled in the courts of Nairobi.</p>
+                <p>These terms are governed by the laws of Nigeria. Any legal issues that can't be resolved through talk will be handled in the courts of Lagos.</p>
                 
                 <div class="mt-20 pt-10 border-t border-brand-primary/5">
                     <p class="text-xs text-text-muted italic tracking-wide uppercase">Last Updated: {{ date('F d, Y') }}</p>

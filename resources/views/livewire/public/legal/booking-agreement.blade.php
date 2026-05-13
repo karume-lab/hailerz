@@ -27,9 +27,12 @@
                 <p>The standard performance fee covers live attendance only. Audio or video recording, broadcasting, live streaming, or commercial use of the performance requires explicit prior written consent from Hailerz and the Artist, and will incur additional licensing fees.</p>
                 
                 <h2 class="text-2xl font-bold text-brand-primary mt-12 mb-6 ">5. Cancellations and Force Majeure</h2>
-                <p>If the Client cancels the engagement after the contract is signed, the 50% deposit is forfeited. Cancellations made within 30 days of the event will result in the Client being liable for 100% of the contracted fee. In the event of a Force Majeure (acts of God, global pandemics, severe travel disruptions), neither party shall be held liable, and Hailerz will make commercially reasonable efforts to reschedule the performance.</p>
+                <p>If the Client cancels the engagement after the contract is signed, the 50% deposit is forfeited. Cancellations made within **fourteen (14) days** of the event will result in the Client being liable for 100% of the contracted fee. In the event of a Force Majeure (acts of God, global pandemics, severe travel disruptions), neither party shall be held liable, and Hailerz will make commercially reasonable efforts to reschedule the performance.</p>
 
-                <h2 class="text-2xl font-bold text-brand-primary mt-12 mb-6 ">6. Safe Environment</h2>
+                <h2 class="text-2xl font-bold text-brand-primary mt-12 mb-6 ">6. Professional Conduct & Reliability</h2>
+                <p>Hailerz maintains a strict reliability policy for all listed artists. Any artist who fails to appear for a confirmed engagement without a valid, documented reason (a "No Show") will be flagged. Three (3) such incidents within a 12-month period will result in the artist's profile being **frozen** and disabled for future bookings. The Client is protected by our refund guarantee in cases of artist no-shows where a suitable replacement cannot be provided.</p>
+
+                <h2 class="text-2xl font-bold text-brand-primary mt-12 mb-6 ">7. Safe Environment</h2>
                 <p>The Client guarantees a safe, secure, and professional environment for the Artist and their crew. The Artist reserves the right to immediately terminate the performance, without refund, if they feel their personal safety or the safety of their equipment is compromised.</p>
                 
                 <div class="mt-20 pt-10 border-t border-brand-primary/5">

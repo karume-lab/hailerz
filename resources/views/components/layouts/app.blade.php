@@ -219,10 +219,10 @@
         </div>
 
         <div>
-          <h3 class="text-xs font-bold text-brand-primary uppercase tracking-widest mb-6">Talent</h3>
+          <h3 class="text-xs font-bold text-brand-primary uppercase tracking-widest mb-6">Discover</h3>
           <ul class="space-y-4">
             <li><a href="/talent" wire:navigate
-                class="text-sm text-text-secondary hover:text-brand-primary transition-colors">All Talent</a></li>
+                class="text-sm text-text-secondary hover:text-brand-primary transition-colors">Browse Talent</a></li>
             <li><a href="/talent?category=speakers"
                 class="text-sm text-text-secondary hover:text-brand-primary transition-colors">Speakers</a></li>
             <li><a href="/talent?category=musicians"
@@ -233,27 +233,28 @@
         </div>
 
         <div>
-          <h3 class="text-xs font-bold text-brand-primary uppercase tracking-widest mb-6">Agency</h3>
+          <h3 class="text-xs font-bold text-brand-primary uppercase tracking-widest mb-6">Company</h3>
           <ul class="space-y-4">
             <li><a href="/about" wire:navigate
-                class="text-sm text-text-secondary hover:text-brand-primary transition-colors">Our Story</a></li>
+                class="text-sm text-text-secondary hover:text-brand-primary transition-colors">About</a></li>
             <li><a href="/services" wire:navigate
                 class="text-sm text-text-secondary hover:text-brand-primary transition-colors">Services</a></li>
+            <li><a href="/resources" wire:navigate
+                class="text-sm text-text-secondary hover:text-brand-primary transition-colors">Resources</a></li>
             <li><a href="/staffing" wire:navigate
-                class="text-sm text-text-secondary hover:text-brand-primary transition-colors">Staffing &
-                Staffing</a></li>
+                class="text-sm text-text-secondary hover:text-brand-primary transition-colors">Staffing</a></li>
             <li><a href="/join" wire:navigate
-                class="text-sm text-text-secondary hover:text-brand-primary transition-colors">Join Talent</a></li>
+                class="text-sm text-text-secondary hover:text-brand-primary transition-colors">Join the Roster</a></li>
             <li><a href="/contact" wire:navigate
                 class="text-sm text-text-secondary hover:text-brand-primary transition-colors">Contact</a></li>
           </ul>
         </div>
 
         <div>
-          <h3 class="text-xs font-bold text-brand-primary uppercase tracking-widest mb-6">Secure Talent</h3>
+          <h3 class="text-xs font-bold text-brand-primary uppercase tracking-widest mb-6">Inquiries</h3>
           <p class="text-sm text-text-secondary mb-6">Ready to elevate your next event with premium talent?</p>
           <x-button variant="primary" size="sm" class="w-full" href="/book" wire:navigate>
-            Start Inquiry
+            Book Now
           </x-button>
         </div>
       </div>

@@ -360,7 +360,9 @@
                             </div>
                             <div>
                                 <h3 class="text-text-inverse font-bold text-sm md:text-base">Send us a message</h3>
-                                <p class="text-text-inverse/60 text-xs md:text-sm">info@hailerz.com</p>
+                                <p class="text-text-inverse/60 text-xs md:text-sm">
+                                    <a href="mailto:info@hailerz.com" class="hover:text-white transition-colors">info@hailerz.com</a>
+                                </p>
                             </div>
                         </li>
                         <li class="flex items-center gap-4 md:gap-6">
