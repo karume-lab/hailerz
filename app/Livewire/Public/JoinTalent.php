@@ -106,21 +106,7 @@ class JoinTalent extends Component
 
     public function submit(): void
     {
-        $this->validate([
-            'artist_name' => 'required|string|max:255',
-            'real_name' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
-            'phone' => 'required|string|max:20',
-            'location' => 'required|string|max:255',
-            'profile_photo_url' => 'required|url|max:255',
-            'category' => 'required|string|max:100',
-            'years_active' => 'required|string|max:100',
-            'min_rate' => 'required|numeric|min:0',
-            'max_rate' => 'required|numeric|min:0',
-            'bio' => 'required|string|min:200|max:5000',
-
-            'gallery.*.url' => 'required|url|max:255',
-        ]);
+        $this->validate();
 
         $submission = Submission::create([
             'artist_name'       => $this->artist_name,
@@ -139,11 +125,9 @@ class JoinTalent extends Component
             'facebook_url'      => $this->facebook_url,
             'youtube_channel'   => $this->youtube_channel,
             'tiktok_handle'     => $this->tiktok_handle,
-
             'notable_clients'   => $this->notable_clients,
             'press_features'    => $this->press_features,
             'bio'               => $this->bio,
-
             'source'            => $this->source,
             'status'            => 'pending',
         ]);

@@ -173,10 +173,29 @@
                                                         </li>
                                                     @empty
                                                         <li class="p-12 text-center">
-                                                            <p class="text-text-muted italic text-sm">No talents found matching your search.</p>
+                                                            <div class="mb-4 opacity-20 flex justify-center">
+                                                                <x-lucide-search-x class="w-12 h-12 text-text-muted" />
+                                                            </div>
+                                                            <p class="text-text-muted italic text-sm">No talents found matching your criteria.</p>
+                                                            @if($budget_range)
+                                                                <div class="mt-6 p-4 bg-brand-primary/5 rounded-xl border border-brand-primary/10">
+                                                                    <p class="text-xs text-brand-primary font-bold uppercase tracking-wider mb-2">Budget Filter Active</p>
+                                                                    <p class="text-xs text-text-secondary leading-relaxed">Not getting what you are looking for? Try adjusting the budget to view more talent.</p>
+                                                                    <button type="button" wire:click="$set('budget_range', '')" class="text-xs font-bold text-brand-primary underline mt-3 block mx-auto">Clear Budget Filter</button>
+                                                                </div>
+                                                            @endif
                                                         </li>
                                                     @endforelse
                                                 </ul>
+
+                                                @if($budget_range && $this->searchableTalents->count() > 0)
+                                                    <div class="p-3 bg-brand-primary/5 text-center border-t border-subtle">
+                                                        <p class="text-[9px] font-bold text-brand-primary uppercase tracking-widest">
+                                                            Only showing talent within {{ $budget_range }}. 
+                                                            <button type="button" wire:click="$set('budget_range', '')" class="underline ml-1">View All</button>
+                                                        </p>
+                                                    </div>
+                                                @endif
                                                 
                                                 @if($this->searchableTalents->count() >= $talentLimit)
                                                     <div class="p-4 bg-surface-muted text-center border-t border-subtle">

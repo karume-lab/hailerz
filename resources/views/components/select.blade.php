@@ -6,7 +6,8 @@
 ])
 
 @php
-    $errorClass = $errors->has($name) ? 'border-red-500 ring-red-500/20' : 'border-subtle focus:ring-brand-secondary';
+    $name = $name ?? $attributes->whereStartsWith('wire:model')->first();
+    $errorClass = ($name && $errors->has($name)) ? 'border-red-500 ring-red-500/20' : 'border-subtle focus:ring-brand-secondary';
 @endphp
 
 <div class="w-full">

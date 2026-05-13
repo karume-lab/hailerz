@@ -103,8 +103,24 @@ class BookingWizard extends Component
     #[Computed]
     public function searchableTalents()
     {
-        return Talent::where('status', 'active')
-            ->when($this->talentSearch, function($query) {
+        $query = Talent::where('status', 'active');
+
+        if ($this->budget_range) {
+            $maxPrice = match ($this->budget_range) {
+                'Under ₦1,000' => 1000,
+                '₦1,000 - ₦2,500' => 2500,
+                '₦2,500 - ₦5,000' => 5000,
+                '₦5,000 - ₦10,000' => 10000,
+                '₦10,000+' => null,
+                default => null,
+            };
+
+            if ($maxPrice) {
+                $query->where('starting_price', '<=', $maxPrice);
+            }
+        }
+
+        return $query->when($this->talentSearch, function($query) {
                 $query->where('name', 'like', '%' . $this->talentSearch . '%');
             })
             ->with('category')
