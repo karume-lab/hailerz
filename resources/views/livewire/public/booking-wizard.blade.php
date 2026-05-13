@@ -94,14 +94,23 @@
                                     <option value="Other">Other</option>
                                 </x-select>
                                 <x-input wire:model="preferred_genre" name="preferred_genre" label="Preferred Genre" />
-                                <x-select wire:model="budget_range" name="budget_range" label="Budget Range">
-                                    <option value="">-- Select Budget --</option>
-                                    <option value="Under ₦1,000">Under ₦1,000</option>
-                                    <option value="₦1,000 - ₦2,500">₦1,000 - ₦2,500</option>
-                                    <option value="₦2,500 - ₦5,000">₦2,500 - ₦5,000</option>
-                                    <option value="₦5,000 - ₦10,000">₦5,000 - ₦10,000</option>
-                                    <option value="₦10,000+">₦10,000+</option>
-                                </x-select>
+                                <div class="relative">
+                                    <x-input wire:model="budget_range" name="budget_range" label="Budget Range *" placeholder="Select or type budget (e.g. 10k - 20k)" list="budget-options" />
+                                    <datalist id="budget-options">
+                                        <option value="Under ₦10,000">
+                                        <option value="₦10,000 - ₦20,000">
+                                        <option value="₦20,000 - ₦30,000">
+                                        <option value="₦30,000 - ₦40,000">
+                                        <option value="₦40,000 - ₦50,000">
+                                        <option value="₦50,000 - ₦60,000">
+                                        <option value="₦60,000 - ₦70,000">
+                                        <option value="₦70,000 - ₦80,000">
+                                        <option value="₦80,000 - ₦90,000">
+                                        <option value="₦90,000 - ₦100,000">
+                                        <option value="₦100,000+">
+                                    </datalist>
+                                    <p class="text-[10px] text-text-muted mt-2">You can select a range or type your specific budget.</p>
+                                </div>
                                 <div class="md:col-span-2">
                                     <label for="specific_talent" class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Specific Talent Request</label>
                                     
@@ -217,15 +226,58 @@
 
                         <!-- Step 4: Misc -->
                         <div class="{{ $currentStep != 4 ? 'hidden' : 'block' }} space-y-10">
-                            <h3 class="text-2xl font-bold text-text-primary ">Final Details</h3>
-                            <x-select wire:model="source" name="source" label="How did you hear about us?">
-                                <option value="">-- Select Option --</option>
-                                <option value="Search Engine">Search Engine</option>
-                                <option value="Social Media">Social Media</option>
-                                <option value="Word of Mouth">Word of Mouth</option>
-                                <option value="Advertisement">Advertisement</option>
-                                <option value="Other">Other</option>
-                            </x-select>
+                            <h3 class="text-2xl font-bold text-text-primary ">Final Details & Next Steps</h3>
+                            
+                            <div class="bg-surface-muted rounded-2xl p-8 border border-subtle">
+                                <h4 class="text-sm font-bold text-text-primary uppercase tracking-widest mb-6">What happens next?</h4>
+                                <ul class="space-y-4">
+                                    <li class="flex items-start gap-4 text-sm text-text-secondary">
+                                        <div class="h-6 w-6 rounded-full bg-brand-primary/10 flex items-center justify-center shrink-0">
+                                            <span class="text-[10px] font-bold text-brand-primary">1</span>
+                                        </div>
+                                        <p>Hailerz will review your inquiry and contact the artist(s) to verify availability.</p>
+                                    </li>
+                                    <li class="flex items-start gap-4 text-sm text-text-secondary">
+                                        <div class="h-6 w-6 rounded-full bg-brand-primary/10 flex items-center justify-center shrink-0">
+                                            <span class="text-[10px] font-bold text-brand-primary">2</span>
+                                        </div>
+                                        <p>We will obtain a final quote based on your specific requirements.</p>
+                                    </li>
+                                    <li class="flex items-start gap-4 text-sm text-text-secondary">
+                                        <div class="h-6 w-6 rounded-full bg-brand-primary/10 flex items-center justify-center shrink-0">
+                                            <span class="text-[10px] font-bold text-brand-primary">3</span>
+                                        </div>
+                                        <p>Expect a formal proposal from us within <strong>3 to 4 business days</strong>.</p>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="space-y-6">
+                                <x-select wire:model="source" name="source" label="How did you hear about us?">
+                                    <option value="">-- Select Option --</option>
+                                    <option value="Search Engine">Search Engine</option>
+                                    <option value="Social Media">Social Media</option>
+                                    <option value="Word of Mouth">Word of Mouth</option>
+                                    <option value="Advertisement">Advertisement</option>
+                                    <option value="Other">Other</option>
+                                </x-select>
+
+                                <div class="relative flex items-start p-4 bg-brand-primary/5 rounded-xl border border-brand-primary/10">
+                                    <div class="flex h-6 items-center">
+                                        <input wire:model="is_accurate" id="is_accurate" name="is_accurate" type="checkbox" class="h-4 w-4 rounded border-brand-primary/30 text-brand-primary focus:ring-brand-primary">
+                                    </div>
+                                    <div class="ml-4 text-sm leading-6">
+                                        <label for="is_accurate" class="font-bold text-text-primary">Information Accuracy *</label>
+                                        <p class="text-text-secondary text-xs">I confirm that the information provided in this form is accurate and complete.</p>
+                                        @error('is_accurate') <p class="text-red-500 text-[10px] mt-1 font-bold">{{ $message }}</p> @enderror
+                                    </div>
+                                </div>
+
+                                <p class="text-[10px] text-text-muted leading-relaxed text-center italic">
+                                    By submitting this form, you agree to our <a href="{{ route('legal.privacy') }}" wire:navigate class="underline">Privacy Policy</a>. 
+                                    Your information is used solely for contact purposes regarding this inquiry. We do not sell or share your data with third parties.
+                                </p>
+                            </div>
                         </div>
                     </div>
 

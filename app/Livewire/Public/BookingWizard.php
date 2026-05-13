@@ -11,6 +11,7 @@ use Livewire\Attributes\Validate;
 use Livewire\Attributes\Computed;
 use Livewire\WithPagination;
 use App\Mail\BookingConfirmationMail;
+use App\Mail\AdminBookingNotification;
 use Illuminate\Support\Facades\Mail;
 
 
@@ -90,6 +91,9 @@ class BookingWizard extends Component
     #[Validate('nullable|string')]
     public $source;
 
+    #[Validate('accepted', message: 'Please confirm that the information provided is accurate.')]
+    public bool $is_accurate = false;
+
     public bool $isComplete = false;
     public $talent_id; // Keeping this for internal tracking if pre-selected
 
@@ -106,14 +110,23 @@ class BookingWizard extends Component
         $query = Talent::where('status', 'active');
 
         if ($this->budget_range) {
-            $maxPrice = match ($this->budget_range) {
-                'Under ₦1,000' => 1000,
-                '₦1,000 - ₦2,500' => 2500,
-                '₦2,500 - ₦5,000' => 5000,
-                '₦5,000 - ₦10,000' => 10000,
-                '₦10,000+' => null,
-                default => null,
-            };
+            $maxPrice = null;
+
+            // Try to extract numbers from the budget string (handles "10k", "10,000", "10,000 - 20,000", etc.)
+            $cleanString = str_replace([',', '₦'], '', $this->budget_range);
+            preg_match_all('/(\d+)(k)?/i', $cleanString, $matches);
+            
+            if (!empty($matches[1])) {
+                $numbers = [];
+                foreach ($matches[1] as $index => $num) {
+                    $val = (float) $num;
+                    $suffix = strtolower($matches[2][$index] ?? '');
+                    if ($suffix === 'k') $val *= 1000;
+                    $numbers[] = $val;
+                }
+                // For ranges, we take the upper bound as the maxPrice
+                $maxPrice = max($numbers);
+            }
 
             if ($maxPrice) {
                 $query->where('starting_price', '<=', $maxPrice);
@@ -149,11 +162,17 @@ class BookingWizard extends Component
             // Auto-fill budget if starting price is available
             if ($talent->starting_price) {
                 $price = (float)$talent->starting_price;
-                if ($price < 1000) $this->budget_range = 'Under ₦1,000';
-                elseif ($price <= 2500) $this->budget_range = '₦1,000 - ₦2,500';
-                elseif ($price <= 5000) $this->budget_range = '₦2,500 - ₦5,000';
-                elseif ($price <= 10000) $this->budget_range = '₦5,000 - ₦10,000';
-                else $this->budget_range = '₦10,000+';
+                if ($price < 10000) $this->budget_range = 'Under ₦10,000';
+                elseif ($price <= 20000) $this->budget_range = '₦10,000 - ₦20,000';
+                elseif ($price <= 30000) $this->budget_range = '₦20,000 - ₦30,000';
+                elseif ($price <= 40000) $this->budget_range = '₦30,000 - ₦40,000';
+                elseif ($price <= 50000) $this->budget_range = '₦40,000 - ₦50,000';
+                elseif ($price <= 60000) $this->budget_range = '₦50,000 - ₦60,000';
+                elseif ($price <= 70000) $this->budget_range = '₦60,000 - ₦70,000';
+                elseif ($price <= 80000) $this->budget_range = '₦70,000 - ₦80,000';
+                elseif ($price <= 90000) $this->budget_range = '₦80,000 - ₦90,000';
+                elseif ($price <= 100000) $this->budget_range = '₦90,000 - ₦100,000';
+                else $this->budget_range = '₦100,000+';
             }
         }
         $this->talentSearch = '';
@@ -186,7 +205,12 @@ class BookingWizard extends Component
         } elseif ($this->currentStep === 3) {
             $this->validate([
                 'talent_category' => 'required|string',
+                'budget_range' => 'required|string',
                 'additional_details' => 'nullable|string|max:2000',
+            ]);
+        } elseif ($this->currentStep === 4) {
+            $this->validate([
+                'is_accurate' => 'accepted',
             ]);
         }
         
@@ -229,6 +253,7 @@ class BookingWizard extends Component
         try {
             \Illuminate\Support\Facades\Log::info('Attempting to send booking email to: ' . $inquiry->email);
             Mail::to($inquiry->email)->send(new BookingConfirmationMail($inquiry));
+            Mail::to(config('mail.from.address'))->send(new AdminBookingNotification($inquiry));
             \Illuminate\Support\Facades\Log::info('Booking email sent successfully.');
         } catch (\Exception $e) {
             \Illuminate\Support\Facades\Log::error('Mail sending failed: ' . $e->getMessage());

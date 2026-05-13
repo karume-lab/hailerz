@@ -7,11 +7,33 @@
 
 Hi {{ $submission->artist_name }},
 
-Welcome to the **Hailerz** community! We have successfully received your application to join our exclusive talent network.
+Welcome to the **Hailerz** community! We have successfully received your application to join our exclusive talent network. Here is a summary of the professional profile you submitted:
 
-Attached to this email is a PDF summary of your professional details for your records. We are excited to review your portfolio and will reach out to you if your act is a fit for our roster.
+### Professional Profile
+- **Stage Name:** {{ $submission->artist_name }}
+- **Category:** {{ $submission->category }}
+- **Location:** {{ $submission->location }}
+- **Experience:** {{ $submission->years_active }}
+- **Rate Range:** ₦{{ number_format($submission->min_rate) }} - ₦{{ number_format($submission->max_rate) }}
 
-In the meantime, feel free to update your portfolio link if anything changes.
+### Online Presence
+@if($submission->instagram_handle)- **Instagram:** {{ $submission->instagram_handle }}@endif
+@if($submission->youtube_channel)- **YouTube:** {{ $submission->youtube_channel }}@endif
+@if($submission->website_url)- **Website:** {{ $submission->website_url }}@endif
+
+---
+
+## What Happens Next?
+
+1. **Portfolio Review**: Our talent scouts will carefully review your credentials and media portfolio. This typically takes **5-7 business days**.
+2. **Discovery Call**: If your act is a fit for our current roster needs, we will reach out to schedule a brief virtual discovery call to get to know you better.
+3. **Onboarding**: Once approved, you'll be officially onboarded to the Hailerz platform and made available for bookings with our premium clients.
+
+Attached to this email is a PDF summary of your full application for your records.
+
+---
+
+**Privacy Note:** Your data is used strictly for recruitment and contact purposes. We do not sell or share your professional information with third parties outside of potential booking inquiries.
 
 Best regards,  
 **The Hailerz Team**

@@ -8,6 +8,7 @@ use Livewire\Attributes\Title;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Validate;
 use App\Mail\TalentSubmissionMail;
+use App\Mail\AdminTalentSubmissionNotification;
 use Illuminate\Support\Facades\Mail;
 
 
@@ -15,7 +16,11 @@ use Illuminate\Support\Facades\Mail;
 #[Title('Join Our Roster - Talent Submissions | Hailerz')]
 class JoinTalent extends Component
 {
+    public int $currentStep = 1;
     public bool $isSubmitted = false;
+
+    #[Validate('accepted', message: 'Please confirm that the information provided is accurate.')]
+    public bool $is_accurate = false;
 
     // Artist Information
     #[Validate('required|string|max:255')]
@@ -104,6 +109,39 @@ class JoinTalent extends Component
         $this->gallery = array_values($this->gallery);
     }
 
+    public function nextStep(): void
+    {
+        if ($this->currentStep === 1) {
+            $this->validate([
+                'artist_name' => 'required|string|max:255',
+                'real_name' => 'required|string|max:255',
+                'email' => 'required|email|max:255',
+                'phone' => 'required|string|max:20',
+                'location' => 'required|string|max:255',
+                'profile_photo_url' => 'required|url|max:255',
+            ]);
+        } elseif ($this->currentStep === 2) {
+            $this->validate([
+                'category' => 'required|string|max:100',
+                'years_active' => 'required|string|max:100',
+                'min_rate' => 'required|numeric|min:0',
+                'max_rate' => 'required|numeric|min:0',
+                'bio' => 'required|string|min:200|max:5000',
+            ]);
+        } elseif ($this->currentStep === 3) {
+            $this->validate([
+                'gallery.*.url' => 'nullable|url|max:255',
+            ]);
+        }
+
+        $this->currentStep++;
+    }
+
+    public function previousStep(): void
+    {
+        $this->currentStep--;
+    }
+
     public function submit(): void
     {
         $this->validate();
@@ -140,6 +178,7 @@ class JoinTalent extends Component
 
         try {
             Mail::to($submission->email)->send(new TalentSubmissionMail($submission));
+            Mail::to(config('mail.from.address'))->send(new AdminTalentSubmissionNotification($submission));
         } catch (\Exception $e) {
             \Illuminate\Support\Facades\Log::error('Mail sending failed: ' . $e->getMessage());
         }

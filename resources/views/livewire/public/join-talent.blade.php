@@ -176,10 +176,25 @@
                 <div class="max-w-4xl mx-auto">
                     <x-heading level="h2" title="Submit Your Application" align="center" class="mb-12" />
                     
+                    <!-- Progress Indicator -->
+                    <div class="mb-16">
+                        <div class="relative">
+                            <div class="overflow-hidden h-1.5 mb-6 text-xs flex rounded-full bg-subtle">
+                                <div style="width: {{ ($currentStep / 4) * 100 }}%" class="shadow-none flex flex-col text-center whitespace-nowrap text-text-inverse justify-center bg-brand-primary transition-all duration-700"></div>
+                            </div>
+                            <div class="grid grid-cols-4 text-[10px] font-bold text-text-muted uppercase tracking-[0.2em]">
+                                <span class="{{ $currentStep >= 1 ? 'text-brand-primary' : '' }} text-left">Basics</span>
+                                <span class="{{ $currentStep >= 2 ? 'text-brand-primary' : '' }} text-center">Professional</span>
+                                <span class="{{ $currentStep >= 3 ? 'text-brand-primary' : '' }} text-center">Portfolio</span>
+                                <span class="{{ $currentStep >= 4 ? 'text-brand-primary' : '' }} text-right">Review</span>
+                            </div>
+                        </div>
+                    </div>
+
                     <x-card padding="p-8 sm:p-12" class="shadow-xl">
                         <form wire:submit.prevent="submit" class="space-y-12">
-                            <!-- Artist Information -->
-                            <div class="space-y-8">
+                            <!-- Step 1: Artist Information -->
+                            <div class="{{ $currentStep != 1 ? 'hidden' : 'block' }} space-y-10">
                                 <h3 class="text-2xl font-bold text-text-primary border-b border-subtle pb-4">Artist Information</h3>
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <x-input wire:model="artist_name" label="Artist/Stage Name *" placeholder="Your stage name" />
@@ -191,13 +206,13 @@
                                     </div>
                                     <div class="md:col-span-2">
                                         <x-input wire:model="profile_photo_url" label="Profile Photo URL *" placeholder="https://... (direct link to image)" />
-                                        <p class="text-xs text-text-muted mt-2">JPEG, PNG or WebP, max 5MB.</p>
+                                        <p class="text-xs text-text-muted mt-2">Provide a high-quality link to your headshot or promotional photo.</p>
                                     </div>
                                 </div>
                             </div>
 
-                            <!-- Professional Details -->
-                            <div class="space-y-8">
+                            <!-- Step 2: Professional Details -->
+                            <div class="{{ $currentStep != 2 ? 'hidden' : 'block' }} space-y-10">
                                 <h3 class="text-2xl font-bold text-text-primary border-b border-subtle pb-4">Professional Details</h3>
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <x-select wire:model="category" label="Talent Category *">
@@ -219,98 +234,117 @@
                                         <x-input wire:model="min_rate" type="number" label="Min Rate (₦) *" placeholder="e.g. 50000" />
                                         <x-input wire:model="max_rate" type="number" label="Max Rate (₦) *" placeholder="e.g. 150000" />
                                     </div>
-                                </div>
-                            </div>
-
-                            <!-- Online Presence -->
-                            <div class="space-y-8">
-                                <h3 class="text-2xl font-bold text-text-primary border-b border-subtle pb-4">Online Presence</h3>
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <div class="md:col-span-2">
-                                        <x-input wire:model="website_url" type="url" label="Website" placeholder="https://yourwebsite.com" />
+                                        <x-textarea wire:model="bio" label="Artist Bio *" rows="5" placeholder="Tell us about yourself, your style, and what makes you unique as a performer (min 200 characters)" />
                                     </div>
-                                    <x-input wire:model="instagram_handle" label="Instagram Handle" placeholder="@yourusername" />
-                                    <x-input wire:model="facebook_url" label="Facebook Page" placeholder="facebook.com/yourpage" />
-                                    <x-input wire:model="youtube_channel" label="YouTube Channel" placeholder="youtube.com/@yourchannel" />
-                                    <x-input wire:model="tiktok_handle" label="TikTok" placeholder="@yourusername" />
                                 </div>
                             </div>
 
-                            <!-- Experience & Credentials -->
-                            <div class="space-y-8">
-                                <h3 class="text-2xl font-bold text-text-primary border-b border-subtle pb-4">Experience & Credentials</h3>
-                                <div class="space-y-6">
+                            <!-- Step 3: Portfolio & Socials -->
+                            <div class="{{ $currentStep != 3 ? 'hidden' : 'block' }} space-y-10">
+                                <h3 class="text-2xl font-bold text-text-primary border-b border-subtle pb-4">Portfolio & Socials</h3>
+                                <div class="space-y-10">
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <x-input wire:model="instagram_handle" label="Instagram Handle" placeholder="@yourusername" />
+                                        <x-input wire:model="youtube_channel" label="YouTube Channel" placeholder="youtube.com/@yourchannel" />
+                                        <x-input wire:model="website_url" type="url" label="Website" placeholder="https://yourwebsite.com" class="md:col-span-2" />
+                                    </div>
 
-                                    <x-textarea wire:model="notable_clients" label="Notable Events/Clients" rows="3" placeholder="Describe significant events or high-profile clients you've worked with" />
-                                    <x-textarea wire:model="press_features" label="Press Features/Awards" rows="3" placeholder="Any media features, awards, or recognition you've received" />
-                                </div>
-                            </div>
-
-                            <!-- Media Portfolio -->
-                            <div class="space-y-8">
-                                <div class="flex items-center justify-between border-b border-subtle pb-4">
-                                    <h3 class="text-2xl font-bold text-text-primary">Media Portfolio</h3>
-                                    <x-button type="button" variant="ghost" size="sm" wire:click="addGalleryItem" class="text-brand-primary border-brand-primary/20 hover:bg-brand-primary/5">
-                                        <x-lucide-plus class="w-4 h-4 mr-2" />
-                                        Add Media Item
-                                    </x-button>
-                                </div>
-                                <p class="text-sm text-text-secondary">Add links to your performance videos (YouTube/Vimeo), audio samples (SoundCloud), or portfolio images.</p>
-                                
-                                <div class="space-y-6">
-                                    @foreach($gallery as $index => $item)
-                                        <div class="bg-surface-muted/50 p-6 rounded-2xl border border-subtle relative group">
-                                            <button type="button" wire:click="removeGalleryItem({{ $index }})" class="absolute top-4 right-4 text-text-muted hover:text-red-500 transition-colors">
-                                                <x-lucide-x class="w-5 h-5" />
-                                            </button>
-                                            <div class="grid grid-cols-1 gap-6">
-                                                <x-input wire:model="gallery.{{ $index }}.url" label="Media Link *" placeholder="https://youtube.com/watch?v=..." />
-                                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                                    <x-input wire:model="gallery.{{ $index }}.title" label="Title" placeholder="e.g. Live Performance at Eko Hotel" />
-                                                    <x-input wire:model="gallery.{{ $index }}.description" label="Short Description" placeholder="e.g. Vocal performance with live band" />
+                                    <div class="space-y-6">
+                                        <div class="flex items-center justify-between">
+                                            <h4 class="text-lg font-bold text-text-primary">Media Portfolio</h4>
+                                            <x-button type="button" variant="ghost" size="sm" wire:click="addGalleryItem" class="text-brand-primary border-brand-primary/20">
+                                                <x-lucide-plus class="w-4 h-4 mr-2" />
+                                                Add Media Link
+                                            </x-button>
+                                        </div>
+                                        <div class="space-y-4">
+                                            @foreach($gallery as $index => $item)
+                                                <div class="bg-surface-muted/50 p-6 rounded-2xl border border-subtle relative">
+                                                    <button type="button" wire:click="removeGalleryItem({{ $index }})" class="absolute top-4 right-4 text-text-muted hover:text-red-500 transition-colors">
+                                                        <x-lucide-x class="w-4 h-4" />
+                                                    </button>
+                                                    <x-input wire:model="gallery.{{ $index }}.url" label="Media Link *" placeholder="YouTube, SoundCloud, or Drive link" />
                                                 </div>
-                                            </div>
+                                            @endforeach
                                         </div>
-                                    @endforeach
-
-                                    @if(count($gallery) === 0)
-                                        <div class="text-center py-12 border-2 border-dashed border-subtle rounded-2xl">
-                                            <x-lucide-image class="w-12 h-12 text-text-muted mx-auto mb-4 opacity-20" />
-                                            <p class="text-text-secondary text-sm">No media items added yet. Click "Add Media Item" to showcase your work.</p>
-                                        </div>
-                                    @endif
+                                    </div>
                                 </div>
                             </div>
 
-                            <!-- Additional Information -->
-                            <div class="space-y-8">
-                                <h3 class="text-2xl font-bold text-text-primary border-b border-subtle pb-4">Additional Information</h3>
-                                <div class="space-y-6">
-                                    <x-textarea wire:model="bio" label="Artist Bio *" rows="5" placeholder="Tell us about yourself, your style, and what makes you unique as a performer (200-500 words)" />
+                            <!-- Step 4: Final Review & Next Steps -->
+                            <div class="{{ $currentStep != 4 ? 'hidden' : 'block' }} space-y-10">
+                                <h3 class="text-2xl font-bold text-text-primary border-b border-subtle pb-4">Final Review & Next Steps</h3>
+                                
+                                <div class="bg-surface-muted rounded-2xl p-8 border border-subtle">
+                                    <h4 class="text-sm font-bold text-text-primary uppercase tracking-widest mb-6">Application Process</h4>
+                                    <ul class="space-y-4">
+                                        <li class="flex items-start gap-4 text-sm text-text-secondary">
+                                            <div class="h-6 w-6 rounded-full bg-brand-primary/10 flex items-center justify-center shrink-0">
+                                                <span class="text-[10px] font-bold text-brand-primary">1</span>
+                                            </div>
+                                            <p>Our talent scouts will review your portfolio and credentials (5-7 business days).</p>
+                                        </li>
+                                        <li class="flex items-start gap-4 text-sm text-text-secondary">
+                                            <div class="h-6 w-6 rounded-full bg-brand-primary/10 flex items-center justify-center shrink-0">
+                                                <span class="text-[10px] font-bold text-brand-primary">2</span>
+                                            </div>
+                                            <p>If your act fits our roster, we'll schedule a brief virtual discovery call.</p>
+                                        </li>
+                                        <li class="flex items-start gap-4 text-sm text-text-secondary">
+                                            <div class="h-6 w-6 rounded-full bg-brand-primary/10 flex items-center justify-center shrink-0">
+                                                <span class="text-[10px] font-bold text-brand-primary">3</span>
+                                            </div>
+                                            <p>Upon approval, you'll be onboarded and made available to our premium clients.</p>
+                                        </li>
+                                    </ul>
+                                </div>
 
+                                <div class="space-y-6">
                                     <x-select wire:model="source" label="How did you hear about us?">
                                         <option value="">Select an option</option>
-                                        <option value="google">Google Search</option>
                                         <option value="social">Social Media</option>
-                                        <option value="referral">Referral from another artist</option>
-                                        <option value="event">Saw you at an event</option>
+                                        <option value="referral">Artist Referral</option>
+                                        <option value="search">Search Engine</option>
                                         <option value="other">Other</option>
                                     </x-select>
+
+                                    <div class="relative flex items-start p-6 bg-brand-primary/5 rounded-xl border border-brand-primary/10">
+                                        <div class="flex h-6 items-center">
+                                            <input wire:model="is_accurate" id="is_accurate" name="is_accurate" type="checkbox" class="h-4 w-4 rounded border-brand-primary/30 text-brand-primary focus:ring-brand-primary">
+                                        </div>
+                                        <div class="ml-4 text-sm leading-6">
+                                            <label for="is_accurate" class="font-bold text-text-primary">Information Accuracy *</label>
+                                            <p class="text-text-secondary text-xs">I confirm that all professional information and media provided are accurate and my own work.</p>
+                                            @error('is_accurate') <p class="text-red-500 text-[10px] mt-1 font-bold">{{ $message }}</p> @enderror
+                                        </div>
+                                    </div>
+
+                                    <p class="text-[10px] text-text-muted leading-relaxed text-center italic">
+                                        By submitting, you agree to our <a href="{{ route('legal.privacy') }}" wire:navigate class="underline">Privacy Policy</a>. 
+                                        Your data is used strictly for recruitment and contact purposes.
+                                    </p>
                                 </div>
                             </div>
 
-                            <div class="bg-surface-muted rounded-xl p-6">
-                                <p class="text-sm text-text-secondary leading-relaxed">
-                                    <strong>Note:</strong> By submitting this application, you confirm that all information 
-                                    provided is accurate and that you have the legal right to perform the 
-                                    material in your repertoire. We'll review your application and contact 
-                                    you if there's a potential fit for our roster.
-                                </p>
-                            </div>
+                            <!-- Navigation -->
+                            <div class="flex items-center justify-end gap-4 mt-16 pt-10 border-t border-subtle">
+                                @if($currentStep > 1)
+                                    <x-button type="button" variant="outline" wire:click="previousStep">
+                                        Back
+                                    </x-button>
+                                @endif
 
-                            <x-button variant="accent" size="lg" type="submit" class="w-full h-14 text-lg" wire:loading.attr="disabled">
-                                Submit Application
-                            </x-button>
+                                @if($currentStep < 4)
+                                    <x-button type="button" variant="primary" wire:click="nextStep">
+                                        Next Step
+                                    </x-button>
+                                @else
+                                    <x-button variant="accent" size="lg" type="submit" class="px-10 h-14" wire:loading.attr="disabled">
+                                        Submit Application
+                                    </x-button>
+                                @endif
+                            </div>
                         </form>
                     </x-card>
                 </div>
