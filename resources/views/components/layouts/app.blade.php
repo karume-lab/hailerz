@@ -29,50 +29,33 @@
 
   <link rel="manifest" href="{{ asset('manifest.json') }}">
 
-  @production
     <script>
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-          navigator.serviceWorker.register('/sw.js').then(reg => {
-            // Check for updates
-            reg.onupdatefound = () => {
-              const installingWorker = reg.installing;
-              installingWorker.onstatechange = () => {
-                if (installingWorker.state === 'installed' && navigator.serviceWorker.controller) {
-                  // New content is available; the skipWaiting() in sw.js will 
-                  // trigger 'controllerchange' which reloads the page.
-                  console.log('New content available, refreshing...');
-                }
-              };
-            };
-          }).catch(error => {
-            console.error('ServiceWorker registration failed:', error);
-          });
-        });
-
-        // Listen for the controllerchange event to reload the page when a new SW takes over.
-        let refreshing = false;
-        navigator.serviceWorker.addEventListener('controllerchange', () => {
-          if (!refreshing) {
-            window.location.reload();
-            refreshing = true;
-          }
-        });
-      }
-    </script>
-  @else
-    <script>
-      // Auto-unregister service workers in development to prevent stale cache issues
+      // Automatic Service Worker Kill-Switch
+      // This will unregister any existing service workers and clear their caches for all users.
       if ('serviceWorker' in navigator) {
         navigator.serviceWorker.getRegistrations().then(function (registrations) {
           for (let registration of registrations) {
-            registration.unregister();
-            console.log('Service Worker unregistered');
+            registration.unregister().then(function(success) {
+              if (success) {
+                console.log('Service Worker unregistered successfully.');
+                // Optional: Force a reload to ensure the page is fresh
+                window.location.reload();
+              }
+            });
           }
         });
+
+        // Clear all caches created by the Service Worker
+        if (window.caches) {
+          caches.keys().then(function(names) {
+            for (let name of names) {
+              caches.delete(name);
+              console.log('Cache cleared:', name);
+            }
+          });
+        }
       }
     </script>
-  @endproduction
 
   <link rel="canonical" href="{{ url()->current() }}">
   <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
