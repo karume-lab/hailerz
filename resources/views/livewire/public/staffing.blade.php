@@ -7,12 +7,10 @@
                 <div class="lg:col-span-5 space-y-12">
                     <div class="space-y-6">
                         <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
-                            On-demand access to <span class="text-brand-primary">event personnel.</span>
+                            Scale your team with <span class="text-brand-primary">professional services.</span>
                         </h1>
                         <p class="text-xl text-white/70 max-w-2xl leading-relaxed">
-                            Connect with polished professionals for high-end events. From VIP hospitality to expert
-                            artist
-                            liaisons, we provide the expert staffing your vision deserves.
+                            Effortlessly scale your project capacity with elite contract talent. From specialized consultants to remote creative experts, we provide the professional staff augmentation your business requires.
                         </p>
                     </div>
 
@@ -55,8 +53,8 @@
                             </div>
                         @else
                             <div class="mb-8">
-                                <h2 class="text-3xl font-bold text-text-primary mb-2">Request a Call</h2>
-                                <p class="text-text-secondary">Speak with our experts about your event vision.</p>
+                                <h2 class="text-3xl font-bold text-text-primary mb-2">Request Talent</h2>
+                                <p class="text-text-secondary">Tell us about your contract or remote placement needs.</p>
                             </div>
 
                             <form wire:submit="submitRequest" class="space-y-5">
@@ -103,7 +101,7 @@
     <!-- Core Solutions -->
     <section class="py-12 bg-surface-muted">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <x-heading align="center" title="Specialized Roles for Flawless Events" class="reveal" />
+            <x-heading align="center" title="Expert Talent for Your Professional Needs" class="reveal" />
             <div class="flex flex-wrap justify-center gap-6 my-12">
                 @foreach($professionalCategories as $index => $category)
                     @php
@@ -134,30 +132,30 @@
         <div class="max-w-7xl mx-auto text-center relative">
             <h2
                 class="text-xl md:text-9xl font-black tracking-tighter text-transparent bg-clip-text bg-linear-to-r from-brand-primary via-brand-secondary to-brand-primary animate-fadeIn">
-                PARTNER
+                SCALE
             </h2>
             <p class="text-2xl md:text-3xl font-bold text-text-primary my-4 max-w-3xl mx-auto leading-tight reveal">
-                with event personnel specialists, so you're always flawlessly staffed.
+                with professional staffing experts, so you're always fully optimized.
             </p>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 my-8">
                 @php
                     $painPoints = [
                         [
-                            'icon' => 'lucide-hand',
-                            'text' => 'Not enough professionals to manage your high-end guests?'
+                            'icon' => 'lucide-users',
+                            'text' => 'Need specialized experts for a critical project deadline?'
                         ],
                         [
-                            'icon' => 'lucide-layers',
-                            'text' => 'Multiple events at once and not enough experienced hands?'
+                            'icon' => 'lucide-trending-up',
+                            'text' => 'Scaling rapidly and need to fill skill gaps immediately?'
                         ],
                         [
-                            'icon' => 'lucide-user-plus',
-                            'text' => 'Don\'t have the right specialized resources on-site?'
+                            'icon' => 'lucide-globe',
+                            'text' => 'Looking for top-tier remote talent without the overhead?'
                         ],
                         [
-                            'icon' => 'lucide-search',
-                            'text' => 'Wasting time looking for the right luxury-trained help?'
+                            'icon' => 'lucide-shield-check',
+                            'text' => 'Tired of the risk and time sink of traditional hiring?'
                         ],
                     ];
                 @endphp
@@ -196,30 +194,29 @@
     <section class="py-32 bg-surface-dark relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
             <h2 class="text-3xl md:text-5xl font-bold text-white mb-6">
-                Event Staffing? We can provide you with the <span class="text-brand-primary">perfect fit.</span>
+                Staff Augmentation? We provide the <span class="text-brand-primary">perfect fit.</span>
             </h2>
             <p class="text-xl text-white/60 mb-20 max-w-3xl mx-auto">
-                Cherry-pick event professionals from our curated talent pool. Hire expert personnel on-demand for
-                your next production.
+                Cherry-pick professional experts from our curated talent pool. Hire contract personnel on-demand to scale your business capabilities.
             </p>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 @php
                     $benefits = [
                         [
-                            'title' => 'SAVE TIME',
-                            'icon' => 'lucide-clock',
-                            'desc' => 'Hailerz handles the intensive vetting and recruitment process for you. We provide the high-end talent required for luxury events, so you can focus on the bigger picture.'
+                            'title' => 'EFFORTLESS SCALING',
+                            'icon' => 'lucide-zap',
+                            'desc' => 'Hailerz handles the intensive vetting and recruitment process for you. We provide the specialized talent required for your projects, so you can focus on growth.'
                         ],
                         [
-                            'title' => 'WORK WITH THE BEST',
-                            'icon' => 'lucide-link',
-                            'desc' => 'Work with industry-leading agents who understand the nuances of live entertainment. Our staffing solutions ensure every role is filled by a professional with a proven track record.'
+                            'title' => 'ELITE POOL',
+                            'icon' => 'lucide-star',
+                            'desc' => 'Work with industry-leading experts who understand high-level professional requirements. Our staffing solutions ensure every role is filled by a professional with a proven track record.'
                         ],
                         [
-                            'title' => 'HIRE TOP-TIER PROFESSIONALS',
-                            'icon' => 'lucide-users',
-                            'desc' => 'Your brand deserves the best. We have a pool of highly qualified personnel—from VIP hosts to stage managers—ready to elevate your event the moment they step on site.'
+                            'title' => 'REMOTE READY',
+                            'icon' => 'lucide-mouse-pointer-2',
+                            'desc' => 'Our talent is primed for immediate integration into your workflows. From project managers to creative directors, we have the resources ready to deliver results.'
                         ],
                     ];
                 @endphp
@@ -257,10 +254,8 @@
                         <span class="font-bold">01</span>
                     </div>
                     <div>
-                        <h3 class="text-2xl font-bold text-text-primary mb-4 font-serif">Premium Presentation</h3>
-                        <p class="text-text-secondary leading-relaxed font-light">Our personnel are impeccably groomed,
-                            highly
-                            articulate, and rigorously trained in luxury hospitality and brand representation standards.
+                        <h3 class="text-2xl font-bold text-text-primary mb-4 font-serif">Vetted Expertise</h3>
+                        <p class="text-text-secondary leading-relaxed font-light">Our personnel are not just candidates; they are proven experts in their fields, rigorously assessed for both technical skill and professional communication.
                         </p>
                     </div>
                 </div>
@@ -270,10 +265,8 @@
                         <span class="font-bold">02</span>
                     </div>
                     <div>
-                        <h3 class="text-2xl font-bold text-text-primary mb-4 font-serif">Entertainment Expertise</h3>
-                        <p class="text-text-secondary leading-relaxed font-light">As an agency rooted in high-end
-                            entertainment, we bring a unique understanding of stagecraft and audience management to
-                            every staffing role.</p>
+                        <h3 class="text-2xl font-bold text-text-primary mb-4 font-serif">Strategic Placements</h3>
+                        <p class="text-text-secondary leading-relaxed font-light">We don't just fill seats. We understand your business goals and place talent that adds strategic value to your team and projects.</p>
                     </div>
                 </div>
                 <div class="flex gap-8 reveal reveal-delay-200 border-b border-subtle pb-8 md:border-none md:pb-0">
@@ -307,16 +300,16 @@
     <!-- Final CTA -->
     <section class="py-40 bg-brand-accent text-center relative overflow-hidden">
         <div class="max-w-4xl mx-auto px-4 relative z-10 reveal">
-            <x-heading level="h2" title="Assemble Your Event Team." align="center" class="text-text-inverse mb-8" />
+            <x-heading level="h2" title="Scale Your Professional Team Today." align="center" class="text-text-inverse mb-8" />
             <p class="text-xl md:text-2xl text-text-inverse/80 mb-12 font-light leading-relaxed">
-                From the stage to the floor, ensure every touchpoint of your event is handled by industry experts.
+                From contract specialists to remote creative experts, ensure your projects are powered by elite talent.
             </p>
             <div class="flex flex-col sm:flex-row justify-center gap-6">
                 <x-button variant="outline" size="lg" href="/services" wire:navigate>
                     Explore Talent Roster
                 </x-button>
-                <x-button variant="primary" size="lg" href="/contact" wire:navigate>
-                    Request Event Staff
+                <x-button variant="primary" size="lg" href="#request-form">
+                    Request Talent Augmentation
                 </x-button>
             </div>
         </div>

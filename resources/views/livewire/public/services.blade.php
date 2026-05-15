@@ -4,7 +4,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
       <x-heading level="h1" title="Our Services" align="center" class="text-text-inverse mb-6" />
       <p class="text-xl text-text-inverse/80 max-w-3xl mx-auto leading-relaxed font-light">
-        Comprehensive talent booking and event entertainment solutions tailored to your needs
+        Comprehensive professional services, talent booking, and staff augmentation solutions tailored to your needs.
       </p>
     </div>
   </section>
@@ -60,19 +60,19 @@
   <section class="py-24 bg-surface-muted/30 border-y border-subtle">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16">
-        <x-heading level="h2" title="Events We Serve" align="center" class="mb-4" />
-        <p class="text-lg text-text-secondary">Specialized talent for every occasion</p>
+        <x-heading level="h2" title="Services We Provide" align="center" class="mb-4" />
+        <p class="text-lg text-text-secondary">Specialized talent for your professional and creative needs</p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
         @php
           $events = [
-            ['title' => 'Weddings', 'desc' => 'Create magical moments with ceremony musicians, reception bands, and DJs who understand your vision.'],
-            ['title' => 'Corporate Events', 'desc' => 'Professional entertainment for galas, conferences, product launches, and team building events.'],
-            ['title' => 'Private Parties', 'desc' => 'Elevate birthdays, anniversaries, and celebrations with the perfect musical backdrop.'],
-            ['title' => 'Festivals', 'desc' => 'Headline acts and supporting performers for music festivals and outdoor events.'],
-            ['title' => 'Fundraisers & Galas', 'desc' => 'Sophisticated entertainment that enhances your fundraising efforts and donor experience.'],
-            ['title' => 'Conferences', 'desc' => 'Keynote speakers and entertainment that engage and inspire attendees.'],
+            ['title' => 'Professional Staffing', 'desc' => 'Scale your team with contract and remote experts for short or long-term projects.'],
+            ['title' => 'Staff Augmentation', 'desc' => 'Fill skill gaps immediately with vetted professionals who integrate seamlessly into your workflows.'],
+            ['title' => 'Creative Services', 'desc' => 'Access top-tier content creators, artists, and media specialists for your brand.'],
+            ['title' => 'Corporate Speaking', 'desc' => 'Keynote speakers and industry experts who deliver high-impact insights for your team.'],
+            ['title' => 'Strategic Consulting', 'desc' => 'Consult with professionals who bring deep industry knowledge to your organization.'],
+            ['title' => 'Managed Placements', 'desc' => 'End-to-end recruitment and placement services for professional roles.'],
           ];
         @endphp
 
@@ -98,12 +98,12 @@
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 max-w-6xl mx-auto">
         @php
           $supports = [
-            ['title' => 'Booking Coordination', 'icon' => 'calendar', 'desc' => 'We manage all communication, scheduling, and logistics between you and the talent.'],
-            ['title' => 'Contract Management', 'icon' => 'file-text', 'desc' => 'Professional contracts that protect both parties with clear terms and expectations.'],
-            ['title' => 'Technical Support', 'icon' => 'headphones', 'desc' => 'Guidance on sound systems, staging, and technical requirements for optimal performance.'],
-            ['title' => 'Insurance & Liability', 'icon' => 'shield', 'desc' => 'All our talent carries professional liability insurance for your peace of mind.'],
-            ['title' => 'Day-of Coordination', 'icon' => 'users', 'desc' => 'Support available to ensure smooth setup and performance execution.'],
-            ['title' => 'Quality Assurance', 'icon' => 'circle-check', 'desc' => 'Post-event follow-up to ensure satisfaction and gather feedback.'],
+            ['title' => 'Talent Vetting', 'icon' => 'shield', 'desc' => 'We conduct rigorous interviews and skill assessments to ensure quality.'],
+            ['title' => 'Contract Management', 'icon' => 'file-text', 'desc' => 'Professional contracts that protect both parties with clear terms for remote and on-site work.'],
+            ['title' => 'Project Coordination', 'icon' => 'calendar', 'desc' => 'We manage the logistics of talent integration and project timelines.'],
+            ['title' => 'Remote Placements', 'icon' => 'mouse-pointer-2', 'desc' => 'Global experts ready to work in your time zone and digital environment.'],
+            ['title' => 'Staff Augmentation', 'icon' => 'zap', 'desc' => 'Rapidly scale your workforce to meet changing project demands.'],
+            ['title' => 'Quality Assurance', 'icon' => 'circle-check', 'desc' => 'Ongoing monitoring and support to ensure project success and satisfaction.'],
           ];
         @endphp
 
@@ -112,9 +112,9 @@
             <div class="w-16 h-16 bg-brand-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
               @if($s['icon'] === 'calendar') <x-lucide-calendar class="w-8 h-8 text-brand-primary" />
               @elseif($s['icon'] === 'file-text') <x-lucide-file-text class="w-8 h-8 text-brand-primary" />
-              @elseif($s['icon'] === 'headphones') <x-lucide-headphones class="w-8 h-8 text-brand-primary" />
+              @elseif($s['icon'] === 'mouse-pointer-2') <x-lucide-mouse-pointer-2 class="w-8 h-8 text-brand-primary" />
               @elseif($s['icon'] === 'shield') <x-lucide-shield class="w-8 h-8 text-brand-primary" />
-              @elseif($s['icon'] === 'users') <x-lucide-users class="w-8 h-8 text-brand-primary" />
+              @elseif($s['icon'] === 'zap') <x-lucide-zap class="w-8 h-8 text-brand-primary" />
               @elseif($s['icon'] === 'circle-check') <x-lucide-circle-check class="w-8 h-8 text-brand-primary" />
               @endif
             </div>
