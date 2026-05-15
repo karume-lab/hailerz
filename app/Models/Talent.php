@@ -18,6 +18,8 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
  * @property string $slug
  * @property string|null $primary_image_url
  * @property string|null $bio
+ * @property string|null $location
+ * @property string|null $country
  * @property float|null $starting_price
  * @property bool $is_featured
  */

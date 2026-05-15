@@ -43,6 +43,9 @@ class TalentDirectory extends Component
     #[Url(history: true, except: '')]
     public string $genre = '';
 
+    #[Url(history: true, except: '')]
+    public string $country = '';
+
     public function updatedSearch()
     {
         $this->resetPage();
@@ -68,9 +71,14 @@ class TalentDirectory extends Component
         $this->resetPage();
     }
 
+    public function updatedCountry()
+    {
+        $this->resetPage();
+    }
+
     public function resetFilters()
     {
-        $this->reset(['search', 'category_id', 'min_price', 'max_price', 'sort', 'location', 'genre', 'event']);
+        $this->reset(['search', 'category_id', 'min_price', 'max_price', 'sort', 'location', 'genre', 'event', 'country']);
         $this->resetPage();
     }
 
@@ -89,6 +97,7 @@ class TalentDirectory extends Component
             ->when($this->category, fn ($query) => $query->whereHas('category', fn ($q) => $q->where('slug', $this->category)))
             ->when($this->event, fn ($query) => $query->where('bio', 'like', '%' . str_replace('_', ' ', $this->event) . '%'))
             ->when($this->location, fn ($query) => $query->where('location', 'like', '%' . $this->location . '%'))
+            ->when($this->country, fn ($query) => $query->where('country', $this->country))
             ->when($this->genre, fn ($query) => $query->where('genre', $this->genre))
             ->when($this->category_id, fn ($query) => $query->where('category_id', $this->category_id))
             ->when($this->min_price, fn ($query) => $query->where('starting_price', '>=', $this->min_price))
@@ -103,12 +112,14 @@ class TalentDirectory extends Component
         $categories = Category::orderBy('name')->get();
         $locations = Talent::where('status', 'active')->whereNotNull('location')->distinct()->pluck('location')->sort();
         $genres = Talent::where('status', 'active')->whereNotNull('genre')->distinct()->pluck('genre')->sort();
+        $countries = Talent::where('status', 'active')->whereNotNull('country')->distinct()->pluck('country')->sort();
 
         return view('livewire.public.talent-directory', [
             'talents' => $talents,
             'categories' => $categories,
             'locations' => $locations,
             'genres' => $genres,
+            'countries' => $countries,
         ]);
     }
 }

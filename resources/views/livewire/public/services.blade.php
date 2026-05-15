@@ -102,7 +102,7 @@
             ['title' => 'Contract Management', 'icon' => 'file-text', 'desc' => 'Professional contracts that protect both parties with clear terms and expectations.'],
             ['title' => 'Technical Support', 'icon' => 'headphones', 'desc' => 'Guidance on sound systems, staging, and technical requirements for optimal performance.'],
             ['title' => 'Insurance & Liability', 'icon' => 'shield', 'desc' => 'All our talent carries professional liability insurance for your peace of mind.'],
-            ['title' => 'Day-of Coordination', 'icon' => 'users', 'desc' => 'On-site support available to ensure smooth setup and performance execution.'],
+            ['title' => 'Day-of Coordination', 'icon' => 'users', 'desc' => 'Support available to ensure smooth setup and performance execution.'],
             ['title' => 'Quality Assurance', 'icon' => 'circle-check', 'desc' => 'Post-event follow-up to ensure satisfaction and gather feedback.'],
           ];
         @endphp
@@ -204,19 +204,19 @@
             category:</p>
           <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
             <div>
-              <div class="font-bold text-xl text-text-primary mb-1">₦30k - ₦80k</div>
+              <div class="font-bold text-xl text-text-primary mb-1">$500 - $1,500</div>
               <div class="text-sm text-text-secondary">Solo Musicians</div>
             </div>
             <div>
-              <div class="font-bold text-xl text-text-primary mb-1">₦50k - ₦120k</div>
+              <div class="font-bold text-xl text-text-primary mb-1">$800 - $2,500</div>
               <div class="text-sm text-text-secondary">DJs</div>
             </div>
             <div>
-              <div class="font-bold text-xl text-text-primary mb-1">₦80k - ₦230k</div>
+              <div class="font-bold text-xl text-text-primary mb-1">$1,200 - $3,500</div>
               <div class="text-sm text-text-secondary">Variety Artists</div>
             </div>
             <div>
-              <div class="font-bold text-xl text-text-primary mb-1">₦150k - ₦750k+</div>
+              <div class="font-bold text-xl text-text-primary mb-1">$2,500 - $10,000+</div>
               <div class="text-sm text-text-secondary">Speakers</div>
             </div>
           </div>

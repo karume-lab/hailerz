@@ -27,8 +27,8 @@
                         </div>
                         <div>
                             <h3 class="text-base font-bold text-text-primary mb-1">Phone</h3>
-                            <p class="text-text-secondary">+234 8138234230</p>
-                            <p class="text-xs text-text-muted mt-1">Mon-Fri, 9am-6pm</p>
+                            <p class="text-text-secondary">+1 (555) 012-3456</p>
+                            <p class="text-xs text-text-muted mt-1">Mon-Fri, 9am-6pm EST</p>
                         </div>
                     </div>
 
@@ -53,10 +53,10 @@
                             <x-lucide-map-pin class="w-5 h-5" stroke-width="2" />
                         </div>
                         <div>
-                            <h3 class="text-base font-bold text-text-primary mb-1">Office</h3>
+                            <h3 class="text-base font-bold text-text-primary mb-1">HQ Office</h3>
                             <p class="text-text-secondary leading-relaxed">
-                                6 Kolawole Shonibare St.<br>
-                                Ilupeju, Lagos, Nigeria
+                                123 Global Plaza, Suite 400<br>
+                                New York, NY 10001, USA
                             </p>
                         </div>
                     </div>

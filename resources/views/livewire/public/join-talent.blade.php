@@ -23,7 +23,7 @@
                     <x-heading level="h1" title="Join the Hailerz Roster" align="center" class="mb-6" />
                     <p class="text-xl text-text-secondary mb-8">
                         Are you a talented performer looking to take your career to the next level?
-                        Join our exclusive roster of premium talent and get booked for high-profile events across Nigeria.
+                        Join our exclusive roster of premium talent and get booked for high-profile events worldwide.
                     </p>
                 </div>
             </div>
@@ -146,7 +146,7 @@
                                 </li>
                                 <li class="flex items-center gap-3">
                                     <x-lucide-circle-check class="h-5 w-5 text-brand-primary" />
-                                    Available for events in Nigeria
+                                    Available for international events
                                 </li>
                             </ul>
                         </div>
@@ -221,9 +221,9 @@
                                     <x-input wire:model="artist_name" label="Act / Group Name *" placeholder="Your stage or band name" />
                                     <x-input wire:model="real_name" label="Contact Person Name *" placeholder="Your legal name" />
                                     <x-input wire:model="email" type="email" label="Email Address *" placeholder="your@email.com" />
-                                    <x-input wire:model="phone" type="tel" label="Phone Number *" placeholder="+234 XXX XXX XXXX" />
+                                    <x-input wire:model="phone" type="tel" label="Phone Number *" placeholder="+1 XXX XXX XXXX" />
                                     <div class="md:col-span-2">
-                                        <x-input wire:model="location" label="Location (City, State) *" placeholder="Lagos, Nigeria" />
+                                        <x-input wire:model="location" label="Location (City, Country) *" placeholder="London, UK" />
                                     </div>
                                     <div class="md:col-span-2">
                                         <x-input wire:model="profile_photo_url" label="Profile Photo URL *" placeholder="https://... (direct link to image)" />
@@ -252,8 +252,8 @@
                                     <x-input wire:model="genre" label="Primary Genre/Style (Optional)" placeholder="e.g., Afrobeats, Jazz, Hip-Hop" />
                                     <x-input wire:model="years_active" label="Years Active *" placeholder="e.g., 5 years" />
                                     <div class="grid grid-cols-2 gap-4">
-                                        <x-input wire:model="min_rate" type="number" label="Min Rate (₦) *" placeholder="e.g. 50000" />
-                                        <x-input wire:model="max_rate" type="number" label="Max Rate (₦) *" placeholder="e.g. 150000" />
+                                        <x-input wire:model="min_rate" type="number" label="Min Rate ($) *" placeholder="e.g. 500" />
+                                        <x-input wire:model="max_rate" type="number" label="Max Rate ($) *" placeholder="e.g. 1500" />
                                     </div>
                                     <div class="md:col-span-2">
                                         <x-textarea wire:model="bio" label="Artist Bio *" rows="5" placeholder="Tell us about yourself, your style, and what makes you unique as a performer (min 200 characters)" />

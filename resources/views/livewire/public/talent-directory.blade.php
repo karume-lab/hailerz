@@ -32,11 +32,18 @@
               <option value="price_desc">Investment: High to Low</option>
             </x-select>
 
-            <!-- Category -->
             <x-select wire:model.live="category_id" name="category" label="Discipline">
               <option value="">All Disciplines</option>
               @foreach($categories as $category)
                 <option value="{{ $category->id }}">{{ $category->name }}</option>
+              @endforeach
+            </x-select>
+
+            <!-- Country -->
+            <x-select wire:model.live="country" name="country" label="Country">
+              <option value="">All Countries</option>
+              @foreach($countries as $c)
+                <option value="{{ $c }}">{{ $c }}</option>
               @endforeach
             </x-select>
 
@@ -97,8 +104,7 @@
       }">
               <div class="flex items-center justify-between mb-4">
                 <label for="location"
-                  class="block text-[10px] font-bold text-text-secondary uppercase tracking-widest">Base
-                  Location</label>
+                  class="block text-[10px] font-bold text-text-secondary uppercase tracking-widest">City / Region</label>
                 <button @click="locateMe()" type="button" aria-label="Auto-detect my current location"
                   class="text-[10px] font-bold text-brand-primary uppercase tracking-widest hover:underline flex items-center gap-1">
                   <x-lucide-map-pin x-show="!isLocating" class="w-3 h-3 text-text-secondary" stroke-width="2" />
@@ -163,14 +169,15 @@
                   <div class="p-8 flex-1 flex flex-col justify-between">
                     <div class="flex items-center gap-2 text-xs text-text-secondary mb-6">
                       <x-lucide-map-pin class="w-4 h-4 text-text-secondary" stroke-width="2" />
-                      {{ $talent->location ?? 'International' }}
+                      {{ $talent->location }}{{ $talent->country ? ', ' . $talent->country : '' }}
+                      @if(!$talent->location && !$talent->country) International @endif
                     </div>
 
                     <div class="flex justify-between items-center pt-6 border-t border-subtle ">
                       <div>
                         <p class="text-[10px] font-bold text-text-secondary uppercase tracking-widest">Starting Investment
                         </p>
-                        <p class="text-lg font-bold text-text-primary">₦{{ number_format($talent->starting_price ?? 0, 0) }}
+                        <p class="text-lg font-bold text-text-primary">${{ number_format($talent->starting_price ?? 0, 0) }}
                         </p>
                       </div>
                       <x-button variant="outline" size="sm" href="/talent/{{ $talent->slug }}" wire:navigate

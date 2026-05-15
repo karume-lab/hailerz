@@ -256,7 +256,7 @@
               </div>
               <div>
                 <p class="text-[10px] font-bold text-text-secondary uppercase tracking-widest mb-1">Base Location</p>
-                <p class="text-text-primary font-semibold">{{ $talent->location ?? 'International Talent' }}</p>
+                <p class="text-text-primary font-semibold">{{ $talent->location }}{{ $talent->country ? ', ' . $talent->country : '' }}</p>
               </div>
             </div>
             <div class="flex items-start gap-5">
@@ -267,7 +267,7 @@
               <div>
                 <p class="text-[10px] font-bold text-text-secondary uppercase tracking-widest mb-1">Starting Investment</p>
                 <p class="text-text-primary font-semibold text-xl">
-                  {{ $talent->starting_price ? '₦' . number_format($talent->starting_price, 0) : 'Custom Quotation' }}
+                  {{ $talent->starting_price ? '$' . number_format($talent->starting_price, 0) : 'Custom Quotation' }}
                 </p>
               </div>
             </div>
