@@ -1,6 +1,5 @@
-const CACHE_NAME = 'hailerz-v2';
+const CACHE_NAME = 'hailerz-{{ $version }}';
 const ASSETS_TO_CACHE = [
-    '/',
     '/images/logo.webp',
     '/manifest.json'
 ];
@@ -9,6 +8,7 @@ self.addEventListener('install', (event) => {
     self.skipWaiting();
     event.waitUntil(
         caches.open(CACHE_NAME).then((cache) => {
+            console.log('Opened cache: ' + CACHE_NAME);
             return cache.addAll(ASSETS_TO_CACHE);
         })
     );
@@ -20,7 +20,7 @@ self.addEventListener('activate', (event) => {
         caches.keys().then((cacheNames) => {
             return Promise.all(
                 cacheNames.map((cacheName) => {
-                    if (cacheName !== CACHE_NAME) {
+                    if (cacheName !== CACHE_NAME && cacheName.startsWith('hailerz-')) {
                         console.log('Deleting old cache:', cacheName);
                         return caches.delete(cacheName);
                     }
@@ -32,8 +32,7 @@ self.addEventListener('activate', (event) => {
 });
 
 self.addEventListener('fetch', (event) => {
-    // For navigation requests (the HTML page itself), use a Network-First strategy.
-    // This ensures that when the site is updated (and CSS hashes change), the user gets the new HTML.
+    // For navigation requests, use a Network-First strategy.
     if (event.request.mode === 'navigate') {
         event.respondWith(
             fetch(event.request).catch(() => {

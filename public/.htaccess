@@ -74,8 +74,15 @@
     </FilesMatch>
 
     # Immutable static assets (versioned by Vite hash)
+    # We exclude sw.js from this as it needs to be checked for updates
     <FilesMatch "\.(js|css)$">
         Header set Cache-Control "public, max-age=31536000, immutable"
+    </FilesMatch>
+
+    # Service Worker - NEVER CACHE (this overrides the rule above for sw.js)
+    <FilesMatch "sw\.js$">
+        Header set Cache-Control "private, no-cache, no-store, must-revalidate"
+        Header set Expires 0
     </FilesMatch>
 
     # Images and fonts - long cache, but not immutable (no hash in filename)

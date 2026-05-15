@@ -20,6 +20,21 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OgImageController;
+use Illuminate\Support\Facades\Cache;
+
+// Service Worker with dynamic versioning
+Route::get('/sw.js', function () {
+    $version = Cache::remember('sw_version', 60, function() {
+        // Try to get the git commit hash, fallback to a timestamp
+        $hash = trim(@shell_exec('git rev-parse --short HEAD'));
+        return $hash ?: time();
+    });
+
+    return response()
+        ->view('sw-js', ['version' => $version])
+        ->header('Content-Type', 'application/javascript')
+        ->header('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0');
+});
 
 // Public Frontends
 Route::get('/', Home::class)->name('home');
