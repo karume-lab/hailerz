@@ -19,19 +19,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // 1. Admin User
-        User::updateOrCreate(
-            ['email' => config('app.admin_email', 'admin@mail.com')],
-            [
-                'name' => config('app.admin_name', 'Agency Admin'),
-                'password' => bcrypt(config('app.admin_password', 'password')),
-                'email_verified_at' => now(),
-            ]
-        );
-
-        // 2. Talent Categories
+        // 1. Core Data
         $this->call([
+            UserSeeder::class,
             CategorySeeder::class,
+            FaqSeeder::class,
+            PostSeeder::class,
+            VideoSeeder::class,
         ]);
 
         // 3. Hero Records
@@ -220,13 +214,6 @@ class DatabaseSeeder extends Seeder
                 'body' => '<p>Thank you for submitting your booking inquiry.</p><p>A senior booking agent has been assigned to your request and is currently reviewing your event specifications and investment parameters. We prioritize providing comprehensive, tailored proposals that ensure the perfect alignment between talent and event DNA.</p><p>You can expect a formal proposal or a request for a briefing call within 24 business hours.</p><p>Best regards,<br>Hailerz Agency Team</p>'
             ]
         );
-
-        // 8. Call Additional Seeders
-        $this->call([
-            FaqSeeder::class,
-            PostSeeder::class,
-            VideoSeeder::class,
-        ]);
 
     }
 }
