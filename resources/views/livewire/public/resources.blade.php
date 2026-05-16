@@ -46,7 +46,7 @@
 
                 <!-- Blog Grid -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    @foreach($posts as $index => $post)
+                    @forelse($posts as $index => $post)
                         <article class="bg-surface-light border border-subtle rounded-3xl overflow-hidden flex flex-col hover:shadow-xl transition-all duration-300 group reveal {{ $index % 3 === 1 ? 'reveal-delay-100' : ($index % 3 === 2 ? 'reveal-delay-200' : '') }}">
                             <div class="h-56 overflow-hidden">
                                 <img src="{{ $post->image_url }}" alt="{{ $post->title }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
@@ -76,19 +76,83 @@
                                 </div>
                             </div>
                         </article>
-                    @endforeach
+                    @empty
+                        <div class="col-span-full py-20 text-center">
+                            <x-lucide-book-open class="w-16 h-16 text-brand-primary/20 mx-auto mb-6" />
+                            <h3 class="text-2xl font-medium text-text-primary mb-2">No Blog Posts Found</h3>
+                            <p class="text-text-secondary">We're working on new content. Check back soon!</p>
+                        </div>
+                    @endforelse
                 </div>
             @elseif($tab === 'videos')
-                <div class="bg-surface-light border border-subtle rounded-3xl p-12 text-center">
-                    <x-lucide-video class="w-16 h-16 text-brand-primary/20 mx-auto mb-6" />
-                    <h3 class="text-2xl font-medium text-text-primary mb-2">Video Library</h3>
-                    <p class="text-text-secondary">Explore performances and highlights from our talent roster. Coming soon.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    @forelse($posts as $index => $post)
+                        <article class="bg-surface-light border border-subtle rounded-3xl overflow-hidden flex flex-col hover:shadow-xl transition-all duration-300 group reveal {{ $index % 3 === 1 ? 'reveal-delay-100' : ($index % 3 === 2 ? 'reveal-delay-200' : '') }}">
+                            <div class="h-56 overflow-hidden relative">
+                                <img src="{{ $post->image_url }}" alt="{{ $post->title }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                                <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors flex items-center justify-center">
+                                    <div class="w-16 h-16 bg-brand-primary text-white rounded-full flex items-center justify-center shadow-lg transform group-hover:scale-110 transition-transform">
+                                        <x-lucide-play class="w-8 h-8 fill-current ml-1" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-8 flex flex-col flex-1">
+                                <h2 class="text-xl font-medium mb-3 text-text-primary group-hover:text-brand-primary transition-colors leading-tight">
+                                    <a href="/resources/{{ $post->slug }}" wire:navigate>{{ $post->title }}</a>
+                                </h2>
+                                <p class="text-text-secondary text-sm leading-relaxed mb-6 line-clamp-2 font-normal">
+                                    {{ $post->subtitle }}
+                                </p>
+                                <div class="mt-auto pt-6 border-t border-subtle flex items-center justify-between">
+                                    <span class="text-xs text-text-muted">{{ $post->published_at->format('M j, Y') }}</span>
+                                    <a href="/resources/{{ $post->slug }}" wire:navigate class="text-sm font-medium text-brand-primary flex items-center gap-1 hover:gap-2 transition-all">
+                                        Watch Video
+                                        <x-lucide-arrow-right class="w-4 h-4" />
+                                    </a>
+                                </div>
+                            </div>
+                        </article>
+                    @empty
+                        <div class="col-span-full py-20 text-center">
+                            <x-lucide-video class="w-16 h-16 text-brand-primary/20 mx-auto mb-6" />
+                            <h3 class="text-2xl font-medium text-text-primary mb-2">No Videos Found</h3>
+                            <p class="text-text-secondary">Check back soon for new content.</p>
+                        </div>
+                    @endforelse
                 </div>
             @elseif($tab === 'gallery')
-                <div class="bg-surface-light border border-subtle rounded-3xl p-12 text-center">
-                    <x-lucide-image class="w-16 h-16 text-brand-primary/20 mx-auto mb-6" />
-                    <h3 class="text-2xl font-medium text-text-primary mb-2">Event Gallery</h3>
-                    <p class="text-text-secondary">Glimpses of unforgettable events powered by Hailerz talent. Coming soon.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    @forelse($posts as $index => $post)
+                        <article class="bg-surface-light border border-subtle rounded-3xl overflow-hidden flex flex-col hover:shadow-xl transition-all duration-300 group reveal {{ $index % 3 === 1 ? 'reveal-delay-100' : ($index % 3 === 2 ? 'reveal-delay-200' : '') }}">
+                            <div class="h-64 overflow-hidden relative">
+                                <img src="{{ $post->image_url }}" alt="{{ $post->title }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                                <div class="absolute inset-0 bg-black/10 group-hover:bg-black/30 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
+                                    <span class="px-4 py-2 bg-white/90 backdrop-blur-sm rounded-full text-sm font-bold text-text-primary shadow-lg">View Gallery</span>
+                                </div>
+                            </div>
+                            <div class="p-8 flex flex-col flex-1">
+                                <h2 class="text-xl font-medium mb-3 text-text-primary group-hover:text-brand-primary transition-colors leading-tight">
+                                    <a href="/resources/{{ $post->slug }}" wire:navigate>{{ $post->title }}</a>
+                                </h2>
+                                <p class="text-text-secondary text-sm leading-relaxed mb-6 line-clamp-2 font-normal">
+                                    {{ $post->subtitle }}
+                                </p>
+                                <div class="mt-auto pt-6 border-t border-subtle flex items-center justify-between">
+                                    <span class="text-xs text-text-muted">{{ $post->published_at->format('M j, Y') }}</span>
+                                    <a href="/resources/{{ $post->slug }}" wire:navigate class="text-sm font-medium text-brand-primary flex items-center gap-1 hover:gap-2 transition-all">
+                                        View Photos
+                                        <x-lucide-arrow-right class="w-4 h-4" />
+                                    </a>
+                                </div>
+                            </div>
+                        </article>
+                    @empty
+                        <div class="col-span-full py-20 text-center">
+                            <x-lucide-image class="w-16 h-16 text-brand-primary/20 mx-auto mb-6" />
+                            <h3 class="text-2xl font-medium text-text-primary mb-2">No Gallery Items Found</h3>
+                            <p class="text-text-secondary">Check back soon for new content.</p>
+                        </div>
+                    @endforelse
                 </div>
             @endif
         </div>

@@ -4,15 +4,20 @@ namespace App\Livewire\Public;
 
 use App\Models\Post;
 use Livewire\Component;
+use Livewire\Attributes\Url;
 
 class Resources extends Component
 {
+    #[Url]
     public $tab = 'blog';
+
+    #[Url]
     public $category = 'All';
 
     public function setTab($tab)
     {
         $this->tab = $tab;
+        $this->category = 'All';
     }
 
     public function setCategory($category)
@@ -24,8 +29,16 @@ class Resources extends Component
     {
         $query = Post::where('is_published', true);
 
-        if ($this->category !== 'All') {
-            $query->where('category', $this->category);
+        if ($this->tab === 'blog') {
+            if ($this->category !== 'All') {
+                $query->where('category', $this->category);
+            } else {
+                $query->whereNotIn('category', ['Video', 'Gallery']);
+            }
+        } elseif ($this->tab === 'videos') {
+            $query->where('category', 'Video');
+        } elseif ($this->tab === 'gallery') {
+            $query->where('category', 'Gallery');
         }
 
         $posts = $query->orderBy('published_at', 'desc')->get();
