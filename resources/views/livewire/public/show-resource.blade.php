@@ -7,7 +7,7 @@
         </a>
 
         <!-- Header -->
-        <div class="mb-12">
+        <div class="mb-12 reveal">
             <div class="flex items-center gap-4 mb-6">
                 <span class="px-3 py-1 bg-brand-primary/10 text-brand-primary text-[10px] font-medium rounded-full uppercase tracking-widest border border-brand-primary/20">
                     {{ $post->category }}
@@ -34,12 +34,12 @@
         </div>
 
         <!-- Featured Image -->
-        <div class="rounded-3xl overflow-hidden mb-16 shadow-2xl">
+        <div class="rounded-3xl overflow-hidden mb-16 shadow-2xl reveal reveal-delay-100">
             <img src="{{ $post->image_url }}" alt="{{ $post->title }}" class="w-full h-auto" />
         </div>
 
         <!-- Content -->
-        <div class="prose prose-lg max-w-none prose-headings:text-text-primary prose-headings:font-medium prose-p:text-text-secondary prose-p:leading-relaxed prose-p:font-light">
+        <div class="prose prose-lg max-w-none prose-headings:text-text-primary prose-headings:font-medium prose-p:text-text-secondary prose-p:leading-relaxed prose-p:font-light reveal reveal-delay-200">
             @foreach($post->content as $block)
                 @if($block['type'] === 'p')
                     <p class="mb-8 text-lg font-normal">{{ $block['text'] }}</p>

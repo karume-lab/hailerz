@@ -1,7 +1,7 @@
 <div class="bg-surface-muted min-h-screen py-32">
     <div class="mx-auto max-w-7xl px-6 lg:px-8">
         {{-- Hero Header --}}
-        <div class="text-center mb-24">
+        <div class="text-center mb-24 reveal">
             <x-heading level="h1" title="Get In Touch" align="center" class="mb-6" />
             <p class="text-xl text-text-secondary max-w-2xl mx-auto font-light">
                 Have questions? Need help finding talent? We're here to assist you.
@@ -10,7 +10,7 @@
 
         <div class="lg:grid lg:grid-cols-12 lg:gap-16">
             {{-- Left Column: Contact Information --}}
-            <div class="lg:col-span-5 space-y-8">
+            <div class="lg:col-span-5 space-y-8 reveal reveal-delay-200">
                 <div>
                     <h2 class="text-2xl font-bold text-text-primary mb-4">Contact Information</h2>
                     <p class="text-text-secondary leading-relaxed mb-8 font-light">
@@ -91,7 +91,7 @@
             </div>
 
             {{-- Right Column: Send Message Form --}}
-            <div class="mt-16 lg:mt-0 lg:col-span-7">
+            <div class="mt-16 lg:mt-0 lg:col-span-7 reveal reveal-delay-400">
                 <x-card padding="p-6 md:p-12" class="shadow-2xl border-none relative overflow-hidden">
                     <h2 class="text-2xl font-bold text-text-primary mb-8">Send Us a Message</h2>
 
@@ -153,13 +153,13 @@
         </div>
 
         {{-- Bottom Section: Need Something Specific? --}}
-        <div class="mt-32 pt-24 border-t border-subtle text-center">
+        <div class="mt-32 pt-24 border-t border-subtle text-center reveal">
             <h2 class="text-3xl md:text-4xl font-bold text-text-primary mb-4">Need Something Specific?</h2>
             <p class="text-lg text-text-secondary mb-16">Quick links to help you find what you need</p>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
                 {{-- Browse Talent --}}
-                <x-card padding="p-8" class="flex flex-col h-full bg-surface-light border-subtle">
+                <x-card padding="p-8" class="flex flex-col h-full bg-surface-light border-subtle reveal reveal-delay-100">
                     <h3 class="text-xl font-bold text-text-primary mb-4">Browse Talent</h3>
                     <p class="text-sm text-text-secondary mb-8 grow leading-relaxed">
                         Explore our directory of musicians, bands, DJs, and speakers
@@ -170,7 +170,7 @@
                 </x-card>
 
                 {{-- Book Talent --}}
-                <x-card padding="p-8" class="flex flex-col h-full bg-surface-light border-subtle">
+                <x-card padding="p-8" class="flex flex-col h-full bg-surface-light border-subtle reveal reveal-delay-200">
                     <h3 class="text-xl font-bold text-text-primary mb-4">Book Talent</h3>
                     <p class="text-sm text-text-secondary mb-8 grow leading-relaxed">
                         Submit a booking inquiry and get matched with perfect performers
@@ -181,7 +181,7 @@
                 </x-card>
 
                 {{-- FAQs --}}
-                <x-card padding="p-8" class="flex flex-col h-full bg-surface-light border-subtle">
+                <x-card padding="p-8" class="flex flex-col h-full bg-surface-light border-subtle reveal reveal-delay-300">
                     <h3 class="text-xl font-bold text-text-primary mb-4">FAQs</h3>
                     <p class="text-sm text-text-secondary mb-8 grow leading-relaxed">
                         Find answers to commonly asked questions about our services

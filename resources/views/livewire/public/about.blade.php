@@ -18,7 +18,7 @@
 
   <!-- Our Story Section -->
   <section class="py-24 bg-surface-muted">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center reveal">
       <x-heading level="h2" title="Our Story" align="center" class="mb-12" />
       <div class="space-y-8 text-lg text-text-secondary leading-relaxed font-light">
         <p>
@@ -43,7 +43,7 @@
   <!-- Our Values Section -->
   <section class="py-24 bg-surface-light border-y border-subtle">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
+      <div class="text-center mb-16 reveal">
         <x-heading level="h2" title="Our Values" align="center" class="mb-4" />
         <p class="text-lg text-text-secondary">These core principles guide everything we do</p>
       </div>
@@ -58,8 +58,8 @@
           ];
         @endphp
 
-        @foreach($values as $value)
-          <div class="text-center group">
+        @foreach($values as $index => $value)
+          <div class="text-center group reveal {{ $index % 4 === 1 ? 'reveal-delay-100' : ($index % 4 === 2 ? 'reveal-delay-200' : ($index % 4 === 3 ? 'reveal-delay-300' : '')) }}">
             <div
               class="w-16 h-16 bg-brand-primary/10 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-brand-primary group-hover:scale-110 transition-all duration-300">
               @if($value['icon'] === 'target') <x-lucide-target
@@ -83,7 +83,7 @@
   <!-- What Sets Us Apart Section -->
   <section class="py-24 bg-surface-muted">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
+      <div class="text-center mb-16 reveal">
         <x-heading level="h2" title="What Sets Us Apart" align="center" class="mb-4" />
         <p class="text-lg text-text-secondary">Why event planners choose Hailerz</p>
       </div>
@@ -100,9 +100,9 @@
           ];
         @endphp
 
-        @foreach($features as $feature)
+        @foreach($features as $index => $feature)
           <div
-            class="bg-surface-light border border-subtle p-8 rounded-2xl flex gap-6 items-start hover:border-brand-primary transition-colors duration-300">
+            class="bg-surface-light border border-subtle p-8 rounded-2xl flex gap-6 items-start hover:border-brand-primary transition-colors duration-300 reveal {{ $index % 2 === 1 ? 'reveal-delay-100' : '' }}">
             <x-lucide-circle-check class="w-6 h-6 text-brand-primary shrink-0 mt-1" />
             <div>
               <h3 class="text-lg font-bold mb-2 text-text-primary">{{ $feature['title'] }}</h3>
@@ -117,7 +117,7 @@
   <!-- Meet Our Team Section -->
   <section class="py-24 bg-surface-light border-t border-subtle">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
+      <div class="text-center mb-16 reveal">
         <x-heading level="h2" title="Meet Our Team" align="center" class="mb-4" />
         <p class="text-lg text-text-secondary">Passionate professionals dedicated to your success</p>
       </div>
@@ -146,9 +146,9 @@
           ];
         @endphp
 
-        @foreach($team as $member)
+        @foreach($team as $index => $member)
           <div
-            class="group relative overflow-hidden rounded-[2.5rem] aspect-3/4 bg-surface-dark border border-subtle shadow-xl">
+            class="group relative overflow-hidden rounded-[2.5rem] aspect-3/4 bg-surface-dark border border-subtle shadow-xl reveal {{ $index === 1 ? 'reveal-delay-100' : ($index === 2 ? 'reveal-delay-200' : '') }}">
             <img src="{{ asset('images/about/' . $member['image']) }}" alt="{{ $member['name'] }}"
               class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
             <div class="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent"></div>
@@ -165,7 +165,7 @@
 
   <!-- Ready to Work Together -->
   <section class="py-24 bg-surface-muted text-center border-t border-subtle">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
       <div class="w-16 h-16 bg-brand-primary/10 rounded-full flex items-center justify-center mx-auto mb-8">
         <x-lucide-music class="w-8 h-8 text-brand-primary" />
       </div>

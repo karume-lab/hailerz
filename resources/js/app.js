@@ -12,6 +12,8 @@ const lenis = new Lenis({
     infinite: false,
 });
 
+window.lenis = lenis;
+
 // Handle all internal anchor clicks
 const handleAnchorClick = (e) => {
     const target = e.target;

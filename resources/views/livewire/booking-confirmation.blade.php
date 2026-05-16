@@ -1,5 +1,5 @@
-<div class="max-w-xl mx-auto px-4 sm:px-6 lg:px-8 py-32 text-center">
-    <div class="mb-12 inline-flex items-center justify-center w-24 h-24 bg-brand-primary/10 text-brand-primary rounded-full shadow-sm shadow-brand-primary/20">
+<div class="max-w-xl mx-auto px-4 sm:px-6 lg:px-8 py-32 text-center reveal">
+    <div class="mb-12 inline-flex items-center justify-center w-24 h-24 bg-brand-primary/10 text-brand-primary rounded-full shadow-sm shadow-brand-primary/20 reveal reveal-delay-100">
         <x-heroicon-o-check class="w-12 h-12 stroke-3" />
     </div>
     

@@ -18,12 +18,12 @@
             <x-heading 
                 align="center" 
                 title="Start your booking" 
-                class="mb-16"
+                class="mb-16 reveal"
             />
-            <p class="mt--12 mb-16 text-center text-lg text-text-secondary">Fill in the details below so we can find the right artist for your event.</p>
+            <p class="mt--12 mb-16 text-center text-lg text-text-secondary reveal reveal-delay-100">Fill in the details below so we can find the right artist for your event.</p>
 
             <!-- Progress Indicator -->
-            <div class="mb-16">
+            <div class="mb-16 reveal reveal-delay-200">
                 <div class="relative">
                     <div class="overflow-hidden h-1.5 mb-6 text-xs flex rounded-full bg-subtle">
                         <div style="width: {{ ($currentStep / 4) * 100 }}%" class="shadow-none flex flex-col text-center whitespace-nowrap text-text-inverse justify-center bg-brand-primary transition-all duration-700"></div>
@@ -37,7 +37,7 @@
                 </div>
             </div>
 
-            <x-card padding="p-10 sm:p-16" class="shadow-2xl">
+            <x-card padding="p-10 sm:p-16" class="shadow-2xl reveal reveal-delay-300">
                 <form wire:submit.prevent="submit" class="flex flex-col h-full">
                     <!-- Scrollable Content Area -->
                     <div class="flex-1 overflow-y-auto max-h-[60vh] pr-4 -mr-4 scrollbar-thin scrollbar-thumb-brand-primary/20 scrollbar-track-transparent" data-lenis-prevent>

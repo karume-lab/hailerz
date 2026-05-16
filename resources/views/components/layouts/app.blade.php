@@ -270,7 +270,12 @@
     }
 
     setupScrollReveals();
-    document.addEventListener('livewire:navigated', setupScrollReveals);
+    document.addEventListener('livewire:navigated', () => {
+      setupScrollReveals();
+      if (window.lenis) {
+        window.lenis.resize();
+      }
+    });
   </script>
 
 </body>

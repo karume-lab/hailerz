@@ -12,15 +12,15 @@
   <!-- Talent Categories Section -->
   <section class="py-24 bg-surface-light">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
+      <div class="text-center mb-16 reveal">
         <x-heading level="h2" title="Talent Categories" align="center" class="mb-4" />
         <p class="text-lg text-text-secondary max-w-2xl mx-auto">Premium performers across every category and genre</p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-        @foreach($allCategories as $cat)
+        @foreach($allCategories as $index => $cat)
           <a href="/talent?category={{ $cat->slug }}" wire:navigate
-            class="group rounded-3xl border border-subtle bg-surface-light p-8 shadow-sm flex flex-col h-full hover:border-brand-primary hover:shadow-lg transition-all duration-300">
+            class="group rounded-3xl border border-subtle bg-surface-light p-8 shadow-sm flex flex-col h-full hover:border-brand-primary hover:shadow-lg transition-all duration-300 reveal {{ $index % 3 === 1 ? 'reveal-delay-100' : ($index % 3 === 2 ? 'reveal-delay-200' : '') }}">
             <div
               class="w-16 h-16 bg-brand-primary/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-brand-primary group-hover:text-text-inverse transition-colors duration-300">
               @php
@@ -59,7 +59,7 @@
   <!-- Events We Serve -->
   <section class="py-24 bg-surface-muted/30 border-y border-subtle">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
+      <div class="text-center mb-16 reveal">
         <x-heading level="h2" title="Services We Provide" align="center" class="mb-4" />
         <p class="text-lg text-text-secondary">Specialized talent for your professional and creative needs</p>
       </div>
@@ -76,9 +76,9 @@
           ];
         @endphp
 
-        @foreach($events as $event)
+        @foreach($events as $index => $event)
           <div
-            class="rounded-2xl border border-subtle bg-surface-light p-8 hover:border-brand-primary transition-colors duration-300">
+            class="rounded-2xl border border-subtle bg-surface-light p-8 hover:border-brand-primary transition-colors duration-300 reveal {{ $index % 3 === 1 ? 'reveal-delay-100' : ($index % 3 === 2 ? 'reveal-delay-200' : '') }}">
             <h3 class="text-xl font-bold mb-3 text-text-primary">{{ $event['title'] }}</h3>
             <p class="text-text-secondary text-sm leading-relaxed">{{ $event['desc'] }}</p>
           </div>
@@ -90,7 +90,7 @@
   <!-- Full-Service Support -->
   <section class="py-24 bg-surface-light">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
+      <div class="text-center mb-16 reveal">
         <x-heading level="h2" title="Full-Service Support" align="center" class="mb-4" />
         <p class="text-lg text-text-secondary max-w-2xl mx-auto">We handle everything so you can focus on your event</p>
       </div>
@@ -107,8 +107,8 @@
           ];
         @endphp
 
-        @foreach($supports as $s)
-          <div class="text-center">
+        @foreach($supports as $index => $s)
+          <div class="text-center reveal {{ $index % 3 === 1 ? 'reveal-delay-100' : ($index % 3 === 2 ? 'reveal-delay-200' : '') }}">
             <div class="w-16 h-16 bg-brand-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
               @if($s['icon'] === 'calendar') <x-lucide-calendar class="w-8 h-8 text-brand-primary" />
               @elseif($s['icon'] === 'file-text') <x-lucide-file-text class="w-8 h-8 text-brand-primary" />
@@ -129,7 +129,7 @@
   <!-- How It Works -->
   <section class="py-24 bg-surface-muted/30 border-y border-subtle">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
+      <div class="text-center mb-16 reveal">
         <x-heading level="h2" title="How It Works" align="center" class="mb-4" />
         <p class="text-lg text-text-secondary">Simple, transparent process from inquiry to performance</p>
       </div>
@@ -147,7 +147,7 @@
         @endphp
 
         @foreach($steps as $index => $step)
-          <div class="flex gap-8">
+          <div class="flex gap-8 reveal {{ $index % 2 === 1 ? 'reveal-delay-100' : '' }}">
             <div class="shrink-0">
               <div
                 class="w-16 h-16 bg-brand-primary rounded-full flex items-center justify-center text-2xl font-bold text-text-inverse">
@@ -168,7 +168,7 @@
   <section class="py-24 bg-surface-light">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="max-w-4xl mx-auto">
-        <x-heading level="h2" title="Transparent Pricing" align="center" class="mb-12" />
+        <x-heading level="h2" title="Transparent Pricing" align="center" class="mb-12 reveal" />
 
         <div class="rounded-3xl border border-subtle bg-surface-light p-8 md:p-12 shadow-sm mb-12">
           <div class="space-y-10">
@@ -228,7 +228,7 @@
 
   <!-- Ready to Get Started -->
   <section class="py-24 bg-brand-accent border-t border-subtle">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center reveal">
       <x-heading level="h2" title="Ready to Get Started?" align="center" class="text-text-inverse mb-6" />
       <p class="text-xl text-text-inverse/80 mb-12">Let's find the perfect talent for your event. Browse our directory
         or submit a booking inquiry today.</p>

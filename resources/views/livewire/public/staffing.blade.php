@@ -4,7 +4,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
                 <!-- Left Content: Heading & Video -->
-                <div class="lg:col-span-5 space-y-12">
+                <div class="lg:col-span-5 space-y-12 reveal">
                     <div class="space-y-6">
                         <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
                             Scale your team with <span class="text-brand-primary">professional services.</span>
@@ -35,7 +35,7 @@
                 </div>
 
                 <!-- Right Content: Form -->
-                <div class="lg:col-span-7" id="request-form">
+                <div class="lg:col-span-7 reveal reveal-delay-200" id="request-form">
                     <x-card padding="p-8 lg:p-10" class="bg-white shadow-2xl rounded-3xl relative overflow-hidden">
                         @if($requestSent)
                             <div class="text-center py-12 space-y-6">

@@ -1,4 +1,4 @@
-<div class="bg-surface-muted min-h-screen py-24">
+<div class="bg-surface-muted min-h-screen py-24 reveal">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="bg-surface-light rounded-[2.5rem] p-10 sm:p-20 shadow-2xl border border-brand-primary/5">
             <div class="flex items-center gap-3 mb-8">
