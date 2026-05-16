@@ -88,9 +88,17 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     @forelse($posts as $index => $post)
                         <article class="bg-surface-light border border-subtle rounded-3xl overflow-hidden flex flex-col hover:shadow-xl transition-all duration-300 group reveal {{ $index % 3 === 1 ? 'reveal-delay-100' : ($index % 3 === 2 ? 'reveal-delay-200' : '') }}">
-                            <div class="h-56 overflow-hidden relative">
-                                <img src="{{ $post->image_url }}" alt="{{ $post->title }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
-                                <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors flex items-center justify-center">
+                            <div x-data="{ isHovered: false }" 
+                                 @mouseenter="isHovered = true" 
+                                 @mouseleave="isHovered = false"
+                                 class="aspect-video overflow-hidden relative bg-black">
+                                <template x-if="isHovered && '{{ $post->getVideoUrl() }}'">
+                                    <iframe src="{{ $post->getVideoUrl() }}?autoplay=1&mute=1&rel=0&loop=1&playlist={{ last(explode('/', $post->getVideoUrl() ?? '')) }}" 
+                                            class="absolute inset-0 w-full h-full border-none pointer-events-none"
+                                            allow="autoplay; encrypted-media"></iframe>
+                                </template>
+                                <img x-show="!isHovered" src="{{ $post->image_url }}" alt="{{ $post->title }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                                <div x-show="!isHovered" class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors flex items-center justify-center">
                                     <div class="w-16 h-16 bg-brand-primary text-white rounded-full flex items-center justify-center shadow-lg transform group-hover:scale-110 transition-transform">
                                         <x-lucide-play class="w-8 h-8 fill-current ml-1" />
                                     </div>

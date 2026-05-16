@@ -33,10 +33,19 @@
             </p>
         </div>
 
-        <!-- Featured Image -->
-        <div class="rounded-3xl overflow-hidden mb-16 shadow-2xl reveal reveal-delay-100">
-            <img src="{{ $post->image_url }}" alt="{{ $post->title }}" class="w-full h-auto" />
-        </div>
+        <!-- Featured Media -->
+        @if($post->category === 'Video' && $post->getVideoUrl())
+            <div class="rounded-3xl overflow-hidden mb-16 shadow-2xl reveal reveal-delay-100 aspect-video bg-black">
+                <iframe src="{{ $post->getVideoUrl() }}?autoplay=1&mute=1&rel=0" 
+                        class="w-full h-full border-none"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen></iframe>
+            </div>
+        @else
+            <div class="rounded-3xl overflow-hidden mb-16 shadow-2xl reveal reveal-delay-100">
+                <img src="{{ $post->image_url }}" alt="{{ $post->title }}" class="w-full h-auto" />
+            </div>
+        @endif
 
         <!-- Content -->
         <div class="prose prose-lg max-w-none prose-headings:text-text-primary prose-headings:font-medium prose-p:text-text-secondary prose-p:leading-relaxed prose-p:font-light reveal reveal-delay-200">
@@ -44,7 +53,25 @@
                 @if($block['type'] === 'p')
                     <p class="mb-8 text-lg font-normal">{{ $block['text'] }}</p>
                 @elseif($block['type'] === 'h2')
-                    <h2 class="text-2xl font-medium mt-12 mb-6">{{ $block['text'] }}</h2>
+                    <h2 class="text-2xl font-medium mt-12 mb-6 text-text-primary">{{ $block['text'] }}</h2>
+                @elseif($block['type'] === 'video')
+                    {{-- Only show if not already shown at top --}}
+                    @if($post->category !== 'Video')
+                        <div class="rounded-3xl overflow-hidden mb-12 shadow-xl aspect-video bg-black">
+                            <iframe src="{{ $block['url'] }}?autoplay=1&mute=1" 
+                                    class="w-full h-full border-none"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                    allowfullscreen></iframe>
+                        </div>
+                    @endif
+                @elseif($block['type'] === 'gallery')
+                    <div class="grid grid-cols-2 gap-4 mb-12">
+                        @foreach($block['images'] as $image)
+                            <div class="rounded-2xl overflow-hidden shadow-md">
+                                <img src="{{ $image }}" alt="Gallery image" class="w-full h-auto hover:scale-105 transition-transform duration-500" />
+                            </div>
+                        @endforeach
+                    </div>
                 @endif
             @endforeach
         </div>

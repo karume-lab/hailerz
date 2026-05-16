@@ -27,4 +27,17 @@ class Post extends Model
         'is_published' => 'boolean',
         'published_at' => 'datetime',
     ];
+
+    public function getVideoUrl(): ?string
+    {
+        if (!is_array($this->content)) return null;
+        
+        foreach ($this->content as $item) {
+            if (isset($item['type']) && $item['type'] === 'video' && isset($item['url'])) {
+                return $item['url'];
+            }
+        }
+        
+        return null;
+    }
 }
