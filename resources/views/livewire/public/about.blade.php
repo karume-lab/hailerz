@@ -129,19 +129,19 @@
               'name' => 'David Somoye',
               'role' => 'CFO',
               'desc' => '10+ years in event planning and entertainment booking',
-              'image' => 'founder.jpeg'
+              'image' => 'founder.webp'
             ],
             [
               'name' => 'Lolitasville',
               'role' => 'Talent Management',
               'desc' => 'Former broadcaster with deep industry connections',
-              'image' => 'head-of-talent-relation.jpg'
+              'image' => 'head-of-talent-relation.webp'
             ],
             [
               'name' => 'Anne James',
               'role' => 'Community Manager',
               'desc' => 'Dedicated to ensuring every event exceeds expectations',
-              'image' => 'client-success-director.jpeg'
+              'image' => 'client-success-director.webp'
             ],
           ];
         @endphp
