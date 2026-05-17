@@ -13,7 +13,7 @@
   <section class="py-24 bg-surface-light">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16 reveal">
-        <x-heading level="h2" title="Talent Categories" align="center" class="mb-4" />
+        <x-heading level="h2" title="Talent" highlight="Categories" align="center" class="mb-4" />
         <p class="text-lg text-text-secondary max-w-2xl mx-auto">Premium performers across every category and genre</p>
       </div>
 
@@ -60,7 +60,7 @@
   <section class="py-24 bg-surface-muted/30 border-y border-subtle">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16 reveal">
-        <x-heading level="h2" title="Services We Provide" align="center" class="mb-4" />
+        <x-heading level="h2" title="Services We" highlight="Provide" align="center" class="mb-4" />
         <p class="text-lg text-text-secondary">Specialized talent for your professional and creative needs</p>
       </div>
 
@@ -91,7 +91,7 @@
   <section class="py-24 bg-surface-light">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16 reveal">
-        <x-heading level="h2" title="Full-Service Support" align="center" class="mb-4" />
+        <x-heading level="h2" title="Full-Service" highlight="Support" align="center" class="mb-4" />
         <p class="text-lg text-text-secondary max-w-2xl mx-auto">We handle everything so you can focus on your event</p>
       </div>
 
@@ -130,7 +130,7 @@
   <section class="py-24 bg-surface-muted/30 border-y border-subtle">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16 reveal">
-        <x-heading level="h2" title="How It Works" align="center" class="mb-4" />
+        <x-heading level="h2" title="How It" highlight="Works" align="center" class="mb-4" />
         <p class="text-lg text-text-secondary">Simple, transparent process from inquiry to performance</p>
       </div>
 
@@ -168,7 +168,7 @@
   <section class="py-24 bg-surface-light">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="max-w-4xl mx-auto">
-        <x-heading level="h2" title="Transparent Pricing" align="center" class="mb-12 reveal" />
+        <x-heading level="h2" title="Transparent" highlight="Pricing" align="center" class="mb-12 reveal" />
 
         <div class="rounded-3xl border border-subtle bg-surface-light p-8 md:p-12 shadow-sm mb-12">
           <div class="space-y-10">
@@ -229,7 +229,7 @@
   <!-- Ready to Get Started -->
   <section class="py-24 bg-brand-accent border-t border-subtle">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center reveal">
-      <x-heading level="h2" title="Ready to Get Started?" align="center" class="text-text-inverse mb-6" />
+      <x-heading level="h2" title="Ready to Get" highlight="Started?" align="center" class="text-text-inverse mb-6" />
       <p class="text-xl text-text-inverse/80 mb-12">Let's find the perfect talent for your event. Browse our directory
         or submit a booking inquiry today.</p>
       <div class="flex flex-col sm:flex-row gap-6 justify-center">

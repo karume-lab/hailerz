@@ -6,9 +6,7 @@
                 <!-- Left Content: Heading & Video -->
                 <div class="lg:col-span-5 space-y-12 reveal">
                     <div class="space-y-6">
-                        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
-                            Scale your team with <span class="text-brand-primary">professional services.</span>
-                        </h1>
+                        <x-heading level="h1" title="Scale your team with" highlight="professional services." class="text-white" />
                         <p class="text-xl text-white/70 max-w-2xl leading-relaxed">
                             Effortlessly scale your project capacity with creative talent. From specialized consultants to remote creative talent, we provide the professional staff augmentation your business requires.
                         </p>
@@ -101,7 +99,7 @@
     <!-- Core Solutions -->
     <section class="py-12 bg-surface-muted">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <x-heading align="center" title="Creative Talent for Your Professional Needs" class="reveal" />
+            <x-heading align="center" title="Creative Talent for" highlight="Your Professional Needs" class="reveal" />
             <div class="flex flex-wrap justify-center gap-6 my-12">
                 @foreach($professionalCategories as $index => $category)
                     @php
@@ -189,9 +187,7 @@
     <!-- Perfect Fit Section -->
     <section class="py-32 bg-surface-dark relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-            <h2 class="text-3xl md:text-5xl font-bold text-white mb-6">
-                Staff Augmentation? We provide the <span class="text-brand-primary">perfect fit.</span>
-            </h2>
+            <x-heading level="h2" title="Staff Augmentation? We provide the" highlight="perfect fit." align="center" class="text-white mb-6" />
             <p class="text-xl text-white/60 mb-20 max-w-3xl mx-auto">
                 Cherry-pick professional talent from our curated pool. Hire contract personnel on-demand to scale your business capabilities.
             </p>
@@ -241,7 +237,7 @@
     <!-- Why Choose Section -->
     <section class="py-32 bg-surface-light relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <x-heading align="center" title="The Hailerz Advantage" class="reveal text-text-primary my-8" />
+            <x-heading align="center" title="The" highlight="Hailerz Advantage" class="reveal text-text-primary my-8" />
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
                 <div class="flex gap-8 reveal border-b border-subtle pb-8 md:border-none md:pb-0">
@@ -296,7 +292,7 @@
     <!-- Final CTA -->
     <section class="py-40 bg-brand-accent text-center relative overflow-hidden">
         <div class="max-w-4xl mx-auto px-4 relative z-10 reveal">
-            <x-heading level="h2" title="Scale Your Professional Team Today." align="center" class="text-text-inverse mb-8" />
+            <x-heading level="h2" title="Scale Your" highlight="Professional Team Today." align="center" class="text-text-inverse mb-8" />
             <p class="text-xl md:text-2xl text-text-inverse/80 mb-12 font-light leading-relaxed">
                 From contract specialists to remote creative talent, ensure your projects are powered by creative talent.
             </p>

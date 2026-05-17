@@ -46,7 +46,7 @@
     <section class="py-32 bg-surface-muted">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-20 reveal">
-                <x-heading level="h2" title="Join Our Talent Pool" align="center"
+                <x-heading level="h2" title="Join Our" highlight="Talent Pool" align="center"
                     class="text-text-primary" />
                 <p class="text-lg text-text-secondary mx-auto max-w-2xl">Get Seen. Get featured.</p>
 
@@ -60,7 +60,7 @@
                 </div>
             </div>
 
-            <x-heading level="h2" title="Book Talent in Three Simple Steps" align="center"
+            <x-heading level="h2" title="Book Talent in" highlight="Three Simple Steps" align="center"
                 class="text-text-primary mb-10" />
             <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
                 @php
@@ -95,7 +95,7 @@
     <section class="py-32 bg-surface-dark">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-20 reveal">
-                <x-heading level="h2" title="Featured Talent" align="center"
+                <x-heading level="h2" title="Featured" highlight="Talent" align="center"
                     class="text-white mb-6" />
                 <p class="text-lg text-white/60 mx-auto max-w-2xl">Discover our handpicked performers</p>
             </div>
@@ -254,7 +254,7 @@
     <section class="py-32 bg-surface-muted">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-20 reveal">
-                <x-heading level="h2" title="Browse by Category" align="center"
+                <x-heading level="h2" title="Browse by" highlight="Category" align="center"
                     class="text-text-primary mb-6" />
                 <p class="text-lg text-text-secondary mx-auto max-w-2xl">Find the perfect talent for your event</p>
             </div>
@@ -286,7 +286,7 @@
     <!-- Booking FAQs Section -->
     <section id="faqs" class="py-32 bg-surface-dark text-text-inverse">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <x-heading level="h2" title="Booking FAQs" align="center"
+            <x-heading level="h2" title="Booking" highlight="FAQs" align="center"
                 class="text-center mb-16 reveal" />
 
             <div x-data="{ active: null }" class="space-y-6">
@@ -326,7 +326,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
                 <div class="reveal">
-                    <x-heading level="h2" title="Ready to Work Together?"
+                    <x-heading level="h2" title="Ready to Work" highlight="Together?"
                         class="text-text-inverse mb-6 md:mb-8" />
                     <p class="text-lg md:text-xl text-text-inverse/80 mb-8 md:mb-12 leading-relaxed">
                         Let's create something unforgettable. Reach out to our dedicated agents for bespoke

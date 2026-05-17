@@ -31,7 +31,7 @@
         <section class="py-24 bg-surface-muted">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-16 reveal">
-                    <x-heading level="h2" title="Why Join Hailerz?" align="center" class="mb-4" />
+                    <x-heading level="h2" title="Why Join" highlight="Hailerz?" align="center" class="mb-4" />
                     <p class="text-lg text-text-secondary">We're more than an agency; we're your partner in success</p>
                 </div>
                 <div class="max-w-5xl mx-auto">
@@ -67,7 +67,7 @@
         <section class="py-24 bg-surface-light border-y border-subtle">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-16 reveal">
-                    <x-heading level="h2" title="Who We're Looking For" align="center" class="mb-4" />
+                    <x-heading level="h2" title="Who We're" highlight="Looking For" align="center" class="mb-4" />
                     <p class="text-lg text-text-secondary">We represent only the best in the industry</p>
                 </div>
                 <div class="max-w-4xl mx-auto">
@@ -152,7 +152,7 @@
         <section class="py-24 bg-surface-muted" id="apply">
             <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-16 reveal">
-                    <x-heading level="h2" title="Talent Application" align="center" class="mb-4" />
+                    <x-heading level="h2" title="Talent" highlight="Application" align="center" class="mb-4" />
                     <p class="text-lg text-text-secondary">Take the first step toward joining our premier roster</p>
                 </div>
                 

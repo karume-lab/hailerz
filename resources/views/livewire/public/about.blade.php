@@ -19,7 +19,7 @@
   <!-- Our Story Section -->
   <section class="py-24 bg-surface-muted">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center reveal">
-      <x-heading level="h2" title="Our Story" align="center" class="mb-12" />
+      <x-heading level="h2" title="Our" highlight="Story" align="center" class="mb-12" />
       <div class="space-y-8 text-lg text-text-secondary leading-relaxed font-light">
         <p>
           Hailerz exists for one reason — to make discovering and booking incredible talent effortless. Born from the
@@ -44,7 +44,7 @@
   <section class="py-24 bg-surface-light border-y border-subtle">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16 reveal">
-        <x-heading level="h2" title="Our Values" align="center" class="mb-4" />
+        <x-heading level="h2" title="Our" highlight="Values" align="center" class="mb-4" />
         <p class="text-lg text-text-secondary">These core principles guide everything we do</p>
       </div>
 
@@ -84,7 +84,7 @@
   <section class="py-24 bg-surface-muted">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16 reveal">
-        <x-heading level="h2" title="What Sets Us Apart" align="center" class="mb-4" />
+        <x-heading level="h2" title="What Sets Us" highlight="Apart" align="center" class="mb-4" />
         <p class="text-lg text-text-secondary">Why event planners choose Hailerz</p>
       </div>
 
@@ -118,7 +118,7 @@
   <section class="py-24 bg-surface-light border-t border-subtle">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16 reveal">
-        <x-heading level="h2" title="Meet Our Team" align="center" class="mb-4" />
+        <x-heading level="h2" title="Meet Our" highlight="Team" align="center" class="mb-4" />
         <p class="text-lg text-text-secondary">Passionate professionals dedicated to your success</p>
       </div>
 
@@ -169,7 +169,7 @@
       <div class="w-16 h-16 bg-brand-primary/10 rounded-full flex items-center justify-center mx-auto mb-8">
         <x-lucide-music class="w-8 h-8 text-brand-primary" />
       </div>
-      <x-heading level="h2" title="Ready to Work Together?" align="center" class="mb-6" />
+      <x-heading level="h2" title="Ready to Work" highlight="Together?" align="center" class="mb-6" />
       <p class="text-xl text-text-secondary mb-12 max-w-2xl mx-auto">
         Let's create an unforgettable event. Browse our talent directory or submit a booking inquiry today.
       </p>

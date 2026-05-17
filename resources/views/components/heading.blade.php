@@ -1,6 +1,8 @@
 @props([
     'level' => 'h2',
     'title' => null,
+    'highlight' => null,
+    'highlightClass' => 'text-brand-secondary',
     'align' => 'left',
 ])
 
@@ -28,5 +30,8 @@
 
     <{{ $level }} class="{{ $baseClass }} tracking-tight leading-tight">
         {!! $content !!}
+        @if($highlight)
+            <span class="{{ $highlightClass }}">{!! $highlight !!}</span>
+        @endif
     </{{ $level }}>
 </div>

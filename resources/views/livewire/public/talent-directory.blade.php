@@ -1,7 +1,7 @@
 <div class="bg-surface-muted min-h-screen py-20">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-    <x-heading title="Premier Roster"
+    <x-heading title="Premier" highlight="Roster"
       class="mb-16" />
     <p class="mt--12 mb-16 text-lg text-text-secondary max-w-2xl">Explore and secure the world’s most sought-after
       musicians, speakers, and performers for your next high-profile event.</p>
@@ -131,11 +131,11 @@
       <!-- Talent Grid -->
       <main class="w-full lg:w-3/4">
 
-        <div class="transition-opacity duration-300">
+        <div class="transition-all duration-500 ease-in-out" wire:loading.class="opacity-40 blur-[1px]">
           @if($talents->count() > 0)
             <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
               @foreach($talents as $talent)
-                <x-card padding="p-0" class="group transition-all duration-500 flex flex-col h-full overflow-hidden">
+                <x-card padding="p-0" class="group transition-all duration-500 flex flex-col h-full overflow-hidden hover:-translate-y-2 hover:shadow-2xl hover:border-brand-primary/30 animate-fadeIn">
                   <a href="/talent/{{ $talent->slug }}" wire:navigate class="block">
                     <div class="group relative overflow-hidden aspect-3/4 bg-surface-dark">
                       <img src="{{ $talent->profile_photo_url }}" width="400" height="533"

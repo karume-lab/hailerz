@@ -169,7 +169,7 @@
     <!-- Bottom CTA -->
     <section class="py-24 bg-surface-muted text-center border-t border-subtle">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
-            <x-heading level="h2" title="Ready to Book Top Talent?" align="center" class="mb-6" />
+            <x-heading level="h2" title="Ready to Book" highlight="Top Talent?" align="center" class="mb-6" />
             <p class="text-xl text-text-secondary mb-12 max-w-2xl mx-auto">
                 Browse our roster or submit a booking inquiry today.
             </p>
