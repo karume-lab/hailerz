@@ -73,7 +73,7 @@
                                     SUBMIT
                                 </x-button>
 
-                                <p class="text-[10px] text-gray-400 text-center leading-relaxed">
+                                <p class="text-[10px] text-text-muted text-center leading-relaxed">
                                     By submitting this form, you agree to our <a href="{{ route('legal.privacy') }}"
                                         wire:navigate class="underline">Privacy Policy</a>. We do not sell or share your
                                     information with third parties.

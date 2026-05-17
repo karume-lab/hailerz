@@ -1,6 +1,9 @@
 @push('head')
     {{-- Preload hero background image --}}
     <link rel="preload" as="image" href="{{ asset('images/home/hero-bg.webp') }}" fetchpriority="high">
+    {{-- Preconnect to YouTube for faster loading when user plays --}}
+    <link rel="preconnect" href="https://www.youtube.com">
+    <link rel="preconnect" href="https://i.ytimg.com">
 @endpush
 
 <div class="bg-surface-light">
@@ -50,13 +53,39 @@
                     class="text-text-primary" />
                 <p class="text-lg text-text-secondary mx-auto max-w-2xl">Get Seen. Get featured.</p>
 
-                <div
-                    class="mt-12 aspect-video max-w-4xl mx-auto rounded-3xl overflow-hidden shadow-2xl border border-subtle bg-surface-dark reveal reveal-delay-200">
-                    <iframe class="w-full h-full" src="https://www.youtube.com/embed/LLdr6BqljEw?autoplay=1&mute=1&rel=0"
-                        title="Hailerz - How it Works" frameborder="0" loading="lazy"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
-                    </iframe>
+                <div x-data="{ play: false }"
+                    class="mt-12 aspect-video max-w-4xl mx-auto rounded-3xl overflow-hidden shadow-2xl border border-subtle bg-surface-dark reveal reveal-delay-200 relative group cursor-pointer">
+                    
+                    <template x-if="play">
+                        <iframe class="w-full h-full" src="https://www.youtube.com/embed/LLdr6BqljEw?autoplay=1&mute=1&rel=0"
+                            title="Hailerz - How it Works" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+                        </iframe>
+                    </template>
+                    
+                    <template x-if="!play">
+                        <div @click="play = true" class="absolute inset-0 w-full h-full flex items-center justify-center">
+                            <!-- Background Poster Image (YouTube MaxRes Default Thumbnail) -->
+                            <img src="https://i.ytimg.com/vi/LLdr6BqljEw/maxresdefault.jpg" 
+                                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
+                                 alt="Hailerz - How it Works video preview" loading="lazy" decoding="async">
+                            
+                            <!-- Overlay gradient -->
+                            <div class="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors duration-300"></div>
+                            
+                            <!-- Centered premium play button with pulse effect -->
+                            <div class="absolute flex items-center justify-center">
+                                <div class="absolute w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-brand-primary/30 animate-ping pointer-events-none"></div>
+                                <div class="relative z-10 w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-brand-primary/95 text-white flex items-center justify-center shadow-[0_10px_40px_rgba(27,129,155,0.5)] transition-all duration-300 group-hover:scale-110 group-hover:bg-brand-primary active:scale-95"
+                                     role="button" aria-label="Play video">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-8 h-8 sm:w-10 sm:h-10 translate-x-0.5 text-white">
+                                        <path d="M8 5v14l11-7z" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
                 </div>
             </div>
 
@@ -121,7 +150,7 @@
                                     View Profile
                                 </x-button>
                                 <x-button href="/book?talent={{ $featuredTalents[0]->id }}" variant="primary" size="sm"
-                                    class="w-full sm:w-auto">
+                                    class="w-full sm:w-auto" aria-label="Book {{ $featuredTalents[0]->name }}">
                                     Book
                                 </x-button>
                             </div>
@@ -151,7 +180,7 @@
                                         View Profile
                                     </x-button>
                                     <x-button href="/book?talent={{ $featuredTalents[1]->id }}" variant="primary" size="sm"
-                                        class="w-full sm:w-auto">
+                                        class="w-full sm:w-auto" aria-label="Book {{ $featuredTalents[1]->name }}">
                                         Book
                                     </x-button>
                                 </div>
@@ -179,7 +208,7 @@
                                         View Profile
                                     </x-button>
                                     <x-button href="/book?talent={{ $featuredTalents[2]->id }}" variant="primary" size="sm"
-                                        class="text-[10px] sm:text-xs py-2">
+                                        class="text-[10px] sm:text-xs py-2" aria-label="Book {{ $featuredTalents[2]->name }}">
                                         Book
                                     </x-button>
                                 </div>
@@ -206,7 +235,7 @@
                                         aria-label="View profile of {{ $featuredTalents[3]->name }}">
                                         View Profile </x-button>
                                     <x-button href="/book?talent={{ $featuredTalents[3]->id }}" variant="primary" size="sm"
-                                        class="text-[10px] sm:text-xs py-2">
+                                        class="text-[10px] sm:text-xs py-2" aria-label="Book {{ $featuredTalents[3]->name }}">
                                         Book
                                     </x-button>
                                 </div>
@@ -232,7 +261,7 @@
                                         class="text-[10px] sm:text-xs py-2" aria-label="View profile of {{ $talent->name }}">
                                         View Profile </x-button>
                                     <x-button href="/book?talent={{ $talent->id }}" variant="primary" size="sm"
-                                        class="text-[10px] sm:text-xs py-2">
+                                        class="text-[10px] sm:text-xs py-2" aria-label="Book {{ $talent->name }}">
                                         Book
                                     </x-button>
                                 </div>
