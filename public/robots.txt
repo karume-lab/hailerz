@@ -1,7 +1,11 @@
 User-agent: *
-Disallow:
-
-User-agent: facebookexternalhit
 Allow: /
 
-Sitemap: https://tiwafoods.com/sitemap.xml
+# Prevent search engines from indexing administrative, development, and dynamic paths
+Disallow: /admin/
+Disallow: /api/
+Disallow: /livewire/
+Disallow: /telescope/
+Disallow: /horizon/
+Disallow: /_ignition/
+Disallow: /storage/

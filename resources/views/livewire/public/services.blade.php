@@ -229,7 +229,7 @@
   <!-- Ready to Get Started -->
   <section class="py-24 bg-brand-accent border-t border-subtle">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center reveal">
-      <x-heading level="h2" title="Ready to Get" highlight="Started?" align="center" class="text-text-inverse mb-6" />
+      <x-heading level="h2" title="Ready to Get" highlight="Started?" align="center" highlightClass="text-[#65c4af]" class="text-text-inverse mb-6" />
       <p class="text-xl text-text-inverse/80 mb-12">Let's find the perfect talent for your event. Browse our directory
         or submit a booking inquiry today.</p>
       <div class="flex flex-col sm:flex-row gap-6 justify-center">

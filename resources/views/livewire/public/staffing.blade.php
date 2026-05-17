@@ -6,7 +6,7 @@
                 <!-- Left Content: Heading & Video -->
                 <div class="lg:col-span-5 space-y-12 reveal">
                     <div class="space-y-6">
-                        <x-heading level="h1" title="Scale your team with" highlight="professional services." class="text-white" />
+                        <x-heading level="h1" title="Scale your team with" highlight="professional services." highlightClass="text-[#65c4af]" class="text-white" />
                         <p class="text-xl text-white/70 max-w-2xl leading-relaxed">
                             Effortlessly scale your project capacity with creative talent. From specialized consultants to remote creative talent, we provide the professional staff augmentation your business requires.
                         </p>
@@ -14,14 +14,40 @@
 
                     <!-- Video Representation UI -->
                     <div class="relative max-w-2xl">
-                        <div
-                            class="aspect-video bg-white/5 backdrop-blur-sm rounded-3xl border border-white/10 overflow-hidden shadow-2xl relative group">
-                            <iframe class="w-full h-full"
-                                src="https://www.youtube.com/embed/LLdr6BqljEw?autoplay=1&mute=1&rel=0"
-                                title="Hailerz - How it Works" frameborder="0" loading="lazy"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
-                            </iframe>
+                        <div x-data="{ play: false }"
+                            class="aspect-video bg-white/5 backdrop-blur-sm rounded-3xl border border-white/10 overflow-hidden shadow-2xl relative group cursor-pointer">
+                            
+                            <template x-if="play">
+                                <iframe class="w-full h-full"
+                                    src="https://www.youtube.com/embed/LLdr6BqljEw?autoplay=1&mute=1&rel=0"
+                                    title="Hailerz - How it Works" frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+                                </iframe>
+                            </template>
+
+                            <template x-if="!play">
+                                <div @click="play = true" class="absolute inset-0 w-full h-full flex items-center justify-center">
+                                    <!-- Background Poster Image (YouTube MaxRes Default Thumbnail) -->
+                                    <img src="https://i.ytimg.com/vi/LLdr6BqljEw/maxresdefault.jpg" 
+                                         class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
+                                         alt="Hailerz - How it Works video preview" loading="lazy" decoding="async">
+                                    
+                                    <!-- Overlay gradient -->
+                                    <div class="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors duration-300"></div>
+                                    
+                                    <!-- Centered premium play button with pulse effect -->
+                                    <div class="absolute flex items-center justify-center">
+                                        <div class="absolute w-20 h-20 rounded-full bg-brand-primary/30 animate-ping pointer-events-none"></div>
+                                        <div class="relative z-10 w-16 h-16 rounded-full bg-brand-primary/95 text-white flex items-center justify-center shadow-[0_10px_40px_rgba(27,129,155,0.5)] transition-all duration-300 group-hover:scale-110 group-hover:bg-brand-primary active:scale-95"
+                                             role="button" aria-label="Play video">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-7 h-7 translate-x-0.5 text-white">
+                                                <path d="M8 5v14l11-7z" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </template>
                         </div>
 
                         <!-- Floating elements for visual flair -->
@@ -187,7 +213,7 @@
     <!-- Perfect Fit Section -->
     <section class="py-32 bg-surface-dark relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-            <x-heading level="h2" title="Staff Augmentation? We provide the" highlight="perfect fit." align="center" class="text-white mb-6" />
+            <x-heading level="h2" title="Staff Augmentation? We provide the" highlight="perfect fit." align="center" highlightClass="text-[#65c4af]" class="text-white mb-6" />
             <p class="text-xl text-white/60 mb-20 max-w-3xl mx-auto">
                 Cherry-pick professional talent from our curated pool. Hire contract personnel on-demand to scale your business capabilities.
             </p>
@@ -292,7 +318,7 @@
     <!-- Final CTA -->
     <section class="py-40 bg-brand-accent text-center relative overflow-hidden">
         <div class="max-w-4xl mx-auto px-4 relative z-10 reveal">
-            <x-heading level="h2" title="Scale Your" highlight="Professional Team Today." align="center" class="text-text-inverse mb-8" />
+            <x-heading level="h2" title="Scale Your" highlight="Professional Team Today." align="center" highlightClass="text-[#65c4af]" class="text-text-inverse mb-8" />
             <p class="text-xl md:text-2xl text-text-inverse/80 mb-12 font-light leading-relaxed">
                 From contract specialists to remote creative talent, ensure your projects are powered by creative talent.
             </p>

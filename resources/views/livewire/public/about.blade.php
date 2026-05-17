@@ -154,7 +154,7 @@
             <div class="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent"></div>
             <div class="absolute bottom-10 left-10 right-10">
               <h3 class="text-3xl font-bold text-text-inverse mb-2">{{ $member['name'] }}</h3>
-              <p class="text-brand-secondary text-xs font-bold uppercase tracking-widest mb-4">{{ $member['role'] }}</p>
+              <p class="text-[#65c4af] text-xs font-bold uppercase tracking-widest mb-4">{{ $member['role'] }}</p>
               <p class="text-text-inverse/60 text-sm leading-relaxed">{{ $member['desc'] }}</p>
             </div>
           </div>

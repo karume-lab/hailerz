@@ -1,9 +1,6 @@
 @push('head')
     {{-- Preload hero background image --}}
     <link rel="preload" as="image" href="{{ asset('images/home/hero-bg.webp') }}" fetchpriority="high">
-    {{-- Preconnect to YouTube for faster loading when user plays --}}
-    <link rel="preconnect" href="https://www.youtube.com">
-    <link rel="preconnect" href="https://i.ytimg.com">
 @endpush
 
 <div class="bg-surface-light">
@@ -125,7 +122,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-20 reveal">
                 <x-heading level="h2" title="Featured" highlight="Talent" align="center"
-                    class="text-white mb-6" />
+                    highlightClass="text-[#65c4af]" class="text-white mb-6" />
                 <p class="text-lg text-white/60 mx-auto max-w-2xl">Discover our handpicked performers</p>
             </div>
 
@@ -316,7 +313,7 @@
     <section id="faqs" class="py-32 bg-surface-dark text-text-inverse">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <x-heading level="h2" title="Booking" highlight="FAQs" align="center"
-                class="text-center mb-16 reveal" />
+                highlightClass="text-[#65c4af]" class="text-center mb-16 reveal" />
 
             <div x-data="{ active: null }" class="space-y-6">
 
@@ -356,7 +353,7 @@
             <div class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
                 <div class="reveal">
                     <x-heading level="h2" title="Ready to Work" highlight="Together?"
-                        class="text-text-inverse mb-6 md:mb-8" />
+                        highlightClass="text-[#65c4af]" class="text-text-inverse mb-6 md:mb-8" />
                     <p class="text-lg md:text-xl text-text-inverse/80 mb-8 md:mb-12 leading-relaxed">
                         Let's create something unforgettable. Reach out to our dedicated agents for bespoke
                         recommendations

@@ -32,6 +32,15 @@
   <link rel="canonical" href="{{ url()->current() }}">
   <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
 
+  <!-- Asynchronous Google Fonts Loader -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap">
+  </noscript>
+
   @vite(['resources/css/app.css', 'resources/js/app.js'])
 
   <script>
