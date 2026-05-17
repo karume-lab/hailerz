@@ -10,7 +10,7 @@
                             Scale your team with <span class="text-brand-primary">professional services.</span>
                         </h1>
                         <p class="text-xl text-white/70 max-w-2xl leading-relaxed">
-                            Effortlessly scale your project capacity with elite contract talent. From specialized consultants to remote creative experts, we provide the professional staff augmentation your business requires.
+                            Effortlessly scale your project capacity with creative talent. From specialized consultants to remote creative talent, we provide the professional staff augmentation your business requires.
                         </p>
                     </div>
 
@@ -36,7 +36,7 @@
 
                 <!-- Right Content: Form -->
                 <div class="lg:col-span-7 reveal reveal-delay-200" id="request-form">
-                    <x-card padding="p-8 lg:p-10" class="bg-white shadow-2xl rounded-3xl relative overflow-hidden">
+                    <x-card padding="p-8 lg:p-10" class="shadow-2xl border-none relative overflow-hidden">
                         @if($requestSent)
                             <div class="text-center py-12 space-y-6">
                                 <div
@@ -101,7 +101,7 @@
     <!-- Core Solutions -->
     <section class="py-12 bg-surface-muted">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <x-heading align="center" title="Expert Talent for Your Professional Needs" class="reveal" />
+            <x-heading align="center" title="Creative Talent for Your Professional Needs" class="reveal" />
             <div class="flex flex-wrap justify-center gap-6 my-12">
                 @foreach($professionalCategories as $index => $category)
                     @php
@@ -130,20 +130,16 @@
     <!-- Partner Section -->
     <section class="bg-surface-muted/50 overflow-hidden">
         <div class="max-w-7xl mx-auto text-center relative">
-            <h2
-                class="text-xl md:text-9xl font-black tracking-tighter text-transparent bg-clip-text bg-linear-to-r from-brand-primary via-brand-secondary to-brand-primary animate-fadeIn">
-                SCALE
-            </h2>
-            <p class="text-2xl md:text-3xl font-bold text-text-primary my-4 max-w-3xl mx-auto leading-tight reveal">
-                with professional staffing experts, so you're always fully optimized.
-            </p>
+            <x-heading level="h2" align="center" class="reveal max-w-3xl mx-auto my-8">
+                Scale with professional staffing specialists, so you're always fully optimized.
+            </x-heading>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 my-8">
                 @php
                     $painPoints = [
                         [
                             'icon' => 'lucide-users',
-                            'text' => 'Need specialized experts for a critical project deadline?'
+                            'text' => 'Need specialized talent for a critical project deadline?'
                         ],
                         [
                             'icon' => 'lucide-trending-up',
@@ -162,7 +158,7 @@
 
                 @foreach($painPoints as $index => $point)
                     <div
-                        class="bg-white p-10 rounded-3xl shadow-xl shadow-gray-200/50 flex flex-col items-center justify-center space-y-8 reveal {{ 'reveal-delay-' . ($index * 100) }}">
+                        class="bg-surface-light border border-subtle p-10 rounded-[3rem] shadow-xl dark:shadow-none flex flex-col items-center justify-center space-y-8 reveal {{ 'reveal-delay-' . ($index * 100) }}">
                         <div
                             class="h-16 w-16 text-brand-primary bg-brand-primary/5 rounded-2xl flex items-center justify-center">
                             <x-dynamic-component :component="$point['icon']" class="w-8 h-8" stroke-width="1.5" />
@@ -197,7 +193,7 @@
                 Staff Augmentation? We provide the <span class="text-brand-primary">perfect fit.</span>
             </h2>
             <p class="text-xl text-white/60 mb-20 max-w-3xl mx-auto">
-                Cherry-pick professional experts from our curated talent pool. Hire contract personnel on-demand to scale your business capabilities.
+                Cherry-pick professional talent from our curated pool. Hire contract personnel on-demand to scale your business capabilities.
             </p>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -209,9 +205,9 @@
                             'desc' => 'Hailerz handles the intensive vetting and recruitment process for you. We provide the specialized talent required for your projects, so you can focus on growth.'
                         ],
                         [
-                            'title' => 'ELITE POOL',
+                            'title' => 'CREATIVE TALENT',
                             'icon' => 'lucide-star',
-                            'desc' => 'Work with industry-leading experts who understand high-level professional requirements. Our staffing solutions ensure every role is filled by a professional with a proven track record.'
+                            'desc' => 'Work with industry-leading professionals who understand high-level professional requirements. Our staffing solutions ensure every role is filled by a professional with a proven track record.'
                         ],
                         [
                             'title' => 'REMOTE READY',
@@ -254,8 +250,8 @@
                         <span class="font-bold">01</span>
                     </div>
                     <div>
-                        <h3 class="text-2xl font-bold text-text-primary mb-4 font-serif">Vetted Expertise</h3>
-                        <p class="text-text-secondary leading-relaxed font-light">Our personnel are not just candidates; they are proven experts in their fields, rigorously assessed for both technical skill and professional communication.
+                        <h3 class="text-2xl font-bold text-text-primary mb-4 font-serif">Vetted Skills</h3>
+                        <p class="text-text-secondary leading-relaxed font-light">Our personnel are not just candidates; they are proven professionals in their fields, rigorously assessed for both technical skill and professional communication.
                         </p>
                     </div>
                 </div>
@@ -278,7 +274,7 @@
                         <h3 class="text-2xl font-bold text-text-primary mb-4 font-serif">Rigorous Vetting</h3>
                         <p class="text-text-secondary leading-relaxed font-light">We don't just review resumes. We
                             conduct multi-stage interviews and practical assessments to ensure every staff member meets
-                            our "Elite" criteria.</p>
+                            our creative talent criteria.</p>
                     </div>
                 </div>
                 <div class="flex gap-8 reveal reveal-delay-300">
@@ -302,7 +298,7 @@
         <div class="max-w-4xl mx-auto px-4 relative z-10 reveal">
             <x-heading level="h2" title="Scale Your Professional Team Today." align="center" class="text-text-inverse mb-8" />
             <p class="text-xl md:text-2xl text-text-inverse/80 mb-12 font-light leading-relaxed">
-                From contract specialists to remote creative experts, ensure your projects are powered by elite talent.
+                From contract specialists to remote creative talent, ensure your projects are powered by creative talent.
             </p>
             <div class="flex flex-col sm:flex-row justify-center gap-6">
                 <x-button variant="outline" size="lg" href="/services" wire:navigate>

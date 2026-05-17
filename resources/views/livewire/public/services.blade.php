@@ -67,10 +67,10 @@
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
         @php
           $events = [
-            ['title' => 'Professional Staffing', 'desc' => 'Scale your team with contract and remote experts for short or long-term projects.'],
+            ['title' => 'Professional Staffing', 'desc' => 'Scale your team with contract and remote talent for short or long-term projects.'],
             ['title' => 'Staff Augmentation', 'desc' => 'Fill skill gaps immediately with vetted professionals who integrate seamlessly into your workflows.'],
             ['title' => 'Creative Services', 'desc' => 'Access top-tier content creators, artists, and media specialists for your brand.'],
-            ['title' => 'Corporate Speaking', 'desc' => 'Keynote speakers and industry experts who deliver high-impact insights for your team.'],
+            ['title' => 'Corporate Speaking', 'desc' => 'Keynote speakers and industry professionals who deliver high-impact insights for your team.'],
             ['title' => 'Strategic Consulting', 'desc' => 'Consult with professionals who bring deep industry knowledge to your organization.'],
             ['title' => 'Managed Placements', 'desc' => 'End-to-end recruitment and placement services for professional roles.'],
           ];
@@ -101,7 +101,7 @@
             ['title' => 'Talent Vetting', 'icon' => 'shield', 'desc' => 'We conduct rigorous interviews and skill assessments to ensure quality.'],
             ['title' => 'Contract Management', 'icon' => 'file-text', 'desc' => 'Professional contracts that protect both parties with clear terms for remote and on-site work.'],
             ['title' => 'Project Coordination', 'icon' => 'calendar', 'desc' => 'We manage the logistics of talent integration and project timelines.'],
-            ['title' => 'Remote Placements', 'icon' => 'mouse-pointer-2', 'desc' => 'Global experts ready to work in your time zone and digital environment.'],
+            ['title' => 'Remote Placements', 'icon' => 'mouse-pointer-2', 'desc' => 'Global talent ready to work in your time zone and digital environment.'],
             ['title' => 'Staff Augmentation', 'icon' => 'zap', 'desc' => 'Rapidly scale your workforce to meet changing project demands.'],
             ['title' => 'Quality Assurance', 'icon' => 'circle-check', 'desc' => 'Ongoing monitoring and support to ensure project success and satisfaction.'],
           ];

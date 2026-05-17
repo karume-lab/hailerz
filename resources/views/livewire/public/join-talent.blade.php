@@ -232,8 +232,8 @@
                                 <x-input wire:model="genre" label="Primary Genre/Style (Optional)" placeholder="e.g., Afrobeats, Jazz, Hip-Hop" />
                                 <x-input wire:model="years_active" label="Years Active *" placeholder="e.g., 5 years" />
                                 <div class="grid grid-cols-2 gap-4">
-                                    <x-input wire:model="min_rate" type="number" label="Min Rate ($) *" placeholder="e.g. 500" />
-                                    <x-input wire:model="max_rate" type="number" label="Max Rate ($) *" placeholder="e.g. 1500" />
+                                    <x-input wire:model="min_rate" type="number" label="Min Rate ({{ \App\Helpers\CurrencyHelper::getCurrencySymbol() }}) *" placeholder="e.g. 500" />
+                                    <x-input wire:model="max_rate" type="number" label="Max Rate ({{ \App\Helpers\CurrencyHelper::getCurrencySymbol() }}) *" placeholder="e.g. 1500" />
                                 </div>
                                 <div class="md:col-span-2">
                                     <x-textarea wire:model="bio" label="Artist Bio *" rows="5" placeholder="Tell us about yourself, your style, and what makes you unique as a performer (min 200 characters)" />

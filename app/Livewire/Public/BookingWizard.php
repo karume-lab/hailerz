@@ -113,7 +113,7 @@ class BookingWizard extends Component
             $maxPrice = null;
 
             // Try to extract numbers from the budget string (handles "10k", "10,000", "10,000 - 20,000", etc.)
-            $cleanString = str_replace([',', '₦'], '', $this->budget_range);
+            $cleanString = str_replace([',', '₦', '$', '£', '€'], '', $this->budget_range);
             preg_match_all('/(\d+)(k)?/i', $cleanString, $matches);
             
             if (!empty($matches[1])) {
@@ -129,7 +129,11 @@ class BookingWizard extends Component
             }
 
             if ($maxPrice) {
-                $query->where('starting_price', '<=', $maxPrice);
+                // Convert back to USD for DB comparison
+                $currency = \App\Helpers\CurrencyHelper::getUserCurrency();
+                $rate = \App\Helpers\CurrencyHelper::convert(1.0, $currency);
+                $usdPrice = $rate > 0 ? ($maxPrice / $rate) : $maxPrice;
+                $query->where('starting_price', '<=', $usdPrice);
             }
         }
 
@@ -164,18 +168,48 @@ class BookingWizard extends Component
             
             // Auto-fill budget if starting price is available
             if ($talent->starting_price) {
-                $price = (float)$talent->starting_price;
-                if ($price < 10000) $this->budget_range = 'Under ₦10,000';
-                elseif ($price <= 20000) $this->budget_range = '₦10,000 - ₦20,000';
-                elseif ($price <= 30000) $this->budget_range = '₦20,000 - ₦30,000';
-                elseif ($price <= 40000) $this->budget_range = '₦30,000 - ₦40,000';
-                elseif ($price <= 50000) $this->budget_range = '₦40,000 - ₦50,000';
-                elseif ($price <= 60000) $this->budget_range = '₦50,000 - ₦60,000';
-                elseif ($price <= 70000) $this->budget_range = '₦60,000 - ₦70,000';
-                elseif ($price <= 80000) $this->budget_range = '₦70,000 - ₦80,000';
-                elseif ($price <= 90000) $this->budget_range = '₦80,000 - ₦90,000';
-                elseif ($price <= 100000) $this->budget_range = '₦90,000 - ₦100,000';
-                else $this->budget_range = '₦100,000+';
+                $currency = \App\Helpers\CurrencyHelper::getUserCurrency();
+                $convertedPrice = \App\Helpers\CurrencyHelper::convert((float)$talent->starting_price, $currency);
+                $options = \App\Helpers\CurrencyHelper::getBudgetOptions($currency);
+
+                if ($currency === 'NGN') {
+                    if ($convertedPrice < 1500000) $this->budget_range = $options[0];
+                    elseif ($convertedPrice <= 3750000) $this->budget_range = $options[1];
+                    elseif ($convertedPrice <= 7500000) $this->budget_range = $options[2];
+                    elseif ($convertedPrice <= 11250000) $this->budget_range = $options[3];
+                    elseif ($convertedPrice <= 15000000) $this->budget_range = $options[4];
+                    elseif ($convertedPrice <= 22500000) $this->budget_range = $options[5];
+                    elseif ($convertedPrice <= 30000000) $this->budget_range = $options[6];
+                    else $this->budget_range = $options[7];
+                } elseif ($currency === 'GBP') {
+                    if ($convertedPrice < 800) $this->budget_range = $options[0];
+                    elseif ($convertedPrice <= 2000) $this->budget_range = $options[1];
+                    elseif ($convertedPrice <= 4000) $this->budget_range = $options[2];
+                    elseif ($convertedPrice <= 6000) $this->budget_range = $options[3];
+                    elseif ($convertedPrice <= 8000) $this->budget_range = $options[4];
+                    elseif ($convertedPrice <= 12000) $this->budget_range = $options[5];
+                    elseif ($convertedPrice <= 16000) $this->budget_range = $options[6];
+                    else $this->budget_range = $options[7];
+                } elseif ($currency === 'EUR') {
+                    if ($convertedPrice < 900) $this->budget_range = $options[0];
+                    elseif ($convertedPrice <= 2300) $this->budget_range = $options[1];
+                    elseif ($convertedPrice <= 4600) $this->budget_range = $options[2];
+                    elseif ($convertedPrice <= 6900) $this->budget_range = $options[3];
+                    elseif ($convertedPrice <= 9200) $this->budget_range = $options[4];
+                    elseif ($convertedPrice <= 13800) $this->budget_range = $options[5];
+                    elseif ($convertedPrice <= 18400) $this->budget_range = $options[6];
+                    else $this->budget_range = $options[7];
+                } else {
+                    // USD
+                    if ($convertedPrice < 1000) $this->budget_range = $options[0];
+                    elseif ($convertedPrice <= 2500) $this->budget_range = $options[1];
+                    elseif ($convertedPrice <= 5000) $this->budget_range = $options[2];
+                    elseif ($convertedPrice <= 7500) $this->budget_range = $options[3];
+                    elseif ($convertedPrice <= 10000) $this->budget_range = $options[4];
+                    elseif ($convertedPrice <= 15000) $this->budget_range = $options[5];
+                    elseif ($convertedPrice <= 20000) $this->budget_range = $options[6];
+                    else $this->budget_range = $options[7];
+                }
             }
         }
         $this->talentSearch = '';
@@ -251,6 +285,7 @@ class BookingWizard extends Component
             'additional_details' => $this->additional_details,
             'source' => $this->source,
             'status' => 'new',
+            'currency' => \App\Helpers\CurrencyHelper::getUserCurrency(),
         ]);
 
         try {

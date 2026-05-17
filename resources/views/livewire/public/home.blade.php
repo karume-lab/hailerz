@@ -16,7 +16,7 @@
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
             <x-heading level="h1" title="Book Top Talent" align="center" class="text-white mb-8" />
             <p class="text-xl md:text-2xl text-white/90 mb-12 max-w-3xl mx-auto font-medium leading-relaxed">
-                Connect with elite talent and professional services for your projects and productions.
+                Connect with creative talent and professional services for your projects and productions.
             </p>
 
             <!-- Search Bar -->

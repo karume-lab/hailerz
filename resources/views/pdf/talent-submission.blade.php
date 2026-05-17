@@ -58,7 +58,7 @@
     <table>
         <tr>
             <td class="label">Rate Range:</td>
-            <td>₦{{ number_format($submission->min_rate, 2) }} - ₦{{ number_format($submission->max_rate, 2) }}</td>
+            <td>{!! \App\Helpers\CurrencyHelper::getPdfSafeString(\App\Helpers\CurrencyHelper::formatRange($submission->min_rate, $submission->max_rate, $submission->currency ?? 'USD')) !!}</td>
         </tr>
         @if($submission->website_url)
         <tr>

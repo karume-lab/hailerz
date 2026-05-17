@@ -32,7 +32,7 @@ class DatabaseSeeder extends Seeder
         
         // Star DJ
         $djHero = Talent::updateOrCreate(
-            ['slug' => 'dj-horizon-elite'],
+            ['slug' => 'dj-horizon-creative-talent'],
             [
                 'category_id' => Category::where('slug', 'djs')->first()->id,
                 'name' => 'DJ Horizon',

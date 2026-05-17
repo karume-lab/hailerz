@@ -262,12 +262,12 @@
             <div class="flex items-start gap-5">
               <div
                 class="h-10 w-10 rounded-xl bg-text-secondary/10 flex items-center justify-center text-text-secondary shrink-0">
-                <x-lucide-dollar-sign class="w-5 h-5" stroke-width="2" />
+                <x-lucide-banknote class="w-5 h-5" stroke-width="2" />
               </div>
               <div>
                 <p class="text-[10px] font-bold text-text-secondary uppercase tracking-widest mb-1">Starting Investment</p>
                 <p class="text-text-primary font-semibold text-xl">
-                  {{ $talent->starting_price ? '$' . number_format($talent->starting_price, 0) : 'Custom Quotation' }}
+                  {{ $talent->starting_price ? \App\Helpers\CurrencyHelper::format($talent->starting_price) : 'Custom Quotation' }}
                 </p>
               </div>
             </div>

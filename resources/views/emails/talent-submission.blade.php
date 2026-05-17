@@ -15,7 +15,7 @@ Welcome to the **Hailerz** community! We have successfully received your applica
 - **Category:** {{ $submission->category }}
 - **Location:** {{ $submission->location }}
 - **Experience:** {{ $submission->years_active }}
-- **Rate Range:** ₦{{ number_format($submission->min_rate) }} - ₦{{ number_format($submission->max_rate) }}
+- **Rate Range:** {{ \App\Helpers\CurrencyHelper::formatRange($submission->min_rate, $submission->max_rate, $submission->currency ?? 'USD') }}
 
 ### Online Presence
 @if($submission->instagram_handle)- **Instagram:** {{ $submission->instagram_handle }}@endif

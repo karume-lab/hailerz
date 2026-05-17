@@ -13,7 +13,7 @@
     
     <p class="text-xl text-text-secondary mb-12 leading-relaxed font-light">
         We've received your booking request and our team is already on it. 
-        One of our expert agents will review the details and get in touch with you within 24 hours to help bring your event to life.
+        One of our dedicated agents will review the details and get in touch with you within 24 hours to help bring your event to life.
     </p>
     
     <div class="space-y-6">

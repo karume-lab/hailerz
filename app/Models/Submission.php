@@ -20,6 +20,7 @@ class Submission extends Model
         'years_active',
         'min_rate',
         'max_rate',
+        'currency',
         'website_url',
         'instagram_handle',
         'facebook_url',

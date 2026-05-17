@@ -59,17 +59,17 @@
         @endphp
 
         @foreach($values as $index => $value)
-          <div class="text-center group reveal {{ $index % 4 === 1 ? 'reveal-delay-100' : ($index % 4 === 2 ? 'reveal-delay-200' : ($index % 4 === 3 ? 'reveal-delay-300' : '')) }}">
+          <div class="text-center reveal {{ $index % 4 === 1 ? 'reveal-delay-100' : ($index % 4 === 2 ? 'reveal-delay-200' : ($index % 4 === 3 ? 'reveal-delay-300' : '')) }}">
             <div
-              class="w-16 h-16 bg-brand-primary/10 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-brand-primary group-hover:scale-110 transition-all duration-300">
+              class="w-16 h-16 bg-brand-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
               @if($value['icon'] === 'target') <x-lucide-target
-                class="w-8 h-8 text-brand-primary group-hover:text-text-inverse" />
+                class="w-8 h-8 text-brand-primary" />
               @elseif($value['icon'] === 'heart') <x-lucide-heart
-                class="w-8 h-8 text-brand-primary group-hover:text-text-inverse" />
+                class="w-8 h-8 text-brand-primary" />
               @elseif($value['icon'] === 'users') <x-lucide-users
-                class="w-8 h-8 text-brand-primary group-hover:text-text-inverse" />
+                class="w-8 h-8 text-brand-primary" />
               @elseif($value['icon'] === 'shield-check') <x-lucide-shield-check
-                class="w-8 h-8 text-brand-primary group-hover:text-text-inverse" />
+                class="w-8 h-8 text-brand-primary" />
               @endif
             </div>
             <h3 class="text-xl font-bold mb-3 text-text-primary">{{ $value['title'] }}</h3>

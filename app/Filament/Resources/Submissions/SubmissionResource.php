@@ -87,14 +87,18 @@ class SubmissionResource extends Resource
                         ->label('Years Active')
                         ->columnSpan(1),
                     Forms\Components\TextInput::make('min_rate')
-                        ->label('Minimum Rate (₦)')
+                        ->label(fn ($record) => 'Minimum Rate (' . ($record?->currency ?? 'USD') . ')')
                         ->numeric()
-                        ->prefix('₦')
+                        ->prefix(fn ($record) => \App\Helpers\CurrencyHelper::getCurrencySymbolForCode($record?->currency ?? 'USD'))
                         ->columnSpan(1),
                     Forms\Components\TextInput::make('max_rate')
-                        ->label('Maximum Rate (₦)')
+                        ->label(fn ($record) => 'Maximum Rate (' . ($record?->currency ?? 'USD') . ')')
                         ->numeric()
-                        ->prefix('₦')
+                        ->prefix(fn ($record) => \App\Helpers\CurrencyHelper::getCurrencySymbolForCode($record?->currency ?? 'USD'))
+                        ->columnSpan(1),
+                    Forms\Components\TextInput::make('currency')
+                        ->label('Currency Code')
+                        ->disabled()
                         ->columnSpan(1),
                 ])
                 ->columns(2)
@@ -236,7 +240,7 @@ class SubmissionResource extends Resource
                             'category_id' => $category->id,
                             'bio' => $record->bio,
                             'location' => $record->location,
-                            'starting_price' => $record->min_rate,
+                            'starting_price' => \App\Helpers\CurrencyHelper::convertToUsd((float)($record->min_rate ?? 0), $record->currency ?? 'USD'),
                             'genre' => $record->genre,
                             'years_active' => $record->years_active,
                             'website_url' => $record->website_url,

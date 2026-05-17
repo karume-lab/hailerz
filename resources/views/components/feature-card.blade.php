@@ -6,6 +6,7 @@
     'index' => 0,
     'padding' => 'p-12',
     'iconVariant' => 'primary',
+    'hover' => false,
 ])
 
 @php
@@ -20,11 +21,13 @@
     } else {
         $iconClasses = 'bg-brand-primary/10 text-brand-primary';
     }
+    
+    $iconScaleClasses = $hover ? 'group-hover:scale-110 transition-transform' : '';
 @endphp
 
-<x-card :padding="$padding" {{ $attributes->merge(['class' => 'reveal ' . $delay]) }}>
+<x-card :padding="$padding" :hover="$hover" {{ $attributes->merge(['class' => 'reveal ' . $delay]) }}>
     @if($icon || $number)
-        <div class="w-16 h-16 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform {{ $iconClasses }}">
+        <div class="w-16 h-16 rounded-2xl flex items-center justify-center mb-8 {{ $iconScaleClasses }} {{ $iconClasses }}">
             @if($icon)
                 <x-dynamic-component :component="'lucide-' . $icon" class="w-8 h-8" stroke-width="2" />
             @else

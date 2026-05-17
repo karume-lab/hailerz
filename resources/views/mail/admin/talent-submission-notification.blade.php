@@ -12,7 +12,7 @@ A new talent application has been received.
 **Professional Info:**
 - **Category:** {{ $submission->category }}
 - **Years Active:** {{ $submission->years_active }}
-- **Rate Range:** ₦{{ number_format($submission->min_rate) }} - ₦{{ number_format($submission->max_rate) }}
+- **Rate Range:** {{ \App\Helpers\CurrencyHelper::formatRange($submission->min_rate, $submission->max_rate, $submission->currency ?? 'USD') }}
 
 <x-mail::button :url="config('app.url') . '/admin/submissions/' . $submission->id">
 Review Application

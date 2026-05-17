@@ -97,17 +97,9 @@
                                 <div class="relative">
                                     <x-input wire:model="budget_range" name="budget_range" label="Budget Range *" placeholder="Select or type budget (e.g. 10k - 20k)" list="budget-options" />
                                     <datalist id="budget-options">
-                                        <option value="Under ₦10,000">
-                                        <option value="₦10,000 - ₦20,000">
-                                        <option value="₦20,000 - ₦30,000">
-                                        <option value="₦30,000 - ₦40,000">
-                                        <option value="₦40,000 - ₦50,000">
-                                        <option value="₦50,000 - ₦60,000">
-                                        <option value="₦60,000 - ₦70,000">
-                                        <option value="₦70,000 - ₦80,000">
-                                        <option value="₦80,000 - ₦90,000">
-                                        <option value="₦90,000 - ₦100,000">
-                                        <option value="₦100,000+">
+                                        @foreach(\App\Helpers\CurrencyHelper::getBudgetOptions() as $option)
+                                            <option value="{{ $option }}">
+                                        @endforeach
                                     </datalist>
                                     <p class="text-[10px] text-text-muted mt-2">You can select a range or type your specific budget.</p>
                                 </div>
@@ -125,7 +117,7 @@
                                                     <h4 class="text-lg font-bold text-text-primary">{{ $selectedTalent->name }}</h4>
                                                     <p class="text-sm text-brand-primary font-medium">{{ $selectedTalent->category->name }}</p>
                                                     @if($selectedTalent->starting_price)
-                                                        <p class="text-xs text-text-muted mt-1">Starting from ₦{{ number_format($selectedTalent->starting_price) }}</p>
+                                                        <p class="text-xs text-text-muted mt-1">Starting from {{ \App\Helpers\CurrencyHelper::format($selectedTalent->starting_price) }}</p>
                                                     @endif
                                                 </div>
                                             </div>
@@ -172,7 +164,7 @@
                                                                 class="p-4 flex items-center gap-4 bg-surface-muted/30 cursor-not-allowed opacity-60 grayscale transition-colors group"
                                                             @endif
                                                         >
-                                                            <div class="h-12 w-12 rounded-lg overflow-hidden shrink-0 shadow-sm group-hover:shadow-md transition-shadow relative">
+                                                            <div class="h-12 w-12 rounded-lg overflow-hidden shrink-0 shadow-sm {{ !$talent->is_frozen ? 'group-hover:shadow-md transition-shadow' : '' }} relative">
                                                                 <img src="{{ $talent->profile_photo_url }}" alt="{{ $talent->name }}" class="w-full h-full object-cover">
                                                                 @if($talent->is_frozen)
                                                                     <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
@@ -191,7 +183,7 @@
                                                             </div>
                                                             @if($talent->starting_price)
                                                                 <div class="text-right">
-                                                                    <p class="text-xs font-bold text-brand-primary">₦{{ number_format($talent->starting_price) }}</p>
+                                                                    <p class="text-xs font-bold text-brand-primary">{{ \App\Helpers\CurrencyHelper::format($talent->starting_price) }}</p>
                                                                     @if($talent->is_frozen)
                                                                         <p class="text-[8px] text-red-500 font-bold mt-1">Unavailable</p>
                                                                     @endif

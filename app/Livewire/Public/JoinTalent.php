@@ -177,6 +177,7 @@ class JoinTalent extends Component
             'bio'               => $this->bio,
             'source'            => $this->source,
             'status'            => 'pending',
+            'currency'          => \App\Helpers\CurrencyHelper::getUserCurrency(),
         ]);
 
         foreach ($this->gallery as $item) {
