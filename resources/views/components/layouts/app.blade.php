@@ -29,34 +29,6 @@
 
   <link rel="manifest" href="{{ asset('manifest.json') }}">
 
-    <script>
-      // Automatic Service Worker Kill-Switch
-      // This will unregister any existing service workers and clear their caches for all users.
-      if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.getRegistrations().then(function (registrations) {
-          for (let registration of registrations) {
-            registration.unregister().then(function(success) {
-              if (success) {
-                console.log('Service Worker unregistered successfully.');
-                // Optional: Force a reload to ensure the page is fresh
-                window.location.reload();
-              }
-            });
-          }
-        });
-
-        // Clear all caches created by the Service Worker
-        if (window.caches) {
-          caches.keys().then(function(names) {
-            for (let name of names) {
-              caches.delete(name);
-              console.log('Cache cleared:', name);
-            }
-          });
-        }
-      }
-    </script>
-
   <link rel="canonical" href="{{ url()->current() }}">
   <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
 
