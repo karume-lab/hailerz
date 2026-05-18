@@ -29,6 +29,9 @@ class AdminStaffingInquiryNotification extends Mailable
     {
         return new Envelope(
             subject: 'New Staffing Inquiry from ' . $this->inquiry->first_name . ' ' . $this->inquiry->last_name,
+            replyTo: [
+                new \Illuminate\Mail\Mailables\Address($this->inquiry->email, $this->inquiry->first_name . ' ' . $this->inquiry->last_name),
+            ],
         );
     }
 

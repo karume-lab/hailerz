@@ -21,6 +21,9 @@ class AdminTalentSubmissionNotification extends Mailable
     {
         return new Envelope(
             subject: 'New Talent Submission: ' . $this->submission->artist_name,
+            replyTo: [
+                new \Illuminate\Mail\Mailables\Address($this->submission->email, $this->submission->real_name),
+            ],
         );
     }
 

@@ -21,6 +21,9 @@ class AdminBookingNotification extends Mailable
     {
         return new Envelope(
             subject: 'New Talent Booking Inquiry: ' . $this->inquiry->event_type,
+            replyTo: [
+                new \Illuminate\Mail\Mailables\Address($this->inquiry->email, $this->inquiry->first_name . ' ' . $this->inquiry->last_name),
+            ],
         );
     }
 

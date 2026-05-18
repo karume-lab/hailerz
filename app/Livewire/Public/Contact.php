@@ -47,3 +47,4 @@ class Contact extends Component
         return view('livewire.public.contact');
     }
 }
+
