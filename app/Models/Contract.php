@@ -27,6 +27,18 @@ class Contract extends Model
     ];
 
     /**
+     * The booted method of the model.
+     */
+    protected static function booted(): void
+    {
+        static::saving(function (Contract $contract) {
+            if ($contract->isDirty('file_path')) {
+                $contract->file_hash = $contract->calculateHash();
+            }
+        });
+    }
+
+    /**
      * Get the signatures associated with the contract.
      *
      * @return HasMany<ContractSignature, $this>
