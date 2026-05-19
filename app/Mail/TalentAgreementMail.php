@@ -18,7 +18,8 @@ class TalentAgreementMail extends Mailable
      * Create a new message instance.
      */
     public function __construct(
-        public Talent $talent
+        public Talent $talent,
+        public string $signedUrl
     ) {}
 
     /**
@@ -38,6 +39,9 @@ class TalentAgreementMail extends Mailable
     {
         return new Content(
             markdown: 'emails.talent-agreement',
+            with: [
+                'signedUrl' => $this->signedUrl,
+            ],
         );
     }
 

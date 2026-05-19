@@ -9,14 +9,18 @@ Hi {{ $talent->name }},
 
 Congratulations! We are pleased to inform you that your application to join **Hailerz** has been accepted.
 
-To finalize your onboarding and have your profile listed on our public directory, you are required to review and sign our Talent Representation Agreement.
+To finalize your onboarding and have your profile listed on our public directory, you are required to review and sign our digital **Talent Representation Agreement**.
 
-### Next Steps:
-1. Review the terms of the agreement detailed in the attached document.
-2. Print, sign, and scan the document (or use a digital signature).
-3. Email the signed copy back to us at [**info@hailerz.com**](mailto:info@hailerz.com).
+<x-mail::button :url="$signedUrl" color="primary">
+Review & Sign Agreement
+</x-mail::button>
 
-Once we receive and verify your signed agreement, we will activate your profile on the Hailerz platform.
+### How it works:
+1. Click the button above to access your secure, personalized digital signature portal.
+2. Review the terms of the representation contract online.
+3. Type your full name and check the consent box to sign instantly. No printer or scanner needed!
+
+Once signed, a copy of the fully executed agreement will be emailed to you, and your profile will automatically go live on our booking directory.
 
 We are excited to have you on board!
 

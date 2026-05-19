@@ -6,8 +6,11 @@ use App\Helpers\CurrencyHelper;
 use App\Helpers\MediaPreviewHelper;
 use App\Mail\TalentAgreementMail;
 use App\Models\Category;
+use App\Models\Contract;
+use App\Models\ContractSignature;
 use App\Models\Submission;
 use App\Models\Talent;
+use App\Services\ContractPdfService;
 use BackedEnum;
 use Filament\Actions\Action;
 use Filament\Actions\EditAction;
@@ -21,6 +24,7 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\HtmlString;
 use Illuminate\Support\Str;
 use UnitEnum;
@@ -328,9 +332,6 @@ class SubmissionResource extends Resource
                                 'slug' => Str::slug($record->artist_name),
                             ]);
 
-                            // Send Agreement Email
-                            Mail::to($talent->email)->send(new TalentAgreementMail($talent));
-
                             // Sync Gallery Items
                             foreach ($record->gallery as $item) {
                                 $talent->gallery()->create([
@@ -339,6 +340,44 @@ class SubmissionResource extends Resource
                                     'description' => $item->description,
                                 ]);
                             }
+
+                            // 1. Create the digital contract record
+                            $contract = Contract::create([
+                                'status' => 'pending',
+                                'version' => '1.0',
+                            ]);
+
+                            // 2. Generate PDF contract document using ContractPdfService
+                            $pdfService = app(ContractPdfService::class);
+                            $html = view('pdf.talent-representation-agreement', [
+                                'talent' => $talent,
+                                'contract' => $contract,
+                            ])->render();
+
+                            $pdfService->generate(
+                                $contract,
+                                'Talent Representation Agreement',
+                                'Hailerz Agency',
+                                $talent->name,
+                                $html
+                            );
+
+                            // 3. Create the digital signature record for the talent
+                            $signature = ContractSignature::create([
+                                'contract_id' => $contract->id,
+                                'signer_role' => 'Talent',
+                                'signer_identifier' => $talent->email,
+                            ]);
+
+                            // 4. Generate secure cryptographically signed URL
+                            $signedUrl = URL::signedRoute('contracts.show', [
+                                'contract' => $contract->id,
+                                'role' => $signature->signer_role,
+                                'email' => $signature->signer_identifier,
+                            ]);
+
+                            // 5. Send Agreement Email with the digital signature link
+                            Mail::to($talent->email)->send(new TalentAgreementMail($talent, $signedUrl));
                         });
 
                         Notification::make()

@@ -6,6 +6,7 @@ use App\Mail\ContractExecutedMail;
 use App\Mail\ContractSignatureRequestMail;
 use App\Models\Contract;
 use App\Models\ContractSignature;
+use App\Models\Talent;
 use App\Services\ContractPdfService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -107,6 +108,18 @@ class ContractController extends Controller
         if ($contract->isFullySigned()) {
             // All signatures received -> Finalize & Append Certificate of Completion
             $this->pdfService->appendCertificateOfCompletion($contract);
+
+            // If the signer matches a talent, mark them as active!
+            $talent = Talent::where('email', $email)
+                ->where('status', 'awaiting_agreement')
+                ->first();
+            if ($talent) {
+                $talent->update([
+                    'has_signed_agreement' => true,
+                    'agreement_signed_at' => now(),
+                    'status' => 'active',
+                ]);
+            }
 
             // Queue completion emails to all signers
             /** @var ContractSignature $sig */
