@@ -75,8 +75,13 @@ class ContractPdfService
             'signatures' => $signatures,
         ])->render();
 
-        // 3. Append Certificate to the Original HTML using page-break-before style
-        $combinedHtml = $originalHtml."\n".$certificateHtml;
+        // 3. Append Certificate inside the <body> tag to ensure valid HTML structure for Dompdf
+        if (str_contains(strtolower($originalHtml), '</body>')) {
+            $pos = strripos($originalHtml, '</body>');
+            $combinedHtml = substr_replace($originalHtml, "\n".$certificateHtml."\n", $pos, 0);
+        } else {
+            $combinedHtml = $originalHtml."\n".$certificateHtml;
+        }
 
         // 4. Generate the final PDF
         $pdf = Pdf::loadHTML($combinedHtml)

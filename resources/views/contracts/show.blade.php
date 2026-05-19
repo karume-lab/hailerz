@@ -239,7 +239,7 @@
                 @else
                     <!-- Locked/Signed Card -->
                     <div
-                        class="bg-surface-light border border-subtle rounded-2xl p-8 shadow-sm transition-colors duration-300 text-center flex flex-col items-center gap-4">
+                        class="bg-surface-light border border-subtle rounded-2xl p-8 shadow-sm transition-colors duration-300 text-center flex flex-col items-center gap-4 animate-fadeIn">
                         <div
                             class="h-16 w-16 bg-emerald-500/15 text-emerald-500 rounded-full flex items-center justify-center">
                             <x-lucide-shield-check class="h-8 w-8" stroke-width="2.5" />
@@ -248,10 +248,16 @@
                             <h3 class="text-lg font-bold text-text-primary">
                                 Signing Complete
                             </h3>
-                            <p class="text-sm text-text-muted mt-2 leading-relaxed">
+                            <p class="text-sm text-text-muted mt-2 leading-relaxed mb-6">
                                 This digital signature session has concluded. The agreement is locked and safely recorded in
                                 our database.
                             </p>
+                            <a href="{{ URL::signedRoute('contracts.download', ['contract' => $contract->id]) }}"
+                                class="inline-flex items-center justify-center gap-2 w-full px-5 py-3 text-sm font-semibold text-white bg-brand-primary hover:bg-brand-primary/95 rounded-xl shadow-md hover:shadow-lg transition-all"
+                                target="_blank">
+                                <x-lucide-download class="h-4 w-4" stroke-width="2.5" />
+                                Download Executed Copy (PDF)
+                            </a>
                         </div>
                     </div>
                 @endif

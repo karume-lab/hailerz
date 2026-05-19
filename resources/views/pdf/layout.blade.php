@@ -41,9 +41,8 @@
             font-size: 12px;
             color: #777;
             border-top: 1px solid #eee;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
+            margin-top: 50px;
+            clear: both;
         }
         .section {
             margin-bottom: 30px;
