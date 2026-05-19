@@ -23,7 +23,7 @@ class ContractPdfService
         $partyAClean = str_replace(' ', '_', preg_replace('/[^A-Za-z0-9\s]/', '', $partyA));
         $partyBClean = str_replace(' ', '_', preg_replace('/[^A-Za-z0-9\s]/', '', $partyB));
         $timestamp = now()->format('d_m_y_H_i_s');
-        $filename = "{$typeClean}_{$partyAClean}_vs_{$partyBClean}_{$timestamp}.pdf";
+        $filename = "{$typeClean}_{$partyAClean}_and_{$partyBClean}_{$timestamp}.pdf";
         $filePath = 'contracts/'.$filename;
 
         // 3. Save the source HTML content for future re-generation / appending
