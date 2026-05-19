@@ -8,7 +8,7 @@
 
 <div class="section">
     <div class="section-title">1. The Parties</div>
-    <p>This Talent Representation Agreement (the "Agreement") is entered into and made effective as of the date of final electronic execution, by and between:</p>
+    <p>This Talent Representation Agreement (the "Agreement") is entered into and made effective as of the date of final electronic signature, by and between:</p>
     <table style="margin-top: 15px;">
         <tr>
             <td class="label">Party A (Agency):</td>

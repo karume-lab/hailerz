@@ -194,7 +194,7 @@
                                 </div>
                                 <div class="ml-4 text-xs leading-5">
                                     <label for="esign_consent" class="font-bold text-text-primary block mb-1">ESIGN Act Consent *</label>
-                                    <p class="text-text-secondary leading-relaxed">I consent to electronically sign this document and understand that my typed name represents a legally binding digital execution.</p>
+                                    <p class="text-text-secondary leading-relaxed">I consent to electronically sign this document and understand that my typed name represents a legally binding digital signature.</p>
                                     @error('esign_consent')
                                         <span class="text-red-500 text-[11px] font-bold mt-2 block tracking-tight">{{ $message }}</span>
                                     @enderror

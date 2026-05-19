@@ -18,6 +18,11 @@ use App\Livewire\Public\ShowResource;
 use App\Livewire\Public\ShowTalent;
 use App\Livewire\Public\Staffing;
 use App\Livewire\Public\TalentDirectory;
+use App\Models\Contract;
+use App\Models\Inquiry;
+use App\Models\Submission;
+use App\Models\Talent;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
@@ -78,6 +83,156 @@ Route::post('/csp-report', function (Request $request) {
     ->name('csp.report');
 
 // Digital Signature Engine Routes
+
+Route::get('/view-pdfs/{type?}', function ($type = null) {
+    if (! app()->environment('local')) {
+        abort(403, 'Testing endpoint is only available in local environment.');
+    }
+
+    if (! $type) {
+        return "
+            <div style='font-family: sans-serif; padding: 40px;'>
+                <h2>PDF Viewer</h2>
+                <ul>
+                    <li><a href='/view-pdfs/talent-representation-agreement'>Talent Representation Agreement (with Certificate)</a></li>
+                    <li><a href='/view-pdfs/booking-inquiry'>Booking Inquiry</a></li>
+                    <li><a href='/view-pdfs/talent-submission'>Talent Submission</a></li>
+                </ul>
+            </div>
+        ";
+    }
+
+    $html = '';
+
+    if ($type === 'talent-representation-agreement') {
+        $talent = Talent::first() ?? new class
+        {
+            public $name = 'Demo Artist';
+
+            public $email = 'demo@example.com';
+
+            public $location = 'Lagos, NG';
+        };
+
+        $contract = Contract::first() ?? new class
+        {
+            public $id = 'CTR-10001';
+
+            public $version = '1.0';
+
+            public $status = 'signed';
+
+            public $file_path = 'private/contracts/demo.pdf';
+
+            public $file_hash = '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92';
+        };
+
+        $signatures = collect([
+            (object) [
+                'signer_role' => 'Agency Representative',
+                'signer_identifier' => 'Jane Admin',
+                'signed_at' => now(),
+                'ip_address' => '192.168.1.55',
+                'token_id' => 'tok_abcd1234',
+                'user_agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)',
+            ],
+            (object) [
+                'signer_role' => 'Artist / Act',
+                'signer_identifier' => 'Demo Artist',
+                'signed_at' => now(),
+                'ip_address' => '10.0.0.4',
+                'token_id' => 'tok_efgh5678',
+                'user_agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)',
+            ],
+        ]);
+
+        $contentHtml = view('pdf.talent-representation-agreement', compact('talent'))->render();
+        $certHtml = view('pdf.contract_certificate', compact('contract', 'signatures'))->render();
+
+        if (str_contains(strtolower($contentHtml), '</body>')) {
+            $pos = strripos($contentHtml, '</body>');
+            $html = substr_replace($contentHtml, "\n".$certHtml."\n", $pos, 0);
+        } else {
+            $html = $contentHtml."\n".$certHtml;
+        }
+
+    } elseif ($type === 'booking-inquiry') {
+        $inquiry = Inquiry::first() ?? new class
+        {
+            public $id = 'INQ-555';
+
+            public $name = 'Demo Organizer';
+
+            public $email = 'org@example.com';
+
+            public $phone = '+234 800 000 0000';
+
+            public $company = 'Event Corp';
+
+            public $event_type = 'Corporate Gala';
+
+            public $event_date = '2026-12-31';
+
+            public $event_time = '19:00';
+
+            public $venue_name = 'Eko Hotel';
+
+            public $city = 'Lagos';
+
+            public $state = 'LA';
+
+            public $expected_guests = '500+';
+
+            public $performance_duration = '2 Hours';
+
+            public $budget_range = '$5,000 - $10,000';
+
+            public $specific_talent = 'Demo Artist';
+
+            public $additional_details = 'We need a full band setup.';
+
+            public $created_at = '2026-05-19 12:00:00';
+        };
+        $html = view("pdf.{$type}", compact('inquiry'))->render();
+    } elseif ($type === 'talent-submission') {
+        $submission = Submission::first() ?? new class
+        {
+            public $artist_name = 'Demo Act';
+
+            public $real_name = 'Real Demo';
+
+            public $email = 'demoact@example.com';
+
+            public $phone = '+234 800 123 4567';
+
+            public $location = 'Lagos, NG';
+
+            public $category = 'Musicians';
+
+            public $genre = 'Afrobeats';
+
+            public $years_active = '5';
+
+            public $min_rate = '500';
+
+            public $max_rate = '2000';
+
+            public $bio = 'A very talented demo act.';
+
+            public $instagram_handle = '@demoact';
+
+            public $created_at = '2026-05-19 12:00:00';
+        };
+        $html = view("pdf.{$type}", compact('submission'))->render();
+    } else {
+        abort(404, 'PDF template not found');
+    }
+
+    return Pdf::loadHTML($html)
+        ->setPaper('a4', 'portrait')
+        ->setWarnings(false)
+        ->stream("{$type}.pdf");
+});
 
 Route::prefix('contracts')->group(function () {
     Route::get('/{contract}', [ContractController::class, 'show'])->name('contracts.show');
