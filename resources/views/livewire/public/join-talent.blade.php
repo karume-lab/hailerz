@@ -405,7 +405,6 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
                         <!-- Step 4: Final Review & Next Steps -->
                         <div class="{{ $currentStep != 4 ? 'hidden' : 'block' }} space-y-10">
