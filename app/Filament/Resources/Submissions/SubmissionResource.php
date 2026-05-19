@@ -2,8 +2,9 @@
 
 namespace App\Filament\Resources\Submissions;
 
-use App\Filament\Resources\Submissions\Pages;
+use App\Helpers\CurrencyHelper;
 use App\Mail\TalentAgreementMail;
+use App\Models\Category;
 use App\Models\Submission;
 use App\Models\Talent;
 use BackedEnum;
@@ -12,10 +13,12 @@ use Filament\Actions\EditAction;
 use Filament\Forms;
 use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
+use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 use UnitEnum;
 
 class SubmissionResource extends Resource
@@ -44,7 +47,7 @@ class SubmissionResource extends Resource
     public static function form(Schema $schema): Schema
     {
         return $schema->components([
-            \Filament\Schemas\Components\Section::make('Applicant Personal Information')
+            Section::make('Applicant Personal Information')
                 ->schema([
                     Forms\Components\TextInput::make('artist_name')
                         ->label('Performer / Act Name')
@@ -75,7 +78,7 @@ class SubmissionResource extends Resource
                 ->columns(2)
                 ->columnSpanFull(),
 
-            \Filament\Schemas\Components\Section::make('Professional Details')
+            Section::make('Professional Details')
                 ->schema([
                     Forms\Components\TextInput::make('category')
                         ->label('Talent Category')
@@ -87,14 +90,14 @@ class SubmissionResource extends Resource
                         ->label('Years Active')
                         ->columnSpan(1),
                     Forms\Components\TextInput::make('min_rate')
-                        ->label(fn ($record) => 'Minimum Rate (' . ($record?->currency ?? 'USD') . ')')
+                        ->label(fn ($record) => 'Minimum Rate ('.(($record ? $record->currency : null) ?? 'USD').')')
                         ->numeric()
-                        ->prefix(fn ($record) => \App\Helpers\CurrencyHelper::getCurrencySymbolForCode($record?->currency ?? 'USD'))
+                        ->prefix(fn ($record) => CurrencyHelper::getCurrencySymbolForCode(($record ? $record->currency : null) ?? 'USD'))
                         ->columnSpan(1),
                     Forms\Components\TextInput::make('max_rate')
-                        ->label(fn ($record) => 'Maximum Rate (' . ($record?->currency ?? 'USD') . ')')
+                        ->label(fn ($record) => 'Maximum Rate ('.(($record ? $record->currency : null) ?? 'USD').')')
                         ->numeric()
-                        ->prefix(fn ($record) => \App\Helpers\CurrencyHelper::getCurrencySymbolForCode($record?->currency ?? 'USD'))
+                        ->prefix(fn ($record) => CurrencyHelper::getCurrencySymbolForCode(($record ? $record->currency : null) ?? 'USD'))
                         ->columnSpan(1),
                     Forms\Components\TextInput::make('currency')
                         ->label('Currency Code')
@@ -104,7 +107,7 @@ class SubmissionResource extends Resource
                 ->columns(2)
                 ->columnSpanFull(),
 
-            \Filament\Schemas\Components\Section::make('Online Presence')
+            Section::make('Online Presence')
                 ->schema([
                     Forms\Components\TextInput::make('website_url')
                         ->label('Website')
@@ -130,7 +133,7 @@ class SubmissionResource extends Resource
                 ->columns(2)
                 ->columnSpanFull(),
 
-            \Filament\Schemas\Components\Section::make('Experience & Credentials')
+            Section::make('Experience & Credentials')
                 ->schema([
 
                     Forms\Components\Textarea::make('notable_clients')
@@ -142,7 +145,7 @@ class SubmissionResource extends Resource
                 ])
                 ->columnSpanFull(),
 
-            \Filament\Schemas\Components\Section::make('Artist Statement')
+            Section::make('Artist Statement')
                 ->schema([
                     Forms\Components\Textarea::make('bio')
                         ->label('Artist Biography')
@@ -155,12 +158,12 @@ class SubmissionResource extends Resource
                 ])
                 ->columnSpanFull(),
 
-            \Filament\Schemas\Components\Section::make('Application Status')
+            Section::make('Application Status')
                 ->schema([
                     Forms\Components\Select::make('status')
                         ->label('Application Status')
                         ->options([
-                            'pending'  => 'Pending Review',
+                            'pending' => 'Pending Review',
                             'approved' => 'Admitted to Talent',
                             'rejected' => 'Declined',
                         ])
@@ -168,7 +171,7 @@ class SubmissionResource extends Resource
                 ])
                 ->columnSpanFull(),
 
-            \Filament\Schemas\Components\Section::make('Media Gallery')
+            Section::make('Media Gallery')
                 ->description('Portfolio links provided by the applicant')
                 ->schema([
                     Forms\Components\Repeater::make('gallery')
@@ -218,7 +221,7 @@ class SubmissionResource extends Resource
                         'approved' => 'Admitted to Talent',
                         'rejected' => 'Declined',
                         default => 'Pending Review',
-                     }),
+                    }),
             ])
             ->actions([
                 Action::make('approve')
@@ -231,7 +234,7 @@ class SubmissionResource extends Resource
                         $record->update(['status' => 'approved']);
 
                         // Find or create category based on the string value from submission
-                        $category = \App\Models\Category::firstOrCreate(['name' => $record->category]);
+                        $category = Category::firstOrCreate(['name' => $record->category]);
 
                         // Automatically create the Talent profile
                         $talent = Talent::create([
@@ -240,7 +243,7 @@ class SubmissionResource extends Resource
                             'category_id' => $category->id,
                             'bio' => $record->bio,
                             'location' => $record->location,
-                            'starting_price' => \App\Helpers\CurrencyHelper::convertToUsd((float)($record->min_rate ?? 0), $record->currency ?? 'USD'),
+                            'starting_price' => CurrencyHelper::convertToUsd((float) ($record->min_rate ?? 0), $record->currency ?? 'USD'),
                             'genre' => $record->genre,
                             'years_active' => $record->years_active,
                             'website_url' => $record->website_url,
@@ -250,7 +253,7 @@ class SubmissionResource extends Resource
                             'tiktok_handle' => $record->tiktok_handle,
                             'primary_image_url' => $record->profile_photo_url,
                             'status' => 'awaiting_agreement',
-                            'slug' => \Illuminate\Support\Str::slug($record->artist_name),
+                            'slug' => Str::slug($record->artist_name),
                         ]);
 
                         // Send Agreement Email

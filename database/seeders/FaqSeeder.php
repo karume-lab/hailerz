@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Faq;
 use Illuminate\Database\Seeder;
 
 class FaqSeeder extends Seeder
@@ -32,11 +32,11 @@ class FaqSeeder extends Seeder
                 'question' => 'Can I browse multiple categories?',
                 'answer' => 'Of course. We encourage you to explore our entire directory to find the perfect combination of entertainment for your event.',
                 'sort_order' => 4,
-            ]
+            ],
         ];
 
         foreach ($faqs as $faq) {
-            \App\Models\Faq::create($faq);
+            Faq::create($faq);
         }
     }
 }

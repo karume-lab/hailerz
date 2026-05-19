@@ -2,12 +2,18 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * @property-read Collection<int, GalleryItem> $gallery
+ */
 class Submission extends Model
 {
     use SoftDeletes;
+
     protected $fillable = [
         'artist_name',
         'real_name',
@@ -43,6 +49,9 @@ class Submission extends Model
         ];
     }
 
+    /**
+     * @return MorphMany<GalleryItem, $this>
+     */
     public function gallery()
     {
         return $this->morphMany(GalleryItem::class, 'galleryable');

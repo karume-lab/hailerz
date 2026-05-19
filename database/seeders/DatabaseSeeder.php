@@ -2,15 +2,14 @@
 
 namespace Database\Seeders;
 
-use App\Models\Category;
-use App\Models\Talent;
-use App\Models\Inquiry;
-use App\Models\User;
-use App\Models\EmailTemplate;
 use App\Enums\InquiryStatus;
-use Illuminate\Database\Seeder;
-use Illuminate\Support\Str;
+use App\Models\Category;
+use App\Models\EmailTemplate;
+use App\Models\GalleryItem;
+use App\Models\Inquiry;
+use App\Models\Talent;
 use Carbon\Carbon;
+use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -29,7 +28,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         // 3. Hero Records
-        
+
         // Star DJ
         $djHero = Talent::updateOrCreate(
             ['slug' => 'dj-horizon-creative-talent'],
@@ -117,7 +116,7 @@ class DatabaseSeeder extends Seeder
 
         // Add Gallery Items to Heroes
         foreach ([$djHero, $speakerHero, $bandHero, $mcHero, $varietyHero] as $hero) {
-            \App\Models\GalleryItem::factory()->count(3)->create([
+            GalleryItem::factory()->count(3)->create([
                 'galleryable_id' => $hero->id,
                 'galleryable_type' => Talent::class,
             ]);
@@ -126,7 +125,7 @@ class DatabaseSeeder extends Seeder
         // 4. Random Additional Talent (Factory)
         if (Talent::count() < 30) {
             Talent::factory()->count(25)->create()->each(function ($t) {
-                \App\Models\GalleryItem::factory()->count(rand(2, 4))->create([
+                GalleryItem::factory()->count(rand(2, 4))->create([
                     'galleryable_id' => $t->id,
                     'galleryable_type' => Talent::class,
                 ]);
@@ -203,7 +202,7 @@ class DatabaseSeeder extends Seeder
             ['name' => 'Application Received'],
             [
                 'subject' => 'Application for Talent Representation: {{artist_name}}',
-                'body' => '<p>Thank you for your interest in joining the Hailerz talent pool.</p><p>We are currently reviewing your professional profile and performance assets. Due to the high volume of applications from talented performers, we only reach out to candidates who align with our current corporate and luxury event requirements.</p><p>A senior agent will contact you within 5-7 business days if there is a potential fit for representation.</p><p>Regards,<br>Hailerz Talent Management</p>'
+                'body' => '<p>Thank you for your interest in joining the Hailerz talent pool.</p><p>We are currently reviewing your professional profile and performance assets. Due to the high volume of applications from talented performers, we only reach out to candidates who align with our current corporate and luxury event requirements.</p><p>A senior agent will contact you within 5-7 business days if there is a potential fit for representation.</p><p>Regards,<br>Hailerz Talent Management</p>',
             ]
         );
 
@@ -211,7 +210,7 @@ class DatabaseSeeder extends Seeder
             ['name' => 'Inquiry Submitted'],
             [
                 'subject' => 'Booking Inquiry Received: {{event_type}}',
-                'body' => '<p>Thank you for submitting your booking inquiry.</p><p>A senior booking agent has been assigned to your request and is currently reviewing your event specifications and investment parameters. We prioritize providing comprehensive, tailored proposals that ensure the perfect alignment between talent and event DNA.</p><p>You can expect a formal proposal or a request for a briefing call within 24 business hours.</p><p>Best regards,<br>Hailerz Agency Team</p>'
+                'body' => '<p>Thank you for submitting your booking inquiry.</p><p>A senior booking agent has been assigned to your request and is currently reviewing your event specifications and investment parameters. We prioritize providing comprehensive, tailored proposals that ensure the perfect alignment between talent and event DNA.</p><p>You can expect a formal proposal or a request for a briefing call within 24 business hours.</p><p>Best regards,<br>Hailerz Agency Team</p>',
             ]
         );
 

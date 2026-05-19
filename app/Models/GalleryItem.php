@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
 class GalleryItem extends Model
 {
     use HasFactory;
+
     protected $fillable = [
         'galleryable_id',
         'galleryable_type',

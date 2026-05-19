@@ -2,9 +2,10 @@
 
 namespace App\Filament\Widgets;
 
-use App\Models\Inquiry;
-use App\Models\Talent;
 use App\Enums\InquiryStatus;
+use App\Models\Inquiry;
+use App\Models\Post;
+use App\Models\Talent;
 use Filament\Widgets\StatsOverviewWidget as BaseWidget;
 use Filament\Widgets\StatsOverviewWidget\Stat;
 
@@ -46,7 +47,7 @@ class DashboardStats extends BaseWidget
                 ->color('success')
                 ->url('/admin/talent?tableFilters[status][value]=active'),
 
-            Stat::make('Published Resources', \App\Models\Post::where('is_published', true)->count())
+            Stat::make('Published Resources', Post::where('is_published', true)->count())
                 ->description('Articles live on the site')
                 ->descriptionIcon('heroicon-m-book-open')
                 ->color('primary')

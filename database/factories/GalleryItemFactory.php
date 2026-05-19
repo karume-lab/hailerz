@@ -21,28 +21,28 @@ class GalleryItemFactory extends Factory
             [
                 'url' => 'https://www.youtube.com/watch?v=zHn1A6M6_Yk',
                 'title' => 'Live at Madison Square Garden',
-                'description' => 'A sold-out performance featuring our premier DJ set with integrated light show.'
+                'description' => 'A sold-out performance featuring our premier DJ set with integrated light show.',
             ],
             [
                 'url' => 'https://www.youtube.com/watch?v=7Pq-S557XQU',
                 'title' => 'TEDx Talk 2025: The Future of AI',
-                'description' => 'A visionary keynote address on the intersection of technology and humanity.'
+                'description' => 'A visionary keynote address on the intersection of technology and humanity.',
             ],
             [
                 'url' => 'https://www.youtube.com/watch?v=j_S6M9Z6mE8',
                 'title' => 'Royal Albert Hall Showcase',
-                'description' => 'Our flagship ensemble performing for the international diplomatic gala.'
+                'description' => 'Our flagship ensemble performing for the international diplomatic gala.',
             ],
             [
                 'url' => 'https://www.youtube.com/watch?v=uD4izufzh28',
                 'title' => 'Global Business Awards Hosting',
-                'description' => 'Impeccable moderation for the annual industry recognition ceremony.'
+                'description' => 'Impeccable moderation for the annual industry recognition ceremony.',
             ],
             [
                 'url' => 'https://www.youtube.com/watch?v=60fD1432f78',
                 'title' => 'Digital Illusionist World Tour',
-                'description' => 'Revolutionary holographic magic performance captured live in Tokyo.'
-            ]
+                'description' => 'Revolutionary holographic magic performance captured live in Tokyo.',
+            ],
         ];
 
         $selected = fake()->randomElement($media);

@@ -2,18 +2,19 @@
 
 namespace App\Livewire\Public;
 
+use App\Helpers\CurrencyHelper;
+use App\Mail\AdminBookingNotification;
+use App\Mail\BookingConfirmationMail;
 use App\Models\Inquiry;
 use App\Models\Talent;
-use Livewire\Component;
-use Livewire\Attributes\Title;
-use Livewire\Attributes\Layout;
-use Livewire\Attributes\Validate;
-use Livewire\Attributes\Computed;
-use Livewire\WithPagination;
-use App\Mail\BookingConfirmationMail;
-use App\Mail\AdminBookingNotification;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
-
+use Livewire\Attributes\Computed;
+use Livewire\Attributes\Layout;
+use Livewire\Attributes\Title;
+use Livewire\Attributes\Validate;
+use Livewire\Component;
+use Livewire\WithPagination;
 
 #[Layout('components.layouts.app')]
 #[Title('Hailerz | Professional Inquiry')]
@@ -22,68 +23,73 @@ class BookingWizard extends Component
     use WithPagination;
 
     public int $currentStep = 1;
+
     public string $search = '';
+
     public int $perPage = 10;
+
     public ?int $preselectedTalentId = null;
-    
+
     public string $talentSearch = '';
+
     public int $talentLimit = 5;
+
     public ?Talent $selectedTalent = null;
 
     // Step 1: Contact Information
     #[Validate('required|string|max:255')]
     public $first_name;
-    
+
     #[Validate('required|string|max:255')]
     public $last_name;
-    
+
     #[Validate('required|email|max:255')]
     public $email;
-    
+
     #[Validate('required|string|max:20')]
     public $phone;
-    
+
     #[Validate('nullable|string|max:255')]
     public $company;
 
     // Step 2: Event Details
     #[Validate('required|string')]
     public $event_type;
-    
+
     #[Validate('required|date|after:today')]
     public $event_date;
-    
+
     #[Validate('nullable|string')]
     public $event_time;
-    
+
     #[Validate('nullable|string')]
     public $performance_duration;
-    
+
     #[Validate('nullable|string|max:255')]
     public $venue_name;
-    
+
     #[Validate('required|string|max:255')]
     public $city;
-    
+
     #[Validate('required|string|max:255')]
     public $state;
-    
+
     #[Validate('required|integer|min:1')]
     public $expected_guests;
 
     // Step 3: Talent Preferences
     #[Validate('required|string')]
     public $talent_category;
-    
+
     #[Validate('nullable|string')]
     public $preferred_genre;
-    
+
     #[Validate('nullable|string')]
     public $budget_range;
-    
+
     #[Validate('nullable|string|max:255')]
     public $specific_talent;
-    
+
     #[Validate('nullable|string|max:2000')]
     public $additional_details;
 
@@ -95,6 +101,7 @@ class BookingWizard extends Component
     public bool $is_accurate = false;
 
     public bool $isComplete = false;
+
     public $talent_id; // Keeping this for internal tracking if pre-selected
 
     public function mount()
@@ -115,13 +122,15 @@ class BookingWizard extends Component
             // Try to extract numbers from the budget string (handles "10k", "10,000", "10,000 - 20,000", etc.)
             $cleanString = str_replace([',', '₦', '$', '£', '€'], '', $this->budget_range);
             preg_match_all('/(\d+)(k)?/i', $cleanString, $matches);
-            
-            if (!empty($matches[1])) {
+
+            if (! empty($matches[1])) {
                 $numbers = [];
                 foreach ($matches[1] as $index => $num) {
                     $val = (float) $num;
                     $suffix = strtolower($matches[2][$index] ?? '');
-                    if ($suffix === 'k') $val *= 1000;
+                    if ($suffix === 'k') {
+                        $val *= 1000;
+                    }
                     $numbers[] = $val;
                 }
                 // For ranges, we take the upper bound as the maxPrice
@@ -130,16 +139,16 @@ class BookingWizard extends Component
 
             if ($maxPrice) {
                 // Convert back to USD for DB comparison
-                $currency = \App\Helpers\CurrencyHelper::getUserCurrency();
-                $rate = \App\Helpers\CurrencyHelper::convert(1.0, $currency);
+                $currency = CurrencyHelper::getUserCurrency();
+                $rate = CurrencyHelper::convert(1.0, $currency);
                 $usdPrice = $rate > 0 ? ($maxPrice / $rate) : $maxPrice;
                 $query->where('starting_price', '<=', $usdPrice);
             }
         }
 
-        return $query->when($this->talentSearch, function($query) {
-                $query->where('name', 'like', '%' . $this->talentSearch . '%');
-            })
+        return $query->when($this->talentSearch, function ($query) {
+            $query->where('name', 'like', '%'.$this->talentSearch.'%');
+        })
             ->with('category')
             ->limit($this->talentLimit)
             ->get();
@@ -160,55 +169,91 @@ class BookingWizard extends Component
             $this->selectedTalent = $talent;
             $this->talent_id = $talent->id;
             $this->specific_talent = $talent->name;
-            
+
             // Auto-fill category if available
             if ($talent->category) {
                 $this->talent_category = $talent->category->name;
             }
-            
+
             // Auto-fill budget if starting price is available
             if ($talent->starting_price) {
-                $currency = \App\Helpers\CurrencyHelper::getUserCurrency();
-                $convertedPrice = \App\Helpers\CurrencyHelper::convert((float)$talent->starting_price, $currency);
-                $options = \App\Helpers\CurrencyHelper::getBudgetOptions($currency);
+                $currency = CurrencyHelper::getUserCurrency();
+                $convertedPrice = CurrencyHelper::convert((float) $talent->starting_price, $currency);
+                $options = CurrencyHelper::getBudgetOptions($currency);
 
                 if ($currency === 'NGN') {
-                    if ($convertedPrice < 1500000) $this->budget_range = $options[0];
-                    elseif ($convertedPrice <= 3750000) $this->budget_range = $options[1];
-                    elseif ($convertedPrice <= 7500000) $this->budget_range = $options[2];
-                    elseif ($convertedPrice <= 11250000) $this->budget_range = $options[3];
-                    elseif ($convertedPrice <= 15000000) $this->budget_range = $options[4];
-                    elseif ($convertedPrice <= 22500000) $this->budget_range = $options[5];
-                    elseif ($convertedPrice <= 30000000) $this->budget_range = $options[6];
-                    else $this->budget_range = $options[7];
+                    if ($convertedPrice < 1500000) {
+                        $this->budget_range = $options[0];
+                    } elseif ($convertedPrice <= 3750000) {
+                        $this->budget_range = $options[1];
+                    } elseif ($convertedPrice <= 7500000) {
+                        $this->budget_range = $options[2];
+                    } elseif ($convertedPrice <= 11250000) {
+                        $this->budget_range = $options[3];
+                    } elseif ($convertedPrice <= 15000000) {
+                        $this->budget_range = $options[4];
+                    } elseif ($convertedPrice <= 22500000) {
+                        $this->budget_range = $options[5];
+                    } elseif ($convertedPrice <= 30000000) {
+                        $this->budget_range = $options[6];
+                    } else {
+                        $this->budget_range = $options[7];
+                    }
                 } elseif ($currency === 'GBP') {
-                    if ($convertedPrice < 800) $this->budget_range = $options[0];
-                    elseif ($convertedPrice <= 2000) $this->budget_range = $options[1];
-                    elseif ($convertedPrice <= 4000) $this->budget_range = $options[2];
-                    elseif ($convertedPrice <= 6000) $this->budget_range = $options[3];
-                    elseif ($convertedPrice <= 8000) $this->budget_range = $options[4];
-                    elseif ($convertedPrice <= 12000) $this->budget_range = $options[5];
-                    elseif ($convertedPrice <= 16000) $this->budget_range = $options[6];
-                    else $this->budget_range = $options[7];
+                    if ($convertedPrice < 800) {
+                        $this->budget_range = $options[0];
+                    } elseif ($convertedPrice <= 2000) {
+                        $this->budget_range = $options[1];
+                    } elseif ($convertedPrice <= 4000) {
+                        $this->budget_range = $options[2];
+                    } elseif ($convertedPrice <= 6000) {
+                        $this->budget_range = $options[3];
+                    } elseif ($convertedPrice <= 8000) {
+                        $this->budget_range = $options[4];
+                    } elseif ($convertedPrice <= 12000) {
+                        $this->budget_range = $options[5];
+                    } elseif ($convertedPrice <= 16000) {
+                        $this->budget_range = $options[6];
+                    } else {
+                        $this->budget_range = $options[7];
+                    }
                 } elseif ($currency === 'EUR') {
-                    if ($convertedPrice < 900) $this->budget_range = $options[0];
-                    elseif ($convertedPrice <= 2300) $this->budget_range = $options[1];
-                    elseif ($convertedPrice <= 4600) $this->budget_range = $options[2];
-                    elseif ($convertedPrice <= 6900) $this->budget_range = $options[3];
-                    elseif ($convertedPrice <= 9200) $this->budget_range = $options[4];
-                    elseif ($convertedPrice <= 13800) $this->budget_range = $options[5];
-                    elseif ($convertedPrice <= 18400) $this->budget_range = $options[6];
-                    else $this->budget_range = $options[7];
+                    if ($convertedPrice < 900) {
+                        $this->budget_range = $options[0];
+                    } elseif ($convertedPrice <= 2300) {
+                        $this->budget_range = $options[1];
+                    } elseif ($convertedPrice <= 4600) {
+                        $this->budget_range = $options[2];
+                    } elseif ($convertedPrice <= 6900) {
+                        $this->budget_range = $options[3];
+                    } elseif ($convertedPrice <= 9200) {
+                        $this->budget_range = $options[4];
+                    } elseif ($convertedPrice <= 13800) {
+                        $this->budget_range = $options[5];
+                    } elseif ($convertedPrice <= 18400) {
+                        $this->budget_range = $options[6];
+                    } else {
+                        $this->budget_range = $options[7];
+                    }
                 } else {
                     // USD
-                    if ($convertedPrice < 1000) $this->budget_range = $options[0];
-                    elseif ($convertedPrice <= 2500) $this->budget_range = $options[1];
-                    elseif ($convertedPrice <= 5000) $this->budget_range = $options[2];
-                    elseif ($convertedPrice <= 7500) $this->budget_range = $options[3];
-                    elseif ($convertedPrice <= 10000) $this->budget_range = $options[4];
-                    elseif ($convertedPrice <= 15000) $this->budget_range = $options[5];
-                    elseif ($convertedPrice <= 20000) $this->budget_range = $options[6];
-                    else $this->budget_range = $options[7];
+                    if ($convertedPrice < 1000) {
+                        $this->budget_range = $options[0];
+                    } elseif ($convertedPrice <= 2500) {
+                        $this->budget_range = $options[1];
+                    } elseif ($convertedPrice <= 5000) {
+                        $this->budget_range = $options[2];
+                    } elseif ($convertedPrice <= 7500) {
+                        $this->budget_range = $options[3];
+                    } elseif ($convertedPrice <= 10000) {
+                        $this->budget_range = $options[4];
+                    } elseif ($convertedPrice <= 15000) {
+                        $this->budget_range = $options[5];
+                    } elseif ($convertedPrice <= 20000) {
+                        $this->budget_range = $options[6];
+                    } else {
+                        $this->budget_range = $options[7];
+                    }
                 }
             }
         }
@@ -250,7 +295,7 @@ class BookingWizard extends Component
                 'is_accurate' => 'accepted',
             ]);
         }
-        
+
         $this->currentStep++;
     }
 
@@ -285,16 +330,16 @@ class BookingWizard extends Component
             'additional_details' => $this->additional_details,
             'source' => $this->source,
             'status' => 'new',
-            'currency' => \App\Helpers\CurrencyHelper::getUserCurrency(),
+            'currency' => CurrencyHelper::getUserCurrency(),
         ]);
 
         try {
-            \Illuminate\Support\Facades\Log::info('Attempting to send booking email to: ' . $inquiry->email);
+            Log::info('Attempting to send booking email to: '.$inquiry->email);
             Mail::to($inquiry->email)->send(new BookingConfirmationMail($inquiry));
             Mail::to(config('mail.from.address'))->send(new AdminBookingNotification($inquiry));
-            \Illuminate\Support\Facades\Log::info('Booking email sent successfully.');
+            Log::info('Booking email sent successfully.');
         } catch (\Exception $e) {
-            \Illuminate\Support\Facades\Log::error('Mail sending failed: ' . $e->getMessage());
+            Log::error('Mail sending failed: '.$e->getMessage());
         }
 
         $this->isComplete = true;

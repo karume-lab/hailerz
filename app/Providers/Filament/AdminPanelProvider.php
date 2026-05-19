@@ -10,11 +10,13 @@ use Filament\Pages\Dashboard;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
+use Filament\Support\Enums\Width;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Foundation\Http\Middleware\PreventRequestForgery;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 
 class AdminPanelProvider extends PanelProvider
@@ -29,7 +31,7 @@ class AdminPanelProvider extends PanelProvider
             ->font('Inter')
             ->brandLogo(asset('images/logo.webp'))
             ->brandLogoHeight('2.5rem')
-            ->maxContentWidth(\Filament\Support\Enums\Width::SevenExtraLarge)
+            ->maxContentWidth(Width::SevenExtraLarge)
             ->colors([
                 'primary' => '#146c84',
                 'secondary' => '#65c4af',
@@ -43,7 +45,7 @@ class AdminPanelProvider extends PanelProvider
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')
             ->renderHook(
                 'panels::head.end',
-                fn (): string => \Illuminate\Support\Facades\Blade::render("
+                fn (): string => Blade::render("
                     @vite('resources/css/admin.css')
                     <script>
                         function applyTheme() {
@@ -59,7 +61,7 @@ class AdminPanelProvider extends PanelProvider
             )
             ->renderHook(
                 'panels::user-menu.before',
-                fn (): string => \Illuminate\Support\Facades\Blade::render("<div class='hidden lg:flex items-center me-4'><x-theme-toggle /></div>")
+                fn (): string => Blade::render("<div class='hidden lg:flex items-center me-4'><x-theme-toggle /></div>")
             )
             ->pages([
                 Dashboard::class,

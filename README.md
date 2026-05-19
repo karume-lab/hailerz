@@ -18,6 +18,9 @@ The architecture is designed to deliver a reactive, server-side-rendered experie
 | Database (Local) | SQLite |
 | Database (Production) | MySQL |
 | PHP Requirement | PHP 8.3+ |
+| Static Analysis | PHPStan + Larastan (Level 5) |
+| Git Hooks | Lefthook |
+| Formatter | Laravel Pint |
 
 ---
 
@@ -98,6 +101,40 @@ All public routes are server-side rendered by Livewire for SEO compatibility. No
 | `/legal/booking` | `BookingAgreement` | Booking agreement |
 | `/legal/cancellation` | `CancellationPolicy` | Cancellation policy |
 | `/maintenance` | Blade view | Maintenance mode splash page |
+
+---
+
+## Digital Signature Engine (cPanel-Native)
+
+The platform features a native, legally binding digital signature engine designed to run efficiently in cPanel without external API dependencies.
+
+### Architectural Highlights
+- **Security & Privacy**: Contract drafts and final PDFs are stored in non-public storage (`storage/app/private/contracts/`). Access is gated through Laravel-generated cryptographically signed URLs (`URL::signedRoute`).
+- **ESIGN Compliance & Audit Shield**: Captures and logs signer consent, IP address, user-agent, and signature timestamps. Executed contracts are automatically compiled with a **Certificate of Completion** appended to the end of the PDF.
+- **SHA-256 Immutability**: Stores file checksums to guarantee contract integrity.
+- **Multi-Version Workflows**: Signers can request revisions, locking the current draft as `voided`. Admins can publish new version drafts (e.g. `v1.0` -> `v1.1`), which clones signatories and resets signature requirements.
+- **SMTP-Friendly Queues**: Outbound signature requests and executed notifications are queued (`php artisan queue:work`) to bypass cPanel SMTP block lists.
+
+---
+
+## Code Quality Guardrails
+
+We enforce strict linting, type-safety, and formatting rules across the codebase using a modern toolchain.
+
+### Tools & Configuration
+- **Formatter (Laravel Pint)**: Standardized style guidelines. Run Pint on all files or target modified files.
+- **Static Analysis (PHPStan + Larastan)**: Type safety and PHP validation configured at **level 5** (defined in `phpstan.neon`).
+- **Git Hooks (Lefthook)**: Automatic hooks configured in `lefthook.yml`. On `pre-commit`, Lefthook runs:
+  - `pint --dirty` to automatically format staged changes.
+  - `phpstan analyze` to check type-safety on the whole repository before commit.
+
+### Guardrail Commands
+
+| Command | Action |
+|---|---|
+| `composer format` | Run Laravel Pint to reformat the codebase |
+| `composer lint` | Verify styling (`pint --test`) and run static analysis (`phpstan`) |
+| `npx lefthook run pre-commit` | Manually run the pre-commit git hook checks |
 
 ---
 

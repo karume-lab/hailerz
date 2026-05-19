@@ -32,6 +32,7 @@ class CurrencyHelper
         if ($countryCode) {
             $currency = self::getCurrencyByCountry($countryCode);
             session()->put('user_currency', $currency);
+
             return $currency;
         }
 
@@ -40,28 +41,31 @@ class CurrencyHelper
         if ($acceptLanguage) {
             if (str_contains($acceptLanguage, 'NG') || str_contains($acceptLanguage, 'ng') || str_contains($acceptLanguage, 'Naira')) {
                 session()->put('user_currency', 'NGN');
+
                 return 'NGN';
             }
             if (str_contains($acceptLanguage, 'GB') || str_contains($acceptLanguage, 'gb') || str_contains($acceptLanguage, 'en-GB')) {
                 session()->put('user_currency', 'GBP');
+
                 return 'GBP';
             }
             // Euro countries
             if (preg_match('/(DE|FR|ES|IT|NL|BE|PT|IE|AT|FI|GR|LU|SK|SI|EE|LV|LT|CY|MT|de|fr|es|it|nl|be|pt|ie|at|fi|gr|lu|sk|si|ee|lv|lt|cy|mt)/', $acceptLanguage)) {
                 session()->put('user_currency', 'EUR');
+
                 return 'EUR';
             }
         }
 
         // 4. Try IP lookup using a fast GeoIP API (cached for 24 hours)
         $ip = request()->ip();
-        if ($ip && $ip !== '127.0.0.1' && $ip !== '::1' && !str_starts_with($ip, '192.168.') && !str_starts_with($ip, '10.')) {
-            $cacheKey = 'ip_currency_' . str_replace([':', '.'], '_', $ip);
+        if ($ip && $ip !== '127.0.0.1' && $ip !== '::1' && ! str_starts_with($ip, '192.168.') && ! str_starts_with($ip, '10.')) {
+            $cacheKey = 'ip_currency_'.str_replace([':', '.'], '_', $ip);
             $detected = Cache::remember($cacheKey, 86400, function () use ($ip) {
                 try {
                     $ch = curl_init();
                     curl_setopt($ch, CURLOPT_URL, "https://ipapi.co/{$ip}/currency/");
-                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
                     curl_setopt_array($ch, [
                         CURLOPT_TIMEOUT => 2, // fast timeout
                         CURLOPT_CONNECTTIMEOUT => 1,
@@ -75,13 +79,15 @@ class CurrencyHelper
                         }
                     }
                 } catch (\Exception $e) {
-                    Log::warning("IP Geolocation failed for IP {$ip}: " . $e->getMessage());
+                    Log::warning("IP Geolocation failed for IP {$ip}: ".$e->getMessage());
                 }
+
                 return null;
             });
 
             if ($detected) {
                 session()->put('user_currency', $detected);
+
                 return $detected;
             }
         }
@@ -96,6 +102,7 @@ class CurrencyHelper
     public static function getCurrencySymbol(): string
     {
         $currency = self::getUserCurrency();
+
         return self::$currencies[$currency]['symbol'] ?? '$';
     }
 
@@ -113,11 +120,17 @@ class CurrencyHelper
     private static function getCurrencyByCountry(string $countryCode): string
     {
         $countryCode = strtoupper($countryCode);
-        if ($countryCode === 'NG') return 'NGN';
-        if ($countryCode === 'GB') return 'GBP';
-        
+        if ($countryCode === 'NG') {
+            return 'NGN';
+        }
+        if ($countryCode === 'GB') {
+            return 'GBP';
+        }
+
         $euroCountries = ['AT', 'BE', 'CY', 'EE', 'FI', 'FR', 'DE', 'GR', 'IE', 'IT', 'LV', 'LT', 'LU', 'MT', 'NL', 'PT', 'SK', 'SI', 'ES'];
-        if (in_array($countryCode, $euroCountries)) return 'EUR';
+        if (in_array($countryCode, $euroCountries)) {
+            return 'EUR';
+        }
 
         return 'USD';
     }
@@ -125,22 +138,24 @@ class CurrencyHelper
     /**
      * Convert an amount from USD base to target currency.
      */
-    public static function convert(float $amount, string $toCurrency = null): float
+    public static function convert(float $amount, ?string $toCurrency = null): float
     {
         $toCurrency = $toCurrency ?: self::getUserCurrency();
         $rate = self::$currencies[strtoupper($toCurrency)]['rate'] ?? 1.0;
+
         return $amount * $rate;
     }
 
     /**
      * Format starting price base values from USD to user local currency dynamically.
      */
-    public static function format(float $amount, string $toCurrency = null): string
+    public static function format(float $amount, ?string $toCurrency = null): string
     {
         $toCurrency = $toCurrency ?: self::getUserCurrency();
         $symbol = self::$currencies[strtoupper($toCurrency)]['symbol'] ?? '$';
         $converted = self::convert($amount, $toCurrency);
-        return $symbol . number_format($converted, 0);
+
+        return $symbol.number_format($converted, 0);
     }
 
     /**
@@ -149,13 +164,14 @@ class CurrencyHelper
     public static function formatRange(float $min, float $max, string $currencyCode): string
     {
         $symbol = self::getCurrencySymbolForCode($currencyCode);
-        return $symbol . number_format($min, 0) . ' - ' . $symbol . number_format($max, 0);
+
+        return $symbol.number_format($min, 0).' - '.$symbol.number_format($max, 0);
     }
 
     /**
      * Localized budget range options tailored to each currency scale.
      */
-    public static function getBudgetOptions(string $currency = null): array
+    public static function getBudgetOptions(?string $currency = null): array
     {
         $currency = $currency ?: self::getUserCurrency();
         if ($currency === 'NGN') {
@@ -194,6 +210,7 @@ class CurrencyHelper
                 '€18,400+',
             ];
         }
+
         // USD (Default)
         return [
             'Under $1,000',
@@ -213,6 +230,7 @@ class CurrencyHelper
     public static function convertToUsd(float $amount, string $fromCurrency): float
     {
         $rate = self::$currencies[strtoupper($fromCurrency)]['rate'] ?? 1.0;
+
         return $rate > 0 ? ($amount / $rate) : $amount;
     }
 
@@ -227,6 +245,7 @@ class CurrencyHelper
             '€' => '&#8364;',
             '$' => '&#36;',
         ];
+
         return str_replace(array_keys($replacements), array_values($replacements), $str);
     }
 }

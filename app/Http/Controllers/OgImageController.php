@@ -2,29 +2,30 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use App\Models\Talent;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Response;
-use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
+use Intervention\Image\ImageManager;
 
 class OgImageController extends Controller
 {
     /**
      * Generate and stream the Open Graph image for a talent.
-     * Fixed for MySQL 'database' cache driver by using base64 encoding to avoid 
+     * Fixed for MySQL 'database' cache driver by using base64 encoding to avoid
      * 'Incorrect string value' errors with binary data.
      */
     public function show(string $slug)
     {
         $talent = Talent::where('slug', $slug)->firstOrFail();
-        
+
         // Use the Cacheable trait's cacheRemember method which handles key generation and invalidation
         $base64Image = $talent->cacheRemember('og_image', 604800, function () use ($talent) {
             try {
-                $manager = new ImageManager(new Driver());
+                $manager = new ImageManager(new Driver);
 
                 // 1. Fetch Remote Image using profile_photo_url accessor
                 $sourceUrl = $talent->profile_photo_url;
@@ -37,15 +38,15 @@ class OgImageController extends Controller
                         $imageData = $response->body();
                     }
                 } catch (\Exception $e) {
-                    Log::warning("OG Fetch failed for talent {$talent->id}: " . $e->getMessage());
+                    Log::warning("OG Fetch failed for talent {$talent->id}: ".$e->getMessage());
                 }
 
                 // 2. Load or Create Canvas
-                if (!$imageData) {
+                if (! $imageData) {
                     // Fallback to initials if the primary fetch fails
                     $name = str_replace(' ', '+', $talent->name);
                     $fallbackUrl = "https://ui-avatars.com/api/?name={$name}&background=223757&color=ffffff&size=1200&format=png";
-                    
+
                     try {
                         $fallbackResponse = Http::timeout(5)->get($fallbackUrl);
                         if ($fallbackResponse->successful()) {
@@ -84,15 +85,16 @@ class OgImageController extends Controller
                 return base64_encode($image->encodeUsingMediaType('image/jpeg')->toString());
 
             } catch (\Throwable $e) {
-                Log::error("Critical OG generation failure for talent {$talent->id}: " . $e->getMessage());
-                
+                Log::error("Critical OG generation failure for talent {$talent->id}: ".$e->getMessage());
+
                 // Final bulletproof fallback: return a basic solid color canvas (base64 encoded JPEG)
                 try {
-                    $manager = new ImageManager(new Driver());
+                    $manager = new ImageManager(new Driver);
                     $fallbackBytes = $manager->createImage(1200, 630)
                         ->fill('223757')
                         ->encodeUsingMediaType('image/jpeg')
                         ->toString();
+
                     return base64_encode($fallbackBytes);
                 } catch (\Exception $finalError) {
                     return null;
@@ -100,7 +102,7 @@ class OgImageController extends Controller
             }
         });
 
-        if (!$base64Image) {
+        if (! $base64Image) {
             return Response::make('', 404);
         }
 
@@ -108,19 +110,19 @@ class OgImageController extends Controller
         $imageBytes = base64_decode($base64Image);
 
         return Response::make($imageBytes, 200, [
-            'Content-Type'  => 'image/jpeg',
+            'Content-Type' => 'image/jpeg',
             'Cache-Control' => 'public, max-age=604800, stale-while-revalidate=86400',
         ]);
     }
 
     public function resource(string $slug)
     {
-        $post = \App\Models\Post::where('slug', $slug)->firstOrFail();
-        
+        $post = Post::where('slug', $slug)->firstOrFail();
+
         // Use the Cacheable trait's cacheRemember method for posts
         $base64Image = $post->cacheRemember('og_image', 604800, function () use ($post) {
             try {
-                $manager = new ImageManager(new Driver());
+                $manager = new ImageManager(new Driver);
                 $sourceUrl = $post->image_url;
                 $imageData = null;
 
@@ -130,10 +132,10 @@ class OgImageController extends Controller
                         $imageData = $response->body();
                     }
                 } catch (\Exception $e) {
-                    Log::warning("OG Fetch failed for resource {$post->id}: " . $e->getMessage());
+                    Log::warning("OG Fetch failed for resource {$post->id}: ".$e->getMessage());
                 }
 
-                if (!$imageData) {
+                if (! $imageData) {
                     $image = $manager->createImage(1200, 630)->fill('111827');
                 } else {
                     $image = $manager->decode($imageData);
@@ -157,19 +159,20 @@ class OgImageController extends Controller
                 return base64_encode($image->encodeUsingMediaType('image/jpeg')->toString());
 
             } catch (\Throwable $e) {
-                Log::error("Critical OG generation failure for resource {$post->id}: " . $e->getMessage());
+                Log::error("Critical OG generation failure for resource {$post->id}: ".$e->getMessage());
+
                 return null;
             }
         });
 
-        if (!$base64Image) {
+        if (! $base64Image) {
             return Response::make('', 404);
         }
 
         $imageBytes = base64_decode($base64Image);
 
         return Response::make($imageBytes, 200, [
-            'Content-Type'  => 'image/jpeg',
+            'Content-Type' => 'image/jpeg',
             'Cache-Control' => 'public, max-age=604800, stale-while-revalidate=86400',
         ]);
     }

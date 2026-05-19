@@ -5,6 +5,7 @@ namespace App\Mail;
 use App\Models\Inquiry;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
+use Illuminate\Mail\Mailables\Address;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
@@ -20,9 +21,9 @@ class AdminBookingNotification extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'New Talent Booking Inquiry: ' . $this->inquiry->event_type,
+            subject: 'New Talent Booking Inquiry: '.$this->inquiry->event_type,
             replyTo: [
-                new \Illuminate\Mail\Mailables\Address($this->inquiry->email, $this->inquiry->first_name . ' ' . $this->inquiry->last_name),
+                new Address($this->inquiry->email, $this->inquiry->first_name.' '.$this->inquiry->last_name),
             ],
         );
     }

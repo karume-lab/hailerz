@@ -2,17 +2,19 @@
 
 namespace App\Models;
 
+use App\Enums\InquiryStatus;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use App\Enums\InquiryStatus;
 
 /**
- * @property \Carbon\Carbon|null $event_date
+ * @property Carbon|null $event_date
  */
 class Inquiry extends Model
 {
     use SoftDeletes;
+
     protected $guarded = [];
 
     protected function casts(): array

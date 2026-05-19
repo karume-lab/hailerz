@@ -12,13 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('talents', function (Blueprint $table) {
-            if (!Schema::hasColumn('talents', 'status')) {
+            if (! Schema::hasColumn('talents', 'status')) {
                 $table->enum('status', ['draft', 'active', 'hidden'])->default('draft')->after('location');
             }
-            if (!Schema::hasColumn('talents', 'internal_notes')) {
+            if (! Schema::hasColumn('talents', 'internal_notes')) {
                 $table->text('internal_notes')->nullable()->after('status');
             }
-            if (!Schema::hasColumn('talents', 'is_featured')) {
+            if (! Schema::hasColumn('talents', 'is_featured')) {
                 $table->boolean('is_featured')->default(false)->after('internal_notes');
             }
         });

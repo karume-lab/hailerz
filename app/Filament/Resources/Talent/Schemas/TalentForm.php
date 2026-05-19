@@ -4,8 +4,8 @@ namespace App\Filament\Resources\Talent\Schemas;
 
 use App\Models\Talent;
 use Filament\Forms;
-use Filament\Schemas\Schema;
 use Filament\Schemas\Components\Section;
+use Filament\Schemas\Schema;
 use Illuminate\Support\Str;
 
 class TalentForm
@@ -20,8 +20,7 @@ class TalentForm
                         ->label('Performer / Act Name')
                         ->required()
                         ->live(onBlur: true)
-                        ->afterStateUpdated(fn(string $operation, $state, $set)
-                            => $operation === 'create' ? $set('slug', Str::slug($state)) : null)
+                        ->afterStateUpdated(fn (string $operation, $state, $set) => $operation === 'create' ? $set('slug', Str::slug($state)) : null)
                         ->columnSpan(1),
                     Forms\Components\TextInput::make('slug')
                         ->hidden()

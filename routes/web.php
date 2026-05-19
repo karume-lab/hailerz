@@ -1,32 +1,35 @@
 <?php
 
-use App\Livewire\Public\Home;
-use App\Livewire\Public\TalentDirectory;
-use App\Livewire\Public\ShowTalent;
-use App\Livewire\Public\BookingWizard;
-use App\Livewire\Public\About;
-use App\Livewire\Public\Services;
-use App\Livewire\Public\JoinTalent;
-use App\Livewire\Public\Resources;
-use App\Livewire\Public\ShowResource;
+use App\Http\Controllers\ContractController;
+use App\Http\Controllers\OgImageController;
 use App\Livewire\BookingConfirmation;
-use App\Livewire\PostList;
-use App\Livewire\ShowPost;
-use App\Livewire\Public\Legal\TermsOfService;
-use App\Livewire\Public\Legal\PrivacyPolicy;
+use App\Livewire\Public\About;
+use App\Livewire\Public\BookingWizard;
+use App\Livewire\Public\Contact;
+use App\Livewire\Public\Home;
+use App\Livewire\Public\JoinTalent;
 use App\Livewire\Public\Legal\BookingAgreement;
 use App\Livewire\Public\Legal\CancellationPolicy;
+use App\Livewire\Public\Legal\PrivacyPolicy;
+use App\Livewire\Public\Legal\TermsOfService;
+use App\Livewire\Public\Resources;
+use App\Livewire\Public\Services;
+use App\Livewire\Public\ShowResource;
+use App\Livewire\Public\ShowTalent;
+use App\Livewire\Public\Staffing;
+use App\Livewire\Public\TalentDirectory;
+use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\OgImageController;
-use Illuminate\Support\Facades\Cache;
 
 // Service Worker with dynamic versioning
 Route::get('/sw.js', function () {
-    $version = Cache::remember('sw_version', 60, function() {
+    $version = Cache::remember('sw_version', 60, function () {
         // Try to get the git commit hash, fallback to a timestamp
         $hash = trim(@shell_exec('git rev-parse --short HEAD'));
+
         return $hash ?: time();
     });
 
@@ -49,8 +52,8 @@ Route::get('/about', About::class)->name('about');
 Route::get('/resources', Resources::class)->name('resources');
 Route::get('/resources/{slug}', ShowResource::class)->name('resources.show');
 Route::get('/services', Services::class)->name('services');
-Route::get('/staffing', \App\Livewire\Public\Staffing::class)->name('staffing');
-Route::get('/contact', \App\Livewire\Public\Contact::class)->name('contact');
+Route::get('/staffing', Staffing::class)->name('staffing');
+Route::get('/contact', Contact::class)->name('contact');
 Route::get('/join', JoinTalent::class)->name('join');
 
 // Legal
@@ -65,16 +68,16 @@ Route::view('/maintenance', 'maintenance')->name('maintenance');
 // CSP Violation Reports
 Route::post('/csp-report', function (Request $request) {
     $report = $request->json()->all();
-    if (!empty($report)) {
+    if (! empty($report)) {
         Log::warning('CSP Violation', $report);
     }
+
     return response()->noContent();
-})->withoutMiddleware([\Illuminate\Foundation\Http\Middleware\VerifyCsrfToken::class])
-  ->middleware('throttle:30,1')
-  ->name('csp.report');
+})->withoutMiddleware([VerifyCsrfToken::class])
+    ->middleware('throttle:30,1')
+    ->name('csp.report');
 
 // Digital Signature Engine Routes
-use App\Http\Controllers\ContractController;
 
 Route::prefix('contracts')->group(function () {
     Route::get('/{contract}', [ContractController::class, 'show'])->name('contracts.show');
@@ -83,4 +86,3 @@ Route::prefix('contracts')->group(function () {
     Route::get('/{contract}/download', [ContractController::class, 'download'])->name('contracts.download');
     Route::post('/{oldContract}/new-version', [ContractController::class, 'publishNewVersion'])->name('contracts.new-version');
 });
-

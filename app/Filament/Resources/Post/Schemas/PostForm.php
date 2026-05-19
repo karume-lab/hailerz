@@ -4,8 +4,8 @@ namespace App\Filament\Resources\Post\Schemas;
 
 use App\Models\Post;
 use Filament\Forms;
-use Filament\Schemas\Schema;
 use Filament\Schemas\Components\Section;
+use Filament\Schemas\Schema;
 use Illuminate\Support\Str;
 
 class PostForm
@@ -18,8 +18,7 @@ class PostForm
                     Forms\Components\TextInput::make('title')
                         ->required()
                         ->live(onBlur: true)
-                        ->afterStateUpdated(fn(string $operation, $state, $set) 
-                            => $operation === 'create' ? $set('slug', Str::slug($state)) : null),
+                        ->afterStateUpdated(fn (string $operation, $state, $set) => $operation === 'create' ? $set('slug', Str::slug($state)) : null),
                     Forms\Components\TextInput::make('slug')
                         ->required()
                         ->unique(Post::class, 'slug', ignoreRecord: true),

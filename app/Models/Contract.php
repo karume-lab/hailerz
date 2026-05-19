@@ -28,6 +28,8 @@ class Contract extends Model
 
     /**
      * Get the signatures associated with the contract.
+     *
+     * @return HasMany<ContractSignature, $this>
      */
     public function signatures(): HasMany
     {
@@ -39,11 +41,11 @@ class Contract extends Model
      */
     public function calculateHash(): ?string
     {
-        if (!$this->file_path) {
+        if (! $this->file_path) {
             return null;
         }
 
-        if (!Storage::disk('local')->exists($this->file_path)) {
+        if (! Storage::disk('local')->exists($this->file_path)) {
             return null;
         }
 

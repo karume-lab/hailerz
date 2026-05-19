@@ -7,6 +7,7 @@ use App\Models\ContractSignature;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
+use Illuminate\Mail\Mailables\Attachment;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
@@ -16,7 +17,9 @@ class ContractSignatureRequestMail extends Mailable implements ShouldQueue
     use Queueable, SerializesModels;
 
     public Contract $contract;
+
     public ContractSignature $signature;
+
     public string $signedUrl;
 
     /**
@@ -35,7 +38,7 @@ class ContractSignatureRequestMail extends Mailable implements ShouldQueue
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Signature Required: ' . basename($this->contract->file_path),
+            subject: 'Signature Required: '.basename($this->contract->file_path),
         );
     }
 
@@ -52,7 +55,7 @@ class ContractSignatureRequestMail extends Mailable implements ShouldQueue
     /**
      * Get the attachments for the message.
      *
-     * @return array<int, \Illuminate\Mail\Mailables\Attachment>
+     * @return array<int, Attachment>
      */
     public function attachments(): array
     {

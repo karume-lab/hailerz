@@ -6,21 +6,21 @@ use App\Filament\Resources\Inquiries\Pages\CreateInquiry;
 use App\Filament\Resources\Inquiries\Pages\EditInquiry;
 use App\Filament\Resources\Inquiries\Pages\ListInquiries;
 use App\Filament\Resources\Inquiries\Schemas\InquiryForm;
-use App\Filament\Resources\Inquiries\Tables\InquiriesTable;
+use App\Filament\Resources\Inquiries\Tables\InquiryTable;
 use App\Models\Inquiry;
 use BackedEnum;
-use UnitEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use UnitEnum;
 
 class InquiryResource extends Resource
 {
     protected static ?string $model = Inquiry::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedChatBubbleBottomCenterText;
-    
+
     protected static UnitEnum|string|null $navigationGroup = 'Procurement & Bookings';
 
     public static function getNavigationLabel(): string
@@ -45,7 +45,7 @@ class InquiryResource extends Resource
 
     public static function table(Table $table): Table
     {
-        return \App\Filament\Resources\Inquiries\Tables\InquiryTable::configure($table);
+        return InquiryTable::configure($table);
     }
 
     public static function getRelations(): array

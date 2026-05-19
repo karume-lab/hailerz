@@ -2,15 +2,21 @@
 
 namespace App\Livewire\Public;
 
+use Illuminate\Support\Facades\Log;
 use Livewire\Component;
 
 class Contact extends Component
 {
     public $first_name;
+
     public $last_name;
+
     public $email;
+
     public $phone;
+
     public $subject;
+
     public $message;
 
     public $contactSent = false;
@@ -29,7 +35,7 @@ class Contact extends Component
         $this->validate();
 
         // Here you would typically send an email or dispatch an event
-        \Illuminate\Support\Facades\Log::info('Contact form submission', [
+        Log::info('Contact form submission', [
             'first_name' => $this->first_name,
             'last_name' => $this->last_name,
             'email' => $this->email,
@@ -47,4 +53,3 @@ class Contact extends Component
         return view('livewire.public.contact');
     }
 }
-

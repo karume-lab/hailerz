@@ -5,6 +5,7 @@ namespace App\Mail;
 use App\Models\Submission;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
+use Illuminate\Mail\Mailables\Address;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
@@ -20,9 +21,9 @@ class AdminTalentSubmissionNotification extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'New Talent Submission: ' . $this->submission->artist_name,
+            subject: 'New Talent Submission: '.$this->submission->artist_name,
             replyTo: [
-                new \Illuminate\Mail\Mailables\Address($this->submission->email, $this->submission->real_name),
+                new Address($this->submission->email, $this->submission->real_name),
             ],
         );
     }

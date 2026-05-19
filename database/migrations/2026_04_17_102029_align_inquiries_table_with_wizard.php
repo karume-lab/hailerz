@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('event_location')->nullable();
             $table->boolean('budget_flexible')->default(false);
             $table->string('event_type')->nullable()->change();
-            if (!Schema::hasColumn('inquiries', 'estimated_attendance')) {
+            if (! Schema::hasColumn('inquiries', 'estimated_attendance')) {
                 $table->integer('estimated_attendance')->nullable();
             }
         });

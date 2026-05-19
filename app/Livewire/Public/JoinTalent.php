@@ -2,21 +2,23 @@
 
 namespace App\Livewire\Public;
 
-use App\Models\Submission;
-use Livewire\Component;
-use Livewire\Attributes\Title;
-use Livewire\Attributes\Layout;
-use Livewire\Attributes\Validate;
-use App\Mail\TalentSubmissionMail;
+use App\Helpers\CurrencyHelper;
 use App\Mail\AdminTalentSubmissionNotification;
+use App\Mail\TalentSubmissionMail;
+use App\Models\Submission;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
-
+use Livewire\Attributes\Layout;
+use Livewire\Attributes\Title;
+use Livewire\Attributes\Validate;
+use Livewire\Component;
 
 #[Layout('components.layouts.app')]
 #[Title('Join Our Roster - Talent Submissions | Hailerz')]
 class JoinTalent extends Component
 {
     public int $currentStep = 1;
+
     public bool $isSubmitted = false;
 
     #[Validate('accepted', message: 'Please confirm that the information provided is accurate.')]
@@ -80,7 +82,6 @@ class JoinTalent extends Component
 
     // Experience & Credentials
 
-
     #[Validate('nullable|string|max:2000')]
     public string $notable_clients = '';
 
@@ -90,8 +91,6 @@ class JoinTalent extends Component
     // Additional Information
     #[Validate('required|string|min:200|max:5000')]
     public string $bio = '';
-
-
 
     #[Validate('nullable|string')]
     public string $source = '';
@@ -154,34 +153,34 @@ class JoinTalent extends Component
         $this->validate();
 
         $submission = Submission::create([
-            'talent_type'       => $this->talent_type,
-            'member_count'      => $this->member_count,
-            'artist_name'       => $this->artist_name,
-            'real_name'         => $this->real_name,
-            'email'             => $this->email,
-            'phone'             => $this->phone,
-            'location'          => $this->location,
+            'talent_type' => $this->talent_type,
+            'member_count' => $this->member_count,
+            'artist_name' => $this->artist_name,
+            'real_name' => $this->real_name,
+            'email' => $this->email,
+            'phone' => $this->phone,
+            'location' => $this->location,
             'profile_photo_url' => $this->profile_photo_url,
-            'category'          => $this->category,
-            'genre'             => $this->genre,
-            'years_active'      => $this->years_active,
-            'min_rate'          => $this->min_rate,
-            'max_rate'          => $this->max_rate,
-            'website_url'       => $this->website_url,
-            'instagram_handle'  => $this->instagram_handle,
-            'facebook_url'      => $this->facebook_url,
-            'youtube_channel'   => $this->youtube_channel,
-            'tiktok_handle'     => $this->tiktok_handle,
-            'notable_clients'   => $this->notable_clients,
-            'press_features'    => $this->press_features,
-            'bio'               => $this->bio,
-            'source'            => $this->source,
-            'status'            => 'pending',
-            'currency'          => \App\Helpers\CurrencyHelper::getUserCurrency(),
+            'category' => $this->category,
+            'genre' => $this->genre,
+            'years_active' => $this->years_active,
+            'min_rate' => $this->min_rate,
+            'max_rate' => $this->max_rate,
+            'website_url' => $this->website_url,
+            'instagram_handle' => $this->instagram_handle,
+            'facebook_url' => $this->facebook_url,
+            'youtube_channel' => $this->youtube_channel,
+            'tiktok_handle' => $this->tiktok_handle,
+            'notable_clients' => $this->notable_clients,
+            'press_features' => $this->press_features,
+            'bio' => $this->bio,
+            'source' => $this->source,
+            'status' => 'pending',
+            'currency' => CurrencyHelper::getUserCurrency(),
         ]);
 
         foreach ($this->gallery as $item) {
-            if (!empty($item['url'])) {
+            if (! empty($item['url'])) {
                 $submission->gallery()->create($item);
             }
         }
@@ -190,7 +189,7 @@ class JoinTalent extends Component
             Mail::to($submission->email)->send(new TalentSubmissionMail($submission));
             Mail::to(config('mail.from.address'))->send(new AdminTalentSubmissionNotification($submission));
         } catch (\Exception $e) {
-            \Illuminate\Support\Facades\Log::error('Mail sending failed: ' . $e->getMessage());
+            Log::error('Mail sending failed: '.$e->getMessage());
         }
 
         $this->isSubmitted = true;

@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\Category;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -24,11 +26,11 @@ class AppServiceProvider extends ServiceProvider
 
         // Share active categories with all views
         View::composer('*', function ($view) {
-            $view->with('allCategories', \App\Models\Category::where('is_active', true)->orderBy('name')->get());
+            $view->with('allCategories', Category::where('is_active', true)->orderBy('name')->get());
         });
 
         if ($this->app->environment('production')) {
-            \Illuminate\Support\Facades\URL::forceScheme('https');
+            URL::forceScheme('https');
         }
     }
 }

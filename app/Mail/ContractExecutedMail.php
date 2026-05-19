@@ -32,7 +32,7 @@ class ContractExecutedMail extends Mailable implements ShouldQueue
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Executed Contract: ' . basename($this->contract->file_path),
+            subject: 'Executed Contract: '.basename($this->contract->file_path),
         );
     }
 

@@ -2,13 +2,13 @@
 
 namespace App\Livewire\Public;
 
-use App\Models\Talent;
 use App\Models\Category;
+use App\Models\Talent;
+use Livewire\Attributes\Layout;
+use Livewire\Attributes\Title;
+use Livewire\Attributes\Url;
 use Livewire\Component;
 use Livewire\WithPagination;
-use Livewire\Attributes\Title;
-use Livewire\Attributes\Layout;
-use Livewire\Attributes\Url;
 
 #[Layout('components.layouts.app')]
 #[Title('Hailerz | Talent Directory')]
@@ -90,13 +90,13 @@ class TalentDirectory extends Component
     public function render()
     {
         $perPage = 12;
-        
+
         $talents = Talent::query()
             ->where('status', 'active')
-            ->when($this->search, fn ($query) => $query->where('name', 'like', '%' . $this->search . '%'))
+            ->when($this->search, fn ($query) => $query->where('name', 'like', '%'.$this->search.'%'))
             ->when($this->category, fn ($query) => $query->whereHas('category', fn ($q) => $q->where('slug', $this->category)))
-            ->when($this->event, fn ($query) => $query->where('bio', 'like', '%' . str_replace('_', ' ', $this->event) . '%'))
-            ->when($this->location, fn ($query) => $query->where('location', 'like', '%' . $this->location . '%'))
+            ->when($this->event, fn ($query) => $query->where('bio', 'like', '%'.str_replace('_', ' ', $this->event).'%'))
+            ->when($this->location, fn ($query) => $query->where('location', 'like', '%'.$this->location.'%'))
             ->when($this->country, fn ($query) => $query->where('country', $this->country))
             ->when($this->genre, fn ($query) => $query->where('genre', $this->genre))
             ->when($this->category_id, fn ($query) => $query->where('category_id', $this->category_id))

@@ -3,10 +3,9 @@
 namespace App\Filament\Resources\Inquiries\Schemas;
 
 use App\Enums\InquiryStatus;
-use App\Models\Talent;
 use Filament\Forms;
-use Filament\Schemas\Schema;
 use Filament\Schemas\Components\Section;
+use Filament\Schemas\Schema;
 
 class InquiryForm
 {

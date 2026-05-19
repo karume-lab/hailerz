@@ -1,0 +1,23 @@
+includes:
+    - vendor/larastan/larastan/extension.neon
+
+parameters:
+    # level 5 checks basic types, basic OOP, typehints, and calling unknown methods.
+    level: 5
+    
+    paths:
+        - app
+        - config
+        - database
+        - tests
+
+    # Exclude directories or files if needed
+    excludePaths:
+        - bootstrap/cache/*
+        - storage/*
+        - vendor/*
+
+    ignoreErrors:
+        - '#Access to constant ATTR_SSL_CA on an unknown class Pdo\\Mysql\.#'
+        - '#Call to an undefined method Spatie\\Image\\Drivers\\ImageDriver::withResponsiveImages\(\)\.#'
+        - '#will always evaluate to true\.#'

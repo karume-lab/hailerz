@@ -18,4 +18,5 @@ class StaffingInquiry extends Model
         'needs',
         'status',
         'admin_notes',
-    ];}
+    ];
+}

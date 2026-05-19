@@ -2,7 +2,6 @@
 
 namespace App\Filament\Resources\Post;
 
-use App\Filament\Resources\Post\Pages;
 use App\Filament\Resources\Post\Schemas\PostForm;
 use App\Filament\Resources\Post\Tables\PostTable;
 use App\Models\Post;

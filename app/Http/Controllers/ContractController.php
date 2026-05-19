@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ContractExecutedMail;
+use App\Mail\ContractSignatureRequestMail;
 use App\Models\Contract;
 use App\Models\ContractSignature;
 use App\Services\ContractPdfService;
-use App\Mail\ContractSignatureRequestMail;
-use App\Mail\ContractExecutedMail;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\URL;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Str;
 
 class ContractController extends Controller
@@ -37,7 +37,7 @@ class ContractController extends Controller
         $email = $request->query('email');
 
         // 2. Validate that the signer is indeed on this contract
-        /** @var \App\Models\ContractSignature|null $signature */
+        /** @var ContractSignature|null $signature */
         $signature = $contract->signatures()
             ->where('signer_role', $role)
             ->where('signer_identifier', $email)
@@ -70,7 +70,7 @@ class ContractController extends Controller
         $email = $request->query('email');
 
         // 2. Locate the signer's record
-        /** @var \App\Models\ContractSignature $signature */
+        /** @var ContractSignature $signature */
         $signature = $contract->signatures()
             ->where('signer_role', $role)
             ->where('signer_identifier', $email)
@@ -94,7 +94,7 @@ class ContractController extends Controller
         $signature->update([
             'ip_address' => $request->ip(),
             'user_agent' => $request->userAgent(),
-            'token_id' => 'SIG_' . strtoupper(Str::random(16)) . '_' . hash('crc32b', $email),
+            'token_id' => 'SIG_'.strtoupper(Str::random(16)).'_'.hash('crc32b', $email),
             'signed_at' => now(),
         ]);
 
@@ -109,6 +109,7 @@ class ContractController extends Controller
             $this->pdfService->appendCertificateOfCompletion($contract);
 
             // Queue completion emails to all signers
+            /** @var ContractSignature $sig */
             foreach ($contract->signatures as $sig) {
                 Mail::to($sig->signer_identifier)->queue(new ContractExecutedMail($contract));
             }
@@ -116,6 +117,7 @@ class ContractController extends Controller
             return redirect()->back()->with('success', 'Document successfully executed! A copy of the final agreement has been sent to your email.');
         } else {
             // Find next pending signer and email them
+            /** @var ContractSignature|null $nextSignature */
             $nextSignature = $contract->signatures()
                 ->whereNull('signed_at')
                 ->orderBy('id', 'asc')
@@ -151,7 +153,7 @@ class ContractController extends Controller
         $email = $request->query('email');
 
         // Verify signer
-        /** @var \App\Models\ContractSignature $signature */
+        /** @var ContractSignature $signature */
         $signature = $contract->signatures()
             ->where('signer_role', $role)
             ->where('signer_identifier', $email)
@@ -203,7 +205,7 @@ class ContractController extends Controller
         $oldVersion = $oldContract->version;
         $parts = explode('.', $oldVersion);
         if (count($parts) === 2 && is_numeric($parts[0]) && is_numeric($parts[1])) {
-            $newVersion = $parts[0] . '.' . ($parts[1] + 1);
+            $newVersion = $parts[0].'.'.($parts[1] + 1);
         } else {
             $newVersion = '1.1';
         }
@@ -216,6 +218,7 @@ class ContractController extends Controller
         ]);
 
         // 4. Recreate the signature requirements (cloned from old contract roles)
+        /** @var ContractSignature $oldSig */
         foreach ($oldContract->signatures as $oldSig) {
             ContractSignature::create([
                 'contract_id' => $newContract->id,
@@ -238,6 +241,7 @@ class ContractController extends Controller
         );
 
         // 6. Route signing link to the first signer
+        /** @var ContractSignature|null $firstSignature */
         $firstSignature = $newContract->signatures()->orderBy('id', 'asc')->first();
         if ($firstSignature) {
             $signedUrl = URL::signedRoute('contracts.show', [
@@ -275,7 +279,7 @@ class ContractController extends Controller
 
         return response()->file($absolutePath, [
             'Content-Type' => 'application/pdf',
-            'Content-Disposition' => 'inline; filename="' . basename($contract->file_path) . '"',
+            'Content-Disposition' => 'inline; filename="'.basename($contract->file_path).'"',
         ]);
     }
 }

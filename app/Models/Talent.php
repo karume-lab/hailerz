@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
@@ -25,10 +26,12 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
  */
 class Talent extends Model implements HasMedia
 {
-    use InteractsWithMedia, HasFactory, SoftDeletes, Cacheable;
+    use Cacheable, HasFactory, InteractsWithMedia, SoftDeletes;
 
     protected $table = 'talents';
+
     protected $guarded = [];
+
     protected $appends = ['thumbnail_url'];
 
     public function getThumbnailUrlAttribute(): string
@@ -37,11 +40,12 @@ class Talent extends Model implements HasMedia
             return $this->getFirstMediaUrl('primary_image', 'thumb');
         }
 
-        if (!empty($this->primary_image_url)) {
+        if (! empty($this->primary_image_url)) {
             return $this->primary_image_url;
         }
 
         $name = str_replace(' ', '+', $this->name);
+
         return "https://ui-avatars.com/api/?name={$name}&background=223757&color=ffffff&size=400";
     }
 
@@ -51,11 +55,12 @@ class Talent extends Model implements HasMedia
             return $this->getFirstMediaUrl('primary_image', 'optimized');
         }
 
-        if (!empty($this->primary_image_url)) {
+        if (! empty($this->primary_image_url)) {
             return $this->primary_image_url;
         }
 
         $name = str_replace(' ', '+', $this->name);
+
         return "https://ui-avatars.com/api/?name={$name}&background=223757&color=ffffff&size=800";
     }
 
@@ -70,6 +75,9 @@ class Talent extends Model implements HasMedia
         ];
     }
 
+    /**
+     * @return BelongsTo<Category, $this>
+     */
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
@@ -88,12 +96,12 @@ class Talent extends Model implements HasMedia
         $this->addMediaCollection('gallery');
     }
 
-    public function galleryItems(): \Illuminate\Database\Eloquent\Relations\MorphMany
+    public function galleryItems(): MorphMany
     {
         return $this->morphMany(GalleryItem::class, 'galleryable');
     }
 
-    public function gallery(): \Illuminate\Database\Eloquent\Relations\MorphMany
+    public function gallery(): MorphMany
     {
         return $this->morphMany(GalleryItem::class, 'galleryable');
     }

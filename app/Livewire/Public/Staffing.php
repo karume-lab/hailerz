@@ -2,25 +2,31 @@
 
 namespace App\Livewire\Public;
 
-use Livewire\Component;
-use Livewire\Attributes\Title;
-use Livewire\Attributes\Layout;
-
-use App\Models\StaffingInquiry;
+use App\Mail\AdminStaffingInquiryNotification;
 use App\Models\Category;
+use App\Models\StaffingInquiry;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
+use Livewire\Attributes\Layout;
+use Livewire\Attributes\Title;
+use Livewire\Component;
 
 #[Layout('components.layouts.app')]
 #[Title('Event Staffing | Hailerz')]
 class Staffing extends Component
 {
     public string $first_name = '';
+
     public string $last_name = '';
+
     public string $email = '';
+
     public string $phone = '';
+
     public string $company = '';
+
     public string $needs = '';
+
     public bool $requestSent = false;
 
     protected array $rules = [
@@ -49,7 +55,7 @@ class Staffing extends Component
 
         // Send email to admin
         try {
-            Mail::to(config('mail.from.address'))->send(new \App\Mail\AdminStaffingInquiryNotification($inquiry));
+            Mail::to(config('mail.from.address'))->send(new AdminStaffingInquiryNotification($inquiry));
         } catch (\Exception $e) {
             Log::error('Failed to send staffing inquiry email', ['error' => $e->getMessage()]);
         }
@@ -72,9 +78,10 @@ class Staffing extends Component
             ->map(function ($category) {
                 // Use a default image if one exists for the slug, otherwise it will fall back to talent photo or placeholder
                 $path = "images/home/{$category->slug}.webp";
-                $category->default_image = file_exists(public_path($path)) 
-                    ? asset($path) 
+                $category->default_image = file_exists(public_path($path))
+                    ? asset($path)
                     : asset('images/placeholder-category.webp');
+
                 return $category;
             });
 

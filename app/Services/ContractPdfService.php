@@ -14,7 +14,7 @@ class ContractPdfService
     public function generate(Contract $contract, string $type, string $partyA, string $partyB, string $contentHtml): string
     {
         // 1. Ensure the directory exists
-        if (!Storage::disk('local')->exists('contracts')) {
+        if (! Storage::disk('local')->exists('contracts')) {
             Storage::disk('local')->makeDirectory('contracts');
         }
 
@@ -24,7 +24,7 @@ class ContractPdfService
         $partyBClean = str_replace(' ', '_', preg_replace('/[^A-Za-z0-9\s]/', '', $partyB));
         $timestamp = now()->format('d_m_y_H_i_s');
         $filename = "{$typeClean}_{$partyAClean}_vs_{$partyBClean}_{$timestamp}.pdf";
-        $filePath = 'contracts/' . $filename;
+        $filePath = 'contracts/'.$filename;
 
         // 3. Save the source HTML content for future re-generation / appending
         Storage::disk('local')->put("contracts/{$contract->id}_source.html", $contentHtml);
@@ -48,7 +48,7 @@ class ContractPdfService
         $contract->update([
             'file_path' => $filePath,
         ]);
-        
+
         $contract->update([
             'file_hash' => $contract->calculateHash(),
         ]);
@@ -63,8 +63,8 @@ class ContractPdfService
     {
         // 1. Fetch original HTML content
         $sourcePath = "contracts/{$contract->id}_source.html";
-        if (!Storage::disk('local')->exists($sourcePath)) {
-            throw new \Exception("Original contract HTML content not found.");
+        if (! Storage::disk('local')->exists($sourcePath)) {
+            throw new \Exception('Original contract HTML content not found.');
         }
         $originalHtml = Storage::disk('local')->get($sourcePath);
 
@@ -76,7 +76,7 @@ class ContractPdfService
         ])->render();
 
         // 3. Append Certificate to the Original HTML using page-break-before style
-        $combinedHtml = $originalHtml . "\n" . $certificateHtml;
+        $combinedHtml = $originalHtml."\n".$certificateHtml;
 
         // 4. Generate the final PDF
         $pdf = Pdf::loadHTML($combinedHtml)

@@ -4,8 +4,8 @@ namespace App\Mail;
 
 use App\Models\StaffingInquiry;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
+use Illuminate\Mail\Mailables\Address;
 use Illuminate\Mail\Mailables\Attachment;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
@@ -28,9 +28,9 @@ class AdminStaffingInquiryNotification extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'New Staffing Inquiry from ' . $this->inquiry->first_name . ' ' . $this->inquiry->last_name,
+            subject: 'New Staffing Inquiry from '.$this->inquiry->first_name.' '.$this->inquiry->last_name,
             replyTo: [
-                new \Illuminate\Mail\Mailables\Address($this->inquiry->email, $this->inquiry->first_name . ' ' . $this->inquiry->last_name),
+                new Address($this->inquiry->email, $this->inquiry->first_name.' '.$this->inquiry->last_name),
             ],
         );
     }

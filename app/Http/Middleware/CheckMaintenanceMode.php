@@ -11,11 +11,11 @@ class CheckMaintenanceMode
     /**
      * Handle an incoming request.
      *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
+     * @param  Closure(Request): (Response)  $next
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (config('app.maintenance.enabled') && !$request->is('up') && !$request->is('maintenance')) {
+        if (config('app.maintenance.enabled') && ! $request->is('up') && ! $request->is('maintenance')) {
             return redirect('/maintenance');
         }
 

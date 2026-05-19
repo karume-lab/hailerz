@@ -3,8 +3,8 @@
 namespace App\Livewire\Public;
 
 use App\Models\Post;
-use Livewire\Component;
 use Livewire\Attributes\Url;
+use Livewire\Component;
 
 class Resources extends Component
 {
@@ -44,7 +44,7 @@ class Resources extends Component
         $posts = $query->orderBy('published_at', 'desc')->get();
 
         return view('livewire.public.resources', [
-            'posts' => $posts
+            'posts' => $posts,
         ]);
     }
 }

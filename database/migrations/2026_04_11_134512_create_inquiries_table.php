@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('inquiries', function (Blueprint $table) {
             $table->id();
             $table->foreignId('talent_id')->nullable()->constrained('talents')->nullOnDelete();
-            
+
             // Contact Information
             $table->string('first_name');
             $table->string('last_name');
@@ -42,7 +42,7 @@ return new class extends Migration
             // Misc
             $table->string('source')->nullable(); // How did you hear about us?
 
-            $table->string('status')->default('new'); 
+            $table->string('status')->default('new');
             $table->timestamps();
             $table->softDeletes();
         });

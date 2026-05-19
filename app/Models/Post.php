@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-    use HasFactory, Cacheable;
+    use Cacheable, HasFactory;
 
     protected $fillable = [
         'title',
@@ -30,14 +30,16 @@ class Post extends Model
 
     public function getVideoUrl(): ?string
     {
-        if (!is_array($this->content)) return null;
-        
+        if (! is_array($this->content)) { // @phpstan-ignore-line
+            return null;
+        }
+
         foreach ($this->content as $item) {
             if (isset($item['type']) && $item['type'] === 'video' && isset($item['url'])) {
                 return $item['url'];
             }
         }
-        
+
         return null;
     }
 }

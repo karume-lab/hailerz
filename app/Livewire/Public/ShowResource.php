@@ -8,6 +8,7 @@ use Livewire\Component;
 class ShowResource extends Component
 {
     public $slug;
+
     public $post;
 
     public function mount($slug)
@@ -22,7 +23,7 @@ class ShowResource extends Component
     {
         return view('livewire.public.show-resource')
             ->layout('components.layouts.app', [
-                'title' => $this->post->title . ' — Resources',
+                'title' => $this->post->title.' — Resources',
                 'description' => $this->post->subtitle,
                 'ogImage' => route('og.resource', ['slug' => $this->post->slug, 'v' => $this->post->updated_at?->timestamp]),
             ]);

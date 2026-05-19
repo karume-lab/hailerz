@@ -2,9 +2,12 @@
 
 namespace App\Filament\Resources\Talent\Tables;
 
-use Filament\Tables;
-use Filament\Tables\Table;
+use App\Models\Talent;
 use Filament\Actions;
+use Filament\Notifications\Notification;
+use Filament\Tables;
+use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
+use Filament\Tables\Table;
 
 class TalentTable
 {
@@ -12,11 +15,11 @@ class TalentTable
     {
         return $table
             ->columns([
-                \Filament\Tables\Columns\SpatieMediaLibraryImageColumn::make('primary_image')
+                SpatieMediaLibraryImageColumn::make('primary_image')
                     ->label('Artist Image')
                     ->collection('primary_image')
                     ->circular()
-                    ->defaultImageUrl(fn ($record) => 'https://ui-avatars.com/api/?name=' . urlencode($record->name) . '&background=223757&color=ffffff'),
+                    ->defaultImageUrl(fn ($record) => 'https://ui-avatars.com/api/?name='.urlencode($record->name).'&background=223757&color=ffffff'),
                 Tables\Columns\TextColumn::make('name')
                     ->label('Act / Performer')
                     ->searchable()
@@ -34,7 +37,7 @@ class TalentTable
                 Tables\Columns\SelectColumn::make('status')
                     ->label('Talent Status')
                     ->options([
-                        'draft'  => 'Under Review',
+                        'draft' => 'Under Review',
                         'awaiting_agreement' => 'Awaiting Agreement',
                         'active' => 'Active',
                         'hidden' => 'Archived',
@@ -49,7 +52,7 @@ class TalentTable
                     ->relationship('category', 'name'),
                 Tables\Filters\SelectFilter::make('status')
                     ->options([
-                        'draft'  => 'Under Review',
+                        'draft' => 'Under Review',
                         'awaiting_agreement' => 'Awaiting Agreement',
                         'active' => 'Active',
                         'hidden' => 'Archived',
@@ -70,7 +73,7 @@ class TalentTable
                             'status' => 'active',
                         ]);
 
-                        \Filament\Notifications\Notification::make()
+                        Notification::make()
                             ->title('Agreement Marked as Signed')
                             ->body("{$record->name} is now active on the public site.")
                             ->success()

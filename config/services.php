@@ -35,7 +35,6 @@ return [
         ],
     ],
 
-
     'ir' => [
         'token' => env('IR_SITE_VERIFICATION_TOKEN'),
     ],

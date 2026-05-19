@@ -3,9 +3,18 @@
 namespace App\Filament\Resources\Inquiries\Tables;
 
 use App\Enums\InquiryStatus;
+use App\Mail\TalentFrozenMail;
+use App\Models\EmailTemplate;
+use App\Models\Inquiry;
+use Filament\Actions;
+use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
+use Filament\Notifications\Notification;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Filament\Actions;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 class InquiryTable
 {
@@ -74,26 +83,26 @@ class InquiryTable
                     ->icon('heroicon-o-exclamation-triangle')
                     ->color('danger')
                     ->requiresConfirmation()
-                    ->hidden(fn ($record) => $record->is_no_show || !$record->talent_id)
+                    ->hidden(fn ($record) => $record->is_no_show || ! $record->talent_id)
                     ->action(function ($record) {
                         $record->update(['is_no_show' => true]);
-                        
+
                         $talent = $record->talent;
-                        $noShowCount = \App\Models\Inquiry::where('talent_id', $talent->id)
+                        $noShowCount = Inquiry::where('talent_id', $talent->id)
                             ->where('is_no_show', true)
                             ->where('created_at', '>=', now()->subYear())
                             ->count();
-                            
+
                         if ($noShowCount >= 3) {
                             $talent->update(['is_frozen' => true]);
                             try {
-                                \Illuminate\Support\Facades\Mail::to($talent->email)->send(new \App\Mail\TalentFrozenMail($talent));
+                                Mail::to($talent->email)->send(new TalentFrozenMail($talent));
                             } catch (\Exception $e) {
-                                \Illuminate\Support\Facades\Log::error('Freeze mail failed: ' . $e->getMessage());
+                                Log::error('Freeze mail failed: '.$e->getMessage());
                             }
                         }
-                        
-                        \Filament\Notifications\Notification::make()
+
+                        Notification::make()
                             ->title('Marked as No Show')
                             ->body($noShowCount >= 3 ? "Talent profile has been frozen due to reaching {$noShowCount} no-shows." : "No-show recorded. Total count: {$noShowCount}/3.")
                             ->success()
@@ -106,24 +115,24 @@ class InquiryTable
                     ->modalHeading('Send Professional Response')
                     ->modalWidth('2xl')
                     ->form([
-                        \Filament\Forms\Components\Select::make('template_id')
+                        Select::make('template_id')
                             ->label('Select Template')
-                            ->options(\App\Models\EmailTemplate::pluck('name', 'id'))
+                            ->options(EmailTemplate::pluck('name', 'id'))
                             ->reactive()
                             ->afterStateUpdated(function ($state, callable $set) {
-                                $template = \App\Models\EmailTemplate::find($state);
+                                $template = EmailTemplate::find($state);
                                 if ($template) {
                                     $set('subject', $template->subject);
                                     $set('body', $template->body);
                                 }
                             }),
-                        \Filament\Forms\Components\TextInput::make('subject')
+                        TextInput::make('subject')
                             ->required(),
-                        \Filament\Forms\Components\RichEditor::make('body')
+                        RichEditor::make('body')
                             ->required(),
                     ])
                     ->action(function ($record, array $data) {
-                        \Filament\Notifications\Notification::make()
+                        Notification::make()
                             ->title('Communication Sent')
                             ->body("Professional response dispatched to {$record->client_name}.")
                             ->success()
@@ -133,7 +142,7 @@ class InquiryTable
                 Actions\DeleteAction::make(),
                 Actions\RestoreAction::make(),
                 Actions\ForceDeleteAction::make(),
-            ])
+            ]),
         ];
     }
 

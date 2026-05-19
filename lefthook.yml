@@ -1,0 +1,14 @@
+# Lefthook Git Hooks Configuration
+# Reference: https://github.com/evilmartians/lefthook
+
+pre-commit:
+  parallel: false # Run Pint first, then check with PHPStan sequentially to maintain clean state
+  commands:
+    pint:
+      glob: "*.php"
+      run: ./vendor/bin/pint --dirty
+      stage_fixed: true # Auto-stage files formatted by Pint
+
+    phpstan:
+      glob: "*.php"
+      run: ./vendor/bin/phpstan analyze {staged_files} --no-progress --memory-limit=512M
