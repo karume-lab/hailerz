@@ -256,7 +256,7 @@
                                 class="inline-flex items-center justify-center gap-2 w-full px-5 py-3 text-sm font-semibold text-white bg-brand-primary hover:bg-brand-primary/95 rounded-xl shadow-md hover:shadow-lg transition-all"
                                 target="_blank">
                                 <x-lucide-download class="h-4 w-4" stroke-width="2.5" />
-                                Download Executed Copy (PDF)
+                                Download Signed Copy (PDF)
                             </a>
                         </div>
                     </div>

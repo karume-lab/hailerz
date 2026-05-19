@@ -110,7 +110,7 @@ The platform features a native, legally binding digital signature engine designe
 
 ### Architectural Highlights
 - **Security & Privacy**: Contract drafts and final PDFs are stored in non-public storage (`storage/app/private/contracts/`). Access is gated through Laravel-generated cryptographically signed URLs (`URL::signedRoute`).
-- **ESIGN Compliance & Audit Shield**: Captures and logs signer consent, IP address, user-agent, and signature timestamps. Executed contracts are automatically compiled with a **Certificate of Completion** appended to the end of the PDF.
+- **ESIGN Compliance & Audit Shield**: Captures and logs signer consent, IP address, user-agent, and signature timestamps. Signed contracts are automatically compiled with a **Certificate of Completion** appended to the end of the PDF.
 - **SHA-256 Immutability**: Stores file checksums to guarantee contract integrity.
 - **Multi-Version Workflows**: Signers can request revisions, locking the current draft as `voided`. Admins can publish new version drafts (e.g. `v1.0` -> `v1.1`), which clones signatories and resets signature requirements.
 - **SMTP-Friendly Queues**: Outbound signature requests and executed notifications are queued (`php artisan queue:work`) to bypass cPanel SMTP block lists.

@@ -2,7 +2,7 @@
     <!-- Certificate Header -->
     <div style="border-bottom: 3px solid #223757; padding-bottom: 15px; margin-bottom: 25px;">
         <h1 style="color: #223757; font-size: 22px; margin: 0; text-transform: uppercase; letter-spacing: 1px; font-weight: bold;">Certificate of Completion</h1>
-        <p style="color: #6b7280; font-size: 11px; margin: 5px 0 0 0; font-weight: bold; letter-spacing: 0.5px;">Secure Digital Signature Audit Shield &bull; Natively Executed</p>
+        <p style="color: #6b7280; font-size: 11px; margin: 5px 0 0 0; font-weight: bold; letter-spacing: 0.5px;">Secure Digital Signature Audit Shield</p>
     </div>
 
     <!-- Contract Metadata Grid -->
