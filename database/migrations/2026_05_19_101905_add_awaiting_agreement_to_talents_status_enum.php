@@ -26,39 +26,53 @@ return new class extends Migration
         DB::statement("
             CREATE TABLE talents (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
+                category_id INTEGER,
                 name TEXT NOT NULL,
                 slug TEXT NOT NULL UNIQUE,
-                talent_type TEXT DEFAULT 'individual',
-                member_count INTEGER,
-                email TEXT,
-                category_id INTEGER,
                 bio TEXT,
-                location TEXT,
-                starting_price REAL,
-                genre TEXT,
-                years_active TEXT,
                 technical_rider TEXT,
+                starting_price REAL,
+                location TEXT,
+                status TEXT DEFAULT 'draft' NOT NULL CHECK(status IN ('draft','active','hidden','awaiting_agreement')),
+                internal_notes TEXT,
+                is_featured INTEGER DEFAULT 0 NOT NULL,
+                created_at TEXT,
+                updated_at TEXT,
+                deleted_at TEXT,
+                genre TEXT,
+                video_url TEXT,
+                primary_image_url TEXT,
+                rate_card_url TEXT,
                 website_url TEXT,
                 instagram_handle TEXT,
                 facebook_url TEXT,
                 youtube_channel TEXT,
                 tiktok_handle TEXT,
-                primary_image_url TEXT,
-                video_url TEXT,
-                is_featured INTEGER DEFAULT 0 NOT NULL,
-                status TEXT DEFAULT 'draft' NOT NULL CHECK(status IN ('draft','active','hidden','awaiting_agreement')),
-                internal_notes TEXT,
+                years_active TEXT,
                 has_signed_agreement INTEGER DEFAULT 0 NOT NULL,
                 agreement_signed_at TEXT,
+                email TEXT,
                 is_frozen INTEGER DEFAULT 0 NOT NULL,
-                no_show_count INTEGER DEFAULT 0 NOT NULL,
-                created_at TEXT,
-                updated_at TEXT,
-                deleted_at TEXT
+                country TEXT
             )
         ");
 
-        DB::statement('INSERT INTO talents SELECT * FROM talents_new');
+        DB::statement('
+            INSERT INTO talents (
+                id, category_id, name, slug, bio, technical_rider, starting_price, location, status,
+                internal_notes, is_featured, created_at, updated_at, deleted_at, genre, video_url,
+                primary_image_url, rate_card_url, website_url, instagram_handle, facebook_url,
+                youtube_channel, tiktok_handle, years_active, has_signed_agreement, agreement_signed_at,
+                email, is_frozen, country
+            )
+            SELECT 
+                id, category_id, name, slug, bio, technical_rider, starting_price, location, status,
+                internal_notes, is_featured, created_at, updated_at, deleted_at, genre, video_url,
+                primary_image_url, rate_card_url, website_url, instagram_handle, facebook_url,
+                youtube_channel, tiktok_handle, years_active, has_signed_agreement, agreement_signed_at,
+                email, is_frozen, country
+            FROM talents_new
+        ');
         DB::statement('DROP TABLE talents_new');
         DB::statement('PRAGMA foreign_keys = ON');
     }
@@ -79,39 +93,53 @@ return new class extends Migration
         DB::statement("
             CREATE TABLE talents (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
+                category_id INTEGER,
                 name TEXT NOT NULL,
                 slug TEXT NOT NULL UNIQUE,
-                talent_type TEXT DEFAULT 'individual',
-                member_count INTEGER,
-                email TEXT,
-                category_id INTEGER,
                 bio TEXT,
-                location TEXT,
-                starting_price REAL,
-                genre TEXT,
-                years_active TEXT,
                 technical_rider TEXT,
+                starting_price REAL,
+                location TEXT,
+                status TEXT DEFAULT 'draft' NOT NULL CHECK(status IN ('draft','active','hidden')),
+                internal_notes TEXT,
+                is_featured INTEGER DEFAULT 0 NOT NULL,
+                created_at TEXT,
+                updated_at TEXT,
+                deleted_at TEXT,
+                genre TEXT,
+                video_url TEXT,
+                primary_image_url TEXT,
+                rate_card_url TEXT,
                 website_url TEXT,
                 instagram_handle TEXT,
                 facebook_url TEXT,
                 youtube_channel TEXT,
                 tiktok_handle TEXT,
-                primary_image_url TEXT,
-                video_url TEXT,
-                is_featured INTEGER DEFAULT 0 NOT NULL,
-                status TEXT DEFAULT 'draft' NOT NULL CHECK(status IN ('draft','active','hidden')),
-                internal_notes TEXT,
+                years_active TEXT,
                 has_signed_agreement INTEGER DEFAULT 0 NOT NULL,
                 agreement_signed_at TEXT,
+                email TEXT,
                 is_frozen INTEGER DEFAULT 0 NOT NULL,
-                no_show_count INTEGER DEFAULT 0 NOT NULL,
-                created_at TEXT,
-                updated_at TEXT,
-                deleted_at TEXT
+                country TEXT
             )
         ");
 
-        DB::statement('INSERT INTO talents SELECT * FROM talents_new');
+        DB::statement('
+            INSERT INTO talents (
+                id, category_id, name, slug, bio, technical_rider, starting_price, location, status,
+                internal_notes, is_featured, created_at, updated_at, deleted_at, genre, video_url,
+                primary_image_url, rate_card_url, website_url, instagram_handle, facebook_url,
+                youtube_channel, tiktok_handle, years_active, has_signed_agreement, agreement_signed_at,
+                email, is_frozen, country
+            )
+            SELECT 
+                id, category_id, name, slug, bio, technical_rider, starting_price, location, status,
+                internal_notes, is_featured, created_at, updated_at, deleted_at, genre, video_url,
+                primary_image_url, rate_card_url, website_url, instagram_handle, facebook_url,
+                youtube_channel, tiktok_handle, years_active, has_signed_agreement, agreement_signed_at,
+                email, is_frozen, country
+            FROM talents_new
+        ');
         DB::statement('DROP TABLE talents_new');
         DB::statement('PRAGMA foreign_keys = ON');
     }
