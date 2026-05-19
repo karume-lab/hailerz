@@ -72,3 +72,15 @@ Route::post('/csp-report', function (Request $request) {
 })->withoutMiddleware([\Illuminate\Foundation\Http\Middleware\VerifyCsrfToken::class])
   ->middleware('throttle:30,1')
   ->name('csp.report');
+
+// Digital Signature Engine Routes
+use App\Http\Controllers\ContractController;
+
+Route::prefix('contracts')->group(function () {
+    Route::get('/{contract}', [ContractController::class, 'show'])->name('contracts.show');
+    Route::post('/{contract}', [ContractController::class, 'sign'])->name('contracts.sign');
+    Route::post('/{contract}/revision', [ContractController::class, 'requestRevision'])->name('contracts.revision');
+    Route::get('/{contract}/download', [ContractController::class, 'download'])->name('contracts.download');
+    Route::post('/{oldContract}/new-version', [ContractController::class, 'publishNewVersion'])->name('contracts.new-version');
+});
+
