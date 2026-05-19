@@ -159,26 +159,26 @@
                             </p>
                         </div>
 
-                        <form action="{{ request()->fullUrl() }}" method="POST" id="signature-form" class="space-y-5">
+                        <form action="{{ request()->fullUrl() }}" method="POST" id="signature-form" class="space-y-6">
                             @csrf
 
                             <!-- Signer Name Input -->
-                            <div class="space-y-2">
-                                <label class="text-sm font-semibold text-text-secondary" for="signer_name">
-                                    Type Full Name
-                                </label>
-                                <input type="text" id="signer_name" name="signer_name"
-                                    class="w-full px-4 py-3 bg-surface-muted border border-subtle rounded-xl text-text-primary focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary focus:outline-none transition-all"
-                                    placeholder="e.g. Johnathan Doe" required autocomplete="off">
-                            </div>
+                            <x-input
+                                name="signer_name"
+                                label="Type Full Name *"
+                                placeholder="e.g. Johnathan Doe"
+                                required
+                                autocomplete="off"
+                                value="{{ old('signer_name') }}"
+                            />
 
                             <!-- Interactive Handwriting Preview -->
-                            <div class="space-y-2">
-                                <label class="text-xs font-bold text-text-muted uppercase tracking-wider">
+                            <div class="space-y-3">
+                                <span class="block text-[10px] font-bold text-text-muted uppercase tracking-widest">
                                     Signature Style Preview
-                                </label>
+                                </span>
                                 <div
-                                    class="bg-surface-muted border border-dashed border-subtle rounded-xl p-5 flex items-center justify-center min-h-[90px] transition-colors duration-300">
+                                    class="bg-surface-muted border border-dashed border-subtle rounded-4xl p-6 flex items-center justify-center min-h-[100px] transition-colors duration-300">
                                     <span id="signature-preview-text"
                                         class="font-['Alex_Brush',cursive] text-4xl text-neutral-800 dark:text-neutral-200 select-none tracking-wide">
                                         Your Signature
@@ -187,20 +187,24 @@
                             </div>
 
                             <!-- Legal Consent -->
-                            <label
-                                class="flex items-start gap-3 cursor-pointer text-xs leading-relaxed text-text-secondary select-none">
-                                <input type="checkbox" name="esign_consent" value="1" required id="esign_consent"
-                                    class="mt-0.5 rounded border-subtle text-brand-primary focus:ring-brand-primary">
-                                <span>I consent to electronically sign this document and understand that my typed name above
-                                    represents a legally binding digital execution.</span>
-                            </label>
+                            <div class="relative flex items-start p-6 bg-brand-primary/5 rounded-4xl border border-brand-primary/10 transition-colors duration-300">
+                                <div class="flex h-6 items-center">
+                                    <input type="checkbox" name="esign_consent" value="1" required id="esign_consent"
+                                        class="h-4 w-4 rounded border-brand-primary/30 text-brand-primary focus:ring-brand-primary">
+                                </div>
+                                <div class="ml-4 text-xs leading-5">
+                                    <label for="esign_consent" class="font-bold text-text-primary block mb-1">ESIGN Act Consent *</label>
+                                    <p class="text-text-secondary leading-relaxed">I consent to electronically sign this document and understand that my typed name represents a legally binding digital execution.</p>
+                                    @error('esign_consent')
+                                        <span class="text-red-500 text-[11px] font-bold mt-2 block tracking-tight">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
 
                             <!-- CTA Submit -->
-                            <button type="submit"
-                                class="w-full inline-flex justify-center items-center gap-2 px-6 py-4 bg-brand-primary hover:bg-brand-secondary disabled:bg-neutral-200 disabled:dark:bg-neutral-800 disabled:text-text-muted text-text-inverse font-semibold rounded-xl hover:scale-[1.01] active:scale-[0.99] transition-all shadow-sm shadow-brand-primary/10 cursor-pointer disabled:pointer-events-none"
-                                id="submit-signature-btn" disabled>
+                            <x-button type="submit" variant="primary" size="md" class="w-full py-4" id="submit-signature-btn" disabled>
                                 Sign Document
-                            </button>
+                            </x-button>
                         </form>
 
                         <!-- Revision Request Toggle -->
@@ -216,21 +220,19 @@
                         <div class="hidden border-t border-subtle pt-6 animate-fadeIn" id="revision-form-container">
                             <form
                                 action="{{ URL::signedRoute('contracts.revision', ['contract' => $contract->id, 'role' => $role, 'email' => $email]) }}"
-                                method="POST" class="space-y-4">
+                                method="POST" class="space-y-5">
                                 @csrf
-                                <div class="space-y-2">
-                                    <label class="text-sm font-semibold text-text-secondary" for="revision_notes">
-                                        Revision Details & Feedback
-                                    </label>
-                                    <textarea id="revision_notes" name="revision_notes"
-                                        class="w-full px-4 py-3 bg-surface-muted border border-subtle rounded-xl text-text-primary focus:ring-2 focus:ring-brand-secondary/20 focus:border-brand-secondary focus:outline-none transition-all resize-none text-sm"
-                                        rows="4" placeholder="Describe the corrections needed on this agreement..." required
-                                        minlength="10"></textarea>
-                                </div>
-                                <button type="submit"
-                                    class="w-full inline-flex justify-center items-center gap-2 px-6 py-3 bg-brand-secondary hover:bg-brand-secondary/90 text-text-inverse font-semibold rounded-xl transition-all shadow-sm shadow-brand-secondary/10 cursor-pointer">
+                                <x-textarea
+                                    name="revision_notes"
+                                    label="Revision Details & Feedback *"
+                                    placeholder="Describe the corrections needed on this agreement..."
+                                    required
+                                    minlength="10"
+                                    rows="4"
+                                />
+                                <x-button type="submit" variant="accent" size="md" class="w-full">
                                     Submit Review Feedback
-                                </button>
+                                </x-button>
                             </form>
                         </div>
                     </div>
