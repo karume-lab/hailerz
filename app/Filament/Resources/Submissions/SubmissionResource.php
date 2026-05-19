@@ -199,18 +199,6 @@ class SubmissionResource extends Resource
                 ->columns(2)
                 ->columnSpanFull(),
 
-            Section::make('Experience & Credentials')
-                ->schema([
-
-                    Forms\Components\Textarea::make('notable_clients')
-                        ->label('Notable Clients')
-                        ->rows(3),
-                    Forms\Components\Textarea::make('press_features')
-                        ->label('Press & Awards')
-                        ->rows(3),
-                ])
-                ->columnSpanFull(),
-
             Section::make('Artist Statement')
                 ->schema([
                     Forms\Components\Textarea::make('bio')

@@ -26,9 +26,9 @@ Welcome to the **Hailerz** community! We have successfully received your applica
 
 ## What Happens Next?
 
-1. **Portfolio Review**: Our talent scouts will carefully review your credentials and media portfolio. This typically takes **2-3 business days**.
-2. **Discovery Call**: If your act is a fit for our current roster needs, we will reach out to schedule a brief virtual discovery call to get to know you better.
-3. **Onboarding**: Once approved, you'll be officially onboarded to the Hailerz platform and made available for bookings with our premium clients.
+1. **Profile Review**: Our team will carefully review your application against our current roster needs and client requirements.
+2. **Representation Contract**: If your profile is a strong fit, you will receive a formal representation contract to review and sign, formalising your commitment to the Hailerz network.
+3. **Go Live**: Once your contract is countersigned, your profile will be published on the platform and made publicly available for booking by our premium clients.
 
 ---
 

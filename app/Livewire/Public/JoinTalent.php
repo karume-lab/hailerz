@@ -81,14 +81,6 @@ class JoinTalent extends Component
     #[Validate('nullable|string|max:255')]
     public string $tiktok_handle = '';
 
-    // Experience & Credentials
-
-    #[Validate('nullable|string|max:2000')]
-    public string $notable_clients = '';
-
-    #[Validate('nullable|string|max:2000')]
-    public string $press_features = '';
-
     // Additional Information
     #[Validate('required|string|min:200|max:5000')]
     public string $bio = '';
@@ -186,8 +178,6 @@ class JoinTalent extends Component
             'facebook_url' => $this->facebook_url,
             'youtube_channel' => $this->youtube_channel,
             'tiktok_handle' => $this->tiktok_handle,
-            'notable_clients' => $this->notable_clients,
-            'press_features' => $this->press_features,
             'bio' => $this->bio,
             'source' => $this->source,
             'status' => 'pending',

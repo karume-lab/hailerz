@@ -202,7 +202,7 @@ class DatabaseSeeder extends Seeder
             ['name' => 'Application Received'],
             [
                 'subject' => 'Application for Talent Representation: {{artist_name}}',
-                'body' => '<p>Thank you for your interest in joining the Hailerz talent pool.</p><p>We are currently reviewing your professional profile and performance assets. Due to the high volume of applications from talented performers, we only reach out to candidates who align with our current corporate and luxury event requirements.</p><p>A senior agent will contact you within 2-3 business days if there is a potential fit for representation.</p><p>Regards,<br>Hailerz Talent Management</p>',
+                'body' => '<p>Thank you for your interest in joining the Hailerz talent network.</p><p>We are currently reviewing your professional profile and performance assets against our current roster requirements and client needs.</p><p>If your profile is a strong fit, you will receive a formal representation contract to review and sign. Once countersigned, your profile will go live on our platform and become available for booking by our premium clients.</p><p>Regards,<br>Hailerz Talent Management</p>',
             ]
         );
 

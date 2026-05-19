@@ -74,8 +74,7 @@
                 <x-heading level="h2" title="Application Submitted!" align="center" class="text-text-primary mb-6" />
                 <p class="text-lg text-text-secondary mb-12 max-w-xl mx-auto">
                     Thanks for sharing your talent with us! We've successfully received your application.
-                    Our team will review your portfolio and reach out within 2-3 business days if there's a potential fit
-                    for our roster.
+                    Your application is now under review. If your profile is a strong fit, you'll receive a representation contract to formalise the commitment — after which your profile will go live on our platform.
                 </p>
                 <x-button variant="primary" size="lg" href="/" wire:navigate>
                     Back to Home
@@ -206,10 +205,10 @@
                             <div>
                                 <h3 class="text-lg font-bold mb-2 text-text-primary">Selection Process</h3>
                                 <p class="text-text-secondary leading-relaxed">
-                                    We carefully review every application. Our team evaluates your experience,
-                                    performance quality, professionalism, and fit with our client base. Due
-                                    to high volume, we can only accept a limited number of new artists each
-                                    month. If selected, you'll be contacted within 2-3 business days.
+                                    We carefully review every application against our current roster needs and
+                                    client base. Successful applicants will be sent a representation contract
+                                    to sign — once countersigned, your profile will be made publicly available
+                                    for booking on the Hailerz platform.
                                 </p>
                             </div>
                         </div>
@@ -413,22 +412,21 @@
                                             class="h-6 w-6 rounded-full bg-brand-primary/10 flex items-center justify-center shrink-0">
                                             <span class="text-[10px] font-bold text-brand-primary">1</span>
                                         </div>
-                                        <p>Our talent scouts will review your portfolio and credentials (2-3 business days).
-                                        </p>
+                                        <p>Our team reviews your portfolio and credentials to assess fit with our current roster and client needs.</p>
                                     </li>
                                     <li class="flex items-start gap-4 text-sm text-text-secondary">
                                         <div
                                             class="h-6 w-6 rounded-full bg-brand-primary/10 flex items-center justify-center shrink-0">
                                             <span class="text-[10px] font-bold text-brand-primary">2</span>
                                         </div>
-                                        <p>If your act fits our roster, we'll schedule a brief virtual discovery call.</p>
+                                        <p>If approved, you'll receive a representation contract to review and sign — formalising your commitment to the Hailerz network.</p>
                                     </li>
                                     <li class="flex items-start gap-4 text-sm text-text-secondary">
                                         <div
                                             class="h-6 w-6 rounded-full bg-brand-primary/10 flex items-center justify-center shrink-0">
                                             <span class="text-[10px] font-bold text-brand-primary">3</span>
                                         </div>
-                                        <p>Upon approval, you'll be onboarded and made available to our premium clients.</p>
+                                        <p>Once your contract is signed, your profile goes live and becomes publicly available for booking by our premium clients.</p>
                                     </li>
                                 </ul>
                             </div>

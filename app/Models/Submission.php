@@ -33,8 +33,6 @@ class Submission extends Model
         'youtube_channel',
         'tiktok_handle',
 
-        'notable_clients',
-        'press_features',
         'bio',
 
         'source',
