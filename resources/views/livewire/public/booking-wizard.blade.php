@@ -1,4 +1,54 @@
-<div class="bg-surface-muted min-h-screen py-24">
+<div class="bg-surface-muted min-h-screen py-24"
+     x-data="{
+        storageKey: 'hailerz_booking_wizard_form',
+        init() {
+            @if($isComplete)
+                localStorage.removeItem(this.storageKey);
+                return;
+            @endif
+
+            const saved = localStorage.getItem(this.storageKey);
+            if (saved) {
+                try {
+                    const parsed = JSON.parse(saved);
+                    const age = Date.now() - parsed.timestamp;
+                    if (age > 86400000) {
+                        localStorage.removeItem(this.storageKey);
+                    } else {
+                        const data = parsed.data || {};
+                        this.$nextTick(() => {
+                            Object.keys(data).forEach(key => {
+                                @this.set(key, data[key]);
+                            });
+                        });
+                    }
+                } catch (e) {
+                    localStorage.removeItem(this.storageKey);
+                }
+            }
+
+            $el.addEventListener('input', () => this.saveData());
+            $el.addEventListener('change', () => this.saveData());
+        },
+        saveData() {
+            let data = {};
+            $el.querySelectorAll('[wire\\:model], [wire\\:model\\.defer], [wire\\:model\\.live], [wire\\:model\\.blur]').forEach(el => {
+                const model = el.getAttribute('wire:model') || el.getAttribute('wire:model.defer') || el.getAttribute('wire:model.live') || el.getAttribute('wire:model.blur');
+                if (model) {
+                    if (el.type === 'checkbox') {
+                        data[model] = el.checked;
+                    } else {
+                        data[model] = el.value;
+                    }
+                }
+            });
+            localStorage.setItem(this.storageKey, JSON.stringify({
+                timestamp: Date.now(),
+                data: data
+            }));
+        }
+     }"
+>
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         @if($isComplete)
             <x-card padding="p-16" class="text-center shadow-2xl">
@@ -229,7 +279,7 @@
                                     @error('specific_talent') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
                                 </div>
                                 <div class="md:col-span-2">
-                                    <x-textarea wire:model="additional_details" name="additional_details" label="Additional Details" rows="5" placeholder="Tell us about the event vibe, technical needs, or any special requests." />
+                                    <x-textarea wire:model="additional_details" name="additional_details" label="Additional Details" rows="5" placeholder="Tell us about the event vibe, technical needs, or any special requests." maxlength="2000" />
                                 </div>
                             </div>
                         </div>

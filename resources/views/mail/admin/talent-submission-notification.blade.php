@@ -14,7 +14,7 @@ A new talent application has been received.
 - **Years Active:** {{ $submission->years_active }}
 - **Rate Range:** {{ \App\Helpers\CurrencyHelper::formatRange($submission->min_rate, $submission->max_rate, $submission->currency ?? 'USD') }}
 
-<x-mail::button :url="config('app.url') . '/admin/submissions/' . $submission->id">
+<x-mail::button :url="config('app.url') . '/admin/submissions/' . $submission->id . '/edit'">
 Review Application
 </x-mail::button>
 

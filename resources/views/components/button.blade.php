@@ -50,6 +50,7 @@
             <span
                 wire:loading.class="invisible"
                 @if($loadingTarget) wire:target="{{ $loadingTarget }}" @endif
+                class="inline-flex items-center justify-center"
             >{{ $slot }}</span>
 
             {{-- Spinner: hidden by default, shown by Livewire's wire:loading during network requests --}}

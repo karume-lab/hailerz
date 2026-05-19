@@ -137,6 +137,8 @@ class JoinTalent extends Component
         } elseif ($this->currentStep === 3) {
             $this->validate([
                 'gallery.*.url' => 'nullable|url|max:255',
+                'gallery.*.title' => 'nullable|string|max:255',
+                'gallery.*.description' => 'nullable|string|max:1000',
             ]);
         }
 

@@ -1,7 +1,75 @@
-<div class="min-h-screen flex flex-col">
+<div class="min-h-screen flex flex-col"
+     x-data="{
+        storageKey: 'hailerz_join_talent_form',
+        init() {
+            @if($isSubmitted)
+                localStorage.removeItem(this.storageKey);
+                return;
+            @endif
+
+            const saved = localStorage.getItem(this.storageKey);
+            if (saved) {
+                try {
+                    const parsed = JSON.parse(saved);
+                    const age = Date.now() - parsed.timestamp;
+                    if (age > 86400000) {
+                        localStorage.removeItem(this.storageKey);
+                    } else {
+                        const data = parsed.data || {};
+                        let gallery = [];
+                        Object.keys(data).forEach(key => {
+                            if (key.startsWith('gallery.')) {
+                                const parts = key.split('.');
+                                const index = parseInt(parts[1]);
+                                const field = parts[2];
+                                if (!gallery[index]) {
+                                    gallery[index] = { url: '', title: '', description: '' };
+                                }
+                                gallery[index][field] = data[key];
+                            }
+                        });
+
+                        this.$nextTick(() => {
+                            if (gallery.length > 0) {
+                                @this.set('gallery', gallery);
+                            }
+                            Object.keys(data).forEach(key => {
+                                if (!key.startsWith('gallery.')) {
+                                    @this.set(key, data[key]);
+                                }
+                            });
+                        });
+                    }
+                } catch (e) {
+                    localStorage.removeItem(this.storageKey);
+                }
+            }
+
+            $el.addEventListener('input', () => this.saveData());
+            $el.addEventListener('change', () => this.saveData());
+        },
+        saveData() {
+            let data = {};
+            $el.querySelectorAll('[wire\\:model], [wire\\:model\\.defer], [wire\\:model\\.live], [wire\\:model\\.blur]').forEach(el => {
+                const model = el.getAttribute('wire:model') || el.getAttribute('wire:model.defer') || el.getAttribute('wire:model.live') || el.getAttribute('wire:model.blur');
+                if (model) {
+                    if (el.type === 'checkbox') {
+                        data[model] = el.checked;
+                    } else {
+                        data[model] = el.value;
+                    }
+                }
+            });
+            localStorage.setItem(this.storageKey, JSON.stringify({
+                timestamp: Date.now(),
+                data: data
+            }));
+        }
+     }"
+>
     @if($isSubmitted)
         <div class="flex-1 flex items-center justify-center py-24 bg-surface-muted">
-            <x-card padding="p-16" class="text-center shadow-2xl max-w-2xl mx-auto reveal">
+            <x-card padding="p-16" class="text-center shadow-2xl max-w-2xl mx-auto">
                 <div class="mx-auto flex items-center justify-center h-24 w-24 rounded-full bg-brand-primary/10 mb-10">
                     <x-lucide-check class="h-12 w-12 text-brand-primary" stroke-width="2" />
                 </div>
@@ -236,7 +304,7 @@
                                     <x-input wire:model="max_rate" type="number" label="Max Rate ({{ \App\Helpers\CurrencyHelper::getCurrencySymbol() }}) *" placeholder="e.g. 1500" />
                                 </div>
                                 <div class="md:col-span-2">
-                                    <x-textarea wire:model="bio" label="Artist Bio *" rows="5" placeholder="Tell us about yourself, your style, and what makes you unique as a performer (min 200 characters)" />
+                                    <x-textarea wire:model="bio" label="Artist Bio *" rows="5" placeholder="Tell us about yourself, your style, and what makes you unique as a performer (min 200 characters)" maxlength="5000" />
                                 </div>
                             </div>
                         </div>
@@ -253,10 +321,10 @@
 
                                 <div class="space-y-6">
                                     <div class="flex items-center justify-between">
-                                        <h4 class="text-lg font-bold text-text-primary">Media Portfolio</h4>
+                                        <h4 class="text-lg font-bold text-text-primary">Gallery</h4>
                                         <x-button type="button" variant="ghost" size="sm" wire:click="addGalleryItem" class="text-brand-primary border-brand-primary/20">
                                             <x-lucide-plus class="w-4 h-4 mr-2" />
-                                            Add Media Link
+                                            Add to Gallery
                                         </x-button>
                                     </div>
                                     <div class="space-y-4">
@@ -265,7 +333,11 @@
                                                 <button type="button" wire:click="removeGalleryItem({{ $index }})" class="absolute top-4 right-4 text-text-muted hover:text-red-500 transition-colors">
                                                     <x-lucide-x class="w-4 h-4" />
                                                 </button>
-                                                <x-input wire:model="gallery.{{ $index }}.url" label="Media Link *" placeholder="YouTube, SoundCloud, or Drive link" />
+                                                <div class="grid grid-cols-1 gap-6">
+                                                    <x-input wire:model="gallery.{{ $index }}.url" label="Media Link *" placeholder="YouTube, SoundCloud, or Drive link" />
+                                                    <x-input wire:model="gallery.{{ $index }}.title" label="Title (Optional)" placeholder="e.g. Live Performance at Eko Hotel" />
+                                                    <x-textarea wire:model="gallery.{{ $index }}.description" label="Description (Optional)" placeholder="Short description of this media..." rows="3" maxlength="1000" />
+                                                </div>
                                             </div>
                                         @endforeach
                                     </div>

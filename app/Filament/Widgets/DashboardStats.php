@@ -5,6 +5,8 @@ namespace App\Filament\Widgets;
 use App\Enums\InquiryStatus;
 use App\Models\Inquiry;
 use App\Models\Post;
+use App\Models\StaffingInquiry;
+use App\Models\Submission;
 use App\Models\Talent;
 use Filament\Widgets\StatsOverviewWidget as BaseWidget;
 use Filament\Widgets\StatsOverviewWidget\Stat;
@@ -20,9 +22,27 @@ class DashboardStats extends BaseWidget
                 ->color('danger')
                 ->url('/admin/inquiries?tableFilters[status][value]=new'),
 
-            Stat::make('Talent Under Review', Talent::where('status', 'draft')->count())
-                ->description('Applications to process')
+            Stat::make('Pending Applications', Submission::where('status', 'pending')->count())
+                ->description('New talent applications')
                 ->descriptionIcon('heroicon-m-user-plus')
+                ->color('warning')
+                ->url('/admin/submissions?tableFilters[status][value]=pending'),
+
+            Stat::make('Staffing Requests', StaffingInquiry::count())
+                ->description('Augmentation & staffing inquiries')
+                ->descriptionIcon('heroicon-m-briefcase')
+                ->color('primary')
+                ->url('/admin/staffing-inquiries'),
+
+            Stat::make('Total Applications', Submission::count())
+                ->description('Total roster submissions')
+                ->descriptionIcon('heroicon-m-clipboard-document-list')
+                ->color('info')
+                ->url('/admin/submissions'),
+
+            Stat::make('Talent Under Review', Talent::where('status', 'draft')->count())
+                ->description('Profiles under initial review')
+                ->descriptionIcon('heroicon-m-clock')
                 ->color('warning')
                 ->url('/admin/talent?tableFilters[status][value]=draft'),
 

@@ -1,4 +1,54 @@
-<div class="bg-surface-muted min-h-screen">
+<div class="bg-surface-muted min-h-screen"
+     x-data="{
+        storageKey: 'hailerz_staffing_form',
+        init() {
+            @if($requestSent)
+                localStorage.removeItem(this.storageKey);
+                return;
+            @endif
+
+            const saved = localStorage.getItem(this.storageKey);
+            if (saved) {
+                try {
+                    const parsed = JSON.parse(saved);
+                    const age = Date.now() - parsed.timestamp;
+                    if (age > 86400000) {
+                        localStorage.removeItem(this.storageKey);
+                    } else {
+                        const data = parsed.data || {};
+                        this.$nextTick(() => {
+                            Object.keys(data).forEach(key => {
+                                @this.set(key, data[key]);
+                            });
+                        });
+                    }
+                } catch (e) {
+                    localStorage.removeItem(this.storageKey);
+                }
+            }
+
+            $el.addEventListener('input', () => this.saveData());
+            $el.addEventListener('change', () => this.saveData());
+        },
+        saveData() {
+            let data = {};
+            $el.querySelectorAll('[wire\\:model], [wire\\:model\\.defer], [wire\\:model\\.live], [wire\\:model\\.blur]').forEach(el => {
+                const model = el.getAttribute('wire:model') || el.getAttribute('wire:model.defer') || el.getAttribute('wire:model.live') || el.getAttribute('wire:model.blur');
+                if (model) {
+                    if (el.type === 'checkbox') {
+                        data[model] = el.checked;
+                    } else {
+                        data[model] = el.value;
+                    }
+                }
+            });
+            localStorage.setItem(this.storageKey, JSON.stringify({
+                timestamp: Date.now(),
+                data: data
+            }));
+        }
+     }"
+>
     <!-- Hero Section -->
     <section class="relative bg-surface-dark pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">

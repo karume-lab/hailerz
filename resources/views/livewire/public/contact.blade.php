@@ -1,4 +1,54 @@
-<div class="bg-surface-muted min-h-screen py-32">
+<div class="bg-surface-muted min-h-screen py-32"
+     x-data="{
+        storageKey: 'hailerz_contact_form',
+        init() {
+            @if($contactSent)
+                localStorage.removeItem(this.storageKey);
+                return;
+            @endif
+
+            const saved = localStorage.getItem(this.storageKey);
+            if (saved) {
+                try {
+                    const parsed = JSON.parse(saved);
+                    const age = Date.now() - parsed.timestamp;
+                    if (age > 86400000) {
+                        localStorage.removeItem(this.storageKey);
+                    } else {
+                        const data = parsed.data || {};
+                        this.$nextTick(() => {
+                            Object.keys(data).forEach(key => {
+                                @this.set(key, data[key]);
+                            });
+                        });
+                    }
+                } catch (e) {
+                    localStorage.removeItem(this.storageKey);
+                }
+            }
+
+            $el.addEventListener('input', () => this.saveData());
+            $el.addEventListener('change', () => this.saveData());
+        },
+        saveData() {
+            let data = {};
+            $el.querySelectorAll('[wire\\:model], [wire\\:model\\.defer], [wire\\:model\\.live], [wire\\:model\\.blur]').forEach(el => {
+                const model = el.getAttribute('wire:model') || el.getAttribute('wire:model.defer') || el.getAttribute('wire:model.live') || el.getAttribute('wire:model.blur');
+                if (model) {
+                    if (el.type === 'checkbox') {
+                        data[model] = el.checked;
+                    } else {
+                        data[model] = el.value;
+                    }
+                }
+            });
+            localStorage.setItem(this.storageKey, JSON.stringify({
+                timestamp: Date.now(),
+                data: data
+            }));
+        }
+     }"
+>
     <div class="mx-auto max-w-7xl px-6 lg:px-8">
         {{-- Hero Header --}}
         <div class="text-center mb-24 reveal">
