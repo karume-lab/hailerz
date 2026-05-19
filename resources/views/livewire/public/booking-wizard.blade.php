@@ -20,12 +20,17 @@
                             Object.keys(data).forEach(key => {
                                 @this.set(key, data[key]);
                             });
+                            if (parsed.currentStep) {
+                                @this.set('currentStep', parsed.currentStep);
+                            }
                         });
                     }
                 } catch (e) {
                     localStorage.removeItem(this.storageKey);
                 }
             }
+
+            this.$watch('$wire.currentStep', () => this.saveData());
 
             $el.addEventListener('input', () => this.saveData());
             $el.addEventListener('change', () => this.saveData());
@@ -44,7 +49,8 @@
             });
             localStorage.setItem(this.storageKey, JSON.stringify({
                 timestamp: Date.now(),
-                data: data
+                data: data,
+                currentStep: this.$wire.currentStep
             }));
         }
      }"
