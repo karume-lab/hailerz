@@ -48,7 +48,7 @@ class ContractSignatureRequestMail extends Mailable implements ShouldQueue
     public function content(): Content
     {
         return new Content(
-            view: 'emails.contract_signature_request',
+            markdown: 'emails.contract_signature_request',
         );
     }
 

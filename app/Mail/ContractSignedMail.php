@@ -42,7 +42,7 @@ class ContractSignedMail extends Mailable implements ShouldQueue
     public function content(): Content
     {
         return new Content(
-            view: 'emails.contract_executed',
+            markdown: 'emails.contract_executed',
         );
     }
 
