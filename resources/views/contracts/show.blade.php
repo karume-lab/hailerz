@@ -62,11 +62,7 @@
                 class="lg:col-span-2 flex flex-col bg-surface-light border border-subtle rounded-2xl overflow-hidden shadow-sm transition-colors duration-300">
                 <div class="flex justify-between items-center px-6 py-4 bg-surface-muted/50 border-b border-subtle">
                     <div class="flex items-center gap-3 min-w-0">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-brand-primary shrink-0" fill="none"
-                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                        </svg>
+                        <x-lucide-file-text class="h-5 w-5 text-brand-primary shrink-0" />
                         <span class="text-sm font-semibold text-text-primary truncate">
                             {{ basename($contract->file_path) }}
                         </span>
@@ -75,11 +71,7 @@
                     <a href="{{ URL::signedRoute('contracts.download', ['contract' => $contract->id]) }}"
                         class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-brand-primary hover:text-brand-secondary bg-brand-primary/5 hover:bg-brand-primary/10 rounded-lg transition-all"
                         target="_blank">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
-                            stroke="currentColor" stroke-width="2.5">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                        </svg>
+                        <x-lucide-download class="h-4 w-4" stroke-width="2.5" />
                         Download PDF
                     </a>
                 </div>
@@ -248,11 +240,7 @@
                         class="bg-surface-light border border-subtle rounded-2xl p-8 shadow-sm transition-colors duration-300 text-center flex flex-col items-center gap-4">
                         <div
                             class="h-16 w-16 bg-emerald-500/15 text-emerald-500 rounded-full flex items-center justify-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor" stroke-width="2.5">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                            </svg>
+                            <x-lucide-shield-check class="h-8 w-8" stroke-width="2.5" />
                         </div>
                         <div>
                             <h3 class="text-lg font-bold text-text-primary">

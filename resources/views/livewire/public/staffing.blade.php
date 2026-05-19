@@ -91,9 +91,7 @@
                                         <div class="absolute w-20 h-20 rounded-full bg-brand-primary/30 animate-ping pointer-events-none"></div>
                                         <div class="relative z-10 w-16 h-16 rounded-full bg-brand-primary/95 text-white flex items-center justify-center shadow-[0_10px_40px_rgba(27,129,155,0.5)] transition-all duration-300 group-hover:scale-110 group-hover:bg-brand-primary active:scale-95"
                                              role="button" aria-label="Play video">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-7 h-7 translate-x-0.5 text-white">
-                                                <path d="M8 5v14l11-7z" />
-                                            </svg>
+                                            <x-lucide-play class="w-7 h-7 translate-x-0.5 text-white fill-current" />
                                         </div>
                                     </div>
                                 </div>

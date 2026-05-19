@@ -72,7 +72,7 @@
                                     <x-lucide-youtube class="w-6 h-6" stroke-width="2" />
                                 </a>
                                 <a href="https://www.tiktok.com/@hailerzdotcom" target="_blank" rel="noopener" aria-label="Follow on TikTok" class="text-text-secondary hover:text-brand-primary transition-colors">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tiktok"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" /></svg>
+                                    <x-lucide-tiktok class="w-6 h-6" stroke-width="2" />
                                 </a>
                                 <a href="https://www.linkedin.com/company/hailerz-global-talent/" target="_blank" rel="noopener" aria-label="Connect on LinkedIn" class="text-text-secondary hover:text-brand-primary transition-colors">
                                     <x-lucide-linkedin class="w-6 h-6" stroke-width="2" />
