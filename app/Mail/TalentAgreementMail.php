@@ -37,7 +37,7 @@ class TalentAgreementMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'emails.talent-agreement',
+            markdown: 'emails.talent-agreement',
         );
     }
 
