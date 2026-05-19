@@ -90,16 +90,7 @@ Route::get('/view-pdfs/{type?}', function ($type = null) {
     }
 
     if (! $type) {
-        return "
-            <div style='font-family: sans-serif; padding: 40px;'>
-                <h2>PDF Viewer</h2>
-                <ul>
-                    <li><a href='/view-pdfs/talent-representation-agreement'>Talent Representation Agreement (with Certificate)</a></li>
-                    <li><a href='/view-pdfs/booking-inquiry'>Booking Inquiry</a></li>
-                    <li><a href='/view-pdfs/talent-submission'>Talent Submission</a></li>
-                </ul>
-            </div>
-        ";
+        return view('pdf-viewer');
     }
 
     $html = '';
