@@ -49,6 +49,7 @@ class FaqResource extends Resource
     {
         return $table
             ->recordTitleAttribute('question')
+            ->defaultSort('created_at', 'desc')
             ->columns([
                 TextColumn::make('question')
                     ->searchable(),
