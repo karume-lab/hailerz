@@ -49,8 +49,8 @@
         },
         saveData() {
             let data = {};
-            $el.querySelectorAll('[wire\\:model], [wire\\:model\\.defer], [wire\\:model\\.live], [wire\\:model\\.blur]').forEach(el => {
-                const model = el.getAttribute('wire:model') || el.getAttribute('wire:model.defer') || el.getAttribute('wire:model.live') || el.getAttribute('wire:model.blur');
+            $el.querySelectorAll('[wire\\:model],[wire\\:model\\.blur],[wire\\:model\\.live],[wire\\:model\\.defer],[wire\\:model\\.live\\.debounce\\.300ms],[wire\\:model\\.live\\.debounce\\.500ms]').forEach(el => {
+                const model = el.getAttributeNames().find(a => a.startsWith('wire:model')) ? el.getAttribute(el.getAttributeNames().find(a => a.startsWith('wire:model'))) : null;
                 if (model) {
                     if (el.type === 'checkbox') {
                         data[model] = el.checked;

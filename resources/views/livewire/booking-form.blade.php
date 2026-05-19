@@ -38,7 +38,57 @@ new class extends Component {
 };
 ?>
 
-<div class="max-w-2xl mx-auto p-12 bg-surface-light rounded-[2.5rem] shadow-sm border border-brand-primary/5 mt-10">
+<div class="max-w-2xl mx-auto p-12 bg-surface-light rounded-[2.5rem] shadow-sm border border-brand-primary/5 mt-10"
+     x-data="{
+        storageKey: 'hailerz_booking_form',
+        init() {
+            @if($is_success)
+                localStorage.removeItem(this.storageKey);
+                return;
+            @endif
+
+            const saved = localStorage.getItem(this.storageKey);
+            if (saved) {
+                try {
+                    const parsed = JSON.parse(saved);
+                    const age = Date.now() - parsed.timestamp;
+                    if (age > 86400000) {
+                        localStorage.removeItem(this.storageKey);
+                    } else {
+                        const data = parsed.data || {};
+                        this.$nextTick(() => {
+                            Object.keys(data).forEach(key => {
+                                @this.set(key, data[key]);
+                            });
+                        });
+                    }
+                } catch (e) {
+                    localStorage.removeItem(this.storageKey);
+                }
+            }
+
+            $el.addEventListener('input', () => this.saveData());
+            $el.addEventListener('change', () => this.saveData());
+        },
+        saveData() {
+            let data = {};
+            $el.querySelectorAll('[wire\\:model],[wire\\:model\\.blur],[wire\\:model\\.live],[wire\\:model\\.defer],[wire\\:model\\.live\\.debounce\\.300ms],[wire\\:model\\.live\\.debounce\\.500ms]').forEach(el => {
+                const model = el.getAttributeNames().find(a => a.startsWith('wire:model')) ? el.getAttribute(el.getAttributeNames().find(a => a.startsWith('wire:model'))) : null;
+                if (model) {
+                    if (el.type === 'checkbox') {
+                        data[model] = el.checked;
+                    } else {
+                        data[model] = el.value;
+                    }
+                }
+            });
+            localStorage.setItem(this.storageKey, JSON.stringify({
+                timestamp: Date.now(),
+                data: data
+            }));
+        }
+     }"
+>
     @if($is_success)
         <div class="text-center py-12">
             <div class="w-20 h-20 bg-brand-secondary/10 text-brand-secondary rounded-full flex items-center justify-center mx-auto mb-8">
