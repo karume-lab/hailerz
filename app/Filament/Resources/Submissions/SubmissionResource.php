@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\Submissions;
 
 use App\Helpers\CurrencyHelper;
+use App\Helpers\MediaPreviewHelper;
 use App\Mail\TalentAgreementMail;
 use App\Models\Category;
 use App\Models\Submission;
@@ -11,6 +12,7 @@ use BackedEnum;
 use Filament\Actions\Action;
 use Filament\Actions\EditAction;
 use Filament\Forms;
+use Filament\Infolists\Components\TextEntry;
 use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Schemas\Components\Section;
@@ -18,6 +20,7 @@ use Filament\Schemas\Schema;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\HtmlString;
 use Illuminate\Support\Str;
 use UnitEnum;
 
@@ -53,6 +56,21 @@ class SubmissionResource extends Resource
                         ->label('Performer / Act Name')
                         ->required()
                         ->columnSpan(1),
+                    Forms\Components\Select::make('talent_type')
+                        ->label('Talent Type')
+                        ->options([
+                            'individual' => 'Individual Performer',
+                            'group' => 'Group / Band',
+                        ])
+                        ->required()
+                        ->live()
+                        ->columnSpan(1),
+                    Forms\Components\TextInput::make('member_count')
+                        ->label('Member Count')
+                        ->numeric()
+                        ->visible(fn ($get) => $get('talent_type') === 'group')
+                        ->required(fn ($get) => $get('talent_type') === 'group')
+                        ->columnSpan(1),
                     Forms\Components\TextInput::make('real_name')
                         ->label('Legal / Real Name')
                         ->required()
@@ -73,6 +91,19 @@ class SubmissionResource extends Resource
                     Forms\Components\TextInput::make('profile_photo_url')
                         ->label('Profile Photo URL')
                         ->url()
+                        ->live(onBlur: true)
+                        ->columnSpanFull()
+                        ->suffixAction(
+                            Action::make('openPhoto')
+                                ->icon('heroicon-m-arrow-top-right-on-square')
+                                ->url(fn ($state) => $state)
+                                ->openUrlInNewTab()
+                                ->visible(fn ($state) => ! empty($state) && filter_var($state, FILTER_VALIDATE_URL))
+                        ),
+                    TextEntry::make('profile_photo_preview')
+                        ->label('Profile Photo Preview')
+                        ->state(fn ($get) => new HtmlString(MediaPreviewHelper::getPreviewHtml($get('profile_photo_url'))))
+                        ->visible(fn ($get) => ! empty($get('profile_photo_url')) && filter_var($get('profile_photo_url'), FILTER_VALIDATE_URL))
                         ->columnSpanFull(),
                 ])
                 ->columns(2)
@@ -112,23 +143,58 @@ class SubmissionResource extends Resource
                     Forms\Components\TextInput::make('website_url')
                         ->label('Website')
                         ->url()
-                        ->columnSpan(1),
+                        ->columnSpan(1)
+                        ->suffixAction(
+                            Action::make('openWebsite')
+                                ->icon('heroicon-m-arrow-top-right-on-square')
+                                ->url(fn ($state) => $state)
+                                ->openUrlInNewTab()
+                                ->visible(fn ($state) => ! empty($state) && filter_var($state, FILTER_VALIDATE_URL))
+                        ),
                     Forms\Components\TextInput::make('instagram_handle')
                         ->label('Instagram')
                         ->url()
-                        ->columnSpan(1),
+                        ->columnSpan(1)
+                        ->suffixAction(
+                            Action::make('openInstagram')
+                                ->icon('heroicon-m-arrow-top-right-on-square')
+                                ->url(fn ($state) => $state)
+                                ->openUrlInNewTab()
+                                ->visible(fn ($state) => ! empty($state) && filter_var($state, FILTER_VALIDATE_URL))
+                        ),
                     Forms\Components\TextInput::make('facebook_url')
                         ->label('Facebook')
                         ->url()
-                        ->columnSpan(1),
+                        ->columnSpan(1)
+                        ->suffixAction(
+                            Action::make('openFacebook')
+                                ->icon('heroicon-m-arrow-top-right-on-square')
+                                ->url(fn ($state) => $state)
+                                ->openUrlInNewTab()
+                                ->visible(fn ($state) => ! empty($state) && filter_var($state, FILTER_VALIDATE_URL))
+                        ),
                     Forms\Components\TextInput::make('youtube_channel')
                         ->label('YouTube')
                         ->url()
-                        ->columnSpan(1),
+                        ->columnSpan(1)
+                        ->suffixAction(
+                            Action::make('openYoutube')
+                                ->icon('heroicon-m-arrow-top-right-on-square')
+                                ->url(fn ($state) => $state)
+                                ->openUrlInNewTab()
+                                ->visible(fn ($state) => ! empty($state) && filter_var($state, FILTER_VALIDATE_URL))
+                        ),
                     Forms\Components\TextInput::make('tiktok_handle')
                         ->label('TikTok')
                         ->url()
-                        ->columnSpan(1),
+                        ->columnSpan(1)
+                        ->suffixAction(
+                            Action::make('openTiktok')
+                                ->icon('heroicon-m-arrow-top-right-on-square')
+                                ->url(fn ($state) => $state)
+                                ->openUrlInNewTab()
+                                ->visible(fn ($state) => ! empty($state) && filter_var($state, FILTER_VALIDATE_URL))
+                        ),
                 ])
                 ->columns(2)
                 ->columnSpanFull(),
@@ -181,13 +247,26 @@ class SubmissionResource extends Resource
                                 ->label('Media URL')
                                 ->url()
                                 ->required()
-                                ->columnSpan(2),
+                                ->live(onBlur: true)
+                                ->columnSpan(2)
+                                ->suffixAction(
+                                    Action::make('openMedia')
+                                        ->icon('heroicon-m-arrow-top-right-on-square')
+                                        ->url(fn ($state) => $state)
+                                        ->openUrlInNewTab()
+                                        ->visible(fn ($state) => ! empty($state) && filter_var($state, FILTER_VALIDATE_URL))
+                                ),
                             Forms\Components\TextInput::make('title')
                                 ->label('Title')
                                 ->columnSpan(1),
                             Forms\Components\TextInput::make('description')
                                 ->label('Description')
                                 ->columnSpan(1),
+                            TextEntry::make('media_preview')
+                                ->label('Media Preview')
+                                ->state(fn ($get) => new HtmlString(MediaPreviewHelper::getPreviewHtml($get('url'))))
+                                ->visible(fn ($get) => ! empty($get('url')) && filter_var($get('url'), FILTER_VALIDATE_URL))
+                                ->columnSpanFull(),
                         ])
                         ->columns(4)
                         ->defaultItems(0)
@@ -239,6 +318,8 @@ class SubmissionResource extends Resource
                         // Automatically create the Talent profile
                         $talent = Talent::create([
                             'name' => $record->artist_name,
+                            'talent_type' => $record->talent_type ?? 'individual',
+                            'member_count' => $record->member_count,
                             'email' => $record->email,
                             'category_id' => $category->id,
                             'bio' => $record->bio,

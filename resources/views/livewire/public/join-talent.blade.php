@@ -274,8 +274,15 @@
                                     <x-input wire:model="location" label="Location (City, Country) *" placeholder="London, UK" :location="true" />
                                 </div>
                                 <div class="md:col-span-2">
-                                    <x-input wire:model="profile_photo_url" label="Profile Photo URL *" placeholder="https://... (direct link to image)" />
+                                    <x-input wire:model.blur="profile_photo_url" label="Profile Photo URL *" placeholder="https://... (direct link to image)" />
                                     <p class="text-xs text-text-muted mt-2">Provide a high-quality link to your official promotional photo or logo.</p>
+                                    
+                                    @if(!empty($profile_photo_url) && filter_var($profile_photo_url, FILTER_VALIDATE_URL))
+                                        <div class="mt-4 p-4 bg-surface-muted/30 border border-subtle rounded-3xl">
+                                            <span class="text-[10px] font-bold text-text-muted uppercase tracking-widest block mb-3">Profile Photo Preview</span>
+                                            {!! \App\Helpers\MediaPreviewHelper::getPreviewHtml($profile_photo_url) !!}
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -334,7 +341,15 @@
                                                     <x-lucide-x class="w-4 h-4" />
                                                 </button>
                                                 <div class="grid grid-cols-1 gap-6">
-                                                    <x-input wire:model="gallery.{{ $index }}.url" label="Media Link *" placeholder="YouTube, SoundCloud, or Drive link" />
+                                                    <x-input wire:model.blur="gallery.{{ $index }}.url" label="Media Link *" placeholder="YouTube, SoundCloud, or Drive link" />
+                                                    
+                                                    @if(!empty($gallery[$index]['url']) && filter_var($gallery[$index]['url'], FILTER_VALIDATE_URL))
+                                                        <div class="p-4 bg-surface-muted/30 border border-subtle rounded-2xl">
+                                                            <span class="text-[10px] font-bold text-text-muted uppercase tracking-widest block mb-3">Media Preview</span>
+                                                            {!! \App\Helpers\MediaPreviewHelper::getPreviewHtml($gallery[$index]['url']) !!}
+                                                        </div>
+                                                    @endif
+
                                                     <x-input wire:model="gallery.{{ $index }}.title" label="Title (Optional)" placeholder="e.g. Live Performance at Eko Hotel" />
                                                     <x-textarea wire:model="gallery.{{ $index }}.description" label="Description (Optional)" placeholder="Short description of this media..." rows="3" maxlength="1000" />
                                                 </div>
