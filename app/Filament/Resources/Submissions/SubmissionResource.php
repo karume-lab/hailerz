@@ -19,6 +19,7 @@ use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\HtmlString;
 use Illuminate\Support\Str;
@@ -298,44 +299,46 @@ class SubmissionResource extends Resource
                     ->requiresConfirmation()
                     ->hidden(fn (Submission $record) => $record->status !== 'pending')
                     ->action(function (Submission $record) {
-                        $record->update(['status' => 'approved']);
+                        DB::transaction(function () use ($record) {
+                            $record->update(['status' => 'approved']);
 
-                        // Find or create category based on the string value from submission
-                        $category = Category::firstOrCreate(['name' => $record->category]);
+                            // Find or create category based on the string value from submission
+                            $category = Category::firstOrCreate(['name' => $record->category]);
 
-                        // Automatically create the Talent profile
-                        $talent = Talent::create([
-                            'name' => $record->artist_name,
-                            'talent_type' => $record->talent_type ?? 'individual',
-                            'member_count' => $record->member_count,
-                            'email' => $record->email,
-                            'category_id' => $category->id,
-                            'bio' => $record->bio,
-                            'location' => $record->location,
-                            'starting_price' => CurrencyHelper::convertToUsd((float) ($record->min_rate ?? 0), $record->currency ?? 'USD'),
-                            'genre' => $record->genre,
-                            'years_active' => $record->years_active,
-                            'website_url' => $record->website_url,
-                            'instagram_handle' => $record->instagram_handle,
-                            'facebook_url' => $record->facebook_url,
-                            'youtube_channel' => $record->youtube_channel,
-                            'tiktok_handle' => $record->tiktok_handle,
-                            'primary_image_url' => $record->profile_photo_url,
-                            'status' => 'awaiting_agreement',
-                            'slug' => Str::slug($record->artist_name),
-                        ]);
-
-                        // Send Agreement Email
-                        Mail::to($talent->email)->send(new TalentAgreementMail($talent));
-
-                        // Sync Gallery Items
-                        foreach ($record->gallery as $item) {
-                            $talent->gallery()->create([
-                                'url' => $item->url,
-                                'title' => $item->title,
-                                'description' => $item->description,
+                            // Automatically create the Talent profile
+                            $talent = Talent::create([
+                                'name' => $record->artist_name,
+                                'talent_type' => $record->talent_type ?? 'individual',
+                                'member_count' => $record->member_count,
+                                'email' => $record->email,
+                                'category_id' => $category->id,
+                                'bio' => $record->bio,
+                                'location' => $record->location,
+                                'starting_price' => CurrencyHelper::convertToUsd((float) ($record->min_rate ?? 0), $record->currency ?? 'USD'),
+                                'genre' => $record->genre,
+                                'years_active' => $record->years_active,
+                                'website_url' => $record->website_url,
+                                'instagram_handle' => $record->instagram_handle,
+                                'facebook_url' => $record->facebook_url,
+                                'youtube_channel' => $record->youtube_channel,
+                                'tiktok_handle' => $record->tiktok_handle,
+                                'primary_image_url' => $record->profile_photo_url,
+                                'status' => 'awaiting_agreement',
+                                'slug' => Str::slug($record->artist_name),
                             ]);
-                        }
+
+                            // Send Agreement Email
+                            Mail::to($talent->email)->send(new TalentAgreementMail($talent));
+
+                            // Sync Gallery Items
+                            foreach ($record->gallery as $item) {
+                                $talent->gallery()->create([
+                                    'url' => $item->url,
+                                    'title' => $item->title,
+                                    'description' => $item->description,
+                                ]);
+                            }
+                        });
 
                         Notification::make()
                             ->title('Act Admitted to Agency Talent')
