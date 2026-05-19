@@ -198,12 +198,12 @@
                                     </div>
                                 @endif
 
-                                <x-input wire:model="artist_name" label="Act / Group Name *" placeholder="Your stage or band name" />
+                                <x-input wire:model="artist_name" label="Act Name *" placeholder="Your stage name" />
                                 <x-input wire:model="real_name" label="Contact Person Name *" placeholder="Your legal name" />
                                 <x-input wire:model="email" type="email" label="Email Address *" placeholder="your@email.com" />
                                 <x-input wire:model="phone" type="tel" label="Phone Number *" placeholder="+1 XXX XXX XXXX" />
                                 <div class="md:col-span-2">
-                                    <x-input wire:model="location" label="Location (City, Country) *" placeholder="London, UK" />
+                                    <x-input wire:model="location" label="Location (City, Country) *" placeholder="London, UK" :location="true" />
                                 </div>
                                 <div class="md:col-span-2">
                                     <x-input wire:model="profile_photo_url" label="Profile Photo URL *" placeholder="https://... (direct link to image)" />

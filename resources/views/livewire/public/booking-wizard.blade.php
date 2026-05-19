@@ -75,8 +75,8 @@
                                     <option value="3+ Hours">3+ Hours</option>
                                 </x-select>
                                 <x-input wire:model="venue_name" name="venue_name" label="Venue Name" class="md:col-span-2" />
-                                <x-input wire:model="city" name="city" label="City *" />
-                                <x-input wire:model="state" name="state" label="State *" />
+                                <x-input wire:model="city" name="city" label="City *" :location="true" locationType="city" />
+                                <x-input wire:model="state" name="state" label="State *" :location="true" locationType="state" />
                                 <x-input wire:model="expected_guests" name="expected_guests" type="number" label="Expected Number of Guests *" class="md:col-span-2" />
                             </div>
                         </div>
