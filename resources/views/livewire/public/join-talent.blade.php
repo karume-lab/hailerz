@@ -18,10 +18,10 @@
     @else
         <section class="py-24 bg-surface-light border-b border-subtle">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
-                <div class="max-w-3xl">
-                    <x-heading level="h1" title="Representing World-Class Talent" class="mb-6" />
-                    <p class="text-xl text-text-secondary leading-relaxed font-light">
-                        Are you a premier musician, speaker, or performer looking to connect with high-profile events? Join our exclusive roster.
+                <div class="max-w-3xl mx-auto text-center flex flex-col items-center">
+                    <x-heading level="h1" title="Join the" highlight="Hailerz Roster" align="center" class="mb-6" />
+                    <p class="text-xl text-text-secondary leading-relaxed font-light text-center">
+                        Are you a talented performer looking to take your career to the next level? Join our exclusive roster of premium talent and get booked for high-profile events across Nigeria.
                     </p>
                 </div>
             </div>
