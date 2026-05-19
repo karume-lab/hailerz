@@ -69,16 +69,16 @@ class JoinTalent extends Component
     #[Validate('nullable|url|max:255')]
     public string $website_url = '';
 
-    #[Validate('nullable|string|max:255')]
+    #[Validate('nullable|string|max:255|regex:/^[a-zA-Z0-9._@-]+$/', message: 'Please enter only the Instagram username (e.g. yourusername), not a full link.')]
     public string $instagram_handle = '';
 
-    #[Validate('nullable|string|max:255')]
+    #[Validate('nullable|string|max:255|regex:/^[a-zA-Z0-9._@-]+$/', message: 'Please enter only the Facebook username (e.g. yourusername), not a full link.')]
     public string $facebook_url = '';
 
-    #[Validate('nullable|string|max:255')]
+    #[Validate('nullable|string|max:255|regex:/^[a-zA-Z0-9._@-]+$/', message: 'Please enter only the YouTube channel handle/name (e.g. yourchannel), not a full link.')]
     public string $youtube_channel = '';
 
-    #[Validate('nullable|string|max:255')]
+    #[Validate('nullable|string|max:255|regex:/^[a-zA-Z0-9._@-]+$/', message: 'Please enter only the TikTok username (e.g. yourusername), not a full link.')]
     public string $tiktok_handle = '';
 
     // Additional Information
@@ -141,9 +141,19 @@ class JoinTalent extends Component
             ]);
         } elseif ($this->currentStep === 3) {
             $this->validate([
+                'website_url' => 'nullable|url|max:255',
+                'instagram_handle' => 'nullable|string|max:255|regex:/^[a-zA-Z0-9._@-]+$/',
+                'facebook_url' => 'nullable|string|max:255|regex:/^[a-zA-Z0-9._@-]+$/',
+                'youtube_channel' => 'nullable|string|max:255|regex:/^[a-zA-Z0-9._@-]+$/',
+                'tiktok_handle' => 'nullable|string|max:255|regex:/^[a-zA-Z0-9._@-]+$/',
                 'gallery.*.url' => 'nullable|url|max:255',
                 'gallery.*.title' => 'nullable|string|max:255',
                 'gallery.*.description' => 'nullable|string|max:1000',
+            ], [
+                'instagram_handle.regex' => 'Please enter only the Instagram username (e.g. yourusername), not a full link.',
+                'facebook_url.regex' => 'Please enter only the Facebook username (e.g. yourusername), not a full link.',
+                'youtube_channel.regex' => 'Please enter only the YouTube channel handle/name (e.g. yourchannel), not a full link.',
+                'tiktok_handle.regex' => 'Please enter only the TikTok username (e.g. yourusername), not a full link.',
             ]);
         }
 
@@ -174,10 +184,10 @@ class JoinTalent extends Component
             'min_rate' => $this->min_rate,
             'max_rate' => $this->max_rate,
             'website_url' => $this->website_url,
-            'instagram_handle' => $this->instagram_handle,
-            'facebook_url' => $this->facebook_url,
-            'youtube_channel' => $this->youtube_channel,
-            'tiktok_handle' => $this->tiktok_handle,
+            'instagram_handle' => ! empty($this->instagram_handle) ? 'https://instagram.com/'.trim(ltrim($this->instagram_handle, '@')) : null,
+            'facebook_url' => ! empty($this->facebook_url) ? 'https://facebook.com/'.trim(ltrim($this->facebook_url, '@')) : null,
+            'youtube_channel' => ! empty($this->youtube_channel) ? 'https://youtube.com/@'.trim(ltrim($this->youtube_channel, '@')) : null,
+            'tiktok_handle' => ! empty($this->tiktok_handle) ? 'https://tiktok.com/@'.trim(ltrim($this->tiktok_handle, '@')) : null,
             'bio' => $this->bio,
             'source' => $this->source,
             'status' => 'pending',

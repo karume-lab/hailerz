@@ -351,13 +351,16 @@
                         <div class="{{ $currentStep != 3 ? 'hidden' : 'block' }} space-y-10">
                             <h3 class="text-2xl font-bold text-text-primary border-b border-subtle pb-4">Portfolio & Socials
                             </h3>
-                            <div class="space-y-10">
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    <x-input wire:model.live.debounce.300ms="instagram_handle" label="Instagram Handle"
-                                        placeholder="@yourusername" />
-                                    <x-input wire:model.live.debounce.300ms="youtube_channel" label="YouTube Channel"
-                                        placeholder="youtube.com/@yourchannel" />
-                                    <x-input wire:model.live.debounce.300ms="website_url" type="url" label="Website"
+                                    <x-input wire:model.live.debounce.300ms="instagram_handle" label="Instagram Username"
+                                        placeholder="e.g. yourusername" />
+                                    <x-input wire:model.live.debounce.300ms="facebook_url" label="Facebook Username/Page Name"
+                                        placeholder="e.g. yourusername" />
+                                    <x-input wire:model.live.debounce.300ms="youtube_channel" label="YouTube Channel Name/Handle"
+                                        placeholder="e.g. yourchannel" />
+                                    <x-input wire:model.live.debounce.300ms="tiktok_handle" label="TikTok Username"
+                                        placeholder="e.g. yourusername" />
+                                    <x-input wire:model.live.debounce.300ms="website_url" type="url" label="Website URL (Optional)"
                                         placeholder="https://yourwebsite.com" class="md:col-span-2" />
                                 </div>
 

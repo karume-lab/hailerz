@@ -289,32 +289,46 @@
               @endif
 
               @if($talent->instagram_handle)
-                @php $igUrl = str_starts_with($talent->instagram_handle, 'http') ? $talent->instagram_handle : 'https://instagram.com/' . ltrim($talent->instagram_handle, '@'); @endphp
+                @php
+                  $igUrl = str_starts_with($talent->instagram_handle, 'http') ? $talent->instagram_handle : 'https://instagram.com/' . ltrim($talent->instagram_handle, '@');
+                  $igDisplay = '@' . ltrim(trim(parse_url($igUrl, PHP_URL_PATH) ?? $igUrl, '/'), '@');
+                @endphp
                 <a href="{{ $igUrl }}" target="_blank" class="block p-6 bg-surface-muted border border-subtle rounded-md hover:bg-brand-primary/10 transition-all group h-full">
-                    <p class="text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Instagram Handle</p>
-                    <p class="text-sm text-text-primary font-medium truncate">{{ $talent->instagram_handle }}</p>
+                    <p class="text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Instagram</p>
+                    <p class="text-sm text-text-primary font-medium truncate">{{ $igDisplay }}</p>
                 </a>
               @endif
 
               @if($talent->facebook_url)
-                <a href="{{ $talent->facebook_url }}" target="_blank" class="block p-6 bg-surface-muted border border-subtle rounded-md hover:bg-brand-primary/10 transition-all group h-full">
-                    <p class="text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Facebook Page</p>
-                    <p class="text-sm text-text-primary font-medium truncate">{{ $talent->facebook_url }}</p>
+                @php
+                  $fbUrl = str_starts_with($talent->facebook_url, 'http') ? $talent->facebook_url : 'https://facebook.com/' . ltrim($talent->facebook_url, '@');
+                  $fbDisplay = trim(parse_url($fbUrl, PHP_URL_PATH) ?? $fbUrl, '/');
+                @endphp
+                <a href="{{ $fbUrl }}" target="_blank" class="block p-6 bg-surface-muted border border-subtle rounded-md hover:bg-brand-primary/10 transition-all group h-full">
+                    <p class="text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Facebook</p>
+                    <p class="text-sm text-text-primary font-medium truncate">{{ $fbDisplay }}</p>
                 </a>
               @endif
 
               @if($talent->youtube_channel)
-                <a href="{{ $talent->youtube_channel }}" target="_blank" class="block p-6 bg-surface-muted border border-subtle rounded-md hover:bg-brand-primary/10 transition-all group h-full">
-                    <p class="text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">YouTube Channel</p>
-                    <p class="text-sm text-text-primary font-medium truncate">{{ $talent->youtube_channel }}</p>
+                @php
+                  $ytUrl = str_starts_with($talent->youtube_channel, 'http') ? $talent->youtube_channel : 'https://youtube.com/@' . ltrim($talent->youtube_channel, '@');
+                  $ytDisplay = trim(parse_url($ytUrl, PHP_URL_PATH) ?? $ytUrl, '/');
+                @endphp
+                <a href="{{ $ytUrl }}" target="_blank" class="block p-6 bg-surface-muted border border-subtle rounded-md hover:bg-brand-primary/10 transition-all group h-full">
+                    <p class="text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">YouTube</p>
+                    <p class="text-sm text-text-primary font-medium truncate">{{ $ytDisplay }}</p>
                 </a>
               @endif
 
               @if($talent->tiktok_handle)
-                @php $tiktokUrl = str_starts_with($talent->tiktok_handle, 'http') ? $talent->tiktok_handle : 'https://tiktok.com/@' . ltrim($talent->tiktok_handle, '@'); @endphp
-                <a href="{{ $tiktokUrl }}" target="_blank" class="block p-6 bg-surface-muted border border-subtle rounded-md hover:bg-brand-primary/10 transition-all group h-full">
+                @php
+                  $ttUrl = str_starts_with($talent->tiktok_handle, 'http') ? $talent->tiktok_handle : 'https://tiktok.com/@' . ltrim($talent->tiktok_handle, '@');
+                  $ttDisplay = '@' . ltrim(trim(parse_url($ttUrl, PHP_URL_PATH) ?? $ttUrl, '/'), '@');
+                @endphp
+                <a href="{{ $ttUrl }}" target="_blank" class="block p-6 bg-surface-muted border border-subtle rounded-md hover:bg-brand-primary/10 transition-all group h-full">
                     <p class="text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">TikTok</p>
-                    <p class="text-sm text-text-primary font-medium truncate">{{ $talent->tiktok_handle }}</p>
+                    <p class="text-sm text-text-primary font-medium truncate">{{ $ttDisplay }}</p>
                 </a>
               @endif
             </div>
