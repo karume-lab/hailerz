@@ -265,7 +265,7 @@
                 <x-lucide-banknote class="w-5 h-5" stroke-width="2" />
               </div>
               <div>
-                <p class="text-[10px] font-bold text-text-secondary uppercase tracking-widest mb-1">Starting Investment</p>
+                <p class="text-[10px] font-bold text-text-secondary uppercase tracking-widest mb-1">Starting Rate</p>
                 <p class="text-text-primary font-semibold text-xl">
                   {{ $talent->starting_price ? \App\Helpers\CurrencyHelper::format($talent->starting_price) : 'Custom Quotation' }}
                 </p>

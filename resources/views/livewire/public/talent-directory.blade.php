@@ -28,8 +28,8 @@
             <x-select wire:model.live="sort" name="sort" label="Order">
               <option value="name">Alphabetical</option>
               <option value="latest">Newly Represented</option>
-              <option value="price_asc">Investment: Low to High</option>
-              <option value="price_desc">Investment: High to Low</option>
+              <option value="price_asc">Rates: Low to High</option>
+              <option value="price_desc">Rates: High to Low</option>
             </x-select>
 
             <x-select wire:model.live="category_id" name="category" label="Discipline">
@@ -175,7 +175,7 @@
 
                     <div class="flex justify-between items-center pt-6 border-t border-subtle ">
                       <div>
-                        <p class="text-[10px] font-bold text-text-secondary uppercase tracking-widest">Starting Investment
+                        <p class="text-[10px] font-bold text-text-secondary uppercase tracking-widest">Starting Rate
                         </p>
                         <p class="text-lg font-bold text-text-primary">{{ \App\Helpers\CurrencyHelper::format($talent->starting_price ?? 0) }}
                         </p>
