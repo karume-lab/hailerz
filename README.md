@@ -115,6 +115,11 @@ The platform features a native, legally binding digital signature engine designe
 - **Multi-Version Workflows**: Signers can request revisions, locking the current draft as `voided`. Admins can publish new version drafts (e.g. `v1.0` -> `v1.1`), which clones signatories and resets signature requirements.
 - **SMTP-Friendly Queues**: Outbound signature requests and executed notifications are queued (`php artisan queue:work`) to bypass cPanel SMTP block lists.
 
+### Local PDF Testing
+You can preview how PDF templates render without going through the full email and database flows by navigating to `/view-pdfs` in your browser. This endpoint displays a directory of generated PDFs (e.g., Talent Representation Agreements with Certificates of Completion, Booking Inquiries, and Talent Submissions). 
+
+*Note: For security reasons, this testing endpoint is strictly locked to the `local` environment and will return a 403 Forbidden error in production.*
+
 ---
 
 ## Code Quality Guardrails
