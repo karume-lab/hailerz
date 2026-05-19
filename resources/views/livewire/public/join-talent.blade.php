@@ -1,5 +1,4 @@
-<div class="min-h-screen flex flex-col"
-     x-data="{
+<div class="min-h-screen flex flex-col" x-data="{
         storageKey: 'hailerz_join_talent_form',
         init() {
             @if($isSubmitted)
@@ -65,8 +64,7 @@
                 data: data
             }));
         }
-     }"
->
+     }">
     @if($isSubmitted)
         <div class="flex-1 flex items-center justify-center py-24 bg-surface-muted">
             <x-card padding="p-16" class="text-center shadow-2xl max-w-2xl mx-auto">
@@ -75,8 +73,9 @@
                 </div>
                 <x-heading level="h2" title="Application Submitted!" align="center" class="text-text-primary mb-6" />
                 <p class="text-lg text-text-secondary mb-12 max-w-xl mx-auto">
-                    Thanks for sharing your talent with us! We've successfully received your application. 
-                    Our team will review your portfolio and reach out within 5-7 business days if there's a potential fit for our roster.
+                    Thanks for sharing your talent with us! We've successfully received your application.
+                    Our team will review your portfolio and reach out within 2-3 business days if there's a potential fit
+                    for our roster.
                 </p>
                 <x-button variant="primary" size="lg" href="/" wire:navigate>
                     Back to Home
@@ -89,7 +88,8 @@
                 <div class="max-w-3xl mx-auto text-center flex flex-col items-center">
                     <x-heading level="h1" title="Join the" highlight="Hailerz Roster" align="center" class="mb-6" />
                     <p class="text-xl text-text-secondary leading-relaxed font-light text-center">
-                        Are you a talented performer looking to take your career to the next level? Join our exclusive roster of premium talent and get booked for high-profile events across Nigeria.
+                        Are you a talented performer looking to take your career to the next level? Join our exclusive
+                        roster of premium talent and get booked for high-profile events across Nigeria.
                     </p>
                 </div>
             </div>
@@ -114,10 +114,12 @@
                         @endphp
 
                         @foreach($benefits as $index => $benefit)
-                            <div class="rounded-2xl border border-subtle bg-surface-light p-8 shadow-sm reveal {{ $index % 2 === 1 ? 'reveal-delay-100' : '' }}">
+                            <div
+                                class="rounded-2xl border border-subtle bg-surface-light p-8 shadow-sm reveal {{ $index % 2 === 1 ? 'reveal-delay-100' : '' }}">
                                 <div class="flex items-start gap-4">
                                     <div class="bg-brand-primary/10 p-3 rounded-xl">
-                                        <x-dynamic-component :component="'lucide-' . $benefit['icon']" class="h-6 w-6 text-brand-primary" />
+                                        <x-dynamic-component :component="'lucide-' . $benefit['icon']"
+                                            class="h-6 w-6 text-brand-primary" />
                                     </div>
                                     <div>
                                         <h3 class="text-xl font-bold mb-2 text-text-primary">{{ $benefit['title'] }}</h3>
@@ -207,7 +209,7 @@
                                     We carefully review every application. Our team evaluates your experience,
                                     performance quality, professionalism, and fit with our client base. Due
                                     to high volume, we can only accept a limited number of new artists each
-                                    month. If selected, you'll be contacted within 5-7 business days.
+                                    month. If selected, you'll be contacted within 2-3 business days.
                                 </p>
                             </div>
                         </div>
@@ -223,16 +225,19 @@
                     <x-heading level="h2" title="Talent" highlight="Application" align="center" class="mb-4" />
                     <p class="text-lg text-text-secondary">Take the first step toward joining our premier roster</p>
                 </div>
-                
+
                 <!-- Progress Indicator -->
                 <div class="mb-16 reveal reveal-delay-100">
                     <div class="relative">
                         <div class="overflow-hidden h-1.5 mb-6 text-xs flex rounded-full bg-subtle">
-                            <div style="width: {{ ($currentStep / 4) * 100 }}%" class="shadow-none flex flex-col text-center whitespace-nowrap text-text-inverse justify-center bg-brand-primary transition-all duration-700"></div>
+                            <div style="width: {{ ($currentStep / 4) * 100 }}%"
+                                class="shadow-none flex flex-col text-center whitespace-nowrap text-text-inverse justify-center bg-brand-primary transition-all duration-700">
+                            </div>
                         </div>
                         <div class="grid grid-cols-4 text-[10px] font-bold text-text-muted uppercase tracking-[0.2em]">
                             <span class="{{ $currentStep >= 1 ? 'text-brand-primary' : '' }} text-left">Basics</span>
-                            <span class="{{ $currentStep >= 2 ? 'text-brand-primary' : '' }} text-center">Professional</span>
+                            <span
+                                class="{{ $currentStep >= 2 ? 'text-brand-primary' : '' }} text-center">Professional</span>
                             <span class="{{ $currentStep >= 3 ? 'text-brand-primary' : '' }} text-center">Portfolio</span>
                             <span class="{{ $currentStep >= 4 ? 'text-brand-primary' : '' }} text-right">Review</span>
                         </div>
@@ -243,17 +248,22 @@
                     <form wire:submit.prevent="submit" class="space-y-12">
                         <!-- Step 1: Artist Information -->
                         <div class="{{ $currentStep != 1 ? 'hidden' : 'block' }} space-y-10">
-                            <h3 class="text-2xl font-bold text-text-primary border-b border-subtle pb-4">Act Information</h3>
-                            
+                            <h3 class="text-2xl font-bold text-text-primary border-b border-subtle pb-4">Act Information
+                            </h3>
+
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                                 <div class="md:col-span-2">
-                                    <label class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-4">Talent Type *</label>
+                                    <label
+                                        class="block text-[10px] font-bold text-text-muted uppercase tracking-widest mb-4">Talent
+                                        Type *</label>
                                     <div class="grid grid-cols-2 gap-4">
-                                        <button type="button" wire:click="$set('talent_type', 'individual')" class="flex items-center justify-center gap-3 p-4 rounded-xl border {{ $talent_type === 'individual' ? 'border-brand-primary bg-brand-primary/5 text-brand-primary' : 'border-subtle bg-surface-light text-text-secondary hover:border-brand-primary/30' }} transition-all">
+                                        <button type="button" wire:click="$set('talent_type', 'individual')"
+                                            class="flex items-center justify-center gap-3 p-4 rounded-xl border {{ $talent_type === 'individual' ? 'border-brand-primary bg-brand-primary/5 text-brand-primary' : 'border-subtle bg-surface-light text-text-secondary hover:border-brand-primary/30' }} transition-all">
                                             <x-lucide-user class="w-5 h-5" />
                                             <span class="font-bold">Individual</span>
                                         </button>
-                                        <button type="button" wire:click="$set('talent_type', 'group')" class="flex items-center justify-center gap-3 p-4 rounded-xl border {{ $talent_type === 'group' ? 'border-brand-primary bg-brand-primary/5 text-brand-primary' : 'border-subtle bg-surface-light text-text-secondary hover:border-brand-primary/30' }} transition-all">
+                                        <button type="button" wire:click="$set('talent_type', 'group')"
+                                            class="flex items-center justify-center gap-3 p-4 rounded-xl border {{ $talent_type === 'group' ? 'border-brand-primary bg-brand-primary/5 text-brand-primary' : 'border-subtle bg-surface-light text-text-secondary hover:border-brand-primary/30' }} transition-all">
                                             <x-lucide-users class="w-5 h-5" />
                                             <span class="font-bold">Group / Band</span>
                                         </button>
@@ -262,24 +272,32 @@
 
                                 @if($talent_type === 'group')
                                     <div class="md:col-span-2">
-                                        <x-input wire:model="member_count" type="number" label="Number of Members *" placeholder="e.g. 4" />
+                                        <x-input wire:model.live.debounce.300ms="member_count" type="number" label="Number of Members *"
+                                            placeholder="e.g. 4" />
                                     </div>
                                 @endif
 
-                                <x-input wire:model="artist_name" label="Act Name *" placeholder="Your stage name" />
-                                <x-input wire:model="real_name" label="Contact Person Name *" placeholder="Your legal name" />
-                                <x-input wire:model="email" type="email" label="Email Address *" placeholder="your@email.com" />
-                                <x-input wire:model="phone" type="tel" label="Phone Number *" placeholder="+1 XXX XXX XXXX" />
+                                <x-input wire:model.live.debounce.300ms="artist_name" label="Act Name *" placeholder="Your stage name" />
+                                <x-input wire:model.live.debounce.300ms="real_name" label="Full Name *" placeholder="Your legal name" />
+                                <x-input wire:model.live.debounce.300ms="email" type="email" label="Email Address *"
+                                    placeholder="your@email.com" />
+                                <x-input wire:model.live.debounce.300ms="phone" type="tel" label="Phone Number *"
+                                    placeholder="+1 XXX XXX XXXX" />
                                 <div class="md:col-span-2">
-                                    <x-input wire:model="location" label="Location (City, Country) *" placeholder="London, UK" :location="true" />
+                                    <x-input wire:model.live.debounce.300ms="location" label="Location (City, Country) *"
+                                        placeholder="London, UK" :location="true" />
                                 </div>
                                 <div class="md:col-span-2">
-                                    <x-input wire:model.blur="profile_photo_url" label="Profile Photo URL *" placeholder="https://... (direct link to image)" />
-                                    <p class="text-xs text-text-muted mt-2">Provide a high-quality link to your official promotional photo or logo.</p>
-                                    
+                                    <x-input wire:model.live.debounce.500ms="profile_photo_url" label="Profile Photo URL *"
+                                        placeholder="https://... (direct link to image)" />
+                                    <p class="text-xs text-text-muted mt-2">Provide a high-quality link to your official
+                                        promotional photo or logo.</p>
+
                                     @if(!empty($profile_photo_url) && filter_var($profile_photo_url, FILTER_VALIDATE_URL))
                                         <div class="mt-4 p-4 bg-surface-muted/30 border border-subtle rounded-3xl">
-                                            <span class="text-[10px] font-bold text-text-muted uppercase tracking-widest block mb-3">Profile Photo Preview</span>
+                                            <span
+                                                class="text-[10px] font-bold text-text-muted uppercase tracking-widest block mb-3">Profile
+                                                Photo Preview</span>
                                             {!! \App\Helpers\MediaPreviewHelper::getPreviewHtml($profile_photo_url) !!}
                                         </div>
                                     @endif
@@ -289,9 +307,10 @@
 
                         <!-- Step 2: Professional Details -->
                         <div class="{{ $currentStep != 2 ? 'hidden' : 'block' }} space-y-10">
-                            <h3 class="text-2xl font-bold text-text-primary border-b border-subtle pb-4">Professional Details</h3>
+                            <h3 class="text-2xl font-bold text-text-primary border-b border-subtle pb-4">Professional
+                                Details</h3>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <x-select wire:model="category" label="Talent Category *">
+                                <x-select wire:model.live="category" label="Talent Category *">
                                     <option value="">Select category</option>
                                     <option value="Musicians">Musicians</option>
                                     <option value="DJs">DJs</option>
@@ -304,32 +323,44 @@
                                     <option value="MCs">MCs</option>
                                     <option value="Variety Artists">Variety Artists</option>
                                 </x-select>
-                                <x-input wire:model="genre" label="Primary Genre/Style (Optional)" placeholder="e.g., Afrobeats, Jazz, Hip-Hop" />
-                                <x-input wire:model="years_active" label="Years Active *" placeholder="e.g., 5 years" />
+                                <x-input wire:model.live.debounce.300ms="genre" label="Primary Genre/Style (Optional)"
+                                    placeholder="e.g., Afrobeats, Jazz, Hip-Hop" />
+                                <x-input wire:model.live.debounce.300ms="years_active" label="Years Active *" placeholder="e.g., 5 years" />
                                 <div class="grid grid-cols-2 gap-4">
-                                    <x-input wire:model="min_rate" type="number" label="Min Rate ({{ \App\Helpers\CurrencyHelper::getCurrencySymbol() }}) *" placeholder="e.g. 500" />
-                                    <x-input wire:model="max_rate" type="number" label="Max Rate ({{ \App\Helpers\CurrencyHelper::getCurrencySymbol() }}) *" placeholder="e.g. 1500" />
+                                    <x-input wire:model.live.debounce.300ms="min_rate" type="number"
+                                        label="Min Rate ({{ \App\Helpers\CurrencyHelper::getCurrencySymbol() }}) *"
+                                        placeholder="e.g. 500" />
+                                    <x-input wire:model.live.debounce.300ms="max_rate" type="number"
+                                        label="Max Rate ({{ \App\Helpers\CurrencyHelper::getCurrencySymbol() }}) *"
+                                        placeholder="e.g. 1500" />
                                 </div>
                                 <div class="md:col-span-2">
-                                    <x-textarea wire:model="bio" label="Artist Bio *" rows="5" placeholder="Tell us about yourself, your style, and what makes you unique as a performer (min 200 characters)" maxlength="5000" />
+                                    <x-textarea wire:model.live.debounce.300ms="bio" label="Artist Bio *" rows="5"
+                                        placeholder="Tell us about yourself, your style, and what makes you unique as a performer (min 200 characters)"
+                                        maxlength="5000" />
                                 </div>
                             </div>
                         </div>
 
                         <!-- Step 3: Portfolio & Socials -->
                         <div class="{{ $currentStep != 3 ? 'hidden' : 'block' }} space-y-10">
-                            <h3 class="text-2xl font-bold text-text-primary border-b border-subtle pb-4">Portfolio & Socials</h3>
+                            <h3 class="text-2xl font-bold text-text-primary border-b border-subtle pb-4">Portfolio & Socials
+                            </h3>
                             <div class="space-y-10">
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    <x-input wire:model="instagram_handle" label="Instagram Handle" placeholder="@yourusername" />
-                                    <x-input wire:model="youtube_channel" label="YouTube Channel" placeholder="youtube.com/@yourchannel" />
-                                    <x-input wire:model="website_url" type="url" label="Website" placeholder="https://yourwebsite.com" class="md:col-span-2" />
+                                    <x-input wire:model.live.debounce.300ms="instagram_handle" label="Instagram Handle"
+                                        placeholder="@yourusername" />
+                                    <x-input wire:model.live.debounce.300ms="youtube_channel" label="YouTube Channel"
+                                        placeholder="youtube.com/@yourchannel" />
+                                    <x-input wire:model.live.debounce.300ms="website_url" type="url" label="Website"
+                                        placeholder="https://yourwebsite.com" class="md:col-span-2" />
                                 </div>
 
                                 <div class="space-y-6">
                                     <div class="flex items-center justify-between">
                                         <h4 class="text-lg font-bold text-text-primary">Gallery</h4>
-                                        <x-button type="button" variant="ghost" size="sm" wire:click="addGalleryItem" class="text-brand-primary border-brand-primary/20">
+                                        <x-button type="button" variant="ghost" size="sm" wire:click="addGalleryItem"
+                                            class="text-brand-primary border-brand-primary/20">
                                             <x-lucide-plus class="w-4 h-4 mr-2" />
                                             Add to Gallery
                                         </x-button>
@@ -337,21 +368,29 @@
                                     <div class="space-y-4">
                                         @foreach($gallery as $index => $item)
                                             <div class="bg-surface-muted/50 p-6 rounded-2xl border border-subtle relative">
-                                                <button type="button" wire:click="removeGalleryItem({{ $index }})" class="absolute top-4 right-4 text-text-muted hover:text-red-500 transition-colors">
+                                                <button type="button" wire:click="removeGalleryItem({{ $index }})"
+                                                    class="absolute top-4 right-4 text-text-muted hover:text-red-500 transition-colors">
                                                     <x-lucide-x class="w-4 h-4" />
                                                 </button>
                                                 <div class="grid grid-cols-1 gap-6">
-                                                    <x-input wire:model.blur="gallery.{{ $index }}.url" label="Media Link *" placeholder="YouTube, SoundCloud, or Drive link" />
-                                                    
+                                                    <x-input wire:model.live.debounce.500ms="gallery.{{ $index }}.url" label="Media Link *"
+                                                        placeholder="YouTube, SoundCloud, or Drive link" />
+
                                                     @if(!empty($gallery[$index]['url']) && filter_var($gallery[$index]['url'], FILTER_VALIDATE_URL))
                                                         <div class="p-4 bg-surface-muted/30 border border-subtle rounded-2xl">
-                                                            <span class="text-[10px] font-bold text-text-muted uppercase tracking-widest block mb-3">Media Preview</span>
+                                                            <span
+                                                                class="text-[10px] font-bold text-text-muted uppercase tracking-widest block mb-3">Media
+                                                                Preview</span>
                                                             {!! \App\Helpers\MediaPreviewHelper::getPreviewHtml($gallery[$index]['url']) !!}
                                                         </div>
                                                     @endif
 
-                                                    <x-input wire:model="gallery.{{ $index }}.title" label="Title (Optional)" placeholder="e.g. Live Performance at Eko Hotel" />
-                                                    <x-textarea wire:model="gallery.{{ $index }}.description" label="Description (Optional)" placeholder="Short description of this media..." rows="3" maxlength="1000" />
+                                                    <x-input wire:model.live.debounce.300ms="gallery.{{ $index }}.title" label="Title (Optional)"
+                                                        placeholder="e.g. Live Performance at Eko Hotel" />
+                                                    <x-textarea wire:model.live.debounce.300ms="gallery.{{ $index }}.description"
+                                                        label="Description (Optional)"
+                                                        placeholder="Short description of this media..." rows="3"
+                                                        maxlength="1000" />
                                                 </div>
                                             </div>
                                         @endforeach
@@ -362,25 +401,31 @@
 
                         <!-- Step 4: Final Review & Next Steps -->
                         <div class="{{ $currentStep != 4 ? 'hidden' : 'block' }} space-y-10">
-                            <h3 class="text-2xl font-bold text-text-primary border-b border-subtle pb-4">Final Review & Next Steps</h3>
-                            
+                            <h3 class="text-2xl font-bold text-text-primary border-b border-subtle pb-4">Final Review & Next
+                                Steps</h3>
+
                             <div class="bg-surface-muted rounded-2xl p-8 border border-subtle">
-                                <h4 class="text-sm font-bold text-text-primary uppercase tracking-widest mb-6">Application Process</h4>
+                                <h4 class="text-sm font-bold text-text-primary uppercase tracking-widest mb-6">Application
+                                    Process</h4>
                                 <ul class="space-y-4">
                                     <li class="flex items-start gap-4 text-sm text-text-secondary">
-                                        <div class="h-6 w-6 rounded-full bg-brand-primary/10 flex items-center justify-center shrink-0">
+                                        <div
+                                            class="h-6 w-6 rounded-full bg-brand-primary/10 flex items-center justify-center shrink-0">
                                             <span class="text-[10px] font-bold text-brand-primary">1</span>
                                         </div>
-                                        <p>Our talent scouts will review your portfolio and credentials (5-7 business days).</p>
+                                        <p>Our talent scouts will review your portfolio and credentials (2-3 business days).
+                                        </p>
                                     </li>
                                     <li class="flex items-start gap-4 text-sm text-text-secondary">
-                                        <div class="h-6 w-6 rounded-full bg-brand-primary/10 flex items-center justify-center shrink-0">
+                                        <div
+                                            class="h-6 w-6 rounded-full bg-brand-primary/10 flex items-center justify-center shrink-0">
                                             <span class="text-[10px] font-bold text-brand-primary">2</span>
                                         </div>
                                         <p>If your act fits our roster, we'll schedule a brief virtual discovery call.</p>
                                     </li>
                                     <li class="flex items-start gap-4 text-sm text-text-secondary">
-                                        <div class="h-6 w-6 rounded-full bg-brand-primary/10 flex items-center justify-center shrink-0">
+                                        <div
+                                            class="h-6 w-6 rounded-full bg-brand-primary/10 flex items-center justify-center shrink-0">
                                             <span class="text-[10px] font-bold text-brand-primary">3</span>
                                         </div>
                                         <p>Upon approval, you'll be onboarded and made available to our premium clients.</p>
@@ -389,27 +434,33 @@
                             </div>
 
                             <div class="space-y-6">
-                                <x-select wire:model="source" label="How did you hear about us?">
+                                <x-select wire:model.live="source" label="How did you hear about us?">
                                     <option value="">Select an option</option>
                                     <option value="social">Social Media</option>
                                     <option value="referral">Artist Referral</option>
                                     <option value="search">Search Engine</option>
                                     <option value="other">Other</option>
                                 </x-select>
-
-                                <div class="relative flex items-start p-6 bg-brand-primary/5 rounded-xl border border-brand-primary/10">
+ 
+                                <div
+                                    class="relative flex items-start p-6 bg-brand-primary/5 rounded-xl border border-brand-primary/10">
                                     <div class="flex h-6 items-center">
-                                        <input wire:model="is_accurate" id="is_accurate" name="is_accurate" type="checkbox" class="h-4 w-4 rounded border-brand-primary/30 text-brand-primary focus:ring-brand-primary">
+                                        <input wire:model.live="is_accurate" id="is_accurate" name="is_accurate" type="checkbox"
+                                            class="h-4 w-4 rounded border-brand-primary/30 text-brand-primary focus:ring-brand-primary">
                                     </div>
                                     <div class="ml-4 text-sm leading-6">
-                                        <label for="is_accurate" class="font-bold text-text-primary">Information Accuracy *</label>
-                                        <p class="text-text-secondary text-xs">I confirm that all professional information and media provided are accurate and my own work.</p>
-                                        @error('is_accurate') <p class="text-red-500 text-[10px] mt-1 font-bold">{{ $message }}</p> @enderror
+                                        <label for="is_accurate" class="font-bold text-text-primary">Information Accuracy
+                                            *</label>
+                                        <p class="text-text-secondary text-xs">I confirm that all professional information
+                                            and media provided are accurate and my own work.</p>
+                                        @error('is_accurate') <p class="text-red-500 text-[10px] mt-1 font-bold">
+                                        {{ $message }}</p> @enderror
                                     </div>
                                 </div>
 
                                 <p class="text-[10px] text-text-muted leading-relaxed text-center italic">
-                                    By submitting, you agree to our <a href="{{ route('legal.privacy') }}" wire:navigate class="underline">Privacy Policy</a>. 
+                                    By submitting, you agree to our <a href="{{ route('legal.privacy') }}" wire:navigate
+                                        class="underline">Privacy Policy</a>.
                                     Your data is used strictly for recruitment and contact purposes.
                                 </p>
                             </div>
@@ -428,7 +479,8 @@
                                     Next Step
                                 </x-button>
                             @else
-                                <x-button variant="accent" size="lg" type="submit" class="px-10 h-14" wire:loading.attr="disabled">
+                                <x-button variant="accent" size="lg" type="submit" class="px-10 h-14"
+                                    wire:loading.attr="disabled">
                                     Submit Application
                                 </x-button>
                             @endif

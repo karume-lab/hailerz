@@ -133,15 +133,15 @@
 
                             <form wire:submit="submitRequest" class="space-y-5">
                                 <div class="grid grid-cols-2 gap-4">
-                                    <x-input wire:model="first_name" label="First Name*" placeholder="Enter first name" />
-                                    <x-input wire:model="last_name" label="Last Name*" placeholder="Enter last name" />
+                                    <x-input wire:model.live.debounce.300ms="first_name" label="First Name*" placeholder="Enter first name" />
+                                    <x-input wire:model.live.debounce.300ms="last_name" label="Last Name*" placeholder="Enter last name" />
                                 </div>
 
-                                <x-input wire:model="email" type="email" label="Company Email*"
+                                <x-input wire:model.live.debounce.300ms="email" type="email" label="Company Email*"
                                     placeholder="email@company.com" />
-                                <x-input wire:model="phone" label="Phone Number" placeholder="+254 ..." />
+                                <x-input wire:model.live.debounce.300ms="phone" label="Phone Number" placeholder="+254 ..." />
 
-                                <x-textarea wire:model="needs" label="Tell us about your needs"
+                                <x-textarea wire:model.live.debounce.300ms="needs" label="Tell us about your needs"
                                     placeholder="How can we help you?" rows="3" />
                                 <x-button type="submit" variant="primary"
                                     class="w-full py-4 text-lg shadow-xl shadow-brand-primary/20"

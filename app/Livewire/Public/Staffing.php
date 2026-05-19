@@ -64,6 +64,13 @@ class Staffing extends Component
         $this->requestSent = true;
     }
 
+    public function updated($propertyName): void
+    {
+        if ($this->getErrorBag()->has($propertyName)) {
+            $this->validateOnly($propertyName);
+        }
+    }
+
     public function render()
     {
         $categories = Category::where('is_professional', true)

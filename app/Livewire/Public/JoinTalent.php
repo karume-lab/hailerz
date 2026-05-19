@@ -28,13 +28,14 @@ class JoinTalent extends Component
     #[Validate('required|string|in:individual,group')]
     public string $talent_type = 'individual';
 
+    #[Validate('required_if:talent_type,group|nullable|integer|min:2')]
     public ?int $member_count = null;
 
     #[Validate('required|string|max:255')]
     public string $artist_name = ''; // Act/Group Name
 
     #[Validate('required|string|max:255')]
-    public string $real_name = ''; // Contact Person Name
+    public string $real_name = ''; // Person Name
 
     #[Validate('required|email|max:255')]
     public string $email = '';
@@ -96,7 +97,19 @@ class JoinTalent extends Component
     public string $source = '';
 
     // Gallery Items
+    #[Validate([
+        'gallery.*.url' => 'nullable|url|max:255',
+        'gallery.*.title' => 'nullable|string|max:255',
+        'gallery.*.description' => 'nullable|string|max:1000',
+    ])]
     public array $gallery = [];
+
+    public function updated($propertyName): void
+    {
+        if ($this->getErrorBag()->has($propertyName)) {
+            $this->validateOnly($propertyName);
+        }
+    }
 
     public function addGalleryItem(): void
     {

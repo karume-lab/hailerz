@@ -345,6 +345,13 @@ class BookingWizard extends Component
         $this->isComplete = true;
     }
 
+    public function updated($propertyName): void
+    {
+        if ($this->getErrorBag()->has($propertyName)) {
+            $this->validateOnly($propertyName);
+        }
+    }
+
     public function render()
     {
         return view('livewire.public.booking-wizard');

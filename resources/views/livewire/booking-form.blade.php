@@ -3,17 +3,26 @@
 use App\Models\Inquiry;
 use Livewire\Component;
 
+// @phpstan-ignore-next-line
 new class extends Component {
     public int $step = 1;
     public string $client_name = '';
     public string $event_date = '';
     public bool $is_success = false;
 
+    protected array $rules = [
+        'client_name' => 'required|min:3', 
+        'event_date' => 'required|date|after:today'
+    ];
+
+    public function updated($propertyName) {
+        if ($this->getErrorBag()->has($propertyName)) {
+            $this->validateOnly($propertyName);
+        }
+    }
+
     public function nextStep() {
-        $this->validate([
-            'client_name' => 'required|min:3', 
-            'event_date' => 'required|date|after:today'
-        ]);
+        $this->validate();
         $this->step = 2;
     }
 
@@ -50,12 +59,12 @@ new class extends Component {
             <div class="space-y-8">
                 <div>
                     <label class="block text-xs font-bold text-text-primary uppercase tracking-widest mb-3">Your Name or Company</label>
-                    <input type="text" wire:model="client_name" placeholder="Who should we address?" class="w-full bg-surface-muted border border-brand-primary/10 rounded-xl px-5 py-4 text-text-primary focus:ring-2 focus:ring-brand-primary focus:border-transparent outline-none transition-all placeholder:text-text-muted">
+                    <input type="text" wire:model.live.debounce.300ms="client_name" placeholder="Who should we address?" class="w-full bg-surface-muted border border-brand-primary/10 rounded-xl px-5 py-4 text-text-primary focus:ring-2 focus:ring-brand-primary focus:border-transparent outline-none transition-all placeholder:text-text-muted">
                     @error('client_name') <span class="text-red-500 text-[10px] font-bold uppercase mt-2 block">{{ $message }}</span> @enderror
                 </div>
                 <div>
                     <label class="block text-xs font-bold text-text-primary uppercase tracking-widest mb-3">When is the big day?</label>
-                    <input type="date" wire:model="event_date" class="w-full bg-surface-muted border border-brand-primary/10 rounded-xl px-5 py-4 text-text-primary focus:ring-2 focus:ring-brand-primary focus:border-transparent outline-none transition-all">
+                    <input type="date" wire:model.live.debounce.300ms="event_date" class="w-full bg-surface-muted border border-brand-primary/10 rounded-xl px-5 py-4 text-text-primary focus:ring-2 focus:ring-brand-primary focus:border-transparent outline-none transition-all">
                     @error('event_date') <span class="text-red-500 text-[10px] font-bold uppercase mt-2 block">{{ $message }}</span> @enderror
                 </div>
                 

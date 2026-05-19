@@ -95,11 +95,11 @@
                         <div class="{{ $currentStep != 1 ? 'hidden' : 'block' }} space-y-10">
                             <h3 class="text-2xl font-bold text-text-primary ">Contact Information</h3>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                                <x-input wire:model="first_name" name="first_name" label="First Name *" autocomplete="given-name" />
-                                <x-input wire:model="last_name" name="last_name" label="Last Name *" autocomplete="family-name" />
-                                <x-input wire:model="email" name="email" type="email" label="Email Address *" autocomplete="email" />
-                                <x-input wire:model="phone" name="phone" label="Phone Number *" autocomplete="tel" />
-                                <x-input wire:model="company" name="company" label="Company/Organization" class="md:col-span-2" />
+                                <x-input wire:model.live.debounce.300ms="first_name" name="first_name" label="First Name *" autocomplete="given-name" />
+                                <x-input wire:model.live.debounce.300ms="last_name" name="last_name" label="Last Name *" autocomplete="family-name" />
+                                <x-input wire:model.live.debounce.300ms="email" name="email" type="email" label="Email Address *" autocomplete="email" />
+                                <x-input wire:model.live.debounce.300ms="phone" name="phone" label="Phone Number *" autocomplete="tel" />
+                                <x-input wire:model.live.debounce.300ms="company" name="company" label="Company/Organization" class="md:col-span-2" />
                             </div>
                         </div>
 
@@ -107,7 +107,7 @@
                         <div class="{{ $currentStep != 2 ? 'hidden' : 'block' }} space-y-10">
                             <h3 class="text-2xl font-bold text-text-primary ">Event Details</h3>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                                <x-select wire:model="event_type" name="event_type" label="Event Type *">
+                                <x-select wire:model.live="event_type" name="event_type" label="Event Type *">
                                     <option value="">-- Select Type --</option>
                                     <option value="Wedding">Wedding</option>
                                     <option value="Corporate Event">Corporate Event</option>
@@ -115,19 +115,19 @@
                                     <option value="Concert/Festival">Concert/Festival</option>
                                     <option value="Other">Other</option>
                                 </x-select>
-                                <x-input wire:model="event_date" name="event_date" type="date" label="Event Date *" />
-                                <x-input wire:model="event_time" name="event_time" type="time" label="Event Time" />
-                                <x-select wire:model="performance_duration" name="performance_duration" label="Performance Duration">
+                                <x-input wire:model.live.debounce.300ms="event_date" name="event_date" type="date" label="Event Date *" />
+                                <x-input wire:model.live.debounce.300ms="event_time" name="event_time" type="time" label="Event Time" />
+                                <x-select wire:model.live="performance_duration" name="performance_duration" label="Performance Duration">
                                     <option value="">-- Select Duration --</option>
                                     <option value="30 Minutes">30 Minutes</option>
                                     <option value="1 Hour">1 Hour</option>
                                     <option value="2 Hours">2 Hours</option>
                                     <option value="3+ Hours">3+ Hours</option>
                                 </x-select>
-                                <x-input wire:model="venue_name" name="venue_name" label="Venue Name" class="md:col-span-2" />
-                                <x-input wire:model="city" name="city" label="City *" :location="true" locationType="city" />
-                                <x-input wire:model="state" name="state" label="State *" :location="true" locationType="state" />
-                                <x-input wire:model="expected_guests" name="expected_guests" type="number" label="Expected Number of Guests *" class="md:col-span-2" />
+                                <x-input wire:model.live.debounce.300ms="venue_name" name="venue_name" label="Venue Name" class="md:col-span-2" />
+                                <x-input wire:model.live.debounce.300ms="city" name="city" label="City *" :location="true" locationType="city" />
+                                <x-input wire:model.live.debounce.300ms="state" name="state" label="State *" :location="true" locationType="state" />
+                                <x-input wire:model.live.debounce.300ms="expected_guests" name="expected_guests" type="number" label="Expected Number of Guests *" class="md:col-span-2" />
                             </div>
                         </div>
 
@@ -135,7 +135,7 @@
                         <div class="{{ $currentStep != 3 ? 'hidden' : 'block' }} space-y-10">
                             <h3 class="text-2xl font-bold text-text-primary ">Talent Preferences</h3>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                                <x-select wire:model="talent_category" name="talent_category" label="Talent Category *">
+                                <x-select wire:model.live="talent_category" name="talent_category" label="Talent Category *">
                                     <option value="">-- Select Category --</option>
                                     <option value="Musicians">Musicians</option>
                                     <option value="Speakers">Speakers</option>
@@ -143,9 +143,9 @@
                                     <option value="Comedians">Comedians</option>
                                     <option value="Other">Other</option>
                                 </x-select>
-                                <x-input wire:model="preferred_genre" name="preferred_genre" label="Preferred Genre" />
+                                <x-input wire:model.live.debounce.300ms="preferred_genre" name="preferred_genre" label="Preferred Genre" />
                                 <div class="relative">
-                                    <x-input wire:model="budget_range" name="budget_range" label="Budget Range *" placeholder="Select or type budget (e.g. 10k - 20k)" list="budget-options" />
+                                    <x-input wire:model.live.debounce.300ms="budget_range" name="budget_range" label="Budget Range *" placeholder="Select or type budget (e.g. 10k - 20k)" list="budget-options" />
                                     <datalist id="budget-options">
                                         @foreach(\App\Helpers\CurrencyHelper::getBudgetOptions() as $option)
                                             <option value="{{ $option }}">
@@ -279,7 +279,7 @@
                                     @error('specific_talent') <span class="text-red-500 text-xs mt-2 block">{{ $message }}</span> @enderror
                                 </div>
                                 <div class="md:col-span-2">
-                                    <x-textarea wire:model="additional_details" name="additional_details" label="Additional Details" rows="5" placeholder="Tell us about the event vibe, technical needs, or any special requests." maxlength="2000" />
+                                    <x-textarea wire:model.live.debounce.300ms="additional_details" name="additional_details" label="Additional Details" rows="5" placeholder="Tell us about the event vibe, technical needs, or any special requests." maxlength="2000" />
                                 </div>
                             </div>
                         </div>
@@ -313,7 +313,7 @@
                             </div>
 
                             <div class="space-y-6">
-                                <x-select wire:model="source" name="source" label="How did you hear about us?">
+                                <x-select wire:model.live="source" name="source" label="How did you hear about us?">
                                     <option value="">-- Select Option --</option>
                                     <option value="Search Engine">Search Engine</option>
                                     <option value="Social Media">Social Media</option>
@@ -321,10 +321,10 @@
                                     <option value="Advertisement">Advertisement</option>
                                     <option value="Other">Other</option>
                                 </x-select>
-
+ 
                                 <div class="relative flex items-start p-4 bg-brand-primary/5 rounded-xl border border-brand-primary/10">
                                     <div class="flex h-6 items-center">
-                                        <input wire:model="is_accurate" id="is_accurate" name="is_accurate" type="checkbox" class="h-4 w-4 rounded border-brand-primary/30 text-brand-primary focus:ring-brand-primary">
+                                        <input wire:model.live="is_accurate" id="is_accurate" name="is_accurate" type="checkbox" class="h-4 w-4 rounded border-brand-primary/30 text-brand-primary focus:ring-brand-primary">
                                     </div>
                                     <div class="ml-4 text-sm leading-6">
                                         <label for="is_accurate" class="font-bold text-text-primary">Information Accuracy *</label>
