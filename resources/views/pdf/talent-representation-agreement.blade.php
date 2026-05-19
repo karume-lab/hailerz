@@ -3,7 +3,7 @@
 @section('content')
 <div class="section" style="text-align: center; margin-bottom: 40px;">
     <h2 style="color: #223757; font-size: 20px; text-transform: uppercase; margin-bottom: 5px;">Talent Representation Agreement</h2>
-    <p style="font-size: 12px; color: #666; margin: 0;">Secure Digital Execution Copy</p>
+    <p style="font-size: 12px; color: #666; margin: 0;">Secure Digital Signed Copy</p>
 </div>
 
 <div class="section">

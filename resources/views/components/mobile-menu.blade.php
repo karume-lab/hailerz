@@ -9,7 +9,7 @@
     ]
 ])
 
-<div x-data="{ open: false }" class="md:hidden">
+<div x-data="{ open: false }" class="lg:hidden">
     <!-- Hamburger Button -->
     <button @click="open = !open" 
         class="relative z-50 p-2 text-text-primary hover:text-brand-primary transition-colors focus:outline-none"

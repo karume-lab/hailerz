@@ -86,7 +86,7 @@
             </span>
           </a>
         </div>
-        <nav class="hidden md:flex items-center space-x-10">
+        <nav class="hidden lg:flex items-center space-x-10">
           <a href="/talent" wire:navigate
             class="{{ request()->is('talent*') ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary' }} transition-colors">
             Browse Talent</a>
@@ -103,7 +103,7 @@
         </nav>
 
         <div class="flex items-center space-x-4 sm:space-x-4">
-          <div class="hidden md:flex items-center space-x-4">
+          <div class="hidden lg:flex items-center space-x-4">
             <x-theme-toggle />
             <a href="/join" wire:navigate
               class="{{ request()->is('join*') ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary' }} transition-colors text-sm font-medium">Submissions</a>
