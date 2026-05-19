@@ -12,16 +12,16 @@
                 
                 <h2 class="text-2xl font-bold text-brand-primary mt-12 mb-6 ">1. If you need to cancel</h2>
                 <p>Once a booking is confirmed, our artists reserve that date exclusively for you and often turn down other work. If you need to cancel:</p>
-                <ul class="list-disc pl-6 space-y-4">
-                    <li><strong>30+ Days Prior:</strong> The 50% deposit is forfeited to cover the artist's lost booking opportunity.</li>
-                    <li><strong>Less than 14 Days Prior:</strong> 100% of the Performance Fee is due and non-refundable.</li>
+                <ul class="list-disc pl-6 space-y-4 mt-3">
+                    <li><strong>30+ Days Prior:</strong> We will keep the 50% deposit to cover the artist's lost booking opportunity.</li>
+                    <li><strong>Less than 14 Days Prior:</strong> We require full payment of the performance fee, as it is too late for the artist to find another gig.</li>
                 </ul>
                 
                 <h2 class="text-2xl font-bold text-brand-primary mt-12 mb-6 ">2. If the artist cancels</h2>
-                <p>If an artist is unable to perform due to unforeseen circumstances, we will first try to find a comparable alternative act for your event. If we can't find a replacement that you're happy with, we will issue a 100% refund of all fees paid.</p>
+                <p>If an artist cannot perform due to an emergency, we will work hard to find a great alternative act for your event. If we cannot find a replacement that you love, we will give you a full refund.</p>
                 
                 <h2 class="text-2xl font-bold text-brand-primary mt-12 mb-6 ">3. Rescheduling</h2>
-                <p>If you need to change your event date, it depends on whether the artist is available. Rescheduling usually incurs a 15% fee to cover the administrative work and the artist's potential lost revenue from the original date.</p>
+                <p>If you need to change your event date, we will check if the artist is available. Rescheduling usually includes a 15% fee to cover administrative work and the artist's potential lost income from holding your original date.</p>
                 
                 <h2 class="text-2xl font-bold text-brand-primary mt-12 mb-6 ">4. Emergency situations</h2>
                 <p>Cancellations due to major emergencies or "Force Majeure" events are handled on a case-by-case basis. Our priority in these situations is always to find a new date that works for everyone.</p>

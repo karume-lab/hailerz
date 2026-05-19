@@ -10,30 +10,41 @@
             <div class="prose prose-lg max-w-none text-text-secondary font-light leading-relaxed">
                 <p class="mb-10 text-xl font-medium text-text-primary">This document outlines the standard terms and conditions applicable to all talent bookings facilitated by Hailerz. Upon confirmation of a booking, a finalized, event-specific Performance Contract will be issued.</p>
                 
-                <h2 class="text-2xl font-bold text-brand-primary mt-12 mb-6 ">1. Definitions and Scope</h2>
-                <p>This agreement outlines the obligations between the "Client" (the party securing the talent), the "Artist" (the performer or speaker), and "Hailerz" acting as the intermediary agency. By initiating a booking, the Client agrees to adhere to these foundational terms.</p>
+                <h2 class="text-2xl font-bold text-brand-primary mt-12 mb-6 ">1. Who We Are</h2>
+                <p>This agreement explains the partnership between you (the "Client"), the talent (the "Artist"), and us (the "Hailerz Agency"). When you book talent through our platform, you agree to these fair and clear terms.</p>
                 
-                <h2 class="text-2xl font-bold text-brand-primary mt-12 mb-6 ">2. Financial Terms and Deposits</h2>
+                <h2 class="text-2xl font-bold text-brand-primary mt-12 mb-6 ">2. Payment Terms</h2>
                 <ul class="list-disc pl-6 space-y-3">
-                    <li><strong>Securing the Date:</strong> A non-refundable deposit of 50% of the total agreed fee is required within 48 hours of contract execution to lock in the Artist for the specified date.</li>
-                    <li><strong>Final Balance:</strong> The remaining 50% balance must be cleared in full no later than fourteen (14) days prior to the event date.</li>
-                    <li><strong>Overtime:</strong> Any performance extending beyond the contracted hours, subject to the Artist's prior approval, will be billed at a premium overtime rate specified in the final contract.</li>
+                    <li><strong>Securing the Date:</strong> We ask for a 50% deposit within 48 hours of signing to reserve the Artist for your date. This deposit is non-refundable because the Artist blocks out their calendar for your event.</li>
+                    <li><strong>Final Balance:</strong> Please pay the remaining 50% balance at least fourteen (14) days before your event.</li>
+                    <li><strong>Overtime:</strong> If you need the Artist to perform longer than planned, and they agree, we will charge an overtime rate listed in your final contract.</li>
                 </ul>
                 
-                <h2 class="text-2xl font-bold text-brand-primary mt-12 mb-6 ">3. Technical Riders and Hospitality</h2>
-                <p>The Client assumes full responsibility for fulfilling the Artist's Technical and Hospitality Riders. This includes, but is not limited to, professional-grade sound reinforcement, lighting, staging, and backstage accommodations. Failure to provide the required technical specifications may result in the Artist's inability to perform without forfeiture of the agreed fee.</p>
+                <h2 class="text-2xl font-bold text-brand-primary mt-12 mb-6 ">3. Technical Setup & Hospitality</h2>
+                <p>You agree to provide the necessary equipment and environment for a great performance. This includes:</p>
+                <ul class="list-disc pl-6 space-y-3 mt-3">
+                    <li>Professional sound and lighting</li>
+                    <li>Appropriate staging</li>
+                    <li>Safe backstage accommodations</li>
+                </ul>
+                <p class="mt-3">If the setup does not meet the Artist's technical requirements, they may not be able to perform, but you will still be responsible for the booking fee.</p>
                 
-                <h2 class="text-2xl font-bold text-brand-primary mt-12 mb-6 ">4. Media, Recording, and Broadcasting</h2>
-                <p>The standard performance fee covers live attendance only. Audio or video recording, broadcasting, live streaming, or commercial use of the performance requires explicit prior written consent from Hailerz and the Artist, and will incur additional licensing fees.</p>
+                <h2 class="text-2xl font-bold text-brand-primary mt-12 mb-6 ">4. Recording & Broadcasting</h2>
+                <p>The booking fee covers the live performance only. If you want to record, live stream, or use the performance for commercial purposes, please ask us first! We can help you arrange the proper permissions and any extra licensing fees.</p>
                 
-                <h2 class="text-2xl font-bold text-brand-primary mt-12 mb-6 ">5. Cancellations and Force Majeure</h2>
-                <p>If the Client cancels the engagement after the contract is signed, the 50% deposit is forfeited. Cancellations made within **fourteen (14) days** of the event will result in the Client being liable for 100% of the contracted fee. In the event of a Force Majeure (acts of God, global pandemics, severe travel disruptions), neither party shall be held liable, and Hailerz will make commercially reasonable efforts to reschedule the performance.</p>
+                <h2 class="text-2xl font-bold text-brand-primary mt-12 mb-6 ">5. Cancellations & Unforeseen Events</h2>
+                <p>We understand that plans change. Here is how we handle cancellations:</p>
+                <ul class="list-disc pl-6 space-y-3 mt-3">
+                    <li><strong>After Signing:</strong> The 50% deposit is non-refundable because the Artist has reserved their time.</li>
+                    <li><strong>Within 14 Days:</strong> Cancellations close to the event require full payment, as it is too late for the Artist to book another gig.</li>
+                    <li><strong>Emergencies:</strong> If a major emergency happens (like severe weather or a global pandemic), neither of us will be held liable. We will work closely with you to reschedule the performance to a new date that works for everyone.</li>
+                </ul>
 
-                <h2 class="text-2xl font-bold text-brand-primary mt-12 mb-6 ">6. Professional Conduct & Reliability</h2>
-                <p>Hailerz maintains a strict reliability policy for all listed artists. Any artist who fails to appear for a confirmed engagement without a valid, documented reason (a "No Show") will be flagged. Three (3) such incidents within a 12-month period will result in the artist's profile being **frozen** and disabled for future bookings. The Client is protected by our refund guarantee in cases of artist no-shows where a suitable replacement cannot be provided.</p>
+                <h2 class="text-2xl font-bold text-brand-primary mt-12 mb-6 ">6. Reliability Guarantee</h2>
+                <p>We hold our artists to a high standard. If an artist fails to show up without a valid emergency, we hold them accountable. If we cannot find a suitable replacement for your event, we guarantee a full refund so you are protected.</p>
 
-                <h2 class="text-2xl font-bold text-brand-primary mt-12 mb-6 ">7. Safe Environment</h2>
-                <p>The Client guarantees a safe, secure, and professional environment for the Artist and their crew. The Artist reserves the right to immediately terminate the performance, without refund, if they feel their personal safety or the safety of their equipment is compromised.</p>
+                <h2 class="text-2xl font-bold text-brand-primary mt-12 mb-6 ">7. Safety First</h2>
+                <p>You agree to provide a safe and professional environment for the Artist and their team. If the Artist ever feels that their safety or equipment is at risk, they have the right to stop the performance without a refund.</p>
                 
                 <div class="mt-20 pt-10 border-t border-brand-primary/5">
                     <p class="text-xs text-text-muted italic tracking-wide uppercase">Last Updated: {{ date('F d, Y') }}</p>

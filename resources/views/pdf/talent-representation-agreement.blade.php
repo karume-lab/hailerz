@@ -22,31 +22,31 @@
 </div>
 
 <div class="section">
-    <div class="section-title">2. Scope of Representation</div>
-    <p>The Artist hereby appoints the Agency as their non-exclusive booking intermediary and representation partner for securing live performances, brand endorsements, appearances, and other booking opportunities. The Agency agrees to list the Artist on its premium public directory and actively promote their act to premium clients.</p>
+    <div class="section-title">2. How We Work Together</div>
+    <p>You (the Artist) appoint us (the Hailerz Agency) as your non-exclusive partner to help you find and secure live performances, endorsements, and appearances. We agree to feature your profile on our public directory and actively promote you to our clients.</p>
 </div>
 
 <div class="section">
-    <div class="section-title">3. Commission & Booking Fees</div>
-    <p>For any bookings secured, negotiated, or facilitated through the Agency's platform or direct client outreach:</p>
+    <div class="section-title">3. Commission & Getting Paid</div>
+    <p>When we help you secure a booking through our platform or our direct outreach:</p>
     <ul>
-        <li>The Agency shall be entitled to a commission of fifteen percent (15%) of the total gross performance fee agreed upon for the booking.</li>
-        <li>Payouts to the Artist shall be processed securely within forty-eight (48) business hours following the successful completion of the booking and receipt of client funds.</li>
+        <li><strong>Our Commission:</strong> We earn a fifteen percent (15%) commission on the total performance fee we negotiate for you.</li>
+        <li><strong>Your Payout:</strong> We will process your payment securely within forty-eight (48) business hours after the event is successfully completed and the client's funds have cleared.</li>
     </ul>
 </div>
 
 <div class="section">
-    <div class="section-title">4. Term & Termination</div>
-    <p>This Agreement shall remain in effect for an initial term of twelve (12) months from the signing date. It shall automatically renew for successive 12-month periods unless terminated by either party. Either party may terminate this Agreement at any time, with or without cause, by providing thirty (30) days written notice via email.</p>
+    <div class="section-title">4. Partnership Duration & Cancellation</div>
+    <p>Our partnership starts on the date you sign this and lasts for twelve (12) months. It will automatically renew each year. If either of us decides it is time to part ways, we can cancel this agreement at any time by giving a thirty (30) day written notice via email.</p>
 </div>
 
 <div class="section">
-    <div class="section-title">5. Code of Conduct & Standards</div>
-    <p>The Artist agrees to perform all bookings with high standards of professionalism, punctuality, and artistic integrity. Any no-show or material breach of booking agreements may result in immediate suspension, freezing of the talent profile, or permanent removal from the Hailerz platform.</p>
+    <div class="section-title">5. Professional Standards</div>
+    <p>We expect you to treat every booking with professionalism, punctuality, and artistic integrity. If you fail to show up for a booking or break our trust, we may suspend, freeze, or permanently remove your profile from the Hailerz platform.</p>
 </div>
 
 <div class="section">
-    <div class="section-title">6. Electronic Execution & Consent</div>
-    <p>By typing their full name and completing the digital signature process on the Hailerz portal, the Artist explicitly consents to be bound by the terms and conditions outlined in this Agreement. This electronic execution carries the same legal weight and validity as a physical, handwritten signature under standard ESIGN and UETA guidelines.</p>
+    <div class="section-title">6. Digital Signatures</div>
+    <p>By typing your name and completing the digital signature process on our portal, you agree to these terms. This digital signature is legally binding and carries the same weight as a physical, handwritten signature.</p>
 </div>
 @endsection
