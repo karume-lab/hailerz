@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('contracts', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->unsignedBigInteger('booking_id')->nullable();
-            $table->enum('status', ['pending', 'in_review', 'executed', 'voided'])->default('pending');
+            $table->enum('status', ['pending', 'in_review', 'signed', 'voided'])->default('pending');
             $table->string('file_path')->nullable();
             $table->string('file_hash')->nullable();
             $table->string('version')->default('1.0');

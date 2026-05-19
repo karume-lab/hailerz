@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\ContractExecutedMail;
 use App\Mail\ContractSignatureRequestMail;
+use App\Mail\ContractSignedMail;
 use App\Models\Contract;
 use App\Models\ContractSignature;
 use App\Models\Talent;
@@ -81,7 +81,7 @@ class ContractController extends Controller
             return redirect()->back()->with('info', 'You have already signed this document.');
         }
 
-        if (in_array($contract->status, ['executed', 'voided'])) {
+        if (in_array($contract->status, ['signed', 'voided'])) {
             abort(400, 'This contract is closed and cannot be signed.');
         }
 
@@ -124,10 +124,10 @@ class ContractController extends Controller
             // Queue completion emails to all signers
             /** @var ContractSignature $sig */
             foreach ($contract->signatures as $sig) {
-                Mail::to($sig->signer_identifier)->queue(new ContractExecutedMail($contract));
+                Mail::to($sig->signer_identifier)->queue(new ContractSignedMail($contract));
             }
 
-            return redirect()->back()->with('success', 'Document successfully executed! A copy of the final agreement has been sent to your email.');
+            return redirect()->back()->with('success', 'Document successfully signed! A copy of the final agreement has been sent to your email.');
         } else {
             // Find next pending signer and email them
             /** @var ContractSignature|null $nextSignature */

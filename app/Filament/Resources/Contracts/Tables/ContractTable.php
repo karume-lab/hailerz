@@ -42,7 +42,7 @@ class ContractTable
                 ->color(fn (string $state): string => match ($state) {
                     'pending' => 'warning',
                     'in_review' => 'info',
-                    'executed' => 'success',
+                    'signed' => 'success',
                     'voided' => 'danger',
                     default => 'gray',
                 })
@@ -69,7 +69,7 @@ class ContractTable
                 ->options([
                     'pending' => 'Pending',
                     'in_review' => 'In Review',
-                    'executed' => 'Executed',
+                    'signed' => 'Signed',
                     'voided' => 'Voided',
                 ]),
         ];

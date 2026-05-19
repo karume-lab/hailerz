@@ -67,7 +67,7 @@ class Contract extends Model
     }
 
     /**
-     * Check if the contract is fully executed.
+     * Check if the contract is fully signed.
      */
     public function isFullySigned(): bool
     {

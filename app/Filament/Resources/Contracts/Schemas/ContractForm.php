@@ -23,7 +23,7 @@ class ContractForm
                         ->options([
                             'pending' => 'Pending',
                             'in_review' => 'In Review',
-                            'executed' => 'Executed',
+                            'signed' => 'Signed',
                             'voided' => 'Voided',
                         ])
                         ->required()

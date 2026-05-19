@@ -12,7 +12,7 @@ use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Storage;
 
-class ContractExecutedMail extends Mailable implements ShouldQueue
+class ContractSignedMail extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
@@ -32,7 +32,7 @@ class ContractExecutedMail extends Mailable implements ShouldQueue
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Executed Contract: '.basename($this->contract->file_path),
+            subject: 'Signed Contract: '.basename($this->contract->file_path),
         );
     }
 

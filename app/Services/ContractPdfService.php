@@ -95,7 +95,7 @@ class ContractPdfService
         // 6. Recalculate hash and update status
         $contract->update([
             'file_hash' => $contract->calculateHash(),
-            'status' => 'executed',
+            'status' => 'signed',
         ]);
 
         return $contract->file_path;

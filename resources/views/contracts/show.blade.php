@@ -146,12 +146,12 @@
                 </div>
 
                 <!-- Card: Signature Interaction -->
-                @if(!$signature->signed_at && !in_array($contract->status, ['executed', 'voided']))
+                @if(!$signature->signed_at && !in_array($contract->status, ['signed', 'voided']))
                     <div
                         class="bg-surface-light border border-subtle rounded-2xl p-6 shadow-sm transition-colors duration-300 flex flex-col gap-6">
                         <div class="border-b border-subtle pb-4">
                             <h3 class="text-lg font-bold text-text-primary">
-                                Execute Agreement
+                                Sign Agreement
                             </h3>
                             <p class="text-xs text-text-muted mt-1 leading-relaxed">
                                 Review the document on the left carefully. When ready, complete the electronic signature
@@ -246,7 +246,7 @@
                         </div>
                         <div>
                             <h3 class="text-lg font-bold text-text-primary">
-                                Execution Complete
+                                Signing Complete
                             </h3>
                             <p class="text-sm text-text-muted mt-2 leading-relaxed">
                                 This digital signature session has concluded. The agreement is locked and safely recorded in
