@@ -22,7 +22,7 @@
       <x-heading level="h2" title="Our" highlight="Story" align="center" class="mb-12" />
       <div class="space-y-8 text-lg text-text-secondary leading-relaxed font-light">
         <p>
-          Hailerz exists for one reason — to make discovering and booking incredible talent effortless. Born from the
+          Hailerz exists for one reason - to make discovering and booking incredible talent effortless. Born from the
           real struggles event planners face when trying to find reliable, high-quality performers, Hailerz was created
           to bridge that gap with a platform built on trust, creativity, and community.
         </p>
@@ -34,7 +34,7 @@
         <p>
           Hailerz has become the go-to space for planners who value excellence. Every talent on our platform goes
           through a careful vetting process to ensure they deliver standout performances. And with our team handling the
-          logistics, you're free to focus on what matters most — creating meaningful, memorable experiences.
+          logistics, you're free to focus on what matters most - creating meaningful, memorable experiences.
         </p>
       </div>
     </div>

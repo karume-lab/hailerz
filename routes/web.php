@@ -188,6 +188,10 @@ Route::get('/view-pdfs/{type?}', function ($type = null) {
     } elseif ($type === 'talent-submission') {
         $submission = Submission::first() ?? new class
         {
+            public $id = 1;
+
+            public $status = 'pending';
+
             public $artist_name = 'Demo Act';
 
             public $real_name = 'Real Demo';
@@ -208,11 +212,31 @@ Route::get('/view-pdfs/{type?}', function ($type = null) {
 
             public $max_rate = '2000';
 
+            public $currency = 'USD';
+
             public $bio = 'A very talented demo act.';
 
             public $instagram_handle = '@demoact';
 
-            public $created_at = '2026-05-19 12:00:00';
+            public $website_url = null;
+
+            public $facebook_url = null;
+
+            public $youtube_channel = null;
+
+            public $tiktok_handle = null;
+
+            public $notable_clients = null;
+
+            public $created_at;
+
+            public $gallery;
+
+            public function __construct()
+            {
+                $this->created_at = now();
+                $this->gallery = collect([]);
+            }
         };
         $html = view("pdf.{$type}", compact('submission'))->render();
     } else {

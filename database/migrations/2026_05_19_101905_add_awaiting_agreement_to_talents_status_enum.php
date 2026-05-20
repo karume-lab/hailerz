@@ -7,7 +7,7 @@ return new class extends Migration
 {
     /**
      * SQLite does not support ALTER COLUMN, so we recreate the table.
-     * This migration is idempotent — it skips if the constraint is already updated.
+     * This migration is idempotent - it skips if the constraint is already updated.
      */
     public function up(): void
     {

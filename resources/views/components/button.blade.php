@@ -24,7 +24,7 @@
     $currentVariant = (string) ($variant ?? 'primary');
     $currentSize = (string) ($size ?? 'md');
     
-    // Detect loading intent — explicit wire:target takes priority,
+    // Detect loading intent - explicit wire:target takes priority,
     // then fall back to wire:click value, then type=submit (no target needed).
     $loadingTarget = $attributes->get('wire:target');
     if (!$loadingTarget && $attributes->has('wire:click')) {
