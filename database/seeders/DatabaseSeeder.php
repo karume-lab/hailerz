@@ -188,10 +188,10 @@ class DatabaseSeeder extends Seeder
         // 6. News Posts (Commented out as Post model is missing)
         /*
         Post::updateOrCreate(
-            ['slug' => 'future-of-corporate-entertainment-2026'],
+            ['slug' => 'future-of-corporate-talent-booking-2026'],
             [
-                'title' => 'The Evolution of Corporate Entertainment in 2026',
-                'content' => "The global entertainment landscape for corporate events is shifting towards immersive, culturally-rich experiences. Keynote speakers and specialty acts are now central to brand narrative and engagement strategies.",
+                'title' => 'The Evolution of Corporate Talent Booking in 2026',
+                'content' => "The global talent landscape for corporate events is shifting towards immersive, culturally-rich experiences. Keynote speakers and specialty acts are now central to brand narrative and engagement strategies.",
                 'is_published' => true,
             ]
         );

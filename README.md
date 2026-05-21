@@ -1,4 +1,4 @@
-# Hailerz Entertainment Platform
+# Hailerz Platform
 
 A full-stack talent booking and agency management platform built on Laravel 13. The application serves two distinct purposes: a public-facing talent discovery storefront and an internal CRM for managing artists, inbound booking inquiries, talent submissions, editorial content, and email communications.
 

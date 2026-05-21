@@ -30,7 +30,7 @@ class FaqSeeder extends Seeder
             ],
             [
                 'question' => 'Can I browse multiple categories?',
-                'answer' => 'Of course. We encourage you to explore our entire directory to find the perfect combination of entertainment for your event.',
+                'answer' => 'Of course. We encourage you to explore our entire directory to find the perfect combination of talent for your event.',
                 'sort_order' => 4,
             ],
         ];

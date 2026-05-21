@@ -27,7 +27,7 @@ class PostSeeder extends Seeder
                     ['type' => 'h2', 'text' => 'Match the Vibe'],
                     ['type' => 'p', 'text' => 'Consider the atmosphere you want to create. A jazz trio might be perfect for an intimate corporate dinner, but a high-energy DJ could be better for a product launch party.'],
                     ['type' => 'h2', 'text' => 'Budget Wisely'],
-                    ['type' => 'p', 'text' => 'Quality talent is an investment. Set a realistic budget that reflects the importance of entertainment to your event success.'],
+                    ['type' => 'p', 'text' => 'Quality talent is an investment. Set a realistic budget that reflects the importance of top-tier talent to your event success.'],
                     ['type' => 'h2', 'text' => 'Check Reviews & Experience'],
                     ['type' => 'p', 'text' => 'Look for performers with proven track records. Read reviews, watch performance videos, and do not hesitate to ask for references.'],
                 ],
@@ -65,7 +65,7 @@ class PostSeeder extends Seeder
                 'content' => [
                     ['type' => 'p', 'text' => 'Last week, we celebrated the official launch of Hailerz with an unforgettable evening at the Eko Hotel & Suites in Lagos.'],
                     ['type' => 'h2', 'text' => 'The Night'],
-                    ['type' => 'p', 'text' => 'Over 200 event planners, talent managers, and industry professionals joined us for an evening of networking, entertainment, and celebration.'],
+                    ['type' => 'p', 'text' => 'Over 200 event planners, talent managers, and industry professionals joined us for an evening of networking, performances, and celebration.'],
                     ['type' => 'h2', 'text' => 'Featured Performances'],
                     ['type' => 'p', 'text' => 'We showcased some of Nigeria finest talent, including live jazz, Afrobeats DJ sets, and spoken word poetry.'],
                     ['type' => 'h2', 'text' => 'What is Next'],

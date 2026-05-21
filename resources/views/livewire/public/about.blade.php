@@ -128,7 +128,7 @@
             [
               'name' => 'David Somoye',
               'role' => 'CFO',
-              'desc' => '10+ years in event planning and entertainment booking',
+              'desc' => '10+ years in event planning and talent booking',
               'image' => 'founder.webp'
             ],
             [
