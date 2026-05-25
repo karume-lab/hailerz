@@ -64,7 +64,13 @@ Route::get('/legal/booking-agreement', BookingAgreement::class)->name('legal.boo
 Route::get('/legal/cancellation', CancellationPolicy::class)->name('legal.cancellation');
 
 // Maintenance
-Route::view('/maintenance', 'maintenance')->name('maintenance');
+Route::get('/maintenance', function () {
+    if (! config('app.maintenance.enabled')) {
+        return redirect('/');
+    }
+
+    return view('maintenance');
+})->name('maintenance');
 
 // CSP Violation Reports
 Route::post('/csp-report', function (Request $request) {
