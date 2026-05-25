@@ -6,7 +6,7 @@ class MediaPreviewHelper
 {
     public static function getPreviewHtml(?string $url): string
     {
-        if (empty($url) || ! filter_var($url, FILTER_VALIDATE_URL)) {
+        if (empty($url) || (! filter_var($url, FILTER_VALIDATE_URL) && ! str_starts_with($url, 'data:image/'))) {
             return '';
         }
 

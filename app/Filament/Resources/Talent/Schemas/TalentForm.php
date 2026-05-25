@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Talent\Schemas;
 
+use App\Filament\Forms\Components\Base64ImageDropzone;
 use App\Helpers\MediaPreviewHelper;
 use App\Models\Talent;
 use Filament\Actions\Action;
@@ -83,19 +84,10 @@ class TalentForm
             Section::make('Media & Performance Assets')
                 ->description('All media should be provided as links - no file uploads required.')
                 ->schema([
-                    Forms\Components\TextInput::make('primary_image_url')
-                        ->label('Primary Promotional Image URL')
-                        ->url()
-                        ->placeholder('https://...')
+                    Base64ImageDropzone::make('primary_image_url')
+                        ->label('Primary Promotional Image Upload')
                         ->live(onBlur: true)
-                        ->columnSpanFull()
-                        ->suffixAction(
-                            Action::make('openPrimaryImage')
-                                ->icon('heroicon-m-arrow-top-right-on-square')
-                                ->url(fn ($state) => $state)
-                                ->openUrlInNewTab()
-                                ->visible(fn ($state) => ! empty($state) && filter_var($state, FILTER_VALIDATE_URL))
-                        ),
+                        ->columnSpanFull(),
                     TextEntry::make('primary_image_preview')
                         ->label('Primary Image Preview')
                         ->state(fn ($get) => new HtmlString(MediaPreviewHelper::getPreviewHtml($get('primary_image_url'))))
@@ -213,14 +205,25 @@ class TalentForm
 
                     Forms\Components\Repeater::make('gallery')
                         ->relationship('gallery')
-                        ->label('Portfolio Gallery Links')
+                        ->label('Portfolio Gallery')
                         ->schema([
+                            Forms\Components\Select::make('media_type')
+                                ->label('Media Type')
+                                ->options([
+                                    'image' => 'Image Upload',
+                                    'link' => 'External Link',
+                                ])
+                                ->default('link')
+                                ->live()
+                                ->required()
+                                ->columnSpanFull(),
                             Forms\Components\TextInput::make('url')
-                                ->label('Media URL (image, YouTube, Vimeo)')
+                                ->label('Media URL (YouTube, Vimeo, etc.)')
                                 ->url()
                                 ->required()
                                 ->live(onBlur: true)
                                 ->columnSpan(2)
+                                ->visible(fn ($get) => $get('media_type') === 'link')
                                 ->suffixAction(
                                     Action::make('openGalleryItem')
                                         ->icon('heroicon-m-arrow-top-right-on-square')
@@ -228,6 +231,12 @@ class TalentForm
                                         ->openUrlInNewTab()
                                         ->visible(fn ($state) => ! empty($state) && filter_var($state, FILTER_VALIDATE_URL))
                                 ),
+                            Base64ImageDropzone::make('url')
+                                ->label('Upload Image')
+                                ->required()
+                                ->live(onBlur: true)
+                                ->columnSpan(2)
+                                ->visible(fn ($get) => $get('media_type') === 'image'),
                             Forms\Components\TextInput::make('title')
                                 ->label('Title')
                                 ->columnSpan(1),
@@ -237,7 +246,7 @@ class TalentForm
                             TextEntry::make('media_preview')
                                 ->label('Media Preview')
                                 ->state(fn ($get) => new HtmlString(MediaPreviewHelper::getPreviewHtml($get('url'))))
-                                ->visible(fn ($get) => ! empty($get('url')) && filter_var($get('url'), FILTER_VALIDATE_URL))
+                                ->visible(fn ($get) => ! empty($get('url')) && (filter_var($get('url'), FILTER_VALIDATE_URL) || str_starts_with($get('url'), 'data:image/')))
                                 ->columnSpanFull(),
                         ])
                         ->columns(4)

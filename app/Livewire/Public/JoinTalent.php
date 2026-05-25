@@ -46,7 +46,7 @@ class JoinTalent extends Component
     #[Validate('required|string|max:255')]
     public string $location = '';
 
-    #[Validate('required|url|max:255')]
+    #[Validate('required|string')]
     public string $profile_photo_url = '';
 
     // Professional Details
@@ -90,7 +90,8 @@ class JoinTalent extends Component
 
     // Gallery Items
     #[Validate([
-        'gallery.*.url' => 'nullable|url|max:255',
+        'gallery.*.media_type' => 'nullable|string|in:link,image',
+        'gallery.*.url' => 'nullable|string',
         'gallery.*.title' => 'nullable|string|max:255',
         'gallery.*.description' => 'nullable|string|max:1000',
     ])]
@@ -106,6 +107,7 @@ class JoinTalent extends Component
     public function addGalleryItem(): void
     {
         $this->gallery[] = [
+            'media_type' => 'link',
             'url' => '',
             'title' => '',
             'description' => '',
@@ -129,7 +131,7 @@ class JoinTalent extends Component
                 'email' => 'required|email|max:255',
                 'phone' => 'required|string|max:20',
                 'location' => 'required|string|max:255',
-                'profile_photo_url' => 'required|url|max:255',
+                'profile_photo_url' => 'required|string',
             ]);
         } elseif ($this->currentStep === 2) {
             $this->validate([
@@ -146,7 +148,8 @@ class JoinTalent extends Component
                 'facebook_url' => 'nullable|string|max:255|regex:/^[a-zA-Z0-9._@-]+$/',
                 'youtube_channel' => 'nullable|string|max:255|regex:/^[a-zA-Z0-9._@-]+$/',
                 'tiktok_handle' => 'nullable|string|max:255|regex:/^[a-zA-Z0-9._@-]+$/',
-                'gallery.*.url' => 'nullable|url|max:255',
+                'gallery.*.media_type' => 'nullable|string|in:link,image',
+                'gallery.*.url' => 'nullable|string',
                 'gallery.*.title' => 'nullable|string|max:255',
                 'gallery.*.description' => 'nullable|string|max:1000',
             ], [

@@ -22,7 +22,7 @@
                                 const index = parseInt(parts[1]);
                                 const field = parts[2];
                                 if (!gallery[index]) {
-                                    gallery[index] = { url: '', title: '', description: '' };
+                                    gallery[index] = { url: '', title: '', description: '', media_type: 'link' };
                                 }
                                 gallery[index][field] = data[key];
                             }
@@ -293,12 +293,10 @@
                                         placeholder="London, UK" :location="true" />
                                 </div>
                                 <div class="md:col-span-2">
-                                    <x-input wire:model.live.debounce.500ms="profile_photo_url" label="Profile Photo URL *"
-                                        placeholder="https://... (direct link to image)" />
-                                    <p class="text-xs text-text-muted mt-2">Provide a high-quality link to your official
-                                        promotional photo or logo.</p>
+                                    <x-image-dropzone wire:model.live="profile_photo_url" label="Profile Photo *" />
+                                    <p class="text-xs text-text-muted mt-2">Provide a high-quality promotional photo or logo.</p>
 
-                                    @if(!empty($profile_photo_url) && filter_var($profile_photo_url, FILTER_VALIDATE_URL))
+                                    @if(!empty($profile_photo_url) && (filter_var($profile_photo_url, FILTER_VALIDATE_URL) || str_starts_with($profile_photo_url, 'data:image/')))
                                         <div class="mt-4 p-4 bg-surface-muted/30 border border-subtle rounded-3xl">
                                             <span
                                                 class="text-[10px] font-bold text-text-muted uppercase tracking-widest block mb-3">Profile
@@ -381,10 +379,19 @@
                                                     <x-lucide-x class="w-4 h-4" />
                                                 </button>
                                                 <div class="grid grid-cols-1 gap-6">
-                                                    <x-input wire:model.live.debounce.500ms="gallery.{{ $index }}.url" label="Media Link *"
-                                                        placeholder="YouTube, SoundCloud, or Drive link" />
+                                                    <x-select wire:model.live="gallery.{{ $index }}.media_type" label="Media Type">
+                                                        <option value="link">External Link</option>
+                                                        <option value="image">Image Upload</option>
+                                                    </x-select>
 
-                                                    @if(!empty($gallery[$index]['url']) && filter_var($gallery[$index]['url'], FILTER_VALIDATE_URL))
+                                                    @if(($gallery[$index]['media_type'] ?? 'link') === 'link')
+                                                        <x-input wire:model.live.debounce.500ms="gallery.{{ $index }}.url" label="Media Link *"
+                                                            placeholder="YouTube, SoundCloud, or Drive link" />
+                                                    @else
+                                                        <x-image-dropzone wire:model.live="gallery.{{ $index }}.url" label="Upload Image *" />
+                                                    @endif
+
+                                                    @if(!empty($gallery[$index]['url']) && (filter_var($gallery[$index]['url'], FILTER_VALIDATE_URL) || str_starts_with($gallery[$index]['url'], 'data:image/')))
                                                         <div class="p-4 bg-surface-muted/30 border border-subtle rounded-2xl">
                                                             <span
                                                                 class="text-[10px] font-bold text-text-muted uppercase tracking-widest block mb-3">Media
