@@ -39,4 +39,9 @@ return [
         'token' => env('IR_SITE_VERIFICATION_TOKEN'),
     ],
 
+    'tawk' => [
+        'property_id' => env('TAWK_PROPERTY_ID'),
+        'widget_id' => env('TAWK_WIDGET_ID'),
+    ],
+
 ];
