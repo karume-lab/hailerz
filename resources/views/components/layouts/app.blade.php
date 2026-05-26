@@ -267,6 +267,10 @@
     });
   </script>
   <x-powered-by />
+  
+  @unless(Route::is('contracts.*'))
+    @include('partials.tawk')
+  @endunless
 </body>
 
 </html>
