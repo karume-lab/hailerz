@@ -95,6 +95,13 @@ Route::prefix('previews')->group(function () {
     Route::get('/emails/view/{template}', [PreviewController::class, 'viewEmail'])->name('previews.emails.view');
 });
 
+use App\Http\Controllers\PaymentController;
+
+Route::get('/payment/callback', [PaymentController::class, 'handleGatewayCallback'])->name('pay.callback');
+
+// Exclude this route from CSRF protection middleware (typically handled in bootstrap/app.php or HTTP Kernel, but we'll define route here)
+Route::post('/paystack/webhook', [PaymentController::class, 'handleWebhook']);
+
 Route::prefix('contracts')->group(function () {
     Route::get('/{contract}', [ContractController::class, 'show'])->name('contracts.show');
     Route::post('/{contract}', [ContractController::class, 'sign'])->name('contracts.sign');

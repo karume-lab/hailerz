@@ -24,4 +24,10 @@
             Check your inbox - we've sent a confirmation of your booking to your email.
         </p>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            localStorage.removeItem('hailerz_booking_wizard_form');
+        });
+    </script>
 </div>

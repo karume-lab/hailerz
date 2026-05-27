@@ -56,21 +56,6 @@
      }"
 >
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        @if($isComplete)
-            <x-card padding="p-16" class="text-center shadow-2xl">
-                <div class="mx-auto flex items-center justify-center h-24 w-24 rounded-full bg-brand-primary/10 mb-10">
-                    <x-lucide-check class="h-12 w-12 text-brand-primary" stroke-width="2" />
-                </div>
-                <x-heading level="h2" title="We've Got Your Request!" class="text-text-primary mb-6" />
-                <p class="text-lg text-text-secondary mb-12 max-w-xl mx-auto">
-                    Thanks for reaching out! We've sent a summary of your event details to your inbox. 
-                    One of our agents will review everything and get back to you within one business day with a formal proposal.
-                </p>
-                <x-button variant="primary" href="/talent" wire:navigate>
-                    Book another talent
-                </x-button>
-            </x-card>
-        @else
             <x-heading 
                 align="center" 
                 title="Start your booking" 
@@ -328,6 +313,12 @@
                                     <option value="Other">Other</option>
                                 </x-select>
  
+                                @error('payment')
+                                    <div class="mb-4 p-4 bg-red-50 text-red-600 rounded-xl text-sm font-bold border border-red-200 w-full text-center">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+
                                 <div class="relative flex items-start p-4 bg-brand-primary/5 rounded-xl border border-brand-primary/10">
                                     <div class="flex h-6 items-center">
                                         <input wire:model.live="is_accurate" id="is_accurate" name="is_accurate" type="checkbox" class="h-4 w-4 rounded border-brand-primary/30 text-brand-primary focus:ring-brand-primary">
@@ -361,12 +352,11 @@
                             </x-button>
                         @else
                             <x-button variant="primary" type="submit" wire:target="submit">
-                                Send booking request
+                                Secure Booking via Paystack
                             </x-button>
                         @endif
                     </div>
                 </form>
             </x-card>
-        @endif
     </div>
 </div>

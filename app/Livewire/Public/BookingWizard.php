@@ -3,12 +3,10 @@
 namespace App\Livewire\Public;
 
 use App\Helpers\CurrencyHelper;
-use App\Mail\AdminBookingNotification;
-use App\Mail\BookingConfirmationMail;
 use App\Models\Inquiry;
 use App\Models\Talent;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Str;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
@@ -101,6 +99,8 @@ class BookingWizard extends Component
     public bool $is_accurate = false;
 
     public bool $isComplete = false;
+
+    public ?int $inquiry_id = null;
 
     public $talent_id; // Keeping this for internal tracking if pre-selected
 
@@ -333,16 +333,30 @@ class BookingWizard extends Component
             'currency' => CurrencyHelper::getUserCurrency(),
         ]);
 
-        try {
-            Log::info('Attempting to send booking email to: '.$inquiry->email);
-            Mail::to($inquiry->email)->send(new BookingConfirmationMail($inquiry));
-            Mail::to(config('mail.from.address'))->send(new AdminBookingNotification($inquiry));
-            Log::info('Booking email sent successfully.');
-        } catch (\Exception $e) {
-            Log::error('Mail sending failed: '.$e->getMessage());
+        $reference = 'HLZ-'.strtoupper(Str::random(12)).'-'.time();
+        $amount = $this->selectedTalent ? $this->selectedTalent->starting_price : 1000;
+
+        $inquiry->update([
+            'payment_reference' => $reference,
+            'amount' => $amount,
+        ]);
+
+        $response = Http::withToken(config('paystack.secretKey'))
+            ->post(config('paystack.paymentUrl').'/transaction/initialize', [
+                'email' => $this->email,
+                'amount' => (int) ($amount * 100),
+                'reference' => $reference,
+                'callback_url' => route('pay.callback'),
+                'metadata' => ['booking_id' => $inquiry->id],
+            ]);
+
+        if (! $response->successful() || ! $response->json('status')) {
+            $this->addError('payment', 'Payment initialization failed: '.($response->json('message') ?? 'Unknown error.'));
+
+            return;
         }
 
-        $this->isComplete = true;
+        return redirect()->away($response->json('data.authorization_url'));
     }
 
     public function updated($propertyName): void
