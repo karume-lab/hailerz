@@ -45,7 +45,7 @@
             to { top: calc(100% - 96px); } /* Height h-24 (96px) */
         }
     </style>
-    <x-powered-by />
+    <x-built-by />
 </body>
 
 </html>

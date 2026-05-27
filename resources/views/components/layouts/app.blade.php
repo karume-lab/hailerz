@@ -266,7 +266,7 @@
       });
     });
   </script>
-  <x-powered-by />
+  <x-built-by />
   
   @unless(Route::is('contracts.*'))
     @include('partials.tawk')

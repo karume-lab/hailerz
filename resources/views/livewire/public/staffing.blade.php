@@ -162,10 +162,10 @@
         <!-- Background Elements -->
         <div class="absolute inset-0 overflow-hidden pointer-events-none">
             <div
-                class="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-[800px] h-[800px] bg-brand-primary/5 rounded-full blur-[150px] opacity-20">
+                class="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-200 h-200 bg-brand-primary/5 rounded-full blur-[150px] opacity-20">
             </div>
             <div
-                class="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-brand-secondary/5 rounded-full blur-[120px] opacity-10">
+                class="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/2 w-150 h-150 bg-brand-secondary/5 rounded-full blur-[120px] opacity-10">
             </div>
         </div>
     </section>
@@ -181,7 +181,7 @@
                         $bgImage = $representativeTalent ? $representativeTalent->profile_photo_url : $category->default_image;
                     @endphp
                     <a href="/talent?category={{ $category->slug }}" wire:navigate
-                        class="group relative w-full max-w-[280px] aspect-square rounded-3xl overflow-hidden shadow-lg reveal {{ $index % 4 === 1 ? 'reveal-delay-100' : ($index % 4 === 2 ? 'reveal-delay-200' : ($index % 4 === 3 ? 'reveal-delay-300' : '')) }}">
+                        class="group relative w-full max-w-70 aspect-square rounded-3xl overflow-hidden shadow-lg reveal {{ $index % 4 === 1 ? 'reveal-delay-100' : ($index % 4 === 2 ? 'reveal-delay-200' : ($index % 4 === 3 ? 'reveal-delay-300' : '')) }}">
                         <img src="{{ $bgImage }}" alt="{{ $category->name }}"
                             class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                             loading="lazy" decoding="async">
@@ -368,7 +368,7 @@
         <div class="max-w-4xl mx-auto px-4 relative z-10 reveal">
             <x-heading level="h2" title="Scale Your" highlight="Professional Team Today." align="center" highlightClass="text-[#65c4af]" class="text-text-inverse mb-8" />
             <p class="text-xl md:text-2xl text-text-inverse/80 mb-12 font-light leading-relaxed">
-                From contract specialists to remote creative talent, ensure your projects are powered by creative talent.
+                From contract specialists to remote creative talent, ensure your projects are built by creative talent.
             </p>
             <div class="flex flex-col sm:flex-row justify-center gap-6">
                 <x-button variant="outline" size="lg" href="/services" wire:navigate>
