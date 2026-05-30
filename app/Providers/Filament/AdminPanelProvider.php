@@ -33,9 +33,9 @@ class AdminPanelProvider extends PanelProvider
             ->brandLogoHeight('2.5rem')
             ->maxContentWidth(Width::SevenExtraLarge)
             ->colors([
-                'primary' => '#146c84',
-                'secondary' => '#65c4af',
-                'info' => '#65c4af',
+                'primary' => Color::hex('#1b819b'),   // --brand-primary (light mode)
+                'secondary' => Color::hex('#65c4af'),  // --brand-secondary
+                'info' => Color::hex('#2b91ab'),       // --brand-secondary light
                 'danger' => Color::Rose,
                 'gray' => Color::Gray,
                 'success' => Color::Emerald,

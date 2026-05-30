@@ -4,16 +4,28 @@
 @source '../views/filament/**/*.blade.php';
 @source '../../app/Filament/**/*.php';
 
+/*
+ * Re-declare the same brand tokens from app.css so any raw CSS in this file
+ * can reference them without having to hardcode hex values.
+ */
 @layer base {
+    :root {
+        --brand-primary: #1b819b;
+        --brand-secondary: #2b91ab;
+        --brand-accent: #21395c;
+    }
+
     /* Logo scaling in panel */
     .fi-logo {
         max-height: 2.25rem !important;
     }
 
-    /* Custom scrollbar for Kanban board or long lists */
-    .overflow-x-auto {
+    /* Custom scrollbar — track the brand token instead of a raw hex */
+    .overflow-x-auto,
+    .fi-sidebar-nav,
+    [data-overlayscrollbars-viewport] {
         scrollbar-width: thin;
-        scrollbar-color: rgba(20, 108, 132, 0.2) transparent;
+        scrollbar-color: color-mix(in srgb, var(--brand-primary) 30%, transparent) transparent;
     }
 
     /* Match Admin Buttons to Main Site Style */
@@ -27,5 +39,11 @@
 
     .fi-btn:hover {
         transform: scale(1.02);
+    }
+
+    /* Smooth page transitions — mirrors the public site feel */
+    .fi-main,
+    .fi-sidebar {
+        transition: background-color 0.3s ease, color 0.3s ease;
     }
 }
