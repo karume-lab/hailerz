@@ -298,7 +298,7 @@
                                         <div class="h-6 w-6 rounded-full bg-brand-primary/10 flex items-center justify-center shrink-0">
                                             <span class="text-[10px] font-bold text-brand-primary">3</span>
                                         </div>
-                                        <p>Expect a formal proposal from us within <strong>3 to 4 business days</strong>.</p>
+                                        <p>Expect a formal proposal from us within <strong>{{ config('hailerz.response_time') }}</strong>.</p>
                                     </li>
                                 </ul>
                             </div>

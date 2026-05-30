@@ -92,7 +92,7 @@
                             <h3 class="text-base font-bold text-text-primary mb-1">Email</h3>
                             <a href="mailto:info@hailerz.com"
                                 class="text-text-secondary hover:text-brand-primary transition-colors">info@hailerz.com</a>
-                            <p class="text-xs text-text-muted mt-1">We respond within 24 hours</p>
+                            <p class="text-xs text-text-muted mt-1">We respond within {{ config('hailerz.response_time') }}</p>
                         </div>
                     </div>
 
@@ -193,7 +193,7 @@
                                                 </span>
                                             </x-button>
                                             <p class="text-center text-xs text-text-muted mt-6 font-medium">
-                                                We'll respond to your inquiry within 24 hours.
+                                                We'll respond to your inquiry within {{ config('hailerz.response_time') }}.
                                             </p>
                                         </div>
                                     </form>

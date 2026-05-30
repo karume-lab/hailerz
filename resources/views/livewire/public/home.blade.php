@@ -443,7 +443,7 @@
                                                 </span>
                                             </x-button>
                                             <p class="text-center text-[10px] md:text-xs text-text-inverse/60 mt-4 font-medium">
-                                                We'll respond to your inquiry within 24 hours.
+                                                We'll respond to your inquiry within {{ config('hailerz.response_time') }}.
                                             </p>
                                         </div>
                                     </form>

@@ -138,7 +138,7 @@
         @php
           $steps = [
             ['title' => 'Submit Your Request', 'desc' => 'Tell us about your event - date, location, type, budget, and preferences. Browse our directory or let us recommend talent.'],
-            ['title' => 'Review Recommendations', 'desc' => 'Within 24 hours, receive personalized talent recommendations with profiles, videos, reviews, and availability.'],
+            ['title' => 'Review Recommendations', 'desc' => 'Within ' . config('hailerz.response_time') . ', receive personalized talent recommendations with profiles, videos, reviews, and availability.'],
             ['title' => 'Book Your Talent', 'desc' => 'Choose your performer and we\'ll handle contracts, deposits, and all coordination details.'],
             ['title' => 'Event Preparation', 'desc' => 'We coordinate technical requirements, timing, and special requests leading up to your event.'],
             ['title' => 'Showtime', 'desc' => 'Your talent arrives prepared and delivers an exceptional performance. Optional on-site support available.'],

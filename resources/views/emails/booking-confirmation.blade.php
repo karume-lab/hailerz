@@ -33,7 +33,7 @@ Thank you for choosing **Hailerz**. We have successfully received your booking i
 
 1. **Artist Verification**: Our team will immediately contact the requested talent to verify their availability for your date.
 2. **Final Quotation**: We will obtain a final quote based on your specific event requirements and duration.
-3. **Formal Proposal**: Expect to receive a formal proposal and final quote from the **Hailerz Team** within **3 to 4 business days**.
+3. **Formal Proposal**: Expect to receive a formal proposal and final quote from the **Hailerz Team** within **{{ config('hailerz.response_time') }}**.
 
 Please find the attached PDF containing the full details of your submission.
 

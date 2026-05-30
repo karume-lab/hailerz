@@ -95,7 +95,7 @@
             ['title' => 'Full-Service Support', 'desc' => 'From initial inquiry to post-event follow-up, our dedicated team handles contracts, logistics, technical requirements, and coordination.'],
             ['title' => 'Transparent Pricing', 'desc' => 'No hidden fees or surprises. You pay the artist directly - our service is completely free for clients.'],
             ['title' => 'Worldwide Network', 'desc' => 'Access top talent worldwide with our extensive network of performers in major cities and global markets.'],
-            ['title' => 'Quick Response Time', 'desc' => 'Our team responds to inquiries within 24 hours with personalized recommendations tailored to your event.'],
+            ['title' => 'Quick Response Time', 'desc' => 'Our team responds to inquiries within ' . config('hailerz.response_time') . ' with personalized recommendations tailored to your event.'],
             ['title' => 'Proven Track Record', 'desc' => 'Thousands of successful events and a 98% client satisfaction rate speak to our commitment to excellence.'],
           ];
         @endphp
