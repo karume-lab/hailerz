@@ -70,7 +70,7 @@ Route::get('/resources', Resources::class)->name('resources');
 Route::get('/resources/{slug}', ShowResource::class)->name('resources.show');
 Route::get('/marketplace/services', Services::class)->name('services');
 Route::get('/contact', Contact::class)->name('contact');
-Route::get('/join', JoinTalent::class)->name('join');
+Route::get('/marketplace/submissions', JoinTalent::class)->name('marketplace.submissions');
 
 // Legal
 Route::get('/legal/terms', TermsOfService::class)->name('legal.terms');

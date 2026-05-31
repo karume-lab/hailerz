@@ -185,7 +185,7 @@
                 class="text-sm text-text-secondary hover:text-brand-primary transition-colors">Services</a></li>
             <li><a href="/resources" wire:navigate
                 class="text-sm text-text-secondary hover:text-brand-primary transition-colors">Resources</a></li>
-            <li><a href="/join" wire:navigate
+            <li><a href="/marketplace/submissions" wire:navigate
                 class="text-sm text-text-secondary hover:text-brand-primary transition-colors">Join the Roster</a></li>
             <li><a href="/contact" wire:navigate
                 class="text-sm text-text-secondary hover:text-brand-primary transition-colors">Contact</a></li>

@@ -6,7 +6,7 @@
         ['label' => 'Staffing', 'href' => '/staffing'],
         ['label' => 'About', 'href' => '/about'],
         ['label' => 'Contact', 'href' => '/contact'],
-        ['label' => 'Submissions', 'href' => '/join'],
+        ['label' => 'Submissions', 'href' => '/marketplace/submissions'],
     ]
 ])
 

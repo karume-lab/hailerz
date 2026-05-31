@@ -77,6 +77,7 @@
                     <ul class="space-y-4">
                         <li><a href="/marketplace/services" class="text-sm font-medium text-text-secondary hover:text-brand-primary transition-colors">Services</a></li>
                         <li><a href="/marketplace/talent" class="text-sm font-medium text-text-secondary hover:text-brand-primary transition-colors">Browse Talent</a></li>
+                        <li><a href="/marketplace/submissions" class="text-sm font-medium text-text-secondary hover:text-brand-primary transition-colors">Submissions</a></li>
                     </ul>
                 </div>
             </div>
