@@ -107,6 +107,15 @@
             <x-theme-toggle />
             <a href="/join" wire:navigate
               class="{{ request()->is('join*') ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary' }} transition-colors text-sm font-medium">Submissions</a>
+            @auth
+              <a href="/dashboard" wire:navigate class="text-text-secondary hover:text-brand-primary transition-colors text-sm font-medium">Dashboard</a>
+              <form method="POST" action="{{ route('logout') }}" class="inline m-0">
+                @csrf
+                <button type="submit" class="text-text-secondary hover:text-brand-primary transition-colors text-sm font-medium border-0 bg-transparent cursor-pointer p-0">Sign Out</button>
+              </form>
+            @else
+              <a href="/sign-in" wire:navigate class="text-text-secondary hover:text-brand-primary transition-colors text-sm font-medium">Sign In</a>
+            @endauth
           </div>
 
           <x-button variant="primary" size="sm" href="/book" wire:navigate

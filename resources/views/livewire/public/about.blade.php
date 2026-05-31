@@ -2,7 +2,7 @@
   <!-- Hero Section -->
   <section class="relative h-[70vh] flex items-center justify-center overflow-hidden">
     <div class="absolute inset-0 z-0">
-      <img src="{{ asset('images/about-hero.webp') }}" alt="Venue crowd" class="w-full h-full object-cover brightness-64" />
+      <img src="{{ asset('images/about/about-hero.webp') }}" alt="Venue crowd" class="w-full h-full object-cover brightness-64" />
       <div class="absolute inset-0 bg-linear-to-b from-surface-dark/70 via-surface-dark/20 to-surface-muted/20"></div>
     </div>
 

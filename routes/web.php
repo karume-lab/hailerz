@@ -109,3 +109,5 @@ Route::prefix('contracts')->group(function () {
     Route::get('/{contract}/download', [ContractController::class, 'download'])->name('contracts.download');
     Route::post('/{oldContract}/new-version', [ContractController::class, 'publishNewVersion'])->name('contracts.new-version');
 });
+
+require __DIR__.'/auth.php';
