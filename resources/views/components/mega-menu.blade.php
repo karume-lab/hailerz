@@ -51,7 +51,7 @@
             <!-- 1. About Panel -->
             <div x-show="activeMenu === 'about'" class="grid grid-cols-10 gap-12" style="display: none;">
                 <div class="col-span-4 pr-8 border-r border-subtle flex flex-col justify-center">
-                    <h2 class="text-3xl font-extrabold text-brand-primary mb-4">About Hailerz</h2>
+                    <h2 class="text-3xl text-brand-primary mb-4">About Hailerz</h2>
                     <p class="text-text-secondary text-base leading-relaxed">Discover our vision, meet the team, and learn how we empower the global creator economy.</p>
                 </div>
                 
@@ -68,7 +68,7 @@
             <!-- 3. Marketplace Panel -->
             <div x-show="activeMenu === 'marketplace'" class="grid grid-cols-10 gap-12" style="display: none;">
                 <div class="col-span-4 pr-8 border-r border-subtle flex flex-col justify-center">
-                    <h2 class="text-3xl font-extrabold text-brand-primary mb-4">Content Marketplace</h2>
+                    <h2 class="text-3xl text-brand-primary mb-4">Content Marketplace</h2>
                     <p class="text-text-secondary text-base leading-relaxed">Source verified on-demand deliverables and manage collaborative creative contracts.</p>
                 </div>
                 
@@ -85,7 +85,7 @@
             <!-- 4. Learn Panel -->
             <div x-show="activeMenu === 'learn'" class="grid grid-cols-10 gap-12" style="display: none;">
                 <div class="col-span-4 pr-8 border-r border-subtle flex flex-col justify-center">
-                    <h2 class="text-3xl font-extrabold text-brand-primary mb-4">Skill Acceleration</h2>
+                    <h2 class="text-3xl text-brand-primary mb-4">Skill Acceleration</h2>
                     <p class="text-text-secondary text-base leading-relaxed">Elevate your craft, unlock technical masterclasses, and compete in global sprints.</p>
                 </div>
                 
@@ -102,7 +102,7 @@
             <!-- 5. Connect Panel -->
             <div x-show="activeMenu === 'connect'" class="grid grid-cols-10 gap-12" style="display: none;">
                 <div class="col-span-4 pr-8 border-r border-subtle flex flex-col justify-center">
-                    <h2 class="text-3xl font-extrabold text-brand-primary mb-4">Community Hub</h2>
+                    <h2 class="text-3xl text-brand-primary mb-4">Community Hub</h2>
                     <p class="text-text-secondary text-base leading-relaxed">Deepen local ecosystem retention and connect with hyper-localized creator groups.</p>
                 </div>
                 
