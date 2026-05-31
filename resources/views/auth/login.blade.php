@@ -2,6 +2,8 @@
     <x-slot:title>Sign In | Hailerz</x-slot>
     <x-slot:image>images/auth/sign-in.svg</x-slot>
 
+    <h1 class="text-center text-3xl font-extrabold mb-10 text-text-primary">Welcome Back!</h1>
+
     <form method="POST" action="{{ route('login') }}" class="flex flex-col gap-6">
         @csrf
         <x-input label="Email Address" id="email" type="email" name="email" :value="old('email')" required autofocus placeholder="Enter your email" />
