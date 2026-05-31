@@ -7,35 +7,35 @@
     <div class="flex space-x-8 h-full items-center">
         <!-- 1. About Track -->
         <div class="relative h-full flex items-center" @mouseenter="activeMenu = 'about'">
-            <a href="/about" wire:navigate class="text-sm font-semibold tracking-wide transition-colors" :class="activeMenu === 'about' || '{{ request()->is('about*') }}' ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary'">
+            <a href="/about" wire:navigate class="text-sm font-semibold tracking-wide transition-colors" :class="activeMenu === 'about' || (!activeMenu && '{{ request()->is('about*') }}') ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary'">
                 About
             </a>
         </div>
 
         <!-- 3. Marketplace Track -->
         <div class="relative h-full flex items-center" @mouseenter="activeMenu = 'marketplace'">
-            <a href="/marketplace" wire:navigate class="text-sm font-semibold tracking-wide transition-colors" :class="activeMenu === 'marketplace' || '{{ request()->is('marketplace*') }}' ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary'">
+            <a href="/marketplace" wire:navigate class="text-sm font-semibold tracking-wide transition-colors" :class="activeMenu === 'marketplace' || (!activeMenu && '{{ request()->is('marketplace*') }}') ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary'">
                 Marketplace
             </a>
         </div>
 
         <!-- 4. Learn Track -->
         <div class="relative h-full flex items-center" @mouseenter="activeMenu = 'learn'">
-            <a href="/learn" wire:navigate class="text-sm font-semibold tracking-wide transition-colors" :class="activeMenu === 'learn' || '{{ request()->is('learn*') }}' ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary'">
+            <a href="/learn" wire:navigate class="text-sm font-semibold tracking-wide transition-colors" :class="activeMenu === 'learn' || (!activeMenu && '{{ request()->is('learn*') }}') ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary'">
                 Learn
             </a>
         </div>
 
         <!-- 5. Connect Track -->
         <div class="relative h-full flex items-center" @mouseenter="activeMenu = 'connect'">
-            <a href="/connect" wire:navigate class="text-sm font-semibold tracking-wide transition-colors" :class="activeMenu === 'connect' || '{{ request()->is('connect*') }}' ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary'">
+            <a href="/connect" wire:navigate class="text-sm font-semibold tracking-wide transition-colors" :class="activeMenu === 'connect' || (!activeMenu && '{{ request()->is('connect*') }}') ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary'">
                 Connect
             </a>
         </div>
 
         <!-- Direct Links -->
-        <div class="relative h-full flex items-center" @mouseenter="activeMenu = null">
-            <a href="/contact" wire:navigate class="text-sm font-semibold tracking-wide transition-colors {{ request()->is('contact*') ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary' }}">
+        <div class="relative h-full flex items-center" @mouseenter="activeMenu = 'contact'">
+            <a href="/contact" wire:navigate class="text-sm font-semibold tracking-wide transition-colors" :class="activeMenu === 'contact' || (!activeMenu && '{{ request()->is('contact*') }}') ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary'">
                 Contact
             </a>
         </div>
@@ -44,7 +44,7 @@
     <!-- Mega Dropdown Wrapper (Absolute positioned under header) -->
     <div 
         class="absolute left-0 top-20 w-full bg-surface-light border-t border-b border-subtle shadow-xl overflow-hidden transition-all duration-300 ease-in-out z-40"
-        :class="activeMenu ? 'opacity-100 pointer-events-auto max-h-125' : 'opacity-0 pointer-events-none max-h-0'"
+        :class="(activeMenu && activeMenu !== 'contact') ? 'opacity-100 pointer-events-auto max-h-125' : 'opacity-0 pointer-events-none max-h-0'"
         x-cloak
     >
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
