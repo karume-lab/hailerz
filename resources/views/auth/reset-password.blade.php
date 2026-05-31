@@ -1,25 +1,19 @@
 <x-layouts.auth>
     <x-slot:title>Reset Password | Hailerz</x-slot>
+    <x-slot:image>images/auth/sign-in.svg</x-slot>
 
-    <form method="POST" action="{{ route('password.update') }}" class="auth-form">
+    <h1 class="text-center text-3xl font-extrabold mb-10 text-text-primary">Choose New Password</h1>
+
+    <form method="POST" action="{{ route('password.update') }}" class="flex flex-col gap-6">
         @csrf
         <input type="hidden" name="token" value="{{ $token }}">
 
-        <div class="input-group">
-            <label for="email">Email Address</label>
-            <input id="email" type="email" name="email" value="{{ $email ?? old('email') }}" required autofocus>
-        </div>
+        <x-input label="Email Address" id="email" type="email" name="email" :value="$email ?? old('email')" required autofocus />
 
-        <div class="input-group">
-            <label for="password">New Password</label>
-            <input id="password" type="password" name="password" required>
-        </div>
+        <x-input label="New Password" id="password" type="password" name="password" required placeholder="Enter new password" />
 
-        <div class="input-group">
-            <label for="password_confirmation">Confirm New Password</label>
-            <input id="password_confirmation" type="password" name="password_confirmation" required>
-        </div>
+        <x-input label="Confirm New Password" id="password_confirmation" type="password" name="password_confirmation" required placeholder="Confirm new password" />
 
-        <button type="submit" class="btn-primary">Reset Password</button>
+        <x-button type="submit" variant="primary" class="w-full mt-4">Reset Password</x-button>
     </form>
 </x-layouts.auth>
