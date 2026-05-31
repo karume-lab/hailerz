@@ -50,6 +50,116 @@
         </div>
     </section>
 
+    <!-- Content Creation Subscription Ecosystem -->
+    <section class="py-32 bg-surface-light relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-20 reveal">
+                <x-heading level="h2" title="Creator" highlight="Ecosystem" align="center" highlightClass="text-brand-secondary" class="text-text-primary mb-6" />
+                <p class="text-lg text-text-secondary mx-auto max-w-3xl">
+                    Elevate your platform presence with our content engineering subscriptions. From automated basics to full-scale custom deliverables.
+                </p>
+            </div>
+
+            <!-- 3 Tier Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+                <!-- Tier 1: Starter Content Basic -->
+                <x-card padding="p-8 md:p-10" bg="muted" class="flex flex-col h-full reveal reveal-delay-100">
+                    <h3 class="text-2xl font-bold text-text-primary mb-3">Starter Content Basic</h3>
+                    <p class="text-text-secondary text-sm mb-6">Automated, generic generated content built directly from your profile tags, skill preferences, and regional settings to keep your channels continuously active.</p>
+                    
+                    <div class="mt-auto flex flex-col">
+                        <div class="mb-8">
+                            <span class="text-4xl font-extrabold text-text-primary">$19</span>
+                            <span class="text-text-muted text-sm">/month</span>
+                        </div>
+
+                        <div class="bg-surface-light rounded-2xl p-4 border border-subtle">
+                            <div class="flex items-center gap-3">
+                                <x-lucide-ticket class="w-6 h-6 text-text-muted" />
+                                <div class="text-left">
+                                    <span class="block text-sm font-bold text-text-primary">0 Premium Tickets</span>
+                                    <span class="block text-xs text-text-muted">Base content only</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </x-card>
+
+                <!-- Tier 2: Professional Creator (Highlight) -->
+                <x-card padding="p-8 md:p-10" bg="muted" class="flex flex-col h-full reveal reveal-delay-200 border-2 border-brand-primary/50 shadow-lg relative overflow-visible">
+                    <div class="absolute -top-4 inset-x-0 flex justify-center">
+                        <span class="bg-brand-primary text-white text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wider shadow-md">Most Popular</span>
+                    </div>
+                    
+                    <h3 class="text-2xl font-bold text-text-primary mb-3 mt-2">Professional Creator</h3>
+                    <p class="text-text-secondary text-sm mb-6">Managed custom creative deliverables curated to your specific platform brand guidelines. Includes active access to our priority processing desk.</p>
+                    
+                    <div class="mt-auto flex flex-col">
+                        <div class="mb-8">
+                            <span class="text-4xl font-extrabold text-brand-primary">$89</span>
+                            <span class="text-text-muted text-sm">/month</span>
+                        </div>
+
+                        <div class="bg-brand-primary/5 rounded-2xl p-4 border border-brand-primary/20">
+                            <div class="flex items-center gap-3">
+                                <x-lucide-ticket class="w-6 h-6 text-brand-primary" />
+                                <div class="text-left">
+                                    <span class="block text-sm font-bold text-brand-primary">5 Premium Tickets</span>
+                                    <span class="block text-xs text-text-muted">Per month included</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </x-card>
+
+                <!-- Tier 3: Enterprise Scale -->
+                <x-card padding="p-8 md:p-10" bg="muted" class="flex flex-col h-full reveal reveal-delay-300">
+                    <h3 class="text-2xl font-bold text-text-primary mb-3">Enterprise Scale</h3>
+                    <p class="text-text-secondary text-sm mb-6">High-density, multi-channel asset compilation. Dedicated rapid turnaround execution for heavy content schedules.</p>
+                    
+                    <div class="mt-auto flex flex-col">
+                        <div class="mb-8">
+                            <span class="text-4xl font-extrabold text-text-primary">$249</span>
+                            <span class="text-text-muted text-sm">/month</span>
+                        </div>
+
+                        <div class="bg-surface-light rounded-2xl p-4 border border-subtle">
+                            <div class="flex items-center gap-3">
+                                <x-lucide-ticket class="w-6 h-6 text-brand-secondary" />
+                                <div class="text-left">
+                                    <span class="block text-sm font-bold text-text-primary">15 Premium Tickets</span>
+                                    <span class="block text-xs text-text-muted">Per month included</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </x-card>
+            </div>
+
+            <!-- One-Off Ticket Add-on -->
+            <x-card padding="p-8 sm:p-10" bg="muted" class="max-w-4xl mx-auto border-subtle reveal reveal-delay-400">
+                <div class="flex flex-col md:flex-row items-center justify-between gap-8">
+                    <div class="flex-1 text-center md:text-left">
+                        <div class="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-brand-primary/10 text-brand-primary mb-4 md:mb-0 md:mr-6 md:float-left">
+                            <x-lucide-ticket class="w-6 h-6" />
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-bold text-text-primary mb-2">Need a One-Off Content Ticket?</h4>
+                            <p class="text-text-secondary text-sm">Not ready for a subscription? Purchase a single, on-demand premium content service ticket anytime.</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-col items-center md:items-end shrink-0">
+                        <span class="text-2xl font-bold text-text-primary mb-3">$25 <span class="text-sm font-normal text-text-muted">/ticket</span></span>
+                        <x-button href="/marketplace/submissions" variant="outline">
+                            Buy Single Ticket
+                        </x-button>
+                    </div>
+                </div>
+            </x-card>
+
+        </div>
+    </section>
+
     <!-- Booking Steps -->
     <x-marketplace.booking-steps />
 

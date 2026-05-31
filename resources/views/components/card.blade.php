@@ -1,10 +1,12 @@
 @props([
     'hover' => true,
     'padding' => 'p-10',
+    'bg' => 'light',
 ])
 
 @php
-    $baseClasses = 'bg-surface-light rounded-[3rem] border border-brand-primary/10 transition-all duration-500 group';
+    $bgClass = $bg === 'muted' ? 'bg-surface-muted' : 'bg-surface-light';
+    $baseClasses = $bgClass . ' rounded-[3rem] border border-brand-primary/10 transition-all duration-500 group';
     
     if ($hover) {
         $baseClasses .= ' shadow-sm hover:shadow-md';
