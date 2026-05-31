@@ -17,7 +17,6 @@ use App\Livewire\Public\Resources;
 use App\Livewire\Public\Services;
 use App\Livewire\Public\ShowResource;
 use App\Livewire\Public\ShowTalent;
-use App\Livewire\Public\Staffing;
 use App\Livewire\Public\TalentDirectory;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Http\Request;
@@ -42,18 +41,32 @@ Route::get('/sw.js', function () {
 
 // Public Frontends
 Route::get('/', Home::class)->name('home');
-Route::get('/talent', TalentDirectory::class)->name('talent.directory');
-Route::get('/talent/{slug}', ShowTalent::class)->name('talent.show');
+Route::get('/marketplace/talent', TalentDirectory::class)->name('talent.directory');
+Route::get('/marketplace/talent/{slug}', ShowTalent::class)->name('talent.show');
 Route::get('/og/talent/{slug}', [OgImageController::class, 'show'])->name('og.talent');
 Route::get('/og/resource/{slug}', [OgImageController::class, 'resource'])->name('og.resource');
 Route::get('/book', BookingWizard::class)->name('booking.wizard');
 Route::get('/book/confirm', BookingConfirmation::class)->name('booking.confirmation');
 
 Route::get('/about', About::class)->name('about');
+Route::view('/about/mission', 'public.pages.about.mission')->name('about.mission');
+Route::view('/about/team', 'public.pages.about.team')->name('about.team');
+Route::view('/about/press', 'public.pages.about.press')->name('about.press');
+
+Route::view('/marketplace/content-services', 'public.pages.marketplace.content-services')->name('marketplace.content-services');
+Route::view('/marketplace', 'public.pages.marketplace.home')->name('marketplace.home');
+
+Route::view('/learn/training', 'public.pages.learn.training')->name('learn.training');
+Route::view('/learn/workshops', 'public.pages.learn.workshops')->name('learn.workshops');
+Route::view('/learn/challenges', 'public.pages.learn.challenges')->name('learn.challenges');
+
+Route::view('/connect/meetups', 'public.pages.connect.meetups')->name('connect.meetups');
+Route::view('/connect/students', 'public.pages.connect.students')->name('connect.students');
+Route::view('/connect/groups', 'public.pages.connect.groups')->name('connect.groups');
+
 Route::get('/resources', Resources::class)->name('resources');
 Route::get('/resources/{slug}', ShowResource::class)->name('resources.show');
-Route::get('/services', Services::class)->name('services');
-Route::get('/staffing', Staffing::class)->name('staffing');
+Route::get('/marketplace/services', Services::class)->name('services');
 Route::get('/contact', Contact::class)->name('contact');
 Route::get('/join', JoinTalent::class)->name('join');
 

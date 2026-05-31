@@ -4,43 +4,7 @@
 @endpush
 
 <div class="bg-surface-light">
-    <!-- Hero Section -->
-    <section class="relative min-h-[85vh] flex items-center justify-center pt-32 pb-20 overflow-hidden">
-        <!-- Background Image with Overlay -->
-        <div class="absolute inset-0 z-0">
-            <img src="{{ asset('images/home/hero-bg.webp') }}" class="w-full h-full object-cover"
-                alt="Hero background - Rays of light illuminating a stage" fetchpriority="high" decoding="sync">
-            <div class="absolute inset-0 bg-black/20 bg-linear-to-b from-black/40 via-transparent to-black/60"></div>
-        </div>
-
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-            <x-heading level="h1" title="Book Top Talent" align="center" class="text-white mb-8" />
-            <p class="text-xl md:text-2xl text-white/90 mb-12 max-w-3xl mx-auto font-medium leading-relaxed">
-                Connect with creative talent and professional services for your projects and productions.
-            </p>
-
-            <!-- Search Bar -->
-            <form wire:submit="searchTalent" class="relative max-w-4xl mx-auto mb-10 group">
-                <div
-                    class="flex flex-col md:flex-row gap-3 p-3 md:p-2 bg-white/10 backdrop-blur-xl rounded-xl md:rounded-full border border-white/20 shadow-[0_20px_50px_rgba(0,0,0,0.5)] transition-all duration-500 hover:bg-white/15">
-                    <x-input wire:model="search" placeholder="Search by name, genre, or location..." icon="search"
-                        class="flex-1 bg-transparent border-none text-white placeholder-white/50 ring-0 py-4 md:py-5 text-lg md:text-xl" />
-                    <x-button type="submit" variant="primary" class="active:scale-95 transform flex-1/4">
-                        Find Talent
-                    </x-button>
-                </div>
-            </form>
-
-            <!-- Quick Links / Categories -->
-            <div
-                class="flex flex-wrap justify-center gap-x-6 md:gap-x-12 gap-y-6 mt-12 text-xs font-bold uppercase tracking-widest text-white/80">
-                @foreach($allCategories as $cat)
-                <a href="/talent?category={{ $cat->slug }}" wire:navigate
-                    class="hover:text-brand-primary transition-all hover:scale-105 transform whitespace-nowrap">{{ $cat->name }}</a>
-                @endforeach
-            </div>
-        </div>
-    </section>
+    <x-marketplace.hero :allCategories="$allCategories" />
 
     <!-- How It Works -->
     <section class="py-32 bg-surface-muted">
@@ -83,37 +47,11 @@
                     </template>
                 </div>
             </div>
-
-            <x-heading level="h2" title="Book Talent in" highlight="Three Simple Steps" align="center"
-                class="text-text-primary mb-10" />
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
-                @php
-                    $steps = [
-                        [
-                            'title' => 'Search',
-                            'desc' => 'Search our curated directory of top talent by category, genre, or location to find the perfect fit.',
-                            'icon' => 'search'
-                        ],
-                        [
-                            'title' => 'Review',
-                            'desc' => 'View detailed profiles with photos, videos, and reviews to find your perfect match with confidence.',
-                            'icon' => 'user-check'
-                        ],
-                        [
-                            'title' => 'Book',
-                            'desc' => 'Submit an inquiry directly from their profile and finalize your booking with our dedicated agents.',
-                            'icon' => 'calendar-check'
-                        ]
-                    ];
-                @endphp
-
-                @foreach($steps as $index => $step)
-                    <x-feature-card :index="$index" :icon="$step['icon']" :title="$step['title']" :desc="$step['desc']"
-                        iconVariant="secondary" />
-                @endforeach
-            </div>
         </div>
     </section>
+
+    <!-- Booking Steps -->
+    <x-marketplace.booking-steps />
 
     <!-- Featured Talent Section -->
     <section class="py-32 bg-surface-dark">
@@ -140,7 +78,7 @@
                             </p>
 
                             <div class="flex flex-col sm:flex-row gap-3">
-                                <x-button href="/talent/{{ $featuredTalents[0]->slug }}" variant="outline" size="sm"
+                                <x-button href="/marketplace/talent/{{ $featuredTalents[0]->slug }}" variant="outline" size="sm"
                                     class="w-full sm:w-auto" aria-label="View profile of {{ $featuredTalents[0]->name }}">
                                     View Profile
                                 </x-button>
@@ -169,7 +107,7 @@
                                 </p>
 
                                 <div class="flex flex-col sm:flex-row gap-3">
-                                    <x-button href="/talent/{{ $featuredTalents[1]->slug }}" variant="outline" size="sm"
+                                    <x-button href="/marketplace/talent/{{ $featuredTalents[1]->slug }}" variant="outline" size="sm"
                                         class="w-full sm:w-auto"
                                         aria-label="View profile of {{ $featuredTalents[1]->name }}">
                                         View Profile
@@ -197,7 +135,7 @@
                                 </p>
 
                                 <div class="flex flex-col sm:flex-row gap-2">
-                                    <x-button href="/talent/{{ $featuredTalents[2]->slug }}" variant="outline" size="sm"
+                                    <x-button href="/marketplace/talent/{{ $featuredTalents[2]->slug }}" variant="outline" size="sm"
                                         class="text-[10px] sm:text-xs py-2"
                                         aria-label="View profile of {{ $featuredTalents[2]->name }}">
                                         View Profile
@@ -225,7 +163,7 @@
                                 </p>
 
                                 <div class="flex flex-col sm:flex-row gap-2">
-                                    <x-button href="/talent/{{ $featuredTalents[3]->slug }}" variant="outline" size="sm"
+                                    <x-button href="/marketplace/talent/{{ $featuredTalents[3]->slug }}" variant="outline" size="sm"
                                         class="text-[10px] sm:text-xs py-2"
                                         aria-label="View profile of {{ $featuredTalents[3]->name }}">
                                         View Profile </x-button>
@@ -252,7 +190,7 @@
                                     {{ $talent->category->name }}
                                 </p>
                                 <div class="flex flex-col sm:flex-row gap-2">
-                                    <x-button href="/talent/{{ $talent->slug }}" variant="outline" size="sm"
+                                    <x-button href="/marketplace/talent/{{ $talent->slug }}" variant="outline" size="sm"
                                         class="text-[10px] sm:text-xs py-2" aria-label="View profile of {{ $talent->name }}">
                                         View Profile </x-button>
                                     <x-button href="/book?talent={{ $talent->id }}" variant="primary" size="sm"
@@ -267,7 +205,7 @@
             @endif
 
             <div class="mt-16 text-center">
-                <x-button href="/talent" variant="outline" size="lg" wire:navigate>
+                <x-button href="/marketplace/talent" variant="outline" size="lg" wire:navigate>
                     Browse All Talent
                 </x-button>
             </div>
@@ -289,7 +227,7 @@
                         $representativeTalent = $category->talents->first();
                         $bgImage = $representativeTalent ? $representativeTalent->profile_photo_url : $category->default_image;
                     @endphp
-                    <a href="/talent?category={{ $category->slug }}" wire:navigate
+                    <a href="/marketplace/talent?category={{ $category->slug }}" wire:navigate
                         class="group relative aspect-square rounded-3xl overflow-hidden shadow-lg reveal {{ $index % 4 === 1 ? 'reveal-delay-100' : ($index % 4 === 2 ? 'reveal-delay-200' : ($index % 4 === 3 ? 'reveal-delay-300' : '')) }}">
                         <img src="{{ $bgImage }}" alt="{{ $category->name }}"
                             class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"

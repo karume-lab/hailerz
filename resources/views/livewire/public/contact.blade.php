@@ -214,7 +214,7 @@
                     <p class="text-sm text-text-secondary mb-8 grow leading-relaxed">
                         Explore our directory of musicians, bands, DJs, and speakers
                     </p>
-                    <x-button href="/talent" wire:navigate variant="outline" size="sm" class="w-full">
+                    <x-button href="/marketplace/talent" wire:navigate variant="outline" size="sm" class="w-full">
                         View Directory
                     </x-button>
                 </x-card>

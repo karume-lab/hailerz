@@ -86,42 +86,26 @@
             </span>
           </a>
         </div>
-        <nav class="hidden lg:flex items-center space-x-10">
-          <a href="/talent" wire:navigate
-            class="{{ request()->is('talent*') ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary' }} transition-colors">
-            Browse Talent</a>
-          <a href="/services" wire:navigate
-            class="{{ request()->is('services*') ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary' }} transition-colors">Services</a>
-          <a href="/about" wire:navigate
-            class="{{ request()->is('about*') ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary' }} transition-colors">About</a>
-          <a href="/resources" wire:navigate
-            class="{{ request()->is('resources*') ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary' }} transition-colors">Resources</a>
-          <a href="/staffing" wire:navigate
-            class="{{ request()->is('staffing*') ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary' }} transition-colors">Staffing</a>
-          <a href="/contact" wire:navigate
-            class="{{ request()->is('contact*') ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary' }} transition-colors">Contact</a>
-        </nav>
+        <x-mega-menu />
 
         <div class="flex items-center space-x-4 sm:space-x-4">
           <div class="hidden lg:flex items-center space-x-4">
             <x-theme-toggle />
-            <a href="/join" wire:navigate
-              class="{{ request()->is('join*') ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary' }} transition-colors text-sm font-medium">Submissions</a>
             @auth
               <a href="/dashboard" wire:navigate class="text-text-secondary hover:text-brand-primary transition-colors text-sm font-medium">Dashboard</a>
               <form method="POST" action="{{ route('logout') }}" class="inline m-0">
                 @csrf
                 <button type="submit" class="text-text-secondary hover:text-brand-primary transition-colors text-sm font-medium border-0 bg-transparent cursor-pointer p-0">Sign Out</button>
               </form>
-            @else
-              <a href="/sign-in" wire:navigate class="text-text-secondary hover:text-brand-primary transition-colors text-sm font-medium">Sign In</a>
             @endauth
           </div>
 
-          <x-button variant="primary" size="sm" href="/book" wire:navigate
-            class="border-none shadow-sm px-4 sm:px-6 py-2 sm:py-2.5 rounded-full hover:scale-105 transition-transform text-[10px] sm:text-sm">
-            Book Now
-          </x-button>
+          @guest
+            <x-button variant="primary" size="sm" href="/sign-in" wire:navigate
+              class="border-none shadow-sm px-4 sm:px-6 py-2 sm:py-2.5 rounded-full hover:scale-105 transition-transform text-[10px] sm:text-sm tracking-wider">
+              SIGN IN
+            </x-button>
+          @endguest
           
           <x-mobile-menu />
         </div>
@@ -183,10 +167,10 @@
         <div>
           <h3 class="text-xs font-bold text-brand-primary uppercase tracking-widest mb-6">Discover</h3>
           <ul class="space-y-4">
-            <li><a href="/talent" wire:navigate
+            <li><a href="/marketplace/talent" wire:navigate
                 class="text-sm text-text-secondary hover:text-brand-primary transition-colors">Browse Talent</a></li>
             @foreach($allCategories->take(4) as $cat)
-            <li><a href="/talent?category={{ $cat->slug }}"
+            <li><a href="/marketplace/talent?category={{ $cat->slug }}"
                 class="text-sm text-text-secondary hover:text-brand-primary transition-colors">{{ $cat->name }}</a></li>
             @endforeach
           </ul>
@@ -197,12 +181,10 @@
           <ul class="space-y-4">
             <li><a href="/about" wire:navigate
                 class="text-sm text-text-secondary hover:text-brand-primary transition-colors">About</a></li>
-            <li><a href="/services" wire:navigate
+            <li><a href="/marketplace/services" wire:navigate
                 class="text-sm text-text-secondary hover:text-brand-primary transition-colors">Services</a></li>
             <li><a href="/resources" wire:navigate
                 class="text-sm text-text-secondary hover:text-brand-primary transition-colors">Resources</a></li>
-            <li><a href="/staffing" wire:navigate
-                class="text-sm text-text-secondary hover:text-brand-primary transition-colors">Staffing</a></li>
             <li><a href="/join" wire:navigate
                 class="text-sm text-text-secondary hover:text-brand-primary transition-colors">Join the Roster</a></li>
             <li><a href="/contact" wire:navigate

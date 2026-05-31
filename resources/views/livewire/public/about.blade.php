@@ -17,7 +17,7 @@
   </section>
 
   <!-- Our Story Section -->
-  <section class="py-24 bg-surface-muted">
+  <section id="story" class="py-24 bg-surface-muted">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center reveal">
       <x-heading level="h2" title="Our" highlight="Story" align="center" class="mb-12" />
       <div class="space-y-8 text-lg text-text-secondary leading-relaxed font-light">
@@ -81,7 +81,7 @@
   </section>
 
   <!-- What Sets Us Apart Section -->
-  <section class="py-24 bg-surface-muted">
+  <section id="what-sets-us-apart" class="py-24 bg-surface-muted">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16 reveal">
         <x-heading level="h2" title="What Sets Us" highlight="Apart" align="center" class="mb-4" />
@@ -115,7 +115,7 @@
   </section>
 
   <!-- Meet Our Team Section -->
-  <section class="py-24 bg-surface-light border-t border-subtle">
+  <section id="team" class="py-24 bg-surface-light border-t border-subtle">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16 reveal">
         <x-heading level="h2" title="Meet Our" highlight="Team" align="center" class="mb-4" />
@@ -174,7 +174,7 @@
         Let's create an unforgettable event. Browse our talent directory or submit a booking inquiry today.
       </p>
       <div class="flex flex-col sm:flex-row gap-6 justify-center">
-        <x-button variant="outline" size="lg" href="/talent" wire:navigate class="w-full sm:w-auto">
+        <x-button variant="outline" size="lg" href="/marketplace/talent" wire:navigate class="w-full sm:w-auto">
           Browse Talent
         </x-button>
         <x-button variant="primary" size="lg" href="/book" wire:navigate class="w-full sm:w-auto">
