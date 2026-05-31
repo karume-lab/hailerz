@@ -55,11 +55,13 @@ Route::view('/about/press', 'public.pages.about.press')->name('about.press');
 
 Route::view('/marketplace/content-services', 'public.pages.marketplace.content-services')->name('marketplace.content-services');
 Route::view('/marketplace', 'public.pages.marketplace.home')->name('marketplace.home');
+Route::view('/learn', 'public.pages.learn.home')->name('learn.home');
 
 Route::view('/learn/training', 'public.pages.learn.training')->name('learn.training');
 Route::view('/learn/workshops', 'public.pages.learn.workshops')->name('learn.workshops');
 Route::view('/learn/challenges', 'public.pages.learn.challenges')->name('learn.challenges');
 
+Route::view('/connect', 'public.pages.connect.home')->name('connect.home');
 Route::view('/connect/meetups', 'public.pages.connect.meetups')->name('connect.meetups');
 Route::view('/connect/students', 'public.pages.connect.students')->name('connect.students');
 Route::view('/connect/groups', 'public.pages.connect.groups')->name('connect.groups');

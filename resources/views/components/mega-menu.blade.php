@@ -21,14 +21,14 @@
 
         <!-- 4. Learn Track -->
         <div class="relative h-full flex items-center" @mouseenter="activeMenu = 'learn'">
-            <a href="/learn/training" wire:navigate class="text-sm font-semibold tracking-wide transition-colors" :class="activeMenu === 'learn' || '{{ request()->is('learn*') }}' ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary'">
+            <a href="/learn" wire:navigate class="text-sm font-semibold tracking-wide transition-colors" :class="activeMenu === 'learn' || '{{ request()->is('learn*') }}' ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary'">
                 Learn
             </a>
         </div>
 
         <!-- 5. Connect Track -->
         <div class="relative h-full flex items-center" @mouseenter="activeMenu = 'connect'">
-            <a href="/connect/meetups" wire:navigate class="text-sm font-semibold tracking-wide transition-colors" :class="activeMenu === 'connect' || '{{ request()->is('connect*') }}' ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary'">
+            <a href="/connect" wire:navigate class="text-sm font-semibold tracking-wide transition-colors" :class="activeMenu === 'connect' || '{{ request()->is('connect*') }}' ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary'">
                 Connect
             </a>
         </div>
