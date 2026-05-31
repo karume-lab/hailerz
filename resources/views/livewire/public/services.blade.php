@@ -204,19 +204,19 @@
             category:</p>
           <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
             <div>
-              <div class="font-bold text-xl text-text-primary mb-1">$500 - $1,500</div>
+              <div class="font-bold text-xl text-text-primary mb-1">{{ \App\Helpers\CurrencyHelper::format(500) }} - {{ \App\Helpers\CurrencyHelper::format(1500) }}</div>
               <div class="text-sm text-text-secondary">Solo Musicians</div>
             </div>
             <div>
-              <div class="font-bold text-xl text-text-primary mb-1">$800 - $2,500</div>
+              <div class="font-bold text-xl text-text-primary mb-1">{{ \App\Helpers\CurrencyHelper::format(800) }} - {{ \App\Helpers\CurrencyHelper::format(2500) }}</div>
               <div class="text-sm text-text-secondary">DJs</div>
             </div>
             <div>
-              <div class="font-bold text-xl text-text-primary mb-1">$1,200 - $3,500</div>
+              <div class="font-bold text-xl text-text-primary mb-1">{{ \App\Helpers\CurrencyHelper::format(1200) }} - {{ \App\Helpers\CurrencyHelper::format(3500) }}</div>
               <div class="text-sm text-text-secondary">Variety Artists</div>
             </div>
             <div>
-              <div class="font-bold text-xl text-text-primary mb-1">$2,500 - $10,000+</div>
+              <div class="font-bold text-xl text-text-primary mb-1">{{ \App\Helpers\CurrencyHelper::format(2500) }} - {{ \App\Helpers\CurrencyHelper::format(10000) }}+</div>
               <div class="text-sm text-text-secondary">Speakers</div>
             </div>
           </div>

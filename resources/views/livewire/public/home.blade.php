@@ -69,7 +69,7 @@
                     
                     <div class="mt-auto flex flex-col">
                         <div class="mb-8">
-                            <span class="text-4xl font-extrabold text-text-primary">$19</span>
+                            <span class="text-4xl font-extrabold text-text-primary">{{ \App\Helpers\CurrencyHelper::format(19) }}</span>
                             <span class="text-text-muted text-sm">/month</span>
                         </div>
 
@@ -96,7 +96,7 @@
                     
                     <div class="mt-auto flex flex-col">
                         <div class="mb-8">
-                            <span class="text-4xl font-extrabold text-brand-primary">$89</span>
+                            <span class="text-4xl font-extrabold text-brand-primary">{{ \App\Helpers\CurrencyHelper::format(89) }}</span>
                             <span class="text-text-muted text-sm">/month</span>
                         </div>
 
@@ -119,7 +119,7 @@
                     
                     <div class="mt-auto flex flex-col">
                         <div class="mb-8">
-                            <span class="text-4xl font-extrabold text-text-primary">$249</span>
+                            <span class="text-4xl font-extrabold text-text-primary">{{ \App\Helpers\CurrencyHelper::format(249) }}</span>
                             <span class="text-text-muted text-sm">/month</span>
                         </div>
 
@@ -149,7 +149,7 @@
                         </div>
                     </div>
                     <div class="flex flex-col items-center md:items-end shrink-0">
-                        <span class="text-2xl font-bold text-text-primary mb-3">$25 <span class="text-sm font-normal text-text-muted">/ticket</span></span>
+                        <span class="text-2xl font-bold text-text-primary mb-3">{{ \App\Helpers\CurrencyHelper::format(25) }} <span class="text-sm font-normal text-text-muted">/ticket</span></span>
                         <x-button href="/marketplace/submissions" variant="outline">
                             Buy Single Ticket
                         </x-button>
