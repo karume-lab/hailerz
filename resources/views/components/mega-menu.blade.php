@@ -56,7 +56,7 @@
                 </div>
                 
                 <div class="col-span-6">
-                    <h3 class="text-xs font-bold text-brand-primary tracking-widest uppercase mb-6">Company Information</h3>
+                    <h3 class="text-xs text-brand-primary tracking-widest uppercase mb-6">Company Information</h3>
                     <ul class="space-y-4">
                         <li><a href="/about#story" class="text-sm font-medium text-text-secondary hover:text-brand-primary transition-colors">Our Story</a></li>
                         <li><a href="/about#team" class="text-sm font-medium text-text-secondary hover:text-brand-primary transition-colors">Meet Our Team</a></li>
@@ -73,7 +73,7 @@
                 </div>
                 
                 <div class="col-span-6">
-                    <h3 class="text-xs font-bold text-brand-primary tracking-widest uppercase mb-6">Booking Options</h3>
+                    <h3 class="text-xs text-brand-primary tracking-widest uppercase mb-6">Booking Options</h3>
                     <ul class="space-y-4">
                         <li><a href="/marketplace/services" class="text-sm font-medium text-text-secondary hover:text-brand-primary transition-colors">Services</a></li>
                         <li><a href="/marketplace/talent" class="text-sm font-medium text-text-secondary hover:text-brand-primary transition-colors">Browse Talent</a></li>
@@ -90,7 +90,7 @@
                 </div>
                 
                 <div class="col-span-6">
-                    <h3 class="text-xs font-bold text-brand-primary tracking-widest uppercase mb-6">Academy Programs</h3>
+                    <h3 class="text-xs text-brand-primary tracking-widest uppercase mb-6">Academy Programs</h3>
                     <ul class="space-y-4">
                         <li><a href="/learn/training" class="text-sm font-medium text-text-secondary hover:text-brand-primary transition-colors">Training and Tutorials</a></li>
                         <li><a href="/learn/workshops" class="text-sm font-medium text-text-secondary hover:text-brand-primary transition-colors">Live Workshops</a></li>
@@ -107,7 +107,7 @@
                 </div>
                 
                 <div class="col-span-6">
-                    <h3 class="text-xs font-bold text-brand-primary tracking-widest uppercase mb-6">Networking</h3>
+                    <h3 class="text-xs text-brand-primary tracking-widest uppercase mb-6">Networking</h3>
                     <ul class="space-y-4">
                         <li><a href="/connect/meetups" class="text-sm font-medium text-text-secondary hover:text-brand-primary transition-colors">Meetups</a></li>
                         <li><a href="/connect/students" class="text-sm font-medium text-text-secondary hover:text-brand-primary transition-colors">Student Communities</a></li>
