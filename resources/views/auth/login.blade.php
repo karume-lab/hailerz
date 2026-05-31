@@ -25,10 +25,10 @@
             <a href="{{ route('password.request') }}" class="text-xs text-text-muted no-underline hover:text-text-primary transition-colors">Forgot Your Password?</a>
         </div>
 
-        <button type="submit" class="w-full mt-4 bg-brand-primary text-text-inverse p-4 rounded-full font-semibold text-base border-0 cursor-pointer transition-all duration-200 text-center hover:bg-brand-accent hover:-translate-y-px">Login</button>
+        <button type="submit" class="w-full mt-4 bg-brand-primary text-text-inverse p-4 rounded-full font-semibold text-base border-0 cursor-pointer transition-all duration-200 text-center hover:bg-brand-accent hover:-translate-y-px">Sign In</button>
     </form>
 
     <div class="mt-8 text-center text-sm text-text-secondary">
-        <p>Don't have an account? <a href="{{ route('register') }}" class="text-brand-primary underline font-semibold hover:text-brand-accent transition-colors">Register</a></p>
+        <p>Don't have an account? <a href="{{ route('register') }}" class="text-brand-primary underline font-semibold hover:text-brand-accent transition-colors">Sign Up</a></p>
     </div>
 </x-layouts.auth>

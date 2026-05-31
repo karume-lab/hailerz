@@ -35,10 +35,10 @@
             <input id="password_confirmation" type="password" name="password_confirmation" required placeholder="Confirm your password" class="w-full py-2 bg-transparent border-0 border-b-2 border-text-muted text-base text-text-primary transition-colors duration-200 focus:outline-none focus:ring-0 focus:shadow-none! focus:border-t-transparent! focus:border-l-transparent! focus:border-r-transparent! focus:border-b-brand-primary!">
         </div>
 
-        <button type="submit" class="w-full mt-4 bg-brand-primary text-text-inverse p-4 rounded-full font-semibold text-base border-0 cursor-pointer transition-all duration-200 text-center hover:bg-brand-accent hover:-translate-y-px">Register</button>
+        <button type="submit" class="w-full mt-4 bg-brand-primary text-text-inverse p-4 rounded-full font-semibold text-base border-0 cursor-pointer transition-all duration-200 text-center hover:bg-brand-accent hover:-translate-y-px">Sign Up</button>
     </form>
 
     <div class="mt-8 text-center text-sm text-text-secondary">
-        <p>Already have an account? <a href="{{ route('login') }}" class="text-brand-primary underline font-semibold hover:text-brand-accent transition-colors">Sign in here</a></p>
+        <p>Already have an account? <a href="{{ route('login') }}" class="text-brand-primary underline font-semibold hover:text-brand-accent transition-colors">Sign In</a></p>
     </div>
 </x-layouts.auth>
