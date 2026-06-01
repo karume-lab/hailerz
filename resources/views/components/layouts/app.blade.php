@@ -167,10 +167,10 @@
         <div>
           <h3 class="text-xs font-bold text-brand-primary uppercase tracking-widest mb-6">Discover</h3>
           <ul class="space-y-4">
-            <li><a href="/marketplace/talent" wire:navigate
+            <li><a href="/marketplace/browse" wire:navigate
                 class="text-sm text-text-secondary hover:text-brand-primary transition-colors">Browse Talent</a></li>
             @foreach($allCategories->take(4) as $cat)
-            <li><a href="/marketplace/talent?category={{ $cat->slug }}"
+            <li><a href="/marketplace/browse?category={{ $cat->slug }}"
                 class="text-sm text-text-secondary hover:text-brand-primary transition-colors">{{ $cat->name }}</a></li>
             @endforeach
           </ul>

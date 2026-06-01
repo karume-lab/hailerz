@@ -42,7 +42,7 @@
 
         <!-- Call to Action -->
         <div class="reveal reveal-delay-600">
-            <x-button variant="primary" size="lg" href="/marketplace/talent" wire:navigate
+            <x-button variant="primary" size="lg" href="/marketplace/browse" wire:navigate
                 class="w-full sm:w-auto px-10 py-4 shadow-[0_10px_30px_-10px_rgba(var(--color-brand-primary),0.5)] hover:shadow-[0_10px_40px_-10px_rgba(var(--color-brand-primary),0.8)] transition-all duration-300 transform hover:-translate-y-1">
                 Browse More Talent
             </x-button>

@@ -7,6 +7,9 @@ use App\Livewire\BookingConfirmation;
 use App\Livewire\Public\About;
 use App\Livewire\Public\BookingWizard;
 use App\Livewire\Public\Contact;
+use App\Livewire\Public\EventsDirectory;
+use App\Livewire\Public\EventsHub;
+use App\Livewire\Public\EventsRegistrationWizard;
 use App\Livewire\Public\Home;
 use App\Livewire\Public\JoinTalent;
 use App\Livewire\Public\Legal\BookingAgreement;
@@ -41,8 +44,6 @@ Route::get('/sw.js', function () {
 
 // Public Frontends
 Route::get('/', Home::class)->name('home');
-Route::get('/marketplace/talent', TalentDirectory::class)->name('talent.directory');
-Route::get('/marketplace/talent/{slug}', ShowTalent::class)->name('talent.show');
 Route::get('/og/talent/{slug}', [OgImageController::class, 'show'])->name('og.talent');
 Route::get('/og/resource/{slug}', [OgImageController::class, 'resource'])->name('og.resource');
 Route::get('/book', BookingWizard::class)->name('booking.wizard');
@@ -56,6 +57,19 @@ Route::view('/about/press', 'public.pages.about.press')->name('about.press');
 Route::view('/marketplace/content-services', 'public.pages.marketplace.content-services')->name('marketplace.content-services');
 Route::view('/marketplace', 'public.pages.marketplace.home')->name('marketplace.home');
 Route::view('/learn', 'public.pages.learn.home')->name('learn.home');
+
+// Marketplace Browse Routes
+Route::get('/marketplace/browse', TalentDirectory::class)->name('talent.directory');
+Route::get('/marketplace/browse/{slug}', ShowTalent::class)->name('talent.show');
+Route::redirect('/marketplace/talent', '/marketplace/browse');
+Route::redirect('/marketplace/talent/{slug}', '/marketplace/browse/{slug}');
+
+// Event Routes
+Route::view('/events', 'public.pages.events.home')->name('events');
+Route::get('/events/services', EventsHub::class)->name('events.services');
+Route::get('/events/browse', EventsDirectory::class)->name('events.browse');
+Route::get('/events/submissions', EventsRegistrationWizard::class)->name('events.create')->middleware('auth');
+Route::redirect('/events/create', '/events/submissions');
 
 Route::view('/learn/training', 'public.pages.learn.training')->name('learn.training');
 Route::view('/learn/workshops', 'public.pages.learn.workshops')->name('learn.workshops');

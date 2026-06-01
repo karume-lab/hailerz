@@ -33,6 +33,13 @@
             </a>
         </div>
 
+        <!-- 6. Events Track -->
+        <div class="relative h-full flex items-center" @mouseenter="activeMenu = 'events'">
+            <a href="/events" wire:navigate class="text-sm font-semibold tracking-wide transition-colors" :class="activeMenu === 'events' || (!activeMenu && '{{ request()->is('events*') }}') ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary'">
+                Events
+            </a>
+        </div>
+
         <!-- Direct Links -->
         <div class="relative h-full flex items-center" @mouseenter="activeMenu = 'contact'">
             <a href="/contact" wire:navigate class="text-sm font-semibold tracking-wide transition-colors" :class="activeMenu === 'contact' || (!activeMenu && '{{ request()->is('contact*') }}') ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary'">
@@ -76,7 +83,7 @@
                     <h3 class="text-xs text-brand-primary tracking-widest uppercase mb-6">Booking Options</h3>
                     <ul class="space-y-4">
                         <li><a href="/marketplace/services" class="text-sm font-medium text-text-secondary hover:text-brand-primary transition-colors">Services</a></li>
-                        <li><a href="/marketplace/talent" class="text-sm font-medium text-text-secondary hover:text-brand-primary transition-colors">Browse Talent</a></li>
+                        <li><a href="/marketplace/browse" class="text-sm font-medium text-text-secondary hover:text-brand-primary transition-colors">Browse Talent</a></li>
                         <li><a href="/marketplace/submissions" class="text-sm font-medium text-text-secondary hover:text-brand-primary transition-colors">Submissions</a></li>
                     </ul>
                 </div>
@@ -112,6 +119,23 @@
                         <li><a href="/connect/meetups" class="text-sm font-medium text-text-secondary hover:text-brand-primary transition-colors">Meetups</a></li>
                         <li><a href="/connect/students" class="text-sm font-medium text-text-secondary hover:text-brand-primary transition-colors">Student Communities</a></li>
                         <li><a href="/connect/groups" class="text-sm font-medium text-text-secondary hover:text-brand-primary transition-colors">Groups</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 6. Events Panel -->
+            <div x-show="activeMenu === 'events'" class="grid grid-cols-10 gap-12" style="display: none;">
+                <div class="col-span-4 pr-8 border-r border-subtle flex flex-col justify-center">
+                    <h2 class="text-3xl text-brand-primary mb-4">Events & Conference</h2>
+                    <p class="text-text-secondary text-base leading-relaxed">Join the Hailerz Event & Conference Expo, displaying cutting-edge corporate exhibitor spaces and connecting ecosystem participants.</p>
+                </div>
+                
+                <div class="col-span-6">
+                    <h3 class="text-xs text-brand-primary tracking-widest uppercase mb-6">Event Options</h3>
+                    <ul class="space-y-4">
+                        <li><a href="/events/services" class="text-sm font-medium text-text-secondary hover:text-brand-primary transition-colors">Services</a></li>
+                        <li><a href="/events/browse" class="text-sm font-medium text-text-secondary hover:text-brand-primary transition-colors">Browse Events</a></li>
+                        <li><a href="/events/submissions" class="text-sm font-medium text-text-secondary hover:text-brand-primary transition-colors">Submissions</a></li>
                     </ul>
                 </div>
             </div>

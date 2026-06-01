@@ -19,7 +19,7 @@
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
         @foreach($allCategories as $index => $cat)
-          <a href="/marketplace/talent?category={{ $cat->slug }}" wire:navigate
+          <a href="/marketplace/browse?category={{ $cat->slug }}" wire:navigate
             class="group rounded-3xl border border-subtle bg-surface-light p-8 shadow-sm flex flex-col h-full hover:border-brand-primary hover:shadow-lg transition-all duration-300 reveal {{ $index % 3 === 1 ? 'reveal-delay-100' : ($index % 3 === 2 ? 'reveal-delay-200' : '') }}">
             <div
               class="w-16 h-16 bg-brand-primary/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-brand-primary group-hover:text-text-inverse transition-colors duration-300">
@@ -236,7 +236,7 @@
         <x-button variant="outline" size="lg" href="/book" wire:navigate>
           Submit Booking Request
         </x-button>
-        <x-button variant="primary" size="lg" href="/marketplace/talent" wire:navigate>
+        <x-button variant="primary" size="lg" href="/marketplace/browse" wire:navigate>
           Browse Talent Directory
         </x-button>
       </div>

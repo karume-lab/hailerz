@@ -96,7 +96,7 @@ new class extends Component {
             </div>
             <x-heading level="h2" title="We've Got It!" class="text-text-primary mb-4" />
             <p class="text-text-secondary leading-relaxed font-light mb-8">Thanks for reaching out! Our team has received your request and we'll get back to you shortly to chat about the details.</p>
-            <x-button variant="primary" href="/marketplace/talent">Back to Talent</x-button>
+            <x-button variant="primary" href="/marketplace/browse">Back to Talent</x-button>
         </div>
     @else
         <div class="flex items-center gap-3 mb-4">

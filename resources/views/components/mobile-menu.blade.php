@@ -1,12 +1,12 @@
 @props([
     'links' => [
         ['label' => 'Home', 'href' => '/'],
-        ['label' => 'Talent', 'href' => '/talent'],
-        ['label' => 'Services', 'href' => '/services'],
-        ['label' => 'Staffing', 'href' => '/staffing'],
         ['label' => 'About', 'href' => '/about'],
+        ['label' => 'Marketplace', 'href' => '/marketplace/browse'],
+        ['label' => 'Learn', 'href' => '/learn'],
+        ['label' => 'Connect', 'href' => '/connect'],
+        ['label' => 'Events', 'href' => '/events'],
         ['label' => 'Contact', 'href' => '/contact'],
-        ['label' => 'Submissions', 'href' => '/marketplace/submissions'],
     ]
 ])
 

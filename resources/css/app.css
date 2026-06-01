@@ -16,7 +16,6 @@
     --color-brand-primary: var(--brand-primary);
     --color-brand-secondary: var(--brand-secondary);
     --color-brand-accent: var(--brand-accent);
-    --color-brand-crimson: var(--brand-crimson);
     
     /* Surface Colors */
     --color-surface-light: var(--surface-light);
@@ -36,7 +35,6 @@
         --brand-primary: #1b819b;
         --brand-secondary: #2b91ab;
         --brand-accent: #21395c;
-        --brand-crimson: #be123c;
 
         --surface-light: #FFFFFF;
         --surface-muted: #F9FAFB;
@@ -53,7 +51,6 @@
         --brand-primary: #146c84;
         --brand-secondary: #65c4af;
         --brand-accent: #21395c;
-        --brand-crimson: #be123c;
 
         --surface-light: #000000;
         --surface-muted: #111827;

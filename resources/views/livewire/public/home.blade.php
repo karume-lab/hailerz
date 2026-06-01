@@ -315,7 +315,7 @@
             @endif
 
             <div class="mt-16 text-center">
-                <x-button href="/marketplace/talent" variant="outline" size="lg" wire:navigate>
+                <x-button href="/marketplace/browse" variant="outline" size="lg" wire:navigate>
                     Browse All Talent
                 </x-button>
             </div>
@@ -337,7 +337,7 @@
                         $representativeTalent = $category->talents->first();
                         $bgImage = $representativeTalent ? $representativeTalent->profile_photo_url : $category->default_image;
                     @endphp
-                    <a href="/marketplace/talent?category={{ $category->slug }}" wire:navigate
+                    <a href="/marketplace/browse?category={{ $category->slug }}" wire:navigate
                         class="group relative aspect-square rounded-3xl overflow-hidden shadow-lg reveal {{ $index % 4 === 1 ? 'reveal-delay-100' : ($index % 4 === 2 ? 'reveal-delay-200' : ($index % 4 === 3 ? 'reveal-delay-300' : '')) }}">
                         <img src="{{ $bgImage }}" alt="{{ $category->name }}"
                             class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
