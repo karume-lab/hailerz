@@ -87,23 +87,23 @@
                             </div>
                         </div>
 
-                        <!-- Option B: Corporate Exhibitor Booth -->
+                        <!-- Option B: Host / Exhibitor Event -->
                         <div 
                             @click="$wire.set('pass_type', 'exhibitor')" 
                             class="relative p-8 rounded-[2.5rem] border-2 cursor-pointer transition-all hover:border-brand-primary flex flex-col justify-between {{ $pass_type === 'exhibitor' ? 'border-brand-primary bg-brand-primary/5 shadow-md' : 'border-brand-primary/10 bg-surface-light hover:shadow-sm' }}"
                         >
                             <div>
                                 <div class="flex justify-between items-center mb-4">
-                                    <span class="text-[10px] font-bold uppercase tracking-wider text-brand-accent bg-brand-accent/10 px-3 py-1 rounded-full dark:bg-brand-primary/20 dark:text-brand-primary">Exhibitor Space</span>
+                                    <span class="text-[10px] font-bold uppercase tracking-wider text-brand-accent bg-brand-accent/10 px-3 py-1 rounded-full dark:bg-brand-primary/20 dark:text-brand-primary">Host Space</span>
                                     <div class="w-5 h-5 rounded-full border-2 border-brand-primary flex items-center justify-center">
                                         @if($pass_type === 'exhibitor')
                                             <div class="w-2.5 h-2.5 rounded-full bg-brand-primary"></div>
                                         @endif
                                     </div>
                                 </div>
-                                <h3 class="text-lg font-bold text-text-primary mb-2">Corporate Exhibitor Booth</h3>
+                                <h3 class="text-lg font-bold text-text-primary mb-2">Register Event / Booth</h3>
                                 <p class="text-text-secondary text-xs leading-relaxed mb-6">
-                                    Includes one dedicated corporate booth, customizable signage slots, exhibitor credentials for up to 3 staff members, and priority logo placement in loop displays.
+                                    Includes one dedicated event space or exhibitor booth, customizable digital presentation slots, host/exhibitor credentials for up to 3 staff members, and priority logo placement in displays.
                                 </p>
                             </div>
                             <div class="text-xl font-extrabold text-brand-primary mt-auto">
@@ -120,19 +120,19 @@
                 </div>
 
             @elseif($currentStep === 2)
-                <!-- Step 2: Company Profile & Asset Intake (Exhibitor Only) -->
+                <!-- Step 2: Event Profile & Asset Intake (Exhibitor Only) -->
                 <div>
-                    <h2 class="text-2xl font-semibold text-brand-accent dark:text-text-primary mb-2">Company Profile & Brand Assets</h2>
-                    <p class="text-text-secondary text-sm mb-8">Provide details about your business and upload your corporate logo for display in the partner loops.</p>
+                    <h2 class="text-2xl font-semibold text-brand-accent dark:text-text-primary mb-2">Event Details & Brand Assets</h2>
+                    <p class="text-text-secondary text-sm mb-8">Provide details about your event and upload your promotional banner/logo for display in the partner loops.</p>
 
                     <div class="space-y-6 mb-10">
-                        <x-input wire:model="company_name" name="company_name" label="Company Name *" placeholder="Enter company name" />
+                        <x-input wire:model="company_name" name="company_name" label="Event Name *" placeholder="Enter event name" />
 
-                        <x-textarea wire:model="company_description" name="company_description" label="Company Description *" placeholder="Provide a brief description of what your business does..." rows="4" />
+                        <x-textarea wire:model="company_description" name="company_description" label="Event Description *" placeholder="Provide a brief description of the event..." rows="4" />
 
                         <div>
-                            <x-image-dropzone wire:model="company_logo" label="Corporate Logo (Optional)" />
-                            <p class="text-xs text-text-muted mt-2">Upload a high-resolution logo. If omitted, a clean initials badge will automatically render.</p>
+                            <x-image-dropzone wire:model="company_logo" label="Event Banner/Poster (Optional)" />
+                            <p class="text-xs text-text-muted mt-2">Upload a high-resolution banner. If omitted, a clean initials badge will automatically render.</p>
                             @error('company_logo') <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span> @enderror
                         </div>
                     </div>
@@ -157,21 +157,21 @@
                         <div class="flex justify-between items-center border-b border-subtle/50 pb-4">
                             <span class="text-sm font-semibold text-text-secondary">Selected Tier:</span>
                             <span class="text-sm font-bold text-brand-accent dark:text-text-primary uppercase tracking-wide">
-                                {{ $pass_type === 'exhibitor' ? 'Corporate Exhibitor Booth' : 'General Attendee Pass' }}
+                                {{ $pass_type === 'exhibitor' ? 'Register Event / Booth' : 'General Attendee Pass' }}
                             </span>
                         </div>
 
                         @if($pass_type === 'exhibitor')
                             <div class="flex justify-between items-start border-b border-subtle/50 pb-4">
-                                <span class="text-sm font-semibold text-text-secondary">Company Name:</span>
+                                <span class="text-sm font-semibold text-text-secondary">Event Name:</span>
                                 <span class="text-sm font-bold text-text-primary text-right">{{ $company_name }}</span>
                             </div>
                             <div class="flex justify-between items-start border-b border-subtle/50 pb-4">
-                                <span class="text-sm font-semibold text-text-secondary">Company Description:</span>
+                                <span class="text-sm font-semibold text-text-secondary">Event Description:</span>
                                 <span class="text-sm text-text-secondary text-right max-w-xs">{{ $company_description }}</span>
                             </div>
                             <div class="flex justify-between items-center border-b border-subtle/50 pb-4">
-                                <span class="text-sm font-semibold text-text-secondary">Logo Asset:</span>
+                                <span class="text-sm font-semibold text-text-secondary">Event Banner/Poster:</span>
                                 @if($company_logo)
                                     <img src="{{ $company_logo }}" class="h-8 w-auto object-contain border border-subtle rounded px-1 bg-surface-light" alt="Logo">
                                 @else

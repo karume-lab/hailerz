@@ -1,8 +1,8 @@
 <div class="bg-surface-muted min-h-screen py-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <x-heading title="Expo" highlight="Exhibitors" class="mb-16" />
+        <x-heading title="Featured" highlight="Events" class="mb-16" />
         <p class="mt--12 mb-16 text-lg text-text-secondary max-w-2xl">
-            Explore and connect with confirmed corporate partners, technology innovators, and creator-industry brands showcasing at the Hailerz Expo.
+            Explore and connect with upcoming conferences, workshops, creator meetups, and entertainment events hosted on the Hailerz platform.
         </p>
 
         <div class="flex flex-col lg:flex-row gap-12">
@@ -20,7 +20,7 @@
                     <div class="space-y-10">
                         <!-- Search -->
                         <x-input wire:model.live.debounce.300ms="search" name="search" label="Keywords"
-                            placeholder="Company name..." />
+                            placeholder="Event name..." />
 
                         <!-- Sort Order -->
                         <x-select wire:model.live="sort" name="sort" label="Order">
@@ -63,7 +63,7 @@
 
                                             <div class="absolute bottom-6 left-6 right-6">
                                                 <p class="text-[10px] font-bold text-text-inverse/70 uppercase tracking-widest mb-1">
-                                                    Corporate Exhibitor
+                                                    Confirmed Event
                                                 </p>
                                                 <h3 class="text-xl font-bold text-text-inverse truncate">{{ $reg->company_name }}</h3>
                                             </div>
@@ -81,7 +81,7 @@
                                                 <p class="text-sm font-bold text-text-primary mt-1">{{ $reg->created_at->format('M d, Y') }}</p>
                                             </div>
                                             <div class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-primary/10 text-brand-primary text-[10px] font-bold uppercase tracking-widest">
-                                                Booth Confirmed
+                                                Event Confirmed
                                             </div>
                                         </div>
                                     </div>
@@ -108,14 +108,14 @@
                             }" x-init="observe()" class="mt-12 py-12 flex justify-center">
                                 <div class="flex items-center gap-3 text-text-muted">
                                     <x-lucide-loader-2 class="animate-spin h-5 w-5" stroke-width="2" />
-                                    <span class="text-sm font-semibold uppercase tracking-widest">Loading More Exhibitors...</span>
+                                    <span class="text-sm font-semibold uppercase tracking-widest">Loading More Events...</span>
                                 </div>
                             </div>
                         @endif
                     @else
                         <x-card padding="py-32" class="text-center border-dashed">
                             <h3 class="text-2xl font-bold text-text-primary mb-4">No Results Found</h3>
-                            <p class="text-text-secondary mb-8">Refine your selection parameters to find specific exhibitors.</p>
+                            <p class="text-text-secondary mb-8">Refine your selection parameters to find specific events.</p>
                             <x-button variant="outline" wire:click="resetFilters">
                                 Clear All Filters
                             </x-button>

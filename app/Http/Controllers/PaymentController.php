@@ -116,7 +116,7 @@ class PaymentController extends Controller
                 }
             }
 
-            return redirect()->route('events.services')->with('success', 'Payment verified successfully! Your Corporate Exhibitor Booth is confirmed.');
+            return redirect()->route('events.services')->with('success', 'Payment verified successfully! Your Event / Booth is confirmed.');
         }
 
         return redirect()->route('home')->with('error', 'Payment processed but destination unrecognized.');
