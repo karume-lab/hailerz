@@ -99,9 +99,9 @@
                 <div class="col-span-6">
                     <h3 class="text-xs text-brand-primary tracking-widest uppercase mb-6">Academy Programs</h3>
                     <ul class="space-y-4">
-                        <li><a href="/learn/training" class="text-sm font-medium text-text-secondary hover:text-brand-primary transition-colors">Training and Tutorials</a></li>
-                        <li><a href="/learn/workshops" class="text-sm font-medium text-text-secondary hover:text-brand-primary transition-colors">Live Workshops</a></li>
-                        <li><a href="/learn/challenges" class="text-sm font-medium text-text-secondary hover:text-brand-primary transition-colors">Hailerz Challenges</a></li>
+                        <li><a href="/academy" class="text-sm font-medium text-text-secondary hover:text-brand-primary transition-colors">Hailerz Academy</a></li>
+                        <li><a href="/resources" class="text-sm font-medium text-text-secondary hover:text-brand-primary transition-colors">Resources</a></li>
+                        <li><a href="/challenges" class="text-sm font-medium text-text-secondary hover:text-brand-primary transition-colors">Hailerz Challenges</a></li>
                     </ul>
                 </div>
             </div>

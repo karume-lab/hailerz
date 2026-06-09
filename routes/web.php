@@ -71,9 +71,9 @@ Route::get('/events/browse', EventsDirectory::class)->name('events.browse');
 Route::get('/events/submissions', EventsRegistrationWizard::class)->name('events.create')->middleware('auth');
 Route::redirect('/events/create', '/events/submissions');
 
-Route::view('/learn/training', 'public.pages.learn.training')->name('learn.training');
+Route::view('/academy', 'public.pages.learn.training')->name('academy');
 Route::view('/learn/workshops', 'public.pages.learn.workshops')->name('learn.workshops');
-Route::view('/learn/challenges', 'public.pages.learn.challenges')->name('learn.challenges');
+Route::view('/challenges', 'public.pages.learn.challenges')->name('challenges');
 
 Route::view('/connect', 'public.pages.connect.home')->name('connect.home');
 Route::view('/connect/meetups', 'public.pages.connect.meetups')->name('connect.meetups');
