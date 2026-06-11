@@ -95,9 +95,9 @@ class SubmissionResource extends Resource
                         ->columnSpanFull(),
                     Forms\Components\TextInput::make('profile_photo_url')
                         ->label('Profile Photo URL')
-                        ->url()
                         ->live(onBlur: true)
                         ->columnSpanFull()
+                        ->hidden(fn ($get) => str_starts_with($get('profile_photo_url') ?? '', 'data:image/'))
                         ->suffixAction(
                             Action::make('openPhoto')
                                 ->icon('heroicon-m-arrow-top-right-on-square')
@@ -108,7 +108,7 @@ class SubmissionResource extends Resource
                     TextEntry::make('profile_photo_preview')
                         ->label('Profile Photo Preview')
                         ->state(fn ($get) => new HtmlString(MediaPreviewHelper::getPreviewHtml($get('profile_photo_url'))))
-                        ->visible(fn ($get) => ! empty($get('profile_photo_url')) && filter_var($get('profile_photo_url'), FILTER_VALIDATE_URL))
+                        ->visible(fn ($get) => ! empty($get('profile_photo_url')) && (filter_var($get('profile_photo_url'), FILTER_VALIDATE_URL) || str_starts_with($get('profile_photo_url'), 'data:image/')))
                         ->columnSpanFull(),
                 ])
                 ->columns(2)
@@ -258,7 +258,7 @@ class SubmissionResource extends Resource
                             TextEntry::make('media_preview')
                                 ->label('Media Preview')
                                 ->state(fn ($get) => new HtmlString(MediaPreviewHelper::getPreviewHtml($get('url'))))
-                                ->visible(fn ($get) => ! empty($get('url')) && filter_var($get('url'), FILTER_VALIDATE_URL))
+                                ->visible(fn ($get) => ! empty($get('url')) && (filter_var($get('url'), FILTER_VALIDATE_URL) || str_starts_with($get('url'), 'data:image/')))
                                 ->columnSpanFull(),
                         ])
                         ->columns(4)
@@ -328,7 +328,7 @@ class SubmissionResource extends Resource
                                 'youtube_channel' => $record->youtube_channel,
                                 'tiktok_handle' => $record->tiktok_handle,
                                 'primary_image_url' => $record->profile_photo_url,
-                                'status' => 'awaiting_agreement',
+                                'status' => 'active',
                                 'slug' => Str::slug($record->artist_name),
                             ]);
 

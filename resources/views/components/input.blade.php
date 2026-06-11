@@ -2,6 +2,7 @@
     'label' => null,
     'name' => null,
     'icon' => null,
+    'prefix' => null,
     'location' => false,
     'locationType' => 'full', // 'full', 'city', 'state'
 ])
@@ -9,7 +10,15 @@
 @php
     $name = $name ?? $attributes->whereStartsWith('wire:model')->first();
     $errorClass = ($name && $errors->has($name)) ? 'border-red-500 ring-red-500/20' : 'border-subtle focus:ring-brand-secondary';
-    $paddingClass = $icon ? 'pl-14 pr-6' : 'px-6';
+    
+    $paddingClass = 'px-6';
+    if ($icon && $prefix) {
+        $paddingClass = 'pl-[180px] pr-6';
+    } elseif ($prefix) {
+        $paddingClass = 'pl-[140px] pr-6';
+    } elseif ($icon) {
+        $paddingClass = 'pl-14 pr-6';
+    }
 @endphp
 
 <div class="w-full"
@@ -133,6 +142,12 @@
         @if($icon)
             <div class="absolute inset-y-0 left-5 flex items-center pointer-events-none text-text-muted group-focus-within/input:text-brand-secondary transition-colors">
                 <x-dynamic-component :component="'lucide-' . $icon" class="h-5 w-5" stroke-width="2" />
+            </div>
+        @endif
+
+        @if($prefix)
+            <div class="absolute inset-y-0 {{ $icon ? 'left-12' : 'left-5' }} flex items-center pointer-events-none text-text-muted font-medium pr-3 border-r border-transparent">
+                {{ $prefix }}
             </div>
         @endif
 

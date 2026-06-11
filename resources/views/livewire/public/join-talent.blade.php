@@ -295,15 +295,6 @@
                                 <div class="md:col-span-2">
                                     <x-image-dropzone wire:model.live="profile_photo_url" label="Profile Photo *" />
                                     <p class="text-xs text-text-muted mt-2">Provide a high-quality promotional photo or logo.</p>
-
-                                    @if(!empty($profile_photo_url) && (filter_var($profile_photo_url, FILTER_VALIDATE_URL) || str_starts_with($profile_photo_url, 'data:image/')))
-                                        <div class="mt-4 p-4 bg-surface-muted/30 border border-subtle rounded-3xl">
-                                            <span
-                                                class="text-[10px] font-bold text-text-muted uppercase tracking-widest block mb-3">Profile
-                                                Photo Preview</span>
-                                            {!! \App\Helpers\MediaPreviewHelper::getPreviewHtml($profile_photo_url) !!}
-                                        </div>
-                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -351,22 +342,21 @@
                             </h3>
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <x-input wire:model.live.debounce.300ms="instagram_handle" label="Instagram Username"
-                                        placeholder="e.g. yourusername" />
+                                        prefix="instagram.com/" placeholder="yourusername" />
                                     <x-input wire:model.live.debounce.300ms="facebook_url" label="Facebook Username/Page Name"
-                                        placeholder="e.g. yourusername" />
+                                        prefix="facebook.com/" placeholder="yourusername" />
                                     <x-input wire:model.live.debounce.300ms="youtube_channel" label="YouTube Channel Name/Handle"
-                                        placeholder="e.g. yourchannel" />
+                                        prefix="youtube.com/@" placeholder="yourchannel" />
                                     <x-input wire:model.live.debounce.300ms="tiktok_handle" label="TikTok Username"
-                                        placeholder="e.g. yourusername" />
-                                    <x-input wire:model.live.debounce.300ms="website_url" type="url" label="Website URL (Optional)"
+                                        prefix="tiktok.com/@" placeholder="yourusername" />
+                                    <x-input wire:model.live.debounce.300ms="website_url" type="url" label="Website URL"
                                         placeholder="https://yourwebsite.com" class="md:col-span-2" />
                                 </div>
 
                                 <div class="space-y-6">
                                     <div class="flex items-center justify-between">
                                         <h4 class="text-lg font-bold text-text-primary">Gallery</h4>
-                                        <x-button type="button" variant="ghost" size="sm" wire:click="addGalleryItem"
-                                            class="text-brand-primary border-brand-primary/20">
+                                        <x-button type="button" variant="outline" size="sm" wire:click="addGalleryItem">
                                             <x-lucide-plus class="w-4 h-4 mr-2" />
                                             Add to Gallery
                                         </x-button>
@@ -391,7 +381,7 @@
                                                         <x-image-dropzone wire:model.live="gallery.{{ $index }}.url" label="Upload Image *" />
                                                     @endif
 
-                                                    @if(!empty($gallery[$index]['url']) && (filter_var($gallery[$index]['url'], FILTER_VALIDATE_URL) || str_starts_with($gallery[$index]['url'], 'data:image/')))
+                                                    @if(($gallery[$index]['media_type'] ?? 'link') === 'link' && !empty($gallery[$index]['url']) && (filter_var($gallery[$index]['url'], FILTER_VALIDATE_URL) || str_starts_with($gallery[$index]['url'], 'data:image/')))
                                                         <div class="p-4 bg-surface-muted/30 border border-subtle rounded-2xl">
                                                             <span
                                                                 class="text-[10px] font-bold text-text-muted uppercase tracking-widest block mb-3">Media
