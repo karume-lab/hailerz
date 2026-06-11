@@ -1,7 +1,7 @@
 <div class="bg-surface-muted min-h-screen">
 
   <!-- Hero / Primary Showcase -->
-  <div class="relative h-[600px] bg-surface-dark overflow-hidden">
+  <div class="relative h-150 bg-surface-dark overflow-hidden">
     <img src="{{ $talent->profile_photo_url }}" alt="{{ $talent->name }}"
       fetchpriority="high" decoding="sync" loading="eager"
       class="w-full h-full object-cover grayscale opacity-60 transition-transform duration-1000 scale-105"
@@ -90,7 +90,7 @@
           </nav>
         </div>
 
-        <div class="relative min-h-[500px]">
+        <div class="relative min-h-125">
           {{-- Artist Biography --}}
           <div x-show="activeTab === 'bio'" x-cloak x-transition:enter="transition ease-out duration-300"
             x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0"
@@ -283,7 +283,10 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
               @if($talent->website_url)
                 <a href="{{ $talent->website_url }}" target="_blank" class="block p-6 bg-surface-muted border border-subtle rounded-md hover:bg-brand-primary/10 transition-all group h-full">
-                    <p class="text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Website</p>
+                    <div class="flex items-center gap-2 mb-3">
+                        <x-lucide-globe class="w-4 h-4 text-text-muted" />
+                        <p class="text-[10px] font-bold text-text-muted uppercase tracking-widest">Website</p>
+                    </div>
                     <p class="text-sm text-text-primary font-medium truncate">{{ $talent->website_url }}</p>
                 </a>
               @endif
@@ -294,7 +297,10 @@
                   $igDisplay = '@' . ltrim(trim(parse_url($igUrl, PHP_URL_PATH) ?? $igUrl, '/'), '@');
                 @endphp
                 <a href="{{ $igUrl }}" target="_blank" class="block p-6 bg-surface-muted border border-subtle rounded-md hover:bg-brand-primary/10 transition-all group h-full">
-                    <p class="text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Instagram</p>
+                    <div class="flex items-center gap-2 mb-3">
+                        <x-lucide-instagram class="w-4 h-4 text-text-muted" />
+                        <p class="text-[10px] font-bold text-text-muted uppercase tracking-widest">Instagram</p>
+                    </div>
                     <p class="text-sm text-text-primary font-medium truncate">{{ $igDisplay }}</p>
                 </a>
               @endif
@@ -305,7 +311,10 @@
                   $fbDisplay = trim(parse_url($fbUrl, PHP_URL_PATH) ?? $fbUrl, '/');
                 @endphp
                 <a href="{{ $fbUrl }}" target="_blank" class="block p-6 bg-surface-muted border border-subtle rounded-md hover:bg-brand-primary/10 transition-all group h-full">
-                    <p class="text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">Facebook</p>
+                    <div class="flex items-center gap-2 mb-3">
+                        <x-lucide-facebook class="w-4 h-4 text-text-muted" />
+                        <p class="text-[10px] font-bold text-text-muted uppercase tracking-widest">Facebook</p>
+                    </div>
                     <p class="text-sm text-text-primary font-medium truncate">{{ $fbDisplay }}</p>
                 </a>
               @endif
@@ -316,7 +325,10 @@
                   $ytDisplay = trim(parse_url($ytUrl, PHP_URL_PATH) ?? $ytUrl, '/');
                 @endphp
                 <a href="{{ $ytUrl }}" target="_blank" class="block p-6 bg-surface-muted border border-subtle rounded-md hover:bg-brand-primary/10 transition-all group h-full">
-                    <p class="text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">YouTube</p>
+                    <div class="flex items-center gap-2 mb-3">
+                        <x-lucide-youtube class="w-4 h-4 text-text-muted" />
+                        <p class="text-[10px] font-bold text-text-muted uppercase tracking-widest">YouTube</p>
+                    </div>
                     <p class="text-sm text-text-primary font-medium truncate">{{ $ytDisplay }}</p>
                 </a>
               @endif
@@ -327,7 +339,10 @@
                   $ttDisplay = '@' . ltrim(trim(parse_url($ttUrl, PHP_URL_PATH) ?? $ttUrl, '/'), '@');
                 @endphp
                 <a href="{{ $ttUrl }}" target="_blank" class="block p-6 bg-surface-muted border border-subtle rounded-md hover:bg-brand-primary/10 transition-all group h-full">
-                    <p class="text-[10px] font-bold text-text-muted uppercase tracking-widest mb-3">TikTok</p>
+                    <div class="flex items-center gap-2 mb-3">
+                        <svg class="w-4 h-4 text-text-muted" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>
+                        <p class="text-[10px] font-bold text-text-muted uppercase tracking-widest">TikTok</p>
+                    </div>
                     <p class="text-sm text-text-primary font-medium truncate">{{ $ttDisplay }}</p>
                 </a>
               @endif
@@ -353,7 +368,7 @@
                  @keydown.escape.window="showShareModal = false">
                  
                  <div @click.away="showShareModal = false"
-                      class="bg-surface-dark text-text-inverse w-full max-w-[520px] rounded-2xl shadow-sm border border-white/10 flex flex-col "
+                      class="bg-surface-dark text-text-inverse w-full max-w-130 rounded-2xl shadow-sm border border-white/10 flex flex-col "
                       x-transition:enter="transition ease-out duration-300"
                       x-transition:enter-start="opacity-0 translate-y-8 sm:translate-y-0 sm:scale-95"
                       x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
@@ -379,40 +394,40 @@
                                   }
                               </style>
                               <!-- Embed -->
-                              <div class="flex flex-col items-center gap-2 min-w-[76px] snap-start">
-                                  <button @click="navigator.clipboard.writeText(`<iframe src='${url}' width='100%' height='600' frameborder='0'></iframe>`); copied = true; setTimeout(() => copied = false, 2000)" class="w-[60px] h-[60px] rounded-full bg-[#3d3d3d] flex items-center justify-center hover:bg-[#4d4d4d] transition-colors group">
+                              <div class="flex flex-col items-center gap-2 min-w-19 snap-start">
+                                  <button @click="navigator.clipboard.writeText(`<iframe src='${url}' width='100%' height='600' frameborder='0'></iframe>`); copied = true; setTimeout(() => copied = false, 2000)" class="w-15 h-15 rounded-full bg-[#3d3d3d] flex items-center justify-center hover:bg-[#4d4d4d] transition-colors group">
                                       <x-lucide-code class="w-7 h-7 text-white group-hover:scale-110 transition-transform" stroke-width="1.5" />
                                   </button>
                                   <span class="text-[13px] text-[#aaaaaa]">Embed</span>
                               </div>
                               
                               <!-- WhatsApp -->
-                              <a :href="'https://api.whatsapp.com/send?text=' + encodeURIComponent('Check out this talent: ' + url)" target="_blank" class="flex flex-col items-center gap-2 min-w-[76px] snap-start group">
-                                  <button class="w-[60px] h-[60px] rounded-full bg-[#25D366] flex items-center justify-center group-hover:opacity-90 transition-opacity">
+                              <a :href="'https://api.whatsapp.com/send?text=' + encodeURIComponent('Check out this talent: ' + url)" target="_blank" class="flex flex-col items-center gap-2 min-w-19 snap-start group">
+                                  <button class="w-15 h-15 rounded-full bg-[#25D366] flex items-center justify-center group-hover:opacity-90 transition-opacity">
                                       <x-lucide-message-circle class="w-8 h-8 text-white group-hover:scale-110 transition-transform" stroke-width="2" />
                                   </button>
                                   <span class="text-[13px] text-[#aaaaaa]">WhatsApp</span>
                               </a>
 
                               <!-- Facebook -->
-                              <a :href="'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(url)" target="_blank" class="flex flex-col items-center gap-2 min-w-[76px] snap-start group">
-                                  <button class="w-[60px] h-[60px] rounded-full bg-[#1877F2] flex items-center justify-center group-hover:opacity-90 transition-opacity">
+                              <a :href="'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(url)" target="_blank" class="flex flex-col items-center gap-2 min-w-19 snap-start group">
+                                  <button class="w-15 h-15 rounded-full bg-[#1877F2] flex items-center justify-center group-hover:opacity-90 transition-opacity">
                                       <x-lucide-facebook class="w-8 h-8 text-white group-hover:scale-110 transition-transform" stroke-width="2" />
                                   </button>
                                   <span class="text-[13px] text-[#aaaaaa]">Facebook</span>
                               </a>
 
                               <!-- X (Twitter) -->
-                              <a :href="'https://twitter.com/intent/tweet?url=' + encodeURIComponent(url)" target="_blank" class="flex flex-col items-center gap-2 min-w-[76px] snap-start group">
-                                  <button class="w-[60px] h-[60px] rounded-full bg-black flex items-center justify-center group-hover:bg-gray-900 transition-colors border border-white/10">
+                              <a :href="'https://twitter.com/intent/tweet?url=' + encodeURIComponent(url)" target="_blank" class="flex flex-col items-center gap-2 min-w-19 snap-start group">
+                                  <button class="w-15 h-15 rounded-full bg-black flex items-center justify-center group-hover:bg-gray-900 transition-colors border border-white/10">
                                       <x-lucide-twitter class="w-6 h-6 text-white group-hover:scale-110 transition-transform" stroke-width="2" />
                                   </button>
                                   <span class="text-[13px] text-[#aaaaaa]">X</span>
                               </a>
 
                               <!-- Email -->
-                              <a :href="'mailto:?subject=' + encodeURIComponent('Check out this portfolio') + '&body=' + encodeURIComponent(url)" class="flex flex-col items-center gap-2 min-w-[76px] snap-start group">
-                                  <button class="w-[60px] h-[60px] rounded-full bg-[#3d3d3d] flex items-center justify-center group-hover:bg-[#4d4d4d] transition-colors">
+                              <a :href="'mailto:?subject=' + encodeURIComponent('Check out this portfolio') + '&body=' + encodeURIComponent(url)" class="flex flex-col items-center gap-2 min-w-19 snap-start group">
+                                  <button class="w-15 h-15 rounded-full bg-[#3d3d3d] flex items-center justify-center group-hover:bg-[#4d4d4d] transition-colors">
                                       <x-lucide-mail class="w-7 h-7 text-white group-hover:scale-110 transition-transform" stroke-width="1.5" />
                                   </button>
                                   <span class="text-[13px] text-[#aaaaaa]">Email</span>
