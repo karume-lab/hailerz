@@ -445,21 +445,21 @@
                                     <option value="other">Other</option>
                                 </x-select>
  
-                                <div
-                                    class="relative flex items-start p-6 bg-brand-primary/5 rounded-xl border border-brand-primary/10">
+                                <label for="is_accurate"
+                                    class="cursor-pointer relative flex items-start p-6 bg-brand-primary/5 hover:bg-brand-primary/10 transition-colors rounded-xl border border-brand-primary/10">
                                     <div class="flex h-6 items-center">
                                         <input wire:model.live="is_accurate" id="is_accurate" name="is_accurate" type="checkbox"
-                                            class="h-4 w-4 rounded border-brand-primary/30 text-brand-primary focus:ring-brand-primary">
+                                            class="cursor-pointer h-4 w-4 rounded border-brand-primary/30 text-brand-primary focus:ring-brand-primary">
                                     </div>
                                     <div class="ml-4 text-sm leading-6">
-                                        <label for="is_accurate" class="font-bold text-text-primary">Information Accuracy
-                                            *</label>
+                                        <span class="block font-bold text-text-primary">Information Accuracy
+                                            *</span>
                                         <p class="text-text-secondary text-xs">I confirm that all professional information
                                             and media provided are accurate and my own work.</p>
                                         @error('is_accurate') <p class="text-red-500 text-[10px] mt-1 font-bold">
                                         {{ $message }}</p> @enderror
                                     </div>
-                                </div>
+                                </label>
 
                                 <p class="text-[10px] text-text-muted leading-relaxed text-center italic">
                                     By submitting, you agree to our <a href="{{ route('legal.privacy') }}" wire:navigate
