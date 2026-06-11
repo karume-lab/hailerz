@@ -112,7 +112,16 @@
                         </div>
                     </div>
 
-                    <div class="flex justify-end border-t border-subtle pt-8">
+                    <div class="flex justify-between items-center border-t border-subtle pt-8">
+                        <x-confirm-dialog 
+                            title="Clear Form" 
+                            message="Are you sure you want to clear this form? All your entered details will be lost." 
+                            confirmText="Clear Form" 
+                            onConfirm="window.location.reload()">
+                            <x-button type="button" variant="secondary">
+                                Clear Form
+                            </x-button>
+                        </x-confirm-dialog>
                         <x-button type="button" wire:click="nextStep" size="md">
                             Continue
                         </x-button>
@@ -137,13 +146,24 @@
                         </div>
                     </div>
 
-                    <div class="flex justify-between border-t border-subtle pt-8">
-                        <x-button type="button" wire:click="previousStep" variant="secondary" size="md">
-                            Back
-                        </x-button>
-                        <x-button type="button" wire:click="nextStep" size="md">
-                            Continue
-                        </x-button>
+                    <div class="flex justify-between items-center border-t border-subtle pt-8">
+                        <x-confirm-dialog 
+                            title="Clear Form" 
+                            message="Are you sure you want to clear this form? All your entered details will be lost." 
+                            confirmText="Clear Form" 
+                            onConfirm="window.location.reload()">
+                            <x-button type="button" variant="secondary">
+                                Clear Form
+                            </x-button>
+                        </x-confirm-dialog>
+                        <div class="flex gap-4">
+                            <x-button type="button" wire:click="previousStep" variant="secondary" size="md">
+                                Back
+                            </x-button>
+                            <x-button type="button" wire:click="nextStep" size="md">
+                                Continue
+                            </x-button>
+                        </div>
                     </div>
                 </div>
 
@@ -194,14 +214,25 @@
                         </div>
                     @enderror
 
-                    <div class="flex justify-between border-t border-subtle pt-8">
-                        <x-button type="button" wire:click="previousStep" variant="secondary" size="md">
-                            Back
-                        </x-button>
-                        
-                        <x-button type="button" wire:click="checkout" size="md" class="shadow-lg shadow-brand-accent/15">
-                            {{ $pass_type === 'exhibitor' ? 'Pay Now via Paystack' : 'Confirm Registration' }}
-                        </x-button>
+                    <div class="flex justify-between items-center border-t border-subtle pt-8">
+                        <x-confirm-dialog 
+                            title="Clear Form" 
+                            message="Are you sure you want to clear this form? All your entered details will be lost." 
+                            confirmText="Clear Form" 
+                            onConfirm="window.location.reload()">
+                            <x-button type="button" variant="secondary">
+                                Clear Form
+                            </x-button>
+                        </x-confirm-dialog>
+                        <div class="flex gap-4">
+                            <x-button type="button" wire:click="previousStep" variant="secondary" size="md">
+                                Back
+                            </x-button>
+                            
+                            <x-button type="button" wire:click="checkout" size="md" class="shadow-lg shadow-brand-accent/15">
+                                {{ $pass_type === 'exhibitor' ? 'Pay Now via Paystack' : 'Confirm Registration' }}
+                            </x-button>
+                        </div>
                     </div>
                 </div>
             @endif

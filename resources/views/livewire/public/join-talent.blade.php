@@ -470,23 +470,34 @@
                         </div>
 
                         <!-- Navigation -->
-                        <div class="flex items-center justify-end gap-4 mt-16 pt-10 border-t border-subtle">
-                            @if($currentStep > 1)
-                                <x-button type="button" variant="outline" wire:click="previousStep">
-                                    Back
+                        <div class="flex items-center justify-between mt-16 pt-10 border-t border-subtle">
+                            <x-confirm-dialog 
+                                title="Clear Form" 
+                                message="Are you sure you want to clear this form? All your entered details will be lost." 
+                                confirmText="Clear Form" 
+                                onConfirm="localStorage.removeItem(storageKey); window.location.reload()">
+                                <x-button type="button" variant="secondary">
+                                    Clear Form
                                 </x-button>
-                            @endif
+                            </x-confirm-dialog>
+                            <div class="flex items-center gap-4">
+                                @if($currentStep > 1)
+                                    <x-button type="button" variant="outline" wire:click="previousStep">
+                                        Back
+                                    </x-button>
+                                @endif
 
-                            @if($currentStep < 4)
-                                <x-button type="button" variant="primary" wire:click="nextStep">
-                                    Next Step
-                                </x-button>
-                            @else
-                                <x-button variant="accent" size="lg" type="submit" class="px-10 h-14"
-                                    wire:loading.attr="disabled">
-                                    Submit Application
-                                </x-button>
-                            @endif
+                                @if($currentStep < 4)
+                                    <x-button type="button" variant="primary" wire:click="nextStep">
+                                        Next Step
+                                    </x-button>
+                                @else
+                                    <x-button variant="accent" size="lg" type="submit" class="px-10 h-14"
+                                        wire:loading.attr="disabled">
+                                        Submit Application
+                                    </x-button>
+                                @endif
+                            </div>
                         </div>
                     </form>
                 </x-card>
