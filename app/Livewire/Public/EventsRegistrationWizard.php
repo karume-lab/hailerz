@@ -97,8 +97,10 @@ class EventsRegistrationWizard extends Component
                 'company_logo' => 'nullable|string',
             ]);
 
+            // Standardize pricing configurations to native Nigerian Naira (NGN)
             $reference = 'HLZ-EVT-'.strtoupper(Str::random(12)).'-'.time();
-            $amount = 30000.00;
+            $rawAmount = 350000.00; // Standard NGN premium exhibitor tier pricing
+            $amount = max($rawAmount, 100);
 
             $registration = EventRegistration::create([
                 'user_id' => auth()->id(),
@@ -111,11 +113,12 @@ class EventsRegistrationWizard extends Component
                 'payment_reference' => $reference,
             ]);
 
-            // Initialize Paystack payment
+            // Initialize Paystack with native NGN parameters matching our active merchant channel
             $response = Http::withToken(config('paystack.secretKey'))
                 ->post(config('paystack.paymentUrl').'/transaction/initialize', [
                     'email' => auth()->user()->email,
-                    'amount' => (int) ($amount * 100), // Amount in cents/kobo
+                    'amount' => (int) ($amount * 100), // Converted to kobo
+                    'currency' => 'NGN', // Explicitly route to native NGN channels
                     'reference' => $reference,
                     'callback_url' => route('pay.callback'),
                     'metadata' => [

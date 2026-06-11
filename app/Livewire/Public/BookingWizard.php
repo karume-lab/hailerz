@@ -334,21 +334,33 @@ class BookingWizard extends Component
         ]);
 
         $reference = 'HLZ-'.strtoupper(Str::random(12)).'-'.time();
-        $amount = $this->selectedTalent ? $this->selectedTalent->starting_price : 1000;
+        $rawUsdAmount = $this->selectedTalent ? $this->selectedTalent->starting_price : 100;
+        $usdAmount = (float) str_replace(',', '', (string) $rawUsdAmount);
+
+        // Convert the USD base amount to the user's localized currency for the database record
+        $localizedAmount = CurrencyHelper::convert($usdAmount, $inquiry->currency);
 
         $inquiry->update([
             'payment_reference' => $reference,
-            'amount' => $amount,
+            'amount' => $localizedAmount,
         ]);
 
+        // Convert the USD base amount to NGN for the actual Paystack charge
+        $ngnAmount = CurrencyHelper::convert($usdAmount, 'NGN');
+        // Enforce absolute minimum of 100 NGN to prevent Paystack initialization failures
+        $ngnAmount = max($ngnAmount, 100);
+
+        $payload = [
+            'email' => $this->email,
+            'amount' => (int) ($ngnAmount * 100),
+            'currency' => 'NGN', // Explicitly route to native NGN channels
+            'reference' => $reference,
+            'callback_url' => route('pay.callback'),
+            'metadata' => ['booking_id' => $inquiry->id],
+        ];
+
         $response = Http::withToken(config('paystack.secretKey'))
-            ->post(config('paystack.paymentUrl').'/transaction/initialize', [
-                'email' => $this->email,
-                'amount' => (int) ($amount * 100),
-                'reference' => $reference,
-                'callback_url' => route('pay.callback'),
-                'metadata' => ['booking_id' => $inquiry->id],
-            ]);
+            ->post(config('paystack.paymentUrl').'/transaction/initialize', $payload);
 
         if (! $response->successful() || ! $response->json('status')) {
             $this->addError('payment', 'Payment initialization failed: '.($response->json('message') ?? 'Unknown error.'));

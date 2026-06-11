@@ -60,7 +60,7 @@
                     </div>
                 </td>
                 <td style="text-align: right; padding: 12px 10px; font-size: 14px; font-weight: bold; vertical-align: middle;">
-                    {{ number_format($registration->total_amount, 2) }} KES
+                    {{ number_format($registration->total_amount, 2) }} NGN
                 </td>
             </tr>
         </tbody>
@@ -73,26 +73,26 @@
             <td style="padding: 6px 0; font-size: 13px; color: #666;">Subtotal:</td>
             <td style="text-align: right; padding: 6px 0; font-size: 13px; font-weight: bold;">
                 @if($registration->pass_type === 'exhibitor')
-                    25,862.07 KES
+                    325,581.40 NGN
                 @else
-                    0.00 KES
+                    0.00 NGN
                 @endif
             </td>
         </tr>
         <tr>
-            <td style="padding: 6px 0; font-size: 13px; color: #666;">VAT (16%):</td>
+            <td style="padding: 6px 0; font-size: 13px; color: #666;">VAT (7.5%):</td>
             <td style="text-align: right; padding: 6px 0; font-size: 13px; font-weight: bold;">
                 @if($registration->pass_type === 'exhibitor')
-                    4,137.93 KES
+                    24,418.60 NGN
                 @else
-                    0.00 KES
+                    0.00 NGN
                 @endif
             </td>
         </tr>
         <tr style="border-top: 1px solid #ddd;">
             <td style="padding: 10px 0; font-size: 15px; font-weight: bold; color: #223757;">Total Paid:</td>
             <td style="text-align: right; padding: 10px 0; font-size: 16px; font-weight: bold; color: #223757;">
-                {{ number_format($registration->total_amount, 2) }} KES
+                {{ number_format($registration->total_amount, 2) }} NGN
             </td>
         </tr>
     </table>

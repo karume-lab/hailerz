@@ -21,7 +21,7 @@ Thank you for registering for the Hailerz Event & Conference Expo. We are thrill
 @endif
 
 ### Transaction Information
-- **Total Amount:** {{ number_format($registration->total_amount, 2) }} KES
+- **Total Amount:** {{ number_format($registration->total_amount, 2) }} NGN
 - **Payment Status:** {{ ucfirst($registration->payment_status) }}
 @if($registration->payment_reference)
 - **Payment Reference:** {{ $registration->payment_reference }}

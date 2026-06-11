@@ -83,7 +83,7 @@
                                 </p>
                             </div>
                             <div class="text-xl font-extrabold text-brand-primary mt-auto">
-                                0.00 KES <span class="text-xs text-text-muted font-normal">(Free Entry)</span>
+                                0.00 NGN <span class="text-xs text-text-muted font-normal">(Free Entry)</span>
                             </div>
                         </div>
 
@@ -107,7 +107,7 @@
                                 </p>
                             </div>
                             <div class="text-xl font-extrabold text-brand-primary mt-auto">
-                                30,000.00 KES
+                                350,000.00 NGN
                             </div>
                         </div>
                     </div>
@@ -183,7 +183,7 @@
                         <div class="flex justify-between items-center pt-2">
                             <span class="text-sm font-bold text-text-primary">Fulfillment Cost:</span>
                             <span class="text-lg font-extrabold text-brand-primary">
-                                {{ $pass_type === 'exhibitor' ? '30,000.00 KES' : '0.00 KES' }}
+                                {{ $pass_type === 'exhibitor' ? '350,000.00 NGN' : '0.00 NGN' }}
                             </span>
                         </div>
                     </div>

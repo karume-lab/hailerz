@@ -32,15 +32,21 @@ class PaymentController extends Controller
                 'amount' => $request->amount,
             ]);
 
-            // Amount must be in kobo/cents (multiply by 100)
+            $safeAmount = max((float) str_replace(',', '', $request->amount), 100);
+
+            $request->merge([
+                'amount' => (int) ($safeAmount * 100), // Converted to kobo with minimum 100 NGN
+                'reference' => $reference,
+                'email' => auth()->user()->email ?? $inquiry->email,
+                'currency' => 'NGN', // Force NGN to guarantee channel validation passes cleanly
+                'callback_url' => route('pay.callback'),
+                'metadata' => json_encode(['booking_id' => $inquiry->id]),
+            ]);
+
             $response = Http::withToken(config('paystack.secretKey'))
-                ->post(config('paystack.paymentUrl').'/transaction/initialize', [
-                    'email' => auth()->user()->email ?? $inquiry->email,
-                    'amount' => (int) ($request->amount * 100),
-                    'reference' => $reference,
-                    'callback_url' => route('pay.callback'),
-                    'metadata' => ['booking_id' => $inquiry->id],
-                ]);
+                ->post(config('paystack.paymentUrl').'/transaction/initialize', $request->only([
+                    'amount', 'reference', 'email', 'currency', 'callback_url', 'metadata',
+                ]));
 
             if (! $response->successful() || ! $response->json('status')) {
                 throw new \Exception($response->json('message') ?? 'Paystack initialization failed.');

@@ -3,26 +3,50 @@
 namespace App\Helpers;
 
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
+use NumberFormatter;
 
 class CurrencyHelper
 {
-    protected static $currencies = [
-        'USD' => ['symbol' => '$', 'rate' => 1.0],
-        'GBP' => ['symbol' => '£', 'rate' => 0.80],
-        'EUR' => ['symbol' => '€', 'rate' => 0.92],
-        'NGN' => ['symbol' => '₦', 'rate' => 1500.0],
-    ];
+    /**
+     * Get live exchange rates cached daily.
+     */
+    public static function getRates(): array
+    {
+        return Cache::remember('exchange_rates_usd_live', 86400, function () {
+            try {
+                $response = Http::timeout(3)->get('https://open.er-api.com/v6/latest/USD');
+                if ($response->successful() && $response->json('rates')) {
+                    return $response->json('rates');
+                }
+            } catch (\Exception $e) {
+                Log::warning('Exchange rate API fetch failed: '.$e->getMessage());
+            }
+
+            // Fallback safe rates if API fails
+            return [
+                'USD' => 1.0,
+                'GBP' => 0.80,
+                'EUR' => 0.92,
+                'NGN' => 1500.0,
+                'KES' => 130.0,
+                'ZAR' => 19.0,
+            ];
+        });
+    }
 
     /**
      * Get the detected currency code for the current user's request context.
      */
     public static function getUserCurrency(): string
     {
+        $rates = self::getRates();
+
         // 1. Check if stored in session
         if (session()->has('user_currency')) {
             $sess = session()->get('user_currency');
-            if (array_key_exists($sess, self::$currencies)) {
+            if (array_key_exists($sess, $rates)) {
                 return $sess;
             }
         }
@@ -31,65 +55,38 @@ class CurrencyHelper
         $countryCode = request()->header('CF-IPCountry');
         if ($countryCode) {
             $currency = self::getCurrencyByCountry($countryCode);
-            session()->put('user_currency', $currency);
+            if ($currency && array_key_exists($currency, $rates)) {
+                session()->put('user_currency', $currency);
 
-            return $currency;
-        }
-
-        // 3. Detect via HTTP_ACCEPT_LANGUAGE
-        $acceptLanguage = request()->server('HTTP_ACCEPT_LANGUAGE');
-        if ($acceptLanguage) {
-            if (str_contains($acceptLanguage, 'NG') || str_contains($acceptLanguage, 'ng') || str_contains($acceptLanguage, 'Naira')) {
-                session()->put('user_currency', 'NGN');
-
-                return 'NGN';
-            }
-            if (str_contains($acceptLanguage, 'GB') || str_contains($acceptLanguage, 'gb') || str_contains($acceptLanguage, 'en-GB')) {
-                session()->put('user_currency', 'GBP');
-
-                return 'GBP';
-            }
-            // Euro countries
-            if (preg_match('/(DE|FR|ES|IT|NL|BE|PT|IE|AT|FI|GR|LU|SK|SI|EE|LV|LT|CY|MT|de|fr|es|it|nl|be|pt|ie|at|fi|gr|lu|sk|si|ee|lv|lt|cy|mt)/', $acceptLanguage)) {
-                session()->put('user_currency', 'EUR');
-
-                return 'EUR';
+                return $currency;
             }
         }
 
-        // 4. Try IP lookup using a fast GeoIP API (cached for 24 hours)
+        // 3. Try IP lookup using a fast GeoIP API (cached for 24 hours)
         $ip = request()->ip();
-        if ($ip && $ip !== '127.0.0.1' && $ip !== '::1' && ! str_starts_with($ip, '192.168.') && ! str_starts_with($ip, '10.')) {
-            $cacheKey = 'ip_currency_'.str_replace([':', '.'], '_', $ip);
-            $detected = Cache::remember($cacheKey, 86400, function () use ($ip) {
-                try {
-                    $ch = curl_init();
-                    curl_setopt($ch, CURLOPT_URL, "https://ipapi.co/{$ip}/currency/");
-                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                    curl_setopt_array($ch, [
-                        CURLOPT_TIMEOUT => 2, // fast timeout
-                        CURLOPT_CONNECTTIMEOUT => 1,
-                    ]);
-                    $response = curl_exec($ch);
-                    curl_close($ch);
-                    if ($response && strlen(trim($response)) === 3) {
-                        $curr = strtoupper(trim($response));
-                        if (array_key_exists($curr, self::$currencies)) {
-                            return $curr;
-                        }
-                    }
-                } catch (\Exception $e) {
-                    Log::warning("IP Geolocation failed for IP {$ip}: ".$e->getMessage());
+
+        // If testing locally, use the server's external IP for geolocation instead of passing 127.0.0.1
+        $isLocal = ($ip === '127.0.0.1' || $ip === '::1' || str_starts_with($ip, '192.168.') || str_starts_with($ip, '10.'));
+        $cacheKey = $isLocal ? 'ip_currency_local' : 'ip_currency_'.str_replace([':', '.'], '_', $ip);
+        $endpoint = $isLocal ? 'https://ipapi.co/currency/' : "https://ipapi.co/{$ip}/currency/";
+
+        $detected = Cache::remember($cacheKey, 86400, function () use ($endpoint) {
+            try {
+                $response = Http::timeout(2)->get($endpoint);
+                if ($response->successful() && strlen(trim($response->body())) === 3) {
+                    return strtoupper(trim($response->body()));
                 }
-
-                return null;
-            });
-
-            if ($detected) {
-                session()->put('user_currency', $detected);
-
-                return $detected;
+            } catch (\Exception $e) {
+                Log::warning("IP Geolocation failed for endpoint {$endpoint}: ".$e->getMessage());
             }
+
+            return null;
+        });
+
+        if ($detected && array_key_exists($detected, $rates)) {
+            session()->put('user_currency', $detected);
+
+            return $detected;
         }
 
         // Default to USD
@@ -97,34 +94,16 @@ class CurrencyHelper
     }
 
     /**
-     * Get the currency symbol for the current user's detected currency.
-     */
-    public static function getCurrencySymbol(): string
-    {
-        $currency = self::getUserCurrency();
-
-        return self::$currencies[$currency]['symbol'] ?? '$';
-    }
-
-    /**
-     * Get the symbol for a specific currency code (e.g. 'NGN' -> '₦').
-     */
-    public static function getCurrencySymbolForCode(string $code): string
-    {
-        return self::$currencies[strtoupper($code)]['symbol'] ?? '$';
-    }
-
-    /**
      * Helper to map country code to currency.
      */
-    private static function getCurrencyByCountry(string $countryCode): string
+    private static function getCurrencyByCountry(string $countryCode): ?string
     {
         $countryCode = strtoupper($countryCode);
-        if ($countryCode === 'NG') {
-            return 'NGN';
-        }
-        if ($countryCode === 'GB') {
-            return 'GBP';
+        $map = [
+            'NG' => 'NGN', 'GB' => 'GBP', 'KE' => 'KES', 'ZA' => 'ZAR', 'UG' => 'UGX', 'TZ' => 'TZS',
+        ];
+        if (isset($map[$countryCode])) {
+            return $map[$countryCode];
         }
 
         $euroCountries = ['AT', 'BE', 'CY', 'EE', 'FI', 'FR', 'DE', 'GR', 'IE', 'IT', 'LV', 'LT', 'LU', 'MT', 'NL', 'PT', 'SK', 'SI', 'ES'];
@@ -132,7 +111,7 @@ class CurrencyHelper
             return 'EUR';
         }
 
-        return 'USD';
+        return null; // let IP lookup handle the rest
     }
 
     /**
@@ -141,7 +120,8 @@ class CurrencyHelper
     public static function convert(float $amount, ?string $toCurrency = null): float
     {
         $toCurrency = $toCurrency ?: self::getUserCurrency();
-        $rate = self::$currencies[strtoupper($toCurrency)]['rate'] ?? 1.0;
+        $rates = self::getRates();
+        $rate = $rates[strtoupper($toCurrency)] ?? 1.0;
 
         return $amount * $rate;
     }
@@ -152,10 +132,22 @@ class CurrencyHelper
     public static function format(float $amount, ?string $toCurrency = null): string
     {
         $toCurrency = $toCurrency ?: self::getUserCurrency();
-        $symbol = self::$currencies[strtoupper($toCurrency)]['symbol'] ?? '$';
         $converted = self::convert($amount, $toCurrency);
 
-        return $symbol.number_format($converted, 0);
+        $fmt = new NumberFormatter('en_US', NumberFormatter::CURRENCY);
+        $fmt->setAttribute(NumberFormatter::FRACTION_DIGITS, 0);
+
+        $formatted = $fmt->formatCurrency($converted, $toCurrency);
+
+        // Minor patch to convert 'KES' to 'Ksh' if desired for local aesthetic
+        if ($toCurrency === 'KES') {
+            $formatted = str_replace('KES', 'Ksh', $formatted);
+        }
+        if ($toCurrency === 'NGN') {
+            $formatted = str_replace('NGN', '₦', $formatted);
+        }
+
+        return $formatted;
     }
 
     /**
@@ -163,65 +155,68 @@ class CurrencyHelper
      */
     public static function formatRange(float $min, float $max, string $currencyCode): string
     {
-        $symbol = self::getCurrencySymbolForCode($currencyCode);
-
-        return $symbol.number_format($min, 0).' - '.$symbol.number_format($max, 0);
+        return self::format($min, $currencyCode).' - '.self::format($max, $currencyCode);
     }
 
     /**
-     * Localized budget range options tailored to each currency scale.
+     * Clean rounding function for dynamic budget ranges.
+     * e.g. rounds 129450 to 130000.
+     */
+    private static function cleanRound(float $amount): float
+    {
+        if ($amount <= 0) {
+            return 0;
+        }
+
+        $magnitude = floor(log10($amount));
+        $factor = pow(10, max(0, $magnitude - 1));
+
+        if ($factor < 10) {
+            return ceil($amount / 10) * 10;
+        }
+
+        return ceil($amount / $factor) * $factor;
+    }
+
+    /**
+     * Localized budget range options tailored dynamically to each currency scale.
      */
     public static function getBudgetOptions(?string $currency = null): array
     {
         $currency = $currency ?: self::getUserCurrency();
-        if ($currency === 'NGN') {
-            return [
-                'Under ₦1,500,000',
-                '₦1,500,000 - ₦3,750,000',
-                '₦3,750,000 - ₦7,500,000',
-                '₦7,500,000 - ₦11,250,000',
-                '₦11,250,000 - ₦15,000,000',
-                '₦15,000,000 - ₦22,500,000',
-                '₦22,500,000 - ₦30,000,000',
-                '₦30,000,000+',
-            ];
-        }
-        if ($currency === 'GBP') {
-            return [
-                'Under £800',
-                '£800 - £2,000',
-                '£2,000 - £4,000',
-                '£4,000 - £6,000',
-                '£6,000 - £8,000',
-                '£8,000 - £12,000',
-                '£12,000 - £16,000',
-                '£16,000+',
-            ];
-        }
-        if ($currency === 'EUR') {
-            return [
-                'Under €900',
-                '€900 - €2,300',
-                '€2,300 - €4,600',
-                '€4,600 - €6,900',
-                '€6,900 - €9,200',
-                '€9,200 - €13,800',
-                '€13,800 - €18,400',
-                '€18,400+',
-            ];
+
+        // Base USD ranges
+        $baseRanges = [
+            [0, 1000],
+            [1000, 2500],
+            [2500, 5000],
+            [5000, 7500],
+            [7500, 10000],
+            [10000, 15000],
+            [15000, 20000],
+            [20000, null],
+        ];
+
+        $options = [];
+        foreach ($baseRanges as $range) {
+            $minBase = $range[0];
+            $maxBase = $range[1];
+
+            $minConverted = self::cleanRound(self::convert($minBase, $currency));
+
+            if ($maxBase === null) {
+                $options[] = self::format($minConverted, $currency).'+';
+            } else {
+                $maxConverted = self::cleanRound(self::convert($maxBase, $currency));
+                if ($minBase == 0) {
+                    $options[] = 'Under '.self::format($maxConverted, $currency);
+                } else {
+                    $options[] = self::format($minConverted, $currency).' - '.self::format($maxConverted, $currency);
+                }
+            }
         }
 
-        // USD (Default)
-        return [
-            'Under $1,000',
-            '$1,000 - $2,500',
-            '$2,500 - $5,000',
-            '$5,000 - $7,500',
-            '$7,500 - $10,000',
-            '$10,000 - $15,000',
-            '$15,000 - $20,000',
-            '$20,000+',
-        ];
+        return $options;
     }
 
     /**
@@ -229,9 +224,44 @@ class CurrencyHelper
      */
     public static function convertToUsd(float $amount, string $fromCurrency): float
     {
-        $rate = self::$currencies[strtoupper($fromCurrency)]['rate'] ?? 1.0;
+        $rates = self::getRates();
+        $rate = $rates[strtoupper($fromCurrency)] ?? 1.0;
 
         return $rate > 0 ? ($amount / $rate) : $amount;
+    }
+
+    /**
+     * Get the currency symbol for the current user's detected currency.
+     */
+    public static function getCurrencySymbol(): string
+    {
+        return self::getCurrencySymbolForCode(self::getUserCurrency());
+    }
+
+    /**
+     * Get the symbol for a specific currency code.
+     */
+    public static function getCurrencySymbolForCode(string $code): string
+    {
+        $code = strtoupper($code);
+        $symbols = [
+            'USD' => '$',
+            'GBP' => '£',
+            'EUR' => '€',
+            'NGN' => '₦',
+            'KES' => 'Ksh',
+            'ZAR' => 'R',
+        ];
+
+        if (isset($symbols[$code])) {
+            return $symbols[$code];
+        }
+
+        $fmt = new NumberFormatter('en_US', NumberFormatter::CURRENCY);
+        $formatted = $fmt->formatCurrency(0, $code);
+        $symbol = preg_replace('/[0-9.,\s\xc2\xa0]/', '', $formatted);
+
+        return $symbol ?: $code;
     }
 
     /**
