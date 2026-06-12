@@ -83,7 +83,7 @@
                                 </p>
                             </div>
                             <div class="text-xl font-extrabold text-brand-primary mt-auto">
-                                0.00 NGN <span class="text-xs text-text-muted font-normal">(Free Entry)</span>
+                                {{ number_format($event?->attendee_price ?? 0, 2) }} NGN <span class="text-xs text-text-muted font-normal">(Free Entry)</span>
                             </div>
                         </div>
 
@@ -107,10 +107,23 @@
                                 </p>
                             </div>
                             <div class="text-xl font-extrabold text-brand-primary mt-auto">
-                                350,000.00 NGN
+                                {{ number_format($event?->exhibitor_price ?? 350000, 2) }} NGN
                             </div>
                         </div>
                     </div>
+
+                    @guest
+                        <div class="mb-10 p-6 bg-surface-muted rounded-2xl border border-subtle space-y-6">
+                            <h3 class="text-lg font-bold text-text-primary mb-2">Your Details</h3>
+                            <p class="text-text-secondary text-sm mb-4">You are checking out as a guest. Please provide your details to receive your ticket. Already have an account? <a href="/login" class="text-brand-primary font-bold hover:underline">Log in here</a>.</p>
+                            
+                            <x-input wire:model="guest_name" name="guest_name" label="Full Name *" placeholder="Enter your full name" />
+                            <x-input wire:model="guest_email" name="guest_email" label="Email Address *" type="email" placeholder="Enter your email address" />
+                            
+                            @error('guest_name') <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span> @enderror
+                            @error('guest_email') <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span> @enderror
+                        </div>
+                    @endguest
 
                     <div class="flex justify-between items-center border-t border-subtle pt-8">
                         <x-confirm-dialog 
@@ -203,7 +216,7 @@
                         <div class="flex justify-between items-center pt-2">
                             <span class="text-sm font-bold text-text-primary">Fulfillment Cost:</span>
                             <span class="text-lg font-extrabold text-brand-primary">
-                                {{ $pass_type === 'exhibitor' ? '350,000.00 NGN' : '0.00 NGN' }}
+                                {{ $pass_type === 'exhibitor' ? number_format($event?->exhibitor_price ?? 350000, 2) . ' NGN' : number_format($event?->attendee_price ?? 0, 2) . ' NGN' }}
                             </span>
                         </div>
                     </div>

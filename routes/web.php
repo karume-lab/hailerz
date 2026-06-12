@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ContractController;
 use App\Http\Controllers\OgImageController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PreviewController;
 use App\Livewire\BookingConfirmation;
 use App\Livewire\Public\About;
@@ -21,6 +22,8 @@ use App\Livewire\Public\Services;
 use App\Livewire\Public\ShowResource;
 use App\Livewire\Public\ShowTalent;
 use App\Livewire\Public\TalentDirectory;
+use App\Models\Event;
+use App\Models\EventRegistration;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
@@ -65,11 +68,23 @@ Route::redirect('/marketplace/talent', '/marketplace/browse');
 Route::redirect('/marketplace/talent/{slug}', '/marketplace/browse/{slug}');
 
 // Event Routes
-Route::view('/events', 'public.pages.events.home')->name('events');
+Route::get('/events', function () {
+    $event = Event::latest('date')->first();
+    $exhibitors = collect();
+    if ($event) {
+        $exhibitors = EventRegistration::where('event_id', $event->id)
+            ->where('pass_type', 'exhibitor')
+            ->where('payment_status', 'confirmed')
+            ->whereNotNull('company_logo')
+            ->get();
+    }
+
+    return view('public.pages.events.home', ['event' => $event, 'exhibitors' => $exhibitors]);
+})->name('events');
 Route::get('/events/services', EventsHub::class)->name('events.services');
 Route::get('/events/browse', EventsDirectory::class)->name('events.browse');
-Route::get('/events/submissions', EventsRegistrationWizard::class)->name('events.create')->middleware('auth');
-Route::redirect('/events/create', '/events/submissions');
+Route::get('/events/tickets', EventsRegistrationWizard::class)->name('events.create');
+Route::redirect('/events/create', '/events/tickets');
 
 Route::view('/academy', 'public.pages.learn.training')->name('academy');
 Route::view('/learn/workshops', 'public.pages.learn.workshops')->name('learn.workshops');
@@ -123,8 +138,6 @@ Route::prefix('previews')->group(function () {
     Route::get('/pdfs/view/{type}', [PreviewController::class, 'viewPdf'])->name('previews.pdfs.view');
     Route::get('/emails/view/{template}', [PreviewController::class, 'viewEmail'])->name('previews.emails.view');
 });
-
-use App\Http\Controllers\PaymentController;
 
 Route::get('/payment/callback', [PaymentController::class, 'handleGatewayCallback'])->name('pay.callback');
 

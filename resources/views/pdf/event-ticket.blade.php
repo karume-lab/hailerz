@@ -6,17 +6,17 @@
         Official Event Access Ticket
     </div>
     <div style="font-size: 14px; color: #666; margin-bottom: 25px;">
-        Hailerz Event & Conference Expo
+        {{ $registration->event->title ?? 'Hailerz Event & Conference Expo' }}
     </div>
 
     <table style="width: 100%; text-align: left; margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 20px;">
         <tr>
             <td class="label" style="font-weight: bold; width: 30%; color: #555; padding: 8px 0;">Attendee Name:</td>
-            <td style="padding: 8px 0; font-size: 15px; font-weight: bold;">{{ $registration->user->name }}</td>
+            <td style="padding: 8px 0; font-size: 15px; font-weight: bold;">{{ $registration->user->name ?? $registration->guest_name }}</td>
         </tr>
         <tr>
             <td class="label" style="font-weight: bold; color: #555; padding: 8px 0;">Email Address:</td>
-            <td style="padding: 8px 0;">{{ $registration->user->email }}</td>
+            <td style="padding: 8px 0;">{{ $registration->user->email ?? $registration->guest_email }}</td>
         </tr>
         <tr>
             <td class="label" style="font-weight: bold; color: #555; padding: 8px 0;">Pass Tier:</td>

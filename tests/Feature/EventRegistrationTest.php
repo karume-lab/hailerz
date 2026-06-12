@@ -15,10 +15,10 @@ class EventRegistrationTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_guest_is_redirected_to_login_on_wizard_mount(): void
+    public function test_guest_can_access_wizard(): void
     {
-        $this->get('/events/submissions')
-            ->assertRedirect(route('login'));
+        $this->get('/events/tickets')
+            ->assertStatus(200);
     }
 
     public function test_authenticated_user_can_access_registration_wizard(): void
@@ -26,7 +26,7 @@ class EventRegistrationTest extends TestCase
         $user = User::factory()->create();
 
         $this->actingAs($user)
-            ->get('/events/submissions')
+            ->get('/events/tickets')
             ->assertStatus(200);
     }
 

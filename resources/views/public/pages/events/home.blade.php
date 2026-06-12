@@ -6,21 +6,30 @@
         <section class="relative py-24 sm:py-32 overflow-hidden bg-linear-to-b from-brand-primary/5 to-transparent">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div class="text-center max-w-3xl mx-auto flex flex-col items-center">
-                    <x-heading level="h1" title="Where Learning Meets" highlight="Enterprise Innovation" align="center"
+                    <x-heading level="h1" title="{{ $event ? explode(' ', $event->title)[0] : 'Where Learning Meets' }}" highlight="{{ $event ? substr($event->title, strpos($event->title, ' ')) : 'Enterprise Innovation' }}" align="center"
                         class="text-brand-accent dark:text-text-primary mb-6 reveal reveal-delay-100" />
 
-                    <p class="text-lg sm:text-xl text-text-secondary mb-10 leading-relaxed reveal reveal-delay-200">
-                        Join over 1,500 industry leaders, creators, and technology experts at the Hailerz Event & Conference
-                        Expo. Discover cutting-edge strategies, view state-of-the-art corporate exhibitions, and expand your
-                        ecosystem.
-                    </p>
+                    <div class="text-lg sm:text-xl text-text-secondary mb-10 leading-relaxed reveal reveal-delay-200">
+                        @if($event)
+                            {!! $event->description !!}
+                            <div class="mt-4 font-semibold text-brand-primary flex items-center justify-center gap-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
+                                </svg>
+                                {{ $event->location }} &nbsp;|&nbsp; {{ $event->date->format('F jS, Y') }}
+                            </div>
+                        @else
+                            Join over 1,500 industry leaders, creators, and technology experts at the Hailerz Event & Conference Expo. Discover cutting-edge strategies, view state-of-the-art corporate exhibitions, and expand your ecosystem.
+                        @endif
+                    </div>
 
                     <div class="flex flex-col sm:flex-row gap-4 justify-center items-center reveal reveal-delay-300">
-                        <x-button href="/events/submissions?tier=attendee" variant="primary" size="lg" wire:navigate
+                        <x-button href="/events/tickets?tier=attendee" variant="primary" size="lg" wire:navigate
                             class="hover:scale-105 transition-transform duration-300">
                             Get Ticket
                         </x-button>
-                        <x-button href="/events/submissions?tier=exhibitor" variant="outline" size="lg" wire:navigate
+                        <x-button href="/events/tickets?tier=exhibitor" variant="outline" size="lg" wire:navigate
                             class="hover:scale-105 transition-transform duration-300">
                             Register Booth
                         </x-button>
@@ -32,6 +41,113 @@
                 </div>
             </div>
         </section>
+
+        @if($event && ($event->demographics || $event->universities || $exhibitors->count() > 0))
+        <!-- Value Proposition Section -->
+        <section class="py-24 bg-surface-light border-t border-subtle relative overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+                    <x-heading level="h2" title="Why You Should" highlight="Attend" align="center"
+                        class="mb-4 text-brand-accent dark:text-text-primary" />
+                    <p class="text-text-secondary text-base">
+                        A curated ecosystem designed to maximize your ROI, featuring the brightest emerging talents and leading corporate sponsors.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                    @if($event->demographics)
+                        <!-- Demographic Pie Chart -->
+                        @php
+                            $colors = ['#be123c', '#0f172a', '#3b82f6', '#10b981', '#f59e0b', '#8b5cf6'];
+                            $conicStops = [];
+                            $currentPercent = 0;
+                            $colorIndex = 0;
+                            $demographicList = [];
+                            foreach ($event->demographics as $skill => $percent) {
+                                $nextPercent = $currentPercent + $percent;
+                                $color = $colors[$colorIndex % count($colors)];
+                                $conicStops[] = "{$color} {$currentPercent}% {$nextPercent}%";
+                                $demographicList[] = ['skill' => $skill, 'percent' => $percent, 'color' => $color];
+                                $currentPercent = $nextPercent;
+                                $colorIndex++;
+                            }
+                            $gradientString = implode(', ', $conicStops);
+                        @endphp
+                        <div class="reveal flex flex-col items-center">
+                            <h3 class="text-xl font-bold mb-8 text-brand-accent dark:text-text-primary">Students You'll Meet</h3>
+                            
+                            <div class="w-64 h-64 rounded-full shadow-2xl mb-8 relative" style="background: conic-gradient({{ $gradientString }});">
+                                <div class="absolute inset-0 m-auto w-32 h-32 bg-surface-light rounded-full flex items-center justify-center shadow-inner">
+                                    <span class="font-bold text-2xl text-text-primary">Talent</span>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-4 w-full max-w-md">
+                                @foreach($demographicList as $item)
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-4 h-4 rounded-sm" style="background-color: {{ $item['color'] }}"></div>
+                                        <span class="text-sm font-semibold text-text-secondary">{{ $item['percent'] }}% {{ $item['skill'] }}</span>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    @endif
+
+                    <div class="space-y-12 reveal">
+                        @if($event->universities)
+                            <!-- University Logo Grid -->
+                            <div>
+                                <h3 class="text-xl font-bold mb-6 text-brand-accent dark:text-text-primary">Universities Represented</h3>
+                                <div class="grid grid-cols-2 sm:grid-cols-3 gap-6">
+                                    @foreach($event->universities as $uni)
+                                        <div class="bg-surface-muted border border-subtle p-4 rounded-xl flex items-center justify-center shadow-sm hover:shadow-md transition-shadow">
+                                            @if(isset($uni['logo']))
+                                                <img src="{{ Storage::url($uni['logo']) }}" alt="{{ $uni['name'] }}" class="max-h-12 object-contain grayscale hover:grayscale-0 transition-all">
+                                            @else
+                                                <span class="font-bold text-sm text-text-secondary text-center">{{ $uni['name'] }}</span>
+                                            @endif
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        @endif
+
+                        <!-- Direct Sales Contact Card -->
+                        <div class="bg-brand-primary/5 border border-brand-primary/20 rounded-2xl p-6 flex items-start gap-4 shadow-sm">
+                            <div class="w-12 h-12 rounded-full bg-brand-primary text-white flex items-center justify-center shrink-0">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.864-1.068l-3.264-.652a2.25 2.25 0 00-2.316.74l-1.076 1.077c-3.15-1.57-5.717-4.137-7.288-7.288l1.077-1.076a2.25 2.25 0 00.74-2.316l-.652-3.264A2.25 2.25 0 0015.628 2.25H14.25A2.25 2.25 0 0012 4.5c0 8.284-6.716 15-15 15z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-text-primary mb-1">Book a Meeting with Sales</h4>
+                                <p class="text-sm text-text-secondary mb-3">Discuss custom partnership packages and exclusive corporate benefits.</p>
+                                <a href="mailto:partnerships@hailerz.com" class="text-brand-primary font-semibold text-sm hover:underline">partnerships@hailerz.com &rarr;</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                @if($exhibitors->count() > 0)
+                    <!-- Automated Partner Logo Loop -->
+                    <div class="mt-24 pt-12 border-t border-subtle text-center">
+                        <p class="text-sm font-bold tracking-widest uppercase text-text-muted mb-8">Confirmed Exhibitors & Partners</p>
+                        <div class="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-75">
+                            @foreach($exhibitors as $exhibitor)
+                                @if(Str::startsWith($exhibitor->company_logo, 'data:image'))
+                                    <img src="{{ $exhibitor->company_logo }}" alt="{{ $exhibitor->company_name }}" class="h-12 object-contain grayscale hover:grayscale-0 transition-all duration-300 filter drop-shadow-sm">
+                                @else
+                                    <div class="h-12 px-4 flex items-center justify-center border border-subtle rounded-lg bg-surface-muted grayscale hover:grayscale-0 transition-all font-bold text-text-secondary text-sm">
+                                        {{ $exhibitor->company_name }}
+                                    </div>
+                                @endif
+                            @endforeach
+                        </div>
+                    </div>
+                @endif
+            </div>
+        </section>
+        @endif
 
         <!-- Participation Steps Section -->
         <section class="py-24 bg-surface-muted/30 border-y border-subtle">
@@ -94,11 +210,11 @@
                         the expo hall. Space is strictly limited.
                     </p>
                     <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                        <x-button href="/events/submissions?tier=attendee" variant="outline" size="lg" wire:navigate
+                        <x-button href="/events/tickets?tier=attendee" variant="outline" size="lg" wire:navigate
                             class="hover:scale-105 transition-transform duration-300">
                             Get Ticket
                         </x-button>
-                        <x-button href="/events/submissions?tier=exhibitor" size="lg" wire:navigate
+                        <x-button href="/events/tickets?tier=exhibitor" size="lg" wire:navigate
                             class="hover:scale-105 transition-transform duration-300">
                             Register Booth
                         </x-button>

@@ -24,8 +24,8 @@
         <tr>
             <td style="width: 50%; vertical-align: top;">
                 <div style="font-size: 12px; color: #666; text-transform: uppercase; margin-bottom: 5px; font-weight: bold;">Billed To:</div>
-                <div style="font-size: 14px; font-weight: bold;">{{ $registration->user->name }}</div>
-                <div style="font-size: 13px; color: #555;">{{ $registration->user->email }}</div>
+                <div style="font-size: 14px; font-weight: bold;">{{ $registration->user->name ?? $registration->guest_name }}</div>
+                <div style="font-size: 13px; color: #555;">{{ $registration->user->email ?? $registration->guest_email }}</div>
                 @if($registration->company_name)
                     <div style="font-size: 13px; color: #555; margin-top: 4px;">{{ $registration->company_name }}</div>
                 @endif
@@ -54,7 +54,7 @@
         <tbody>
             <tr style="border-bottom: 1px solid #eee;">
                 <td style="padding: 12px 10px; font-size: 14px;">
-                    <div>Hailerz Event & Conference Expo Registration</div>
+                    <div>{{ $registration->event->title ?? 'Hailerz Event & Conference Expo' }} Registration</div>
                     <div style="font-size: 11px; color: #666; margin-top: 3px;">
                         Pass Tier: {{ $registration->pass_type === 'exhibitor' ? 'Corporate Exhibitor Booth Space' : 'General Attendee Pass' }}
                     </div>
@@ -72,21 +72,13 @@
         <tr>
             <td style="padding: 6px 0; font-size: 13px; color: #666;">Subtotal:</td>
             <td style="text-align: right; padding: 6px 0; font-size: 13px; font-weight: bold;">
-                @if($registration->pass_type === 'exhibitor')
-                    325,581.40 NGN
-                @else
-                    0.00 NGN
-                @endif
+                {{ number_format($registration->total_amount / 1.075, 2) }} NGN
             </td>
         </tr>
         <tr>
             <td style="padding: 6px 0; font-size: 13px; color: #666;">VAT (7.5%):</td>
             <td style="text-align: right; padding: 6px 0; font-size: 13px; font-weight: bold;">
-                @if($registration->pass_type === 'exhibitor')
-                    24,418.60 NGN
-                @else
-                    0.00 NGN
-                @endif
+                {{ number_format($registration->total_amount - ($registration->total_amount / 1.075), 2) }} NGN
             </td>
         </tr>
         <tr style="border-top: 1px solid #ddd;">

@@ -135,7 +135,7 @@
                     <ul class="space-y-4">
                         <li><a href="/events/services" class="text-sm font-medium text-text-secondary hover:text-brand-primary transition-colors">Services</a></li>
                         <li><a href="/events/browse" class="text-sm font-medium text-text-secondary hover:text-brand-primary transition-colors">Browse Events</a></li>
-                        <li><a href="/events/submissions" class="text-sm font-medium text-text-secondary hover:text-brand-primary transition-colors">Submissions</a></li>
+                        <li><a href="/events/tickets" class="text-sm font-medium text-text-secondary hover:text-brand-primary transition-colors">Get Tickets</a></li>
                     </ul>
                 </div>
             </div>

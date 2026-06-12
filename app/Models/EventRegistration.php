@@ -16,6 +16,7 @@ class EventRegistration extends Model
     {
         return [
             'user_id' => 'integer',
+            'event_id' => 'integer',
             'total_amount' => 'decimal:2',
         ];
     }
@@ -26,5 +27,13 @@ class EventRegistration extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Get the event associated with the registration.
+     */
+    public function event(): BelongsTo
+    {
+        return $this->belongsTo(Event::class);
     }
 }

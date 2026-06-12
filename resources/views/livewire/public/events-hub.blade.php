@@ -292,11 +292,11 @@
                     the expo hall. Space is strictly limited.
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                    <x-button href="/events/submissions?tier=attendee" variant="outline" size="lg" wire:navigate
+                    <x-button href="/events/tickets?tier=attendee" variant="outline" size="lg" wire:navigate
                         class="hover:scale-105 transition-transform duration-300">
                         Get Ticket
                     </x-button>
-                    <x-button href="/events/submissions?tier=exhibitor" size="lg" wire:navigate
+                    <x-button href="/events/tickets?tier=exhibitor" size="lg" wire:navigate
                         class="hover:scale-105 transition-transform duration-300">
                         Register Booth
                     </x-button>

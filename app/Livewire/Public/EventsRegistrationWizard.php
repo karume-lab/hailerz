@@ -3,6 +3,7 @@
 namespace App\Livewire\Public;
 
 use App\Mail\EventRegistrationMail;
+use App\Models\Event;
 use App\Models\EventRegistration;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
@@ -26,12 +27,21 @@ class EventsRegistrationWizard extends Component
 
     public ?string $company_logo = null; // Base64 WebP image data
 
+    public ?string $guest_name = null;
+
+    public ?string $guest_email = null;
+
     public ?int $registrationId = null;
+
+    public ?Event $event = null;
 
     public function mount()
     {
-        if (! auth()->check()) {
-            return redirect()->route('login');
+        $this->event = Event::latest('date')->first();
+
+        if (auth()->check()) {
+            $this->guest_name = auth()->user()->name;
+            $this->guest_email = auth()->user()->email;
         }
 
         if (request()->has('tier')) {
@@ -72,17 +82,34 @@ class EventsRegistrationWizard extends Component
 
     public function checkout()
     {
+        if (! $this->event) {
+            $this->addError('payment', 'No active event available for registration.');
+
+            return;
+        }
+
+        if (! auth()->check()) {
+            $this->validate([
+                'guest_name' => 'required|string|max:255',
+                'guest_email' => 'required|email|max:255',
+            ]);
+        }
+
         if ($this->pass_type === 'attendee') {
             $registration = EventRegistration::create([
                 'user_id' => auth()->id(),
+                'guest_name' => auth()->check() ? null : $this->guest_name,
+                'guest_email' => auth()->check() ? null : $this->guest_email,
+                'event_id' => $this->event->id,
                 'pass_type' => 'attendee',
-                'total_amount' => 0.00,
+                'total_amount' => $this->event->attendee_price ?? 0.00,
                 'payment_status' => 'confirmed',
                 'payment_reference' => 'HLZ-FREE-'.strtoupper(Str::random(10)).'-'.time(),
             ]);
 
             try {
-                Mail::to(auth()->user()->email)->send(new EventRegistrationMail($registration));
+                $email = auth()->check() ? auth()->user()->email : $this->guest_email;
+                Mail::to($email)->send(new EventRegistrationMail($registration));
             } catch (\Exception $e) {
                 // Log or ignore mail failure during direct registration (background cron handles queue dispatch)
             }
@@ -99,11 +126,14 @@ class EventsRegistrationWizard extends Component
 
             // Standardize pricing configurations to native Nigerian Naira (NGN)
             $reference = 'HLZ-EVT-'.strtoupper(Str::random(12)).'-'.time();
-            $rawAmount = 350000.00; // Standard NGN premium exhibitor tier pricing
+            $rawAmount = $this->event->exhibitor_price ?? 350000.00;
             $amount = max($rawAmount, 100);
 
             $registration = EventRegistration::create([
                 'user_id' => auth()->id(),
+                'guest_name' => auth()->check() ? null : $this->guest_name,
+                'guest_email' => auth()->check() ? null : $this->guest_email,
+                'event_id' => $this->event->id,
                 'pass_type' => 'exhibitor',
                 'company_name' => $this->company_name,
                 'company_description' => $this->company_description,
@@ -116,7 +146,7 @@ class EventsRegistrationWizard extends Component
             // Initialize Paystack with native NGN parameters matching our active merchant channel
             $response = Http::withToken(config('paystack.secretKey'))
                 ->post(config('paystack.paymentUrl').'/transaction/initialize', [
-                    'email' => auth()->user()->email,
+                    'email' => auth()->check() ? auth()->user()->email : $this->guest_email,
                     'amount' => (int) ($amount * 100), // Converted to kobo
                     'currency' => 'NGN', // Explicitly route to native NGN channels
                     'reference' => $reference,
