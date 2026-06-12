@@ -356,7 +356,7 @@
                                 <div class="space-y-6">
                                     <div class="flex items-center justify-between">
                                         <h4 class="text-lg font-bold text-text-primary">Gallery</h4>
-                                        <x-button type="button" variant="outline" size="sm" wire:click="addGalleryItem">
+                                        <x-button type="button" variant="secondary" size="sm" wire:click="addGalleryItem">
                                             <x-lucide-plus class="w-4 h-4 mr-2" />
                                             Add to Gallery
                                         </x-button>
@@ -482,7 +482,7 @@
                             </x-confirm-dialog>
                             <div class="flex items-center gap-4">
                                 @if($currentStep > 1)
-                                    <x-button type="button" variant="outline" wire:click="previousStep">
+                                    <x-button type="button" variant="secondary" wire:click="previousStep">
                                         Back
                                     </x-button>
                                 @endif

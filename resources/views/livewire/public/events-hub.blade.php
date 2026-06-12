@@ -93,7 +93,8 @@
 
                     <div class="grid grid-cols-2 gap-6">
                         <div class="flex items-center gap-3">
-                            <div class="w-4.5 h-4.5 rounded-full shrink-0" style="background-color: var(--brand-accent);"></div>
+                            <div class="w-4.5 h-4.5 rounded-full shrink-0"
+                                style="background-color: var(--brand-accent);"></div>
                             <div>
                                 <span class="block text-base font-extrabold text-text-primary">46%</span>
                                 <span
@@ -101,7 +102,8 @@
                             </div>
                         </div>
                         <div class="flex items-center gap-3">
-                            <div class="w-4.5 h-4.5 rounded-full shrink-0" style="background-color: var(--brand-primary);"></div>
+                            <div class="w-4.5 h-4.5 rounded-full shrink-0"
+                                style="background-color: var(--brand-primary);"></div>
                             <div>
                                 <span class="block text-base font-extrabold text-text-primary">28%</span>
                                 <span
@@ -291,18 +293,14 @@
                     Secure your complimentary general admission ticket or reserve a prime exhibitor booth space inside
                     the expo hall. Space is strictly limited.
                 </p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                    <x-button href="/events/tickets?tier=attendee" variant="outline" size="lg" wire:navigate
-                        class="hover:scale-105 transition-transform duration-300">
-                        Get Ticket
-                    </x-button>
-                    <x-button href="/events/tickets?tier=exhibitor" size="lg" wire:navigate
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center reveal reveal-delay-300">
+                    <x-button href="/events/tickets?tier=exhibitor" variant="secondary" size="lg" wire:navigate
                         class="hover:scale-105 transition-transform duration-300">
                         Register Booth
                     </x-button>
-                    <x-button href="/events/browse" variant="outline" size="lg" wire:navigate
-                        class="hover:scale-105 transition-transform duration-300 border-white/20 text-white hover:bg-white/10">
-                        Browse Exhibitors
+                    <x-button href="/events/tickets?tier=attendee" size="lg" wire:navigate
+                        class="hover:scale-105 transition-transform duration-300">
+                        Get Ticket
                     </x-button>
                 </div>
             </div>

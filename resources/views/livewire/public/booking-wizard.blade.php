@@ -162,7 +162,7 @@
                                                     @endif
                                                 </div>
                                             </div>
-                                            <x-button type="button" wire:click="clearTalent" variant="outline" size="sm" class="rounded-lg">
+                                            <x-button type="button" wire:click="clearTalent" variant="secondary" size="sm" class="rounded-lg">
                                                 Change Talent
                                             </x-button>
                                         </div>
@@ -351,7 +351,7 @@
                         </x-confirm-dialog>
                         <div class="flex items-center gap-4">
                             @if($currentStep > 1)
-                                <x-button type="button" variant="outline" wire:click="previousStep">
+                                <x-button type="button" variant="secondary" wire:click="previousStep">
                                     Previous Step
                                 </x-button>
                             @endif

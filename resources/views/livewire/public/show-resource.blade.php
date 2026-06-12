@@ -78,7 +78,7 @@
 
         <!-- Footer -->
         <div class="mt-20 pt-10 border-t border-subtle flex flex-col md:flex-row md:items-center justify-between gap-8">
-            <x-button variant="outline" href="/resources" wire:navigate class="rounded-xl flex items-center gap-2">
+            <x-button variant="secondary" href="/resources" wire:navigate class="rounded-xl flex items-center gap-2">
                 <x-lucide-arrow-left class="w-4 h-4" />
                 All Posts
             </x-button>

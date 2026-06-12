@@ -177,7 +177,7 @@
                 <x-button variant="primary" size="lg" href="/marketplace/browse" wire:navigate>
                     Browse Talent
                 </x-button>
-                <x-button variant="outline" size="lg" href="/book" wire:navigate>
+                <x-button variant="secondary" size="lg" href="/book" wire:navigate>
                     Submit Booking Request
                 </x-button>
             </div>

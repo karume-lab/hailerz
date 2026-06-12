@@ -214,7 +214,7 @@
                     <p class="text-sm text-text-secondary mb-8 grow leading-relaxed">
                         Explore our directory of musicians, bands, DJs, and speakers
                     </p>
-                    <x-button href="/marketplace/browse" wire:navigate variant="outline" size="sm" class="w-full">
+                    <x-button href="/marketplace/browse" wire:navigate variant="secondary" size="sm" class="w-full">
                         View Directory
                     </x-button>
                 </x-card>
@@ -225,7 +225,7 @@
                     <p class="text-sm text-text-secondary mb-8 grow leading-relaxed">
                         Submit a booking inquiry and get matched with perfect performers
                     </p>
-                    <x-button href="/book" wire:navigate variant="outline" size="sm" class="w-full">
+                    <x-button href="/book" wire:navigate variant="secondary" size="sm" class="w-full">
                         Start Booking
                     </x-button>
                 </x-card>
@@ -236,7 +236,7 @@
                     <p class="text-sm text-text-secondary mb-8 grow leading-relaxed">
                         Find answers to commonly asked questions about our services
                     </p>
-                    <x-button href="/#faqs" wire:navigate variant="outline" size="sm" class="w-full">
+                    <x-button href="/#faqs" wire:navigate variant="secondary" size="sm" class="w-full">
                         Read FAQs
                     </x-button>
                 </x-card>

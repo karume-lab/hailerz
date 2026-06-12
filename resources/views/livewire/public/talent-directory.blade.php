@@ -180,7 +180,7 @@
                         <p class="text-lg font-bold text-text-primary">{{ \App\Helpers\CurrencyHelper::format($talent->starting_price ?? 0) }}
                         </p>
                       </div>
-                      <x-button variant="outline" size="sm" href="/marketplace/browse/{{ $talent->slug }}" wire:navigate
+                      <x-button variant="secondary" size="sm" href="/marketplace/browse/{{ $talent->slug }}" wire:navigate
                         class="text-brand-primary hover:text-brand-primary/80" aria-label="View profile of {{ $talent->name }}">
                         View Profile
                       </x-button>
@@ -217,7 +217,7 @@
             <x-card padding="py-32" class="text-center border-dashed">
               <h3 class="text-2xl font-bold text-text-primary mb-4 ">No Results Found</h3>
               <p class="text-text-secondary mb-8">Refine your selection to explore our alternative talent members.</p>
-              <x-button variant="outline" wire:click="resetFilters">
+              <x-button variant="secondary" wire:click="resetFilters">
                 Clear All Filters
               </x-button>
             </x-card>

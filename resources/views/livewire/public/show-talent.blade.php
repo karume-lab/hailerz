@@ -59,7 +59,7 @@
                   allowfullscreen></iframe>
               @else
                 <div class="flex items-center justify-center h-full">
-                  <x-button variant="outline" href="{{ $talent->video_url }}" target="_blank">
+                  <x-button variant="secondary" href="{{ $talent->video_url }}" target="_blank">
                     View Performance Reel
                   </x-button>
                 </div>
@@ -355,7 +355,7 @@
             <div class="flex items-center justify-between gap-4">
               <x-button
                 @click="showShareModal = true"
-                variant="outline"
+                variant="secondary"
                 class="w-full">
                 Share Portfolio
               </x-button>

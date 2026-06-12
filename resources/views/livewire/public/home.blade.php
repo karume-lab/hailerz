@@ -150,7 +150,7 @@
                     </div>
                     <div class="flex flex-col items-center md:items-end shrink-0">
                         <span class="text-2xl font-bold text-text-primary mb-3">{{ \App\Helpers\CurrencyHelper::format(25) }} <span class="text-sm font-normal text-text-muted">/ticket</span></span>
-                        <x-button href="/marketplace/submissions" variant="outline">
+                        <x-button href="/marketplace/submissions" variant="secondary">
                             Buy Single Ticket
                         </x-button>
                     </div>
@@ -188,7 +188,7 @@
                             </p>
 
                             <div class="flex flex-col sm:flex-row gap-3">
-                                <x-button href="/marketplace/talent/{{ $featuredTalents[0]->slug }}" variant="outline" size="sm"
+                                <x-button href="/marketplace/talent/{{ $featuredTalents[0]->slug }}" variant="secondary" size="sm"
                                     class="w-full sm:w-auto" aria-label="View profile of {{ $featuredTalents[0]->name }}">
                                     View Profile
                                 </x-button>
@@ -217,7 +217,7 @@
                                 </p>
 
                                 <div class="flex flex-col sm:flex-row gap-3">
-                                    <x-button href="/marketplace/talent/{{ $featuredTalents[1]->slug }}" variant="outline" size="sm"
+                                    <x-button href="/marketplace/talent/{{ $featuredTalents[1]->slug }}" variant="secondary" size="sm"
                                         class="w-full sm:w-auto"
                                         aria-label="View profile of {{ $featuredTalents[1]->name }}">
                                         View Profile
@@ -245,7 +245,7 @@
                                 </p>
 
                                 <div class="flex flex-col sm:flex-row gap-2">
-                                    <x-button href="/marketplace/talent/{{ $featuredTalents[2]->slug }}" variant="outline" size="sm"
+                                    <x-button href="/marketplace/talent/{{ $featuredTalents[2]->slug }}" variant="secondary" size="sm"
                                         class="text-[10px] sm:text-xs py-2"
                                         aria-label="View profile of {{ $featuredTalents[2]->name }}">
                                         View Profile
@@ -273,7 +273,7 @@
                                 </p>
 
                                 <div class="flex flex-col sm:flex-row gap-2">
-                                    <x-button href="/marketplace/talent/{{ $featuredTalents[3]->slug }}" variant="outline" size="sm"
+                                    <x-button href="/marketplace/talent/{{ $featuredTalents[3]->slug }}" variant="secondary" size="sm"
                                         class="text-[10px] sm:text-xs py-2"
                                         aria-label="View profile of {{ $featuredTalents[3]->name }}">
                                         View Profile </x-button>
@@ -300,7 +300,7 @@
                                     {{ $talent->category->name }}
                                 </p>
                                 <div class="flex flex-col sm:flex-row gap-2">
-                                    <x-button href="/marketplace/talent/{{ $talent->slug }}" variant="outline" size="sm"
+                                    <x-button href="/marketplace/talent/{{ $talent->slug }}" variant="secondary" size="sm"
                                         class="text-[10px] sm:text-xs py-2" aria-label="View profile of {{ $talent->name }}">
                                         View Profile </x-button>
                                     <x-button href="/book?talent={{ $talent->id }}" variant="primary" size="sm"
@@ -315,7 +315,7 @@
             @endif
 
             <div class="mt-16 text-center">
-                <x-button href="/marketplace/browse" variant="outline" size="lg" wire:navigate>
+                <x-button href="/marketplace/browse" variant="secondary" size="lg" wire:navigate>
                     Browse All Talent
                 </x-button>
             </div>

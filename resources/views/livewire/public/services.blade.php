@@ -233,7 +233,7 @@
       <p class="text-xl text-text-inverse/80 mb-12">Let's find the perfect talent for your event. Browse our directory
         or submit a booking inquiry today.</p>
       <div class="flex flex-col sm:flex-row gap-6 justify-center">
-        <x-button variant="outline" size="lg" href="/book" wire:navigate>
+        <x-button variant="secondary" size="lg" href="/book" wire:navigate>
           Submit Booking Request
         </x-button>
         <x-button variant="primary" size="lg" href="/marketplace/browse" wire:navigate>
