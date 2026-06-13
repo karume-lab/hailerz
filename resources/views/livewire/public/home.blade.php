@@ -77,7 +77,7 @@
                             <div class="flex items-center gap-3">
                                 <x-lucide-ticket class="w-6 h-6 text-text-muted" />
                                 <div class="text-left">
-                                    <span class="block text-sm font-bold text-text-primary">0 Premium Tickets</span>
+                                    <span class="block text-sm font-bold text-text-primary">0 Premium Content Requests</span>
                                     <span class="block text-xs text-text-muted">Base content only</span>
                                 </div>
                             </div>
@@ -104,7 +104,7 @@
                             <div class="flex items-center gap-3">
                                 <x-lucide-ticket class="w-6 h-6 text-brand-primary" />
                                 <div class="text-left">
-                                    <span class="block text-sm font-bold text-brand-primary">5 Premium Tickets</span>
+                                    <span class="block text-sm font-bold text-brand-primary">5 Premium Content Requests</span>
                                     <span class="block text-xs text-text-muted">Per month included</span>
                                 </div>
                             </div>
@@ -127,7 +127,7 @@
                             <div class="flex items-center gap-3">
                                 <x-lucide-ticket class="w-6 h-6 text-brand-secondary" />
                                 <div class="text-left">
-                                    <span class="block text-sm font-bold text-text-primary">15 Premium Tickets</span>
+                                    <span class="block text-sm font-bold text-text-primary">15 Premium Content Requests</span>
                                     <span class="block text-xs text-text-muted">Per month included</span>
                                 </div>
                             </div>
@@ -136,7 +136,7 @@
                 </x-card>
             </div>
 
-            <!-- One-Off Ticket Add-on -->
+            <!-- One-Off Content Request Add-on -->
             <x-card padding="p-8 sm:p-10" bg="muted" class="max-w-4xl mx-auto border-subtle reveal reveal-delay-400">
                 <div class="flex flex-col md:flex-row items-center justify-between gap-8">
                     <div class="flex-1 text-center md:text-left">
@@ -144,14 +144,14 @@
                             <x-lucide-ticket class="w-6 h-6" />
                         </div>
                         <div>
-                            <h4 class="text-xl font-bold text-text-primary mb-2">Need a One-Off Content Ticket?</h4>
-                            <p class="text-text-secondary text-sm">Not ready for a subscription? Purchase a single, on-demand premium content service ticket anytime.</p>
+                            <h4 class="text-xl font-bold text-text-primary mb-2">Need a One-Off Content Request?</h4>
+                            <p class="text-text-secondary text-sm">Not ready for a subscription? Purchase a single, on-demand premium content service request anytime.</p>
                         </div>
                     </div>
                     <div class="flex flex-col items-center md:items-end shrink-0">
-                        <span class="text-2xl font-bold text-text-primary mb-3">{{ \App\Helpers\CurrencyHelper::format(25) }} <span class="text-sm font-normal text-text-muted">/ticket</span></span>
+                        <span class="text-2xl font-bold text-text-primary mb-3">{{ \App\Helpers\CurrencyHelper::format(25) }} <span class="text-sm font-normal text-text-muted">/request</span></span>
                         <x-button href="/marketplace/submissions" variant="secondary">
-                            Buy Single Ticket
+                            Buy Single Request
                         </x-button>
                     </div>
                 </div>
