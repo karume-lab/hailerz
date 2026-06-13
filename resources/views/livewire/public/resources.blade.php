@@ -174,7 +174,7 @@
                 Browse our roster or submit a booking inquiry today.
             </p>
             <div class="flex flex-col sm:flex-row gap-6 justify-center">
-                <x-button variant="primary" size="lg" href="/marketplace/browse" wire:navigate>
+                <x-button variant="primary" size="lg" href="/talent-hub/browse" wire:navigate>
                     Browse Talent
                 </x-button>
                 <x-button variant="secondary" size="lg" href="/book" wire:navigate>

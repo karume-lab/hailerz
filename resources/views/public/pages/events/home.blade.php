@@ -1,5 +1,5 @@
 <x-layouts.app>
-    <x-slot:title>Hailerz Event & Conference Expo | Hailerz</x-slot>
+    <x-slot:title>Hailerz Marketplace Expo | Hailerz</x-slot>
 
         <div class="w-full bg-surface-light min-h-screen">
             <!-- Hero Section -->
@@ -27,19 +27,18 @@
                                     {{ $event->location }} &nbsp;|&nbsp; {{ $event->date->format('F jS, Y') }}
                                 </div>
                             @else
-                                Join over 1,500 industry leaders, creators, and technology experts at the Hailerz Event &
-                                Conference Expo. Discover cutting-edge strategies, view state-of-the-art corporate
+                                Join over 1,500 industry leaders, creators, and technology experts at the Hailerz Marketplace Expo. Discover cutting-edge strategies, view state-of-the-art corporate
                                 exhibitions, and expand your ecosystem.
                             @endif
                         </div>
 
                         <div
                             class="flex flex-col sm:flex-row gap-4 justify-center items-center reveal reveal-delay-300">
-                            <x-button href="/events/tickets?tier=exhibitor" variant="secondary" size="lg" wire:navigate
+                            <x-button href="/marketplace-expo/tickets?tier=exhibitor" variant="secondary" size="lg" wire:navigate
                                 class="hover:scale-105 transition-transform duration-300">
                                 Register Booth
                             </x-button>
-                            <x-button href="/events/tickets?tier=attendee" size="lg" wire:navigate
+                            <x-button href="/marketplace-expo/tickets?tier=attendee" size="lg" wire:navigate
                                 class="hover:scale-105 transition-transform duration-300">
                                 Get Ticket
                             </x-button>
@@ -247,11 +246,11 @@
                             the expo hall. Space is strictly limited.
                         </p>
                         <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                            <x-button href="/events/tickets?tier=exhibitor" variant="secondary" size="lg" wire:navigate
+                            <x-button href="/marketplace-expo/tickets?tier=exhibitor" variant="secondary" size="lg" wire:navigate
                                 class="hover:scale-105 transition-transform duration-300">
                                 Register Booth
                             </x-button>
-                            <x-button href="/events/tickets?tier=attendee" size="lg" wire:navigate
+                            <x-button href="/marketplace-expo/tickets?tier=attendee" size="lg" wire:navigate
                                 class="hover:scale-105 transition-transform duration-300">
                                 Get Ticket
                             </x-button>

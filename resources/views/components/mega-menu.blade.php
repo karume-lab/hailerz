@@ -12,17 +12,17 @@
             </a>
         </div>
 
-        <!-- 3. Marketplace Track -->
+        <!-- 3. Talent Hub Track -->
         <div class="relative h-full flex items-center" @mouseenter="activeMenu = 'marketplace'">
-            <a href="/marketplace" wire:navigate class="text-sm font-semibold tracking-wide transition-colors" :class="activeMenu === 'marketplace' || (!activeMenu && '{{ request()->is('marketplace*') }}') ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary'">
-                Marketplace
+            <a href="/talent-hub" wire:navigate class="text-sm font-semibold tracking-wide transition-colors" :class="activeMenu === 'marketplace' || (!activeMenu && '{{ request()->is('talent-hub*') }}') ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary'">
+                Talent Hub
             </a>
         </div>
 
-        <!-- 4. Learn Track -->
+        <!-- 4. Challenges Track -->
         <div class="relative h-full flex items-center" @mouseenter="activeMenu = 'learn'">
-            <a href="/learn" wire:navigate class="text-sm font-semibold tracking-wide transition-colors" :class="activeMenu === 'learn' || (!activeMenu && '{{ request()->is('learn*') }}') ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary'">
-                Learn
+            <a href="/challenges" wire:navigate class="text-sm font-semibold tracking-wide transition-colors" :class="activeMenu === 'learn' || (!activeMenu && '{{ request()->is('challenges*') }}') ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary'">
+                Hailerz Challenges
             </a>
         </div>
 
@@ -33,10 +33,10 @@
             </a>
         </div>
 
-        <!-- 6. Events Track -->
+        <!-- 6. Marketplace Expo Track -->
         <div class="relative h-full flex items-center" @mouseenter="activeMenu = 'events'">
-            <a href="/events" wire:navigate class="text-sm font-semibold tracking-wide transition-colors" :class="activeMenu === 'events' || (!activeMenu && '{{ request()->is('events*') }}') ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary'">
-                Events
+            <a href="/marketplace-expo" wire:navigate class="text-sm font-semibold tracking-wide transition-colors" :class="activeMenu === 'events' || (!activeMenu && '{{ request()->is('marketplace-expo*') }}') ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary'">
+                Marketplace Expo
             </a>
         </div>
 
@@ -72,36 +72,36 @@
                 </div>
             </div>
 
-            <!-- 3. Marketplace Panel -->
+            <!-- 3. Talent Hub Panel -->
             <div x-show="activeMenu === 'marketplace'" class="grid grid-cols-10 gap-12" style="display: none;">
                 <div class="col-span-4 pr-8 border-r border-subtle flex flex-col justify-center">
-                    <h2 class="text-3xl text-brand-primary mb-4">Content Marketplace</h2>
+                    <h2 class="text-3xl text-brand-primary mb-4">Talent Hub</h2>
                     <p class="text-text-secondary text-base leading-relaxed">Source verified on-demand deliverables and manage collaborative creative contracts.</p>
                 </div>
                 
                 <div class="col-span-6">
                     <h3 class="text-xs text-brand-primary tracking-widest uppercase mb-6">Booking Options</h3>
                     <ul class="space-y-4">
-                        <li><a href="/marketplace/services" class="text-sm font-medium text-text-secondary hover:text-brand-primary transition-colors">Services</a></li>
-                        <li><a href="/marketplace/browse" class="text-sm font-medium text-text-secondary hover:text-brand-primary transition-colors">Browse Talent</a></li>
-                        <li><a href="/marketplace/submissions" class="text-sm font-medium text-text-secondary hover:text-brand-primary transition-colors">Submissions</a></li>
+                        <li><a href="/talent-hub/services" class="text-sm font-medium text-text-secondary hover:text-brand-primary transition-colors">Services</a></li>
+                        <li><a href="/talent-hub/browse" class="text-sm font-medium text-text-secondary hover:text-brand-primary transition-colors">Browse Talent</a></li>
+                        <li><a href="/talent-hub/join" class="text-sm font-medium text-text-secondary hover:text-brand-primary transition-colors">Join</a></li>
                     </ul>
                 </div>
             </div>
 
-            <!-- 4. Learn Panel -->
+            <!-- 4. Challenges Panel -->
             <div x-show="activeMenu === 'learn'" class="grid grid-cols-10 gap-12" style="display: none;">
                 <div class="col-span-4 pr-8 border-r border-subtle flex flex-col justify-center">
-                    <h2 class="text-3xl text-brand-primary mb-4">Skill Acceleration</h2>
+                    <h2 class="text-3xl text-brand-primary mb-4">Hailerz Challenges</h2>
                     <p class="text-text-secondary text-base leading-relaxed">Elevate your craft, unlock technical masterclasses, and compete in global sprints.</p>
                 </div>
                 
                 <div class="col-span-6">
-                    <h3 class="text-xs text-brand-primary tracking-widest uppercase mb-6">Academy Programs</h3>
+                    <h3 class="text-xs text-brand-primary tracking-widest uppercase mb-6">Programs</h3>
                     <ul class="space-y-4">
                         <li><a href="/academy" class="text-sm font-medium text-text-secondary hover:text-brand-primary transition-colors">Hailerz Academy</a></li>
                         <li><a href="/resources" class="text-sm font-medium text-text-secondary hover:text-brand-primary transition-colors">Resources</a></li>
-                        <li><a href="/challenges" class="text-sm font-medium text-text-secondary hover:text-brand-primary transition-colors">Hailerz Challenges</a></li>
+                        <li><a href="/challenges/workshops" class="text-sm font-medium text-text-secondary hover:text-brand-primary transition-colors">Workshops</a></li>
                     </ul>
                 </div>
             </div>
@@ -123,19 +123,19 @@
                 </div>
             </div>
 
-            <!-- 6. Events Panel -->
+            <!-- 6. Marketplace Expo Panel -->
             <div x-show="activeMenu === 'events'" class="grid grid-cols-10 gap-12" style="display: none;">
                 <div class="col-span-4 pr-8 border-r border-subtle flex flex-col justify-center">
-                    <h2 class="text-3xl text-brand-primary mb-4">Events & Conference</h2>
-                    <p class="text-text-secondary text-base leading-relaxed">Join the Hailerz Event & Conference Expo, displaying cutting-edge corporate exhibitor spaces and connecting ecosystem participants.</p>
+                    <h2 class="text-3xl text-brand-primary mb-4">Marketplace Expo</h2>
+                    <p class="text-text-secondary text-base leading-relaxed">Join the Hailerz Marketplace Expo, displaying cutting-edge corporate exhibitor spaces and connecting ecosystem participants.</p>
                 </div>
                 
                 <div class="col-span-6">
-                    <h3 class="text-xs text-brand-primary tracking-widest uppercase mb-6">Event Options</h3>
+                    <h3 class="text-xs text-brand-primary tracking-widest uppercase mb-6">Expo Options</h3>
                     <ul class="space-y-4">
-                        <li><a href="/events/services" class="text-sm font-medium text-text-secondary hover:text-brand-primary transition-colors">Services</a></li>
-                        <li><a href="/events/browse" class="text-sm font-medium text-text-secondary hover:text-brand-primary transition-colors">Browse Events</a></li>
-                        <li><a href="/events/tickets" class="text-sm font-medium text-text-secondary hover:text-brand-primary transition-colors">Get Tickets</a></li>
+                        <li><a href="/marketplace-expo/services" class="text-sm font-medium text-text-secondary hover:text-brand-primary transition-colors">Services</a></li>
+                        <li><a href="/marketplace-expo/browse" class="text-sm font-medium text-text-secondary hover:text-brand-primary transition-colors">Browse Events</a></li>
+                        <li><a href="/marketplace-expo/tickets" class="text-sm font-medium text-text-secondary hover:text-brand-primary transition-colors">Get Tickets</a></li>
                     </ul>
                 </div>
             </div>

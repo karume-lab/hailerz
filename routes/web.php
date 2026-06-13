@@ -57,18 +57,22 @@ Route::view('/about/mission', 'public.pages.about.mission')->name('about.mission
 Route::view('/about/team', 'public.pages.about.team')->name('about.team');
 Route::view('/about/press', 'public.pages.about.press')->name('about.press');
 
-Route::view('/marketplace/content-services', 'public.pages.marketplace.content-services')->name('marketplace.content-services');
-Route::view('/marketplace', 'public.pages.marketplace.home')->name('marketplace.home');
-Route::view('/learn', 'public.pages.learn.home')->name('learn.home');
+Route::view('/talent-hub/content-services', 'public.pages.marketplace.content-services')->name('marketplace.content-services');
+Route::redirect('/marketplace/content-services', '/talent-hub/content-services');
 
-// Marketplace Browse Routes
-Route::get('/marketplace/browse', TalentDirectory::class)->name('talent.directory');
-Route::get('/marketplace/browse/{slug}', ShowTalent::class)->name('talent.show');
-Route::redirect('/marketplace/talent', '/marketplace/browse');
-Route::redirect('/marketplace/talent/{slug}', '/marketplace/browse/{slug}');
+Route::view('/talent-hub', 'public.pages.marketplace.home')->name('marketplace.home');
+Route::redirect('/marketplace', '/talent-hub');
 
-// Event Routes
-Route::get('/events', function () {
+// Talent Hub Browse Routes
+Route::get('/talent-hub/browse', TalentDirectory::class)->name('talent.directory');
+Route::get('/talent-hub/browse/{slug}', ShowTalent::class)->name('talent.show');
+Route::redirect('/marketplace/browse', '/talent-hub/browse');
+Route::redirect('/marketplace/browse/{slug}', '/talent-hub/browse/{slug}');
+Route::redirect('/marketplace/talent', '/talent-hub/browse');
+Route::redirect('/marketplace/talent/{slug}', '/talent-hub/browse/{slug}');
+
+// Marketplace Expo Routes
+Route::get('/marketplace-expo', function () {
     $event = Event::latest('date')->first();
     $exhibitors = collect();
     if ($event) {
@@ -81,14 +85,21 @@ Route::get('/events', function () {
 
     return view('public.pages.events.home', ['event' => $event, 'exhibitors' => $exhibitors]);
 })->name('events');
-Route::get('/events/services', EventsHub::class)->name('events.services');
-Route::get('/events/browse', EventsDirectory::class)->name('events.browse');
-Route::get('/events/tickets', EventsRegistrationWizard::class)->name('events.create');
-Route::redirect('/events/create', '/events/tickets');
+Route::get('/marketplace-expo/services', EventsHub::class)->name('events.services');
+Route::get('/marketplace-expo/browse', EventsDirectory::class)->name('events.browse');
+Route::get('/marketplace-expo/tickets', EventsRegistrationWizard::class)->name('events.create');
+Route::redirect('/events/create', '/marketplace-expo/tickets');
+Route::redirect('/events/tickets', '/marketplace-expo/tickets');
+Route::redirect('/events/browse', '/marketplace-expo/browse');
+Route::redirect('/events/services', '/marketplace-expo/services');
+Route::redirect('/events', '/marketplace-expo');
 
 Route::view('/academy', 'public.pages.learn.training')->name('academy');
-Route::view('/learn/workshops', 'public.pages.learn.workshops')->name('learn.workshops');
-Route::view('/challenges', 'public.pages.learn.challenges')->name('challenges');
+Route::view('/challenges/workshops', 'public.pages.learn.workshops')->name('learn.workshops');
+Route::redirect('/learn/workshops', '/challenges/workshops');
+
+Route::view('/challenges', 'public.pages.learn.home')->name('challenges.home');
+Route::redirect('/learn', '/challenges');
 
 Route::view('/connect', 'public.pages.connect.home')->name('connect.home');
 Route::view('/connect/meetups', 'public.pages.connect.meetups')->name('connect.meetups');
@@ -97,9 +108,13 @@ Route::view('/connect/groups', 'public.pages.connect.groups')->name('connect.gro
 
 Route::get('/resources', Resources::class)->name('resources');
 Route::get('/resources/{slug}', ShowResource::class)->name('resources.show');
-Route::get('/marketplace/services', Services::class)->name('services');
 Route::get('/contact', Contact::class)->name('contact');
-Route::get('/marketplace/submissions', JoinTalent::class)->name('marketplace.submissions');
+
+Route::get('/talent-hub/services', Services::class)->name('services');
+Route::redirect('/marketplace/services', '/talent-hub/services');
+
+Route::get('/talent-hub/join', JoinTalent::class)->name('talent-hub.join');
+Route::redirect('/marketplace/submissions', '/talent-hub/join');
 
 // Legal
 Route::get('/legal/terms', TermsOfService::class)->name('legal.terms');

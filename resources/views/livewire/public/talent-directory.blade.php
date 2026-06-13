@@ -136,7 +136,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
               @foreach($talents as $talent)
                 <x-card padding="p-0" class="group transition-all duration-500 flex flex-col h-full overflow-hidden hover:-translate-y-2 hover:shadow-2xl hover:border-brand-primary/30 animate-fadeIn">
-                  <a href="/marketplace/browse/{{ $talent->slug }}" wire:navigate class="block">
+                  <a href="/talent-hub/browse/{{ $talent->slug }}" wire:navigate class="block">
                     <div class="group relative overflow-hidden aspect-3/4 bg-surface-dark">
                       <img src="{{ $talent->profile_photo_url }}" width="400" height="533"
                         loading="{{ $loop->iteration <= 6 ? 'eager' : 'lazy' }}"
@@ -180,7 +180,7 @@
                         <p class="text-lg font-bold text-text-primary">{{ \App\Helpers\CurrencyHelper::format($talent->starting_price ?? 0) }}
                         </p>
                       </div>
-                      <x-button variant="secondary" size="sm" href="/marketplace/browse/{{ $talent->slug }}" wire:navigate
+                      <x-button variant="secondary" size="sm" href="/talent-hub/browse/{{ $talent->slug }}" wire:navigate
                         class="text-brand-primary hover:text-brand-primary/80" aria-label="View profile of {{ $talent->name }}">
                         View Profile
                       </x-button>

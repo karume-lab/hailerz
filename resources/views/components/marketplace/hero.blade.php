@@ -15,7 +15,7 @@
         </p>
 
         <!-- Search Bar -->
-        <form action="/marketplace/browse" method="GET" class="relative max-w-4xl mx-auto mb-10 group" wire:navigate>
+        <form action="/talent-hub/browse" method="GET" class="relative max-w-4xl mx-auto mb-10 group" wire:navigate>
             <div
                 class="flex flex-col md:flex-row gap-3 p-3 md:p-2 bg-white/10 backdrop-blur-xl rounded-xl md:rounded-full border border-white/20 shadow-[0_20px_50px_rgba(0,0,0,0.5)] transition-all duration-500 hover:bg-white/15">
                 <x-input name="search" placeholder="Search by name, genre, or location..." icon="search"
@@ -30,7 +30,7 @@
         <div
             class="flex flex-wrap justify-center gap-x-6 md:gap-x-12 gap-y-6 mt-12 text-xs font-bold uppercase tracking-widest text-white/80">
             @foreach($allCategories as $cat)
-            <a href="/marketplace/browse?category={{ $cat->slug }}" wire:navigate
+            <a href="/talent-hub/browse?category={{ $cat->slug }}" wire:navigate
                 class="hover:text-brand-primary transition-all hover:scale-105 transform whitespace-nowrap">{{ $cat->name }}</a>
             @endforeach
         </div>

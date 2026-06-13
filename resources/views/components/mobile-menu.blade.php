@@ -2,10 +2,10 @@
     'links' => [
         ['label' => 'Home', 'href' => '/'],
         ['label' => 'About', 'href' => '/about'],
-        ['label' => 'Marketplace', 'href' => '/marketplace/browse'],
-        ['label' => 'Learn', 'href' => '/learn'],
+        ['label' => 'Talent Hub', 'href' => '/talent-hub/browse'],
+        ['label' => 'Hailerz Challenges', 'href' => '/challenges'],
         ['label' => 'Connect', 'href' => '/connect'],
-        ['label' => 'Events', 'href' => '/events'],
+        ['label' => 'Marketplace Expo', 'href' => '/marketplace-expo'],
         ['label' => 'Contact', 'href' => '/contact'],
     ]
 ])

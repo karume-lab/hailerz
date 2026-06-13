@@ -209,7 +209,7 @@
                             </p>
 
                             <div class="flex flex-col sm:flex-row gap-3">
-                                <x-button href="/marketplace/talent/{{ $featuredTalents[0]->slug }}" variant="secondary"
+                                <x-button href="/talent-hub/talent/{{ $featuredTalents[0]->slug }}" variant="secondary"
                                     size="sm" class="w-full sm:w-auto"
                                     aria-label="View profile of {{ $featuredTalents[0]->name }}">
                                     View Profile
@@ -239,7 +239,7 @@
                                 </p>
 
                                 <div class="flex flex-col sm:flex-row gap-3">
-                                    <x-button href="/marketplace/talent/{{ $featuredTalents[1]->slug }}" variant="secondary"
+                                    <x-button href="/talent-hub/talent/{{ $featuredTalents[1]->slug }}" variant="secondary"
                                         size="sm" class="w-full sm:w-auto"
                                         aria-label="View profile of {{ $featuredTalents[1]->name }}">
                                         View Profile
@@ -267,7 +267,7 @@
                                 </p>
 
                                 <div class="flex flex-col sm:flex-row gap-2">
-                                    <x-button href="/marketplace/talent/{{ $featuredTalents[2]->slug }}" variant="secondary"
+                                    <x-button href="/talent-hub/talent/{{ $featuredTalents[2]->slug }}" variant="secondary"
                                         size="sm" class="text-[10px] sm:text-xs py-2"
                                         aria-label="View profile of {{ $featuredTalents[2]->name }}">
                                         View Profile
@@ -296,7 +296,7 @@
                                 </p>
 
                                 <div class="flex flex-col sm:flex-row gap-2">
-                                    <x-button href="/marketplace/talent/{{ $featuredTalents[3]->slug }}" variant="secondary"
+                                    <x-button href="/talent-hub/talent/{{ $featuredTalents[3]->slug }}" variant="secondary"
                                         size="sm" class="text-[10px] sm:text-xs py-2"
                                         aria-label="View profile of {{ $featuredTalents[3]->name }}">
                                         View Profile </x-button>
@@ -324,7 +324,7 @@
                                     {{ $talent->category->name }}
                                 </p>
                                 <div class="flex flex-col sm:flex-row gap-2">
-                                    <x-button href="/marketplace/talent/{{ $talent->slug }}" variant="secondary" size="sm"
+                                    <x-button href="/talent-hub/talent/{{ $talent->slug }}" variant="secondary" size="sm"
                                         class="text-[10px] sm:text-xs py-2" aria-label="View profile of {{ $talent->name }}">
                                         View Profile </x-button>
                                     <x-button href="/book?talent={{ $talent->id }}" variant="primary" size="sm"
@@ -339,7 +339,7 @@
             @endif
 
             <div class="mt-16 text-center">
-                <x-button href="/marketplace/browse" variant="secondary" size="lg" wire:navigate>
+                <x-button href="/talent-hub/browse" variant="secondary" size="lg" wire:navigate>
                     Browse All Talent
                 </x-button>
             </div>
@@ -361,7 +361,7 @@
                         $representativeTalent = $category->talents->first();
                         $bgImage = $representativeTalent ? $representativeTalent->profile_photo_url : $category->default_image;
                     @endphp
-                    <a href="/marketplace/browse?category={{ $category->slug }}" wire:navigate
+                    <a href="/talent-hub/browse?category={{ $category->slug }}" wire:navigate
                         class="group relative aspect-square rounded-3xl overflow-hidden shadow-lg reveal {{ $index % 4 === 1 ? 'reveal-delay-100' : ($index % 4 === 2 ? 'reveal-delay-200' : ($index % 4 === 3 ? 'reveal-delay-300' : '')) }}">
                         <img src="{{ $bgImage }}" alt="{{ $category->name }}"
                             class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"

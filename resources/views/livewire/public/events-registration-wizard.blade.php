@@ -51,7 +51,7 @@
                     <p class="text-text-secondary text-base mb-8 max-w-md mx-auto">
                         Your registration for the Hailerz Event & Conference Expo has been processed successfully. Your access ticket and receipt PDFs have been dispatched to your email address.
                     </p>
-                    <x-button href="/events/services" variant="primary" size="md" wire:navigate class="hover:scale-105 transition-transform duration-300">
+                    <x-button href="/marketplace-expo/services" variant="primary" size="md" wire:navigate class="hover:scale-105 transition-transform duration-300">
                         Return to Expo Hub
                     </x-button>
                 </div>
