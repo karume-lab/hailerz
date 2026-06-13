@@ -44,55 +44,64 @@
 
 @once
 <script>
-    document.addEventListener('alpine:init', () => {
-        if (!window.Alpine.data('filamentBase64ImageUploader')) {
-            Alpine.data('filamentBase64ImageUploader', (config) => ({
-                state: config.state,
-                previewUrl: null,
-                isDragging: false,
+    window.hasRegisteredFilamentBase64ImageUploader = false;
+    const initFilamentBase64ImageUploader = () => {
+        if (window.hasRegisteredFilamentBase64ImageUploader || !window.Alpine) return;
+        
+        window.Alpine.data('filamentBase64ImageUploader', (config) => ({
+            state: config.state,
+            previewUrl: null,
+            isDragging: false,
 
-                init() {
-                    if (this.state) {
-                        this.previewUrl = this.state;
-                    }
-                    this.$watch('state', (value) => {
-                        this.previewUrl = value;
-                    });
-                },
-                handleDrop(e) {
-                    this.isDragging = false;
-                    if (e.dataTransfer.files.length) {
-                        this.processFile(e.dataTransfer.files[0]);
-                    }
-                },
-                handleFileChange(e) {
-                    if (e.target.files.length) {
-                        this.processFile(e.target.files[0]);
-                    }
-                },
-                processFile(file) {
-                    if (!file.type.match('image.*')) {
-                        alert('Please upload an image file.');
-                        return;
-                    }
-                    const reader = new FileReader();
-                    reader.onload = (e) => {
-                        const img = new Image();
-                        img.onload = () => {
-                            const canvas = document.createElement('canvas');
-                            canvas.width = img.width;
-                            canvas.height = img.height;
-                            const ctx = canvas.getContext('2d');
-                            ctx.drawImage(img, 0, 0);
-                            const webpBase64 = canvas.toDataURL('image/webp', 0.5);
-                            this.state = webpBase64;
-                        };
-                        img.src = e.target.result;
-                    };
-                    reader.readAsDataURL(file);
+            init() {
+                if (this.state) {
+                    this.previewUrl = this.state;
                 }
-            }));
-        }
-    });
+                this.$watch('state', (value) => {
+                    this.previewUrl = value;
+                });
+            },
+            handleDrop(e) {
+                this.isDragging = false;
+                if (e.dataTransfer.files.length) {
+                    this.processFile(e.dataTransfer.files[0]);
+                }
+            },
+            handleFileChange(e) {
+                if (e.target.files.length) {
+                    this.processFile(e.target.files[0]);
+                }
+            },
+            processFile(file) {
+                if (!file.type.match('image.*')) {
+                    alert('Please upload an image file.');
+                    return;
+                }
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    const img = new Image();
+                    img.onload = () => {
+                        const canvas = document.createElement('canvas');
+                        canvas.width = img.width;
+                        canvas.height = img.height;
+                        const ctx = canvas.getContext('2d');
+                        ctx.drawImage(img, 0, 0);
+                        const webpBase64 = canvas.toDataURL('image/webp', 0.5);
+                        this.state = webpBase64;
+                    };
+                    img.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        }));
+        
+        window.hasRegisteredFilamentBase64ImageUploader = true;
+    };
+
+    if (window.Alpine) {
+        initFilamentBase64ImageUploader();
+    } else {
+        document.addEventListener('alpine:init', initFilamentBase64ImageUploader);
+    }
 </script>
 @endonce

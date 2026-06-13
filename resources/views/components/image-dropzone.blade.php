@@ -78,8 +78,11 @@
 
 @once
 <script>
-    document.addEventListener('alpine:init', () => {
-        Alpine.data('base64ImageUploader', (config) => ({
+    window.hasRegisteredBase64ImageUploader = false;
+    const initBase64ImageUploader = () => {
+        if (window.hasRegisteredBase64ImageUploader || !window.Alpine) return;
+        
+        window.Alpine.data('base64ImageUploader', (config) => ({
             state: config.state,
             previewUrl: null,
             isDragging: false,
@@ -127,6 +130,14 @@
                 reader.readAsDataURL(file);
             }
         }));
-    });
+        
+        window.hasRegisteredBase64ImageUploader = true;
+    };
+
+    if (window.Alpine) {
+        initBase64ImageUploader();
+    } else {
+        document.addEventListener('alpine:init', initBase64ImageUploader);
+    }
 </script>
 @endonce
