@@ -16,31 +16,38 @@
 
                 <div x-data="{ play: false }"
                     class="mt-12 aspect-video max-w-4xl mx-auto rounded-3xl overflow-hidden shadow-2xl border border-subtle bg-surface-dark reveal reveal-delay-200 relative group cursor-pointer">
-                    
+
                     <template x-if="play">
-                        <iframe class="w-full h-full" src="https://www.youtube.com/embed/LLdr6BqljEw?autoplay=1&mute=1&rel=0"
+                        <iframe class="w-full h-full"
+                            src="https://www.youtube.com/embed/LLdr6BqljEw?autoplay=1&mute=1&rel=0"
                             title="Hailerz - How it Works" frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                             referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
                         </iframe>
                     </template>
-                    
+
                     <template x-if="!play">
-                        <div @click="play = true" class="absolute inset-0 w-full h-full flex items-center justify-center">
+                        <div @click="play = true"
+                            class="absolute inset-0 w-full h-full flex items-center justify-center">
                             <!-- Background Poster Image (YouTube MaxRes Default Thumbnail) -->
-                            <img src="https://i.ytimg.com/vi/LLdr6BqljEw/maxresdefault.jpg" 
-                                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
-                                 alt="Hailerz - How it Works video preview" loading="lazy" decoding="async">
-                            
+                            <img src="https://i.ytimg.com/vi/LLdr6BqljEw/maxresdefault.jpg"
+                                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                alt="Hailerz - How it Works video preview" loading="lazy" decoding="async">
+
                             <!-- Overlay gradient -->
-                            <div class="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors duration-300"></div>
-                            
+                            <div
+                                class="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors duration-300">
+                            </div>
+
                             <!-- Centered premium play button with pulse effect -->
                             <div class="absolute flex items-center justify-center">
-                                <div class="absolute w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-brand-primary/30 animate-ping pointer-events-none"></div>
+                                <div
+                                    class="absolute w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-brand-primary/30 animate-ping pointer-events-none">
+                                </div>
                                 <div class="relative z-10 w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-brand-primary/95 text-white flex items-center justify-center shadow-[0_10px_40px_rgba(27,129,155,0.5)] transition-all duration-300 group-hover:scale-110 group-hover:bg-brand-primary active:scale-95"
-                                     role="button" aria-label="Play video">
-                                    <x-lucide-play class="w-8 h-8 sm:w-10 sm:h-10 translate-x-0.5 text-white fill-current" />
+                                    role="button" aria-label="Play video">
+                                    <x-lucide-play
+                                        class="w-8 h-8 sm:w-10 sm:h-10 translate-x-0.5 text-white fill-current" />
                                 </div>
                             </div>
                         </div>
@@ -54,9 +61,11 @@
     <section class="py-32 bg-surface-light relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center mb-20 reveal">
-                <x-heading level="h2" title="Creator" highlight="Ecosystem" align="center" highlightClass="text-brand-secondary" class="text-text-primary mb-6" />
+                <x-heading level="h2" title="Creator" highlight="Ecosystem" align="center"
+                    highlightClass="text-brand-secondary" class="text-text-primary mb-6" />
                 <p class="text-lg text-text-secondary mx-auto max-w-3xl">
-                    Elevate your platform presence with our content engineering subscriptions. From automated basics to full-scale custom deliverables.
+                    Elevate your platform presence with our content engineering subscriptions. From automated basics to
+                    full-scale custom deliverables.
                 </p>
             </div>
 
@@ -65,11 +74,14 @@
                 <!-- Tier 1: Starter Content Basic -->
                 <x-card padding="p-8 md:p-10" bg="muted" class="flex flex-col h-full reveal reveal-delay-100">
                     <h3 class="text-2xl font-bold text-text-primary mb-3">Starter Content Basic</h3>
-                    <p class="text-text-secondary text-sm mb-6">Automated, generic generated content built directly from your profile tags, skill preferences, and regional settings to keep your channels continuously active.</p>
-                    
+                    <p class="text-text-secondary text-sm mb-6">Automated, generic generated content built directly from
+                        your profile tags, skill preferences, and regional settings to keep your channels continuously
+                        active.</p>
+
                     <div class="mt-auto flex flex-col">
                         <div class="mb-8">
-                            <span class="text-4xl font-extrabold text-text-primary">{{ \App\Helpers\CurrencyHelper::format(19) }}</span>
+                            <span
+                                class="text-4xl font-extrabold text-text-primary">{{ \App\Helpers\CurrencyHelper::format(19) }}</span>
                             <span class="text-text-muted text-sm">/month</span>
                         </div>
 
@@ -77,7 +89,8 @@
                             <div class="flex items-center gap-3">
                                 <x-lucide-ticket class="w-6 h-6 text-text-muted" />
                                 <div class="text-left">
-                                    <span class="block text-sm font-bold text-text-primary">0 Premium Content Requests</span>
+                                    <span class="block text-sm font-bold text-text-primary">0 Premium Content
+                                        Requests</span>
                                     <span class="block text-xs text-text-muted">Base content only</span>
                                 </div>
                             </div>
@@ -86,17 +99,22 @@
                 </x-card>
 
                 <!-- Tier 2: Professional Creator (Highlight) -->
-                <x-card padding="p-8 md:p-10" bg="muted" class="flex flex-col h-full reveal reveal-delay-200 border-2 border-brand-primary/50 shadow-lg relative overflow-visible">
+                <x-card padding="p-8 md:p-10" bg="muted"
+                    class="flex flex-col h-full reveal reveal-delay-200 border-2 border-brand-primary/50 shadow-lg relative overflow-visible">
                     <div class="absolute -top-4 inset-x-0 flex justify-center">
-                        <span class="bg-brand-primary text-white text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wider shadow-md">Most Popular</span>
+                        <span
+                            class="bg-brand-primary text-white text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wider shadow-md">Most
+                            Popular</span>
                     </div>
-                    
+
                     <h3 class="text-2xl font-bold text-text-primary mb-3 mt-2">Professional Creator</h3>
-                    <p class="text-text-secondary text-sm mb-6">Managed custom creative deliverables curated to your specific platform brand guidelines. Includes active access to our priority processing desk.</p>
-                    
+                    <p class="text-text-secondary text-sm mb-6">Managed custom creative deliverables curated to your
+                        specific platform brand guidelines. Includes active access to our priority processing desk.</p>
+
                     <div class="mt-auto flex flex-col">
                         <div class="mb-8">
-                            <span class="text-4xl font-extrabold text-brand-primary">{{ \App\Helpers\CurrencyHelper::format(89) }}</span>
+                            <span
+                                class="text-4xl font-extrabold text-brand-primary">{{ \App\Helpers\CurrencyHelper::format(89) }}</span>
                             <span class="text-text-muted text-sm">/month</span>
                         </div>
 
@@ -104,7 +122,8 @@
                             <div class="flex items-center gap-3">
                                 <x-lucide-ticket class="w-6 h-6 text-brand-primary" />
                                 <div class="text-left">
-                                    <span class="block text-sm font-bold text-brand-primary">5 Premium Content Requests</span>
+                                    <span class="block text-sm font-bold text-brand-primary">5 Premium Content
+                                        Requests</span>
                                     <span class="block text-xs text-text-muted">Per month included</span>
                                 </div>
                             </div>
@@ -115,11 +134,13 @@
                 <!-- Tier 3: Enterprise Scale -->
                 <x-card padding="p-8 md:p-10" bg="muted" class="flex flex-col h-full reveal reveal-delay-300">
                     <h3 class="text-2xl font-bold text-text-primary mb-3">Enterprise Scale</h3>
-                    <p class="text-text-secondary text-sm mb-6">High-density, multi-channel asset compilation. Dedicated rapid turnaround execution for heavy content schedules.</p>
-                    
+                    <p class="text-text-secondary text-sm mb-6">High-density, multi-channel asset compilation. Dedicated
+                        rapid turnaround execution for heavy content schedules.</p>
+
                     <div class="mt-auto flex flex-col">
                         <div class="mb-8">
-                            <span class="text-4xl font-extrabold text-text-primary">{{ \App\Helpers\CurrencyHelper::format(249) }}</span>
+                            <span
+                                class="text-4xl font-extrabold text-text-primary">{{ \App\Helpers\CurrencyHelper::format(249) }}</span>
                             <span class="text-text-muted text-sm">/month</span>
                         </div>
 
@@ -127,7 +148,8 @@
                             <div class="flex items-center gap-3">
                                 <x-lucide-ticket class="w-6 h-6 text-brand-secondary" />
                                 <div class="text-left">
-                                    <span class="block text-sm font-bold text-text-primary">15 Premium Content Requests</span>
+                                    <span class="block text-sm font-bold text-text-primary">15 Premium Content
+                                        Requests</span>
                                     <span class="block text-xs text-text-muted">Per month included</span>
                                 </div>
                             </div>
@@ -140,20 +162,19 @@
             <x-card padding="p-8 sm:p-10" bg="muted" class="max-w-4xl mx-auto border-subtle reveal reveal-delay-400">
                 <div class="flex flex-col md:flex-row items-center justify-between gap-8">
                     <div class="flex-1 text-center md:text-left">
-                        <div class="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-brand-primary/10 text-brand-primary mb-4 md:mb-0 md:mr-6 md:float-left">
+                        <div
+                            class="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-brand-primary/10 text-brand-primary mb-4 md:mb-0 md:mr-6 md:float-left">
                             <x-lucide-ticket class="w-6 h-6" />
                         </div>
                         <div>
                             <h4 class="text-xl font-bold text-text-primary mb-2">Need a One-Off Content Request?</h4>
-                            <p class="text-text-secondary text-sm">Not ready for a subscription? Purchase a single, on-demand premium content service request anytime.</p>
+                            <p class="text-text-secondary text-sm">Not ready for a subscription? Purchase a single,
+                                on-demand premium content service request anytime.</p>
                         </div>
                     </div>
-                    <div class="flex flex-col items-center md:items-end shrink-0">
-                        <span class="text-2xl font-bold text-text-primary mb-3">{{ \App\Helpers\CurrencyHelper::format(25) }} <span class="text-sm font-normal text-text-muted">/request</span></span>
-                        <x-button href="/marketplace/submissions" variant="secondary">
-                            Buy Single Request
-                        </x-button>
-                    </div>
+                    <span
+                        class="text-2xl font-bold text-text-primary mb-3">{{ \App\Helpers\CurrencyHelper::format(25) }}
+                        <span class="text-sm font-normal text-text-muted">/request</span></span>
                 </div>
             </x-card>
 
@@ -167,8 +188,8 @@
     <section class="py-32 bg-surface-dark">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-20 reveal">
-                <x-heading level="h2" title="Featured" highlight="Talent" align="center"
-                    highlightClass="text-[#65c4af]" class="text-white mb-6" />
+                <x-heading level="h2" title="Featured" highlight="Talent" align="center" highlightClass="text-[#65c4af]"
+                    class="text-white mb-6" />
                 <p class="text-lg text-white/60 mx-auto max-w-2xl">Discover our handpicked performers</p>
             </div>
 
@@ -188,8 +209,9 @@
                             </p>
 
                             <div class="flex flex-col sm:flex-row gap-3">
-                                <x-button href="/marketplace/talent/{{ $featuredTalents[0]->slug }}" variant="secondary" size="sm"
-                                    class="w-full sm:w-auto" aria-label="View profile of {{ $featuredTalents[0]->name }}">
+                                <x-button href="/marketplace/talent/{{ $featuredTalents[0]->slug }}" variant="secondary"
+                                    size="sm" class="w-full sm:w-auto"
+                                    aria-label="View profile of {{ $featuredTalents[0]->name }}">
                                     View Profile
                                 </x-button>
                                 <x-button href="/book?talent={{ $featuredTalents[0]->id }}" variant="primary" size="sm"
@@ -217,8 +239,8 @@
                                 </p>
 
                                 <div class="flex flex-col sm:flex-row gap-3">
-                                    <x-button href="/marketplace/talent/{{ $featuredTalents[1]->slug }}" variant="secondary" size="sm"
-                                        class="w-full sm:w-auto"
+                                    <x-button href="/marketplace/talent/{{ $featuredTalents[1]->slug }}" variant="secondary"
+                                        size="sm" class="w-full sm:w-auto"
                                         aria-label="View profile of {{ $featuredTalents[1]->name }}">
                                         View Profile
                                     </x-button>
@@ -245,13 +267,14 @@
                                 </p>
 
                                 <div class="flex flex-col sm:flex-row gap-2">
-                                    <x-button href="/marketplace/talent/{{ $featuredTalents[2]->slug }}" variant="secondary" size="sm"
-                                        class="text-[10px] sm:text-xs py-2"
+                                    <x-button href="/marketplace/talent/{{ $featuredTalents[2]->slug }}" variant="secondary"
+                                        size="sm" class="text-[10px] sm:text-xs py-2"
                                         aria-label="View profile of {{ $featuredTalents[2]->name }}">
                                         View Profile
                                     </x-button>
                                     <x-button href="/book?talent={{ $featuredTalents[2]->id }}" variant="primary" size="sm"
-                                        class="text-[10px] sm:text-xs py-2" aria-label="Book {{ $featuredTalents[2]->name }}">
+                                        class="text-[10px] sm:text-xs py-2"
+                                        aria-label="Book {{ $featuredTalents[2]->name }}">
                                         Book
                                     </x-button>
                                 </div>
@@ -273,12 +296,13 @@
                                 </p>
 
                                 <div class="flex flex-col sm:flex-row gap-2">
-                                    <x-button href="/marketplace/talent/{{ $featuredTalents[3]->slug }}" variant="secondary" size="sm"
-                                        class="text-[10px] sm:text-xs py-2"
+                                    <x-button href="/marketplace/talent/{{ $featuredTalents[3]->slug }}" variant="secondary"
+                                        size="sm" class="text-[10px] sm:text-xs py-2"
                                         aria-label="View profile of {{ $featuredTalents[3]->name }}">
                                         View Profile </x-button>
                                     <x-button href="/book?talent={{ $featuredTalents[3]->id }}" variant="primary" size="sm"
-                                        class="text-[10px] sm:text-xs py-2" aria-label="Book {{ $featuredTalents[3]->name }}">
+                                        class="text-[10px] sm:text-xs py-2"
+                                        aria-label="Book {{ $featuredTalents[3]->name }}">
                                         Book
                                     </x-button>
                                 </div>
@@ -358,8 +382,8 @@
     <!-- Booking FAQs Section -->
     <section id="faqs" class="py-32 bg-surface-dark text-text-inverse">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <x-heading level="h2" title="Booking" highlight="FAQs" align="center"
-                highlightClass="text-[#65c4af]" class="text-center mb-16 reveal" />
+            <x-heading level="h2" title="Booking" highlight="FAQs" align="center" highlightClass="text-[#65c4af]"
+                class="text-center mb-16 reveal" />
 
             <div x-data="{ active: null }" class="space-y-6">
 
@@ -367,7 +391,8 @@
                 @foreach($faqs as $index => $faq)
                     <div @click="active = (active === {{ $index }} ? null : {{ $index }})"
                         class="border-2 border-brand-primary px-4 rounded-xl reveal cursor-pointer {{ $index % 2 === 1 ? 'reveal-delay-100' : '' }}">
-                        <button class="flex justify-between items-center w-full text-left py-8 focus:outline-none group transition-all"
+                        <button
+                            class="flex justify-between items-center w-full text-left py-8 focus:outline-none group transition-all"
                             aria-label="Toggle FAQ: {{ $faq->question }}"
                             :aria-expanded="active === {{ $index }} ? 'true' : 'false'">
                             <span
@@ -398,8 +423,8 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
                 <div class="reveal">
-                    <x-heading level="h2" title="Ready to Work" highlight="Together?"
-                        highlightClass="text-[#65c4af]" class="text-text-inverse mb-6 md:mb-8" />
+                    <x-heading level="h2" title="Ready to Work" highlight="Together?" highlightClass="text-[#65c4af]"
+                        class="text-text-inverse mb-6 md:mb-8" />
                     <p class="text-lg md:text-xl text-text-inverse/80 mb-8 md:mb-12 leading-relaxed">
                         Let's create something unforgettable. Reach out to our dedicated agents for bespoke
                         recommendations
@@ -415,7 +440,8 @@
                             <div>
                                 <h3 class="text-text-inverse font-bold text-sm md:text-base">Send us a message</h3>
                                 <p class="text-text-inverse/60 text-xs md:text-sm">
-                                    <a href="mailto:info@hailerz.com" class="hover:text-white transition-colors">info@hailerz.com</a>
+                                    <a href="mailto:info@hailerz.com"
+                                        class="hover:text-white transition-colors">info@hailerz.com</a>
                                 </p>
                             </div>
                         </li>
