@@ -17,4 +17,9 @@ return [
      */
     'paymentUrl' => env('PAYSTACK_PAYMENT_URL'),
 
+    /**
+     * Minimum allowed transaction amount
+     */
+    'min_amount' => env('PAYSTACK_MIN_AMOUNT', 100),
+
 ];

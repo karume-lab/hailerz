@@ -266,7 +266,8 @@ class TalentForm
                     Forms\Components\TextInput::make('starting_price')
                         ->label('Minimum Performance Fee (USD)')
                         ->numeric()
-                        ->default(100)
+                        ->minValue(fn () => config('paystack.min_amount', 100))
+                        ->default(fn () => config('paystack.min_amount', 100))
                         ->prefix('$')
                         ->columnSpan(1),
                 ])

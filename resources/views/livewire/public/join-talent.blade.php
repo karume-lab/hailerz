@@ -323,10 +323,10 @@
                                 <div class="grid grid-cols-2 gap-4">
                                     <x-input wire:model.live.debounce.300ms="min_rate" type="number"
                                         label="Min Rate ({{ \App\Helpers\CurrencyHelper::getCurrencySymbol() }}) *"
-                                        placeholder="e.g. 500" />
+                                        placeholder="e.g. 500" min="{{ config('paystack.min_amount', 100) }}" />
                                     <x-input wire:model.live.debounce.300ms="max_rate" type="number"
                                         label="Max Rate ({{ \App\Helpers\CurrencyHelper::getCurrencySymbol() }}) *"
-                                        placeholder="e.g. 1500" />
+                                        placeholder="e.g. 1500" min="{{ config('paystack.min_amount', 100) }}" />
                                 </div>
                                 <div class="md:col-span-2">
                                     <x-textarea wire:model.live.debounce.300ms="bio" label="Artist Bio *" rows="5"

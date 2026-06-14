@@ -334,7 +334,7 @@ class BookingWizard extends Component
         ]);
 
         $reference = 'HLZ-'.strtoupper(Str::random(12)).'-'.time();
-        $rawUsdAmount = $this->selectedTalent ? $this->selectedTalent->starting_price : 100;
+        $rawUsdAmount = $this->selectedTalent ? $this->selectedTalent->starting_price : config('paystack.min_amount');
         $usdAmount = (float) str_replace(',', '', (string) $rawUsdAmount);
 
         // Convert the USD base amount to the user's localized currency for the database record
@@ -347,8 +347,8 @@ class BookingWizard extends Component
 
         // Convert the USD base amount to NGN for the actual Paystack charge
         $ngnAmount = CurrencyHelper::convert($usdAmount, 'NGN');
-        // Enforce absolute minimum of 100 NGN to prevent Paystack initialization failures
-        $ngnAmount = max($ngnAmount, 100);
+        // Enforce absolute minimum to prevent Paystack initialization failures
+        $ngnAmount = max($ngnAmount, config('paystack.min_amount'));
 
         $payload = [
             'email' => $this->email,

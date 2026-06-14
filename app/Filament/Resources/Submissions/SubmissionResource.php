@@ -128,13 +128,15 @@ class SubmissionResource extends Resource
                     Forms\Components\TextInput::make('min_rate')
                         ->label(fn ($record) => 'Minimum Rate ('.(($record ? $record->currency : null) ?? 'USD').')')
                         ->numeric()
-                        ->default(100)
+                        ->minValue(fn () => config('paystack.min_amount', 100))
+                        ->default(fn () => config('paystack.min_amount', 100))
                         ->prefix(fn ($record) => CurrencyHelper::getCurrencySymbolForCode(($record ? $record->currency : null) ?? 'USD'))
                         ->columnSpan(1),
                     Forms\Components\TextInput::make('max_rate')
                         ->label(fn ($record) => 'Maximum Rate ('.(($record ? $record->currency : null) ?? 'USD').')')
                         ->numeric()
-                        ->default(100)
+                        ->minValue(fn () => config('paystack.min_amount', 100))
+                        ->default(fn () => config('paystack.min_amount', 100))
                         ->prefix(fn ($record) => CurrencyHelper::getCurrencySymbolForCode(($record ? $record->currency : null) ?? 'USD'))
                         ->columnSpan(1),
                     Forms\Components\TextInput::make('currency')
