@@ -59,10 +59,10 @@ class JoinTalent extends Component
     #[Validate('required|string|max:100')]
     public string $years_active = '';
 
-    #[Validate('required|numeric|min:0')]
-    public $min_rate;
+    #[Validate('required|numeric|min:100')]
+    public $min_rate = 100;
 
-    #[Validate('required|numeric|min:0')]
+    #[Validate('required|numeric|min:100')]
     public $max_rate;
 
     // Online Presence
@@ -137,8 +137,8 @@ class JoinTalent extends Component
             $this->validate([
                 'category' => 'required|string|max:100',
                 'years_active' => 'required|string|max:100',
-                'min_rate' => 'required|numeric|min:0',
-                'max_rate' => 'required|numeric|min:0',
+                'min_rate' => 'required|numeric|min:100',
+                'max_rate' => 'required|numeric|min:100',
                 'bio' => 'required|string|min:200|max:5000',
             ]);
         } elseif ($this->currentStep === 3) {
