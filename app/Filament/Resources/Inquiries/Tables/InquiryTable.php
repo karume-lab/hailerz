@@ -97,7 +97,7 @@ class InquiryTable
                             $talent->update(['is_frozen' => true]);
                             try {
                                 Mail::to($talent->email)->send(new TalentFrozenMail($talent));
-                            } catch (\Exception $e) {
+                            } catch (\Throwable $e) {
                                 Log::error('Freeze mail failed: '.$e->getMessage());
                             }
                         }

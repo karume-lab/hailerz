@@ -55,7 +55,7 @@ class PaymentController extends Controller
             $authorizationUrl = $response->json('data.authorization_url');
 
             return Redirect::away($authorizationUrl);
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             return Redirect::back()->withErrors(['msg' => 'The Paystack payment token generation failed. Please try again.']);
         }
     }
@@ -96,7 +96,7 @@ class PaymentController extends Controller
                     Mail::to($inquiry->email)->send(new BookingConfirmationMail($inquiry));
                     Mail::to(config('mail.from.address'))->send(new AdminBookingNotification($inquiry));
                     Log::info('Booking email sent successfully.');
-                } catch (\Exception $e) {
+                } catch (\Throwable $e) {
                     Log::error('Mail sending failed: '.$e->getMessage());
                 }
             }
@@ -117,7 +117,7 @@ class PaymentController extends Controller
                     Log::info('Attempting to send event registration email to: '.$registration->user->email);
                     Mail::to($registration->user->email)->send(new EventRegistrationMail($registration));
                     Log::info('Event registration email sent successfully.');
-                } catch (\Exception $e) {
+                } catch (\Throwable $e) {
                     Log::error('Event registration mail sending failed: '.$e->getMessage());
                 }
             }
@@ -159,7 +159,7 @@ class PaymentController extends Controller
                     try {
                         Mail::to($inquiry->email)->send(new BookingConfirmationMail($inquiry));
                         Mail::to(config('mail.from.address'))->send(new AdminBookingNotification($inquiry));
-                    } catch (\Exception $e) {
+                    } catch (\Throwable $e) {
                         Log::error('Webhook mail sending failed: '.$e->getMessage());
                     }
                 }
@@ -173,7 +173,7 @@ class PaymentController extends Controller
 
                     try {
                         Mail::to($registration->user->email)->send(new EventRegistrationMail($registration));
-                    } catch (\Exception $e) {
+                    } catch (\Throwable $e) {
                         Log::error('Webhook event registration mail sending failed: '.$e->getMessage());
                     }
                 }

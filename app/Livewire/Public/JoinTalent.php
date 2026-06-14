@@ -247,7 +247,7 @@ class JoinTalent extends Component
         try {
             Mail::to($submission->email)->send(new TalentSubmissionMail($submission));
             Mail::to(config('mail.from.address'))->send(new AdminTalentSubmissionNotification($submission));
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             Log::error('Mail sending failed: '.$e->getMessage());
         }
 

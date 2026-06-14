@@ -110,7 +110,7 @@ class EventsRegistrationWizard extends Component
             try {
                 $email = auth()->check() ? auth()->user()->email : $this->guest_email;
                 Mail::to($email)->send(new EventRegistrationMail($registration));
-            } catch (\Exception $e) {
+            } catch (\Throwable $e) {
                 // Log or ignore mail failure during direct registration (background cron handles queue dispatch)
             }
 
