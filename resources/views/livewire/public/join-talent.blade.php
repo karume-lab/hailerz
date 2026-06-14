@@ -293,7 +293,7 @@
                                         placeholder="London, UK" :location="true" />
                                 </div>
                                 <div class="md:col-span-2">
-                                    <x-image-dropzone wire:model.live="profile_photo_url" label="Profile Photo *" />
+                                    <x-image-dropzone wire:model="profile_photo_url" label="Profile Photo *" />
                                     <p class="text-xs text-text-muted mt-2">Provide a high-quality promotional photo or logo.</p>
                                 </div>
                             </div>
@@ -378,7 +378,7 @@
                                                         <x-input wire:model.live.debounce.500ms="gallery.{{ $index }}.url" label="Media Link *"
                                                             placeholder="YouTube, SoundCloud, or Drive link" />
                                                     @else
-                                                        <x-image-dropzone wire:model.live="gallery.{{ $index }}.url" label="Upload Image *" />
+                                                        <x-image-dropzone wire:model="gallery.{{ $index }}.url" label="Upload Image *" />
                                                     @endif
 
                                                     @if(($gallery[$index]['media_type'] ?? 'link') === 'link' && !empty($gallery[$index]['url']) && (filter_var($gallery[$index]['url'], FILTER_VALIDATE_URL) || str_starts_with($gallery[$index]['url'], 'data:image/')))

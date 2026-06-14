@@ -178,15 +178,9 @@ class CurrencyHelper
         return ceil($amount / $factor) * $factor;
     }
 
-    /**
-     * Localized budget range options tailored dynamically to each currency scale.
-     */
-    public static function getBudgetOptions(?string $currency = null): array
+    public static function getBudgetRangesBase(): array
     {
-        $currency = $currency ?: self::getUserCurrency();
-
-        // Base USD ranges
-        $baseRanges = [
+        return [
             [0, 1000],
             [1000, 2500],
             [2500, 5000],
@@ -196,6 +190,17 @@ class CurrencyHelper
             [15000, 20000],
             [20000, null],
         ];
+    }
+
+    /**
+     * Localized budget range options tailored dynamically to each currency scale.
+     */
+    public static function getBudgetOptions(?string $currency = null): array
+    {
+        $currency = $currency ?: self::getUserCurrency();
+
+        // Base USD ranges
+        $baseRanges = self::getBudgetRangesBase();
 
         $options = [];
         foreach ($baseRanges as $range) {
@@ -217,6 +222,25 @@ class CurrencyHelper
         }
 
         return $options;
+    }
+
+    /**
+     * Get the dynamic string option for a specific USD price.
+     */
+    public static function getBudgetRangeForPrice(float $usdPrice, ?string $currency = null): string
+    {
+        $currency = $currency ?: self::getUserCurrency();
+        $baseRanges = self::getBudgetRangesBase();
+        $options = self::getBudgetOptions($currency);
+
+        foreach ($baseRanges as $index => $range) {
+            $maxBase = $range[1];
+            if ($maxBase === null || $usdPrice <= $maxBase) {
+                return $options[$index];
+            }
+        }
+
+        return $options[count($options) - 1];
     }
 
     /**
