@@ -8,6 +8,8 @@ use App\Mail\TalentSubmissionMail;
 use App\Models\Submission;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Attributes\Validate;
@@ -187,6 +189,19 @@ class JoinTalent extends Component
     {
         $this->validate();
 
+        $profilePhotoUrl = $this->profile_photo_url;
+        if (str_starts_with($profilePhotoUrl, 'data:image')) {
+            preg_match('/^data:image\/(\w+);base64,/', $profilePhotoUrl, $type);
+            $extension = strtolower($type[1] ?? 'jpeg');
+            if ($extension === 'jpeg') {
+                $extension = 'jpg';
+            }
+            $base64Image = substr($profilePhotoUrl, strpos($profilePhotoUrl, ',') + 1);
+            $imageName = 'submissions/profiles/'.Str::random(40).'.'.$extension;
+            Storage::disk('public')->put($imageName, base64_decode($base64Image));
+            $profilePhotoUrl = Storage::url($imageName);
+        }
+
         $submission = Submission::create([
             'talent_type' => $this->talent_type,
             'member_count' => $this->member_count,
@@ -195,7 +210,7 @@ class JoinTalent extends Component
             'email' => $this->email,
             'phone' => $this->phone,
             'location' => $this->location,
-            'profile_photo_url' => $this->profile_photo_url,
+            'profile_photo_url' => $profilePhotoUrl,
             'category' => $this->category,
             'genre' => $this->genre,
             'years_active' => $this->years_active,
@@ -214,6 +229,17 @@ class JoinTalent extends Component
 
         foreach ($this->gallery as $item) {
             if (! empty($item['url'])) {
+                if (str_starts_with($item['url'], 'data:image')) {
+                    preg_match('/^data:image\/(\w+);base64,/', $item['url'], $type);
+                    $extension = strtolower($type[1] ?? 'jpeg');
+                    if ($extension === 'jpeg') {
+                        $extension = 'jpg';
+                    }
+                    $base64Image = substr($item['url'], strpos($item['url'], ',') + 1);
+                    $imageName = 'submissions/gallery/'.Str::random(40).'.'.$extension;
+                    Storage::disk('public')->put($imageName, base64_decode($base64Image));
+                    $item['url'] = Storage::url($imageName);
+                }
                 $submission->gallery()->create($item);
             }
         }
