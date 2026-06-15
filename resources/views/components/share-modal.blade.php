@@ -1,6 +1,6 @@
 @props(['title' => 'Check out this page'])
 
-<div class="pt-8 border-t border-subtle " x-data="{ showShareModal: false, copied: false, url: window.location.href }">
+<div {{ $attributes->merge(['class' => 'w-full']) }} x-data="{ showShareModal: false, copied: false, url: window.location.href }">
     <div class="flex items-center justify-between gap-4">
         <x-button
         @click="showShareModal = true"
@@ -17,7 +17,7 @@
             @keydown.escape.window="showShareModal = false">
             
             <div @click.away="showShareModal = false"
-                class="bg-surface-dark text-text-inverse w-full max-w-130 rounded-2xl shadow-sm border border-white/10 flex flex-col "
+                class="bg-surface-dark text-text-inverse w-full max-w-md rounded-2xl shadow-sm border border-white/10 flex flex-col "
                 x-transition:enter="transition ease-out duration-300"
                 x-transition:enter-start="opacity-0 translate-y-8 sm:translate-y-0 sm:scale-95"
                 x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"

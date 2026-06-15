@@ -119,40 +119,18 @@
                                         <div class="grid grid-cols-2 sm:grid-cols-3 gap-6">
                                             @foreach($event->universities as $uni)
                                                 <div
-                                                    class="bg-surface-muted border border-subtle p-4 rounded-xl flex items-center justify-center shadow-sm hover:shadow-md transition-shadow">
+                                                    class="bg-surface-muted border border-subtle p-4 rounded-xl flex flex-col items-center justify-center shadow-sm hover:shadow-md transition-shadow gap-2 text-center h-full overflow-hidden">
                                                     @if(isset($uni['logo']))
                                                         <img src="{{ Storage::url($uni['logo']) }}" alt="{{ $uni['name'] }}"
-                                                            class="max-h-12 object-contain grayscale hover:grayscale-0 transition-all">
-                                                    @else
-                                                        <span
-                                                            class="font-bold text-sm text-text-secondary text-center">{{ $uni['name'] }}</span>
+                                                            class="max-h-10 object-contain grayscale hover:grayscale-0 transition-all">
                                                     @endif
+                                                    <span
+                                                        class="font-bold text-xs text-text-secondary w-full truncate" title="{{ $uni['name'] }}">{{ $uni['name'] }}</span>
                                                 </div>
                                             @endforeach
                                         </div>
                                     </div>
                                 @endif
-
-                                <!-- Direct Sales Contact Card -->
-                                <div
-                                    class="bg-brand-primary/5 border border-brand-primary/20 rounded-2xl p-6 flex items-start gap-4 shadow-sm">
-                                    <div
-                                        class="w-12 h-12 rounded-full bg-brand-primary text-white flex items-center justify-center shrink-0">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                            stroke-width="2" stroke="currentColor" class="w-6 h-6">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.864-1.068l-3.264-.652a2.25 2.25 0 00-2.316.74l-1.076 1.077c-3.15-1.57-5.717-4.137-7.288-7.288l1.077-1.076a2.25 2.25 0 00.74-2.316l-.652-3.264A2.25 2.25 0 0015.628 2.25H14.25A2.25 2.25 0 0012 4.5c0 8.284-6.716 15-15 15z" />
-                                        </svg>
-                                    </div>
-                                    <div>
-                                        <h4 class="font-bold text-text-primary mb-1">Book a Meeting with Sales</h4>
-                                        <p class="text-sm text-text-secondary mb-3">Discuss custom partnership packages and
-                                            exclusive corporate benefits.</p>
-                                        <a href="mailto:partnerships@hailerz.com"
-                                            class="text-brand-primary font-semibold text-sm hover:underline">partnerships@hailerz.com
-                                            &rarr;</a>
-                                    </div>
-                                </div>
                             </div>
                         </div>
 

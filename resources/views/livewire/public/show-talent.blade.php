@@ -351,7 +351,7 @@
           @endif
 
           <!-- Share -->
-          <x-share-modal :title="'Check out this talent: ' . $talent->name" />
+          <x-share-modal class="pt-8 border-t border-subtle" :title="'Check out this talent: ' . $talent->name" />
         </x-card>
       </div>
 
