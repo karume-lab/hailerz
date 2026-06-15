@@ -99,7 +99,7 @@
                 <div class="col-span-6">
                     <h3 class="text-xs text-brand-primary tracking-widest uppercase mb-6">Programs</h3>
                     <ul class="space-y-4">
-                        <li><a href="/challenges/about" wire:navigate class="text-sm font-medium text-text-secondary hover:text-brand-primary transition-colors">What are Challenges?</a></li>
+                        <li><a href="/challenges/benefits" wire:navigate class="text-sm font-medium text-text-secondary hover:text-brand-primary transition-colors">Benefits of Challenges</a></li>
                         <li><a href="/challenges/browse" wire:navigate class="text-sm font-medium text-text-secondary hover:text-brand-primary transition-colors">Browse Challenges</a></li>
                         <li><a href="/challenges/resources" wire:navigate class="text-sm font-medium text-text-secondary hover:text-brand-primary transition-colors">Resources & Blogs</a></li>
                     </ul>

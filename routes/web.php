@@ -167,8 +167,8 @@ Route::prefix('contracts')->group(function () {
 use App\Livewire\Public\ChallengeDetail;
 use App\Livewire\Public\ChallengesHub;
 
-Route::get('/challenges', ChallengesHub::class);
-Route::view('/challenges/about', 'public.pages.learn.home')->name('challenges.about');
+Route::view('/challenges', 'public.pages.learn.home')->name('challenges.home');
+Route::view('/challenges/benefits', 'public.pages.learn.benefits')->name('challenges.benefits');
 Route::get('/challenges/browse', ChallengesHub::class)->name('challenges.index');
 Route::get('/challenges/browse/{slug}', ChallengeDetail::class)->name('challenges.show');
 Route::redirect('/challenges/resources', '/resources');
