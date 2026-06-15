@@ -72,19 +72,17 @@ Route::redirect('/marketplace/talent', '/talent-hub/browse');
 Route::redirect('/marketplace/talent/{slug}', '/talent-hub/browse/{slug}');
 
 // Marketplace Expo Routes
-Route::get('/marketplace-expo', function () {
-    $event = Event::latest('date')->first();
-    $exhibitors = collect();
-    if ($event) {
-        $exhibitors = EventRegistration::where('event_id', $event->id)
-            ->where('pass_type', 'exhibitor')
-            ->where('payment_status', 'confirmed')
-            ->whereNotNull('company_logo')
-            ->get();
-    }
+Route::redirect('/marketplace-expo', '/marketplace-expo/browse')->name('events');
+
+Route::get('/events/{event:slug}', function (Event $event) {
+    $exhibitors = EventRegistration::where('event_id', $event->id)
+        ->where('pass_type', 'exhibitor')
+        ->where('payment_status', 'confirmed')
+        ->whereNotNull('company_logo')
+        ->get();
 
     return view('public.pages.events.home', ['event' => $event, 'exhibitors' => $exhibitors]);
-})->name('events');
+})->name('events.show');
 Route::get('/marketplace-expo/services', EventsHub::class)->name('events.services');
 Route::get('/marketplace-expo/browse', EventsDirectory::class)->name('events.browse');
 Route::get('/marketplace-expo/tickets', EventsRegistrationWizard::class)->name('events.create');

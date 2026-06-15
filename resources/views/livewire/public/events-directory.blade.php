@@ -38,7 +38,7 @@
                         <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
                             @foreach($directoryEvents as $event)
                                 <x-card padding="p-0" class="group transition-all duration-500 flex flex-col h-full overflow-hidden hover:-translate-y-2 hover:shadow-2xl hover:border-brand-primary/30 animate-fadeIn border border-brand-primary/10">
-                                    <div class="block">
+                                    <a href="{{ route('events.show', $event->slug) }}" wire:navigate class="block">
                                         <div class="group relative overflow-hidden aspect-video bg-surface-dark flex items-center justify-center p-6">
                                             @php
                                                 $initials = collect(explode(' ', $event->title))
@@ -64,7 +64,7 @@
                                                 <h3 class="text-xl font-bold text-text-inverse truncate">{{ $event->title }}</h3>
                                             </div>
                                         </div>
-                                    </div>
+                                    </a>
 
                                     <div class="p-8 flex-1 flex flex-col justify-between bg-surface-light">
                                         <div class="text-text-secondary text-sm leading-relaxed mb-6 line-clamp-3 prose prose-sm dark:prose-invert">
@@ -76,7 +76,7 @@
                                                 <p class="text-[10px] font-bold text-text-secondary uppercase tracking-widest">Event Date</p>
                                                 <p class="text-sm font-bold text-text-primary mt-1">{{ $event->date->format('M d, Y') }}</p>
                                             </div>
-                                            <a href="{{ route('events') }}" wire:navigate class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-primary/10 text-brand-primary hover:bg-brand-primary/20 transition-colors text-[10px] font-bold uppercase tracking-widest">
+                                            <a href="{{ route('events.show', $event->slug) }}" wire:navigate class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-primary/10 text-brand-primary hover:bg-brand-primary/20 transition-colors text-[10px] font-bold uppercase tracking-widest">
                                                 View Event
                                             </a>
                                         </div>

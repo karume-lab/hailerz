@@ -3,10 +3,20 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Event extends Model
 {
     protected $guarded = [];
+
+    protected static function booted()
+    {
+        static::saving(function ($event) {
+            if (empty($event->slug)) {
+                $event->slug = Str::slug($event->title);
+            }
+        });
+    }
 
     protected function casts(): array
     {

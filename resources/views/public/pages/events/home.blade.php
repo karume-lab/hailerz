@@ -43,6 +43,11 @@
                                 Get Ticket
                             </x-button>
                         </div>
+                        @if($event)
+                            <div class="mt-8 flex justify-center reveal reveal-delay-400">
+                                <x-share-modal :title="'Check out this event: ' . $event->title" />
+                            </div>
+                        @endif
                     </div>
                 </div>
             </section>
@@ -70,10 +75,11 @@
                                     $colorIndex = 0;
                                     $demographicList = [];
                                     foreach ($event->demographics as $skill => $percent) {
-                                        $nextPercent = $currentPercent + $percent;
+                                        $percentValue = (float) filter_var($percent, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+                                        $nextPercent = $currentPercent + $percentValue;
                                         $color = $colors[$colorIndex % count($colors)];
                                         $conicStops[] = "{$color} {$currentPercent}% {$nextPercent}%";
-                                        $demographicList[] = ['skill' => $skill, 'percent' => $percent, 'color' => $color];
+                                        $demographicList[] = ['skill' => $skill, 'percent' => $percentValue, 'color' => $color];
                                         $currentPercent = $nextPercent;
                                         $colorIndex++;
                                     }
