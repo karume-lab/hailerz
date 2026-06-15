@@ -28,7 +28,8 @@ class EventForm
                         RichEditor::make('description')
                             ->required()
                             ->columnSpanFull(),
-                    ])->columns(3),
+                    ])->columns(3)
+                    ->columnSpanFull(),
 
                 Section::make('Financial Configurations')
                     ->schema([
@@ -42,7 +43,8 @@ class EventForm
                             ->numeric()
                             ->default(0)
                             ->prefix('NGN'),
-                    ])->columns(2),
+                    ])->columns(2)
+                    ->columnSpanFull(),
 
                 Section::make('Value Curation & Demographic Metadata')
                     ->schema([
@@ -56,7 +58,8 @@ class EventForm
                                 FileUpload::make('logo')->image()->directory('event-universities')->required(),
                             ])
                             ->columnSpanFull(),
-                    ]),
+                    ])
+                    ->columnSpanFull(),
             ]);
     }
 }

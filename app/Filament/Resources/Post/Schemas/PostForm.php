@@ -41,7 +41,8 @@ class PostForm
                     Forms\Components\Textarea::make('subtitle')
                         ->rows(3)
                         ->columnSpanFull(),
-                ])->columns(2),
+                ])->columns(2)
+                ->columnSpanFull(),
 
             Section::make('Content Blocks')
                 ->schema([
@@ -62,7 +63,8 @@ class PostForm
                         ->columns(4)
                         ->reorderable(true)
                         ->columnSpanFull(),
-                ]),
+                ])
+                ->columnSpanFull(),
 
             Section::make('Publishing')
                 ->schema([
@@ -70,7 +72,8 @@ class PostForm
                         ->default(true),
                     Forms\Components\DateTimePicker::make('published_at')
                         ->default(now()),
-                ])->columns(2),
+                ])->columns(2)
+                ->columnSpanFull(),
         ]);
     }
 }
