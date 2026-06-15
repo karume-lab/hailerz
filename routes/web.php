@@ -96,7 +96,6 @@ Route::view('/academy', 'public.pages.learn.training')->name('academy');
 Route::view('/challenges/workshops', 'public.pages.learn.workshops')->name('learn.workshops');
 Route::redirect('/learn/workshops', '/challenges/workshops');
 
-Route::view('/challenges', 'public.pages.learn.home')->name('challenges.home');
 Route::redirect('/learn', '/challenges');
 
 Route::view('/connect', 'public.pages.connect.home')->name('connect.home');
@@ -164,5 +163,11 @@ Route::prefix('contracts')->group(function () {
     Route::get('/{contract}/download', [ContractController::class, 'download'])->name('contracts.download');
     Route::post('/{oldContract}/new-version', [ContractController::class, 'publishNewVersion'])->name('contracts.new-version');
 });
+
+use App\Livewire\Public\ChallengeDetail;
+use App\Livewire\Public\ChallengesHub;
+
+Route::get('/challenges', ChallengesHub::class)->name('challenges.index');
+Route::get('/challenges/{slug}', ChallengeDetail::class)->name('challenges.show');
 
 require __DIR__.'/auth.php';

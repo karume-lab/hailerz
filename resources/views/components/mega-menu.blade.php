@@ -102,6 +102,7 @@
                         <li><a href="/academy" class="text-sm font-medium text-text-secondary hover:text-brand-primary transition-colors">Hailerz Academy</a></li>
                         <li><a href="/resources" class="text-sm font-medium text-text-secondary hover:text-brand-primary transition-colors">Resources</a></li>
                         <li><a href="/challenges/workshops" class="text-sm font-medium text-text-secondary hover:text-brand-primary transition-colors">Workshops</a></li>
+                        <li><a href="{{ route('challenges.index') }}" wire:navigate class="text-sm font-medium text-text-secondary hover:text-brand-primary transition-colors">Active Sprints & Challenges</a></li>
                     </ul>
                 </div>
             </div>
