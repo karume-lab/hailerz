@@ -15,7 +15,6 @@ use BackedEnum;
 use Filament\Actions\Action;
 use Filament\Actions\EditAction;
 use Filament\Forms;
-use Filament\Infolists\Components\TextEntry;
 use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Schemas\Components\Section;
@@ -105,10 +104,10 @@ class SubmissionResource extends Resource
                                 ->openUrlInNewTab()
                                 ->visible(fn ($state) => ! empty($state) && filter_var($state, FILTER_VALIDATE_URL))
                         ),
-                    TextEntry::make('profile_photo_preview')
+                    Forms\Components\Placeholder::make('profile_photo_preview')
                         ->label('Profile Photo Preview')
-                        ->state(fn ($get) => new HtmlString(MediaPreviewHelper::getPreviewHtml($get('profile_photo_url'))))
-                        ->visible(fn ($get) => ! empty($get('profile_photo_url')) && (filter_var($get('profile_photo_url'), FILTER_VALIDATE_URL) || str_starts_with($get('profile_photo_url'), 'data:image/')))
+                        ->content(fn ($get) => new HtmlString(MediaPreviewHelper::getPreviewHtml($get('profile_photo_url'))))
+                        ->visible(fn ($get) => ! empty($get('profile_photo_url')) && (filter_var($get('profile_photo_url'), FILTER_VALIDATE_URL) || str_starts_with($get('profile_photo_url'), 'data:image/') || str_starts_with($get('profile_photo_url'), '/')))
                         ->columnSpanFull(),
                 ])
                 ->columns(2)
@@ -259,10 +258,10 @@ class SubmissionResource extends Resource
                             Forms\Components\TextInput::make('description')
                                 ->label('Description')
                                 ->columnSpan(1),
-                            TextEntry::make('media_preview')
+                            Forms\Components\Placeholder::make('media_preview')
                                 ->label('Media Preview')
-                                ->state(fn ($get) => new HtmlString(MediaPreviewHelper::getPreviewHtml($get('url'))))
-                                ->visible(fn ($get) => ! empty($get('url')) && (filter_var($get('url'), FILTER_VALIDATE_URL) || str_starts_with($get('url'), 'data:image/')))
+                                ->content(fn ($get) => new HtmlString(MediaPreviewHelper::getPreviewHtml($get('url'))))
+                                ->visible(fn ($get) => ! empty($get('url')) && (filter_var($get('url'), FILTER_VALIDATE_URL) || str_starts_with($get('url'), 'data:image/') || str_starts_with($get('url'), '/')))
                                 ->columnSpanFull(),
                         ])
                         ->columns(4)
