@@ -88,18 +88,16 @@ class EventsRegistrationWizard extends Component
             return;
         }
 
-        if (! auth()->check()) {
-            $this->validate([
-                'guest_name' => 'required|string|max:255',
-                'guest_email' => 'required|email|max:255',
-            ]);
-        }
+        $this->validate([
+            'guest_name' => 'required|string|max:255',
+            'guest_email' => 'required|email|max:255',
+        ]);
 
         if ($this->pass_type === 'attendee') {
             $registration = EventRegistration::create([
                 'user_id' => auth()->id(),
-                'guest_name' => auth()->check() ? null : $this->guest_name,
-                'guest_email' => auth()->check() ? null : $this->guest_email,
+                'guest_name' => $this->guest_name,
+                'guest_email' => $this->guest_email,
                 'event_id' => $this->event->id,
                 'pass_type' => 'attendee',
                 'total_amount' => $this->event->attendee_price ?? 0.00,
@@ -108,7 +106,7 @@ class EventsRegistrationWizard extends Component
             ]);
 
             try {
-                $email = auth()->check() ? auth()->user()->email : $this->guest_email;
+                $email = $this->guest_email;
                 Mail::to($email)->send(new EventRegistrationMail($registration));
             } catch (\Throwable $e) {
                 // Log or ignore mail failure during direct registration (background cron handles queue dispatch)
@@ -131,8 +129,8 @@ class EventsRegistrationWizard extends Component
 
             $registration = EventRegistration::create([
                 'user_id' => auth()->id(),
-                'guest_name' => auth()->check() ? null : $this->guest_name,
-                'guest_email' => auth()->check() ? null : $this->guest_email,
+                'guest_name' => $this->guest_name,
+                'guest_email' => $this->guest_email,
                 'event_id' => $this->event->id,
                 'pass_type' => 'exhibitor',
                 'company_name' => $this->company_name,
@@ -146,7 +144,7 @@ class EventsRegistrationWizard extends Component
             // Initialize Paystack with native NGN parameters matching our active merchant channel
             $response = Http::withToken(config('paystack.secretKey'))
                 ->post(config('paystack.paymentUrl').'/transaction/initialize', [
-                    'email' => auth()->check() ? auth()->user()->email : $this->guest_email,
+                    'email' => $this->guest_email,
                     'amount' => (int) ($amount * 100), // Converted to kobo
                     'currency' => 'NGN', // Explicitly route to native NGN channels
                     'reference' => $reference,

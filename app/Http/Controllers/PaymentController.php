@@ -114,8 +114,11 @@ class PaymentController extends Controller
                 ]);
 
                 try {
-                    Log::info('Attempting to send event registration email to: '.$registration->user->email);
-                    Mail::to($registration->user->email)->send(new EventRegistrationMail($registration));
+                    $email = $registration->guest_email ?? $registration->user?->email;
+                    Log::info('Attempting to send event registration email to: '.$email);
+                    if ($email) {
+                        Mail::to($email)->send(new EventRegistrationMail($registration));
+                    }
                     Log::info('Event registration email sent successfully.');
                 } catch (\Throwable $e) {
                     Log::error('Event registration mail sending failed: '.$e->getMessage());
@@ -172,7 +175,10 @@ class PaymentController extends Controller
                     ]);
 
                     try {
-                        Mail::to($registration->user->email)->send(new EventRegistrationMail($registration));
+                        $email = $registration->guest_email ?? $registration->user?->email;
+                        if ($email) {
+                            Mail::to($email)->send(new EventRegistrationMail($registration));
+                        }
                     } catch (\Throwable $e) {
                         Log::error('Webhook event registration mail sending failed: '.$e->getMessage());
                     }

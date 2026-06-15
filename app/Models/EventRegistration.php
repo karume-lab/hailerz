@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
- * @property-read User $user
+ * @property-read User|null $user
  */
 class EventRegistration extends Model
 {
