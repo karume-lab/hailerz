@@ -3,7 +3,7 @@
         
         <!-- Header Value Display -->
         <div class="mb-8 border-b border-subtle pb-6">
-            <a href="/challenges" wire:navigate class="text-xs font-bold text-brand-primary hover:underline uppercase tracking-wider">&larr; Back to Challenges</a>
+            <a href="/challenges/browse" wire:navigate class="text-xs font-bold text-brand-primary hover:underline uppercase tracking-wider">&larr; Back to Challenges</a>
             <h1 class="text-4xl font-extrabold text-brand-accent mt-4 mb-4 dark:text-text-primary">{{ $challenge->title }}</h1>
             <div class="flex flex-wrap gap-6 text-xs text-text-secondary uppercase tracking-wider font-semibold">
                 <span>Timeline Sprint: <strong>{{ $challenge->start_date->format('M d') }} - {{ $challenge->end_date->format('M d, Y') }}</strong></span>

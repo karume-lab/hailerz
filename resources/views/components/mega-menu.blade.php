@@ -99,10 +99,9 @@
                 <div class="col-span-6">
                     <h3 class="text-xs text-brand-primary tracking-widest uppercase mb-6">Programs</h3>
                     <ul class="space-y-4">
-                        <li><a href="/academy" class="text-sm font-medium text-text-secondary hover:text-brand-primary transition-colors">Hailerz Academy</a></li>
-                        <li><a href="/resources" class="text-sm font-medium text-text-secondary hover:text-brand-primary transition-colors">Resources</a></li>
-                        <li><a href="/challenges/workshops" class="text-sm font-medium text-text-secondary hover:text-brand-primary transition-colors">Workshops</a></li>
-                        <li><a href="{{ route('challenges.index') }}" wire:navigate class="text-sm font-medium text-text-secondary hover:text-brand-primary transition-colors">Active Sprints & Challenges</a></li>
+                        <li><a href="/challenges/about" wire:navigate class="text-sm font-medium text-text-secondary hover:text-brand-primary transition-colors">What are Challenges?</a></li>
+                        <li><a href="/challenges/browse" wire:navigate class="text-sm font-medium text-text-secondary hover:text-brand-primary transition-colors">Browse Challenges</a></li>
+                        <li><a href="/challenges/resources" wire:navigate class="text-sm font-medium text-text-secondary hover:text-brand-primary transition-colors">Resources & Blogs</a></li>
                     </ul>
                 </div>
             </div>

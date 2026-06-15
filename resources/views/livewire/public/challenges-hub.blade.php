@@ -60,7 +60,7 @@
                                 {{ $challenge->comments_count }}
                             </span>
                         </div>
-                        <a href="/challenges/{{ $challenge->slug }}" wire:navigate class="text-xs font-bold text-brand-primary hover:underline">View Challenge &rarr;</a>
+                        <a href="/challenges/browse/{{ $challenge->slug }}" wire:navigate class="text-xs font-bold text-brand-primary hover:underline">View Challenge &rarr;</a>
                     </div>
                 </div>
             @empty

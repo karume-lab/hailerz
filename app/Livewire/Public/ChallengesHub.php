@@ -38,10 +38,16 @@ class ChallengesHub extends Component
 
         return view('livewire.public.challenges-hub', [
             'challenges' => $query->latest()->paginate(9),
-            'availableMonths' => Challenge::selectRaw('YEAR(start_date) year, MONTH(start_date) month')
-                ->groupBy('year', 'month')
-                ->orderBy('year', 'desc')
-                ->get(),
+            'availableMonths' => Challenge::select('start_date')
+                ->get()
+                ->map(function (Challenge $c) {
+                    $date = Carbon::parse($c->start_date);
+
+                    return (object) ['year' => $date->year, 'month' => $date->month];
+                })
+                ->unique(fn (object $c) => $c->year.'-'.$c->month)
+                ->sortByDesc(fn (object $c) => $c->year.'-'.str_pad((string) $c->month, 2, '0', STR_PAD_LEFT))
+                ->values(),
         ]);
     }
 }
