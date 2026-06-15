@@ -7,6 +7,7 @@ use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\KeyValue;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
@@ -24,6 +25,14 @@ class EventForm
                         DateTimePicker::make('date')
                             ->required(),
                         TextInput::make('location')
+                            ->required(),
+                        Select::make('status')
+                            ->options([
+                                'draft' => 'Draft',
+                                'published' => 'Published',
+                                'unlisted' => 'Unlisted',
+                            ])
+                            ->default('published')
                             ->required(),
                         RichEditor::make('description')
                             ->required()

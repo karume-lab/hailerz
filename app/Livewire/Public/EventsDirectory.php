@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Public;
 
-use App\Models\EventRegistration;
+use App\Models\Event;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Attributes\Url;
@@ -46,21 +46,21 @@ class EventsDirectory extends Component
     {
         $perPage = 12;
 
-        $registrations = EventRegistration::query()
-            ->where('pass_type', 'exhibitor')
-            ->where('payment_status', 'confirmed')
+        $directoryEvents = Event::query()
+            ->where('status', 'published')
             ->when($this->search, function ($query) {
                 $query->where(function ($q) {
-                    $q->where('company_name', 'like', '%'.$this->search.'%')
-                        ->orWhere('company_description', 'like', '%'.$this->search.'%');
+                    $q->where('title', 'like', '%'.$this->search.'%')
+                        ->orWhere('description', 'like', '%'.$this->search.'%')
+                        ->orWhere('location', 'like', '%'.$this->search.'%');
                 });
             })
             ->when($this->sort === 'latest', fn ($query) => $query->orderByDesc('created_at'))
-            ->when($this->sort === 'name', fn ($query) => $query->orderBy('company_name'))
+            ->when($this->sort === 'name', fn ($query) => $query->orderBy('title'))
             ->paginate($perPage * $this->getPage(), page: 1);
 
         return view('livewire.public.events-directory', [
-            'registrations' => $registrations,
+            'directoryEvents' => $directoryEvents,
         ]);
     }
 }

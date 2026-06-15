@@ -16,6 +16,14 @@ class EventsTable
             ->columns([
                 TextColumn::make('title')
                     ->searchable(),
+                TextColumn::make('status')
+                    ->badge()
+                    ->color(fn (string $state): string => match ($state) {
+                        'published' => 'success',
+                        'draft' => 'warning',
+                        'unlisted' => 'gray',
+                        default => 'primary',
+                    }),
                 TextColumn::make('date')
                     ->dateTime()
                     ->sortable(),

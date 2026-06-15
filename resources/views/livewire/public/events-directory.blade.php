@@ -34,62 +34,58 @@
             <!-- Exhibitors Grid -->
             <main class="w-full lg:w-3/4">
                 <div class="transition-all duration-500 ease-in-out" wire:loading.class="opacity-40 blur-[1px]">
-                    @if($registrations->count() > 0)
+                    @if($directoryEvents->count() > 0)
                         <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
-                            @foreach($registrations as $reg)
+                            @foreach($directoryEvents as $event)
                                 <x-card padding="p-0" class="group transition-all duration-500 flex flex-col h-full overflow-hidden hover:-translate-y-2 hover:shadow-2xl hover:border-brand-primary/30 animate-fadeIn border border-brand-primary/10">
                                     <div class="block">
-                                        <div class="group relative overflow-hidden aspect-3/4 bg-surface-dark flex items-center justify-center p-6">
-                                            @if($reg->company_logo)
-                                                <img src="{{ $reg->company_logo }}"
-                                                    loading="{{ $loop->iteration <= 6 ? 'eager' : 'lazy' }}"
-                                                    fetchpriority="{{ $loop->iteration <= 2 ? 'high' : 'auto' }}" decoding="async"
-                                                    class="max-h-24 w-auto max-w-[80%] object-contain transition-transform duration-700 group-hover:scale-110 filter dark:invert"
-                                                    alt="{{ $reg->company_name }}" />
-                                            @else
-                                                @php
-                                                    $initials = collect(explode(' ', $reg->company_name))
-                                                        ->map(fn($w) => strtoupper(substr($w, 0, 1)))
-                                                        ->take(3)
-                                                        ->implode('');
-                                                @endphp
-                                                <div class="w-24 h-24 rounded-2xl bg-brand-primary/15 border border-brand-primary/25 flex items-center justify-center text-brand-primary font-bold text-3xl tracking-widest transition-transform duration-700 group-hover:scale-110">
-                                                    {{ $initials }}
-                                                </div>
-                                            @endif
+                                        <div class="group relative overflow-hidden aspect-video bg-surface-dark flex items-center justify-center p-6">
+                                            @php
+                                                $initials = collect(explode(' ', $event->title))
+                                                    ->map(fn($w) => strtoupper(substr($w, 0, 1)))
+                                                    ->take(3)
+                                                    ->implode('');
+                                            @endphp
+                                            <div class="w-full h-full absolute inset-0 bg-brand-primary/5 flex items-center justify-center text-brand-primary/40 font-bold text-6xl tracking-widest transition-transform duration-700 group-hover:scale-110">
+                                                {{ $initials }}
+                                            </div>
 
                                             <div class="absolute inset-0 bg-linear-to-tr from-brand-primary/40 to-brand-secondary/10 mix-blend-color opacity-25 transition-opacity group-hover:opacity-40 pointer-events-none"></div>
                                             <div class="absolute inset-0 bg-linear-to-t from-surface-dark/90 via-surface-dark/30 to-transparent pointer-events-none"></div>
 
                                             <div class="absolute bottom-6 left-6 right-6">
-                                                <p class="text-[10px] font-bold text-text-inverse/70 uppercase tracking-widest mb-1">
-                                                    Confirmed Event
+                                                <p class="text-[10px] font-bold text-text-inverse/70 uppercase tracking-widest mb-1 flex items-center gap-2">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">
+                                                      <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                                                      <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
+                                                    </svg>
+                                                    {{ $event->location }}
                                                 </p>
-                                                <h3 class="text-xl font-bold text-text-inverse truncate">{{ $reg->company_name }}</h3>
+                                                <h3 class="text-xl font-bold text-text-inverse truncate">{{ $event->title }}</h3>
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="p-8 flex-1 flex flex-col justify-between bg-surface-light">
-                                        <p class="text-text-secondary text-sm leading-relaxed mb-6 line-clamp-3">
-                                            {{ $reg->company_description }}
-                                        </p>
+                                        <div class="text-text-secondary text-sm leading-relaxed mb-6 line-clamp-3 prose prose-sm dark:prose-invert">
+                                            {!! strip_tags($event->description) !!}
+                                        </div>
 
                                         <div class="flex justify-between items-center pt-6 border-t border-subtle">
                                             <div>
-                                                <p class="text-[10px] font-bold text-text-secondary uppercase tracking-widest">Registered Date</p>
-                                                <p class="text-sm font-bold text-text-primary mt-1">{{ $reg->created_at->format('M d, Y') }}</p>
+                                                <p class="text-[10px] font-bold text-text-secondary uppercase tracking-widest">Event Date</p>
+                                                <p class="text-sm font-bold text-text-primary mt-1">{{ $event->date->format('M d, Y') }}</p>
                                             </div>
-                                            <div class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-primary/10 text-brand-primary text-[10px] font-bold uppercase tracking-widest">
-                                                Event Confirmed
-                                            </div>
+                                            <a href="{{ route('events') }}" wire:navigate class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-primary/10 text-brand-primary hover:bg-brand-primary/20 transition-colors text-[10px] font-bold uppercase tracking-widest">
+                                                View Event
+                                            </a>
                                         </div>
                                     </div>
                                 </x-card>
                             @endforeach
                         </div>
 
-                        @if($registrations->hasMorePages())
+                        @if($directoryEvents->hasMorePages())
                             <div x-data="{
                                 isLoading: false,
                                 observe() {

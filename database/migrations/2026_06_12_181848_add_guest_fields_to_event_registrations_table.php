@@ -12,8 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('event_registrations', function (Blueprint $table) {
-            $table->string('guest_name')->nullable()->after('user_id');
-            $table->string('guest_email')->nullable()->after('guest_name');
+            if (! Schema::hasColumn('event_registrations', 'guest_name')) {
+                $table->string('guest_name')->nullable()->after('user_id');
+            }
+            if (! Schema::hasColumn('event_registrations', 'guest_email')) {
+                $table->string('guest_email')->nullable()->after('guest_name');
+            }
             $table->foreignId('user_id')->nullable()->change();
         });
     }
