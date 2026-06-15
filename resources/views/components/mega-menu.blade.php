@@ -26,12 +26,12 @@
             </a>
         </div>
 
-        <!-- 5. Connect Track -->
+        {{-- <!-- 5. Connect Track -->
         <div class="relative h-full flex items-center" @mouseenter="activeMenu = 'connect'">
             <a href="/connect" wire:navigate class="text-sm font-semibold tracking-wide transition-colors" :class="activeMenu === 'connect' || (!activeMenu && '{{ request()->is('connect*') }}') ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary'">
                 Connect
             </a>
-        </div>
+        </div> --}}
 
         <!-- 6. Marketplace Expo Track -->
         <div class="relative h-full flex items-center" @mouseenter="activeMenu = 'events'">
@@ -106,7 +106,7 @@
                 </div>
             </div>
 
-            <!-- 5. Connect Panel -->
+            {{-- <!-- 5. Connect Panel -->
             <div x-show="activeMenu === 'connect'" class="grid grid-cols-10 gap-12" style="display: none;">
                 <div class="col-span-4 pr-8 border-r border-subtle flex flex-col justify-center">
                     <h2 class="text-3xl text-brand-primary mb-4">Community Hub</h2>
@@ -121,7 +121,7 @@
                         <li><a href="/connect/groups" class="text-sm font-medium text-text-secondary hover:text-brand-primary transition-colors">Groups</a></li>
                     </ul>
                 </div>
-            </div>
+            </div> --}}
 
             <!-- 6. Marketplace Expo Panel -->
             <div x-show="activeMenu === 'events'" class="grid grid-cols-10 gap-12" style="display: none;">

@@ -4,7 +4,7 @@
         ['label' => 'About', 'href' => '/about'],
         ['label' => 'Talent Hub', 'href' => '/talent-hub/browse'],
         ['label' => 'Hailerz Challenges', 'href' => '/challenges'],
-        ['label' => 'Connect', 'href' => '/connect'],
+        // ['label' => 'Connect', 'href' => '/connect'],
         ['label' => 'Marketplace Expo', 'href' => '/marketplace-expo'],
         ['label' => 'Contact', 'href' => '/contact'],
     ]
