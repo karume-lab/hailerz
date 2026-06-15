@@ -78,12 +78,26 @@
 
                 <!-- PDF Renderer frame -->
                 <div
-                    class="relative grow min-h-[600px] lg:min-h-[750px] bg-neutral-100 dark:bg-neutral-900 flex flex-col">
-                    <iframe src="{{ URL::signedRoute('contracts.download', ['contract' => $contract->id]) }}#toolbar=0"
-                        class="absolute inset-0 w-full h-full border-none">
-                        This browser does not support PDF embedding. Please click the button above to download and
-                        review.
-                    </iframe>
+                    class="relative grow min-h-150 lg:min-h-187.5 bg-neutral-100 dark:bg-neutral-900 flex flex-col overflow-y-auto px-2 sm:px-4 py-4" id="pdf-container">
+                    
+                    <!-- Loading Indicator -->
+                    <div id="pdf-loading" class="absolute inset-0 flex flex-col items-center justify-center bg-neutral-100 dark:bg-neutral-900 z-10">
+                        <x-lucide-loader-2 class="h-8 w-8 text-brand-primary animate-spin mb-3" />
+                        <span class="text-sm font-medium text-text-muted">Loading document for review...</span>
+                    </div>
+
+                    <!-- Error State (Hidden by default) -->
+                    <div id="pdf-error" class="absolute inset-0 flex-col items-center justify-center bg-neutral-100 dark:bg-neutral-900 z-10 hidden px-6 text-center">
+                        <x-lucide-alert-circle class="h-10 w-10 text-rose-500 mb-3" />
+                        <h3 class="text-base font-bold text-text-primary mb-1">Document Preview Unavailable</h3>
+                        <p class="text-sm text-text-muted mb-4 max-w-md">We couldn't load the interactive preview. This typically happens on certain mobile browsers or if you have strict privacy settings.</p>
+                        <a href="{{ URL::signedRoute('contracts.download', ['contract' => $contract->id]) }}"
+                            class="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold text-white bg-brand-primary rounded-xl"
+                            target="_blank">
+                            <x-lucide-download class="h-4 w-4" stroke-width="2.5" />
+                            Download PDF Instead
+                        </a>
+                    </div>
                 </div>
             </div>
 
@@ -130,7 +144,7 @@
                         </div>
                         <div class="flex justify-between py-2 border-b border-subtle/50">
                             <span class="text-text-muted">Email</span>
-                            <span class="font-semibold text-text-primary truncate max-w-[200px]"
+                            <span class="font-semibold text-text-primary truncate max-w-50"
                                 title="{{ $signature->signer_identifier }}">
                                 {{ $signature->signer_identifier }}
                             </span>
@@ -178,7 +192,7 @@
                                     Signature Style Preview
                                 </span>
                                 <div
-                                    class="bg-surface-muted border border-dashed border-subtle rounded-4xl p-6 flex items-center justify-center min-h-[100px] transition-colors duration-300">
+                                    class="bg-surface-muted border border-dashed border-subtle rounded-4xl p-6 flex items-center justify-center min-h-25 transition-colors duration-300">
                                     <span id="signature-preview-text"
                                         class="font-['Alex_Brush',cursive] text-4xl text-neutral-800 dark:text-neutral-200 select-none tracking-wide">
                                         Your Signature
@@ -304,6 +318,79 @@
                 }
             });
         }
+    </script>
+
+    <!-- PDF.js library for reliable rendering across all devices (especially iOS/Mobile) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof pdfjsLib === 'undefined') {
+                document.getElementById('pdf-loading').classList.add('hidden');
+                document.getElementById('pdf-error').classList.remove('hidden');
+                document.getElementById('pdf-error').style.display = 'flex';
+                return;
+            }
+
+            pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+            const url = "{{ URL::signedRoute('contracts.download', ['contract' => $contract->id]) }}";
+            const container = document.getElementById('pdf-container');
+            const loading = document.getElementById('pdf-loading');
+            const error = document.getElementById('pdf-error');
+
+            const loadingTask = pdfjsLib.getDocument(url);
+            loadingTask.promise.then(function(pdf) {
+                loading.classList.add('hidden');
+                
+                // Render pages sequentially
+                let renderPage = function(pageNum) {
+                    if (pageNum > pdf.numPages) return;
+                    
+                    const canvasWrapper = document.createElement('div');
+                    canvasWrapper.className = 'w-full flex justify-center mb-6';
+                    
+                    const canvas = document.createElement('canvas');
+                    canvas.className = 'max-w-full shadow-md bg-white border border-subtle/30 rounded-sm';
+                    
+                    canvasWrapper.appendChild(canvas);
+                    container.appendChild(canvasWrapper);
+
+                    pdf.getPage(pageNum).then(function(page) {
+                        // Dynamically scale based on container width
+                        const containerWidth = container.clientWidth - 32; // Account for padding
+                        let unscaledViewport = page.getViewport({ scale: 1.0 });
+                        
+                        // Default to 1.5 for crispness, but scale down if it exceeds container width
+                        let scale = 1.5;
+                        if ((unscaledViewport.width * scale) > containerWidth) {
+                            scale = containerWidth / unscaledViewport.width;
+                        }
+
+                        const viewport = page.getViewport({scale: scale});
+                        canvas.height = viewport.height;
+                        canvas.width = viewport.width;
+
+                        const renderContext = {
+                            canvasContext: canvas.getContext('2d'),
+                            viewport: viewport
+                        };
+                        
+                        page.render(renderContext).promise.then(function() {
+                            // Proceed to render next page once current is done
+                            renderPage(pageNum + 1);
+                        });
+                    });
+                };
+
+                renderPage(1);
+
+            }, function (reason) {
+                console.error('PDF loading error: ', reason);
+                loading.classList.add('hidden');
+                error.classList.remove('hidden');
+                error.style.display = 'flex';
+            });
+        });
     </script>
 </body>
 
