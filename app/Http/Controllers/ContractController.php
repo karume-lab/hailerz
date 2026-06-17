@@ -109,10 +109,8 @@ class ContractController extends Controller
             // All signatures received -> Finalize & Append Certificate of Completion
             $this->pdfService->appendCertificateOfCompletion($contract);
 
-            // If the signer matches a talent, mark them as active!
-            $talent = Talent::where('email', $email)
-                ->where('status', 'awaiting_agreement')
-                ->first();
+            // If the signer matches a talent, update their agreement status
+            $talent = Talent::where('email', $email)->first();
             if ($talent) {
                 $talent->update([
                     'has_signed_agreement' => true,

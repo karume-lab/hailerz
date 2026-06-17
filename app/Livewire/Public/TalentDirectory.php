@@ -92,7 +92,7 @@ class TalentDirectory extends Component
         $perPage = 12;
 
         $talents = Talent::query()
-            ->where('status', 'active')
+            ->where('status', 'active')->where('has_signed_agreement', true)
             ->when($this->search, fn ($query) => $query->where('name', 'like', '%'.$this->search.'%'))
             ->when($this->category, fn ($query) => $query->whereHas('category', fn ($q) => $q->where('slug', $this->category)))
             ->when($this->event, fn ($query) => $query->where('bio', 'like', '%'.str_replace('_', ' ', $this->event).'%'))
@@ -110,9 +110,9 @@ class TalentDirectory extends Component
             ->paginate($perPage * $this->getPage(), page: 1);
 
         $categories = Category::orderBy('name')->get();
-        $locations = Talent::where('status', 'active')->whereNotNull('location')->distinct()->pluck('location')->sort();
-        $genres = Talent::where('status', 'active')->whereNotNull('genre')->distinct()->pluck('genre')->sort();
-        $countries = Talent::where('status', 'active')->whereNotNull('country')->distinct()->pluck('country')->sort();
+        $locations = Talent::where('status', 'active')->where('has_signed_agreement', true)->whereNotNull('location')->distinct()->pluck('location')->sort();
+        $genres = Talent::where('status', 'active')->where('has_signed_agreement', true)->whereNotNull('genre')->distinct()->pluck('genre')->sort();
+        $countries = Talent::where('status', 'active')->where('has_signed_agreement', true)->whereNotNull('country')->distinct()->pluck('country')->sort();
 
         return view('livewire.public.talent-directory', [
             'talents' => $talents,

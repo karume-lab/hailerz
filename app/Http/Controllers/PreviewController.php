@@ -218,7 +218,7 @@ class PreviewController extends Controller
             'profile_photo_url' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoYkjSfI-cZkivuGghR4OPNWVq5C7txT1z6A&s',
             'category' => 'DJs',
             'genre' => 'Afrobeat',
-            'years_active' => '5 years',
+            'period_active' => '5 years',
             'min_rate' => '100',
             'max_rate' => '200',
             'currency' => 'USD',

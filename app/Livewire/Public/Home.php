@@ -74,17 +74,17 @@ class Home extends Component
     public function render()
     {
         $featuredTalents = Talent::where('is_featured', true)
-            ->where('status', 'active')
+            ->where('status', 'active')->where('has_signed_agreement', true)
             ->with('category')
             ->inRandomOrder()
             ->limit(4)
             ->get();
 
         $categories = Category::withCount(['talents' => function ($query) {
-            $query->where('status', 'active');
+            $query->where('status', 'active')->where('has_signed_agreement', true);
         }])
             ->with(['talents' => function ($query) {
-                $query->where('status', 'active')->limit(1);
+                $query->where('status', 'active')->where('has_signed_agreement', true)->limit(1);
             }])
             ->get()
             ->filter(function ($category) {

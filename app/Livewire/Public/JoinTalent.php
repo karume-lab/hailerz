@@ -58,8 +58,14 @@ class JoinTalent extends Component
     #[Validate('nullable|string|max:100')]
     public string $genre = '';
 
-    #[Validate('required|string|max:100')]
+    // Legacy property to prevent crash from old local storage
     public string $years_active = '';
+
+    #[Validate('required|numeric|min:1')]
+    public $period_active_value = '';
+
+    #[Validate('required|string|in:days,months,years')]
+    public string $period_active_unit = '';
 
     public $min_rate;
 
@@ -153,7 +159,8 @@ class JoinTalent extends Component
         } elseif ($this->currentStep === 2) {
             $this->validate([
                 'category' => 'required|string|max:100',
-                'years_active' => 'required|string|max:100',
+                'period_active_value' => 'required|numeric|min:1',
+                'period_active_unit' => 'required|string|in:days,months,years',
                 'min_rate' => 'required|numeric|min:'.config('paystack.min_amount', 100),
                 'max_rate' => 'required|numeric|min:'.config('paystack.min_amount', 100),
                 'bio' => 'required|string|min:200|max:5000',
@@ -213,7 +220,7 @@ class JoinTalent extends Component
             'profile_photo_url' => $profilePhotoUrl,
             'category' => $this->category,
             'genre' => $this->genre,
-            'years_active' => $this->years_active,
+            'period_active' => $this->period_active_value.' '.$this->period_active_unit,
             'min_rate' => $this->min_rate,
             'max_rate' => $this->max_rate,
             'website_url' => $this->website_url,

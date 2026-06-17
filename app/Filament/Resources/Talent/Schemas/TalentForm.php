@@ -58,8 +58,8 @@ class TalentForm
                     Forms\Components\TextInput::make('genre')
                         ->label('Primary Genre')
                         ->columnSpan(1),
-                    Forms\Components\TextInput::make('years_active')
-                        ->label('Years Active')
+                    Forms\Components\TextInput::make('period_active')
+                        ->label('Period Active')
                         ->columnSpan(1),
                     Forms\Components\TextInput::make('email')
                         ->label('Contact Email')

@@ -114,7 +114,7 @@ class BookingWizard extends Component
     #[Computed]
     public function searchableTalents()
     {
-        $query = Talent::where('status', 'active');
+        $query = Talent::where('status', 'active')->where('has_signed_agreement', true);
 
         if ($this->budget_range) {
             $maxPrice = null;

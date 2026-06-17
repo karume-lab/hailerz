@@ -13,7 +13,7 @@ class ShowTalent extends Component
     public function mount(string $slug)
     {
         $this->talent = Talent::with('galleryItems')->where('slug', $slug)
-            ->where('status', 'active')
+            ->where('status', 'active')->where('has_signed_agreement', true)
             ->firstOrFail();
     }
 

@@ -14,7 +14,7 @@ Welcome to the **Hailerz** community! We have successfully received your applica
 - **Type:** {{ ucfirst($submission->talent_type) }} @if($submission->talent_type === 'group')({{ $submission->member_count }} members)@endif
 - **Category:** {{ $submission->category }}
 - **Location:** {{ $submission->location }}
-- **Experience:** {{ $submission->years_active }}
+- **Experience:** {{ $submission->period_active }}
 - **Rate Range:** {{ \App\Helpers\CurrencyHelper::formatRange($submission->min_rate, $submission->max_rate, $submission->currency ?? 'USD') }}
 
 ### Online Presence

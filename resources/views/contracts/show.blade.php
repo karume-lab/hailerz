@@ -201,19 +201,19 @@
                             </div>
 
                             <!-- Legal Consent -->
-                            <div class="relative flex items-start p-6 bg-brand-primary/5 rounded-4xl border border-brand-primary/10 transition-colors duration-300">
+                            <label for="esign_consent" class="relative flex items-start p-6 bg-brand-primary/5 rounded-4xl border border-brand-primary/10 transition-colors duration-300 cursor-pointer hover:bg-brand-primary/10">
                                 <div class="flex h-6 items-center">
                                     <input type="checkbox" name="esign_consent" value="1" required id="esign_consent"
                                         class="h-4 w-4 rounded border-brand-primary/30 text-brand-primary focus:ring-brand-primary">
                                 </div>
                                 <div class="ml-4 text-xs leading-5">
-                                    <label for="esign_consent" class="font-bold text-text-primary block mb-1">ESIGN Act Consent *</label>
+                                    <span class="font-bold text-text-primary block mb-1">ESIGN Act Consent *</span>
                                     <p class="text-text-secondary leading-relaxed">I consent to electronically sign this document and understand that my typed name represents a legally binding digital signature.</p>
                                     @error('esign_consent')
                                         <span class="text-red-500 text-[11px] font-bold mt-2 block tracking-tight">{{ $message }}</span>
                                     @enderror
                                 </div>
-                            </div>
+                            </label>
 
                             <!-- CTA Submit -->
                             <x-button type="submit" variant="primary" size="md" class="w-full py-4" id="submit-signature-btn" disabled>

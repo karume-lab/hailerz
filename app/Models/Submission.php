@@ -23,7 +23,7 @@ class Submission extends Model
         'profile_photo_url',
         'category',
         'genre',
-        'years_active',
+        'period_active',
         'min_rate',
         'max_rate',
         'currency',

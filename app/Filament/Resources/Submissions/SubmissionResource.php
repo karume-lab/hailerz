@@ -121,8 +121,8 @@ class SubmissionResource extends Resource
                     Forms\Components\TextInput::make('genre')
                         ->label('Primary Genre')
                         ->columnSpan(1),
-                    Forms\Components\TextInput::make('years_active')
-                        ->label('Years Active')
+                    Forms\Components\TextInput::make('period_active')
+                        ->label('Period Active')
                         ->columnSpan(1),
                     Forms\Components\TextInput::make('min_rate')
                         ->label(fn ($record) => 'Minimum Rate ('.(($record ? $record->currency : null) ?? 'USD').')')
@@ -324,7 +324,7 @@ class SubmissionResource extends Resource
                                 'location' => $record->location,
                                 'starting_price' => CurrencyHelper::convertToUsd((float) ($record->min_rate ?? 0), $record->currency ?? 'USD'),
                                 'genre' => $record->genre,
-                                'years_active' => $record->years_active,
+                                'period_active' => $record->period_active,
                                 'website_url' => $record->website_url,
                                 'instagram_handle' => $record->instagram_handle,
                                 'facebook_url' => $record->facebook_url,

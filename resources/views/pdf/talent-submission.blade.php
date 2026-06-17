@@ -48,7 +48,7 @@
         </tr>
         <tr>
             <td class="label">Years Active:</td>
-            <td>{{ $submission->years_active }}</td>
+            <td>{{ $submission->period_active }}</td>
         </tr>
     </table>
 </div>

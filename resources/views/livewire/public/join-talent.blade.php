@@ -34,7 +34,7 @@
                             }
                             Object.keys(data).forEach(key => {
                                 if (!key.startsWith('gallery.')) {
-                                    @this.set(key, data[key]);
+                                    if (key !== 'years_active') @this.set(key, data[key]);
                                 }
                             });
                             if (parsed.currentStep) {
@@ -319,13 +319,21 @@
                                 </x-select>
                                 <x-input wire:model.live.debounce.300ms="genre" label="Primary Genre/Style (Optional)"
                                     placeholder="e.g., Afrobeats, Jazz, Hip-Hop" />
-                                <x-input wire:model.live.debounce.300ms="years_active" label="Years Active *" placeholder="e.g., 5 years" />
+                                <div class="grid grid-cols-2 gap-4">
+                                    <x-input wire:model.live.debounce.300ms="period_active_value" type="number" label="Period Active *" placeholder="e.g. 5" min="1" />
+                                    <x-select wire:model.live="period_active_unit" label="Unit *">
+                                        <option value="">Select unit</option>
+                                        <option value="days">Days</option>
+                                        <option value="months">Months</option>
+                                        <option value="years">Years</option>
+                                    </x-select>
+                                </div>
                                 <div class="grid grid-cols-2 gap-4">
                                     <x-input wire:model.live.debounce.300ms="min_rate" type="number"
-                                        label="Min Rate ({{ \App\Helpers\CurrencyHelper::getCurrencySymbol() }}) *"
+                                        label="Min Rate ({{ \App\Helpers\CurrencyHelper::getUserCurrency() }}) *"
                                         placeholder="e.g. 500" min="{{ config('paystack.min_amount', 100) }}" />
                                     <x-input wire:model.live.debounce.300ms="max_rate" type="number"
-                                        label="Max Rate ({{ \App\Helpers\CurrencyHelper::getCurrencySymbol() }}) *"
+                                        label="Max Rate ({{ \App\Helpers\CurrencyHelper::getUserCurrency() }}) *"
                                         placeholder="e.g. 1500" min="{{ config('paystack.min_amount', 100) }}" />
                                 </div>
                                 <div class="md:col-span-2">

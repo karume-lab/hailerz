@@ -51,7 +51,7 @@ class EditSubmission extends EditRecord
                             'location' => $record->location,
                             'starting_price' => CurrencyHelper::convertToUsd((float) ($record->min_rate ?? 0), $record->currency ?? 'USD'),
                             'genre' => $record->genre,
-                            'years_active' => $record->years_active,
+                            'period_active' => $record->period_active,
                             'website_url' => $record->website_url,
                             'instagram_handle' => $record->instagram_handle,
                             'facebook_url' => $record->facebook_url,
