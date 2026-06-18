@@ -28,8 +28,9 @@ class ChallengeForm
                         FileUpload::make('banner_image')
                             ->image()
                             ->directory('challenges-banners')
-                            ->required(),
-                    ])->columns(3),
+                            ->required()
+                            ->columnSpanFull(),
+                    ])->columns(2)->columnSpanFull(),
 
                 Section::make('Gamified Timeline Metrics')
                     ->schema([
@@ -38,7 +39,7 @@ class ChallengeForm
                         DateTimePicker::make('end_date')
                             ->required()
                             ->after('start_date'),
-                    ])->columns(2),
+                    ])->columns(2)->columnSpanFull(),
 
                 Section::make('Detailed Guidelines')
                     ->schema([
@@ -49,7 +50,7 @@ class ChallengeForm
                                 'blockquote', 'bold', 'bulletList', 'codeBlock',
                                 'h2', 'h3', 'italic', 'link', 'orderedList', 'redo', 'undo',
                             ]),
-                    ]),
+                    ])->columnSpanFull(),
             ]);
     }
 }
