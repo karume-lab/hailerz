@@ -313,11 +313,7 @@
                                     <option value="Other">Other</option>
                                 </x-select>
  
-                                @error('payment')
-                                    <div class="mb-4 p-4 bg-red-50 text-red-600 rounded-xl text-sm font-bold border border-red-200 w-full text-center">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
+
 
                                 <label for="is_accurate" class="cursor-pointer relative flex items-start p-4 bg-brand-primary/5 hover:bg-brand-primary/10 transition-colors rounded-xl border border-brand-primary/10">
                                     <div class="flex h-6 items-center">
@@ -362,7 +358,7 @@
                                 </x-button>
                             @else
                                 <x-button variant="primary" type="submit" wire:target="submit">
-                                    Proceed to Payment
+                                    Submit Booking
                                 </x-button>
                             @endif
                         </div>

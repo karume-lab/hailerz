@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\Inquiries\Tables;
 
 use App\Enums\InquiryStatus;
+use App\Mail\GenericTemplateMail;
 use App\Mail\TalentFrozenMail;
 use App\Models\EmailTemplate;
 use App\Models\Inquiry;
@@ -81,16 +82,16 @@ class InquiryTable
                 Actions\Action::make('markNoShow')
                     ->label('Flag No Show')
                     ->icon('heroicon-o-exclamation-triangle')
-                    ->color('danger')
+                    ->color(fn () => 'danger')
                     ->requiresConfirmation()
                     ->hidden(fn ($record) => $record->is_no_show || ! $record->talent_id)
                     ->action(function ($record) {
                         $record->update(['is_no_show' => true]);
 
                         $talent = $record->talent;
-                        $noShowCount = Inquiry::where('talent_id', $talent->id)
-                            ->where('is_no_show', true)
-                            ->where('created_at', '>=', now()->subYear())
+                        $noShowCount = Inquiry::where(['talent_id' => $talent->id])
+                            ->where(['is_no_show' => true])
+                            ->where([['created_at', '>=', now()->subYear()]])
                             ->count();
 
                         if ($noShowCount >= 3) {
@@ -132,6 +133,8 @@ class InquiryTable
                             ->required(),
                     ])
                     ->action(function ($record, array $data) {
+                        Mail::to($record->client_email ?? $record->email)->send(new GenericTemplateMail($data['subject'], $data['body']));
+
                         Notification::make()
                             ->title('Communication Sent')
                             ->body("Professional response dispatched to {$record->client_name}.")

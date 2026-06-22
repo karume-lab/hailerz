@@ -3,10 +3,12 @@
 namespace App\Livewire\Public;
 
 use App\Helpers\CurrencyHelper;
+use App\Mail\AdminBookingNotification;
+use App\Mail\BookingConfirmationMail;
 use App\Models\Inquiry;
 use App\Models\Talent;
-use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
@@ -114,7 +116,7 @@ class BookingWizard extends Component
     #[Computed]
     public function searchableTalents()
     {
-        $query = Talent::where('status', 'active')->where('has_signed_agreement', true);
+        $query = Talent::where(['status' => 'active'])->where(['has_signed_agreement' => true]);
 
         if ($this->budget_range) {
             $maxPrice = null;
@@ -142,12 +144,12 @@ class BookingWizard extends Component
                 $currency = CurrencyHelper::getUserCurrency();
                 $rate = CurrencyHelper::convert(1.0, $currency);
                 $usdPrice = $rate > 0 ? ($maxPrice / $rate) : $maxPrice;
-                $query->where('starting_price', '<=', $usdPrice);
+                $query->where([['starting_price', '<=', $usdPrice]]);
             }
         }
 
         return $query->when($this->talentSearch, function ($query) {
-            $query->where('name', 'like', '%'.$this->talentSearch.'%');
+            $query->where([['name', 'like', '%'.$this->talentSearch.'%']]);
         })
             ->with('category')
             ->limit($this->talentLimit)
@@ -256,42 +258,18 @@ class BookingWizard extends Component
             'currency' => CurrencyHelper::getUserCurrency(),
         ]);
 
-        $reference = 'HLZ-'.strtoupper(Str::random(12)).'-'.time();
-        $rawUsdAmount = $this->selectedTalent ? $this->selectedTalent->starting_price : config('paystack.min_amount');
-        $usdAmount = (float) str_replace(',', '', (string) $rawUsdAmount);
+        $this->isComplete = true;
 
-        // Convert the USD base amount to the user's localized currency for the database record
-        $localizedAmount = CurrencyHelper::convert($usdAmount, $inquiry->currency);
-
-        $inquiry->update([
-            'payment_reference' => $reference,
-            'amount' => $localizedAmount,
-        ]);
-
-        // Convert the USD base amount to NGN for the actual Paystack charge
-        $ngnAmount = CurrencyHelper::convert($usdAmount, 'NGN');
-        // Enforce absolute minimum to prevent Paystack initialization failures
-        $ngnAmount = max($ngnAmount, config('paystack.min_amount'));
-
-        $payload = [
-            'email' => $this->email,
-            'amount' => (int) ($ngnAmount * 100),
-            'currency' => 'NGN', // Explicitly route to native NGN channels
-            'reference' => $reference,
-            'callback_url' => route('pay.callback'),
-            'metadata' => ['booking_id' => $inquiry->id],
-        ];
-
-        $response = Http::withToken(config('paystack.secretKey'))
-            ->post(config('paystack.paymentUrl').'/transaction/initialize', $payload);
-
-        if (! $response->successful() || ! $response->json('status')) {
-            $this->addError('payment', 'Payment initialization failed: '.($response->json('message') ?? 'Unknown error.'));
-
-            return;
+        try {
+            Log::info('Attempting to send booking email to: '.$inquiry->email);
+            Mail::to($inquiry->email)->send(new BookingConfirmationMail($inquiry));
+            Mail::to(config('mail.from.address'))->send(new AdminBookingNotification($inquiry));
+            Log::info('Booking email sent successfully.');
+        } catch (\Throwable $e) {
+            Log::error('Mail sending failed: '.$e->getMessage());
         }
 
-        return redirect()->away($response->json('data.authorization_url'));
+        return redirect()->route('booking.confirmation');
     }
 
     public function updated($propertyName): void

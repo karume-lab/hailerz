@@ -4,10 +4,12 @@ namespace App\Filament\Resources\Submissions;
 
 use App\Helpers\CurrencyHelper;
 use App\Helpers\MediaPreviewHelper;
+use App\Mail\GenericTemplateMail;
 use App\Mail\TalentAgreementMail;
 use App\Models\Category;
 use App\Models\Contract;
 use App\Models\ContractSignature;
+use App\Models\EmailTemplate;
 use App\Models\Submission;
 use App\Models\Talent;
 use App\Services\ContractPdfService;
@@ -15,6 +17,10 @@ use BackedEnum;
 use Filament\Actions\Action;
 use Filament\Actions\EditAction;
 use Filament\Forms;
+use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
+use Filament\Infolists\Components\TextEntry;
 use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Schemas\Components\Section;
@@ -54,13 +60,13 @@ class SubmissionResource extends Resource
     public static function form(Schema $schema): Schema
     {
         return $schema->components([
-            Section::make('Applicant Personal Information')
+            Section::make(fn () => 'Applicant Personal Information')
                 ->schema([
-                    Forms\Components\TextInput::make('artist_name')
+                    TextInput::make('artist_name')
                         ->label('Performer / Act Name')
                         ->required()
                         ->columnSpan(1),
-                    Forms\Components\Select::make('talent_type')
+                    Select::make('talent_type')
                         ->label('Talent Type')
                         ->options([
                             'individual' => 'Individual Performer',
@@ -69,30 +75,30 @@ class SubmissionResource extends Resource
                         ->required()
                         ->live()
                         ->columnSpan(1),
-                    Forms\Components\TextInput::make('member_count')
+                    TextInput::make('member_count')
                         ->label('Member Count')
                         ->numeric()
                         ->visible(fn ($get) => $get('talent_type') === 'group')
                         ->required(fn ($get) => $get('talent_type') === 'group')
                         ->columnSpan(1),
-                    Forms\Components\TextInput::make('real_name')
+                    TextInput::make('real_name')
                         ->label('Legal / Real Name')
                         ->required()
                         ->columnSpan(1),
-                    Forms\Components\TextInput::make('email')
+                    TextInput::make('email')
                         ->label('Professional Email')
                         ->email()
                         ->required()
                         ->columnSpan(1),
-                    Forms\Components\TextInput::make('phone')
+                    TextInput::make('phone')
                         ->label('Phone Number')
                         ->required()
                         ->columnSpan(1),
-                    Forms\Components\TextInput::make('location')
+                    TextInput::make('location')
                         ->label('Base Location')
                         ->required()
                         ->columnSpanFull(),
-                    Forms\Components\TextInput::make('profile_photo_url')
+                    TextInput::make('profile_photo_url')
                         ->label('Profile Photo URL')
                         ->live(onBlur: true)
                         ->columnSpanFull()
@@ -104,41 +110,42 @@ class SubmissionResource extends Resource
                                 ->openUrlInNewTab()
                                 ->visible(fn ($state) => ! empty($state) && filter_var($state, FILTER_VALIDATE_URL))
                         ),
-                    Forms\Components\Placeholder::make('profile_photo_preview')
+                    /** @noinspection PhpDeprecationInspection */
+                    TextEntry::make('profile_photo_preview')
                         ->label('Profile Photo Preview')
-                        ->content(fn ($get) => new HtmlString(MediaPreviewHelper::getPreviewHtml($get('profile_photo_url'))))
+                        ->state(fn ($get) => new HtmlString(MediaPreviewHelper::getPreviewHtml($get('profile_photo_url'))))
                         ->visible(fn ($get) => ! empty($get('profile_photo_url')) && (filter_var($get('profile_photo_url'), FILTER_VALIDATE_URL) || str_starts_with($get('profile_photo_url'), 'data:image/') || str_starts_with($get('profile_photo_url'), '/')))
                         ->columnSpanFull(),
                 ])
                 ->columns(2)
                 ->columnSpanFull(),
 
-            Section::make('Professional Details')
+            Section::make(fn () => 'Professional Details')
                 ->schema([
-                    Forms\Components\TextInput::make('category')
+                    TextInput::make('category')
                         ->label('Talent Category')
                         ->columnSpan(1),
-                    Forms\Components\TextInput::make('genre')
+                    TextInput::make('genre')
                         ->label('Primary Genre')
                         ->columnSpan(1),
-                    Forms\Components\TextInput::make('period_active')
+                    TextInput::make('period_active')
                         ->label('Period Active')
                         ->columnSpan(1),
-                    Forms\Components\TextInput::make('min_rate')
+                    TextInput::make('min_rate')
                         ->label(fn ($record) => 'Minimum Rate ('.(($record ? $record->currency : null) ?? 'USD').')')
                         ->numeric()
                         ->minValue(fn () => config('paystack.min_amount', 100))
                         ->default(fn () => config('paystack.min_amount', 100))
                         ->prefix(fn ($record) => CurrencyHelper::getCurrencySymbolForCode(($record ? $record->currency : null) ?? 'USD'))
                         ->columnSpan(1),
-                    Forms\Components\TextInput::make('max_rate')
+                    TextInput::make('max_rate')
                         ->label(fn ($record) => 'Maximum Rate ('.(($record ? $record->currency : null) ?? 'USD').')')
                         ->numeric()
                         ->minValue(fn () => config('paystack.min_amount', 100))
                         ->default(fn () => config('paystack.min_amount', 100))
                         ->prefix(fn ($record) => CurrencyHelper::getCurrencySymbolForCode(($record ? $record->currency : null) ?? 'USD'))
                         ->columnSpan(1),
-                    Forms\Components\TextInput::make('currency')
+                    TextInput::make('currency')
                         ->label('Currency Code')
                         ->disabled()
                         ->columnSpan(1),
@@ -146,9 +153,9 @@ class SubmissionResource extends Resource
                 ->columns(2)
                 ->columnSpanFull(),
 
-            Section::make('Online Presence')
+            Section::make(fn () => 'Online Presence')
                 ->schema([
-                    Forms\Components\TextInput::make('website_url')
+                    TextInput::make('website_url')
                         ->label('Website')
                         ->url()
                         ->columnSpan(1)
@@ -159,7 +166,7 @@ class SubmissionResource extends Resource
                                 ->openUrlInNewTab()
                                 ->visible(fn ($state) => ! empty($state) && filter_var($state, FILTER_VALIDATE_URL))
                         ),
-                    Forms\Components\TextInput::make('instagram_handle')
+                    TextInput::make('instagram_handle')
                         ->label('Instagram')
                         ->url()
                         ->columnSpan(1)
@@ -170,7 +177,7 @@ class SubmissionResource extends Resource
                                 ->openUrlInNewTab()
                                 ->visible(fn ($state) => ! empty($state) && filter_var($state, FILTER_VALIDATE_URL))
                         ),
-                    Forms\Components\TextInput::make('facebook_url')
+                    TextInput::make('facebook_url')
                         ->label('Facebook')
                         ->url()
                         ->columnSpan(1)
@@ -181,7 +188,7 @@ class SubmissionResource extends Resource
                                 ->openUrlInNewTab()
                                 ->visible(fn ($state) => ! empty($state) && filter_var($state, FILTER_VALIDATE_URL))
                         ),
-                    Forms\Components\TextInput::make('youtube_channel')
+                    TextInput::make('youtube_channel')
                         ->label('YouTube')
                         ->url()
                         ->columnSpan(1)
@@ -192,7 +199,7 @@ class SubmissionResource extends Resource
                                 ->openUrlInNewTab()
                                 ->visible(fn ($state) => ! empty($state) && filter_var($state, FILTER_VALIDATE_URL))
                         ),
-                    Forms\Components\TextInput::make('tiktok_handle')
+                    TextInput::make('tiktok_handle')
                         ->label('TikTok')
                         ->url()
                         ->columnSpan(1)
@@ -207,22 +214,22 @@ class SubmissionResource extends Resource
                 ->columns(2)
                 ->columnSpanFull(),
 
-            Section::make('Artist Statement')
+            Section::make(fn () => 'Artist Statement')
                 ->schema([
                     Forms\Components\Textarea::make('bio')
                         ->label('Artist Biography')
                         ->required()
                         ->rows(6),
 
-                    Forms\Components\TextInput::make('source')
+                    TextInput::make('source')
                         ->label('How they heard about us')
                         ->disabled(),
                 ])
                 ->columnSpanFull(),
 
-            Section::make('Application Status')
+            Section::make(fn () => 'Application Status')
                 ->schema([
-                    Forms\Components\Select::make('status')
+                    Select::make('status')
                         ->label('Application Status')
                         ->options([
                             'pending' => 'Pending Review',
@@ -233,13 +240,13 @@ class SubmissionResource extends Resource
                 ])
                 ->columnSpanFull(),
 
-            Section::make('Media Gallery')
+            Section::make(fn () => 'Media Gallery')
                 ->description('Portfolio links provided by the applicant')
                 ->schema([
                     Forms\Components\Repeater::make('gallery')
                         ->relationship('gallery')
                         ->schema([
-                            Forms\Components\TextInput::make('url')
+                            TextInput::make('url')
                                 ->label('Media URL')
                                 ->url()
                                 ->required()
@@ -252,15 +259,16 @@ class SubmissionResource extends Resource
                                         ->openUrlInNewTab()
                                         ->visible(fn ($state) => ! empty($state) && filter_var($state, FILTER_VALIDATE_URL))
                                 ),
-                            Forms\Components\TextInput::make('title')
+                            TextInput::make('title')
                                 ->label('Title')
                                 ->columnSpan(1),
-                            Forms\Components\TextInput::make('description')
+                            TextInput::make('description')
                                 ->label('Description')
                                 ->columnSpan(1),
-                            Forms\Components\Placeholder::make('media_preview')
+                            /** @noinspection PhpDeprecationInspection */
+                            TextEntry::make('media_preview')
                                 ->label('Media Preview')
-                                ->content(fn ($get) => new HtmlString(MediaPreviewHelper::getPreviewHtml($get('url'))))
+                                ->state(fn ($get) => new HtmlString(MediaPreviewHelper::getPreviewHtml($get('url'))))
                                 ->visible(fn ($get) => ! empty($get('url')) && (filter_var($get('url'), FILTER_VALIDATE_URL) || str_starts_with($get('url'), 'data:image/') || str_starts_with($get('url'), '/')))
                                 ->columnSpanFull(),
                         ])
@@ -303,7 +311,7 @@ class SubmissionResource extends Resource
                 Action::make('approve')
                     ->label('Admit to Talent')
                     ->icon('heroicon-o-check')
-                    ->color('success')
+                    ->color(fn () => 'success')
                     ->requiresConfirmation()
                     ->hidden(fn (Submission $record) => $record->status !== 'pending')
                     ->action(function (Submission $record) {
@@ -386,6 +394,38 @@ class SubmissionResource extends Resource
                         Notification::make()
                             ->title('Act Admitted to Agency Talent')
                             ->body('A new talent profile has been initialized based on this application.')
+                            ->success()
+                            ->send();
+                    }),
+                Action::make('sendEmail')
+                    ->label('Send Email')
+                    ->icon('heroicon-o-envelope')
+                    ->color('info')
+                    ->modalHeading('Send Communication')
+                    ->modalWidth('2xl')
+                    ->form([
+                        Select::make('template_id')
+                            ->label('Select Template')
+                            ->options(EmailTemplate::pluck('name', 'id'))
+                            ->reactive()
+                            ->afterStateUpdated(function ($state, callable $set) {
+                                $template = EmailTemplate::find($state);
+                                if ($template) {
+                                    $set('subject', $template->subject);
+                                    $set('body', $template->body);
+                                }
+                            }),
+                        TextInput::make('subject')
+                            ->required(),
+                        RichEditor::make('body')
+                            ->required(),
+                    ])
+                    ->action(function ($record, array $data) {
+                        Mail::to($record->email)->send(new GenericTemplateMail($data['subject'], $data['body']));
+
+                        Notification::make()
+                            ->title('Communication Sent')
+                            ->body("Email dispatched to {$record->artist_name}.")
                             ->success()
                             ->send();
                     }),

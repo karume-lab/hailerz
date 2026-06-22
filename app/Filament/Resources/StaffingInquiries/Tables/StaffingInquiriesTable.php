@@ -2,7 +2,9 @@
 
 namespace App\Filament\Resources\StaffingInquiries\Tables;
 
+use App\Mail\GenericTemplateMail;
 use App\Mail\StaffingInquiryReply;
+use App\Models\EmailTemplate;
 use Filament\Actions\Action;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
@@ -10,7 +12,10 @@ use Filament\Actions\EditAction;
 use Filament\Actions\ForceDeleteBulkAction;
 use Filament\Actions\RestoreBulkAction;
 use Filament\Actions\ViewAction;
+use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
 use Filament\Notifications\Notification;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\TrashedFilter;
@@ -65,9 +70,46 @@ class StaffingInquiriesTable
             ->recordActions([
                 ViewAction::make(),
                 EditAction::make(),
+                Action::make('sendEmail')
+                    ->label('Send Email')
+                    ->icon('heroicon-o-envelope')
+                    ->color('info')
+                    ->modalHeading('Send Professional Response')
+                    ->modalWidth('2xl')
+                    ->form([
+                        Select::make('template_id')
+                            ->label('Select Template')
+                            ->options(EmailTemplate::pluck('name', 'id'))
+                            ->reactive()
+                            ->afterStateUpdated(function ($state, callable $set) {
+                                $template = EmailTemplate::find($state);
+                                if ($template) {
+                                    $set('subject', $template->subject);
+                                    $set('body', $template->body);
+                                }
+                            }),
+                        TextInput::make('subject')
+                            ->required(),
+                        RichEditor::make('body')
+                            ->required(),
+                    ])
+                    ->action(function ($record, array $data) {
+                        Mail::to($record->email)->send(new GenericTemplateMail($data['subject'], $data['body']));
+
+                        $record->update([
+                            'status' => 'replied',
+                            'admin_notes' => ($record->admin_notes ? $record->admin_notes."\n\n" : '').'Email sent on '.now()->toDateTimeString().":\n".$data['subject'],
+                        ]);
+
+                        Notification::make()
+                            ->title('Communication Sent')
+                            ->body("Professional response dispatched to {$record->first_name}.")
+                            ->success()
+                            ->send();
+                    }),
                 Action::make('reply')
                     ->icon('heroicon-o-chat-bubble-left-ellipsis')
-                    ->color('primary')
+                    ->color(fn () => 'primary')
                     ->form([
                         Textarea::make('message')
                             ->label('Reply Message')
