@@ -18,6 +18,7 @@ class Challenge extends Model
             'prize_pool' => 'decimal:2',
             'demographics' => 'array',
             'universities' => 'array',
+            'description' => 'array',
         ];
     }
 
@@ -43,6 +44,6 @@ class Challenge extends Model
 
     public function likes(): HasMany
     {
-        return $this->interactions()->where('type', 'like');
+        return $this->interactions()->where(['type' => 'like']);
     }
 }

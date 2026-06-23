@@ -20,7 +20,30 @@
 
         <!-- Rich Text Render Area -->
         <div class="prose max-w-none text-text-primary mb-12 border-b border-subtle pb-12 leading-relaxed text-sm sm:text-base">
-            {!! $challenge->description !!}
+            @if(is_array($challenge->description))
+                @foreach($challenge->description as $block)
+                    @switch($block['type'])
+                        @case('heading')
+                            <{{ $block['data']['level'] }} class="font-bold text-brand-accent mt-8 mb-4">{{ $block['data']['content'] }}</{{ $block['data']['level'] }}>
+                            @break
+                        @case('paragraph')
+                            <div class="mb-4">
+                                {!! $block['data']['content'] !!}
+                            </div>
+                            @break
+                        @case('image')
+                            <div class="my-8 rounded-2xl overflow-hidden border border-subtle">
+                                <img src="{{ asset('storage/' . $block['data']['url']) }}" alt="{{ $block['data']['alt'] }}" class="w-full h-auto">
+                            </div>
+                            @break
+                        @case('code')
+                            <pre class="bg-surface-dark text-text-inverse p-4 rounded-xl overflow-x-auto my-6 text-sm font-mono leading-normal"><code>{{ $block['data']['code'] }}</code></pre>
+                            @break
+                    @endswitch
+                @endforeach
+            @else
+                {!! $challenge->description !!}
+            @endif
         </div>
 
         <!-- Action Engine Row -->

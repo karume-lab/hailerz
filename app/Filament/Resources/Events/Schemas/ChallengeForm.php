@@ -2,9 +2,12 @@
 
 namespace App\Filament\Resources\Events\Schemas;
 
+use Filament\Forms\Components\Builder;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
@@ -15,7 +18,8 @@ class ChallengeForm
     {
         return $schema
             ->schema([
-                Section::make('Challenge Operational Definition')
+                Section::make()
+                    ->heading('Challenge Operational Definition')
                     ->schema([
                         TextInput::make('title')
                             ->required()
@@ -32,7 +36,8 @@ class ChallengeForm
                             ->columnSpanFull(),
                     ])->columns(2)->columnSpanFull(),
 
-                Section::make('Gamified Timeline Metrics')
+                Section::make()
+                    ->heading('Gamified Timeline Metrics')
                     ->schema([
                         DateTimePicker::make('start_date')
                             ->required(),
@@ -41,15 +46,53 @@ class ChallengeForm
                             ->after('start_date'),
                     ])->columns(2)->columnSpanFull(),
 
-                Section::make('Detailed Guidelines')
+                Section::make()
+                    ->heading('Detailed Guidelines')
                     ->schema([
-                        RichEditor::make('description')
+                        Builder::make('description')
+                            ->blocks([
+                                Builder\Block::make('heading')
+                                    ->schema([
+                                        TextInput::make('content')
+                                            ->label('Heading')
+                                            ->required(),
+                                        Select::make('level')
+                                            ->options([
+                                                'h2' => 'Heading 2',
+                                                'h3' => 'Heading 3',
+                                                'h4' => 'Heading 4',
+                                            ])
+                                            ->required(),
+                                    ]),
+                                Builder\Block::make('paragraph')
+                                    ->schema([
+                                        RichEditor::make('content')
+                                            ->label('Paragraph')
+                                            ->required()
+                                            ->toolbarButtons([
+                                                'bold', 'italic', 'strike', 'link', 'bulletList', 'orderedList',
+                                            ]),
+                                    ]),
+                                Builder\Block::make('image')
+                                    ->schema([
+                                        FileUpload::make('url')
+                                            ->label('Image')
+                                            ->image()
+                                            ->required(),
+                                        TextInput::make('alt')
+                                            ->label('Alt text')
+                                            ->required(),
+                                    ]),
+                                Builder\Block::make('code')
+                                    ->schema([
+                                        Textarea::make('code')
+                                            ->label('Code Snippet')
+                                            ->rows(5)
+                                            ->required(),
+                                    ]),
+                            ])
                             ->required()
-                            ->columnSpanFull()
-                            ->toolbarButtons([
-                                'blockquote', 'bold', 'bulletList', 'codeBlock',
-                                'h2', 'h3', 'italic', 'link', 'orderedList', 'redo', 'undo',
-                            ]),
+                            ->columnSpanFull(),
                     ])->columnSpanFull(),
             ]);
     }
