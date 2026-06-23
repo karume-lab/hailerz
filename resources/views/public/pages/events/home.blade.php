@@ -29,7 +29,7 @@
 
                 <!-- Right Column (Details) -->
                 <div class="w-full md:w-3/5">
-                    <h1 class="text-2xl sm:text-3xl font-extrabold text-brand-accent mb-8 leading-tight">{{ $event ? $event->title : 'Event Title' }}</h1>
+                    <h1 class="text-2xl sm:text-3xl font-extrabold text-brand-primary mb-8 leading-tight">{{ $event ? $event->title : 'Event Title' }}</h1>
                     
                     <div class="space-y-5 text-sm text-text-secondary mb-10 border-b border-subtle pb-10">
                         <div class="flex items-center gap-3">
@@ -47,27 +47,27 @@
                     </div>
 
                     <div class="mb-10 border-b border-subtle pb-10">
-                        <h2 class="font-extrabold text-lg text-brand-accent mb-6">About this event</h2>
+                        <h2 class="font-extrabold text-lg text-brand-primary mb-6">About this event</h2>
                         <div class="prose max-w-none text-sm text-text-secondary leading-relaxed">
                             {!! $event ? $event->description : 'No description provided.' !!}
                         </div>
                     </div>
 
                     <div class="mb-10 border-b border-subtle pb-10">
-                        <h2 class="font-extrabold text-lg text-brand-accent mb-6">Hosted by</h2>
+                        <h2 class="font-extrabold text-lg text-brand-primary mb-6">Hosted by</h2>
                         <div class="flex items-center gap-4">
                             <div class="w-12 h-12 rounded-full bg-brand-primary/10 flex items-center justify-center text-brand-primary shadow-sm border border-subtle">
                                 <img src="{{ asset('images/logo.webp') }}" alt="Hailerz" class="w-7 h-auto">
                             </div>
                             <div>
-                                <div class="font-bold text-brand-accent text-sm">Hailerz Global Talent</div>
+                                <div class="font-bold text-brand-primary text-sm">Hailerz Global Talent</div>
                                 <div class="text-xs text-text-muted mt-0.5">@Hailerz</div>
                             </div>
                         </div>
                     </div>
 
                     <div>
-                        <h2 class="font-extrabold text-lg text-brand-accent mb-6">Contact Us</h2>
+                        <h2 class="font-extrabold text-lg text-brand-primary mb-6">Contact Us</h2>
                         <div class="flex items-center gap-6 text-text-muted">
                             <a href="/" class="hover:text-brand-primary transition-colors"><x-lucide-globe class="w-5 h-5" /></a>
                             <a href="https://www.instagram.com/hailerzdotcom/" target="_blank" rel="noopener" class="hover:text-brand-primary transition-colors"><x-lucide-instagram class="w-5 h-5" /></a>

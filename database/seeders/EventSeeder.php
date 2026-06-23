@@ -20,7 +20,7 @@ class EventSeeder extends Seeder
                 'date' => Carbon::now()->addMonths(4),
                 'description' => 'The premier gathering for corporate event planners, luxury brands, and top-tier talent. Connect with industry leaders, discover innovative event solutions, and secure the perfect talent for your next corporate function.',
                 'location' => 'Landmark Centre, Victoria Island, Lagos',
-                'exhibitor_price' => 250000.00,
+                'exhibitor_price' => 10000.00,
                 'attendee_price' => 50000.00,
                 'demographics' => ['Corporate Planners', 'Brand Managers', 'Event Professionals', 'Talent Agents'],
                 'universities' => ['University of Lagos', 'Pan-Atlantic University', 'Covenant University'],
