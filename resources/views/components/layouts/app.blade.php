@@ -91,21 +91,21 @@
         <div class="flex items-center space-x-4 sm:space-x-4">
           <div class="hidden lg:flex items-center space-x-4">
             <x-theme-toggle />
-            @auth
+            <!-- @auth
               <a href="/dashboard" wire:navigate class="text-text-secondary hover:text-brand-primary transition-colors text-sm font-medium">Dashboard</a>
               <form method="POST" action="{{ route('logout') }}" class="inline m-0">
                 @csrf
                 <button type="submit" class="text-text-secondary hover:text-brand-primary transition-colors text-sm font-medium border-0 bg-transparent cursor-pointer p-0">Sign Out</button>
               </form>
-            @endauth
+            @endauth -->
           </div>
 
-          @guest
+          <!-- @guest
             <x-button variant="primary" size="sm" href="/sign-in" wire:navigate
               class="border-none shadow-sm px-4 sm:px-6 py-2 sm:py-2.5 rounded-full hover:scale-105 transition-transform text-[10px] sm:text-sm tracking-wider">
               SIGN IN
             </x-button>
-          @endguest
+          @endguest -->
           
           <x-mobile-menu />
         </div>

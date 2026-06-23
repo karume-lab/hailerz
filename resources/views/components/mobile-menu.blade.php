@@ -5,7 +5,7 @@
         ['label' => 'Talent Hub', 'href' => '/talent-hub/browse'],
         ['label' => 'Hailerz Challenges', 'href' => '/challenges'],
         // ['label' => 'Connect', 'href' => '/connect'],
-        ['label' => 'Marketplace Expo', 'href' => '/marketplace-expo'],
+        ['label' => 'Marketplace Expo', 'href' => '/events/hailerz-marketplace-expo'],
         ['label' => 'Contact', 'href' => '/contact'],
     ]
 ])

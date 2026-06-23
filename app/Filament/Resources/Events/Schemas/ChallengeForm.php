@@ -34,6 +34,11 @@ class ChallengeForm
                             ->directory('challenges-banners')
                             ->required()
                             ->columnSpanFull(),
+                        TextInput::make('external_url')
+                            ->label('External Community URL (Overrides local participation)')
+                            ->url()
+                            ->nullable()
+                            ->columnSpanFull(),
                     ])->columns(2)->columnSpanFull(),
 
                 Section::make()

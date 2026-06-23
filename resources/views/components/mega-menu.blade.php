@@ -35,7 +35,7 @@
 
         <!-- 6. Marketplace Expo Track -->
         <div class="relative h-full flex items-center" @mouseenter="activeMenu = 'events'">
-            <a href="/marketplace-expo" wire:navigate class="text-sm font-semibold tracking-wide transition-colors" :class="activeMenu === 'events' || (!activeMenu && '{{ request()->is('marketplace-expo*') }}') ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary'">
+            <a href="/events/hailerz-marketplace-expo" wire:navigate class="text-sm font-semibold tracking-wide transition-colors" :class="activeMenu === 'events' || (!activeMenu && '{{ request()->is('events/hailerz-marketplace-expo*') }}') ? 'text-brand-primary' : 'text-text-secondary hover:text-brand-primary'">
                 Marketplace Expo
             </a>
         </div>

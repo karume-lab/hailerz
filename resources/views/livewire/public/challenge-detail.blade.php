@@ -48,19 +48,26 @@
 
         <!-- Action Engine Row -->
         <div class="flex items-center gap-6 mb-12">
-            <button wire:click="toggleLike" class="flex items-center gap-2 px-6 py-3 rounded-full font-bold text-xs uppercase tracking-wider transition-all border {{ $challenge->interactions->where('user_id', auth()->id())->where('type', 'like')->count() ? 'bg-brand-primary/10 border-brand-primary text-brand-primary' : 'bg-surface-muted/50 border-subtle text-text-secondary hover:border-brand-primary' }}">
+            @if($challenge->external_url)
+                <a href="{{ $challenge->external_url }}" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 bg-brand-primary text-white px-8 py-3 rounded-full font-bold text-sm tracking-wider hover:bg-brand-primary/90 transition-colors shadow-sm hover:scale-105 duration-300">
+                    Participate in Community
+                    <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                </a>
+            @endif
+
+            <!-- <button wire:click="toggleLike" class="flex items-center gap-2 px-6 py-3 rounded-full font-bold text-xs uppercase tracking-wider transition-all border {{ $challenge->interactions->where('user_id', auth()->id())->where('type', 'like')->count() ? 'bg-brand-primary/10 border-brand-primary text-brand-primary' : 'bg-surface-muted/50 border-subtle text-text-secondary hover:border-brand-primary' }}">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="{{ $challenge->interactions->where('user_id', auth()->id())->where('type', 'like')->count() ? 'currentColor' : 'none' }}" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 {{ $challenge->interactions->where('user_id', auth()->id())->where('type', 'like')->count() ? 'text-brand-primary' : 'text-text-secondary' }}">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
                 </svg>
                 {{ $challenge->interactions->where('type', 'like')->count() }} Likes
-            </button>
+            </button> -->
             <div class="w-auto">
                 <x-share-modal :title="$challenge->title" class="w-auto" />
             </div>
         </div>
 
         <!-- Comment Tree Section -->
-        <div class="space-y-8">
+        <!-- <div class="space-y-8">
             <h3 class="text-xl font-bold text-brand-accent">Peer Submissions & Discussion ({{ $challenge->comments->count() }})</h3>
             
             @auth
@@ -85,7 +92,7 @@
                     </div>
                 @endforeach
             </div>
-        </div>
+        </div> -->
 
     </div>
 </div>
