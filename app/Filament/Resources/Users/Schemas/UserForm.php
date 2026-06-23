@@ -28,6 +28,7 @@ class UserForm
                         'actual_talent' => 'Actual Talent (Creator/Pro)',
                         'student_creative' => 'Student/Aspiring Creative',
                         'campus_leader' => 'Campus Leader',
+                        'admin' => 'Admin',
                     ])
                     ->required()
                     ->default('student_creative'),

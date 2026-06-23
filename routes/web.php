@@ -75,9 +75,9 @@ Route::redirect('/marketplace/talent/{slug}', '/talent-hub/browse/{slug}');
 Route::redirect('/marketplace-expo', '/marketplace-expo/browse')->name('events');
 
 Route::get('/events/{event:slug}', function (Event $event) {
-    $exhibitors = EventRegistration::where('event_id', $event->id)
-        ->where('pass_type', 'exhibitor')
-        ->where('payment_status', 'confirmed')
+    $exhibitors = EventRegistration::where(['event_id' => $event->id])
+        ->where(['pass_type' => 'exhibitor'])
+        ->where(['payment_status' => 'confirmed'])
         ->whereNotNull('company_logo')
         ->get();
 
@@ -172,5 +172,11 @@ Route::view('/challenges/benefits', 'public.pages.learn.benefits')->name('challe
 Route::get('/challenges/browse', ChallengesHub::class)->name('challenges.index');
 Route::get('/challenges/browse/{slug}', ChallengeDetail::class)->name('challenges.show');
 Route::redirect('/challenges/resources', '/resources');
+
+use App\Livewire\DashboardGateway;
+
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/dashboard', DashboardGateway::class)->name('dashboard');
+});
 
 require __DIR__.'/auth.php';
