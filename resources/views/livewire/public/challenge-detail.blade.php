@@ -31,6 +31,9 @@
                 </svg>
                 {{ $challenge->interactions->where('type', 'like')->count() }} Likes
             </button>
+            <div class="w-auto">
+                <x-share-modal :title="$challenge->title" class="w-auto" />
+            </div>
         </div>
 
         <!-- Comment Tree Section -->
@@ -45,7 +48,7 @@
                     </div>
                 </div>
             @else
-                <p class="text-sm text-text-muted bg-surface-muted p-4 rounded-xl">Please <a href="/login" class="text-brand-primary font-bold hover:underline">sign in</a> to drop a comment or view submission feedback.</p>
+                <p class="text-sm text-text-muted bg-surface-muted p-4 rounded-xl">Please <a href="/sign-in" class="text-brand-primary font-bold hover:underline">sign in</a> to drop a comment or view submission feedback.</p>
             @endauth
 
             <div class="space-y-4 mt-6">
