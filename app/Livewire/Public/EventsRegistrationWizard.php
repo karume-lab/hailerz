@@ -124,7 +124,7 @@ class EventsRegistrationWizard extends Component
 
             // Standardize pricing configurations to native Nigerian Naira (NGN)
             $reference = 'HLZ-EVT-'.strtoupper(Str::random(12)).'-'.time();
-            $rawAmount = $this->event->exhibitor_price ?? 350000.00;
+            $rawAmount = $this->event->exhibitor_price ?? 10000.00;
             $amount = max($rawAmount, 100);
 
             $registration = EventRegistration::create([

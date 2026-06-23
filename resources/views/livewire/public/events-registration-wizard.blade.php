@@ -107,7 +107,7 @@
                                 </p>
                             </div>
                             <div class="text-xl font-extrabold text-brand-primary mt-auto">
-                                {{ number_format($event?->exhibitor_price ?? 350000, 2) }} NGN
+                                {{ number_format($event?->exhibitor_price ?? 10000, 2) }} NGN
                             </div>
                         </div>
                     </div>
@@ -214,7 +214,7 @@
                         <div class="flex justify-between items-center pt-2">
                             <span class="text-sm font-bold text-text-primary">Fulfillment Cost:</span>
                             <span class="text-lg font-extrabold text-brand-primary">
-                                {{ $pass_type === 'exhibitor' ? number_format($event?->exhibitor_price ?? 350000, 2) . ' NGN' : 'Free' }}
+                                {{ $pass_type === 'exhibitor' ? number_format($event?->exhibitor_price ?? 10000, 2) . ' NGN' : 'Free' }}
                             </span>
                         </div>
                     </div>

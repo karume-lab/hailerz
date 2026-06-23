@@ -22,7 +22,7 @@
                         @endif
                     </div>
                     
-                    <a href="/marketplace-expo/tickets?tier=attendee" wire:navigate class="w-full flex items-center justify-center py-3.5 bg-[#f16440] hover:bg-[#d55839] text-white rounded-xl text-sm font-bold shadow-md hover:shadow-lg transition-all">
+                    <a href="/marketplace-expo/tickets?tier=exhibitor" wire:navigate class="w-full flex items-center justify-center py-3.5 bg-brand-primary hover:bg-brand-primary/90 text-white rounded-xl text-sm font-bold shadow-md hover:shadow-lg transition-all">
                         Get a Ticket
                     </a>
                 </div>
@@ -69,9 +69,9 @@
                     <div>
                         <h2 class="font-extrabold text-lg text-brand-accent mb-6">Contact Us</h2>
                         <div class="flex items-center gap-6 text-text-muted">
-                            <a href="#" class="hover:text-brand-primary transition-colors"><x-lucide-globe class="w-5 h-5" /></a>
-                            <a href="#" class="hover:text-brand-primary transition-colors"><x-lucide-instagram class="w-5 h-5" /></a>
-                            <a href="#" class="hover:text-brand-primary transition-colors"><x-lucide-twitter class="w-5 h-5" /></a>
+                            <a href="/" class="hover:text-brand-primary transition-colors"><x-lucide-globe class="w-5 h-5" /></a>
+                            <a href="https://www.instagram.com/hailerzdotcom/" target="_blank" rel="noopener" class="hover:text-brand-primary transition-colors"><x-lucide-instagram class="w-5 h-5" /></a>
+                            <a href="https://twitter.com/hailerzdotcom" target="_blank" rel="noopener" class="hover:text-brand-primary transition-colors"><x-lucide-twitter class="w-5 h-5" /></a>
                         </div>
                     </div>
 
