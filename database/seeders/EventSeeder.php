@@ -24,7 +24,7 @@ class EventSeeder extends Seeder
                 'attendee_price' => 50000.00,
                 'demographics' => ['Corporate Planners', 'Brand Managers', 'Event Professionals', 'Talent Agents'],
                 'universities' => ['University of Lagos', 'Pan-Atlantic University', 'Covenant University'],
-                'status' => 'upcoming',
+                'status' => 'published',
                 'banner_image' => '/images/events/hailerz-expo-banner.webp',
             ]
         );
