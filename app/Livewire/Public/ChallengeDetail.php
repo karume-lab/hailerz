@@ -5,6 +5,7 @@ namespace App\Livewire\Public;
 use App\Models\Challenge;
 use App\Models\ChallengeComment;
 use App\Models\ChallengeInteraction;
+use Illuminate\Support\Str;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 
@@ -17,7 +18,7 @@ class ChallengeDetail extends Component
 
     public function mount($slug)
     {
-        $this->challenge = Challenge::where('slug', $slug)->with(['comments.user', 'interactions'])->firstOrFail();
+        $this->challenge = Challenge::where(['slug' => $slug])->with(['comments.user', 'interactions'])->firstOrFail();
     }
 
     public function toggleLike()
@@ -26,9 +27,9 @@ class ChallengeDetail extends Component
             return redirect()->route('login');
         }
 
-        $existing = ChallengeInteraction::where('user_id', auth()->id())
-            ->where('challenge_id', $this->challenge->id)
-            ->where('type', 'like')
+        $existing = ChallengeInteraction::where(['user_id' => auth()->id()])
+            ->where(['challenge_id' => $this->challenge->id])
+            ->where(['type' => 'like'])
             ->first();
 
         if ($existing) {
@@ -64,7 +65,16 @@ class ChallengeDetail extends Component
 
     public function render()
     {
+        $desc = $this->challenge->getAttribute('description');
+        $descriptionText = is_array($desc)
+            ? collect($desc)->map(fn ($v) => strip_tags($v['data']['content'] ?? ''))->join(' ')
+            : (is_string($desc) ? strip_tags($desc) : '');
+
         return view('livewire.public.challenge-detail')
-            ->title("Hailerz | {$this->challenge->title}");
+            ->title("Hailerz | {$this->challenge->title}")
+            ->layout('components.layouts.app', [
+                'ogTitle' => "Hailerz | {$this->challenge->title}",
+                'ogDescription' => Str::limit($descriptionText, 160),
+            ]);
     }
 }

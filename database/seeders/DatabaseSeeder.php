@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
             PostSeeder::class,
             VideoSeeder::class,
             EmailTemplateSeeder::class,
+            EventSeeder::class,
         ]);
 
         // 3. Hero Records
@@ -33,7 +34,7 @@ class DatabaseSeeder extends Seeder
         $djHero = Talent::updateOrCreate(
             ['slug' => 'dj-horizon-creative-talent'],
             [
-                'category_id' => Category::where('slug', 'djs')->first()->id,
+                'category_id' => Category::where(['slug' => 'djs'])->first()->id,
                 'name' => 'DJ Horizon',
                 'primary_image_url' => '/images/home/featured/talent-1.webp',
                 'video_url' => 'https://www.youtube.com/watch?v=zHn1A6M6_Yk',
@@ -50,7 +51,7 @@ class DatabaseSeeder extends Seeder
         $speakerHero = Talent::updateOrCreate(
             ['slug' => 'marcus-chen-futurist'],
             [
-                'category_id' => Category::where('slug', 'speakers')->first()->id,
+                'category_id' => Category::where(['slug' => 'speakers'])->first()->id,
                 'name' => 'Marcus Chen',
                 'primary_image_url' => '/images/home/featured/talent-2.webp',
                 'video_url' => 'https://www.youtube.com/watch?v=7Pq-S557XQU',
@@ -67,7 +68,7 @@ class DatabaseSeeder extends Seeder
         $bandHero = Talent::updateOrCreate(
             ['slug' => 'skyline-quintet'],
             [
-                'category_id' => Category::where('slug', 'musicians')->first()->id,
+                'category_id' => Category::where(['slug' => 'musicians'])->first()->id,
                 'name' => 'The Skyline Quintet',
                 'primary_image_url' => '/images/home/featured/talent-3.webp',
                 'video_url' => 'https://www.youtube.com/watch?v=j_S6M9Z6mE8',
@@ -84,7 +85,7 @@ class DatabaseSeeder extends Seeder
         $mcHero = Talent::updateOrCreate(
             ['slug' => 'jessica-sterling-mc'],
             [
-                'category_id' => Category::where('slug', 'mcs')->first()->id,
+                'category_id' => Category::where(['slug' => 'mcs'])->first()->id,
                 'name' => 'Jessica Sterling',
                 'primary_image_url' => '/images/home/featured/talent-4.webp',
                 'video_url' => 'https://www.youtube.com/watch?v=uD4izufzh28',
@@ -101,7 +102,7 @@ class DatabaseSeeder extends Seeder
         $varietyHero = Talent::updateOrCreate(
             ['slug' => 'digital-illusionist-x'],
             [
-                'category_id' => Category::where('slug', 'variety-artists')->first()->id,
+                'category_id' => Category::where(['slug' => 'variety-artists'])->first()->id,
                 'name' => 'Digital Illusionist X',
                 'primary_image_url' => '/images/home/featured/talent-1.webp',
                 'video_url' => 'https://www.youtube.com/watch?v=60fD1432f78',
